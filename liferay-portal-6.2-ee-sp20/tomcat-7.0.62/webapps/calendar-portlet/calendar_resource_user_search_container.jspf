@@ -1,0 +1,70 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the applicable 
+ * Liferay software end user license agreement ("License Agreement")
+ * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
+ * for a copy of the License Agreement. You may not use this file except in
+ * compliance with the License Agreement. 
+ * See the License Agreement for the specific language governing
+ * permissions and limitations under the License Agreement, including 
+ * but not limited to distribution rights of the Software.
+ *
+ */
+--%>
+
+<liferay-ui:search-container
+	id="users"
+	searchContainer='<%= new CalendarResourceSearch(renderRequest, CalendarResourceSearch.DEFAULT_CUR_PARAM + "Users", iteratorURL) %>'
+>
+
+	<%
+	if (displayTerms.isAdvancedSearch()) {
+		total = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), displayTerms.getDescription(), displayTerms.getCode(), null, WorkflowConstants.STATUS_ANY, null, displayTerms.isAndOperator());
+
+		searchContainer.setTotal(total);
+
+		searchContainer.setResults(UserLocalServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), displayTerms.getDescription(), displayTerms.getCode(), null, WorkflowConstants.STATUS_ANY, null, displayTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), new UserScreenNameComparator()));
+	}
+	else {
+		total = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null);
+
+		searchContainer.setTotal(total);
+
+		searchContainer.setResults(UserLocalServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null, searchContainer.getStart(), searchContainer.getEnd(), new UserScreenNameComparator()));
+	}
+	%>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.portal.model.User"
+		keyProperty="userId"
+		modelVar="user"
+	>
+		<liferay-ui:search-container-column-text
+			name="name"
+			value="<%= HtmlUtil.escape(user.getFullName()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="description"
+			value="<%= user.getEmailAddress() %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="type"
+			value='<%= LanguageUtil.get(pageContext, "user") %>'
+		/>
+
+		<liferay-ui:search-container-column-text name="active">
+			<liferay-ui:message key="yes" />
+		</liferay-ui:search-container-column-text>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/calendar_resource_user_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

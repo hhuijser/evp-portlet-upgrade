@@ -1,0 +1,67 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
+ *
+ *
+ *
+ */
+--%>
+
+<%
+if (Validator.isNull(searchTerms.getKeywords())) {
+	total = BlogsEntryServiceUtil.getGroupEntriesCount(scopeGroupId, WorkflowConstants.STATUS_ANY);
+
+	searchContainer.setTotal(total);
+
+	results = BlogsEntryServiceUtil.getGroupEntries(scopeGroupId, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd());
+}
+else {
+	Indexer indexer = IndexerRegistryUtil.getIndexer(BlogsEntry.class);
+
+	SearchContext searchContext = SearchContextFactory.getInstance(request);
+
+	searchContext.setEnd(searchContainer.getEnd());
+	searchContext.setKeywords(searchTerms.getKeywords());
+	searchContext.setStart(searchContainer.getStart());
+
+	Hits hits = indexer.search(searchContext);
+
+	searchContainer.setTotal(hits.getLength());
+
+	for (int i = 0; i < hits.getDocs().length; i++) {
+		Document doc = hits.doc(i);
+
+		long entryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
+
+		BlogsEntry entry = null;
+
+		try {
+			entry = BlogsEntryServiceUtil.getEntry(entryId);
+
+			entry = entry.toEscapedModel();
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Blogs search index is stale and contains entry " + entryId);
+			}
+
+			continue;
+		}
+
+		results.add(entry);
+	}
+}
+
+searchContainer.setResults(results);
+%>
+
+<%!
+private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.blogs_admin.entry_search_results_jspf");
+%>

@@ -1,0 +1,40 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
+ *
+ *
+ *
+ */
+--%>
+
+<%
+TemplateSearchTerms searchTerms = (TemplateSearchTerms)searchContainer.getSearchTerms();
+
+long[] groupIds = ddmDisplay.getTemplateGroupIds(themeDisplay, showGlobalScope);
+long[] classNameIds = ddmDisplay.getTemplateClassNameIds(classNameId);
+long[] classPKs = ddmDisplay.getTemplateClassPKs(company.getCompanyId(), classNameId, classPK);
+
+if (searchTerms.isAdvancedSearch()) {
+	total = DDMTemplateServiceUtil.searchCount(company.getCompanyId(), groupIds, classNameIds, classPKs, searchTerms.getName(), searchTerms.getDescription(), searchTerms.getType(), null, null, searchTerms.isAndOperator());
+
+	searchContainer.setTotal(total);
+
+	results = DDMTemplateServiceUtil.search(company.getCompanyId(), groupIds, classNameIds, classPKs, searchTerms.getName(), searchTerms.getDescription(), searchTerms.getType(), ddmDisplay.getTemplateMode(), null, searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+}
+else {
+	total = DDMTemplateServiceUtil.searchCount(company.getCompanyId(), groupIds, classNameIds, classPKs, searchTerms.getKeywords(), searchTerms.getType(), ddmDisplay.getTemplateMode());
+
+	searchContainer.setTotal(total);
+
+	results = DDMTemplateServiceUtil.search(company.getCompanyId(), groupIds, classNameIds, classPKs, searchTerms.getKeywords(), searchTerms.getType(), ddmDisplay.getTemplateMode(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+}
+
+searchContainer.setResults(results);
+%>

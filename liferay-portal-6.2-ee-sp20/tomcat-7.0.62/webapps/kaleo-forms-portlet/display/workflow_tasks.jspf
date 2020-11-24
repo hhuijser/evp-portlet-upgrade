@@ -1,0 +1,95 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the applicable 
+ * Liferay software end user license agreement ("License Agreement")
+ * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
+ * for a copy of the License Agreement. You may not use this file except in
+ * compliance with the License Agreement. 
+ * See the License Agreement for the specific language governing
+ * permissions and limitations under the License Agreement, including 
+ * but not limited to distribution rights of the Software.
+ *
+ */
+--%>
+
+<%
+String curParam = SearchContainer.DEFAULT_CUR_PARAM;
+
+if (searchByUserRoles) {
+	curParam = "cur2";
+}
+
+PortletURL portletURL = renderResponse.createRenderURL();
+%>
+
+<liferay-ui:search-container
+	searchContainer='<%= new SearchContainer(renderRequest, null, null, curParam, SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-no-tasks") %>'
+	total="<%= WorkflowTaskManagerUtil.searchCount(company.getCompanyId(), user.getUserId(), null, KaleoProcess.class.getName(), null, null, null, false, searchByUserRoles, true) %>"
+>
+	<liferay-ui:search-container-results
+		results="<%= WorkflowTaskManagerUtil.search(company.getCompanyId(), user.getUserId(), null, KaleoProcess.class.getName(), null, null, null, false, searchByUserRoles, true, searchContainer.getStart(), searchContainer.getEnd(), null) %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.portal.kernel.workflow.WorkflowTask"
+		modelVar="workflowTask"
+		stringKey="<%= true %>"
+	>
+
+		<%
+		WorkflowInstance workflowInstance = WorkflowInstanceManagerUtil.getWorkflowInstance(company.getCompanyId(), workflowTask.getWorkflowInstanceId());
+
+		Map<String, Serializable> workflowContext = workflowInstance.getWorkflowContext();
+
+		long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+
+		DDLRecord ddlRecord = DDLRecordLocalServiceUtil.getDDLRecord(classPK);
+
+		KaleoProcess kaleoProcess = KaleoProcessLocalServiceUtil.getDDLRecordSetKaleoProcess(ddlRecord.getRecordSetId());
+		%>
+
+		<liferay-ui:search-container-row-parameter
+			name="kaleoProcessId"
+			value="<%= kaleoProcess.getKaleoProcessId() %>"
+		/>
+
+		<liferay-ui:search-container-row-parameter
+			name="ddlRecordId"
+			value="<%= ddlRecord.getRecordId() %>"
+		/>
+
+		<portlet:renderURL var="rowURL">
+			<portlet:param name="tabs2" value="edit-workflow-task" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="backURL" value="<%= currentURL %>" />
+			<portlet:param name="workflowTaskId" value="<%= String.valueOf(workflowTask.getWorkflowTaskId()) %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="task"
+			value="<%= HtmlUtil.escape(workflowTask.getName()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="name"
+			value="<%= HtmlUtil.escape(kaleoProcess.getName(locale)) %>"
+		/>
+
+		<liferay-ui:search-container-column-date
+			href="<%= rowURL %>"
+			name="submission-date"
+			value="<%= workflowInstance.getStartDate() %>"
+		/>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/display/workflow_task_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

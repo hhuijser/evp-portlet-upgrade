@@ -1,0 +1,68 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the applicable 
+ * Liferay software end user license agreement ("License Agreement")
+ * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
+ * for a copy of the License Agreement. You may not use this file except in
+ * compliance with the License Agreement. 
+ * See the License Agreement for the specific language governing
+ * permissions and limitations under the License Agreement, including 
+ * but not limited to distribution rights of the Software.
+ *
+ */
+--%>
+
+<portlet:actionURL name="installApp" var="installAppURL" />
+
+<aui:form action="<%= installAppURL %>" cssClass="install-apps" enctype="multipart/form-data" method="post" name="fm1">
+	<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
+
+	<c:if test="<%= CompanyLocalServiceUtil.getCompaniesCount(false) > 1 %>">
+		<div class="alert alert-info">
+			<liferay-ui:message key="installed-apps-are-available-to-all-portal-instances.-go-to-plugins-configuration-within-each-portal-instance-to-enable-disable-each-app" />
+		</div>
+	</c:if>
+
+	<aui:fieldset label="install">
+		<liferay-ui:success key="pluginUploaded" message="the-plugin-was-uploaded-successfully-and-is-now-being-installed" />
+
+		<liferay-ui:success key="pluginDownloaded" message="the-plugin-was-downloaded-successfully-and-is-now-being-installed" />
+
+		<div class="install-method local">
+			<liferay-ui:error exception="<%= FileExtensionException.class %>" message="please-upload-a-file-with-a-valid-extension-jar-lpkg-or-war" />
+			<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />
+
+			<aui:input label="file-upload-jar-lpkg-or-war-file" name="installMethod" type="radio" value="local" />
+
+			<aui:input cssClass="file-input" label="" name="file" type="file" />
+		</div>
+
+		<div class="install-method remote">
+			<liferay-ui:error key="invalidUrl" message="please-enter-a-valid-url" />
+
+			<aui:input label="url" name="installMethod" type="radio" value="remote" />
+
+			<aui:input cssClass="file-input" label="" name="url" type="text" />
+		</div>
+
+		<aui:button type="submit" value="install" />
+	</aui:fieldset>
+</aui:form>
+
+<aui:script use="aui-base">
+	A.one('.marketplace-portlet .install-method.local .file-input').on(
+		'change',
+		function(event) {
+			A.one('.marketplace-portlet .install-method.local input[type=radio]').attr('checked', true);
+		}
+	);
+
+	A.one('.marketplace-portlet .install-method.remote .file-input').on(
+		'click',
+		function(event) {
+			A.one('.marketplace-portlet .install-method.remote input[type=radio]').attr('checked', true);
+		}
+	);
+</aui:script>

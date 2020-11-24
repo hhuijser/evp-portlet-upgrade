@@ -1,0 +1,71 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
+ *
+ *
+ *
+ */
+--%>
+
+<%@ include file="/html/portlet/directory/user/search_columns_user_name.jspf" %>
+
+<liferay-ui:search-container-column-text
+	href="<%= rowURL %>"
+	name="screen-name"
+	orderable="<%= true %>"
+	property="screenName"
+/>
+
+<liferay-ui:search-container-column-text
+	href="<%= rowURL %>"
+	name="job-title"
+	orderable="<%= true %>"
+	value="<%= user2.getJobTitle() %>"
+/>
+
+<c:choose>
+	<c:when test="<%= organizationContextView && (organizationGroupId > 0) %>">
+
+		<%
+		List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), organizationGroupId, 0, PropsValues.USERS_ADMIN_ROLE_COLUMN_LIMIT);
+		int userGroupRolesCount = UserGroupRoleLocalServiceUtil.getUserGroupRolesCount(user2.getUserId(), organizationGroupId);
+		%>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="organization-roles"
+			value="<%= UsersAdminUtil.getUserColumnText(locale, userGroupRoles, UsersAdmin.USER_GROUP_ROLE_TITLE_ACCESSOR, userGroupRolesCount) %>"
+		/>
+	</c:when>
+	<c:otherwise>
+
+		<%
+		List<Organization> userOrganizations = OrganizationLocalServiceUtil.getUserOrganizations(user2.getUserId(), 0, PropsValues.USERS_ADMIN_ORGANIZATION_COLUMN_LIMIT);
+		int userOrganizationsCount = OrganizationLocalServiceUtil.getUserOrganizationsCount(user2.getUserId());
+		%>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="organizations"
+			value="<%= HtmlUtil.escape(UsersAdminUtil.getUserColumnText(locale, userOrganizations, Organization.NAME_ACCESSOR, userOrganizationsCount)) %>"
+		/>
+	</c:otherwise>
+</c:choose>
+
+<%
+List<UserGroup> userUserGroups = UserGroupLocalServiceUtil.getUserUserGroups(user2.getUserId(), 0, PropsValues.USERS_ADMIN_USER_GROUP_COLUMN_LIMIT);
+int userUserGroupsCount = UserGroupLocalServiceUtil.getUserUserGroupsCount(user2.getUserId());
+%>
+
+<liferay-ui:search-container-column-text
+	href="<%= rowURL %>"
+	name="user-groups"
+	value="<%= HtmlUtil.escape(UsersAdminUtil.getUserColumnText(locale, userUserGroups, UserGroup.NAME_ACCESSOR, userUserGroupsCount)) %>"
+/>

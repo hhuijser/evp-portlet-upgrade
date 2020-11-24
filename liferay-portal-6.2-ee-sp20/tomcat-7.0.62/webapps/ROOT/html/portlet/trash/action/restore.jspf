@@ -1,0 +1,63 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
+ *
+ *
+ *
+ */
+--%>
+
+<%
+TrashHandler trashHandler = TrashHandlerRegistryUtil.getTrashHandler(entry.getClassName());
+%>
+
+<c:choose>
+	<c:when test="<%= trashHandler.isRestorable(entry.getClassPK()) && !trashHandler.isInTrashContainer(entry.getClassPK()) %>">
+		<portlet:actionURL var="restoreEntryURL">
+			<portlet:param name="struts_action" value="/trash/edit_entry" />
+			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.RESTORE %>" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="trashEntryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
+		</portlet:actionURL>
+
+		<%
+		String taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "checkEntry', {trashEntryId: " + entry.getEntryId() + ", uri: '" + restoreEntryURL.toString() + "'});";
+		%>
+
+		<liferay-ui:icon
+			image="undo"
+			message="restore"
+			onClick="<%= taglibOnClick %>"
+			url="javascript:;"
+		/>
+	</c:when>
+	<c:when test="<%= !trashHandler.isRestorable(entry.getClassPK()) && trashHandler.isMovable() %>">
+		<portlet:renderURL var="moveURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+			<portlet:param name="struts_action" value="/trash/view_container_model" />
+			<portlet:param name="className" value="<%= entry.getClassName() %>" />
+			<portlet:param name="classPK" value="<%= String.valueOf(entry.getClassPK()) %>" />
+			<portlet:param name="containerModelClassName" value="<%= trashHandler.getContainerModelClassName() %>" />
+		</portlet:renderURL>
+
+		<%
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		data.put("uri", moveURL);
+		%>
+
+		<liferay-ui:icon
+			cssClass="trash-restore-link"
+			data="<%= data %>"
+			image="undo"
+			message="restore"
+			url="javascript:;"
+		/>
+	</c:when>
+</c:choose>

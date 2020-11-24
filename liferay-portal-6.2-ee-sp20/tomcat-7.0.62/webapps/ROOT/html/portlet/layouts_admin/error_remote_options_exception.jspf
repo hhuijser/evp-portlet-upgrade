@@ -1,0 +1,38 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
+ *
+ *
+ *
+ */
+--%>
+
+<liferay-ui:error exception="<%= RemoteOptionsException.class %>">
+
+	<%
+	RemoteOptionsException roe = (RemoteOptionsException)errorException;
+	%>
+
+	<c:if test="<%= roe.getType() == RemoteOptionsException.REMOTE_ADDRESS %>">
+		<liferay-ui:message arguments="<%= roe.getRemoteAddress() %>" key="the-remote-address-x-is-not-valid" translateArguments="<%= false %>" />
+	</c:if>
+
+	<c:if test="<%= roe.getType() == RemoteOptionsException.REMOTE_GROUP_ID %>">
+		<liferay-ui:message arguments="<%= roe.getRemoteGroupId() %>" key="the-remote-site-id-x-is-not-valid" translateArguments="<%= false %>" />
+	</c:if>
+
+	<c:if test="<%= roe.getType() == RemoteOptionsException.REMOTE_PATH_CONTEXT %>">
+		<liferay-ui:message arguments="<%= roe.getRemotePathContext() %>" key="the-remote-path-context-x-is-not-valid" translateArguments="<%= false %>" />
+	</c:if>
+
+	<c:if test="<%= roe.getType() == RemoteOptionsException.REMOTE_PORT %>">
+		<liferay-ui:message arguments="<%= roe.getRemotePort() %>" key="the-remote-port-x-is-not-valid" translateArguments="<%= false %>" />
+	</c:if>
+</liferay-ui:error>

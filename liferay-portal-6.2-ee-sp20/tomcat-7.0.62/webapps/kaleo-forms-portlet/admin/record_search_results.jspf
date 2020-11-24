@@ -1,0 +1,47 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the applicable 
+ * Liferay software end user license agreement ("License Agreement")
+ * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
+ * for a copy of the License Agreement. You may not use this file except in
+ * compliance with the License Agreement. 
+ * See the License Agreement for the specific language governing
+ * permissions and limitations under the License Agreement, including 
+ * but not limited to distribution rights of the Software.
+ *
+ */
+--%>
+
+<%
+DisplayTerms displayTerms = searchContainer.getDisplayTerms();
+
+if (Validator.isNull(displayTerms.getKeywords())) {
+	total = DDLRecordLocalServiceUtil.getRecordsCount(kaleoProcess.getDDLRecordSetId(), WorkflowConstants.STATUS_ANY);
+
+	searchContainer.setTotal(total);
+
+	results = DDLRecordLocalServiceUtil.getRecords(kaleoProcess.getDDLRecordSetId(), WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+
+	searchContainer.setResults(results);
+}
+else {
+	SearchContext searchContext = SearchContextFactory.getInstance(request);
+
+	searchContext.setAttribute("recordSetId", kaleoProcess.getDDLRecordSetId());
+	searchContext.setEnd(searchContainer.getEnd());
+	searchContext.setKeywords(displayTerms.getKeywords());
+	searchContext.setStart(searchContainer.getStart());
+
+	Hits hits = DDLRecordLocalServiceUtil.search(searchContext);
+
+	results = DDLUtil.getRecords(hits);
+
+	total = results.size();
+
+	searchContainer.setTotal(total);
+}
+
+searchContainer.setResults(results);
+%>

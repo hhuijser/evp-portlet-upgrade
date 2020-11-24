@@ -1,0 +1,185 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%
+String cmd = ParamUtil.getString(request, Constants.CMD);
+
+if (Validator.isNull(cmd)) {
+	cmd = ParamUtil.getString(request, "originalCmd", "publish_to_live");
+}
+
+String tabs1 = ParamUtil.getString(request, "tabs1", "public-pages");
+
+String closeRedirect = ParamUtil.getString(request, "closeRedirect");
+
+Group selGroup = (Group)request.getAttribute(WebKeys.GROUP);
+
+Group liveGroup = null;
+Group stagingGroup = null;
+
+int pagesCount = 0;
+
+if (selGroup.isStagingGroup()) {
+	liveGroup = selGroup.getLiveGroup();
+	stagingGroup = selGroup;
+}
+else if (selGroup.isStaged()) {
+	liveGroup = selGroup;
+
+	if (selGroup.isStagedRemotely()) {
+		stagingGroup = selGroup;
+	}
+	else {
+		stagingGroup = selGroup.getStagingGroup();
+	}
+}
+
+long liveGroupId = 0;
+
+if (liveGroup != null) {
+	liveGroupId = liveGroup.getGroupId();
+}
+
+long stagingGroupId = 0;
+
+if (stagingGroup != null) {
+	stagingGroupId = stagingGroup.getGroupId();
+}
+
+long layoutSetBranchId = ParamUtil.getLong(request, "layoutSetBranchId");
+String layoutSetBranchName = ParamUtil.getString(request, "layoutSetBranchName");
+
+boolean localPublishing = true;
+
+if (liveGroup.isStaged()) {
+	if (liveGroup.isStagedRemotely()) {
+		localPublishing = false;
+	}
+}
+else if (cmd.equals("publish_to_remote")) {
+	localPublishing = false;
+}
+
+String treeId = "liveLayoutsTree";
+
+if (liveGroup.isStaged()) {
+	if (!liveGroup.isStagedRemotely()) {
+		treeId = "stageLayoutsTree";
+	}
+	else {
+		treeId = "remoteLayoutsTree";
+	}
+}
+
+treeId = treeId + liveGroupId;
+
+String publishActionKey = "copy";
+
+if (liveGroup.isStaged()) {
+	publishActionKey = "publish";
+}
+else if (cmd.equals("publish_to_remote")) {
+	publishActionKey = "publish";
+}
+
+long selPlid = ParamUtil.getLong(request, "selPlid", LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+
+Layout selLayout = null;
+
+try {
+	selLayout = LayoutLocalServiceUtil.getLayout(selPlid);
+
+	if (selLayout.isPrivateLayout()) {
+		tabs1 = "private-pages";
+	}
+}
+catch (NoSuchLayoutException nsle) {
+}
+
+boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout", tabs1.equals("private-pages"));
+
+treeId = treeId + privateLayout + layoutSetBranchId;
+
+long[] selectedLayoutIds = GetterUtil.getLongValues(StringUtil.split(SessionTreeJSClicks.getOpenNodes(request, treeId + "SelectedNode"), ','));
+
+List<Layout> selectedLayouts = new ArrayList<Layout>();
+
+long selectedLayoutsGroupId = selGroup.getGroupId();
+
+if (stagingGroupId > 0) {
+	selectedLayoutsGroupId = stagingGroupId;
+}
+
+for (int i = 0; i < selectedLayoutIds.length; i++) {
+	try {
+		selectedLayouts.add(LayoutLocalServiceUtil.getLayout(selectedLayoutsGroupId, privateLayout, selectedLayoutIds[i]));
+	}
+	catch (NoSuchLayoutException nsle) {
+	}
+}
+
+if (privateLayout) {
+	pagesCount = selGroup.getPrivateLayoutsPageCount();
+}
+else {
+	pagesCount = selGroup.getPublicLayoutsPageCount();
+}
+
+UnicodeProperties groupTypeSettings = selGroup.getTypeSettingsProperties();
+UnicodeProperties liveGroupTypeSettings = liveGroup.getTypeSettingsProperties();
+
+Organization organization = null;
+User user2 = null;
+
+if (liveGroup.isOrganization()) {
+	organization = OrganizationLocalServiceUtil.getOrganization(liveGroup.getOrganizationId());
+}
+else if (liveGroup.isUser()) {
+	user2 = UserLocalServiceUtil.getUserById(liveGroup.getClassPK());
+}
+
+String rootNodeName = liveGroup.getDescriptiveName(locale);
+
+if (liveGroup.isOrganization()) {
+	rootNodeName = organization.getName();
+}
+else if (liveGroup.isUser()) {
+	rootNodeName = user2.getFullName();
+}
+
+PortletURL portletURL = renderResponse.createActionURL();
+
+if (selGroup.isStaged() && selGroup.isStagedRemotely()) {
+	cmd = "publish_to_remote";
+}
+
+portletURL.setParameter("struts_action", "/layouts_admin/publish_layouts");
+portletURL.setParameter("closeRedirect", closeRedirect);
+portletURL.setParameter("groupId", String.valueOf(liveGroupId));
+portletURL.setParameter("stagingGroupId", String.valueOf(stagingGroupId));
+portletURL.setParameter("privateLayout", String.valueOf(privateLayout));
+
+PortletURL renderURL = renderResponse.createRenderURL();
+
+renderURL.setParameter("struts_action", "/layouts_admin/publish_layouts");
+renderURL.setParameter("tabs2", "current-and-previous");
+renderURL.setParameter("closeRedirect", closeRedirect);
+renderURL.setParameter("groupId", String.valueOf(stagingGroupId));
+renderURL.setParameter("layoutSetBranchId", String.valueOf(layoutSetBranchId));
+renderURL.setParameter("privateLayout", String.valueOf(privateLayout));
+
+response.setHeader("Ajax-ID", request.getHeader("Ajax-ID"));
+%>

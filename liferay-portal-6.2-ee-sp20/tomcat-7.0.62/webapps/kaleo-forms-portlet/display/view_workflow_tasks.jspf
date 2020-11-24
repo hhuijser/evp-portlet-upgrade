@@ -1,0 +1,48 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the applicable 
+ * Liferay software end user license agreement ("License Agreement")
+ * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
+ * for a copy of the License Agreement. You may not use this file except in
+ * compliance with the License Agreement. 
+ * See the License Agreement for the specific language governing
+ * permissions and limitations under the License Agreement, including 
+ * but not limited to distribution rights of the Software.
+ *
+ */
+--%>
+
+<%
+try {
+	boolean searchByUserRoles = false;
+%>
+
+	<liferay-ui:panel-container extended="<%= false %>" id="workflowTasksPanelContainer" persistState="<%= true %>">
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="workflowMyTasksPanel" persistState="<%= true %>" title="assigned-to-me">
+			<%@ include file="/display/workflow_tasks.jspf" %>
+		</liferay-ui:panel>
+
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="workflowMyRolesTasksPanel" persistState="<%= true %>" title="assigned-to-my-roles">
+
+			<%
+			searchByUserRoles = true;
+			%>
+
+			<%@ include file="/display/workflow_tasks.jspf" %>
+		</liferay-ui:panel>
+	</liferay-ui:panel-container>
+
+<%
+}
+catch (Exception e) {
+%>
+
+	<div class="alert alert-error">
+		<liferay-ui:message key="an-error-occurred-while-retrieving-the-list-of-tasks" />
+	</div>
+
+<%
+}
+%>

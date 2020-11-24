@@ -1,0 +1,70 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the applicable 
+ * Liferay software end user license agreement ("License Agreement")
+ * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
+ * for a copy of the License Agreement. You may not use this file except in
+ * compliance with the License Agreement. 
+ * See the License Agreement for the specific language governing
+ * permissions and limitations under the License Agreement, including 
+ * but not limited to distribution rights of the Software.
+ *
+ */
+--%>
+
+<liferay-ui:search-container id="sites" searchContainer='<%= new CalendarResourceSearch(renderRequest, CalendarResourceSearch.DEFAULT_CUR_PARAM + "Groups", iteratorURL) %>'>
+
+	<%
+	String[] params = {"site:true:boolean"};
+
+	if (displayTerms.isAdvancedSearch()) {
+		total = GroupServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), params);
+
+		searchContainer.setTotal(total);
+
+		searchContainer.setResults(GroupServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), params, searchContainer.getStart(), searchContainer.getEnd()));
+	}
+	else {
+		total = GroupServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getKeywords(), displayTerms.getKeywords(), params);
+
+		searchContainer.setTotal(total);
+
+		searchContainer.setResults(GroupServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getKeywords(), displayTerms.getKeywords(), params, searchContainer.getStart(), searchContainer.getEnd()));
+	}
+	%>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.portal.model.Group"
+		escapedModel="<%= true %>"
+		keyProperty="groupId"
+		modelVar="group"
+	>
+		<liferay-ui:search-container-column-text
+			name="name"
+			value="<%= group.getName() %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="description"
+			value="<%= group.getDescription() %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="type"
+			value='<%= LanguageUtil.get(pageContext, "site") %>'
+		/>
+
+		<liferay-ui:search-container-column-text name="active">
+			<liferay-ui:message key="yes" />
+		</liferay-ui:search-container-column-text>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/calendar_resource_group_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

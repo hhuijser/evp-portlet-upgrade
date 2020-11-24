@@ -1,0 +1,53 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
+ *
+ *
+ *
+ */
+--%>
+
+<%
+long resourcePrimKey = 0;
+
+String attachmentURLPrefix = StringPool.BLANK;
+
+if (wikiPage != null) {
+	resourcePrimKey = wikiPage.getResourcePrimKey();
+
+	attachmentURLPrefix = themeDisplay.getPathMain() + "/wiki/get_page_attachment?p_l_id=" + themeDisplay.getPlid() + "&nodeId=" + wikiPage.getNodeId() + "&title=" + HttpUtil.encodeURL(wikiPage.getTitle()) + "&fileName=";
+
+	if (!format.equals("html")) {
+		attachmentURLPrefix = themeDisplay.getPortalURL() + attachmentURLPrefix;
+	}
+}
+
+Map<String,String> configParams = new HashMap();
+
+configParams.put("attachmentURLPrefix", attachmentURLPrefix);
+configParams.put("wikiPageResourcePrimKey", String.valueOf(resourcePrimKey));
+
+Map<String,String> fileBrowserParams = new HashMap();
+
+if (format.equals("html")) {
+	if (resourcePrimKey == 0) {
+		fileBrowserParams.put("ImageTypes", "Image");
+		fileBrowserParams.put("URLTypes", "Document,Page");
+	}
+	else {
+		fileBrowserParams.put("ImageTypes", "Image,AttachmentImage");
+		fileBrowserParams.put("URLTypes", "Document,Page,Attachment");
+	}
+}
+else {
+	fileBrowserParams.put("ImageTypes", "AttachmentImage");
+	fileBrowserParams.put("URLType", "Attachment");
+}
+%>

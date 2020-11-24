@@ -1,0 +1,57 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
+ *
+ *
+ *
+ */
+--%>
+
+<c:if test="<%= (themeDisplay.isShowControlPanelIcon() || themeDisplay.isShowSiteAdministrationIcon()) && (!layout.getGroup().isControlPanel() || (Validator.isNotNull(controlPanelCategory) && (controlPanelCategory.startsWith(PortletCategoryKeys.CURRENT_SITE) || (controlPanelCategory.equals(PortletCategoryKeys.MY) && !PropsValues.DOCKBAR_ADMINISTRATIVE_LINKS_SHOW_IN_POP_UP)))) %>">
+	<aui:nav-item cssClass="admin-links" dropdown="<%= true %>" id="adminLinks" label="admin">
+		<c:if test="<%= themeDisplay.isShowSiteAdministrationIcon() %>">
+			<aui:nav-item anchorId="siteAdministrationLink" href="<%= themeDisplay.getURLSiteAdministration() %>" iconCssClass="icon-cog" label="site-administration">
+
+				<%
+				Map<String, List<Portlet>> categoriesMap = PortalUtil.getSiteAdministrationCategoriesMap(request);
+
+				if (!categoriesMap.isEmpty()) {
+					String currentSiteCategory = PortletCategoryKeys.CURRENT_SITE.concat(StringPool.PERIOD);
+				%>
+
+					<ul class="unstyled site-administration-menu">
+
+						<%
+						for (String category : categoriesMap.keySet()) {
+							String url = HttpUtil.setParameter(themeDisplay.getURLSiteAdministration(), "controlPanelCategory", StringUtil.replace(category, PortletCategoryKeys.SITE_ADMINISTRATION, currentSiteCategory));
+						%>
+
+							<aui:nav-item anchorId='<%= "siteAdministrationLink-" + category %>' href="<%= url %>" iconCssClass="icon-chevron-right" label='<%= "category." + category %>' />
+
+						<%
+						}
+						%>
+
+					</ul>
+
+				<%
+				}
+				%>
+
+			</aui:nav-item>
+		</c:if>
+
+		<c:if test="<%= themeDisplay.isShowControlPanelIcon() %>">
+			<aui:nav-item anchorId="controlPanelLink" href="<%= themeDisplay.getURLControlPanel() %>" iconCssClass="icon-wrench" label="control-panel" />
+		</c:if>
+	</aui:nav-item>
+
+	<aui:nav-item cssClass="divider-vertical"></aui:nav-item>
+</c:if>

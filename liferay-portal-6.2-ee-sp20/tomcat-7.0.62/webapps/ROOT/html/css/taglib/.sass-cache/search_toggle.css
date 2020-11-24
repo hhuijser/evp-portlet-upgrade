@@ -1,0 +1,6 @@
+.taglib-search-toggle .popover .arrow {
+  left: 70%; }
+  @media (max-width: 979px) {
+    .taglib-search-toggle .popover .arrow .taglib-search-toggle {
+      margin: 0 10px; } }
+

@@ -1,0 +1,115 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of the applicable 
+ * Liferay software end user license agreement ("License Agreement")
+ * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
+ * for a copy of the License Agreement. You may not use this file except in
+ * compliance with the License Agreement. 
+ * See the License Agreement for the specific language governing
+ * permissions and limitations under the License Agreement, including 
+ * but not limited to distribution rights of the Software.
+ *
+ */
+--%>
+
+<script id="<portlet:namespace />eventRecorderHeaderTpl" type="text/x-alloy-template">
+	<div class="calendar-portlet-event-recorder">
+		<div class="scheduler-event-recorder-header">
+			<tpl if="values.permissions.MANAGE_BOOKINGS">
+				<input class="scheduler-event-recorder-content" name="content" value="{content}" />
+			</tpl>
+
+			<tpl if="!values.permissions.MANAGE_BOOKINGS">
+				<input name="content" type="hidden" value="{content}" />
+
+				<div class="scheduler-event-recorder-content">{content}</div>
+			</tpl>
+		</div>
+	</div>
+</script>
+
+<script id="<portlet:namespace />eventRecorderBodyTpl" type="text/x-alloy-template">
+	<div class="calendar-portlet-event-recorder">
+		<input name="instanceIndex" type="hidden" value="{instanceIndex}" />
+		<input name="allDay" type="hidden" value="{allDay}" />
+		<input name="startTime" type="hidden" value="{startTime}" />
+		<input name="endTime" type="hidden" value="{endTime}" />
+
+		<div class="scheduler-event-recorder-body">
+			<table>
+				<tpl if="values.permissions.MANAGE_BOOKINGS && (status != Liferay.CalendarWorkflow.STATUS_DRAFT)">
+					<tr class="calendar-portlet-event-recorder-status-row">
+						<td>
+							<liferay-ui:message key="attend" />?
+						</td>
+						<td>
+							<a class="calendar-event-answer calendar-event-answer-{acceptLinkEnabled}" data-status="{workflowStatus.STATUS_APPROVED}" href="javascript:void(0);"><liferay-ui:message key="yes" /></a>
+
+							&mdash;
+
+							<a class="calendar-event-answer calendar-event-answer-{maybeLinkEnabled}" data-status="{workflowStatus.STATUS_MAYBE}" href="javascript:void(0);"><liferay-ui:message key="maybe" /></a>
+
+							&mdash;
+
+							<a class="calendar-event-answer calendar-event-answer-{declineLinkEnabled}" data-status="{workflowStatus.STATUS_DENIED}" href="javascript:void(0);"><liferay-ui:message key="no" /></a>
+						</td>
+					</tr>
+				</tpl>
+				<tr>
+					<td>
+						<liferay-ui:message key="when" />:
+					</td>
+					<td>
+						<label class="scheduler-event-recorder-date">{date}</label>
+					</td>
+				</tr>
+
+				<tr class="calendar-portlet-event-recorder-calendar-row">
+					<td>
+						<liferay-ui:message key="calendar" />:
+					</td>
+					<td>
+						<tpl if="values.permissions.MANAGE_BOOKINGS">
+							<select id="<portlet:namespace />eventRecorderCalendar" name="calendarId">
+								<tpl for="calendarIds">
+									<tpl for="parent.availableCalendars[values]">
+										<tpl if="values.get('permissions').MANAGE_BOOKINGS == true">
+											<option value="{[values.get('calendarId')]}">
+												{[LString.escapeHTML(Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName')))]}
+											</option>
+										</tpl>
+									</tpl>
+								</tpl>
+							</select>
+						</tpl>
+
+						<tpl if="!values.permissions.MANAGE_BOOKINGS">
+							<label>{[LString.escapeHTML(Liferay.CalendarUtil.getCalendarName(values.calendar.get('name'), values.calendar.get('calendarResourceName')))]}</label>
+						</tpl>
+					</td>
+				</tr>
+
+				<tpl if="values.editing && values.permissions.VIEW_BOOKING_DETAILS">
+					<tr id="<portlet:namespace />eventRecorderUsers">
+						<td>
+							<liferay-ui:message key="users" />:
+						</td>
+						<td>
+							<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
+						</td>
+					</tr>
+					<tr id="<portlet:namespace />eventRecorderResources">
+						<td>
+							<liferay-ui:message key="resources" />:
+						</td>
+						<td>
+							<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
+						</td>
+					</tr>
+				</tpl>
+			</table>
+		</div>
+	</div>
+</script>

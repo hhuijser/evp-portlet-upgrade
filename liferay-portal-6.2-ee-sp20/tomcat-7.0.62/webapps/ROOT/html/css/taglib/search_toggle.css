@@ -1,0 +1,11 @@
+@import "mixins";
+
+.taglib-search-toggle .popover .arrow {
+	left: 70%;
+
+	@include respond-to(phone, tablet) {
+		.taglib-search-toggle {
+			margin: 0 10px;
+		}
+	}
+}

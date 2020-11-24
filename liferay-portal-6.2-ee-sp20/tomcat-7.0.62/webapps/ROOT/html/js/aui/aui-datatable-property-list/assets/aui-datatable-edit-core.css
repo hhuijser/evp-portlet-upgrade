@@ -1,0 +1,63 @@
+.table-editable {
+    cursor: pointer;
+}
+.basecelleditor .buttonitem-content {
+    margin: 2px 0;
+    padding: 3px 3px 1px 1px;
+}
+.basecelleditor .buttonitem-label-only {
+    padding-bottom: 2px;
+}
+.webkit .basecelleditor .buttonitem-label-only {
+    padding-bottom: 3px;
+}
+.celleditor-edit-dd-handle {
+    cursor: move;
+    display: inline-block;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+.basecelleditor-hidden, .datecelleditor-hidden, .dropdowncelleditor-hidden, .textcelleditor-hidden, .textareacelleditor-hidden, .checkboxcelleditor-hidden, .radiocelleditor-hidden {
+    display: none !important;
+}
+.basecelleditor form {
+    margin: 0;
+}
+.celleditor-edit-label {
+    padding-bottom: 5px;
+}
+.celleditor-edit {
+    margin-bottom: 2em;
+    position: relative;
+}
+.celleditor-edit-option-row {
+    margin-bottom: 0.5em;
+}
+.celleditor-edit-option-row .control-group {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 0;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.celleditor-edit-option-row .control-group + .control-group {
+    margin-left: 0.5em;
+}
+.celleditor-edit .form-validator-stack {
+    bottom: -1.5em;
+    height: 1.5em;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 1em;
+}
+.celleditor-edit-sr-only {
+    border: 0;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}

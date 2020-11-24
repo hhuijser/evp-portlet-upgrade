@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 6.2.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_6_2_0.dtd">
+
+<plugin-package>
+	<name><![CDATA[OAuth Provider EE]]> Portlet</name>
+	<module-id>liferay/oauth-portlet/6.2.10.1/war</module-id>
+	<recommended-deployment-context>oauth-portlet</recommended-deployment-context>
+	<required-deployment-contexts></required-deployment-contexts>
+	<types>
+		<type>portlet</type>
+	</types>
+	<tags>
+		<tag>authentication</tag>
+		<tag>login</tag>
+		<tag>oauth</tag>
+	</tags>
+	<short-description><![CDATA[]]></short-description>
+	<long-description><![CDATA[The OAuth app authorizes third-party applications to interact with a Liferay user's applications. OAuth is a "handshake mechanism" that redirects Liferay users to a service provider, where they can tell the service provider to allow a plugin limited access to their Liferay accounts. This keeps the plugin from storing any of the user's credentials, avoiding security risks. The OAuth app provides two portlets that allow for registering a plugin for OAuth and authorizing OAuth users, respectively. Once the plugin is registered for OAuth and accessed, the user is redirected to the service provider to delegate user authentication.<br /><br />This app will appear in your Control Panel and My Account menu.]]></long-description>
+	<change-log><![CDATA[]]></change-log>
+	<page-url>http://www.liferay.com</page-url>
+	<author><![CDATA[Liferay, Inc.]]></author>
+	<licenses>
+		<license osi-approved="true">EE</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>6.2.10+</liferay-version>
+	</liferay-versions>
+</plugin-package>
