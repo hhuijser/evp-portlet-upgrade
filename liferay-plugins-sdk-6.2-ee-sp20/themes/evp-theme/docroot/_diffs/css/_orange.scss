@@ -1,0 +1,55 @@
+.orange {
+	a {
+		&:active, &:focus, &:hover {
+			color: $orange;
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		color: $darkGrey;
+	}
+
+	.btn {
+		&.btn-primary {
+			background: $orange;
+
+			&:hover {
+				background: $darkOrange;
+				color: $white;
+				text-shadow: none;
+			}
+		}
+	}
+
+	#navigation.navbar {
+		&.nav-scroll a:hover, .selected a, a:hover {
+			color: $orange;
+		}
+
+		.navbar-inner {
+			.pages .nav > li > a:hover > span {
+				border-bottom-color: $orange;
+			}
+
+			.default-logo .logo-scroll {
+				.icon-left {
+					fill: $orange;
+				}
+
+				.icon-right {
+					fill: $lightOrange;
+				}
+			}
+		}
+	}
+
+	#footer {
+		.footer-section.footer-section-3 {
+			ul li a:hover {
+				.social-icon {
+					fill: $orange;
+				}
+			}
+		}
+	}
+}

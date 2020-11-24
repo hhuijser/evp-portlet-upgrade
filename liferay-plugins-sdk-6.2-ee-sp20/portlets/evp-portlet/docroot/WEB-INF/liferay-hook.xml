@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
+
+<hook>
+	<portal-properties>portal.properties</portal-properties>
+	<language-properties>content/Language*.properties</language-properties>
+	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<service>
+		<service-type>com.liferay.portal.service.UserLocalService</service-type>
+		<service-impl>com.liferay.evp.hook.service.impl.EVPUserLocalServiceImpl</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.journal.service.JournalArticleLocalService</service-type>
+		<service-impl>com.liferay.evp.hook.service.impl.EVPJournalArticleLocalServiceImpl</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.messageboards.service.MBMessageLocalService</service-type>
+		<service-impl>com.liferay.evp.hook.service.impl.EVPMBMessageLocalServiceImpl</service-impl>
+	</service>
+	<servlet-filter>
+		<servlet-filter-name>EVP Filter</servlet-filter-name>
+		<servlet-filter-impl>com.liferay.evp.hook.filter.EVPFilter</servlet-filter-impl>
+	</servlet-filter>
+	<servlet-filter-mapping>
+		<servlet-filter-name>EVP Filter</servlet-filter-name>
+		<before-filter>Virtual Host Filter</before-filter>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</servlet-filter-mapping>
+</hook>

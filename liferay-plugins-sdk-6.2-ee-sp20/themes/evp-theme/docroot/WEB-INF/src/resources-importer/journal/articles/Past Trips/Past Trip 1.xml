@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="trip_title" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Hurricane Katrina Relief]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="banner_image" type="image" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="location" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[New Orleans, Louisiana]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="trip_date" type="ddm-date" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[1306368000000]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="abstract" type="text_box" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[3 Liferayers traveled to Treme, New Orleans as our first group service team to help with rebuilding after Hurricane Katrina.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="story" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<h1>The following is placeholder text.</h1>
+
+				<div class="pull-quote">The service job in and of itself was rewarding. However, being able to meet the homeowner was the highlight of it all! -- Oriana Tham</div>
+
+				<div>&nbsp;</div>
+
+				<div>In August 2005, Hurricane Katrina unleashed devastation on the Gulf Coasts of Louisiana, Mississippi and Florida. Lands were wrecked by heavy torrents of wind and rain. Thousands of houses and businesses were destroyed, leaving many Americans without a home and in despair. It was one of the worst natural disasters in US history.</div>
+
+				<div>&nbsp;</div>
+
+				<div>Six years after this tragic event, there was still much recovery work to be done. In June 2011, Liferay employees Oriana Tham, and Ron and April Sarayudej came together to participate in Liferay's first group EVP service project. Each person received a sponsorship grant to fly out to Treme, New Orleans to take part in Rebuilding Together New Orleans (RTNO), a nonprofit organization that helps with post-Katrina home restoration. Upon arrival, the Liferay volunteers got to witness the devastation firsthand, passing through streets where many houses were devoid of walls and roofs.</div>
+
+				<div>&nbsp;</div>
+
+				<div class="video-player"></div>
+
+				<div class="video-player"></div>
+
+				<div>&nbsp;</div>
+
+				<div>Teaming up with members of AmeriCorps from around the world, the Liferay team began home rehabilitation. In particular, the group was assigned to restore the house of Ms. Burke, an elderly lady nicknamed the "Miracle Woman" who endured and survived extensive trauma. The volunteers learned how to execute basic household repairs such as spackling, sanding, and caulking window trimmings, floorboards, walls, and door frames throughout the house. The manual labor was rough and demanding. During the week, they were rewarded by a surprise visit from the Miracle Woman herself, who uplifted their spirits. Seeing Ms. Burke's positive energy and show of appreciation for the volunteers helped them put their long days of manual labor in perspective. "The service job in and of itself was rewarding," said Oriana. "However, being able to meet the homeowner, Ms. Burke, was the highlight of it all!"</div>
+
+				<div>&nbsp;</div>
+
+				<div style="text-align: center;"><img alt="" src="/documents/20195/58968/Katrina+Collage.jpg/53186f37-eda4-4379-8dfe-53af644b8de2?t=1444165726555" style="width:500px;" /><br />
+				<strong>Our team + AmeriCorps members, and before/after of the house</strong>
+
+				<div>&nbsp;</div>
+				<img alt="" src="/documents/20195/58968/Katrina+Summary.jpg/c816be0a-b6bb-4f67-9063-608337368881?t=1444165734690" style="width:500px;" /><br />
+				<strong>The "Miracle Woman" and her family</strong></div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="video_links" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[https://youtu.be/-K8TbaDAPXE]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="video_links" type="text" index-type="keyword" index="1">
+		<dynamic-content language-id="en_US"><![CDATA[https://youtu.be/PUtkGRQzXVs]]></dynamic-content>
+	</dynamic-element>
+</root>

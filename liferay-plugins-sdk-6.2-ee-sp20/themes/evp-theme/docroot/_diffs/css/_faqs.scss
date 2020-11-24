@@ -1,0 +1,134 @@
+.faqs {
+	background: $white;
+
+	h2, h3, h4, h5, h6 {
+		text-shadow: none;
+	}
+
+	&, .faqs-category .header, .faqs-question .question {
+		color: $darkGrey;
+	}
+
+	.faqs-nav {
+		padding: 60px 0 0 60px;
+
+		&.affix {
+			max-width: 225px;
+			position: fixed;
+			top: 0;
+		}
+
+		.faqs-search {
+			display: inline-block;
+			max-width: 100%;
+			position: relative;
+
+			.faqs-search-input {
+				box-sizing: border-box;
+				height: auto;
+				max-width: 100% !important;
+				padding-right: 18px;
+			}
+
+			.clear-faq-search {
+				color: $lightGrey;
+				position: absolute;
+				right: 5px;
+				top: 8px;
+
+				&:hover {
+					color: $darkGrey;
+					cursor: pointer;
+				}
+			}
+		}
+
+		.side-nav {
+			padding-left: 0;
+
+			li {
+				text-transform: uppercase;
+
+				a {
+					color: $grey;
+				}
+			}
+
+			&.disabled {
+				opacity: 0.2;
+
+				li {
+					&, a:active, a:focus, a:hover {
+						background-color: transparent;
+						color: $grey;
+						cursor: default;
+					}
+				}
+			}
+		}
+	}
+
+	.faqs-categories {
+		background: $white;
+		margin-top: -150px;
+		min-height: 150px;
+		padding: 40px;
+
+		.faqs-category .faqs-question {
+			.question {
+				font-weight: bold;
+				padding: 5px;
+
+				&:hover, &.toggler-header-expanded {
+					background: $lighterGrey;
+					cursor: pointer;
+				}
+			}
+
+			.answer {
+				padding: 5px;
+			}
+
+			.search-highlight {
+				background-color: $lightBlue;
+			}
+		}
+	}
+
+	@include respond-to(phone, tablet) {
+		.faqs-nav {
+			padding: 15px 15px 0 15px;
+		}
+
+		.faqs-categories {
+			padding: 15px;
+		}
+	}
+
+	@include respond-to(tablet) {
+		.faqs-nav {
+			&.affix {
+				max-width: 150px;
+			}
+
+			.faqs-search .clear-faq-search {
+				font-size: 1.125em;
+			}
+		}
+	}
+
+	@include respond-to(phone) {
+		.page-heading {
+			display: none;
+		}
+
+		.faqs-nav.affix {
+			max-width: none;
+			position: inherit;
+		}
+
+		.faqs-categories {
+			margin-top: 0;
+		}
+	}
+}

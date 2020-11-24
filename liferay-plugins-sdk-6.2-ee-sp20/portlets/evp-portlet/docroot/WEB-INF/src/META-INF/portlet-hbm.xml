@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.evp.model.EVPDivision" />
+	<import class="com.liferay.evp.model.EVPEmployee" />
+	<import class="com.liferay.evp.model.EVPGrantRequest" />
+	<import class="com.liferay.evp.model.EVPGrantTransaction" />
+	<import class="com.liferay.evp.model.EVPKaleoForkInstance" />
+	<import class="com.liferay.evp.model.EVPRequestOrganization" />
+	<import class="com.liferay.evp.model.EVPServiceRequest" />
+	<class name="com.liferay.evp.model.impl.EVPDivisionImpl" table="EVPDivision">
+		<cache usage="read-write" />
+		<id name="evpDivisionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="organizationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="parentEVPDivisionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="abbreviation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
+	</class>
+	<class name="com.liferay.evp.model.impl.EVPEmployeeImpl" table="EVPEmployee">
+		<cache usage="read-write" />
+		<id name="evpEmployeeId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="employeeUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="managerUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="subsidiaryEVPDivisionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="employmentType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="hireDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.evp.model.impl.EVPGrantRequestImpl" table="EVPGrantRequest">
+		<cache usage="read-write" />
+		<id name="evpGrantRequestId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="contactEmailAddressId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="contactPhoneId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="contactUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="evpRequestOrganizationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="parentEVPGrantRequestId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="requestOrganizationAddressId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="requestOrganizationWebsiteId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="subsidiaryGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="employmentType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="employmentHoursPerWeek" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="purpose" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="purposeOther" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="behalfOf" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="behalfOfOther" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.evp.model.impl.EVPGrantTransactionImpl" table="EVPGrantTransaction">
+		<cache usage="read-write" />
+		<id name="evpGrantTransactionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="evpGrantRequestId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="grantType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="amount" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="currencyCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="date" type="org.hibernate.type.TimestampType" column="date_" />
+		<property name="note" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="number" type="com.liferay.portal.dao.orm.hibernate.StringType" column="number_" />
+		<property name="bankBICCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="bankIBANCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="bankName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="purposeOfUse" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.evp.model.impl.EVPKaleoForkInstanceImpl" table="EVPKaleoForkInstance">
+		<cache usage="read-write" />
+		<id name="evpKaleoForkInstanceId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.evp.model.impl.EVPRequestOrganizationImpl" table="EVPRequestOrganization">
+		<cache usage="read-write" />
+		<id name="evpRequestOrganizationId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="organizationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="subsidiaryGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="taxIdentificationNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="nonprofitType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="verified" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="shared" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.liferay.evp.model.impl.EVPServiceRequestImpl" table="EVPServiceRequest">
+		<cache usage="read-write" />
+		<id name="evpServiceRequestId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="contactEmailAddressId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="contactPhoneId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="contactUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="evpRequestOrganizationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="managerUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="parentEVPServiceRequestId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="requestOrganizationAddressId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="requestOrganizationWebsiteId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="subsidiaryGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="employmentType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="employmentHoursPerWeek" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="purpose" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="purposeOther" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="behalfOf" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="behalfOfOther" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="requestedStartDate" type="org.hibernate.type.TimestampType" />
+		<property name="requestedEndDate" type="org.hibernate.type.TimestampType" />
+		<property name="requestedTotalHours" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="promoteTrip" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="confirmedStartDate" type="org.hibernate.type.TimestampType" />
+		<property name="confirmedEndDate" type="org.hibernate.type.TimestampType" />
+		<property name="confirmedTotalHours" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="contactBenefit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactComments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hash" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="feedbackDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="employeeBenefit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="recipientBenefit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="shareStory" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+	</class>
+</hibernate-mapping>

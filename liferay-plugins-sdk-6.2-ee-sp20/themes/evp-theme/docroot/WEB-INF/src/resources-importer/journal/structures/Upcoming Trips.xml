@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="trip_title" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Title]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The title of the trip.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="banner_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Banner Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The banner image for the trip.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="trip_details" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="organization_name" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Organization Name]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The name of the organization affiliated with the trip.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="service_description" readOnly="false" repeatable="false" required="true" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Description of Service]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description of the service that will be completed.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="location" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Location]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The location where the service will be performed (City/Region, Country).]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="purpose" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Purpose of Service]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The reason why the service will be performed.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" localizable="true" name="start_date" readOnly="false" repeatable="false" required="true" showLabel="true" type="ddm-date" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Start Date]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The starting date of the trip.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" localizable="true" name="end_date" readOnly="false" repeatable="false" required="true" showLabel="true" type="ddm-date" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[End Date]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The ending date of the trip.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="alternate_date" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Alternate Trip Date]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The alternate date of the trip if the exact dates are not know (i.e. TBA).]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" localizable="true" name="signup_deadline" readOnly="false" repeatable="false" required="true" showLabel="true" type="ddm-date" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Sign-up Deadline]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The last day an employee can sign up for the trip.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="cost" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Cost]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The cost of the trip for each employee.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Trip Details]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="contact_info" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="contact_name" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Name]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The name of the primary contact person.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="contact_email" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Email]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The email of the primary contact person.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Primary Liferay Contact Info]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="trip_interest" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="trip_interest_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Header]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Want to get involved?]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The header for the Trip Interest modal window.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="trip_interest_message" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Message]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[This trip is tentatively scheduled, and we're working out all the logistics. If you're interested in joining the team, we can notify you when the trip details are more final so you can officially sign up. Would you like us to contact you?]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The message displayed see users click the "I'm Interested" button.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="trip_interest_link" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Google Form Link]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The link to the Trip Interest Google form.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Trip Interest Information]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="additional_information" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="follow_link" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Loop URL to Follow Trip]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[http://loop.liferay.com]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The Loop URL for users to follow this trip.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="group_service_request_id" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Group Service Request ID]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The service request ID of the group service associated with the trip.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="alternate_signup_link" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Alternate Sign-up Link]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The link to an alternate sign-up form if group ID is not provided.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="important_notes" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Important Notes]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The important details such as the number of spots left on the team or special requirements for the trip.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="html" fieldNamespace="ddm" indexType="keyword" localizable="true" name="additional_details" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-text-html" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Additional Details]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The additional details about the trip. When using a block quote, wrap the quote in a blockquote tag or a div with class "block-quote". Citations for quotes should be wrapped in a div with class "citation". When using a pull quote to emphasize some text repeated elsewhere in the content wrap it in a div with the class "pull-quote".]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="video_links" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[YouTube Video Link]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The YouTube URL for each video in the Additional Details. It is best to use the "Share" URL but the direct URL will also work. For each video, place <div class="video-player"></div> into the Additional Details section source code where you want to video to be displayed.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Additional Information]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

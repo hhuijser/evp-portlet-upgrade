@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="page" type="list" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[stories]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="banner_image" type="image" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="page_heading" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Past Trip Stories]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="page_description" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<p>
+					<strong>Read.</strong> Take some time to read about the great ways your fellow Liferayers have used their EVP service time. Maybe you'll be inspired to go out and serve yourself!
+				</p>
+
+				<p>
+					<strong>Share.</strong> Did you have an amazing experience that you want to share with others? Great, we want to hear about it! Contact <a href="mailto:evp-web@liferay.com">evp-web@liferay.com</a> to start the conversation.
+				</p>
+
+				<p>
+					<strong>Repeat.</strong> Check back for more stories soon!
+				</p>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

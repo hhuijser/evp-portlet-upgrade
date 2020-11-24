@@ -1,0 +1,256 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPWorkflowContextVariablesUtil extends com.liferay.evp.util.EVPWorkflowContextVariablesUtil {
+
+	public static Map<String, Serializable> addGrantRequestVariables(AlloyController alloyController, long evpGrantRequestId, String notes) throws Exception {
+		Map<String, Serializable> workflowContext = new HashMap<String, Serializable>();
+
+		ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+		EVPGrantRequest evpGrantRequest = EVPGrantRequestLocalServiceUtil.getEVPGrantRequest(evpGrantRequestId);
+
+		String subsidiaryEmailAddress = EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), evpGrantRequest.getSubsidiaryGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMAIL);
+
+		workflowContext.put(WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_ADDRESS, subsidiaryEmailAddress);
+
+		workflowContext.put(WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_NAME, EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), evpGrantRequest.getSubsidiaryGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMAIL_NAME));
+
+		HashMap<String, Object> evpGrantRequestContext = new HashMap<String, Object>();
+
+		User creatorUser = UserLocalServiceUtil.getUser(evpGrantRequest.getUserId());
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.CREATOR_USER_FIRST_NAME, creatorUser.getFirstName());
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.CREATOR_USER_FULL_NAME, creatorUser.getFullName());
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.LINK_TO_REQUEST_EDITOR, EVPUtil.getURL(alloyController, "grant_requests", evpGrantRequestId, "edit"));
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.LINK_TO_REVIEWER_DASHBOARD, EVPUtil.getURL(alloyController, "reviewer_dashboard", evpGrantRequestId, "viewGrant"));
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.MATCHING + EVPWorkflowContextConstants.SUFFIX_AMOUNT, 0);
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.MAX_GRANT_AMOUNT, EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), evpGrantRequest.getSubsidiaryGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MAXIMUM_COMBINED_GRANT_AMOUNT));
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.NOTES, notes);
+
+		EVPGrantRequestComposite evpGrantRequestComposite = new EVPGrantRequestComposite(evpGrantRequest, creatorUser, themeDisplay);
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.ORGANIZATION_NAME, evpGrantRequestComposite.getOrganizationName());
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.PROPOSED + EVPWorkflowContextConstants.SUFFIX_AMOUNT, 0);
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.SPONSORSHIP + EVPWorkflowContextConstants.SUFFIX_AMOUNT, 0);
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_ABBREVIATION, EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), evpGrantRequest.getSubsidiaryGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_ABBREVIATION));
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_CURRENCY_CODE, EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), evpGrantRequest.getSubsidiaryGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_CURRENCY_CODE));
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_EMAIL, subsidiaryEmailAddress);
+
+		int totalGrantAmount = 0;
+
+		DateFormat dateFormat = DateFormat.getDateInstance();
+
+		Map<String, EVPGrantTransactionComposite> evpGrantTransactionCompositesMap = evpGrantRequestComposite.getEvpGrantTransactionCompositesMap();
+
+		StringBundler sb = new StringBundler((evpGrantTransactionCompositesMap.size() * 2) - 1);
+
+		for (Map.Entry<String, EVPGrantTransactionComposite> entry : evpGrantTransactionCompositesMap.entrySet()) {
+			if (sb.index() == (sb.capacity() - 2)) {
+				sb.append(" and ");
+			}
+			else if (sb.index() != 0) {
+				sb.append(", ");
+			}
+
+			sb.append(alloyController.translate(entry.getKey()));
+
+			EVPGrantTransactionComposite evpGrantTransactionComposite = entry.getValue();
+
+			evpGrantRequestContext.put(EVPWorkflowContextConstants.getGrantTypeLabelWorkflowLabel(entry.getKey()) + EVPWorkflowContextConstants.SUFFIX_AMOUNT, evpGrantTransactionComposite.getAmount());
+
+			String transactionDateString = StringPool.BLANK;
+
+			if (evpGrantTransactionComposite.getDate() != null) {
+				transactionDateString = dateFormat.format(evpGrantTransactionComposite.getDate());
+			}
+
+			evpGrantRequestContext.put(EVPWorkflowContextConstants.getGrantTypeLabelWorkflowLabel(entry.getKey()) + EVPWorkflowContextConstants.SUFFIX_TRANSACTION_DATE, transactionDateString);
+
+			evpGrantRequestContext.put(EVPWorkflowContextConstants.getGrantTypeLabelWorkflowLabel(entry.getKey()) + EVPWorkflowContextConstants.SUFFIX_TRANSACTION_NUMBER, evpGrantTransactionComposite.getNumber());
+
+			totalGrantAmount += evpGrantTransactionComposite.getAmount();
+		}
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.TOTAL_GRANT_AMOUNT, totalGrantAmount);
+
+		evpGrantRequestContext.put(EVPWorkflowContextConstants.TRANSACTIONS_STRING, sb.toString());
+
+		workflowContext.put("evpGrantRequestContext", evpGrantRequestContext);
+
+		return workflowContext;
+	}
+
+	public static Map<String, Serializable> addServiceRequestVariables(AlloyController alloyController, long evpServiceRequestId, String notes) throws Exception {
+		Map<String, Serializable> workflowContext = new HashMap<String, Serializable>();
+
+		ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+		EVPServiceRequest evpServiceRequest = EVPServiceRequestLocalServiceUtil.getEVPServiceRequest(evpServiceRequestId);
+
+		String subsidiaryEmailAddress = EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), evpServiceRequest.getSubsidiaryGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMAIL);
+
+		workflowContext.put(WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_ADDRESS, subsidiaryEmailAddress);
+
+		workflowContext.put(WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_NAME, EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), evpServiceRequest.getSubsidiaryGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMAIL_NAME));
+
+		HashMap<String, Object> evpServiceRequestContext = new HashMap<String, Object>();
+
+		User creatorUser = UserLocalServiceUtil.fetchUser(evpServiceRequest.getUserId());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.CREATOR_USER_EMAIL, creatorUser.getEmailAddress());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.CREATOR_USER_FIRST_NAME, creatorUser.getFirstName());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.CREATOR_USER_FULL_NAME, creatorUser.getFullName());
+
+		String creatorUserPhoneNumberString = StringPool.BLANK;
+
+		Phone creatorUserPhone = EVPPortalUtil.fetchUserPhone(creatorUser);
+
+		if (creatorUserPhone != null) {
+			creatorUserPhoneNumberString = creatorUserPhone.getNumber();
+		}
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.CREATOR_USER_PHONE, creatorUserPhoneNumberString);
+
+		AlloyServiceInvoker evpServiceRequestAlloyServiceInvoker = new AlloyServiceInvoker(EVPServiceRequest.class.getName());
+
+		DynamicQuery childEVPServiceRequestDynamicQuery = evpServiceRequestAlloyServiceInvoker.buildDynamicQuery(new Object[] {"parentEVPServiceRequestId", evpServiceRequest.getEvpServiceRequestId()});
+
+		Property statusProperty = PropertyFactoryUtil.forName("status");
+
+		childEVPServiceRequestDynamicQuery.add(statusProperty.in(new int[] {EVPWorkflowConstants.SERVICE_STATUS_FEEDBACK_PROOF_FORK, EVPWorkflowConstants.SERVICE_STATUS_PENDING_SERVICE_COMPLETION}));
+
+		List<EVPServiceRequest> childEVPServiceRequests = evpServiceRequestAlloyServiceInvoker.executeDynamicQuery(childEVPServiceRequestDynamicQuery);
+
+		childEVPServiceRequests = ListUtil.copy(childEVPServiceRequests);
+
+		childEVPServiceRequests.add(evpServiceRequest);
+
+		List<EVPServiceRequestComposite> childEVPServiceRequestComposites = EVPCompositeUtil.getComposites(childEVPServiceRequests, EVPServiceRequestComposite.class, new Class<?>[] {EVPServiceRequest.class, ThemeDisplay.class}, new Object[] {themeDisplay});
+
+		String employeeNames = ListUtil.toString(childEVPServiceRequestComposites, "creatorUserFullName", StringPool.COMMA_AND_SPACE);
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.EMPLOYEE_NAMES, StringUtil.replaceLast(employeeNames, StringPool.COMMA_AND_SPACE, " and "));
+
+		EVPDivision subsidiaryEVPDivision = EVPDivisionUtil.getSubsidiaryEVPDivision(evpServiceRequest.getUserId());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.LINK_TO_EMPLOYEE_ELIGIBILITY_GUIDELINES, EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_LINK_TO_EVP_GUIDELINES));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.LINK_TO_FEEDBACK_EDITOR, EVPUtil.getURL(alloyController, "service_requests", evpServiceRequestId, "feedback"));
+
+		String linkToProofOfCompletionForm = EVPUtil.getURL(alloyController, "service_requests", evpServiceRequestId, "verify");
+
+		linkToProofOfCompletionForm = HttpUtil.addParameter(linkToProofOfCompletionForm, EVPConstants.REQUEST_PARAMETER_NAME_CONTACT_USER_HASH, evpServiceRequest.getHash());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.LINK_TO_PROOF_OF_COMPLETION_FORM, linkToProofOfCompletionForm);
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.LINK_TO_REQUEST_EDITOR, EVPUtil.getURL(alloyController, "service_requests", evpServiceRequestId, "edit"));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.LINK_TO_REVIEWER_DASHBOARD, EVPUtil.getURL(alloyController, "reviewer_dashboard", evpServiceRequestId, "viewService"));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.LINK_TO_WTS, PortletPropsValues.LINK_TO_WTS);
+
+		User managerUser = UserLocalServiceUtil.fetchUser(evpServiceRequest.getManagerUserId());
+
+		if (managerUser != null) {
+			evpServiceRequestContext.put(EVPWorkflowContextConstants.MANAGER_USER_FULL_NAME, managerUser.getFullName());
+
+			evpServiceRequestContext.put(EVPWorkflowContextConstants.MANAGER_USER_ID, evpServiceRequest.getManagerUserId());
+		}
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.NOTES, notes);
+
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
+
+		calendar.setTime(evpServiceRequest.getRequestedEndDate());
+
+		calendar.add(Calendar.DATE, 7);
+
+		DateFormat dateFormat = DateFormat.getDateInstance();
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.ONE_WEEK_FROM_REQUESTED_END_DATE, dateFormat.format(calendar.getTime()));
+
+		User contactUser = UserLocalServiceUtil.fetchUser(evpServiceRequest.getContactUserId());
+
+		List<EmailAddress> contactUserEmailAddresses = EmailAddressLocalServiceUtil.getEmailAddresses(themeDisplay.getCompanyId(), Contact.class.getName(), contactUser.getContactId());
+
+		if (!contactUserEmailAddresses.isEmpty()) {
+			EmailAddress contactUserEmailAddress = contactUserEmailAddresses.get(0);
+
+			evpServiceRequestContext.put(EVPWorkflowContextConstants.ORGANIZATION_CONTACT_EMAIL, contactUserEmailAddress.getAddress());
+		}
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.ORGANIZATION_CONTACT_NAME, contactUser.getFullName());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.ORGANIZATION_CONTACT_USER_ID, contactUser.getUserId());
+
+		EVPServiceRequestComposite evpServiceRequestComposite = new EVPServiceRequestComposite(evpServiceRequest, creatorUser, themeDisplay);
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.ORGANIZATION_NAME, evpServiceRequestComposite.getOrganizationName());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.PARENT_EVP_SERVICE_REQUEST_ID, evpServiceRequestComposite.getParentEVPServiceRequestId());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.PROMOTE_TRIP, evpServiceRequest.isPromoteTrip());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SERVICE_END_DATE, dateFormat.format(evpServiceRequestComposite.getRequestedEndDate()));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SERVICE_START_DATE, dateFormat.format(evpServiceRequestComposite.getRequestedStartDate()));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SERVICE_TOTAL_HOURS, evpServiceRequestComposite.getRequestedTotalHours());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SHARE_STORY, evpServiceRequest.isShareStory());
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_ABBREVIATION, EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_ABBREVIATION));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_FORK_ENABLED, GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_FORK_ENABLED)));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_ENABLED, GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_ENABLED)));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_CONFIGURATION_GRANT_TYPE_SPONSORSHIP_ENABLED, GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_GRANT_TYPE_SPONSORSHIP_ENABLED)));
+
+		evpServiceRequestContext.put(EVPWorkflowContextConstants.SUBSIDIARY_EMAIL, subsidiaryEmailAddress);
+
+		if (evpServiceRequestComposite.getParentEVPServiceRequestId() > 0) {
+			EVPServiceRequest parentEVPServiceRequest = EVPServiceRequestLocalServiceUtil.getEVPServiceRequest(evpServiceRequestComposite.getParentEVPServiceRequestId());
+
+			User teamLeadUser = UserLocalServiceUtil.getUser(parentEVPServiceRequest.getUserId());
+
+			evpServiceRequestContext.put(EVPWorkflowContextConstants.TEAM_LEAD_USER_FIRST_NAME, teamLeadUser.getFirstName());
+
+			evpServiceRequestContext.put(EVPWorkflowContextConstants.TEAM_LEAD_USER_ID, teamLeadUser.getUserId());
+		}
+
+		workflowContext.put("evpServiceRequestContext", evpServiceRequestContext);
+
+		return workflowContext;
+	}
+
+}
+%>

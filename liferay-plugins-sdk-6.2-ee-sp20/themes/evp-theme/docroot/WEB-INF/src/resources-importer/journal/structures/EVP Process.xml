@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="background_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Background Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The background image to display in this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="default_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Default Description]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[EVP Process]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[A description to be displayed by default in the center of the infographic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_1_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_1_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Step 1 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Do you know an awesome non-profit that you want to serve with or support? Great, let's get started!]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for the first step of the infographic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Step 1 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Find A Non-Profit]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the first step of the infographic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_2_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_2_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Step 2 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Fill out the online EVP form with details about your service or grant request.]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for the second step of the infographic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Step 2 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Submit A Request]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the second step of the infographic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_3_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_3_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Step 3 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Next, the EVP Team will review your request. If everything looks good, you're approved!]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for the third step of the infographic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Step 3 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Get Approved]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the third step of the infographic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_4_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_4_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Step 4 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Now it’s time to benefit a great cause through your service and giving.]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for the forth step of the infographic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Step 4 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Serve Others/Fund A Cause]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the forth step of the infographic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_5_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="step_5_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Step 5 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Encourage and inspire others by sharing your experience!]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for the fifth step of the infographic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Step 5 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Share Your Stories]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the fifth step of the infographic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

@@ -1,0 +1,34 @@
+#if ($banner_image.getData() == "")
+	#set ($image_path = "@theme_image_path@/custom/banner/${page.getData()}_banner.jpg")
+#else
+	#set ($image_path = $banner_image.getData())
+#end
+
+#if ($skip_to_content_image.getData() == "")
+	#set ($skip_to_content_image_path = "@theme_image_path@/custom/icons/chevron_down.png")
+#else
+	#set ($skip_to_content_image_path = $skip_to_content_image.getData())
+#end
+
+<div class="$page.getData()">
+	<div class="banner banner-cover parallax-panel">
+		<img alt="#language ("banner-image")" class="parallax-image" src="$image_path">
+
+		<div class="banner-content row">
+			<div class="content-box offset2 span6">
+				<h1 class="header">$banner_heading.getData()</h1>
+
+				<div class="content description">
+					$banner_text.getData()
+				</div>
+
+				#set ($link_text_val = $stringUtil.trim($link_text.getData()))
+				#set ($link_url_val = $stringUtil.trim($link_url.getData()))
+
+				#if ($link_text_val != "" && $link_url_val != "")
+					<a class="btn btn-transparent" href="$link_url_val">$link_text_val</a>
+				#end
+			</div>
+		</div>
+	</div>
+</div>

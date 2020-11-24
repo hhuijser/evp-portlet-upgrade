@@ -1,0 +1,21 @@
+#set ($image_path = "@theme_image_path@/custom/icons/")
+
+#if (!$link_url.getSiblings().isEmpty())
+	<ul class="inline unstyled">
+		#foreach ($cur_link_url in $link_url.getSiblings())
+			<li>
+				<a class="content" href="$cur_link_url.getData()" target="_blank">
+					#if ($cur_link_url.link_icon_file_name.getData() != "")
+						#set ($icon_path = $image_path + $cur_link_url.link_icon_file_name.getData())
+
+						<svg class="social-icon">
+							<use xlink:href="$icon_path#$cur_link_url.link_icon_css_class.getData()" />
+						</svg>
+					#else
+						<i class="$cur_link_url.link_icon_css_class.getData()"></i>
+					#end
+				</a>
+			</li>
+		#end
+	</ul>
+#end

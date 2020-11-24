@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_url" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_icon_css_class" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Link Icon CSS Class]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[icon-]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The icon CSS class should begin with "icon-".]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_icon_file_name" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Link Icon File Name]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[icon_loop.svg]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The icon image file should be an SVG and have the icon CSS class as its ID.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Link URL]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

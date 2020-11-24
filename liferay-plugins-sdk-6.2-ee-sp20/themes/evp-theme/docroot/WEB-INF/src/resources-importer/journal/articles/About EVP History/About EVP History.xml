@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[EVP History]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="0">
+		<dynamic-element name="timeline_event_header" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Liferay, Inc. founded]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA["We want to make money so we can give it away." From the beginning, we set aside 10% of our profits for giving back to those in need.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2004.svg#year2004]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2004]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="1">
+		<dynamic-element name="timeline_event_header" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Liferay Foundation established]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="1" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Creating a nonprofit allowed us to better steward our giving and contribute in ways we couldn't as a business.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2008.svg#year2008]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2008]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="2">
+		<dynamic-element name="timeline_event_header" index="2" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Employee Volunteer Program launched]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="2" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Many employees joined Liferay because they believed in our vision of giving back. This was an opportunity to live out that vision. During our EVP's inaugural year, our US and Spain employees were able to participate. By year end, 9 employees participated in service trips, and 9 made grant requests – great start!]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="2" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2010.svg#year2010]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2010]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="3">
+		<dynamic-element name="timeline_event_header" index="3" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[EVP matured]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="3" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Some highlights: 1) First group service trip! A team of 3 employees went to New Orleans to help with Hurricane Katrina relief, 2) Service surges! Almost 4 times as many employees used service hours in comparison to 2010, 3) Giving grows! 2 times as many employees made grant requests in comparison to 2010]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="3" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2011.svg#year2011]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2011]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="4">
+		<dynamic-element name="timeline_event_header" index="4" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Communities of Purpose proposed]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="4" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[As Liferay, Inc., we create jobs and volunteer our time to serve. As Liferay Foundation, we financially support efforts we believe in and partner with other organizations that are making a difference. In our local communities, we get to know people and build relationships that last. In that sweet spot, we can best show our communities that Liferay cares. Through EVP, our focus is to continually build these communities world-wide.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="4" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2012.svg#year2012]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2012]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="5">
+		<dynamic-element name="timeline_event_header" index="5" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Milestones achieved]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="5" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Since 2010, over 4500 service hours used (more than 6 months of time!) and over $50,000 donated to charities. Numerous trips all over the world devoted to activities such as disaster relief and rebuilding, using Liferay skills to help nonprofits, building houses for those in need, providing basic health and education, and spending time with underprivileged children and those with special needs.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="5" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2013.svg#year2013]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2013]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="6">
+		<dynamic-element name="timeline_event_header" index="6" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[EVP extended]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="6" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[We rolled out EVP in our Germany, Brazil, and China offices. Also, the EVP site was launched to handle all service and grant requests.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="6" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2014.svg#year2014]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2014]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="7">
+		<dynamic-element name="timeline_event_header" index="7" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Communities of Purpose realized]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="7" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[From theory to practice – we saw long term communities and partnerships forming in Japan, China, Brazil, and LA. We also created many more pre-planned service opportunities to further assist employees who were looking for service opportunities.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="7" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2015.svg#year2015]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2015]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="year" type="ddm-integer" index-type="keyword" index="8">
+		<dynamic-element name="timeline_event_header" index="8" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[EVP re-launched]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_description" index="8" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[EVP was made available to all Liferay employees world-wide! Also, the EVP site was re-launched to better capture the spirit of EVP and everything that makes it so special.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="timeline_event_image" index="8" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[about_evp_2016.svg#year2016]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[2016]]></dynamic-content>
+	</dynamic-element>
+</root>

@@ -1,0 +1,86 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class UserComposite {
+
+	public UserComposite(User user) throws Exception {
+		_user = user;
+	}
+
+	public long getContactId() {
+		return _user.getContactId();
+	}
+
+	public EmailAddress getEmailAddress() throws Exception {
+		if (_emailAddress == null) {
+
+			AlloyServiceInvoker emailAddressAlloyServiceInvoker = new AlloyServiceInvoker(EmailAddress.class.getName());
+
+			List<EmailAddress> emailAddresses = emailAddressAlloyServiceInvoker.executeDynamicQuery(new Object[] {"classNameId", PortalUtil.getClassNameId(Contact.class), "classPK", getContactId()});
+
+			if (!emailAddresses.isEmpty()) {
+				_emailAddress = emailAddresses.get(0);
+			}
+		}
+
+		return _emailAddress;
+	}
+
+	public long getEvpGrantRequestsCount() throws Exception {
+		AlloyServiceInvoker evpGrantRequestAlloyServiceInvoker = new AlloyServiceInvoker(EVPGrantRequest.class.getName());
+
+		return evpGrantRequestAlloyServiceInvoker.executeDynamicQueryCount(new Object[] {"contactUserId", getUserId()});
+	}
+
+	public long getEvpServiceRequestsCount() throws Exception {
+		AlloyServiceInvoker evpServiceRequestAlloyServiceInvoker = new AlloyServiceInvoker(EVPServiceRequest.class.getName());
+
+		return evpServiceRequestAlloyServiceInvoker.executeDynamicQueryCount(new Object[] {"contactUserId", getUserId()});
+	}
+
+	public String getFirstName() {
+		return _user.getFirstName();
+	}
+
+	public String getLastName() {
+		return _user.getLastName();
+	}
+
+	public Phone getPhone() throws Exception {
+		if (_phone == null) {
+			AlloyServiceInvoker phoneAlloyServiceInvoker = new AlloyServiceInvoker(Phone.class.getName());
+
+			List<Phone> phones = phoneAlloyServiceInvoker.executeDynamicQuery(new Object[] {"classNameId", PortalUtil.getClassNameId(Contact.class), "classPK", getContactId()});
+
+			if (!phones.isEmpty()) {
+				_phone = phones.get(0);
+			}
+		}
+
+		return _phone;
+	}
+
+	public long getUserId() {
+		return _user.getUserId();
+	}
+
+	private EmailAddress _emailAddress;
+	private Phone _phone;
+	private User _user;
+
+}
+%>

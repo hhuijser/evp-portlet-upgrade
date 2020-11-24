@@ -1,0 +1,164 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPGrantRequestIndexer extends BaseAlloyIndexer {
+
+	public static EVPGrantRequestIndexer getInstance() {
+		return _instance;
+	}
+
+	@Override
+	public BooleanQuery getFacetQuery(
+			String className, SearchContext searchContext)
+		throws Exception {
+
+		BooleanQuery facetQuery = BooleanQueryFactoryUtil.create(searchContext);
+
+		facetQuery.addExactTerm(Field.ENTRY_CLASS_NAME, className);
+
+		return facetQuery;
+	}
+
+	@Override
+	public boolean hasPermission(
+			PermissionChecker permissionChecker, String entryClassName,
+			long entryClassPK, String actionId)
+		throws Exception {
+
+		AlloyServiceInvoker alloyServiceInvoker = new AlloyServiceInvoker(entryClassName);
+
+		BaseModel<?> baseModel = alloyServiceInvoker.fetchModel(entryClassPK);
+
+		return EVPPermission.contains(permissionChecker, BeanPropertiesUtil.getLong(baseModel, "subsidiaryGroupId"), entryClassName, entryClassPK, actionId);
+	}
+
+	@Override
+	public void postProcessContextQuery(BooleanQuery contextQuery, SearchContext searchContext) throws Exception {
+		super.postProcessContextQuery(contextQuery, searchContext);
+
+		long creatorUserId = GetterUtil.getLong(searchContext.getAttribute("creatorUserId"));
+
+		if (creatorUserId > 0) {
+			contextQuery.addRequiredTerm(Field.USER_ID, creatorUserId);
+		}
+
+		long excludableUserId = GetterUtil.getLong(searchContext.getAttribute("excludableUserId"));
+
+		if (excludableUserId > 0) {
+			contextQuery.addTerm(Field.USER_ID, String.valueOf(excludableUserId), false, BooleanClauseOccur.MUST_NOT);
+		}
+
+		String statusFilter = GetterUtil.getString(searchContext.getAttribute("statusFilter"), EVPWorkflowConstants.STATUS_LABEL_ALL);
+
+		if (!statusFilter.equals(EVPWorkflowConstants.STATUS_LABEL_ALL)) {
+			BooleanQuery statusQuery = BooleanQueryFactoryUtil.create(searchContext);
+
+			if (statusFilter.equals(EVPWorkflowConstants.STATUS_LABEL_ACTIVE)) {
+				for (int status : EVPWorkflowConstants.GRANT_STATUSES_ACTIVE) {
+					statusQuery.addExactTerm("statusLabel", EVPUtil.quoteString(EVPWorkflowConstants.getGrantStatusLabel(status)));
+				}
+			}
+			else {
+				statusQuery.addExactTerm("statusLabel", EVPUtil.quoteString(statusFilter));
+			}
+
+			contextQuery.add(statusQuery, BooleanClauseOccur.MUST);
+		}
+	}
+
+	@Override
+	public void postProcessSearchQuery(BooleanQuery searchQuery, SearchContext searchContext) throws Exception {
+		addSearchTerm(searchQuery, searchContext, "createDate", true);
+		addSearchTerm(searchQuery, searchContext, "creatorUserFullName", true);
+		addSearchTerm(searchQuery, searchContext, "description", true);
+		addSearchTerm(searchQuery, searchContext, "organizationName", true);
+		addSearchTerm(searchQuery, searchContext, "status", false);
+	}
+
+	@Override
+	protected Document doGetDocument(Object obj) throws Exception {
+		EVPGrantRequest evpGrantRequest = (EVPGrantRequest)obj;
+
+		Document document = getBaseModelDocument(portletId, evpGrantRequest);
+
+		document.addKeyword(Field.USER_ID, evpGrantRequest.getUserId());
+
+		User user = UserLocalServiceUtil.getUser(evpGrantRequest.getUserId());
+
+		document.addText("creatorUserFullName", user.getFullName());
+		document.addKeyword("creatorUserFullName_sortable", user.getFullName());
+
+		document.addText("description", evpGrantRequest.getDescription());
+
+		List<EVPGrantTransaction> evpGrantTransactions = EVPUtil.getEvpGrantTransactions(evpGrantRequest.getEvpGrantRequestId());
+
+		for (EVPGrantTransaction evpGrantTransaction : evpGrantTransactions) {
+			document.addKeyword(EVPGrantTransactionConstants.getGrantTypeLabel(evpGrantTransaction.getGrantType()) + "Amount", evpGrantTransaction.getAmount());
+		}
+
+		EVPRequestOrganization evpRequestOrganization = EVPRequestOrganizationLocalServiceUtil.getEVPRequestOrganization(evpGrantRequest.getEvpRequestOrganizationId());
+
+		Organization organization = OrganizationLocalServiceUtil.fetchOrganization(evpRequestOrganization.getOrganizationId());
+
+		if (organization != null) {
+			document.addText("organizationName", organization.getName());
+			document.addKeyword("organizationName_sortable", organization.getName());
+		}
+
+		User contactUser = UserLocalServiceUtil.fetchUser(evpGrantRequest.getContactUserId());
+
+		if (contactUser != null) {
+			document.addText("contactUserFirstName", contactUser.getFirstName());
+			document.addKeyword("contactUserFirstName_sortable", contactUser.getFirstName());
+			document.addText("contactUserFullName", contactUser.getFullName());
+			document.addText("contactUserLastName", contactUser.getLastName());
+			document.addKeyword("contactUserLastName_sortable", contactUser.getLastName());
+		}
+
+		document.addText("statusLabel", EVPWorkflowConstants.getGrantStatusLabel(evpGrantRequest.getStatus()));
+		document.addKeyword("statusLabel_sortable", EVPWorkflowConstants.getGrantStatusLabel(evpGrantRequest.getStatus()));
+		document.addKeyword("subsidiaryGroupId", evpGrantRequest.getSubsidiaryGroupId());
+
+		return document;
+	}
+
+	@Override
+	protected Summary doGetSummary(Document document, Locale locale, String snippet, PortletURL portletURL) {
+		String title = document.get(Field.ENTRY_CLASS_PK);
+
+		String content = null;
+
+		portletURL.setParameter("mvcPath", "/WEB-INF/jsp/evp/views/grant_requests/view.jsp");
+
+		String evpGrantRequestId = document.get(Field.ENTRY_CLASS_PK);
+
+		portletURL.setParameter("id", evpGrantRequestId);
+
+		return new Summary(title, content, portletURL);
+	}
+
+	private EVPGrantRequestIndexer() {
+		setClassName(EVPGrantRequest.class.getName());
+		setFilterSearch(true);
+		setPermissionAware(true);
+		setPortletId(PortletKeys.EVP);
+	}
+
+	private static EVPGrantRequestIndexer _instance = new EVPGrantRequestIndexer();
+
+}
+%>

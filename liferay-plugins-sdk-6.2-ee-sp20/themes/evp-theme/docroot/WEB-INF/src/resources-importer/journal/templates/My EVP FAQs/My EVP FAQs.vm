@@ -1,0 +1,61 @@
+<div class="my-evp">
+	#if (!$categories.getSiblings().isEmpty())
+		#set ($vm_variables = $request.attributes.VM_VARIABLES)
+		#set ($vm_variables_json_object = $jsonFactoryUtil.createJSONObject($vm_variables))
+
+		<div class="my-evp-faqs row-fluid">
+			#foreach($category in $categories.getSiblings())
+				#set ($is_category = true)
+
+				#set ($category_variable = $stringUtil.trim($category.category_variable.getData()))
+
+				#if ($category_variable != "")
+					#set ($is_category = $vm_variables_json_object.getBoolean($category_variable))
+				#end
+
+				#if ($is_category)
+					<div class="${category_variable}-heading heading span6">
+						<div class="row-fluid">
+							<div class="offset2 span8">
+								<h2 class="header">$category.header.getData()</h2>
+
+								<div class="description">
+									$category.description.getData()
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="${category_variable}-questions questions span6">
+						#if (!$category.questions_answers.getSiblings().isEmpty())
+							#foreach($question_answer in $category.questions_answers.getSiblings())
+								#set ($is_question = true)
+
+								#set ($question_variable = $stringUtil.trim($question_answer.question_variable.getData()))
+
+								#if ($question_variable != "")
+									#set ($is_question = $vm_variables_json_object.getBoolean($question_variable))
+								#end
+
+								#if ($is_question)
+									<div class="${category_variable}-question-${velocityCount} my-evp-question" id="question${velocityCount}">
+										<div class="question toggler-header-collapsed">
+											$question_answer.question.getData()
+
+											<span class="collapsed">+</span>
+											<span class="expanded">-</span>
+										</div>
+
+										<div class="answer toggler-content toggler-content-collapsed">
+											$question_answer.answer.getData()
+										</div>
+									</div>
+								#end
+							#end
+						#end
+					</div>
+				#end
+			#end
+		</div>
+	#end
+</div>

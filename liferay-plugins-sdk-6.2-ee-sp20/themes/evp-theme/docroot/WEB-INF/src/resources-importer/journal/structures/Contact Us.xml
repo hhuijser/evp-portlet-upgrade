@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Section Title]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Contact Us]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The title for this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Section Description]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Please contact your regional EVP Team if your question is location specific]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The description for this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="americas" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="americas_button_label" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Button Label]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Americas]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The button label for contacting the Americas EVP region.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="americas_email" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Email]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[evp-americas@liferay.com]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The email address for the Americas EVP region.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Americas]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="emea" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="emea_button_label" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[ButtonLabel]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Europe and Middle East]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The button label for contacting the Europe, Middle East, and Africa EVP region.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="emea_email" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Email]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[evp-emea@liferay.com]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The email address for the Europe, Middle East, and Africa EVP region.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Europe, Middle East, and Africa]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="apac" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="apac_button_label" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Button Label]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Asia Pacific]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The button label for contacting the Asia Pacific EVP region.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="apac_email" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Email]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[evp-apac@liferay.com]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The email address for the Asia Pacific EVP region.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Asia Pacific]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="global" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="global_button_label" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Button Label]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Contact Our Global Team]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The button label for contacting EVP global.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="global_email" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Email]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[evp-global@liferay.com]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The email address for contacting EVP global.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Global]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

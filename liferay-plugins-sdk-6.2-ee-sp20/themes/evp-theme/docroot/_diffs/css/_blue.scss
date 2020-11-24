@@ -1,0 +1,65 @@
+.blue {
+	a {
+		&:active, &:focus, &:hover {
+			color: $blue;
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		color: $blue;
+	}
+
+	.btn {
+		&.btn-primary {
+			background: $blue;
+
+			&:hover {
+				background: $darkBlue;
+				color: $white;
+				text-shadow: none;
+			}
+		}
+
+		&.btn-transparent {
+			background: transparent;
+			border: 1px solid $blue;
+			color: $blue;
+
+			&:hover {
+				font-weight: bold;
+			}
+		}
+	}
+
+	#navigation.navbar {
+		&.nav-scroll a:hover, .selected a, a:hover {
+			color: $blue;
+		}
+
+		.navbar-inner {
+			.pages .nav > li > a:hover > span {
+				border-bottom-color: $blue;
+			}
+
+			.default-logo .logo-scroll {
+				.icon-left {
+					fill: $blue;
+				}
+
+				.icon-right {
+					fill: $lightBlue;
+				}
+			}
+		}
+	}
+
+	#footer {
+		.footer-section.footer-section-3 {
+			ul li a:hover {
+				.social-icon {
+					fill: $blue;
+				}
+			}
+		}
+	}
+}

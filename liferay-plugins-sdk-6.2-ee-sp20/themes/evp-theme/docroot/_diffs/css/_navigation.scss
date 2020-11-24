@@ -1,0 +1,172 @@
+#navigation {
+	&.navbar {
+		&.navbar-fixed-top {
+			position: fixed;
+		}
+
+		&, .navbar-inner {
+			background: transparent;
+			border-width: 0;
+			box-shadow: none;
+			color: black;
+			margin-bottom: 0;
+		}
+
+		.navbar-inner {
+			display: flex;
+			padding: 0 20px;
+
+			.default-logo {
+				margin: 10px 0;
+
+				.logo-scroll {
+					display: none;
+
+					.icon-left {
+						fill: $teal;
+					}
+
+					.icon-right {
+						fill: $lightTeal;
+					}
+				}
+			}
+
+			.pages {
+				align-self: center;
+				margin-left: auto;
+				min-width: 705px;
+
+				.btn-navbar {
+					font-size: 1.25em;
+					margin: 10px 5px;
+					text-decoration: none;
+					width: auto;
+
+					&:hover {
+						background: transparent;
+					}
+				}
+
+				.nav > li > a {
+					font-size: 1em;
+					text-decoration: none;
+					text-shadow: none;
+					text-transform: uppercase;
+
+					&:hover span {
+						border-bottom: 1px solid $teal;
+					}
+				}
+			}
+		}
+
+		&.nav-scroll {
+			background: $white;
+			border-bottom: 1px solid $lightestGrey;
+
+			.navbar-inner {
+				background: transparent;
+
+				.default-logo {
+					margin: 0;
+
+					.logo-fixed {
+						display: none;
+					}
+
+					.logo-scroll {
+						display: block;
+					}
+				}
+			}
+
+			&.hide {
+				margin-top: -56px;
+			}
+		}
+
+		@include respond-to(phone, tablet) {
+			display: block;
+
+			.navbar-inner {
+				.logo, .pages {
+					max-width: 200px;
+				}
+
+				.pages {
+					min-width: 0;
+
+					.nav > li {
+						width: 100%;
+
+						> a {
+							color: $grey;
+						}
+					}
+				}
+			}
+
+			&.open  {
+				background: $white;
+
+				.navbar-inner {
+					background: transparent;
+
+					.default-logo {
+						margin: 0;
+
+						.logo-fixed {
+							display: none;
+						}
+
+						.logo-scroll {
+							display: block;
+						}
+					}
+
+					.logo {
+						padding-left: 10px;
+						position: absolute;
+					}
+
+					.pages {
+						margin-left: 0;
+						max-width: 100%;
+						width: 100%;
+
+						.btn-navbar {
+							color: $grey;
+						}
+
+						.nav-collapse {
+							height: auto;
+						}
+
+						.nav {
+							background: $white;
+
+							> li {
+								box-sizing: border-box;
+
+								> a:hover span {
+									border-bottom-width: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/* ---------- Extras ---------- */
+
+		&.nav-scroll {
+			@include transition(background, 1s, ease-in);
+
+			.navbar-inner .default-logo {
+				@include transition(margin, 0.5s, ease-out);
+			}
+		}
+	}
+}

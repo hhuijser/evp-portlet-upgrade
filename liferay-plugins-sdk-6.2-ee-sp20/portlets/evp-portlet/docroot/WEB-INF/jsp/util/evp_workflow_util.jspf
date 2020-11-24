@@ -1,0 +1,272 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPWorkflowUtil extends com.liferay.evp.util.EVPWorkflowUtil {
+
+	public static List<Long> getAssigneeRoleAndUserIds(List<WorkflowTask> workflowTasks) throws Exception {
+		List<Long> roleAndUserIds = new ArrayList<Long>();
+
+		for (WorkflowTask workflowTask : workflowTasks) {
+			List<WorkflowTaskAssignee> workflowTaskAssignees = workflowTask.getWorkflowTaskAssignees();
+
+			for (WorkflowTaskAssignee workflowTaskAssignee : workflowTaskAssignees) {
+				String assigneeClassName = workflowTaskAssignee.getAssigneeClassName();
+
+				if (assigneeClassName.equals(Role.class.getName())) {
+					roleAndUserIds.add(workflowTaskAssignee.getAssigneeClassPK());
+				}
+				else if (assigneeClassName.equals(User.class.getName())) {
+					roleAndUserIds.add(workflowTaskAssignee.getAssigneeClassPK());
+				}
+			}
+		}
+
+		return roleAndUserIds;
+	}
+
+	public static String getAssignees(long companyId, long workflowTaskId, long ownerUserId) throws Exception {
+		if (workflowTaskId == 0) {
+			return StringPool.BLANK;
+		}
+
+		WorkflowTask workflowTask = WorkflowTaskManagerUtil.getWorkflowTask(companyId, workflowTaskId);
+
+		if (workflowTask.isAssignedToSingleUser()) {
+			User user = UserLocalServiceUtil.getUser(workflowTask.getAssigneeUserId());
+
+			return user.getFullName();
+		}
+		else {
+			List<WorkflowTaskAssignee> taskAssignees = workflowTask.getWorkflowTaskAssignees();
+
+			String[] assigneeNames = new String[taskAssignees.size()];
+
+			for (int i = 0; i < taskAssignees.size(); i++) {
+				WorkflowTaskAssignee taskAssignee = taskAssignees.get(i);
+
+				if (Validator.equals(taskAssignee.getAssigneeClassName(), Role.class.getName())) {
+					Role role = RoleLocalServiceUtil.getRole(taskAssignee.getAssigneeClassPK());
+
+					String roleName = role.getName();
+
+					if (roleName.equals(RoleConstants.OWNER) && (ownerUserId > 0)) {
+						User user = UserLocalServiceUtil.getUser(ownerUserId);
+
+						assigneeNames[i] = user.getFullName();
+					}
+					else {
+						assigneeNames[i] = roleName;
+					}
+				}
+				else if (Validator.equals(taskAssignee.getAssigneeClassName(), User.class.getName())) {
+					User user = UserLocalServiceUtil.getUser(taskAssignee.getAssigneeClassPK());
+
+					assigneeNames[i] = user.getFullName();
+				}
+			}
+
+			return StringUtil.merge(assigneeNames, StringPool.COMMA_AND_SPACE);
+		}
+	}
+
+	public static long getFirstWorkflowTaskIdForUser(long companyId, String className, long classPK, long ownerUserId, long userId, long groupId) throws Exception {
+		WorkflowTask workflowTask = getFirstWorkflowTaskForUser(companyId, groupId, ownerUserId, userId, className, classPK);
+
+		if (workflowTask != null) {
+			return workflowTask.getWorkflowTaskId();
+		}
+
+		return 0;
+	}
+
+	public static long getFirstWorkflowTaskIdForUser(ThemeDisplay themeDisplay, AuditedModel auditedModel, long groupId) throws Exception {
+		return getFirstWorkflowTaskIdForUser(themeDisplay.getCompanyId(), auditedModel.getModelClassName(), (Long)auditedModel.getPrimaryKeyObj(), auditedModel.getUserId(), themeDisplay.getUserId(), groupId);
+	}
+
+	public static String getWorkflowInstanceCurrentNodeName(long companyId, long groupId, String className, long classPK) throws Exception {
+		WorkflowInstanceLink workflowInstanceLink = WorkflowInstanceLinkLocalServiceUtil.getWorkflowInstanceLink(companyId, groupId, className, classPK);
+
+		WorkflowInstance workflowInstance = WorkflowInstanceManagerUtil.getWorkflowInstance(companyId, workflowInstanceLink.getWorkflowInstanceId());
+
+		return workflowInstance.getState();
+	}
+
+	public static long getWorkflowInstanceId(ThemeDisplay themeDisplay, String className, long classPK, long groupId) throws Exception {
+		return getWorkflowInstanceId(themeDisplay.getCompanyId(), groupId, className, classPK);
+	}
+
+	public static List<WorkflowTask> getWorkflowTasks(ThemeDisplay themeDisplay, String className, long classPK) throws Exception {
+		return getWorkflowTasks(themeDisplay.getCompanyId(), themeDisplay.getUserId(), className, classPK);
+	}
+
+	public static List<WorkflowTask> getWorkflowTasksWithPoll(long companyId, String className, long classPK) throws Exception {
+		List<WorkflowTask> workflowTasks = getWorkflowTasks(companyId, className, classPK);
+
+		int sleepCounter = 0;
+
+		while (ListUtil.isEmpty(workflowTasks) && (sleepCounter++ < _POLL_WORKFLOW_TASK_MAX_COUNT)) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("No workflow tasks found for class PK " + classPK + ", nap and try again");
+			}
+
+			Thread.sleep(_POLL_WORKFLOW_TASK_WAIT_INTERVAL);
+
+			workflowTasks = getWorkflowTasks(companyId, className, classPK);
+		}
+
+		if (_log.isDebugEnabled()) {
+			if (ListUtil.isNotEmpty(workflowTasks)) {
+				StringBundler sb = new StringBundler(6);
+
+				sb.append("Found workflow tasks after ");
+				sb.append(sleepCounter);
+				sb.append(" naps for class name ");
+				sb.append(className);
+				sb.append(", and class PK ");
+				sb.append(classPK);
+
+				_log.debug(sb.toString());
+			}
+			else {
+				StringBundler sb = new StringBundler(6);
+
+				sb.append("Still no workflow tasks found after ");
+				sb.append(sleepCounter);
+				sb.append(" naps for class name ");
+				sb.append(className);
+				sb.append(", and class PK ");
+				sb.append(classPK);
+
+				_log.debug(sb.toString());
+			}
+		}
+
+		return workflowTasks;
+	}
+
+	public static void registerReindexCallback(BaseModel<?> baseModel) throws Exception {
+		registerReindexCallback(IndexerRegistryUtil.getIndexer(baseModel.getModelClass()), baseModel);
+	}
+
+	public static void registerReindexCallback(final Indexer indexer, final BaseModel<?> baseModel) throws Exception {
+		TransactionCommitCallbackRegistryUtil.registerCallback(new Callable<Object>() {
+
+			@Override
+			public Object call() throws Exception {
+				indexer.reindex(baseModel);
+
+				return null;
+			}
+
+		});
+	}
+
+	public static void startWorkflowInstance(ThemeDisplay themeDisplay, ActionRequest actionRequest, BaseModel<?> baseModel, Map<String, Serializable> workflowContext, long groupId) throws Exception {
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(baseModel.getModelClassName(), actionRequest);
+
+		AssetEntryLocalServiceUtil.updateEntry(themeDisplay.getUserId(), groupId, baseModel.getModelClassName(), (Long)baseModel.getPrimaryKeyObj(), serviceContext.getAssetCategoryIds(), serviceContext.getAssetTagNames());
+
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
+
+		WorkflowHandlerRegistryUtil.startWorkflowInstance(themeDisplay.getCompanyId(), groupId, themeDisplay.getUserId(), baseModel.getModelClassName(), (Long)baseModel.getPrimaryKeyObj(), baseModel, serviceContext, workflowContext);
+	}
+
+	public static void transitionWorkflowTask(long companyId, long workflowTaskId, String transitionName, long groupId, long userId, String comments, Map<String, Serializable> workflowContext) throws Exception {
+		WorkflowTask workflowTask = WorkflowTaskManagerUtil.getWorkflowTask(companyId, workflowTaskId);
+
+		if (!isValidTransitionName(companyId, workflowTask, transitionName)) {
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(StringPool.APOSTROPHE);
+			sb.append(transitionName);
+			sb.append("' is an invalid transition for workflow task ");
+			sb.append(workflowTaskId);
+
+			throw new WorkflowException(sb.toString());
+		}
+
+		String workflowTaskName = workflowTask.getName();
+
+		Map<String, Serializable> optionalAttributes = workflowTask.getOptionalAttributes();
+
+		String className = (String)optionalAttributes.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
+
+		long classPK = GetterUtil.getLong(optionalAttributes.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+
+		String currentNodeName = getWorkflowInstanceCurrentNodeName(companyId, groupId, className, classPK);
+
+		if (!workflowTaskName.equals(currentNodeName) && !currentNodeName.contains("fork")) {
+			StringBundler sb = new StringBundler(7);
+
+			sb.append("Trying to transition ");
+			sb.append(classPK);
+			sb.append(" which is at '");
+			sb.append(currentNodeName);
+			sb.append("', not at the expected state of '");
+			sb.append(workflowTaskName);
+			sb.append(StringPool.APOSTROPHE);
+
+			_log.error(sb.toString());
+
+			throw new AlloyException(sb.toString());
+		}
+
+		if (!workflowTask.isAssignedToSingleUser()) {
+			User user = UserLocalServiceUtil.getUser(userId);
+
+			try {
+				if (PermissionThreadLocal.getPermissionChecker() == null) {
+					if (_log.isInfoEnabled()) {
+						_log.info("Creating new permission checker");
+					}
+
+					PermissionChecker permissionChecker = PermissionCheckerFactoryUtil.create(user, true);
+
+					PermissionThreadLocal.setPermissionChecker(permissionChecker);
+				}
+			}
+			catch (Exception e) {
+			}
+
+			WorkflowTaskManagerUtil.assignWorkflowTaskToUser(companyId, userId, workflowTaskId, userId, StringPool.BLANK, null, workflowContext);
+		}
+
+		WorkflowTaskManagerUtil.completeWorkflowTask(companyId, userId, workflowTask.getWorkflowTaskId(), transitionName, comments, workflowContext);
+	}
+
+	public static void transitionWorkflowTask(ThemeDisplay themeDisplay, long workflowTaskId, String transitionName, String comments, Map<String, Serializable> workflowContext, long groupId) throws Exception {
+		transitionWorkflowTask(themeDisplay.getCompanyId(), workflowTaskId, transitionName, groupId, themeDisplay.getUserId(), comments, workflowContext);
+	}
+
+	protected static boolean isValidTransitionName(long companyId, WorkflowTask workflowTask, String transitionName) throws Exception {
+		List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(companyId, workflowTask.getAssigneeUserId(), workflowTask.getWorkflowTaskId());
+
+		if (transitionNames.contains(transitionName)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private static final long _POLL_WORKFLOW_TASK_MAX_COUNT = 4;
+
+	private static final long _POLL_WORKFLOW_TASK_WAIT_INTERVAL = 250;
+
+	private static Log _log = LogFactoryUtil.getLog(EVPWorkflowUtil.class);
+
+}
+%>

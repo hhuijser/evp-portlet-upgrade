@@ -1,0 +1,1072 @@
+<?xml version="1.0"?>
+
+<workflow-definition xmlns="urn:liferay.com:liferay-workflow_7.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.0.0 https://cdn.rawgit.com/liferay/liferay-portal/master/definitions/liferay-workflow-definition_7_0_0.xsd"
+>
+	<name>EVP - Grant Request</name>
+	<description>A process to approve grant requests.</description>
+	<version>1</version>
+	<state>
+		<name>request-created</name>
+		<initial>true</initial>
+		<transitions>
+			<transition>
+				<name>submit-request</name>
+				<target>request-submitted</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>request-submitted</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Pending Review</description>
+				<template>
+					<![CDATA[
+						A new or updated grant request was submitted by ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						Please review the request and approve, reject, or request for more information.<br /><br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The submitter says:<br />
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-review-notification</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-evp-team</name>
+		<actions>
+			<action>
+				<name>grant-status-request-submitted-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 101;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>EVP Team</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>approve-request</name>
+				<target>pending-review-by-finance</target>
+			</transition>
+			<transition>
+				<name>reject-request</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>request-country-coordinator-validation</name>
+				<target>pending-review-by-country-coordinator</target>
+			</transition>
+			<transition>
+				<name>request-hr-validation</name>
+				<target>pending-review-by-hr</target>
+			</transition>
+			<transition>
+				<name>request-global-evp-team-validation</name>
+				<target>pending-review-by-global-evp-team</target>
+			</transition>
+			<transition>
+				<name>request-more-information</name>
+				<target>pending-information-request-from-user</target>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>pending-review-by-finance</name>
+		<actions>
+			<action>
+				<name>grant-status-pending-financial-review-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 102;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>finance-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Ready to Send Grant</description>
+				<template>
+					<![CDATA[
+						Dear Finance,<br /><br />
+
+						A new grant request was approved.<br /><br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please process the grant transaction for the following record and mark it as "Grant Sent":<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>Finance</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+			<notification>
+				<name>user-explanation-notification</name>
+				<description>[Liferay EVP] Grant Request - Approved</description>
+				<template>
+					<![CDATA[
+						Dear ${evpGrantRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						<#if (evpGrantRequestContext.PROPOSED_AMOUNT > 0)>
+							Your proposed grant request of ${evpGrantRequestContext.PROPOSED_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} was approved!<br />
+						</#if>
+
+						<#if (evpGrantRequestContext.MATCHING_AMOUNT > 0)>
+							Your matching grant request of ${evpGrantRequestContext.MATCHING_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} was approved!<br />
+						</#if>
+
+						<#if (evpGrantRequestContext.SPONSORSHIP_AMOUNT > 0)>
+							Your sponsorship grant request of ${evpGrantRequestContext.SPONSORSHIP_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} was approved!<br /><br />
+
+							<#if (evpGrantRequestContext.SUBSIDIARY_ABBREVIATION == "au")>
+								You need to request a reimbursement in Replicon for your sponsorship expenses. Here are the details:
+
+								<ol>
+									<li>
+										Log in to Replicon and click on the "Expenses" tab.
+									</li>
+									<li>
+										Click on "Add Expense".
+									</li>
+									<li>
+										For "Description", enter "EVP Reimbursement".
+									</li>
+									<li>
+										Click on the drop-down next to "Project".
+
+										<ul>
+											<li>
+												Choose "Liferay AU" from the left column list.
+											</li>
+											<li>
+												Choose "Australia EVP" from the right column list.
+											</li>
+										</ul>
+									</li>
+							<#elseif (evpGrantRequestContext.SUBSIDIARY_ABBREVIATION == "cn")>
+								You need to request a reimbursement in Replicon for your sponsorship expenses. Here are the details:
+
+								<ol>
+									<li>
+										If your trip has been approved, sponsorship for the trip is automatically approved.
+									</li>
+									<li>
+										Log in to Replicon and click on the "Expenses" tab.
+									</li>
+									<li>
+										Click on "Add Expense".
+									</li>
+									<li>
+										For "Description", enter "EVP Reimbursement".
+									</li>
+									<li>
+										Click on the drop-down next to "Project".
+
+										<ul>
+											<li>
+												Choose "No Client" from the left column list.
+											</li>
+											<li>
+												Choose "LR China EVP" from the right column list.
+											</li>
+										</ul>
+									</li>
+							<#elseif (evpGrantRequestContext.SUBSIDIARY_ABBREVIATION == "de")>
+								You need to request a reimbursement for your sponsorship expenses. Here are the details:
+
+								<ol>
+									<li>
+										Fill in the "EVP Expenses Form" (can be found on shared drive: directory/VORLAGEN).
+									</li>
+							<#elseif (evpGrantRequestContext.SUBSIDIARY_ABBREVIATION == "jp")>
+								You need to request a reimbursement in Replicon for your sponsorship expenses. Here are the details:
+
+								<ol>
+									<li>
+										Log in to Replicon and click on the "Expenses" tab.
+									</li>
+									<li>
+										Click on "Add Expense".
+									</li>
+									<li>
+										For "Description", enter "EVP Reimbursement".
+									</li>
+									<li>
+										Click on the drop-down next to "Project".
+
+										<ul>
+											<li>
+												Choose "Liferay KK" from the left column list.
+											</li>
+											<li>
+												Choose "Japan EVP" from the right column list.
+											</li>
+										</ul>
+									</li>
+							<#elseif (evpGrantRequestContext.SUBSIDIARY_ABBREVIATION == "sg")>
+								You need to request a reimbursement in Replicon for your sponsorship expenses. Here are the details:
+
+								<ol>
+									<li>
+										Log in to Replicon and click on the "Expenses" tab.
+									</li>
+									<li>
+										Click on "Add Expense".
+									</li>
+									<li>
+										For "Description", enter "EVP Reimbursement".
+									</li>
+									<li>
+										Click on the drop-down next to "Project".
+
+										<ul>
+											<li>
+												Choose "Liferay Singapore" from the left column list.
+											</li>
+											<li>
+												Choose "Singapore EVP" from the right column list.
+											</li>
+										</ul>
+									</li>
+							<#elseif (evpGrantRequestContext.SUBSIDIARY_ABBREVIATION == "us")>
+								You need to request a reimbursement in Replicon for your sponsorship expenses. Here are the details:
+
+								<ol>
+									<li>
+										Log in to Replicon and click on the "Expenses" tab.
+									</li>
+									<li>
+										Click on "Add Expense".
+									</li>
+									<li>
+										For "Description", enter "EVP Reimbursement".
+									</li>
+									<li>
+										Click on the drop-down next to "Project".
+
+										<ul>
+											<li>
+												Choose "No Client" from the left column list.
+											</li>
+											<li>
+												Choose "LR Foundation" from the right column list.
+											</li>
+										</ul>
+									</li>
+							<#else>
+								You need to request a reimbursement for your sponsorship expenses. Here are the details:
+
+								<ol>
+									<li>
+										Go through the process you normally would when making a reimbursement, but add a description of "EVP Reimbursement".
+									</li>
+							</#if>
+
+								<li>
+									Add as many reimbursement items as needed to total ${evpGrantRequestContext.SPONSORSHIP_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE}. Make sure to upload a receipt for each item. Partial reimbursements are fine (e.g., if you upload a receipt for airfare that is well over ${evpGrantRequestContext.MAX_GRANT_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE}, we'll just reimburse up to ${evpGrantRequestContext.MAX_GRANT_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE}).
+
+									<ul>
+										<li>
+											For lodging expenses, you must attach a receipt that clearly shows the nights you stayed at a hotel/motel/etc.
+										</li>
+										<li>
+											For food expenses, you must upload a receipt that clearly shows the food items you bought and the date of purchase.
+										</li>
+										<li>
+											For supply expenses, you must attach a receipt that clearly shows the items you bought to aid in your service.
+										</li>
+										<li>
+											For travel expenses, you must attach a receipt that clearly shows your travel dates (e.g., for plane tickets, the date you fly out, and the date you fly home).
+										</li>
+									</ul>
+								</li>
+								<li>
+									Submit the form.
+								</li>
+								<li>
+									If your request is approved, a reimbursement will be sent to you by the finance team.
+								</li>
+							</ol>
+						</#if>
+
+						<br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						If you have any further questions, please contact <a href="mailto:${evpGrantRequestContext.SUBSIDIARY_EMAIL}">${evpGrantRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks for giving!<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>Finance</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>cancel-request</name>
+				<target>cancelled</target>
+			</transition>
+			<transition>
+				<name>mark-as-check-sent</name>
+				<target>completed</target>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>pending-information-request-from-user</name>
+		<actions>
+			<action>
+				<name>grant-status-more-info-from-user-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 103;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Additional Info Required</description>
+				<template>
+					<![CDATA[
+						Dear ${evpGrantRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Additional information is required in order to properly review your grant request:<br /><br />
+
+						${evpGrantRequestContext.NOTES}<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REQUEST_EDITOR}">${evpGrantRequestContext.LINK_TO_REQUEST_EDITOR}</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpGrantRequestContext.SUBSIDIARY_EMAIL}">${evpGrantRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<user />
+		</assignments>
+		<transitions>
+			<transition>
+				<name>resubmit-request</name>
+				<target>request-submitted</target>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>pending-review-by-country-coordinator</name>
+		<actions>
+			<action>
+				<name>grant-status-validation-requested-from-country-coordinator-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 111;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>country-coordinator-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Pending Country Coordinator Approval</description>
+				<template>
+					<![CDATA[
+						Dear Country Coordinator,<br /><br />
+
+						A new grant request was submitted by ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate that ${evpGrantRequestContext.ORGANIZATION_NAME} is a valid nonprofit in your country.<br /><br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The EVP Team says:<br />
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>Country Coordinator</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>Country Coordinator</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-country-coordinator</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>validated-by-country-coordinator</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Pending Approval (Approved by Country Coordinator)</description>
+				<template>
+					<![CDATA[
+						The Country Coordinator determined that ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}'s requested organization ${evpGrantRequestContext.ORGANIZATION_NAME} is a valid nonprofit.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The Country Coordinator says:<br/>
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>request-resubmitted</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-hr</name>
+		<actions>
+			<action>
+				<name>grant-status-validation-requested-from-hr-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 104;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>hr-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Pending HR Approval</description>
+				<template>
+					<![CDATA[
+						Dear HR,<br /><br />
+
+						A new grant request was submitted by ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate ${evpGrantRequestContext.CREATOR_USER_FIRST_NAME}'s eligibility to participate in EVP.<br /><br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>HR</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>HR</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-hr</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>validated-by-hr</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Pending Approval (Approved by HR)</description>
+				<template>
+					<![CDATA[
+						HR determined that ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}'s grant request is valid.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							HR says:<br/>
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>request-resubmitted</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-global-evp-team</name>
+		<actions>
+			<action>
+				<name>grant-status-validation-requested-from-global-evp-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 108;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>global-evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Pending Global EVP Team Approval</description>
+				<template>
+					<![CDATA[
+						A new grant request has been submitted by ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate the request.<br /><br />
+
+						EVP Team says:<br />
+						${evpGrantRequestContext.NOTES}<br /><br />
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>regular</role-type>
+							<name>EVP Team (Global)</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Team (Global)</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-global-evp</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>validated-by-global-evp</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Grant Request - Validated by Global EVP Team</description>
+				<template>
+					<![CDATA[
+						The Global EVP Team determined that ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}'s grant request is valid.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The Global EVP Team says:<br />
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>request-resubmitted</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>completed</name>
+		<actions>
+			<action>
+				<name>grant-status-completed-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 106;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>evp-admin-information-notification</name>
+				<description>[Liferay EVP] Grant Request - Completed (Grant Sent)</description>
+				<template>
+					<![CDATA[
+						<#if (evpGrantRequestContext.PROPOSED_AMOUNT > 0)>
+							Proposed grant with transaction #${evpGrantRequestContext.PROPOSED_TRANSACTION_NUMBER} dated ${evpGrantRequestContext.PROPOSED_TRANSACTION_DATE} was sent to ${evpGrantRequestContext.ORGANIZATION_NAME} in the amount of ${evpGrantRequestContext.PROPOSED_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} on behalf of ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}.<br />
+						</#if>
+
+						<#if (evpGrantRequestContext.MATCHING_AMOUNT > 0)>
+							Matching grant with transaction #${evpGrantRequestContext.MATCHING_TRANSACTION_NUMBER} dated ${evpGrantRequestContext.MATCHING_TRANSACTION_DATE} was sent to ${evpGrantRequestContext.ORGANIZATION_NAME} in the amount of ${evpGrantRequestContext.MATCHING_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} on behalf of ${evpGrantRequestContext.CREATOR_USER_FULL_NAME}.<br />
+						</#if>
+
+						<#if (evpGrantRequestContext.SPONSORSHIP_AMOUNT > 0)>
+							Sponsorship grant with transaction #${evpGrantRequestContext.SPONSORSHIP_TRANSACTION_NUMBER} dated ${evpGrantRequestContext.SPONSORSHIP_TRANSACTION_DATE} was sent to ${evpGrantRequestContext.CREATOR_USER_FULL_NAME} in the amount of ${evpGrantRequestContext.SPONSORSHIP_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} as reimbursement for expenses related to a service trip with ${evpGrantRequestContext.ORGANIZATION_NAME}.<br />
+						</#if>
+
+						<br />
+
+						Click on the link below for more details:<br />
+						<a href="${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpGrantRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Admin</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+			<notification>
+				<name>user-information-notification</name>
+				<description>[Liferay EVP] Grant Request - Completed (Grant Sent)</description>
+				<template>
+					<![CDATA[
+						Dear ${evpGrantRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						<#if (evpGrantRequestContext.PROPOSED_AMOUNT > 0)>
+							Your proposed grant of ${evpGrantRequestContext.PROPOSED_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} was sent to ${evpGrantRequestContext.ORGANIZATION_NAME} on your behalf!<br />
+						</#if>
+
+						<#if (evpGrantRequestContext.MATCHING_AMOUNT > 0)>
+							Your matching grant of ${evpGrantRequestContext.MATCHING_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} was sent to ${evpGrantRequestContext.ORGANIZATION_NAME} on your behalf!<br />
+						</#if>
+
+						<#if (evpGrantRequestContext.SPONSORSHIP_AMOUNT > 0)>
+							Your sponsorship grant of ${evpGrantRequestContext.SPONSORSHIP_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} will be sent to you after your reimbursement request is approved!<br />
+						</#if>
+
+						<br />
+
+						<#if (evpGrantRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpGrantRequestContext.NOTES}<br /><br />
+						</#if>
+
+						If you have any further questions, please contact <a href="mailto:${evpGrantRequestContext.SUBSIDIARY_EMAIL}">${evpGrantRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks for giving!<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+	</state>
+	<state>
+		<name>rejected</name>
+		<actions>
+			<action>
+				<name>grant-status-rejected-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 107;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-information-notification</name>
+				<description>[Liferay EVP] Grant Request - Rejected</description>
+				<template>
+					<![CDATA[
+						Dear ${evpGrantRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your ${evpGrantRequestContext.TRANSACTIONS_STRING} grant request(s) for organization ${evpGrantRequestContext.ORGANIZATION_NAME} in the amount of ${evpGrantRequestContext.TOTAL_GRANT_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} was rejected for the following reason:<br /><br />
+
+						${evpGrantRequestContext.NOTES}<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpGrantRequestContext.SUBSIDIARY_EMAIL}">${evpGrantRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+	</state>
+	<state>
+		<name>cancelled</name>
+		<actions>
+			<action>
+				<name>grant-status-cancelled-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 110;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-information-notification</name>
+				<description>[Liferay EVP] Grant Request - Cancelled</description>
+				<template>
+					<![CDATA[
+						Dear ${evpGrantRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your ${evpGrantRequestContext.TRANSACTIONS_STRING} grant request(s) for organization ${evpGrantRequestContext.ORGANIZATION_NAME} in the amount of ${evpGrantRequestContext.TOTAL_GRANT_AMOUNT} ${evpGrantRequestContext.SUBSIDIARY_CURRENCY_CODE} was cancelled for the following reason:<br /><br />
+
+						${evpGrantRequestContext.NOTES}<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpGrantRequestContext.SUBSIDIARY_EMAIL}">${evpGrantRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+	</state>
+</workflow-definition>

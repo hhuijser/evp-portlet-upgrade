@@ -1,31 +1,34 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the Liferay Enterprise
- * Subscription License ("License"). You may not use this file except in
- * compliance with the License. You can obtain a copy of the License by
- * contacting Liferay, Inc. See the License for the specific language governing
- * permissions and limitations under the License, including but not limited to
- * distribution rights of the Software.
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
  *
- *
- *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
  */
 
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.model.LayoutPrototype;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.LayoutPrototypeLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -43,11 +46,15 @@ import javax.servlet.ServletContext;
  */
 public abstract class BaseImporter implements Importer {
 
-
+	@Override
 	public void afterPropertiesSet() throws Exception {
 		User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
 		userId = user.getUserId();
+
+		if (isCompanyGroup()) {
+			return;
+		}
 
 		Group group = null;
 
@@ -70,7 +77,10 @@ public abstract class BaseImporter implements Importer {
 			targetClassPK = layoutSetPrototype.getLayoutSetPrototypeId();
 		}
 		else if (targetClassName.equals(Group.class.getName())) {
-			if (targetValue.equals(GroupConstants.GUEST)) {
+			if (targetValue.equals(GroupConstants.GLOBAL)) {
+				group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+			}
+			else if (targetValue.equals(GroupConstants.GUEST)) {
 				group = GroupLocalServiceUtil.getGroup(
 					companyId, GroupConstants.GUEST);
 
@@ -126,12 +136,17 @@ public abstract class BaseImporter implements Importer {
 		}
 	}
 
-
+	@Override
 	public long getGroupId() {
 		return groupId;
 	}
 
+	@Override
+	public String getTargetClassName() {
+		return targetClassName;
+	}
 
+	@Override
 	public long getTargetClassPK() {
 		return targetClassPK;
 	}
@@ -146,39 +161,98 @@ public abstract class BaseImporter implements Importer {
 		return targetValueMap;
 	}
 
+	@Override
+	public boolean isCompanyGroup() throws Exception {
+		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
+		if (group == null) {
+			return false;
+		}
+
+		return group.isCompany();
+	}
+
+	@Override
+	public boolean isDeveloperModeEnabled() {
+		return developerModeEnabled;
+	}
+
+	@Override
 	public boolean isExisting() {
 		return existing;
 	}
 
+	@Override
+	public void setAppendVersion(boolean appendVersion) {
+		this.appendVersion = appendVersion;
+	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;
 	}
 
+	@Override
+	public void setDeveloperModeEnabled(boolean developerModeEnabled) {
+		this.developerModeEnabled = developerModeEnabled;
+	}
 
+	@Override
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
+	@Override
 	public void setResourcesDir(String resourcesDir) {
 		this.resourcesDir = resourcesDir;
 	}
 
-
+	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
 	}
 
-
+	@Override
 	public void setServletContextName(String servletContextName) {
 		this.servletContextName = servletContextName;
 	}
 
-
+	@Override
 	public void setTargetClassName(String targetClassName) {
 		this.targetClassName = targetClassName;
 	}
 
-
+	@Override
 	public void setTargetValue(String targetValue) {
 		this.targetValue = targetValue;
+	}
+
+	@Override
+	public void setUpdateModeEnabled(boolean updateModeEnabled) {
+		this.updateModeEnabled = updateModeEnabled;
+	}
+
+	@Override
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	protected LayoutPrototype getLayoutPrototype(long companyId, String name)
+		throws SystemException {
+
+		Locale locale = LocaleUtil.getDefault();
+
+		List<LayoutPrototype> layoutPrototypes =
+			LayoutPrototypeLocalServiceUtil.search(
+				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (LayoutPrototype layoutPrototype : layoutPrototypes) {
+			if (name.equals(layoutPrototype.getName(locale))) {
+				return layoutPrototype;
+			}
+		}
+
+		return null;
 	}
 
 	protected LayoutSetPrototype getLayoutSetPrototype(
@@ -200,7 +274,9 @@ public abstract class BaseImporter implements Importer {
 		return null;
 	}
 
+	protected boolean appendVersion;
 	protected long companyId;
+	protected boolean developerModeEnabled;
 	protected boolean existing;
 	protected long groupId;
 	protected String resourcesDir;
@@ -209,6 +285,8 @@ public abstract class BaseImporter implements Importer {
 	protected String targetClassName;
 	protected long targetClassPK;
 	protected String targetValue;
+	protected boolean updateModeEnabled;
 	protected long userId;
+	protected String version;
 
 }

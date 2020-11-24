@@ -1,0 +1,61 @@
+#if ($section_1_header.section_1_image.getData() == "")
+	#set ($section_1_image_path = "@theme_image_path@/custom/available_through_evp_section_1.svg")
+#else
+	#set ($section_1_image_path = $section_1_header.section_1_image.getData())
+#end
+
+#if ($section_2_header.section_2_image.getData() == "")
+	#set ($section_2_image_path = "@theme_image_path@/custom/available_through_evp_section_2.svg")
+#else
+	#set ($section_2_image_path = $section_2_header.section_2_image.getData())
+#end
+
+#if ($section_3_header.section_3_image.getData() == "")
+	#set ($section_3_image_path = "@theme_image_path@/custom/available_through_evp_section_3.svg")
+#else
+	#set ($section_3_image_path = $section_3_header.section_3_image.getData())
+#end
+
+<div class="available-through-evp row-fluid">
+	<div class="offset2 span8 text-center">
+		<div class="row">
+			<div class="offset3 span6">
+				<h2 class="header">$header.getData()</h2>
+			</div>
+		</div>
+
+		<div class="available-through-evp-description row">
+			<div class="offset1 section span2">
+				<img alt="$section_1_header.getData()" class="image" src="$section_1_image_path" />
+
+				<div class="image-header">$section_1_header.getData()</div>
+
+				<div class="description-content">$section_1_header.section_1_description.getData()</div>
+			</div>
+
+			<div class="spacer span2">
+				$spacer_section_1_section_2.getData()
+			</div>
+
+			<div class="section span2">
+				<img alt="$section_2_header.getData()" class="image" src="$section_2_image_path" />
+
+				<div class="image-header">$section_2_header.getData()</div>
+
+				<div class="description-content">$section_2_header.section_2_description.getData()</div>
+			</div>
+
+			<div class="spacer span2">
+				$spacer_section_2_section_3.getData()
+			</div>
+
+			<div class="section span2">
+				<img alt="$section_3_header.getData()" class="image" src="$section_3_image_path" />
+
+				<div class="image-header">$section_3_header.getData()</div>
+
+				<div class="description-content">$section_3_header.section_3_description.getData()</div>
+			</div>
+		</div>
+	</div>
+</div>

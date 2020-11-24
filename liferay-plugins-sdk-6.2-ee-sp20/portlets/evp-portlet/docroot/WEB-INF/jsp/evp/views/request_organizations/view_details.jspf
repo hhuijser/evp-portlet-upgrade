@@ -1,0 +1,118 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<aui:row cssClass="section">
+	<div class="section-header toggler-header-expanded">
+		<liferay-ui:header title="organization" />
+	</div>
+
+	<dl class="section-details toggler-content-expanded">
+		<c:if test="${not empty requestComposite.organizationName}">
+			<dt title='<liferay-ui:message key="organization-name" />'>
+				<liferay-ui:message key="organization-name" />:
+			</dt>
+			<dd>
+				${fn:escapeXml(requestComposite.organizationName)}
+			</dd>
+		</c:if>
+
+		<dt title='<liferay-ui:message key="address" />'>
+			<liferay-ui:message key="address" />:
+		</dt>
+		<dd class="clear-label">
+			<c:set value="${requestComposite.requestOrganizationAddress}" var="organizationAddress" />
+
+			${fn:escapeXml(organizationAddress.street1)} ${(not empty organizationAddress.street1) && (not empty organizationAddress.city || not empty organizationAddress.region.name || not empty organizationAddress.country.name || not empty organizationAddress.zip) ? "<br />" : ""}
+			${fn:escapeXml(organizationAddress.city)}${(not empty organizationAddress.city) && (not empty organizationAddress.region.name || not empty organizationAddress.country.name || not empty organizationAddress.zip) ? "," : ""}
+			${organizationAddress.region.name}${(not empty organizationAddress.region.name) && (not empty organizationAddress.country.name || not empty organizationAddress.zip) ? "," : ""}
+			<liferay-ui:message key="country.${organizationAddress.country.name}" />${(not empty organizationAddress.country.name && not empty organizationAddress.zip) ? "," : ""}
+			${fn:escapeXml(organizationAddress.zip)}
+		</dd>
+
+		<c:if test="${not empty requestComposite.requestOrganizationWebsiteURL}">
+			<dt title='<liferay-ui:message key="organization-url" />'>
+				<liferay-ui:message key="organization-url" />:
+			</dt>
+			<dd>
+				<aui:a href="${fn:trim(requestComposite.requestOrganizationWebsiteURL)}" label="${requestComposite.requestOrganizationWebsiteURL}" />
+			</dd>
+		</c:if>
+
+		<c:if test="${not empty requestComposite.taxIdentificationNumber}">
+			<dt title='<liferay-ui:message key="tax-id" />'>
+				<liferay-ui:message key="tax-id" />:
+			</dt>
+			<dd>
+				${fn:escapeXml(requestComposite.taxIdentificationNumber)}
+			</dd>
+
+			<c:if test="${not empty requestComposite.evpRequestOrganizationNonprofitTypeLabel}">
+				<dt title='<liferay-ui:message key="nonprofit-type" />'>
+					<liferay-ui:message key="nonprofit-type" />:
+				</dt>
+				<dd>
+					<liferay-ui:message key="${requestComposite.evpRequestOrganizationNonprofitTypeLabel}" />
+				</dd>
+			</c:if>
+		</c:if>
+
+		<c:if test="${not empty requestComposite.evpRequestOrganizationDescription}">
+			<dt title='<liferay-ui:message key="description" />'>
+				<liferay-ui:message key="description" />:
+			</dt>
+			<dd class="clear-label">
+				${fn:escapeXml(requestComposite.evpRequestOrganizationDescription)}
+			</dd>
+		</c:if>
+	</dl>
+</aui:row>
+
+<c:if test="${(not empty fn:trim(requestComposite.contactUserFullName)) || (not empty requestComposite.contactUserEmailAddressString) || (not empty requestComposite.contactUserPhoneString)}">
+	<aui:row cssClass="section">
+		<div class="section-header toggler-header-expanded">
+			<liferay-ui:header title="contact" />
+		</div>
+
+		<dl class="section-details toggler-content-expanded">
+			<c:if test="${not empty fn:trim(requestComposite.contactUserFullName)}">
+				<dt title='<liferay-ui:message key="name" />'>
+					<liferay-ui:message key="name" />:
+				</dt>
+				<dd>
+					${requestComposite.contactUserFullName}
+				</dd>
+			</c:if>
+
+			<c:if test="${not empty requestComposite.contactUserEmailAddressString}">
+				<dt title='<liferay-ui:message key="email" />'>
+					<liferay-ui:message key="email" />:
+				</dt>
+				<dd>
+					<aui:a href="mailto:${requestComposite.contactUserEmailAddressString}" label="${requestComposite.contactUserEmailAddressString}" />
+				</dd>
+			</c:if>
+
+			<c:if test="${not empty requestComposite.contactUserPhoneString}">
+				<dt title='<liferay-ui:message key="phone-number" />'>
+					<liferay-ui:message key="phone-number" />:
+				</dt>
+				<dd>
+					${requestComposite.contactUserPhoneString}
+				</dd>
+			</c:if>
+		</dl>
+	</aui:row>
+</c:if>

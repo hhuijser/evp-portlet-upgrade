@@ -1,0 +1,120 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPAlloyControllerImpl extends BaseAlloyControllerImpl {
+
+	@Override
+	protected String buildIncludePath(String viewPath) {
+		boolean confirmation = ParamUtil.getBoolean(request, "confirmation");
+
+		if (confirmation) {
+			return "/WEB-INF/jsp/" + portlet.getFriendlyURLMapping() + "/views/confirm_submission.jsp";
+		}
+
+		return super.buildIncludePath(viewPath);
+	}
+
+	@Override
+	protected void executeRender(Method method) throws Exception {
+		boolean confirmation = ParamUtil.getBoolean(request, "confirmation");
+
+		if (confirmation) {
+			portletRequest.setAttribute("confirmationMessage", ParamUtil.getString(request, "confirmationMessage"));
+
+			controllerPath = ParamUtil.getString(request, "controllerPath");
+
+			long evpRequestId = ParamUtil.getLong(request, "evpRequestId");
+
+			if (evpRequestId > 0) {
+				try {
+					EVPGrantRequest evpGrantRequest = EVPGrantRequestLocalServiceUtil.getEVPGrantRequest(evpRequestId);
+
+					EVPGrantRequestComposite evpGrantRequestComposite = new EVPGrantRequestComposite(evpGrantRequest, themeDisplay);
+
+					portletRequest.setAttribute("requestComposite", evpGrantRequestComposite);
+				}
+				catch (Exception e1) {
+					try {
+						EVPServiceRequest evpServiceRequest = EVPServiceRequestLocalServiceUtil.getEVPServiceRequest(evpRequestId);
+
+						EVPServiceRequestComposite evpServiceRequestComposite = new EVPServiceRequestComposite(evpServiceRequest, themeDisplay);
+
+						portletRequest.setAttribute("requestComposite", evpServiceRequestComposite);
+					}
+					catch (Exception e2) {
+						renderError(translate("sorry-something-went-wrong-with-your-submission"));
+
+						return;
+					}
+				}
+			}
+		}
+
+		renderRequest.setAttribute("AlloyPermission", new EVPPermission());
+
+		renderRequest.setAttribute("actionPath", actionPath);
+
+		renderRequest.setAttribute("controllerPath", controllerPath);
+
+		EVPEmployee evpEmployee = EVPEmployeeLocalServiceUtil.fetchEVPEmployeeByEmployeeUserId(themeDisplay.getUserId());
+
+		renderRequest.setAttribute("evpEmployee", evpEmployee);
+
+		renderRequest.setAttribute("subsidiaryGroupId", EVPDivisionUtil.getSubsidiaryGroupId(user.getUserId()));
+
+		super.executeRender(method);
+	}
+
+	@Override
+	protected void executeResource(Method method) throws Exception {
+		Class<?> tempClass = clazz;
+
+		clazz = clazz.getSuperclass();
+
+		super.executeResource(method);
+
+		clazz = tempClass;
+	}
+
+	@Override
+	protected boolean hasPermission() {
+		if (!permissioned) {
+			return true;
+		}
+
+		long id = ParamUtil.getLong(request, "id");
+
+		try {
+			if (id > 0) {
+				if (alloyServiceInvoker == null) {
+					throw new Exception("The alloy service invoker must be set");
+				}
+
+				BaseModel<?> baseModel = alloyServiceInvoker.fetchModel(id);
+
+				return EVPPermission.contains(themeDisplay, baseModel, actionPath);
+			}
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		return EVPPermission.contains(themeDisplay, controllerPath, actionPath);
+	}
+
+}
+%>

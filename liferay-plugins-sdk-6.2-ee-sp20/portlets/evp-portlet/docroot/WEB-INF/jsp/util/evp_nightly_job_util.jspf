@@ -1,0 +1,80 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPNightlyJobUtil {
+
+	public static void nightlyJobProcessServiceRequestOnEndDate(AlloyController alloyController) throws Exception {
+		List<EVPServiceRequest> evpServiceRequests = getEVPServiceRequests(EVPWorkflowConstants.SERVICE_STATUS_PENDING_SERVICE_COMPLETION);
+
+		for (EVPServiceRequest evpServiceRequest : evpServiceRequests) {
+			String contactUserHash = EVPUtil.generateHash(evpServiceRequest.getEvpServiceRequestId());
+
+			evpServiceRequest.setHash(contactUserHash);
+
+			EVPServiceRequestLocalServiceUtil.updateEVPServiceRequest(evpServiceRequest);
+
+			transitionWorkflowTask(alloyController, evpServiceRequest, EVPWorkflowConstants.SERVICE_TRANSITION_SERVICE_COMPLETED);
+		}
+	}
+
+	public static void nightlyJobSendProofOfServiceReminders(AlloyController alloyController) throws Exception {
+		Date now = new Date();
+
+		List<EVPServiceRequest> evpServiceRequests = getEVPServiceRequests(EVPWorkflowConstants.SERVICE_STATUS_PENDING_PROOF_FORM);
+
+		for (EVPServiceRequest evpServiceRequest : evpServiceRequests) {
+			int daysBetween = DateUtil.getDaysBetween(now, evpServiceRequest.getRequestedEndDate());
+
+			if ((daysBetween == EVPConstants.DAYS_AFTER_SERVICE_COMPLETION_COUNT_REMINDER) && (evpServiceRequest.getParentEVPServiceRequestId() <= 0)) {
+				transitionWorkflowTask(alloyController, evpServiceRequest, EVPWorkflowConstants.SERVICE_TRANSITION_USER_ONE_WEEK_REMINDER);
+			}
+			else if (daysBetween == EVPConstants.DAYS_AFTER_SERVICE_COMPLETION_COUNT_WARNING) {
+				transitionWorkflowTask(alloyController, evpServiceRequest, EVPWorkflowConstants.SERVICE_TRANSITION_USER_FOUR_WEEK_WARNING);
+			}
+		}
+	}
+
+	protected static List<EVPServiceRequest> getEVPServiceRequests(int status) throws Exception {
+		AlloyServiceInvoker evpServiceRequestAlloyServiceInvoker = new AlloyServiceInvoker(EVPServiceRequest.class.getName());
+
+		DynamicQuery evpServiceRequestDynamicQuery = evpServiceRequestAlloyServiceInvoker.buildDynamicQuery(new Object[] {"status", status});
+
+		Property requestedEndDateProperty = PropertyFactoryUtil.forName("requestedEndDate");
+
+		Date notificationOffset = EVPUtil.addDays(new Date(), (0 - EVPConstants.DAYS_AFTER_SERVICE_COMPLETION_COUNT_NOTIFICATION));
+
+		evpServiceRequestDynamicQuery.add(requestedEndDateProperty.lt(notificationOffset));
+
+		return evpServiceRequestAlloyServiceInvoker.executeDynamicQuery(evpServiceRequestDynamicQuery);
+	}
+
+	protected static void transitionWorkflowTask(AlloyController alloyController, EVPServiceRequest evpServiceRequest, String transition) throws Exception {
+		if (Validator.isNull(PortletPropsValues.AUTO_ADMIN_EMAIL_ADDRESS)) {
+			return;
+		}
+
+		User autoAdminUser = UserLocalServiceUtil.getUserByEmailAddress(evpServiceRequest.getCompanyId(), PortletPropsValues.AUTO_ADMIN_EMAIL_ADDRESS);
+
+		long workflowTaskId = EVPWorkflowUtil.getFirstWorkflowTaskIdForUser(evpServiceRequest.getCompanyId(), EVPServiceRequest.class.getName(), evpServiceRequest.getEvpServiceRequestId(), evpServiceRequest.getUserId(), autoAdminUser.getUserId(), evpServiceRequest.getSubsidiaryGroupId());
+
+		Map<String, Serializable> workflowContext = EVPWorkflowContextVariablesUtil.addServiceRequestVariables(alloyController, evpServiceRequest.getEvpServiceRequestId(), StringPool.BLANK);
+
+		EVPWorkflowUtil.transitionWorkflowTask(evpServiceRequest.getCompanyId(), workflowTaskId, transition, evpServiceRequest.getSubsidiaryGroupId(), autoAdminUser.getUserId(), StringPool.BLANK, workflowContext);
+	}
+
+}
+%>

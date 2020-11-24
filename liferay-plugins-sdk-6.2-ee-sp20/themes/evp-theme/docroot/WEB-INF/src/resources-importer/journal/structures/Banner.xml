@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" multiple="false" name="page" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="">
+		<dynamic-element name="option5360" type="option" value="homepage">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Homepage]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option5361" type="option" value="upcoming">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Upcoming]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option5362" type="option" value="stories">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Stories]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option5363" type="option" value="about">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[About]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option5364" type="option" value="faq">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[FAQs]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option5365" type="option" value="other">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Other]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Select a page where this banner will be displayed.]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[["value 1"]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The look and feel of the banner will be determined by its page.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="banner_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Background Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The background image to display in the header.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="banner_heading" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Banner Heading]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header heading to display in the banner.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="banner_text" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Banner text]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header text to display in the banner.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_text" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Link Text]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The text of the link such as "Learn More" or "Read More".]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_url" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Link URL]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The URL the link should go.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="skip_to_content_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Skip To Content Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The image used for the link to skip the banner and go directly to the page contents.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

@@ -1,0 +1,79 @@
+<div class="faqs row-fluid">
+	#if (!$categories.getSiblings().isEmpty())
+		#set ($vm_variables = $request.attributes.VM_VARIABLES)
+
+		#set ($vm_variables_json_object = $jsonFactoryUtil.createJSONObject($vm_variables))
+
+		<div class="faqs-nav-wrapper span3">
+			<div class="faqs-nav">
+				<div class="faqs-search">
+					<input class="faqs-search-input" id="searchInput" placeholder="#language ("search-faqs")" type="search" />
+
+					<span class="clear-faq-search icon icon-remove-sign"></span>
+				</div>
+
+				<ul class="nav nav-list side-nav">
+					#foreach($category in $categories.getSiblings())
+						#set ($category_number = $velocityCount)
+
+						#set ($is_category = true)
+
+						#set ($category_variable = $stringUtil.trim($category.category_variable.getData()))
+
+						#if ($category_variable != "")
+							#set ($is_category = $vm_variables_json_object.getBoolean($category_variable))
+						#end
+
+						#if ($is_category)
+							<li class="faqs-category faqs-category-${category_number}-nav">
+								<a href="javascript:;" onclick="Liferay.EVP.faqs('#faqscategory${category_number}')">$category.category_header.getData()</a>
+							</li>
+						#end
+					#end
+				</ul>
+			</div>
+		</div>
+
+		<div class="faqs-categories span6">
+			#foreach($category in $categories.getSiblings())
+				#set ($category_number = $velocityCount)
+
+				#set ($is_category = true)
+
+				#set ($category_variable = $stringUtil.trim($category.category_variable.getData()))
+
+				#if ($category_variable != "")
+					#set ($is_category = $vm_variables_json_object.getBoolean($category_variable))
+				#end
+
+				#if ($is_category)
+					<div class="faqs-category faqs-category-${category_number}" id="faqscategory${category_number}">
+						<h2 class="header">$category.category_header.getData()</h2>
+
+						#if (!$category.questions_answers.getSiblings().isEmpty())
+							#foreach($question_answer in $category.questions_answers.getSiblings())
+								#set ($is_question = true)
+
+								#set ($question_variable = $stringUtil.trim($question_answer.question_variable.getData()))
+
+								#if ($question_variable != "")
+									#set ($is_question = $vm_variables_json_object.getBoolean($question_variable))
+								#end
+
+								#if ($is_question)
+									<div class="faqs-category-${category_number}-question-${velocityCount} faqs-question search-nodes" id="faqscategory${category_number}Question${velocityCount}">
+										<h4 class="question toggler-header-collapsed">$question_answer.question.getData() <span class="collapsed">+</span><span class="expanded">-</span></h4>
+
+										<div class="answer toggler-content toggler-content-collapsed">
+											$question_answer.answer.getData()
+										</div>
+									</div>
+								#end
+							#end
+						#end
+					</div>
+				#end
+			#end
+		</div>
+	#end
+</div>

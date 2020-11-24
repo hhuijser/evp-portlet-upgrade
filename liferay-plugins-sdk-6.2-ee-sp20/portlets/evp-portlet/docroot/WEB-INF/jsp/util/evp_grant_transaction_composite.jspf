@@ -1,0 +1,124 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPGrantTransactionComposite {
+
+	public EVPGrantTransactionComposite(EVPGrantTransaction evpGrantTransaction) {
+		_evpGrantTransaction = evpGrantTransaction;
+	}
+
+	public double getAmount() {
+		return _evpGrantTransaction.getAmount();
+	}
+
+	public String getBankBICCode() {
+		return _evpGrantTransaction.getBankBICCode();
+	}
+
+	public String getBankIBANCode() {
+		return _evpGrantTransaction.getBankIBANCode();
+	}
+
+	public String getBankName() {
+		return _evpGrantTransaction.getBankName();
+	}
+
+	public Date getDate() {
+		return _evpGrantTransaction.getDate();
+	}
+
+	public FileEntry getFileEntry() throws Exception {
+		if (_fileEntry == null) {
+			_fileEntry = DLAppLocalServiceUtil.getFileEntry(getFileEntryId());
+		}
+
+		return _fileEntry;
+	}
+
+	public long getFileEntryId() {
+		return _evpGrantTransaction.getFileEntryId();
+	}
+
+	public String getFileEntryPreviewURL(ThemeDisplay themeDisplay) throws Exception {
+		if (!isMatching()) {
+			return StringPool.BLANK;
+		}
+
+		FileEntry fileEntry = getFileEntry();
+
+		return DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK);
+	}
+
+	public String getFileEntryTitle() throws Exception {
+		if (!isMatching()) {
+			return StringPool.BLANK;
+		}
+
+		FileEntry fileEntry = getFileEntry();
+
+		return fileEntry.getTitle();
+	}
+
+	public int getGrantType() {
+		return _evpGrantTransaction.getGrantType();
+	}
+
+	public String getGrantTypeLabel() {
+		return EVPGrantTransactionConstants.getGrantTypeLabel(getGrantType());
+	}
+
+	public String getNote() {
+		return _evpGrantTransaction.getNote();
+	}
+
+	public String getNumber() {
+		return _evpGrantTransaction.getNumber();
+	}
+
+	public String getPurposeOfUse() {
+		return _evpGrantTransaction.getPurposeOfUse();
+	}
+
+	public boolean isMatching() {
+		if (getGrantType() == EVPGrantTransactionConstants.GRANT_TYPE_MATCHING) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isProposed() {
+		if (getGrantType() == EVPGrantTransactionConstants.GRANT_TYPE_PROPOSED) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isSponsorship() {
+		if (getGrantType() == EVPGrantTransactionConstants.GRANT_TYPE_SPONSORSHIP) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private EVPGrantTransaction _evpGrantTransaction;
+	private FileEntry _fileEntry;
+
+}
+%>

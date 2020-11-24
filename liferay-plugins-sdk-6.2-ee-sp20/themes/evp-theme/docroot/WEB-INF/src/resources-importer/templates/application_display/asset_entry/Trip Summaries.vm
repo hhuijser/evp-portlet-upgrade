@@ -1,0 +1,207 @@
+#set ($assetPublisherInstanceIdPastTrips = "3cRNwCb1JSWa")
+#set ($assetPublisherInstanceIdUpcomingTrips = "SL8ryFrZ3NJ5")
+#set ($hrefAllPastTrips = "stories")
+#set ($hrefAllUpcomingTrips = "upcoming")
+#set ($structureIdPastTrips = "PAST")
+#set ($structureIdUpcomingTrips = "UPCOMING")
+
+#if (!$entries.isEmpty())
+	<div class="row-fluid trip-summaries">
+		<div class="past-trips span6">
+			<div class="past-title past-trip">
+				<h2 class="title">#language("past-stories")</h2>
+			</div>
+
+			#set ($pastTripsCount = 0)
+
+			#foreach ($entry in $entries)
+				#set ($entry_id = $entry.getEntryId())
+				#set ($renderer = $entry.getAssetRenderer())
+				#set ($className = $renderer.getClassName())
+
+				#if ($className == "com.liferay.portlet.journal.model.JournalArticle")
+					#set ($journalArticle = $renderer.getArticle())
+
+					#set ($structureId = $journalArticle.getStructureId())
+
+					#if ($pastTripsCount < 3 && $structureId.contains($structureIdPastTrips))
+						#set ($pastTripsCount = $pastTripsCount + 1)
+
+						#set ($document = $saxReaderUtil.read($journalArticle.getContent()))
+
+						#set ($rootElement = $document.getRootElement())
+
+						#set ($banner_image = $saxReaderUtil.createXPath("dynamic-element[@name='banner_image']"))
+						#set ($trip_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_date']"))
+						#set ($trip_title = $saxReaderUtil.createXPath("dynamic-element[@name='trip_title']"))
+						#set ($location = $saxReaderUtil.createXPath("dynamic-element[@name='location']"))
+
+						#set ($banner_image_val = $banner_image.selectSingleNode($rootElement).getStringValue())
+						#set ($trip_date_val = $trip_date.selectSingleNode($rootElement).getStringValue())
+						#set ($trip_title_val = $trip_title.selectSingleNode($rootElement).getStringValue())
+						#set ($location_val = $location.selectSingleNode($rootElement).getStringValue())
+
+						#set ($dateLong = $getterUtil.getLong($trip_date_val))
+
+						#set ($dateObj = $dateUtil.newDate($dateLong))
+
+						#set ($displayDate = $dateUtil.getDate($dateObj, "MMMM yyyy", $locale))
+
+						#set ($full_page_story = $hrefAllPastTrips + "/-/asset_publisher/" + $assetPublisherInstanceIdPastTrips + "/content/" + $journalArticle.urlTitle)
+
+						<div class="banner-cover past-trip" style="background-image: url($banner_image_val);">
+							<div class="row-fluid">
+								<h3 class="trip-title">$trip_title_val</h3>
+							</div>
+
+							<div class="row-fluid">
+								<div class="span8 trip-info">
+									<div class="location">
+										$location_val
+									</div>
+
+									<div class="date">
+										$displayDate
+									</div>
+								</div>
+
+								#if ($stringUtil.trim($full_page_story) != "")
+									<div class="span4 trip-link">
+										<a class="btn more-info-btn" href="$full_page_story">#language ("trip-story")</a>
+									</div>
+								#end
+							</div>
+						</div>
+					#end
+				#end
+			#end
+
+			<div class="all-stories past-trip">
+				<div class="link-text">
+					<i class="arrow icon icon-arrow-right"></i>
+
+					#language ("read-all-trip-stories")
+				</div>
+
+				<a class="redirect" href="$hrefAllPastTrips"></a>
+			</div>
+		</div>
+
+		<div class="span6 upcoming-trips">
+			<div class="upcoming-title upcoming-trip">
+				<h2 class="title">#language ("upcoming-trips")</h2>
+			</div>
+
+			#set ($upcomingTripsCount = 0)
+
+			#foreach ($entry in $entries)
+				#set ($entry_id = $entry.getEntryId())
+				#set ($renderer = $entry.getAssetRenderer())
+				#set ($className = $renderer.getClassName())
+
+				#if ($className == "com.liferay.portlet.journal.model.JournalArticle")
+					#set ($journalArticle = $renderer.getArticle())
+
+					#set ($structureId = $journalArticle.getStructureId())
+
+					#if ($structureId.contains($structureIdUpcomingTrips) && $upcomingTripsCount < 3)
+						#set ($upcomingTripsCount = $upcomingTripsCount + 1)
+
+						#set ($document = $saxReaderUtil.read($journalArticle.getContent()))
+
+						#set ($rootElement = $document.getRootElement())
+
+						#set ($alternate_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='alternate_date']"))
+						#set ($banner_image = $saxReaderUtil.createXPath("dynamic-element[@name='banner_image']"))
+						#set ($signup_deadline = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='signup_deadline']"))
+						#set ($end_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='end_date']"))
+						#set ($location = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='location']"))
+						#set ($start_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='start_date']"))
+						#set ($trip_title = $saxReaderUtil.createXPath("dynamic-element[@name='trip_title']"))
+
+						#set ($alternate_date_val = $alternate_date.selectSingleNode($rootElement).getStringValue())
+						#set ($banner_image_val = $banner_image.selectSingleNode($rootElement).getStringValue())
+						#set ($signup_deadline_val = $signup_deadline.selectSingleNode($rootElement).getStringValue())
+						#set ($end_date_val = $end_date.selectSingleNode($rootElement).getStringValue())
+						#set ($location_val = $location.selectSingleNode($rootElement).getStringValue())
+						#set ($start_date_val = $start_date.selectSingleNode($rootElement).getStringValue())
+						#set ($trip_title_val = $trip_title.selectSingleNode($rootElement).getStringValue())
+
+						#set ($deadlineDateLong = $getterUtil.getLong($signup_deadline_val))
+						#set ($endDateLong = $getterUtil.getLong($end_date_val))
+						#set ($startDateLong = $getterUtil.getLong($start_date_val))
+
+						#set ($tripDate = $stringUtil.trim($alternate_date_val))
+
+						#if ($startDateLong > 0 && $endDateLong > 0 && $tripDate == "")
+							#set ($endDateObj = $dateUtil.newDate($endDateLong))
+							#set ($startDateObj = $dateUtil.newDate($startDateLong))
+
+							#set ($endDate = $dateUtil.getDate($endDateObj, "MMM d, yyyy", $locale))
+							#set ($startDate = $dateUtil.getDate($startDateObj, "MMM d", $locale))
+
+							#set ($tripDate = $languageUtil.format($locale, "x-x", [$startDate, $endDate]))
+						#end
+
+						#set ($currentDate = $dateTool.getDate().getTime())
+						#set ($thirtyDays = 2592000000)
+
+						#set ($full_page_story = $hrefAllUpcomingTrips + "/-/asset_publisher/" + $assetPublisherInstanceIdUpcomingTrips + "/content/" + $journalArticle.urlTitle)
+
+						<div class="banner-cover upcoming-trip" style="background-image: url($banner_image_val);">
+							<div class="row-fluid">
+								<h3 class="trip-title">
+									#if ($deadlineDateLong - $currentDate < $thirtyDays && $deadlineDateLong > $currentDate)
+										<span class="deadline">#language ("deadline-approaching")</span>
+									#end
+
+									#if ($deadlineDateLong < $currentDate)
+										<span class="deadline">#language ("deadline-past")</span>
+									#end
+
+									$trip_title_val
+								</h3>
+							</div>
+
+							<div class="row-fluid">
+								<div class="span8 trip-info">
+									<div class="location">
+										$location_val
+									</div>
+
+									<div class="date">
+										$tripDate
+									</div>
+
+									#if ($deadlineDateLong - $currentDate < $thirtyDays)
+										#set ($deadlineDateObj = $dateUtil.newDate($deadlineDateLong))
+										#set ($deadlineDate = $dateUtil.getDate($deadlineDateObj, "MMM d", $locale))
+
+										<div class="date">
+											Sign-up Deadline: $deadlineDate
+										</div>
+									#end
+								</div>
+
+								#if ($stringUtil.trim($full_page_story) != "")
+									<div class="span4 trip-link">
+										<a class="btn more-info-btn" href="$full_page_story">#language ("trip-details")</a>
+									</div>
+								#end
+							</div>
+						</div>
+					#end
+				#end
+			#end
+
+			<div class="all-trips upcoming-trip">
+				<div class="link-text">
+					#language ("see-all-upcoming-trips")
+					<i class="arrow icon icon-arrow-left"></i>
+				</div>
+
+				<a class="redirect" href="$hrefAllUpcomingTrips"></a>
+			</div>
+		</div>
+	</div>
+#end

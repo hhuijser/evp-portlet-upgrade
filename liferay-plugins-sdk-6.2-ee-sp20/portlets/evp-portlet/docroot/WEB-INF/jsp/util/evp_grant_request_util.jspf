@@ -1,0 +1,53 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPGrantRequestUtil extends com.liferay.evp.util.EVPGrantRequestUtil {
+
+	public static void addReceiptFile(ThemeDisplay themeDisplay, EVPGrantTransaction evpGrantTransaction, File file, String fileName) throws Exception {
+		if (file == null) {
+			throw new Exception("File cannot be null");
+		}
+
+		if (evpGrantTransaction.getFileEntryId() > 0) {
+			DLAppLocalServiceUtil.deleteFileEntry(evpGrantTransaction.getFileEntryId());
+		}
+
+		EVPDivision subsidiaryEVPDivision = EVPDivisionUtil.getSubsidiaryEVPDivision(themeDisplay.getUserId());
+
+		Folder parentFolder = getFolder(themeDisplay, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, EVPGrantTransactionConstants.FOLDER_NAME_GRANT_REQUEST_RECEIPTS, subsidiaryEVPDivision);
+
+		Folder folder = getFolder(themeDisplay, parentFolder.getFolderId(), String.valueOf(evpGrantTransaction.getEvpGrantRequestId()), subsidiaryEVPDivision);
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(themeDisplay.getUserId(), subsidiaryEVPDivision.getOrganizationGroupId(), folder.getFolderId(), fileName, MimeTypesUtil.getContentType(file), fileName, StringPool.BLANK, StringPool.BLANK, file, new ServiceContext());
+
+		evpGrantTransaction.setFileEntryId(fileEntry.getFileEntryId());
+	}
+
+	public static String formatGrantAmount(double amount, EVPDivision subsidiaryEVPDivision) throws Exception {
+		Format numberFormat = NumberFormat.getIntegerInstance();
+
+		String currencyCode = EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(subsidiaryEVPDivision.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_CURRENCY_CODE);
+
+		return numberFormat.format(amount) + StringPool.SPACE + currencyCode;
+	}
+
+	public static Folder getFolder(ThemeDisplay themeDisplay, long parentFolderId, String folderName, EVPDivision subsidiaryEVPDivision) throws Exception {
+		return getFolder(themeDisplay.getCompanyId(), themeDisplay.getUserId(), subsidiaryEVPDivision.getOrganizationGroupId(), parentFolderId, folderName);
+	}
+
+}
+%>

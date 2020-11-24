@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+
+<roles>
+	<role>
+		<name>Country Coordinator</name>
+		<role-type>organization</role-type>
+		<reset-permissions>false</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>ACCESS#REVIEWER_DASHBOARD</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPGrantRequest">
+			<action-key>SET_STATUS</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPServiceRequest">
+			<action-key>SET_STATUS</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>Employee</name>
+		<reset-permissions>false</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>ADD#GRANT_REQUESTS</action-key>
+			<action-key>ADD#SERVICE_REQUESTS</action-key>
+			<action-key>CREATE#GRANT_REQUESTS</action-key>
+			<action-key>CREATE#SERVICE_REQUESTS</action-key>
+			<action-key>INDEX#GRANT_REQUESTS</action-key>
+			<action-key>INDEX#SERVICE_REQUESTS</action-key>
+			<action-key>VIEW</action-key>
+			<action-key>VIEW_NAVIGATION</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>EVP Admin</name>
+		<role-type>organization</role-type>
+		<reset-permissions>true</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>EDIT#EMPLOYEES</action-key>
+			<action-key>INDEX#EMPLOYEES</action-key>
+			<action-key>INDEX#ORGANIZATIONS</action-key>
+			<action-key>UPDATE#EMPLOYEES</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPDivision">
+			<action-key>DELETE_REQUESTS</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>EVP Team</name>
+		<role-type>organization</role-type>
+		<reset-permissions>true</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>ACCESS#REVIEWER_DASHBOARD</action-key>
+			<action-key>ADD#DIVISIONS</action-key>
+			<action-key>ADD_COMMENT#REVIEWER_DASHBOARD</action-key>
+			<action-key>CREATE#DIVISIONS</action-key>
+			<action-key>INDEX#DIVISIONS</action-key>
+			<action-key>OVERRIDE_MANAGER#SERVICE_REQUESTS</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPDivision">
+			<action-key>DELETE</action-key>
+			<action-key>EDIT</action-key>
+			<action-key>EDIT_CONFIGURATION</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>UPDATE_CONFIGURATION</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPGrantRequest">
+			<action-key>DELETE</action-key>
+			<action-key>EDIT</action-key>
+			<action-key>SET_STATUS</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPRequestOrganization">
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPServiceRequest">
+			<action-key>DELETE</action-key>
+			<action-key>EDIT</action-key>
+			<action-key>SET_STATUS</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFileEntry">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFolder">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>EVP Team (Global)</name>
+		<role-type>regular</role-type>
+		<reset-permissions>true</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>ACCESS#REVIEWER_DASHBOARD</action-key>
+			<action-key>ADD#DIVISIONS</action-key>
+			<action-key>CREATE#DIVISIONS</action-key>
+			<action-key>INDEX#GRANT_REQUESTS</action-key>
+			<action-key>INDEX#SERVICE_REQUESTS</action-key>
+			<action-key>INDEX#DIVISIONS</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPDivision">
+			<action-key>DELETE</action-key>
+			<action-key>EDIT</action-key>
+			<action-key>EDIT_CONFIGURATION</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>UPDATE_CONFIGURATION</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPGrantRequest">
+			<action-key>DELETE</action-key>
+			<action-key>EDIT</action-key>
+			<action-key>SET_STATUS</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPServiceRequest">
+			<action-key>DELETE</action-key>
+			<action-key>EDIT</action-key>
+			<action-key>SET_STATUS</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFileEntry">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFolder">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>Finance</name>
+		<role-type>organization</role-type>
+		<reset-permissions>true</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>ACCESS#REVIEWER_DASHBOARD</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPGrantRequest">
+			<action-key>SET_STATUS</action-key>
+			<action-key>VIEW</action-key>
+			<action-key>VIEW_FINANCE_FORM</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPServiceRequest">
+			<action-key>SET_STATUS</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFileEntry">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFolder">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>HR</name>
+		<role-type>organization</role-type>
+		<reset-permissions>true</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>ACCESS#REVIEWER_DASHBOARD</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPGrantRequest">
+			<action-key>SET_STATUS</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.evp.model.EVPServiceRequest">
+			<action-key>SET_STATUS</action-key>
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFileEntry">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+		<default-action-keys resourceName="com.liferay.portlet.documentlibrary.model.DLFolder">
+			<action-key>VIEW</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>Manager</name>
+		<role-type>organization</role-type>
+		<reset-permissions>false</reset-permissions>
+		<default-action-keys resourceName="1_WAR_evpportlet">
+			<action-key>ACCESS#REVIEWER_DASHBOARD</action-key>
+		</default-action-keys>
+	</role>
+	<role>
+		<name>Organization Contact</name>
+		<role-type>organization</role-type>
+		<reset-permissions>false</reset-permissions>
+	</role>
+</roles>

@@ -1,0 +1,138 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EmailUtil {
+
+	public static void sendEmail(ThemeDisplay themeDisplay, List<User> recipients, String subject, String body, Map<String, String> contextAttributes) throws Exception {
+		if ((recipients == null) || recipients.isEmpty() || Validator.isNull(body) || Validator.isNull(subject)) {
+			return;
+		}
+
+		SubscriptionSender subscriptionSender = new SubscriptionSender();
+
+		subscriptionSender.setBody(body);
+
+		subscriptionSender.setCompanyId(themeDisplay.getCompanyId());
+
+		if ((contextAttributes != null) && !contextAttributes.isEmpty()) {
+			for (Map.Entry<String, String> entry : contextAttributes.entrySet()) {
+				subscriptionSender.setContextAttribute(entry.getKey(), entry.getValue());
+			}
+		}
+
+		String fromAddress = EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), EVPDivisionUtil.getSubsidiaryGroupId(themeDisplay.getUserId()), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMAIL);
+		String fromName = EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), EVPDivisionUtil.getSubsidiaryGroupId(themeDisplay.getUserId()), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMAIL_NAME);
+
+		subscriptionSender.setFrom(fromAddress, fromName);
+
+		subscriptionSender.setGroupId(themeDisplay.getScopeGroupId());
+		subscriptionSender.setHtmlFormat(true);
+
+		DateFormat mailIdDateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyyMMddHHmmss");
+
+		subscriptionSender.setMailId("evp_entry", mailIdDateFormat.format(new Date()));
+
+		subscriptionSender.setReplyToAddress(fromAddress);
+		subscriptionSender.setSubject(subject);
+		subscriptionSender.setUserId(themeDisplay.getDefaultUserId());
+
+		for (User recipient : recipients) {
+			subscriptionSender.addRuntimeSubscribers(recipient.getEmailAddress(), recipient.getEmailAddress());
+		}
+
+		subscriptionSender.flushNotificationsAsync();
+	}
+
+	public static void sendEVPTeamCommentEmail(AlloyController alloyController, long subsidiaryGroupId, String userName, String comment, String className, long classPK) throws Exception {
+		List<User> recipients = new ArrayList<User>();
+
+		ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+		Role role = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), EVPRoleConstants.ROLE_NAME_EVP_TEAM);
+
+		Set<Long> organizationGroupIds = EVPDivisionUtil.getOrganizationGroupIds(subsidiaryGroupId);
+
+		for (long organizationGroupId : organizationGroupIds) {
+			List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(organizationGroupId, role.getRoleId());
+
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				recipients.add(userGroupRole.getUser());
+			}
+		}
+
+		String action = "viewGrant";
+
+		if (className.equals(EVPServiceRequest.class.getName())) {
+			action = "viewService";
+		}
+
+		String requestDetailsURL = EVPUtil.getURL(alloyController, "reviewer_dashboard", classPK, action);
+
+		Map<String, String> contextAttributes = buildContextAttributes("[$CURRENT_USER$]", userName, "[$COMMENT$]", comment, "[$REQUEST_DETAILS_URL$]", requestDetailsURL);
+
+		sendEVPEmail(themeDisplay, recipients, "evp_team_comment", contextAttributes);
+	}
+
+	protected static Map<String, String> buildContextAttributes(String... attributes) throws Exception {
+		if ((attributes.length == 0) || ((attributes.length % 2) != 0)) {
+			throw new IllegalArgumentException("Attributes length is not an even number");
+		}
+
+		Map<String, String> contextAttributes = new HashMap<String, String>();
+
+		for (int i = 0; i < attributes.length; i += 2) {
+			contextAttributes.put(attributes[i], attributes[i + 1]);
+		}
+
+		return contextAttributes;
+	}
+
+	protected static String getBodyEmailTemplate(String templateName) throws Exception {
+		return getEmailTemplate(templateName + "_body.tmpl");
+	}
+
+	protected static String getEmailTemplate(String templateName) throws Exception {
+		ClassLoader portletClassLoader = EmailUtil.class.getClassLoader();
+
+		URL url = portletClassLoader.getResource(_TEMPLATE_DIRECTORY + templateName);
+
+		if (url == null) {
+			return StringPool.BLANK;
+		}
+
+		return ContentUtil.get(_TEMPLATE_DIRECTORY + templateName);
+	}
+
+	protected static String getSubjectEmailTemplate(String templateName) throws Exception {
+		return getEmailTemplate(templateName + "_subject.tmpl");
+	}
+
+	protected static void sendEVPEmail(ThemeDisplay themeDisplay, List<User> recipients, String templateName, Map<String, String> contextAttributes) throws Exception {
+		if (Validator.isNull(templateName)) {
+			return;
+		}
+
+		String subject = getSubjectEmailTemplate(templateName);
+		String body = getBodyEmailTemplate(templateName);
+
+		sendEmail(themeDisplay, recipients, subject, body, contextAttributes);
+	}
+
+	private static final String _TEMPLATE_DIRECTORY = "com/liferay/evp/dependencies/templates/";
+
+}
+%>

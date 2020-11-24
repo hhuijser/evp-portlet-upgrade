@@ -1,0 +1,13 @@
+#if ($image.getData() == "")
+	#set ($image_path = "@theme_image_path@/custom/lfr_logo.svg")
+#else
+	#set ($image_path = $image.getData())
+#end
+
+<a href="$image.image_url.getData()">
+	<img alt="$made_by.getData()" src="$image_path" />
+</a>
+
+<div class="content footer-content">
+	$made_by.getData()
+</div>

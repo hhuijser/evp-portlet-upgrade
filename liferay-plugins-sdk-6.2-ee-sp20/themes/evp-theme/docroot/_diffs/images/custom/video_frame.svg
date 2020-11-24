@@ -1,0 +1,12 @@
+<svg version="1.1" id="videoMask" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 410 230" enable-background="new 0 0 410 230" xml:space="preserve">
+	<g>
+		<rect stroke="currentColor" x="5.5" y="2" width="400" height="225"/>
+		<g>
+			<g>
+				<path d="M261.7,114.5c0,31.1-25.2,56.2-56.2,56.2
+					c-31.1,0-56.2-25.2-56.2-56.2c0-31.1,25.2-56.2,56.2-56.2C236.6,58.2,261.7,83.4,261.7,114.5z" />
+				<polygon points="189.5,87.9 235.5,114.5 189.5,141" />
+			</g>
+		</g>
+	</g>
+</svg>

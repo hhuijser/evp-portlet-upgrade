@@ -31,7 +31,7 @@
 
 		<copy todir="${theme.dir}">
 			<fileset
-				dir="${sdk.dir}/tools/theme_tmpl"
+				dir="${sdk.dir}/tools/templates/theme_tmpl"
 			/>
 		</copy>
 
@@ -46,9 +46,5 @@
 			<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
 			<replacefilter token="@theme.name@" value="${theme.name}" />
 		</replace>
-	</target>
-
-	<target name="merge">
-		<echo message="${theme.name}-theme" />
 	</target>
 </project>

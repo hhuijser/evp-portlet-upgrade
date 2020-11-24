@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="background_image" type="image" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="default_description" type="text_box" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[EVP Process]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="step_1_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="step_1_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Do you know an awesome non-profit that you want to serve with or support? Great, let's get started!]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Find A Non-Profit]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="step_2_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="step_2_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Fill out the online EVP form with details about your service or grant request.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Submit A Request]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="step_3_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="step_3_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Next, the EVP Team will review your request. If everything looks good, you're approved!]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Get Approved]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="step_4_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="step_4_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Now it’s time to benefit a great cause through your service and giving.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Serve Others/Fund A Cause]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="step_5_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="step_5_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Encourage and inspire others by sharing your experience!]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Share Your Stories]]></dynamic-content>
+	</dynamic-element>
+</root>

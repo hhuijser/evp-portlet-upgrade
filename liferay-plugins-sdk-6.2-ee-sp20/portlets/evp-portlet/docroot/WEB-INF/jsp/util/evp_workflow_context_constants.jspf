@@ -1,0 +1,115 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPWorkflowContextConstants extends com.liferay.evp.util.EVPWorkflowContextConstants {
+
+	public static final String CREATOR_USER_EMAIL = "CREATOR_USER_EMAIL";
+
+	public static final String CREATOR_USER_FIRST_NAME = "CREATOR_USER_FIRST_NAME";
+
+	public static final String CREATOR_USER_PHONE = "CREATOR_USER_PHONE";
+
+	public static final String DATES_OF_SERVICE_PERFORMED = "DATES_OF_SERVICE_PERFORMED";
+
+	public static final String EMPLOYEE_NAMES = "EMPLOYEE_NAMES";
+
+	public static final String GRANT_TYPE = "GRANT_TYPE";
+
+	public static final String LINK_TO_EMPLOYEE_ELIGIBILITY_GUIDELINES = "LINK_TO_EMPLOYEE_ELIGIBILITY_GUIDELINES";
+
+	public static final String LINK_TO_FEEDBACK_EDITOR = "LINK_TO_FEEDBACK_EDITOR";
+
+	public static final String LINK_TO_PROOF_OF_COMPLETION_FORM = "LINK_TO_PROOF_OF_COMPLETION_FORM";
+
+	public static final String LINK_TO_REQUEST_EDITOR = "LINK_TO_REQUEST_EDITOR";
+
+	public static final String LINK_TO_WTS = "LINK_TO_WTS";
+
+	public static final String MANAGER_USER_FULL_NAME = "MANAGER_USER_FULL_NAME";
+
+	public static final String MANAGER_USER_ID = "MANAGER_USER_ID";
+
+	public static final String MATCHING = "MATCHING";
+
+	public static final String MAX_GRANT_AMOUNT = "MAX_GRANT_AMOUNT";
+
+	public static final String ONE_WEEK_FROM_REQUESTED_END_DATE = "ONE_WEEK_FROM_REQUESTED_END_DATE";
+
+	public static final String ORGANIZATION_CONTACT_EMAIL = "ORGANIZATION_CONTACT_EMAIL";
+
+	public static final String ORGANIZATION_CONTACT_NAME = "ORGANIZATION_CONTACT_NAME";
+
+	public static final String ORGANIZATION_CONTACT_USER_ID = "ORGANIZATION_CONTACT_USER_ID";
+
+	public static final String ORGANIZATION_NAME = "ORGANIZATION_NAME";
+
+	public static final String PARENT_EVP_SERVICE_REQUEST_ID = "PARENT_EVP_SERVICE_REQUEST_ID";
+
+	public static final String PROMOTE_TRIP = "PROMOTE_TRIP";
+
+	public static final String PROPOSED = "PROPOSED";
+
+	public static final String SERVICE_END_DATE = "SERVICE_END_DATE";
+
+	public static final String SERVICE_REQUEST_HASH = "SERVICE_REQUEST_HASH";
+
+	public static final String SERVICE_START_DATE = "SERVICE_START_DATE";
+
+	public static final String SERVICE_TOTAL_HOURS = "SERVICE_TOTAL_HOURS";
+
+	public static final String SHARE_STORY = "SHARE_STORY";
+
+	public static final String SPONSORSHIP = "SPONSORSHIP";
+
+	public static final String SUBSIDIARY_ABBREVIATION = "SUBSIDIARY_ABBREVIATION";
+
+	public static final String SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_ENABLED = "SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_ENABLED";
+
+	public static final String SUBSIDIARY_CONFIGURATION_GRANT_TYPE_SPONSORSHIP_ENABLED = "SUBSIDIARY_CONFIGURATION_GRANT_TYPE_SPONSORSHIP_ENABLED";
+
+	public static final String SUBSIDIARY_CURRENCY_CODE = "SUBSIDIARY_CURRENCY_CODE";
+
+	public static final String SUBSIDIARY_EMAIL = "SUBSIDIARY_EMAIL";
+
+	public static final String SUFFIX_AMOUNT = "_AMOUNT";
+
+	public static final String SUFFIX_TRANSACTION_DATE = "_TRANSACTION_DATE";
+
+	public static final String SUFFIX_TRANSACTION_NUMBER = "_TRANSACTION_NUMBER";
+
+	public static final String TEAM_LEAD_USER_FIRST_NAME = "TEAM_LEAD_USER_FIRST_NAME";
+
+	public static final String TEAM_LEAD_USER_ID = "TEAM_LEAD_USER_ID";
+
+	public static final String TOTAL_GRANT_AMOUNT = "TOTAL_GRANT_AMOUNT";
+
+	public static final String TRANSACTIONS_STRING = "TRANSACTIONS_STRING";
+
+	public static String getGrantTypeLabelWorkflowLabel(String grantTypeLabel) {
+		if (grantTypeLabel.equals(EVPGrantTransactionConstants.GRANT_LABEL_MATCHING)) {
+			return MATCHING;
+		}
+		else if (grantTypeLabel.equals(EVPGrantTransactionConstants.GRANT_LABEL_PROPOSED)) {
+			return PROPOSED;
+		}
+		else {
+			return SPONSORSHIP;
+		}
+	}
+
+}
+%>

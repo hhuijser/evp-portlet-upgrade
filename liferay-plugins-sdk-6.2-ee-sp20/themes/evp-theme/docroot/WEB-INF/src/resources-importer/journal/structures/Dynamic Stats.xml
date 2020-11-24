@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="background_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Background Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The background image to display in this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="statistic_1_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="statistic_1_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[First Statistic Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image for the first statistic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[First Statistic Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Years EVP has been active]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the first statistic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="statistic_2_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="statistic_2_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Second Statistic Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image for the second statistic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Second Statistic Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Service hours completed]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the second statistic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="statistic_3_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="statistic_3_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Third Statistic Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image for the third statistic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Third Statistic Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Grant money distributed]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the third statistic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="statistic_4_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="statistic_4_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Fourth Statistic Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image for the fourth statistic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Fourth Statistic Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Number of nonprofits served]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the fourth statistic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="statistic_5_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="statistic_5_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Fifth Statistic Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image for the fifth statistic.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Fifth Statistic Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Employees that have participated in EVP]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for the fifth statistic.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

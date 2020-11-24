@@ -1,0 +1,31 @@
+#set ($footer_section_1_article_id = $theme_settings.footer-section-1-article-id)
+#set ($footer_section_2_article_id = $theme_settings.footer-section-2-article-id)
+#set ($footer_section_3_article_id = $theme_settings.footer-section-3-article-id)
+
+<footer id="footer" role="contentinfo">
+	<div class="row-fluid">
+		<div class="span4">
+			#if ($footer_section_1_article_id)
+				<section class="footer-section footer-section-1">
+					$journalContentUtil.getContent($group_id, $footer_section_1_article_id, null, "$locale", $theme_display)
+				</section>
+			#end
+		</div>
+
+		<div class="span4">
+			#if ($footer_section_2_article_id)
+				<section class="footer-section footer-section-2">
+					$journalContentUtil.getContent($group_id, $footer_section_2_article_id, null, "$locale", $theme_display)
+				</section>
+			#end
+		</div>
+
+		<div class="span4">
+			#if ($footer_section_3_article_id)
+				<section class="footer-section footer-section-3">
+					$journalContentUtil.getContent($group_id, $footer_section_3_article_id, null, "$locale", $theme_display)
+				</section>
+			#end
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.2.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_2_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>6.2.0+</version>
+	</compatibility>
+	<theme id="evp" name="EVP">
+		<settings>
+			<setting configurable="true" key="display-footer" type="checkbox" value="true" />
+			<setting configurable="true" key="display-theme-logo" type="checkbox" value="true" />
+			<setting configurable="true" key="footer-section-1-article-id" type="text" value="FOOTER-SECTION-1" />
+			<setting configurable="true" key="footer-section-2-article-id" type="text" value="FOOTER-SECTION-2" />
+			<setting configurable="true" key="footer-section-3-article-id" type="text" value="FOOTER-SECTION-3" />
+			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false" />
+		</settings>
+		<color-scheme id="01" name="Default">
+			<css-class>default</css-class>
+		</color-scheme>
+		<color-scheme id="02" name="Blue">
+			<css-class>blue</css-class>
+		</color-scheme>
+		<color-scheme id="03" name="Dark Teal">
+			<css-class>dark-teal</css-class>
+		</color-scheme>
+		<color-scheme id="04" name="Orange">
+			<css-class>orange</css-class>
+		</color-scheme>
+		<color-scheme id="05" name="Purple">
+			<css-class>purple</css-class>
+		</color-scheme>
+	</theme>
+</look-and-feel>

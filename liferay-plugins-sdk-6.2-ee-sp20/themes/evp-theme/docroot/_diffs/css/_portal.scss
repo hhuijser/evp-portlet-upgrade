@@ -1,0 +1,305 @@
+/* ---------- Base styles ----------- */
+
+&, body {
+	font-family: "proxima-nova", Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	height: 100%;
+	padding: 0;
+}
+
+a {
+	color: $grey;
+
+	&:active, &:focus, &:hover {
+		color: $darkGrey;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "proxima-nova-condensed", Verdana, Geneva, sans-serif;
+	font-weight: inherit;
+	text-transform: uppercase;
+}
+
+.btn {
+	background: $white;
+	border-radius: 0;
+	color: $grey;
+	font-family: "proxima-nova", Verdana, Geneva, sans-serif;
+	font-size: 17.5px;
+	outline: none;
+	padding: 11px 19px;
+	text-transform: uppercase;
+
+	@include respond-to(phone, tablet) {
+		font-size: 18.5px;
+		padding: 13px 21px;
+	}
+
+	&:hover, &.btn-active {
+		background-color: #EAEAEA;
+		color: #333;
+	}
+
+	&.btn-transparent {
+		background: transparent;
+		border: 1px solid $white;
+		color: $white;
+		outline: none;
+		text-shadow: none;
+
+		&:active, &:hover {
+			background: $white;
+			color: $darkGrey;
+		}
+	}
+}
+
+.prevent-scroll {
+	overflow: hidden;
+}
+
+.toggler-header-collapsed {
+	.expanded {
+		display: none;
+	}
+}
+
+.toggler-header-expanded {
+	.collapsed {
+		display: none;
+	}
+}
+
+#hrefFm {
+	display: none;
+}
+
+.modal {
+	border-radius: 0;
+
+	.modal-header {
+		background-color: transparent;
+		border-width: 0;
+		min-height: 25px;
+
+		.toolbar {
+			height: 100%;
+		}
+
+		h3 {
+			text-shadow: none;
+		}
+	}
+
+	.modal-body {
+		max-height: 600px;
+	}
+
+	.modal-footer {
+		background-color: $white;
+		border-width: 0;
+	}
+}
+
+#portlet_status {
+	background: $lighterGrey;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 2000;
+
+	.portlet-content {
+		padding: 0;
+	}
+
+	.alert-error, .portlet-topper {
+		display: none;
+	}
+}
+
+.signed-out {
+	background: $darkGrey;
+
+	#footer, #navigation, .portlet-topper {
+		display: none;
+	}
+
+	#wrapper {
+		background: $darkGrey;
+		padding: 100px 0 0;
+	}
+}
+
+.portlet-dockbar {
+	position: fixed;
+	right: 0;
+	top: 80px;
+	z-index: 3;
+
+	.navbar-inner > .container > span > a:first-of-type {
+		display: none;
+	}
+
+	@include respond-to(phone) {
+		right: 20px;
+	}
+}
+
+/* ---------- Content ---------- */
+
+.banner {
+	margin: -82px 0 0;
+
+	&, .parallax-image {
+		height: 100vh;
+		max-height: 1200px;
+		min-height: 800px;
+	}
+
+	.parallax-image {
+		left: 0;
+		min-width: 100%;
+		object-fit: cover;
+		position: fixed;
+		top: 0;
+	}
+
+	&:after {
+		@include background(linear-gradient(to bottom, rgba(71, 74, 75, 1) 0%, rgba(71, 74, 75, 0) 20%));
+
+		content: '';
+		height: 100%;
+		mix-blend-mode: multiply;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+}
+
+#wrapper {
+	box-sizing: border-box;
+	min-height: 100%;
+	padding: 80px 0 136px;
+
+	.banner-cover {
+		background-position: center;
+		background-size: cover;
+		text-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+	}
+
+	@include respond-to(phone) {
+		padding-bottom: 286px;
+	}
+}
+
+.page-heading {
+	position: relative;
+
+	.heading {
+		background: $white;
+		margin-top: -150px;
+		padding: 40px;
+
+		.header {
+			color: $white;
+			font-size: 3em;
+			line-height: 50px;
+			position: absolute;
+			top: -210px;
+		}
+
+		.description {
+			color: $darkGrey;
+			font-size: 1.125em;
+			font-style: italic;
+		}
+	}
+
+	.content-separator {
+		background: $white;
+	}
+
+	@include respond-to(phone) {
+		.heading {
+			.description, .header {
+				text-align: center;
+			}
+		}
+
+		.content-separator {
+			height: 0;
+		}
+	}
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background-color: $grey;
+	bottom: 0;
+	box-sizing: border-box;
+	height: 136px;
+	padding: 0 20px;
+	position: absolute;
+	width: 100%;
+
+	.footer-section {
+		margin-top: 30px;
+
+		a {
+			font-size: 1.5em;
+		}
+
+		.footer-content {
+			font-size: 0.75em;
+			margin: 15px 0 10px;
+		}
+
+		&.footer-section-2 {
+			text-align: center;
+		}
+
+		&.footer-section-3 {
+			text-align: right;
+
+			ul {
+				li {
+					margin-left: 15px;
+
+					&:first-of-type {
+						margin-left: 0;
+					}
+
+					a:hover {
+						text-decoration: none;
+
+						svg.social-icon {
+							fill: $teal;
+						}
+					}
+
+					.social-icon {
+						fill: $white;
+						max-height: 35px;
+						vertical-align: text-bottom;
+						width: 30px;
+					}
+				}
+			}
+		}
+	}
+
+	@include respond-to(phone) {
+		height: 286px;
+
+		.footer-section {
+			&.footer-section-1, &.footer-section-3 {
+				margin: 20px 0;
+				text-align: center;
+			}
+		}
+	}
+}

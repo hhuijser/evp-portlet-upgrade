@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[What is available to employees through EVP?]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="section_1_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="section_1_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="section_1_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Employees are given time every year to serve with their favorite non-profits.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Service Hours]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="spacer_section_1_section_2" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[+]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="section_2_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="section_2_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="section_2_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Employees are given grant funds every year to financially support their favorite non-profits.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Grant Funds]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="spacer_section_2_section_3" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[=]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="section_3_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="section_3_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="section_3_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Through EVP service and grants, our employees are able to impact local and global communities.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Serving The Community]]></dynamic-content>
+	</dynamic-element>
+</root>

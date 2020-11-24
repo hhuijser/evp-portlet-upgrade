@@ -1,0 +1,180 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPConstants extends com.liferay.evp.util.EVPConstants {
+
+	public static final String BEHALF_OF_LABEL_DISENFRANCHISED_DEBILITATED = "disenfranchised-debilitated";
+
+	public static final String BEHALF_OF_LABEL_DISPLACED_DISTRESSED = "displaced-distressed";
+
+	public static final String BEHALF_OF_LABEL_GLOBAL_LOCAL_POOR = "global-local-poor";
+
+	public static final String[] BEHALF_OF_LABELS = {BEHALF_OF_LABEL_GLOBAL_LOCAL_POOR, BEHALF_OF_LABEL_DISPLACED_DISTRESSED, BEHALF_OF_LABEL_DISENFRANCHISED_DEBILITATED};
+
+	public static final int BEHALF_OF_TYPE_DISENFRANCHISED_DEBILITATED = 2;
+
+	public static final int BEHALF_OF_TYPE_DISPLACED_DISTRESSED = 1;
+
+	public static final int BEHALF_OF_TYPE_GLOBAL_LOCAL_POOR = 0;
+
+	public static final int[] BEHALF_OF_TYPES = {BEHALF_OF_TYPE_GLOBAL_LOCAL_POOR, BEHALF_OF_TYPE_DISPLACED_DISTRESSED, BEHALF_OF_TYPE_DISENFRANCHISED_DEBILITATED};
+
+	public static final int DAYS_AFTER_SERVICE_COMPLETION_COUNT_NOTIFICATION = 2;
+
+	public static final int DAYS_AFTER_SERVICE_COMPLETION_COUNT_REMINDER = 9;
+
+	public static final int DAYS_AFTER_SERVICE_COMPLETION_COUNT_WARNING = 30;
+
+	public static final String EMPLOYMENT_LABEL_1099 = "1099";
+
+	public static final String EMPLOYMENT_LABEL_FULL_TIME = "full-time";
+
+	public static final String EMPLOYMENT_LABEL_INELIGIBLE = "ineligible";
+
+	public static final String EMPLOYMENT_LABEL_INTERN = "intern";
+
+	public static final String EMPLOYMENT_LABEL_PART_TIME = "part-time";
+
+	public static final String EMPLOYMENT_LABEL_TEMPORARY = "temporary";
+
+	public static final String EMPLOYMENT_LABEL_UNKNOWN = "unknown";
+
+	public static final int EMPLOYMENT_TYPE_1099 = 5;
+
+	public static final int EMPLOYMENT_TYPE_FULL_TIME = 1;
+
+	public static final int EMPLOYMENT_TYPE_INTERN = 4;
+
+	public static final int EMPLOYMENT_TYPE_PART_TIME = 2;
+
+	public static final int EMPLOYMENT_TYPE_TEMPORARY = 3;
+
+	public static final int EMPLOYMENT_TYPE_UNKNOWN = 0;
+
+	public static final int[] EMPLOYMENT_TYPES_ELIGIBLE = {EMPLOYMENT_TYPE_FULL_TIME, EMPLOYMENT_TYPE_PART_TIME, EMPLOYMENT_TYPE_TEMPORARY};
+
+	public static final int MAX_FIELD_LENGTH_ORGANIZATION_NAME = 100;
+
+	public static final int MAX_FIELD_LENGTH_PORTAL_DEFAULT = 75;
+
+	public static final int MAX_FIELD_LENGTH_PORTLET_DEFAULT = 128;
+
+	public static final int MAX_FIELD_LENGTH_TEXTAREA = 4000;
+
+	public static final int MAX_FIELD_LENGTH_ZIP = 10;
+
+	public static final String PURPOSE_LABEL_BASIC_EDUCATION = "basic-education";
+
+	public static final String PURPOSE_LABEL_BASIC_HEALTH = "basic-health";
+
+	public static final String PURPOSE_LABEL_DISASTER_RELIEF = "disaster-relief";
+
+	public static final String PURPOSE_LABEL_FREEDOM_JUSTICE = "freedom-justice";
+
+	public static final String PURPOSE_LABEL_PROVIDE_FOOD_WATER_SHELTER = "provide-food-water-shelter";
+
+	public static final String PURPOSE_LABEL_VOCATIONAL_EMPOWERMENT = "vocational-empowerment";
+
+	public static final String[] PURPOSE_LABELS = {PURPOSE_LABEL_DISASTER_RELIEF, PURPOSE_LABEL_PROVIDE_FOOD_WATER_SHELTER, PURPOSE_LABEL_BASIC_HEALTH, PURPOSE_LABEL_BASIC_EDUCATION, PURPOSE_LABEL_VOCATIONAL_EMPOWERMENT, PURPOSE_LABEL_FREEDOM_JUSTICE};
+
+	public static final int PURPOSE_TYPE_BASIC_EDUCATION = 3;
+
+	public static final int PURPOSE_TYPE_BASIC_HEALTH = 2;
+
+	public static final int PURPOSE_TYPE_DISASTER_RELIEF = 0;
+
+	public static final int PURPOSE_TYPE_FREEDOM_JUSTICE = 5;
+
+	public static final int PURPOSE_TYPE_PROVIDE_FOOD_WATER_SHELTER = 1;
+
+	public static final int PURPOSE_TYPE_VOCATIONAL_EMPOWERMENT = 4;
+
+	public static final int[] PURPOSE_TYPES = {PURPOSE_TYPE_FREEDOM_JUSTICE, PURPOSE_TYPE_VOCATIONAL_EMPOWERMENT, PURPOSE_TYPE_BASIC_HEALTH, PURPOSE_TYPE_BASIC_EDUCATION, PURPOSE_TYPE_PROVIDE_FOOD_WATER_SHELTER, PURPOSE_TYPE_DISASTER_RELIEF};
+
+	public static final String SESSION_MESSAGES_KEY_DUPLICATE_ORGANIZATION = "DUPLICATE_ORGANIZATION";
+
+	public static String getBehalfOfTypeLabel(int behalfOfType) {
+		if (behalfOfType == BEHALF_OF_TYPE_DISENFRANCHISED_DEBILITATED) {
+			return BEHALF_OF_LABEL_DISENFRANCHISED_DEBILITATED;
+		}
+		else if (behalfOfType == BEHALF_OF_TYPE_DISPLACED_DISTRESSED) {
+			return BEHALF_OF_LABEL_DISPLACED_DISTRESSED;
+		}
+		else {
+			return BEHALF_OF_LABEL_GLOBAL_LOCAL_POOR;
+		}
+	}
+
+	public static String getEmploymentTypeLabel(int employmentType) {
+		if (employmentType == EMPLOYMENT_TYPE_1099) {
+			return EMPLOYMENT_LABEL_1099;
+		}
+		else if (employmentType == EMPLOYMENT_TYPE_FULL_TIME) {
+			return EMPLOYMENT_LABEL_FULL_TIME;
+		}
+		else if (employmentType == EMPLOYMENT_TYPE_INTERN) {
+			return EMPLOYMENT_LABEL_INTERN;
+		}
+		else if (employmentType == EMPLOYMENT_TYPE_PART_TIME) {
+			return EMPLOYMENT_LABEL_PART_TIME;
+		}
+		else if (employmentType == EMPLOYMENT_TYPE_TEMPORARY) {
+			return EMPLOYMENT_LABEL_TEMPORARY;
+		}
+		else if (employmentType == EMPLOYMENT_TYPE_UNKNOWN) {
+			return EMPLOYMENT_LABEL_UNKNOWN;
+		}
+		else {
+			return EMPLOYMENT_LABEL_INELIGIBLE;
+		}
+	}
+
+	public static String getEmploymentTypePortletPropsKey(int employmentType) {
+		if (employmentType == EMPLOYMENT_TYPE_PART_TIME) {
+			return PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMPLOYMENT_PART_TIME_ENABLED;
+		}
+		else if (employmentType == EMPLOYMENT_TYPE_TEMPORARY) {
+			return PortletPropsKeys.SUBSIDIARY_CONFIGURATION_EMPLOYMENT_TEMPORARY_ENABLED;
+		}
+		else {
+			return StringPool.BLANK;
+		}
+	}
+
+	public static String getPurposeTypeLabel(int purposeType) {
+		if (purposeType == PURPOSE_TYPE_BASIC_EDUCATION) {
+			return PURPOSE_LABEL_BASIC_EDUCATION;
+		}
+		else if (purposeType == PURPOSE_TYPE_BASIC_HEALTH) {
+			return PURPOSE_LABEL_BASIC_HEALTH;
+		}
+		else if (purposeType == PURPOSE_TYPE_DISASTER_RELIEF) {
+			return PURPOSE_LABEL_DISASTER_RELIEF;
+		}
+		else if (purposeType == PURPOSE_TYPE_FREEDOM_JUSTICE) {
+			return PURPOSE_LABEL_FREEDOM_JUSTICE;
+		}
+		else if (purposeType == PURPOSE_TYPE_PROVIDE_FOOD_WATER_SHELTER) {
+			return PURPOSE_LABEL_PROVIDE_FOOD_WATER_SHELTER;
+		}
+		else {
+			return PURPOSE_LABEL_VOCATIONAL_EMPOWERMENT;
+		}
+	}
+
+}
+%>

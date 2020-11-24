@@ -1,0 +1,288 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPValidator {
+
+	public static void validateComment(HttpServletRequest request, String fieldName, boolean required) throws Exception {
+		String comments = ParamUtil.getString(request, fieldName);
+
+		if (comments.length() > EVPConstants.MAX_FIELD_LENGTH_TEXTAREA) {
+			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
+
+			throw new AlloyException(translate(request, themeDisplay, "the-comments-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_TEXTAREA));
+		}
+
+		if (required && Validator.isNull(comments)) {
+			throw new AlloyException("a-comment-is-required");
+		}
+	}
+
+	public static void validateComment(HttpServletRequest request, String[] commentsRequiredTransitions) throws Exception {
+		String workflowTaskId = ParamUtil.getString(request, "workflowTaskId");
+
+		String transitionName = ParamUtil.getString(request, "transitionName");
+
+		validateComment(request, workflowTaskId + "Comments", ArrayUtil.contains(commentsRequiredTransitions, transitionName));
+	}
+
+	public static void validateEVPParticipation(User user, HttpServletRequest request) throws Exception {
+		int employmentHoursPerWeek = ParamUtil.getInteger(request, "employmentHoursPerWeek");
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
+
+		validateEVPParticipation(user, employmentHoursPerWeek, themeDisplay, request);
+	}
+
+	public static void validateEVPParticipation(User user, int employmentHoursPerWeek, ThemeDisplay themeDisplay, HttpServletRequest request) throws Exception {
+		ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(user.getCompanyId(), User.class.getName(), ExpandoTableConstants.DEFAULT_TABLE_NAME, EVPConstants.EVP_OVERRIDE_STATUS_EXPANDO_COLUMN, user.getUserId());
+
+		if ((expandoValue != null) && ArrayUtil.contains(expandoValue.getStringArray(), EVPConstants.OVERRIDE_TYPE_ELIGIBLE)) {
+			return;
+		}
+		else if ((expandoValue != null) && ArrayUtil.contains(expandoValue.getStringArray(), EVPConstants.OVERRIDE_TYPE_INELIGIBLE)) {
+			throw new AlloyException(translate(request, themeDisplay, "you-are-not-eligible-to-participate-in-evp-at-this-time"));
+		}
+
+		int employmentType = EVPUtil.getEmploymentType(user.getUserId());
+
+		String employmentTypeLabel = EVPConstants.getEmploymentTypeLabel(employmentType);
+
+		EVPDivision subsidiaryEVPDivision = EVPDivisionUtil.getSubsidiaryEVPDivision(user.getUserId());
+
+		List<String> enabledEmploymentTypeLabels = EVPUtil.getEnabledEmploymentTypeLabels(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId());
+
+		if (!enabledEmploymentTypeLabels.contains(employmentTypeLabel)) {
+			StringBundler sb = new StringBundler(enabledEmploymentTypeLabels.size() * 2);
+
+			for (String enabledEmploymentTypeLabel : enabledEmploymentTypeLabels) {
+				sb.append(LanguageUtil.get(themeDisplay.getLocale(), enabledEmploymentTypeLabel));
+				sb.append(StringPool.COMMA_AND_SPACE);
+			}
+
+			sb.setIndex(sb.index() - 1);
+
+			throw new AlloyException(translate(request, themeDisplay, "you-are-not-eligible-to-participate-in-evp-because-you-have-an-ineligible-employment-type.-only-x-employees-are-eligible-to-participate-in-evp.", sb.toString()));
+		}
+
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
+
+		boolean decemberSubmissionAllowed = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_GRANT_DECEMBER_SUBMISSION_ALLOWED));
+
+		if (!decemberSubmissionAllowed && !CalendarUtil.isFuture(Calendar.DECEMBER, 2, calendar.get(Calendar.YEAR))) {
+			throw new AlloyException(translate(request, themeDisplay, "no-new-requests-can-be-submitted-for-x", calendar.get(Calendar.YEAR)));
+		}
+
+		Date userStartDate = EVPUtil.getUserStartDate(user);
+
+		if (employmentType == EVPConstants.EMPLOYMENT_TYPE_FULL_TIME) {
+			int minimumRequiredDaysSinceFullTimeHireDate = GetterUtil.getInteger(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_REQUIRED_DAYS_SINCE_FULL_TIME_HIRE_DATE));
+
+			if (CalendarUtil.beforeByDay(calendar.getTime(), EVPUtil.addDays(userStartDate, minimumRequiredDaysSinceFullTimeHireDate))) {
+				throw new AlloyException(translate(request, themeDisplay, "you-are-not-currently-eligible-to-participate-in-evp-because-you-have-not-been-employed-with-liferay-for-x-months", EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_REQUIRED_MONTHS_SINCE_FULL_TIME_HIRE_DATE)));
+			}
+		}
+		else if (employmentType == EVPConstants.EMPLOYMENT_TYPE_PART_TIME) {
+			int minimumRequiredDaysSincePartTimeHireDate = GetterUtil.getInteger(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_REQUIRED_DAYS_SINCE_PART_TIME_HIRE_DATE));
+
+			if (CalendarUtil.beforeByDay(calendar.getTime(), EVPUtil.addDays(userStartDate, minimumRequiredDaysSincePartTimeHireDate))) {
+				throw new AlloyException(translate(request, themeDisplay, "you-are-not-currently-eligible-to-participate-in-evp-because-you-have-not-been-employed-with-liferay-for-x-months", EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_REQUIRED_MONTHS_SINCE_PART_TIME_HIRE_DATE)));
+			}
+			else if (employmentHoursPerWeek != -1) {
+				int minimumPartTimeWorkingHoursPerWeek = GetterUtil.getInteger(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_PART_TIME_WORKING_HOURS_PER_WEEK));
+
+				if (employmentHoursPerWeek < minimumPartTimeWorkingHoursPerWeek) {
+					throw new AlloyException(translate(request, themeDisplay, "the-minimum-part-time-hours-required-is-x", EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_PART_TIME_WORKING_HOURS_PER_WEEK)));
+				}
+			}
+		}
+		else {
+			int minimumRequiredDaysSinceTemporaryHireDate = GetterUtil.getInteger(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_REQUIRED_DAYS_SINCE_TEMPORARY_HIRE_DATE));
+
+			if (CalendarUtil.beforeByDay(calendar.getTime(), EVPUtil.addDays(userStartDate, minimumRequiredDaysSinceTemporaryHireDate))) {
+				throw new AlloyException(translate(request, themeDisplay, "you-are-not-currently-eligible-to-participate-in-evp-because-you-have-not-been-employed-with-liferay-for-x-months", EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_MINIMUM_REQUIRED_MONTHS_SINCE_TEMPORARY_HIRE_DATE)));
+			}
+		}
+	}
+
+	public static void validateEVPRequest(HttpServletRequest request) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
+
+		boolean purposeOtherCheckbox = ParamUtil.getBoolean(request, "purposeOtherCheckbox");
+
+		if (Validator.isBlank(EVPUtil.getCheckedTypesString(request, EVPConstants.PURPOSE_TYPES, "purpose")) && !purposeOtherCheckbox) {
+			throw new AlloyException("choose-one-or-more-purposes-of-this-request");
+		}
+
+		if (purposeOtherCheckbox) {
+			String purposeOther = ParamUtil.getString(request, "purposeOther");
+
+			if (Validator.isNull(purposeOther)) {
+				throw new AlloyException("other-purpose-is-required");
+			}
+			else if (purposeOther.length() > EVPConstants.MAX_FIELD_LENGTH_PORTLET_DEFAULT) {
+				throw new AlloyException(translate(request, themeDisplay, "the-other-purpose-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTLET_DEFAULT));
+			}
+		}
+
+		boolean behalfOfOtherCheckbox = ParamUtil.getBoolean(request, "behalfOfOtherCheckbox");
+
+		if (Validator.isBlank(EVPUtil.getCheckedTypesString(request, EVPConstants.BEHALF_OF_TYPES, "behalfOf")) && !behalfOfOtherCheckbox) {
+			throw new AlloyException("choose-one-or-more-groups-of-people-that-this-request-is-on-behalf-of");
+		}
+
+		if (behalfOfOtherCheckbox) {
+			String behalfOfOther = ParamUtil.getString(request, "behalfOfOther");
+
+			if (Validator.isNull(behalfOfOther)) {
+				throw new AlloyException("behalf-of-other-is-required");
+			}
+			else if (behalfOfOther.length() > EVPConstants.MAX_FIELD_LENGTH_PORTLET_DEFAULT) {
+				throw new AlloyException(translate(request, themeDisplay, "the-behalf-of-other-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTLET_DEFAULT));
+			}
+		}
+	}
+
+	public static void validateEVPRequestOrganization(User user, HttpServletRequest request, boolean contactPhoneRequired) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
+
+		String organizationName = ParamUtil.getString(request, "organizationName");
+
+		if (organizationName.length() > EVPConstants.MAX_FIELD_LENGTH_ORGANIZATION_NAME) {
+			throw new AlloyException(translate(request, themeDisplay, "the-organization-name-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_ORGANIZATION_NAME));
+		}
+
+		String street1 = ParamUtil.getString(request, "street1");
+
+		EVPDivision subsidiaryEVPDivision = EVPDivisionUtil.getSubsidiaryEVPDivision(user.getUserId());
+
+		boolean addressStreetRequired = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_ADDRESS_STREET_REQUIRED));
+
+		if (Validator.isNull(street1) && addressStreetRequired) {
+			throw new AlloyException("street-is-required");
+		}
+		else if (street1.length() > EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT) {
+			throw new AlloyException(translate(request, themeDisplay, "the-street-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT));
+		}
+
+		String city = ParamUtil.getString(request, "city");
+
+		boolean addressCityRequired = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_ADDRESS_CITY_REQUIRED));
+
+		if (Validator.isNull(city) && addressCityRequired) {
+			throw new AlloyException("city-is-required");
+		}
+		else if (city.length() > EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT) {
+			throw new AlloyException(translate(request, themeDisplay, "the-city-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT));
+		}
+
+		long countryId = ParamUtil.getLong(request, "countryId");
+
+		if (countryId <= 0) {
+			throw new AlloyException("country-is-required");
+		}
+
+		List<Region> regions = RegionServiceUtil.getRegions(countryId);
+
+		long regionId = ParamUtil.getLong(request, "regionId");
+
+		boolean addressStateRequired = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_ADDRESS_STATE_REQUIRED));
+
+		if (!regions.isEmpty() && (regionId <= 0) && addressStateRequired) {
+			throw new AlloyException("region-is-required");
+		}
+
+		String zip = ParamUtil.getString(request, "zip");
+
+		boolean addressZipRequired = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_ADDRESS_ZIP_REQUIRED));
+
+		if (Validator.isNull(zip) && addressZipRequired) {
+			throw new AlloyException("zip-is-required");
+		}
+		else if (zip.matches("[^A-Za-z0-9\\s-]+")) {
+			throw new AlloyException("the-zip-is-invalid");
+		}
+		else if (zip.length() > EVPConstants.MAX_FIELD_LENGTH_ZIP) {
+			throw new AlloyException(translate(request, themeDisplay, "the-zip-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_ZIP));
+		}
+
+		String url = ParamUtil.getString(request, "url");
+
+		boolean urlRequired = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_URL_REQUIRED));
+
+		if ((!Validator.isUrl(url) || Validator.isNull(url)) && urlRequired) {
+			throw new AlloyException("please-provide-the-url-of-the-service-organization.it-must-include-http");
+		}
+		else if (url.length() > EVPConstants.MAX_FIELD_LENGTH_TEXTAREA) {
+			throw new AlloyException(translate(request, themeDisplay, "the-url-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_TEXTAREA));
+		}
+
+		String taxIdentificationNumber = ParamUtil.getString(request, "taxIdentificationNumber");
+
+		boolean taxIdRequired = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(themeDisplay.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), PortletPropsKeys.SUBSIDIARY_CONFIGURATION_TAX_ID_REQUIRED));
+
+		if (Validator.isNull(taxIdentificationNumber) && taxIdRequired) {
+			throw new AlloyException("tax-id-is-required");
+		}
+		else if (taxIdentificationNumber.length() > EVPConstants.MAX_FIELD_LENGTH_PORTLET_DEFAULT) {
+			throw new AlloyException(translate(request, themeDisplay, "the-tax-id-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTLET_DEFAULT));
+		}
+
+		String contactUserFirstName = ParamUtil.getString(request, "contactUserFirstName");
+
+		if (contactUserFirstName.length() > EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT) {
+			throw new AlloyException(translate(request, themeDisplay, "the-contacts-first-name-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT));
+		}
+
+		String contactUserLastName = ParamUtil.getString(request, "contactUserLastName");
+
+		if (contactUserLastName.length() > EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT) {
+			throw new AlloyException(translate(request, themeDisplay, "the-contacts-last-name-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT));
+		}
+
+		String contactUserEmailAddressString = ParamUtil.getString(request, "contactUserEmailAddress");
+
+		if (contactUserEmailAddressString.length() > EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT) {
+			throw new AlloyException(translate(request, themeDisplay, "the-contacts-email-address-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT));
+		}
+
+		String contactUserPhoneString = ParamUtil.getString(request, "contactUserPhone");
+
+		if (Validator.isNull(contactUserPhoneString) && contactPhoneRequired) {
+			throw new AlloyException("the-contacts-phone-number-is-required");
+		}
+		else if (contactUserPhoneString.length() > EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT) {
+			throw new AlloyException(translate(request, themeDisplay, "the-contacts-phone-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_PORTAL_DEFAULT));
+		}
+
+		String evpRequestOrganizationDescription = ParamUtil.getString(request, "evpRequestOrganizationDescription");
+
+		if (Validator.isNull(evpRequestOrganizationDescription)) {
+			throw new AlloyException("a-description-of-the-organization-is-required");
+		}
+		else if (evpRequestOrganizationDescription.length() > EVPConstants.MAX_FIELD_LENGTH_TEXTAREA) {
+			throw new AlloyException(translate(request, themeDisplay, "the-organization-description-character-length-exceeded-x-characters", EVPConstants.MAX_FIELD_LENGTH_TEXTAREA));
+		}
+	}
+
+	protected static String translate(HttpServletRequest request, ThemeDisplay themeDisplay, String pattern, Object... arguments) {
+		PortletConfig portletConfig = (PortletConfig)request.getAttribute(JavaConstants.JAVAX_PORTLET_CONFIG);
+
+		return LanguageUtil.format(portletConfig, themeDisplay.getLocale(), pattern, arguments);
+	}
+
+}
+%>

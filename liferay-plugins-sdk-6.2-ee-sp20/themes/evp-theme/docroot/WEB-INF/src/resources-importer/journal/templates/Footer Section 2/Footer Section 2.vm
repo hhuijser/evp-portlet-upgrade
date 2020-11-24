@@ -1,0 +1,13 @@
+#if ($image.getData() == "")
+	<object data="@theme_image_path@/custom/evp_icon.svg" type="image/svg+xml"></object>
+#else
+	<img alt="" src="$image.getData()" />
+#end
+
+<div class="content footer-content">
+	#if ($copyright.getData() == "")
+		&copy; $dateTool.get('yyyy') Liferay Inc. #language("all-rights-reserved")
+	#else
+		${copyright.getData()}
+	#end
+</div>

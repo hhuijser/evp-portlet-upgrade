@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="about_evp" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="html" fieldNamespace="ddm" indexType="keyword" localizable="true" name="about_evp_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-text-html" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[
+						<p>When we started Liferay, we wanted to build a company that would make a lot of money to give a lot of money away. While it seemed a noble goal at the time, we realized that just giving money doesn't make a huge difference in our lives. Writing a check is easy, but giving your time and your heart is even better.</p>
+
+						<p>Liferay's Employee Volunteer Program was created to give us all a chance to make connections with people and communities around the world through good old-fashioned service. As working professionals, it's hard to get away from the office even for vacation, let alone to serve people. EVP reduces one of the barriers to that kind of engagement.</p>
+
+						<p>I've personally had the chance to join several EVP trips during my career at Liferay, and they've been great fun. You pretty quickly realize that these trips are as much about your own enrichment as they are about helping out. I've met some incredible people all over the world doing important work like raising orphans, responding to disasters, and fighting human trafficking, thanks to EVP. </p><p> As you read the stories of fellow employees who have enjoyed EVP adventures, I hope you'll find a cause you resonate with, and take the time to get out there personally.</p>
+					]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description about EVP.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="author" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-separator" width="">
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="author_name" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Name]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[Bryan Cheung]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The name of the author.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="author_job_title" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Job Title]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[CEO, Liferay, Inc.]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The job title of the author.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="author_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Image]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The description author's image.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="author_image_hover" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Image On Hover]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The description author's image to display when the user hovers over.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="author_signature" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Signature Image]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[bryan_cheung_signature.svg#signature]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The description author's signature.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Author]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+				<entry name="style">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[About EVP]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[Still not sure what EVP is all about? Take a look at the videos below for some highlights]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for this section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="videos" readOnly="false" repeatable="true" required="false" showLabel="true" type="ddm-separator" width="">
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="video_title" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Title]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The title of the video.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="video_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Image]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The video's placeholder image.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="video_location" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Location]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The location where the video took place.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="video_source" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Source]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The video's YouTube URL. It is best to use the "Share" URL but the direct URL will also work.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Videos]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The videos to be used in this section.]]>
+				</entry>
+				<entry name="style">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Inside Look]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

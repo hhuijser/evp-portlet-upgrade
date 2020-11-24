@@ -1,0 +1,66 @@
+#set ($banner_array =
+	[
+		"page_banner_1.jpg",
+		"page_banner_2.jpg",
+		"page_banner_3.jpg",
+		"page_banner_4.jpg",
+		"page_banner_5.jpg",
+		"page_banner_6.jpg",
+		"page_banner_7.jpg",
+		"page_banner_8.jpg",
+		"page_banner_9.jpg",
+		"page_banner_10.jpg",
+		"page_banner_11.jpg",
+		"page_banner_12.jpg",
+		"page_banner_13.jpg",
+		"page_banner_14.jpg",
+		"page_banner_15.jpg",
+		"page_banner_16.jpg",
+		"page_banner_17.jpg",
+		"page_banner_18.jpg",
+		"page_banner_19.jpg",
+		"page_banner_20.jpg"
+	]
+)
+
+#set ($banner_array_length = $banner_array.size())
+#set ($banner_image_index = $mathTool.random(0, $banner_array_length))
+#set ($banner_image_selector = $banner_array.get(${banner_image_index}))
+#set ($image_path = "@theme_image_path@/custom/banner/${banner_image_selector}")
+
+#if (!$banner_image.getSiblings().isEmpty())
+	#set ($images_length = $banner_image.getSiblings().size() + 1)
+	#set ($banner_image_index = $mathTool.random(1, $images_length))
+
+	#foreach ($cur_image in $banner_image.getSiblings())
+		#if ($velocityCount == $banner_image_index && $cur_image.getData() != "")
+			#set ($image_path = $cur_image.getData())
+
+			#break
+		#end
+	#end
+#end
+
+<div class="$page.getData()">
+	<div class="banner banner-cover parallax-panel">
+		<img alt="#language ("banner-image")" class="parallax-image" src="$image_path">
+	</div>
+
+	<div class="page-heading">
+		#if ($page_heading.getData() != "")
+			<div class="row-fluid">
+				<div class="heading offset3 span6">
+					<h1 class="header">$page_heading.getData()</h1>
+
+					#if ($page_description.getData() != "")
+						<div class="description">
+							$page_description.getData()
+						</div>
+					#end
+				</div>
+
+				<div class="clearfix content-separator"></div>
+			</div>
+		#end
+	</div>
+</div>

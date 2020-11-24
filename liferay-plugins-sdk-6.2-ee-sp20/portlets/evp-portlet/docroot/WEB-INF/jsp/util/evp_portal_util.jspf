@@ -1,0 +1,255 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPPortalUtil extends com.liferay.evp.util.EVPPortalUtil {
+
+	public static Address fetchAddress(AlloyController alloyController, EVPRequestOrganization evpRequestOrganization) throws Exception {
+		String street1 = ParamUtil.getString(alloyController.getRequest(), "street1");
+		String street2 = ParamUtil.getString(alloyController.getRequest(), "street2");
+		String street3 = ParamUtil.getString(alloyController.getRequest(), "street3");
+		String city = ParamUtil.getString(alloyController.getRequest(), "city");
+		long regionId = ParamUtil.getLong(alloyController.getRequest(), "regionId");
+		long countryId = ParamUtil.getLong(alloyController.getRequest(), "countryId");
+		String zip = ParamUtil.getString(alloyController.getRequest(), "zip");
+
+		ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+		List<Address> addresses = AddressLocalServiceUtil.getAddresses(themeDisplay.getCompanyId(), Organization.class.getName(), evpRequestOrganization.getOrganizationId());
+
+		if (addresses.isEmpty()) {
+			Address address = AddressLocalServiceUtil.createAddress(0);
+
+			address.setCity(city);
+			address.setClassName(Organization.class.getName());
+			address.setClassPK(evpRequestOrganization.getOrganizationId());
+			address.setCountryId(countryId);
+			address.setMailing(true);
+			address.setPrimary(true);
+			address.setRegionId(regionId);
+			address.setStreet1(street1);
+			address.setStreet2(street2);
+			address.setStreet3(street3);
+
+			int addressListTypeId = fetchAddressListTypeId(Organization.class.getName());
+
+			address.setTypeId(addressListTypeId);
+
+			address.setUserId(themeDisplay.getUserId());
+			address.setZip(zip);
+
+			alloyController.updateModelIgnoreRequest(address);
+
+			return address;
+		}
+
+		Address address = addresses.get(0);
+
+		if (EVPPermission.contains(alloyController.getThemeDisplay(), evpRequestOrganization, "update") && (!Validator.equals(address.getStreet1(), street1) || !Validator.equals(address.getStreet2(), street2) || !Validator.equals(address.getStreet3(), street3) || !Validator.equals(address.getCity(), city) || !Validator.equals(address.getRegionId(), regionId) || !Validator.equals(address.getCountryId(), countryId) || !Validator.equals(address.getZip(), zip))) {
+			address.setCity(city);
+			address.setCountryId(countryId);
+			address.setRegionId(regionId);
+			address.setStreet1(street1);
+			address.setStreet2(street2);
+			address.setStreet3(street3);
+			address.setZip(zip);
+
+			alloyController.updateModelIgnoreRequest(address);
+		}
+
+		return address;
+	}
+
+	public static User fetchContactUser(AlloyController alloyController, long evpRequestOrganizationOrganizationId) throws Exception {
+		ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+		EVPDivision subsidiaryEVPDivision = EVPDivisionUtil.getSubsidiaryEVPDivision(themeDisplay.getUserId());
+
+		Role organizationContactRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), EVPRoleConstants.ROLE_NAME_ORGANIZATION_CONTACT);
+
+		String contactUserFirstName = getStringSafe(alloyController.getRequest(), "contactUserFirstName");
+		String contactUserLastName = getStringSafe(alloyController.getRequest(), "contactUserLastName");
+		String contactUserEmailAddressString = ParamUtil.getString(alloyController.getRequest(), "contactUserEmailAddress");
+
+		User contactUser = fetchContactUser(contactUserFirstName, contactUserLastName, contactUserEmailAddressString);
+
+		if (contactUser != null) {
+			OrganizationLocalServiceUtil.addUserOrganization(contactUser.getUserId(), subsidiaryEVPDivision.getOrganizationId());
+
+			UserGroupRoleLocalServiceUtil.addUserGroupRoles(contactUser.getUserId(), subsidiaryEVPDivision.getOrganizationGroupId(), new long[] {organizationContactRole.getRoleId()});
+
+			return contactUser;
+		}
+
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
+
+		contactUser = UserLocalServiceUtil.addUser(themeDisplay.getUserId(), themeDisplay.getCompanyId(), true, null, null, true, null, StringPool.BLANK, 0, StringPool.BLANK, themeDisplay.getLocale(), contactUserFirstName, StringPool.BLANK, contactUserLastName, 0, 0, true, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.YEAR), StringPool.BLANK, new long[0], new long[] {evpRequestOrganizationOrganizationId, subsidiaryEVPDivision.getOrganizationId()}, new long[0], new long[0], false, new ServiceContext());
+
+		Organization evpRequestOrganizationOrganization = OrganizationLocalServiceUtil.getOrganization(evpRequestOrganizationOrganizationId);
+
+		UserGroupRoleLocalServiceUtil.addUserGroupRoles(contactUser.getUserId(), evpRequestOrganizationOrganization.getGroupId(), new long[] {organizationContactRole.getRoleId()});
+
+		UserGroupRoleLocalServiceUtil.addUserGroupRoles(contactUser.getUserId(), subsidiaryEVPDivision.getOrganizationGroupId(), new long[] {organizationContactRole.getRoleId()});
+
+		addEmailAddress(alloyController, contactUser, contactUserEmailAddressString);
+
+		return contactUser;
+	}
+
+	public static Website fetchOrganizationWebsite(AlloyController alloyController, EVPRequestOrganization evpRequestOrganization, String url) throws Exception {
+		AlloyServiceInvoker websiteAlloyServiceInvoker = new AlloyServiceInvoker(Website.class.getName());
+
+		List<Website> websites = websiteAlloyServiceInvoker.executeDynamicQuery(new Object[] {"classNameId", PortalUtil.getClassNameId(Organization.class), "classPK", evpRequestOrganization.getOrganizationId()});
+
+		if (websites.isEmpty()) {
+			Website website = WebsiteLocalServiceUtil.createWebsite(0);
+
+			website.setClassName(Organization.class.getName());
+			website.setClassPK(evpRequestOrganization.getOrganizationId());
+			website.setPrimary(true);
+			website.setTypeId(getListTypeId(ListTypeConstants.ORGANIZATION_WEBSITE, "public"));
+			website.setUrl(url);
+
+			ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+			website.setUserId(themeDisplay.getUserId());
+
+			alloyController.updateModelIgnoreRequest(website);
+
+			return website;
+		}
+
+		Website website = websites.get(0);
+
+		if (EVPPermission.contains(alloyController.getThemeDisplay(), evpRequestOrganization, "update") && (url != null) && !url.equals(website.getUrl())) {
+			website.setUrl(url);
+
+			alloyController.updateModelIgnoreRequest(website);
+		}
+
+		return website;
+	}
+
+	public static User fetchUser(ThemeDisplay themeDisplay, String emailAddressString) throws Exception {
+		User user = UserLocalServiceUtil.fetchUserByEmailAddress(themeDisplay.getCompanyId(), emailAddressString);
+
+		if (user == null) {
+			return EVPUtil.importLDAPUser(themeDisplay.getCompanyId(), emailAddressString);
+		}
+
+		return user;
+	}
+
+	public static EmailAddress fetchUserEmailAddress(AlloyController alloyController, User user, String emailAddressString) throws Exception {
+		AlloyServiceInvoker emailAddressAlloyServiceInvoker = new AlloyServiceInvoker(EmailAddress.class.getName());
+
+		List<EmailAddress> emailAddresses = emailAddressAlloyServiceInvoker.executeDynamicQuery(new Object[] {"classNameId", PortalUtil.getClassNameId(Contact.class), "classPK", user.getContactId(), "address", emailAddressString, "primary", false});
+
+		if (emailAddresses.isEmpty()) {
+			return addEmailAddress(alloyController, user, emailAddressString);
+		}
+
+		return emailAddresses.get(0);
+	}
+
+	public static Phone fetchUserPhone(AlloyController alloyController, User user, String phoneString) throws Exception {
+		AlloyServiceInvoker phoneAlloyServiceInvoker = new AlloyServiceInvoker(Phone.class.getName());
+
+		List<Phone> phones = phoneAlloyServiceInvoker.executeDynamicQuery(new Object[] {"classNameId", PortalUtil.getClassNameId(Contact.class), "classPK", user.getContactId(), "number", phoneString, "primary", true});
+
+		if (phones.isEmpty()) {
+			Phone phone = PhoneLocalServiceUtil.createPhone(0);
+
+			phone.setClassName(Contact.class.getName());
+			phone.setClassPK(user.getContactId());
+			phone.setExtension(StringPool.BLANK);
+			phone.setNumber(phoneString);
+			phone.setPrimary(true);
+			phone.setTypeId(getListTypeId(ListTypeConstants.CONTACT_PHONE, "personal"));
+
+			ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+			phone.setUserId(themeDisplay.getUserId());
+
+			alloyController.updateModelIgnoreRequest(phone);
+
+			return phone;
+		}
+
+		return phones.get(0);
+	}
+
+	public static Phone fetchUserPhone(User user) throws Exception {
+		List<Phone> phones = user.getPhones();
+
+		for (Phone phone : phones) {
+			if (phone.getPrimary()) {
+				return phone;
+			}
+		}
+
+		return null;
+	}
+
+	public static String getStringSafe(HttpServletRequest request, String param) {
+		String string = ParamUtil.getString(request, param);
+
+		if (Validator.isNull(string)) {
+			return StringPool.NULL_CHAR;
+		}
+
+		return string;
+	}
+
+	public static void updateModelProperties(String className, Object[] queryProperties, Object... properties) throws Exception {
+		AlloyServiceInvoker alloyServiceInvoker = new AlloyServiceInvoker(className);
+
+		List<BaseModel<?>> baseModels = alloyServiceInvoker.executeDynamicQuery(queryProperties);
+
+		for (BaseModel<?> baseModel : baseModels) {
+			if ((properties.length % 2) != 0) {
+				throw new IllegalArgumentException("Properties length is not a multiple of 2");
+			}
+
+			for (int i = 0; i < properties.length; i += 2) {
+				String name = String.valueOf(properties[i]);
+
+				Object value = properties[i + 1];
+
+				BeanPropertiesUtil.setProperty(baseModel, name, value);
+			}
+
+			alloyServiceInvoker.updateModel(baseModel);
+		}
+	}
+
+	protected static EmailAddress addEmailAddress(AlloyController alloyController, User user, String emailAddressString) throws Exception {
+		EmailAddress emailAddress = EmailAddressLocalServiceUtil.createEmailAddress(0);
+
+		emailAddress.setAddress(emailAddressString);
+		emailAddress.setClassName(Contact.class.getName());
+		emailAddress.setClassPK(user.getContactId());
+		emailAddress.setPrimary(false);
+		emailAddress.setTypeId(ListTypeConstants.CONTACT_EMAIL_ADDRESS_DEFAULT);
+		emailAddress.setUserId(user.getUserId());
+
+		alloyController.updateModelIgnoreRequest(emailAddress);
+
+		return emailAddress;
+	}
+
+}
+%>

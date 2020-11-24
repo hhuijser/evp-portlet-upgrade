@@ -1,0 +1,78 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPEmployeeComposite {
+
+	public EVPEmployeeComposite(EVPEmployee evpEmployee) throws Exception {
+		_evpEmployee = evpEmployee;
+	}
+
+	public User getEmployeeUser() throws Exception {
+		if ((_employeeUser == null) && (getEmployeeUserId() > 0)) {
+			_employeeUser = UserLocalServiceUtil.getUser(getEmployeeUserId());
+		}
+
+		return _employeeUser;
+	}
+
+	public long getEmployeeUserId() {
+		return _evpEmployee.getEmployeeUserId();
+	}
+
+	public int getEmploymentType() {
+		return _evpEmployee.getEmploymentType();
+	}
+
+	public String getEmploymentTypeLabel() {
+		return EVPConstants.getEmploymentTypeLabel(getEmploymentType());
+	}
+
+	public Date getHireDate() {
+		return _evpEmployee.getHireDate();
+	}
+
+	public User getManagerUser() throws Exception {
+		if ((_managerUser == null) && (getManagerUserId() > 0)) {
+			_managerUser = UserLocalServiceUtil.getUser(getManagerUserId());
+		}
+
+		return _managerUser;
+	}
+
+	public long getManagerUserId() throws Exception {
+		return _evpEmployee.getManagerUserId();
+	}
+
+	public EVPDivisionComposite getSubsidiaryEVPDivisionComposite() throws Exception {
+		if ((_subsidiaryEVPDivisionComposite == null) && (getSubsidiaryEVPDivisionId() > 0)) {
+			_subsidiaryEVPDivisionComposite = new EVPDivisionComposite(EVPDivisionLocalServiceUtil.getEVPDivision(getSubsidiaryEVPDivisionId()));
+		}
+
+		return _subsidiaryEVPDivisionComposite;
+	}
+
+	public long getSubsidiaryEVPDivisionId() {
+		return _evpEmployee.getSubsidiaryEVPDivisionId();
+	}
+
+	private User _employeeUser;
+	private EVPEmployee _evpEmployee;
+	private User _managerUser;
+	private EVPDivisionComposite _subsidiaryEVPDivisionComposite;
+
+}
+%>

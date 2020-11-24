@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.evp.service.EVPDivisionLocalService" class="com.liferay.evp.service.impl.EVPDivisionLocalServiceImpl" />
+	<bean id="com.liferay.evp.service.persistence.EVPDivisionPersistence" class="com.liferay.evp.service.persistence.EVPDivisionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.evp.service.EVPEmployeeLocalService" class="com.liferay.evp.service.impl.EVPEmployeeLocalServiceImpl" />
+	<bean id="com.liferay.evp.service.persistence.EVPEmployeePersistence" class="com.liferay.evp.service.persistence.EVPEmployeePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.evp.service.EVPGrantRequestLocalService" class="com.liferay.evp.service.impl.EVPGrantRequestLocalServiceImpl" />
+	<bean id="com.liferay.evp.service.persistence.EVPGrantRequestPersistence" class="com.liferay.evp.service.persistence.EVPGrantRequestPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.evp.service.EVPGrantTransactionLocalService" class="com.liferay.evp.service.impl.EVPGrantTransactionLocalServiceImpl" />
+	<bean id="com.liferay.evp.service.persistence.EVPGrantTransactionPersistence" class="com.liferay.evp.service.persistence.EVPGrantTransactionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.evp.service.EVPKaleoForkInstanceLocalService" class="com.liferay.evp.service.impl.EVPKaleoForkInstanceLocalServiceImpl" />
+	<bean id="com.liferay.evp.service.persistence.EVPKaleoForkInstancePersistence" class="com.liferay.evp.service.persistence.EVPKaleoForkInstancePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.evp.service.EVPRequestOrganizationLocalService" class="com.liferay.evp.service.impl.EVPRequestOrganizationLocalServiceImpl" />
+	<bean id="com.liferay.evp.service.persistence.EVPRequestOrganizationPersistence" class="com.liferay.evp.service.persistence.EVPRequestOrganizationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.evp.service.EVPServiceRequestLocalService" class="com.liferay.evp.service.impl.EVPServiceRequestLocalServiceImpl" />
+	<bean id="com.liferay.evp.service.persistence.EVPServiceRequestPersistence" class="com.liferay.evp.service.persistence.EVPServiceRequestPersistenceImpl" parent="basePersistence" />
+</beans>

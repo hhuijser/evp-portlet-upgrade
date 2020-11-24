@@ -1,0 +1,117 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPWorkflowConstants extends com.liferay.evp.util.EVPWorkflowConstants {
+
+	public static final int[] GRANT_STATUSES_ACTIONABLE = {GRANT_STATUS_MORE_INFO_FROM_USER};
+
+	public static final int[] GRANT_STATUSES_ACTIVE = {GRANT_STATUS_MORE_INFO_FROM_USER, GRANT_STATUS_PENDING_FINANCIAL_REVIEW, GRANT_STATUS_REQUEST_SUBMITTED, GRANT_STATUS_VALIDATION_REQUESTED_FROM_COUNTRY_COORDINATOR, GRANT_STATUS_VALIDATION_REQUESTED_FROM_GLOBAL_EVP, GRANT_STATUS_VALIDATION_REQUESTED_FROM_HR};
+
+	public static final int[] GRANT_STATUSES_SEARCHABLE = {GRANT_STATUS_CANCELLED, GRANT_STATUS_COMPLETED, GRANT_STATUS_MORE_INFO_FROM_USER, GRANT_STATUS_PENDING_FINANCIAL_REVIEW, GRANT_STATUS_REJECTED, GRANT_STATUS_REQUEST_SUBMITTED, GRANT_STATUS_VALIDATION_REQUESTED_FROM_COUNTRY_COORDINATOR, GRANT_STATUS_VALIDATION_REQUESTED_FROM_GLOBAL_EVP, GRANT_STATUS_VALIDATION_REQUESTED_FROM_HR};
+
+	public static final String GRANT_TRANSITION_APPROVE_REQUEST = "approve-request";
+
+	public static final String GRANT_TRANSITION_CANCEL_REQUEST = "cancel-request";
+
+	public static final String GRANT_TRANSITION_LABEL_APPROVE_REQUEST = "approve";
+
+	public static final String GRANT_TRANSITION_LABEL_CANCEL_REQUEST = "cancel";
+
+	public static final String GRANT_TRANSITION_LABEL_MARK_AS_CHECK_SENT = "mark-as-grant-sent";
+
+	public static final String GRANT_TRANSITION_LABEL_MARK_AS_INVALID = "invalid";
+
+	public static final String GRANT_TRANSITION_LABEL_MARK_AS_VALID = "valid";
+
+	public static final String GRANT_TRANSITION_LABEL_REJECT_REQUEST = "reject";
+
+	public static final String GRANT_TRANSITION_LABEL_REQUEST_INFO = "request-more-information-from-user";
+
+	public static final String GRANT_TRANSITION_MARK_AS_CHECK_SENT = "mark-as-check-sent";
+
+	public static final String GRANT_TRANSITION_MARK_AS_INVALID = "mark-as-invalid";
+
+	public static final String GRANT_TRANSITION_MARK_AS_VALID = "mark-as-valid";
+
+	public static final String GRANT_TRANSITION_REJECT_REQUEST = "reject-request";
+
+	public static final String GRANT_TRANSITION_REQUEST_COUNTRY_COORDINATOR_VALIDATION = "request-country-coordinator-validation";
+
+	public static final String GRANT_TRANSITION_REQUEST_GLOBAL_EVP_VALIDATION = "request-global-evp-team-validation";
+
+	public static final String GRANT_TRANSITION_REQUEST_HR_VALIDATION = "request-hr-validation";
+
+	public static final String GRANT_TRANSITION_REQUEST_INFO = "request-more-information";
+
+	public static final String GRANT_TRANSITION_RESUBMIT_REQUEST = "resubmit-request";
+
+	public static final String[] GRANT_TRANSITIONS_COMMENTS_REQUIRED = {GRANT_TRANSITION_CANCEL_REQUEST, GRANT_TRANSITION_MARK_AS_INVALID, GRANT_TRANSITION_MARK_AS_VALID, GRANT_TRANSITION_REJECT_REQUEST, GRANT_TRANSITION_REQUEST_COUNTRY_COORDINATOR_VALIDATION, GRANT_TRANSITION_REQUEST_GLOBAL_EVP_VALIDATION, GRANT_TRANSITION_REQUEST_HR_VALIDATION, GRANT_TRANSITION_REQUEST_INFO};
+
+	public static final String[] GRANT_TRANSITIONS_PRIVATE_COMMENTS = {GRANT_TRANSITION_MARK_AS_INVALID, GRANT_TRANSITION_MARK_AS_VALID, GRANT_TRANSITION_REQUEST_COUNTRY_COORDINATOR_VALIDATION, GRANT_TRANSITION_REQUEST_GLOBAL_EVP_VALIDATION, GRANT_TRANSITION_REQUEST_HR_VALIDATION};
+
+	public static final String STATUS_LABEL_ACTIVE = "active";
+
+	public static final String STATUS_LABEL_ALL = "all";
+
+	public static String getGrantTransitionLabel(String grantTransition) {
+		if (grantTransition.equals(GRANT_TRANSITION_APPROVE_REQUEST)) {
+			return GRANT_TRANSITION_LABEL_APPROVE_REQUEST;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_CANCEL_REQUEST)) {
+			return GRANT_TRANSITION_LABEL_CANCEL_REQUEST;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_MARK_AS_CHECK_SENT)) {
+			return GRANT_TRANSITION_LABEL_MARK_AS_CHECK_SENT;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_MARK_AS_INVALID)) {
+			return GRANT_TRANSITION_LABEL_MARK_AS_INVALID;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_MARK_AS_VALID)) {
+			return GRANT_TRANSITION_LABEL_MARK_AS_VALID;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_REQUEST_COUNTRY_COORDINATOR_VALIDATION)) {
+			return GRANT_TRANSITION_REQUEST_COUNTRY_COORDINATOR_VALIDATION;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_REQUEST_GLOBAL_EVP_VALIDATION)) {
+			return GRANT_TRANSITION_REQUEST_GLOBAL_EVP_VALIDATION;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_REQUEST_HR_VALIDATION)) {
+			return GRANT_TRANSITION_REQUEST_HR_VALIDATION;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_REQUEST_INFO)) {
+			return GRANT_TRANSITION_LABEL_REQUEST_INFO;
+		}
+		else if (grantTransition.equals(GRANT_TRANSITION_REJECT_REQUEST)) {
+			return GRANT_TRANSITION_LABEL_REJECT_REQUEST;
+		}
+		else {
+			return GRANT_TRANSITION_RESUBMIT_REQUEST;
+		}
+	}
+
+	public static List<String> getSearchableGrantLabels() throws Exception {
+		List<String> searchableGrantLabels = new ArrayList<String>();
+
+		for (int grantStatus : EVPWorkflowConstants.GRANT_STATUSES_SEARCHABLE) {
+			searchableGrantLabels.add(getGrantStatusLabel(grantStatus));
+		}
+
+		return ListUtil.sort(searchableGrantLabels);
+	}
+
+}
+%>

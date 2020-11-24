@@ -1,0 +1,55 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPWorkflowTaskComposite {
+
+	public EVPWorkflowTaskComposite(WorkflowTask workflowTask, ThemeDisplay themeDisplay, long ownerUserId) {
+		_workflowTask = workflowTask;
+		_themeDisplay = themeDisplay;
+		_ownerUserId = ownerUserId;
+	}
+
+	public List<EVPWorkflowTransitionComposite> getTransitionComposites(String className) throws Exception {
+		return EVPCompositeUtil.getComposites(getTransitionNames(), EVPWorkflowTransitionComposite.class, new Class<?>[] {String.class, String.class}, new Object[] {className}, true);
+	}
+
+	public List<String> getTransitionNames() throws Exception {
+		return WorkflowTaskManagerUtil.getNextTransitionNames(_themeDisplay.getCompanyId(), _themeDisplay.getUserId(), getWorkflowTaskId());
+	}
+
+	public String getWorkflowTaskAssignees() throws Exception {
+		return EVPWorkflowUtil.getAssignees(_themeDisplay.getCompanyId(), getWorkflowTaskId(), _ownerUserId);
+	}
+
+	public long getWorkflowTaskId() {
+		return _workflowTask.getWorkflowTaskId();
+	}
+
+	public String getWorkflowTaskName() {
+		return _workflowTask.getName();
+	}
+
+	public boolean isWorkflowTaskAssignedToUser() throws Exception {
+		return EVPWorkflowUtil.isWorkflowTaskAssignedToUser(_workflowTask, _themeDisplay.getCompanyId(), EVPDivisionUtil.getSubsidiaryGroupId(_ownerUserId), _ownerUserId, _themeDisplay.getUserId());
+	}
+
+	private long _ownerUserId;
+	private ThemeDisplay _themeDisplay;
+	private WorkflowTask _workflowTask;
+
+}
+%>

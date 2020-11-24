@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="about_evp" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="about_evp_description" index="0" type="text_area" index-type="keyword">
+			<dynamic-content language-id="en_US">
+				<![CDATA[
+					<p>When we started Liferay, we wanted to build a company that would make a lot of money to give a lot of money away. While it seemed a noble goal at the time, we realized that just giving money doesn't make a huge difference in our lives. Writing a check is easy, but giving your time and your heart is even better.</p>
+
+					<p>Liferay's Employee Volunteer Program was created to give us all a chance to make connections with people and communities around the world through good old-fashioned service. As working professionals, it's hard to get away from the office even for vacation, let alone to serve people. EVP reduces one of the barriers to that kind of engagement.</p>
+
+					<p>I've personally had the chance to join several EVP trips during my career at Liferay, and they've been great fun. You pretty quickly realize that these trips are as much about your own enrichment as they are about helping out. I've met some incredible people all over the world doing important work like raising orphans, responding to disasters, and fighting human trafficking, thanks to EVP.</p>
+
+					<p>As you read the stories of fellow employees who have enjoyed EVP adventures, I hope you'll find a cause you resonate with, and take the time to get out there personally.</p>
+				]]>
+		</dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="author" index="0" type="selection_break" index-type="keyword">
+			<dynamic-element name="author_name" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Bryan Cheung]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="author_job_title" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[CEO, Liferay, Inc.]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="author_image" index="0" type="image" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="author_image_hover" index="0" type="image" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="author_signature" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[bryan_cheung_signature.svg#signature]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Still not sure what EVP is all about? Take a look at the videos below for some highlights]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="videos" index="0" type="selection_break" index-type="keyword">
+			<dynamic-element name="video_title" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Shepherd's Field]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_image" index="0" type="image" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_location" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[China]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_source" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[https://www.youtube.com/watch?v=zgEKmqIuZOM]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="videos" index="1" type="selection_break" index-type="keyword">
+			<dynamic-element name="video_title" index="1" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Living Water]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_image" index="1" type="image" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_location" index="1" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Guatemala]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_source" index="1" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[https://www.youtube.com/watch?v=zgEKmqIuZOM]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="videos" index="2" type="selection_break" index-type="keyword">
+			<dynamic-element name="video_title" index="2" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Brazil Food Drive]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_image" index="2" type="image" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_location" index="2" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Recife, Brazil]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="video_source" index="2" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[https://www.youtube.com/watch?v=zgEKmqIuZOM]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Inside Look]]></dynamic-content>
+	</dynamic-element>
+</root>

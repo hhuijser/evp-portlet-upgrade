@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="category_variable" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[isControllerServiceRequests]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="header" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Service FAQs]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Here are the answers to a few popular questions to help you get started.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="0" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="0" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[When am I eligible for EVP?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="0" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="1" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="1" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="1" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What are some examples of eligible service requests?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="1" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="2" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="2" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="2" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What are some examples of ineligible service requests?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="2" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="3" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="3" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="3" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[How do I promote a service trip I've organized?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="3" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="4" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="4" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="4" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What happens after I submit my service request?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="4" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="5" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="5" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="5" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What if I need to update my service request after it has already been submitted?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="5" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="6" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="6" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="6" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Do I need to do anything after I return from my service trip?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="6" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="7" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="7" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="7" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What if I have other questions about EVP service?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="7" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="1">
+		<dynamic-element name="category_variable" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[isControllerGrantRequests]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="header" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Grant FAQs]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Here are the answers to a few popular questions to help you get started.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="8" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="8" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="8" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[When am I eligible for EVP?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="8" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="9" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="9" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="9" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What types of grants can I request?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="9" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="10" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="10" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="10" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What are some examples of eligible grant requests?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="10" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="11" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="11" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="11" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What are some examples of ineligible grant requests?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="11" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="12" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="12" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="12" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What happens after I submit my grant request?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="12" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="13" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="13" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="13" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What if I need to update my grant request after it has already been submitted?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="13" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="14" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="14" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="14" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What kind of expenses are eligible for reimbursement using a Sponsorship grant?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="14" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="15" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="15" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="15" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What is the process for getting a reimbursement for my Sponsorship grant?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="15" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="16" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="16" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="16" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What if I have other questions about EVP grants?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="16" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Placeholder Text]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

@@ -1,0 +1,235 @@
+#if (!$entries.isEmpty())
+	<div class="row-fluid">
+		<div class="span12 trip-stories upcoming-trips video-wrapper" data-portlet-id="$themeDisplay.getPortletDisplay().getId()" id="upcomingTrips">
+
+			#foreach ($entry in $entries)
+				#set ($entry_id = $entry.getEntryId())
+				#set ($renderer = $entry.getAssetRenderer())
+				#set ($class_name = $renderer.getClassName())
+
+				#if ($class_name == "com.liferay.portlet.journal.model.JournalArticle")
+					#set ($journal_article = $renderer.getArticle())
+
+					#set ($document = $saxReaderUtil.read($journal_article.getContent()))
+					#set ($root_element = $document.getRootElement())
+
+					#set ($additional_details = $saxReaderUtil.createXPath("dynamic-element[@name='additional_information']/dynamic-element[@name='additional_details']"))
+					#set ($alternate_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='alternate_date']"))
+					#set ($alternate_signup_link = $saxReaderUtil.createXPath("dynamic-element[@name='additional_information']/dynamic-element[@name='alternate_signup_link']"))
+					#set ($banner_image = $saxReaderUtil.createXPath("dynamic-element[@name='banner_image']"))
+					#set ($contact_email = $saxReaderUtil.createXPath("dynamic-element[@name='contact_info']/dynamic-element[@name='contact_email']"))
+					#set ($contact_name = $saxReaderUtil.createXPath("dynamic-element[@name='contact_info']/dynamic-element[@name='contact_name']"))
+					#set ($cost = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='cost']"))
+					#set ($end_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='end_date']"))
+					#set ($follow_link = $saxReaderUtil.createXPath("dynamic-element[@name='additional_information']/dynamic-element[@name='follow_link']"))
+					#set ($group_service_request_id = $saxReaderUtil.createXPath("dynamic-element[@name='additional_information']/dynamic-element[@name='group_service_request_id']"))
+					#set ($important_notes = $saxReaderUtil.createXPath("dynamic-element[@name='additional_information']/dynamic-element[@name='important_notes']"))
+					#set ($location = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='location']"))
+					#set ($organization_name = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='organization_name']"))
+					#set ($purpose = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='purpose']"))
+					#set ($service_description = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='service_description']"))
+					#set ($signup_deadline = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='signup_deadline']"))
+					#set ($start_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_details']/dynamic-element[@name='start_date']"))
+					#set ($trip_interest_header = $saxReaderUtil.createXPath("dynamic-element[@name='trip_interest']/dynamic-element[@name='trip_interest_header']"))
+					#set ($trip_interest_link = $saxReaderUtil.createXPath("dynamic-element[@name='trip_interest']/dynamic-element[@name='trip_interest_link']"))
+					#set ($trip_interest_message = $saxReaderUtil.createXPath("dynamic-element[@name='trip_interest']/dynamic-element[@name='trip_interest_message']"))
+					#set ($trip_title = $saxReaderUtil.createXPath("dynamic-element[@name='trip_title']"))
+					#set ($video_links = $saxReaderUtil.createXPath("dynamic-element[@name='additional_information']/dynamic-element[@name='video_links']"))
+
+					#set ($additional_details_val = $additional_details.selectSingleNode($root_element).getStringValue())
+					#set ($alternate_date_val = $alternate_date.selectSingleNode($root_element).getStringValue())
+					#set ($alternate_signup_link_val = $alternate_signup_link.selectSingleNode($root_element).getStringValue())
+					#set ($banner_image_val = $banner_image.selectSingleNode($root_element).getStringValue())
+					#set ($contact_email_val = $contact_email.selectSingleNode($root_element).getStringValue())
+					#set ($contact_name_val = $contact_name.selectSingleNode($root_element).getStringValue())
+					#set ($cost_val = $cost.selectSingleNode($root_element).getStringValue())
+					#set ($end_date_val = $end_date.selectSingleNode($root_element).getStringValue())
+					#set ($follow_link_val = $follow_link.selectSingleNode($root_element).getStringValue())
+					#set ($group_service_request_id_val = $group_service_request_id.selectSingleNode($root_element).getStringValue())
+					#set ($important_notes_val = $important_notes.selectSingleNode($root_element).getStringValue())
+					#set ($location_val = $location.selectSingleNode($root_element).getStringValue())
+					#set ($organization_name_val = $organization_name.selectSingleNode($root_element).getStringValue())
+					#set ($purpose_val = $purpose.selectSingleNode($root_element).getStringValue())
+					#set ($service_description_val = $service_description.selectSingleNode($root_element).getStringValue())
+					#set ($signup_deadline_val = $signup_deadline.selectSingleNode($root_element).getStringValue())
+					#set ($start_date_val = $start_date.selectSingleNode($root_element).getStringValue())
+					#set ($trip_interest_header_val = $trip_interest_header.selectSingleNode($root_element).getStringValue())
+					#set ($trip_interest_link_val = $trip_interest_link.selectSingleNode($root_element).getStringValue())
+					#set ($trip_interest_message_val = $trip_interest_message.selectSingleNode($root_element).getStringValue())
+					#set ($trip_title_val = $trip_title.selectSingleNode($root_element).getStringValue())
+					#set ($video_links_val = $video_links.selectNodes($root_element))
+
+					#set ($video_urls = "")
+
+					#foreach($video_link in $video_links_val)
+						#if ($velocityCount > 1)
+							#set ($video_urls = $video_urls + ",")
+						#end
+
+						#set ($video_urls = $video_urls + $stringUtil.trim($video_link.getStringValue()))
+					#end
+
+					#set ($deadline_date_long = $getterUtil.getLong($signup_deadline_val))
+					#set ($end_date_long = $getterUtil.getLong($end_date_val))
+					#set ($start_date_long = $getterUtil.getLong($start_date_val))
+
+					#set ($display_trip_date = $stringUtil.trim($alternate_date_val))
+
+					#set ($one_day = 86400000)
+					#set ($thirty_days = 2592000000)
+
+					#set ($current_date = $dateTool.getDate().getTime())
+
+					#if ($start_date_long > 0 && $end_date_long > 0 && $display_trip_date == "")
+						#set ($end_date_object = $dateUtil.newDate($end_date_long))
+						#set ($start_date_object = $dateUtil.newDate($start_date_long))
+
+						#set ($display_end_date = $dateUtil.getDate($end_date_object, "MMM d, yyyy", $locale))
+						#set ($display_start_date = $dateUtil.getDate($start_date_object, "MMM d", $locale))
+
+						#set ($display_trip_date = $languageUtil.format($locale, "x-x", [$display_start_date, $display_end_date]))
+					#end
+
+					#set ($signup_link = $alternate_signup_link_val)
+
+					#if ($stringUtil.trim($group_service_request_id_val) != "")
+						#set ($signup_link = $group_service_request_id_val)
+					#end
+
+					#set ($contact_email_val = $stringUtil.trim($contact_email_val))
+
+					#set ($full_page_story = $assetPublisherHelper.getAssetViewURL($renderRequest, $renderResponse, $entry))
+
+					#set ($full_page_story = $httpUtil.removeParameter($full_page_story, "inheritRedirect"))
+
+					#set ($full_page_story = $httpUtil.removeParameter($full_page_story, "redirect"))
+
+					#set ($full_page_story = $htmlUtil.escapeJS($full_page_story))
+
+					<div class="trip-wrapper video-group">
+						<div class="banner-cover upcoming-trip" id="entry${entry_id}" style="background-image: url($banner_image_val);">
+							<div class="row-fluid trip-info">
+								<div class="section span6">
+									<h3 class="trip-title">
+										#if (($deadline_date_long - $current_date) < $thirty_days && ($deadline_date_long > $current_date))
+											<span class="deadline">#language ("deadline-approaching")</span>
+										#end
+
+										#if ($deadline_date_long < $current_date)
+											<span class="deadline">#language ("deadline-past")</span>
+										#end
+
+										$trip_title_val
+									</h3>
+
+									<div class="trip-location">
+										$location_val
+									</div>
+
+									<div class="trip-date">
+										$display_trip_date
+									</div>
+
+									#if (($deadline_date_long - $current_date) < $thirty_days)
+										#set ($deadline_date_obj = $dateUtil.newDate($deadline_date_long))
+										#set ($deadline_date = $dateUtil.getDate($deadline_date_obj, "MMM d", $locale))
+
+										<div class="trip-date">
+											Sign-up Deadline: $deadline_date
+										</div>
+									#end
+
+									<div class="row-fluid">
+										<div class="span10 trip-details">
+											<a class="open-details-box toggler-header-collapsed" href="javascript:;">
+												#language ("more-details")
+												<span class="expanded">-</span>
+												<span class="collapsed">+</span>
+											</a>
+
+											<div class="more-details-box toggler-content-collapsed">
+												<ul class="more-details-list unstyled">
+													<li class="primary-contact">#language ("primary-contact"): <a href="mailto:$contact_email_val">$contact_name_val</a></li>
+
+													<li>#language ("organization"): $organization_name_val</li>
+
+													#if ($stringUtil.trim($cost_val) != "")
+														<li>#language ("cost-of-the-trip"): $cost_val</li>
+													#end
+
+													#if ($stringUtil.trim($purpose_val) != "")
+														<li>#language ("why"): $purpose_val</li>
+													#end
+
+													#if ($stringUtil.trim($important_notes_val) != "")
+														<li class="important-notes">#language ("important-notes"): $important_notes_val</li>
+													#end
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="section span6">
+									<div class="row-fluid">
+										<div class="span10 trip-summary">
+											$service_description_val
+										</div>
+									</div>
+
+									<div class="row-fluid trip-buttons">
+										#if ($stringUtil.trim($additional_details_val) != "")
+											<button class="btn btn-transparent toggler-header-collapsed trip-breakdown-btn video" data-url="$video_urls" onClick="Liferay.EVP.scrollIntoView('#entry${entry_id}')">
+												#language ("trip-schedule")
+												<span class="expanded">-</span>
+												<span class="collapsed">+</span>
+											</button>
+										#end
+
+										#if ($stringUtil.trim($signup_link) != "" && ($deadline_date_long >= $current_date))
+											#set ($target = "_self")
+
+											#if ($signup_link.contains("http"))
+												#set ($target = "_blank")
+											#end
+
+											<a class="btn btn-transparent trip-signup-btn" href="$signup_link" target="$target">#language ("sign-up-now")</a>
+										#end
+
+										#set ($trip_interest_link_val = $stringUtil.trim($trip_interest_link_val))
+
+										#if ($trip_interest_link_val != "")
+											<button class="btn btn-transparent trip-interest-btn" data-header="$trip_interest_header_val" data-href="$trip_interest_link_val$user.emailAddress" data-message="$trip_interest_message_val">#language ("im-interested")</button>
+										#end
+
+										#if ($stringUtil.trim($follow_link_val) != "")
+											<a class="btn btn-transparent trip-follow-btn" href="$follow_link_val" target="_blank">#language ("follow")</a>
+										#end
+
+										#if ($stringUtil.trim($full_page_story) != "")
+											<button class="btn btn-transparent share-trip-btn" onClick="Liferay.EVP.openShareDialog('${full_page_story}')">
+												#language ("share")
+											</button>
+										#end
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row toggler-content-collapsed trip-breakdown">
+							<div class="content-wrapper offset2 span8">
+								<div class="content">
+									$additional_details_val
+								</div>
+							</div>
+						</div>
+					</div>
+				#end
+			#end
+		</div>
+
+		<div class="interest-modal"></div>
+
+		<div class="share-modal"></div>
+	</div>
+#end

@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.liferay.evp" auto-namespace-tables="false">
+	<author>Val Nagy</author>
+	<namespace>EVP</namespace>
+	<entity name="EVPDivision" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="evpDivisionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="organizationId" type="long" />
+		<column name="parentEVPDivisionId" type="long" />
+		<column name="abbreviation" type="String" />
+		<column name="type" type="int" />
+
+		<!-- Finder methods -->
+
+		<finder name="C_T" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="type" />
+		</finder>
+	</entity>
+	<entity name="EVPEmployee" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="evpEmployeeId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="employeeUserId" type="long" />
+		<column name="managerUserId" type="long" />
+		<column name="subsidiaryEVPDivisionId" type="long" />
+		<column name="employmentType" type="int" />
+		<column name="hireDate" type="Date" />
+
+		<!-- Finder methods -->
+
+		<finder name="EmployeeUserId" return-type="EVPEmployee" unique="true">
+			<finder-column name="employeeUserId" />
+		</finder>
+	</entity>
+	<entity name="EVPGrantRequest" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="evpGrantRequestId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="contactEmailAddressId" type="long" />
+		<column name="contactPhoneId" type="long" />
+		<column name="contactUserId" type="long" />
+		<column name="evpRequestOrganizationId" type="long" />
+		<column name="parentEVPGrantRequestId" type="long" />
+		<column name="requestOrganizationAddressId" type="long" />
+		<column name="requestOrganizationWebsiteId" type="long" />
+		<column name="subsidiaryGroupId" type="long" />
+		<column name="description" type="String" />
+		<column name="employmentType" type="int" />
+		<column name="employmentHoursPerWeek" type="int" />
+		<column name="purpose" type="String" />
+		<column name="purposeOther" type="String" />
+		<column name="behalfOf" type="String" />
+		<column name="behalfOfOther" type="String" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+		<!-- Finder methods -->
+
+		<finder name="C_S" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="status" comparator="!=" arrayable-operator="AND" />
+		</finder>
+	</entity>
+	<entity name="EVPGrantTransaction" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="evpGrantTransactionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="evpGrantRequestId" type="long" />
+		<column name="fileEntryId" type="long" />
+		<column name="grantType" type="int" />
+		<column name="amount" type="double" />
+		<column name="currencyCode" type="String" />
+		<column name="date" type="Date" />
+		<column name="note" type="String" />
+		<column name="number" type="String" />
+		<column name="bankBICCode" type="String" />
+		<column name="bankIBANCode" type="String" />
+		<column name="bankName" type="String" />
+		<column name="purposeOfUse" type="String" />
+	</entity>
+	<entity name="EVPKaleoForkInstance" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="evpKaleoForkInstanceId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
+		<column name="type" type="int" />
+		<column name="status" type="int" />
+	</entity>
+	<entity name="EVPRequestOrganization" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="evpRequestOrganizationId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="organizationId" type="long" />
+		<column name="subsidiaryGroupId" type="long" />
+		<column name="description" type="String" />
+		<column name="taxIdentificationNumber" type="String" />
+		<column name="nonprofitType" type="int" />
+		<column name="verified" type="boolean" />
+		<column name="shared" type="boolean" />
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+	</entity>
+	<entity name="EVPServiceRequest" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="evpServiceRequestId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="contactEmailAddressId" type="long" />
+		<column name="contactPhoneId" type="long" />
+		<column name="contactUserId" type="long" />
+		<column name="evpRequestOrganizationId" type="long" />
+		<column name="managerUserId" type="long" />
+		<column name="parentEVPServiceRequestId" type="long" />
+		<column name="requestOrganizationAddressId" type="long" />
+		<column name="requestOrganizationWebsiteId" type="long" />
+		<column name="subsidiaryGroupId" type="long" />
+		<column name="description" type="String" />
+		<column name="employmentType" type="int" />
+		<column name="employmentHoursPerWeek" type="int" />
+		<column name="purpose" type="String" />
+		<column name="purposeOther" type="String" />
+		<column name="behalfOf" type="String" />
+		<column name="behalfOfOther" type="String" />
+		<column name="requestedStartDate" type="Date" />
+		<column name="requestedEndDate" type="Date" />
+		<column name="requestedTotalHours" type="int" />
+		<column name="promoteTrip" type="boolean" />
+		<column name="confirmedStartDate" type="Date" />
+		<column name="confirmedEndDate" type="Date" />
+		<column name="confirmedTotalHours" type="int" />
+		<column name="contactBenefit" type="String" />
+		<column name="contactComments" type="String" />
+		<column name="hash" type="String" />
+		<column name="feedbackDescription" type="String" />
+		<column name="employeeBenefit" type="String" />
+		<column name="recipientBenefit" type="String" />
+		<column name="shareStory" type="boolean" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+		<!-- Finder methods -->
+
+		<finder name="C_S" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="status" comparator="!=" arrayable-operator="AND" />
+		</finder>
+	</entity>
+</service-builder>

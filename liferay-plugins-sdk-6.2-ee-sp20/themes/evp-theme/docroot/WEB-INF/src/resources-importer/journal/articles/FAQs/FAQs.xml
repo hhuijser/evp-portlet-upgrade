@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="category_variable" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[General]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="0" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="0" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="0" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What is the purpose of EVP?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="0" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<p>
+							The purpose of EVP is to promote and instill a spirit of charity and service throughout Liferay. We recognize that many Liferay employees joined our company largely because they believe in our "For Life" vision. Our employees’ corporate skills are great assets to Liferay, Inc., and in addition to that, many people have passions for effecting social impact both in their local communities and worldwide. Therefore, we hope EVP provides unique opportunities for employees to practically live out their passion for charity and service.
+						</p>
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="1">
+		<dynamic-element name="category_variable" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Eligibility]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="1" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="1" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="1" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[When am I eligible for EVP?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="1" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<p>
+							<em>In order to participate in EVP, you must have been employed by Liferay for the following amount of time: </em>
+						</p>
+
+						<p>
+							<em><strong>Full time employees</strong>: eligible </em>${subsidiary.configuration.minimum.required.months.since.full.time.hire.date}<em> months after their hire date.</em>
+						</p>
+
+						&lt;c:choose&gt;<br />
+						&lt;c:when test="${subsidiary.configuration.employment.temporary.enabled}"&gt;
+
+						<p>
+							<em><strong>Temporary employees</strong>: eligible </em>${subsidiary.configuration.minimum.required.months.since.temporary.hire.date}<em> months after their hire date, even if their employment status changes to full-time during those </em>${subsidiary.configuration.minimum.required.months.since.temporary.hire.date} months.
+						</p>
+
+						&lt;/c:when&gt;<br />
+						&lt;c:otherwise&gt;
+
+						<p>
+							<em><strong>Temporary employees</strong> are not eligible to participate in EVP.</em>
+						</p>
+
+						&lt;/c:otherwise&gt;<br />
+						&lt;/c:choose&gt;
+
+						&lt;c:choose&gt;<br />
+						&lt;c:when test="${subsidiary.configuration.employment.part.time.enabled}"&gt;
+
+						<p>
+							<em><strong>Part time employees</strong>: eligible </em>${subsidiary.configuration.minimum.required.months.since.part.time.hire.date}<em> months after their hire date and only if they work </em>${subsidiary.configuration.minimum.part.time.working.hours.per.week}<em> hours a week.</em>
+						</p>
+
+						&lt;/c:when&gt;<br />
+						&lt;c:otherwise&gt;
+
+						<p>
+							<em><strong>Part time employees</strong> are not eligible to participate in EVP.</em>
+						</p>
+
+						&lt;/c:otherwise&gt;<br />
+						&lt;/c:choose&gt;
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="2">
+		<dynamic-element name="category_variable" index="2" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="2" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Request Qualifications]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="2" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="2" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="2" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What causes qualify for my service and grant requests?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="2" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<ol>
+							<li><strong>Disaster Relief</strong> (e.g., providing supplies, rebuilding, trauma counseling).</li>
+							<li><strong>Providing Food, Water, and Shelter</strong> (e.g., building wells, soup kitchens).</li>
+							<li><strong>Basic Health and Education</strong> (e.g., hygiene, disease prevention, literacy, math).</li>
+							<li><strong>Vocational Empowerment</strong> (e.g., trade, craft, or other skills to earn a living).</li>
+							<li><strong>Freedom and Justice</strong> (e.g., working against human trafficking, modern slavery, unjust imprisonment).</li>
+						</ol>
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="3">
+		<dynamic-element name="category_variable" index="3" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="3" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Service Requests]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="3" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="3" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="3" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What are some examples of eligible service requests?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="3" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<ul>
+							<li><em>Rebuilding homes for earthquake victims (disaster relief).</em></li>
+							<li><em>Preparing meals for the homeless (food).</em></li>
+							<li><em>Building a health clinic's IT infrastructure in a third-world country (basic health).</em></li>
+							<li><em>Teaching computer skills to the urban poor for career development (vocational empowerment).</em></li>
+							<li><em>Publishing marketing literature for organizations combating sex-trafficking (freedom and justice).</em></li>
+						</ul>
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="4">
+		<dynamic-element name="category_variable" index="4" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="4" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Requests]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="4" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="4" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="4" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What are some examples of eligible grant requests?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="4" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<ul>
+							<li><em>Grants to support an organization rebuilding homes of earthquake victims (disaster relief).</em></li>
+							<li><em>Grants to support an organization that provides meals for the homeless (food).</em></li>
+							<li><em>Grants to support an organization building a health clinic in a third-world country (basic health).</em></li>
+							<li><em>Grants to support an organization building an urban poor career development center (vocational empowerment).</em></li>
+							<li><em>Grants to support an organization combatting sex-trafficking (freedom and justice).</em></li>
+						</ul>
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="5">
+		<dynamic-element name="category_variable" index="5" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[subsidiary.configuration.grant.type.sponsorship.enabled]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="5" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Sponsorship Guidelines]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="5" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="5" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="5" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[What kind of expenses are eligible for reimbursement using a Sponsorship grant?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="5" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<p>
+							<em>Only expenses related to lodging, food, supplies, or travel are eligible for reimbursement. Reimbursement for these expense categories are only allowed if the <strong>sole purpose</strong> for these expenses is to aid in your service.</em>
+						</p>
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="6">
+		<dynamic-element name="category_variable" index="6" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[isSubsidiaryUS]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="6" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Tax Deductions]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="6" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="6" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="6" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Can I get a tax deduction for the travel expenses I pay for an EVP trip?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="6" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<p>
+							<em>Eligible lodging, supply, or travel expenses related to service that are not reimbursed are deductible on your tax returns. For example, if you spent $2000 on eligible expenses and were reimbursed for $500 of those expenses, you can still claim $1500 in deductions when you file your taxes. Make sure to keep the following records for audit purposes:</em>
+						</p>
+
+						<ul>
+							<li><em>Proof from the organization that you served on the dates you requested.</em></li>
+							<li><em>Receipts that clearly display your service-related expenses.</em></li>
+						</ul>
+
+						<p>
+							<em>Please consult your tax advisor for full details on how to make these deductions.</em>
+						</p>
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="categories" type="selection_break" index-type="keyword" index="7">
+		<dynamic-element name="category_variable" index="7" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="category_header" index="7" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Questions?]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="questions_answers" index="7" type="selection_break" index-type="keyword">
+			<dynamic-element name="question_variable" index="7" type="text" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="question" index="7" type="text_box" index-type="keyword">
+				<dynamic-content language-id="en_US"><![CDATA[Who should I contact if I have any questions about EVP?]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="answer" index="7" type="text_area" index-type="keyword">
+				<dynamic-content language-id="en_US">
+					<![CDATA[
+						<p>
+							<em>Please contact </em>${subsidiary.configuration.email} <em>for any EVP questions. </em>
+						</p>
+
+						&lt;c:if test="${subsidiary.configuration.abbreviation == us}"&gt;
+
+						<p>
+							<strong>Are the full EVP legal grant guidelines available?</strong>
+						</p>
+
+						<p style="margin-left: 40px;">
+							<em>Yes, they're are available here.</em>
+						</p>
+
+						<p>
+							<strong>Are the full EVP legal service guidelines available?</strong>
+						</p>
+
+						<p style="margin-left: 40px;">
+							<em>Yes, they're are available here.</em>
+						</p>
+
+						&lt;/c:if&gt;
+					]]>
+				</dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

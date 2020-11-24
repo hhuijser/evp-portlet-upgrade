@@ -1,0 +1,56 @@
+<div class="about evp-history row-fluid">
+	<div class="evp-history-header row-fluid">
+		<div class="header-wrapper offset1 span11">
+			<h2 class="header">$header.getData()</h2>
+		</div>
+	</div>
+
+	<div class="offset3 span6 timeline">
+		<div class="span12 timeline-selector-bar">
+			#if (!$year.getSiblings().isEmpty())
+				#foreach($current_year in $year.getSiblings())
+					#set ($css_active_class = "")
+
+					#if ($velocityCount == 1)
+						#set ($css_active_class = "active")
+					#end
+
+					<div class="timeline-group">
+						<div class="$css_active_class timeline-point" data-selector="year-${current_year.getData()}">
+							<div class="timeline-year">
+								$current_year.getData()
+							</div>
+						</div>
+					</div>
+				#end
+			#end
+		</div>
+
+		#if (!$year.getSiblings().isEmpty())
+			#foreach($current_year in $year.getSiblings())
+				#set ($css_hide_class = "hide")
+				#set ($image_path = "@theme_image_path@/custom/about_evp/")
+
+				#if ($velocityCount == 1)
+					#set ($css_hide_class = "")
+				#end
+
+				<div class="$css_hide_class year year-${current_year.getData()}">
+					<div class="span4">
+						<svg class="year-svg">
+							<use xlink:href="${image_path}${current_year.timeline_event_image.getData()}" />
+						</svg>
+					</div>
+
+					<div class="span8">
+						<h3 class="header">$current_year.timeline_event_header.getData()</h3>
+
+						<div class="description">
+							$current_year.timeline_event_description.getData()
+						</div>
+					</div>
+				</div>
+			#end
+		#end
+	</div>
+</div>

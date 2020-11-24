@@ -1,0 +1,97 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPRequestOrganizationConstants {
+
+	public static final String NON_PROFIT_LABEL_GROUP_EXEMPTION = "group-exemption";
+
+	public static final String NON_PROFIT_LABEL_NONCHARITY = "noncharity";
+
+	public static final String NON_PROFIT_LABEL_PRIVATE_FOUNDATION = "private-foundation";
+
+	public static final String NON_PROFIT_LABEL_PRIVATE_OPERATING_FOUNDATION = "private-operating-foundation";
+
+	public static final String NON_PROFIT_LABEL_PUBLIC_CHARITY = "public-charity";
+
+	public static final String NON_PROFIT_LABEL_UNKNOWN = "unknown";
+
+	public static final String NON_PROFIT_STATUS_LABEL_GROUP_EXEMPTION = "GROUP";
+
+	public static final String NON_PROFIT_STATUS_LABEL_PRIVATE_FOUNDATION = "PF";
+
+	public static final String NON_PROFIT_STATUS_LABEL_PRIVATE_OPERATING_FOUNDATION = "POF";
+
+	public static final String NON_PROFIT_STATUS_LABEL_PUBLIC_CHARITY = "PC";
+
+	public static final String[] NON_PROFIT_STATUS_LABELS = {NON_PROFIT_STATUS_LABEL_PUBLIC_CHARITY, NON_PROFIT_STATUS_LABEL_PRIVATE_FOUNDATION, NON_PROFIT_STATUS_LABEL_PRIVATE_OPERATING_FOUNDATION, NON_PROFIT_STATUS_LABEL_GROUP_EXEMPTION};
+
+	public static final int NON_PROFIT_TYPE_GROUP_EXEMPTION = 4;
+
+	public static final int NON_PROFIT_TYPE_NONCHARITY = -1;
+
+	public static final int NON_PROFIT_TYPE_PRIVATE_FOUNDATION = 2;
+
+	public static final int NON_PROFIT_TYPE_PRIVATE_OPERATING_FOUNDATION = 3;
+
+	public static final int NON_PROFIT_TYPE_PUBLIC_CHARITY = 1;
+
+	public static final int NON_PROFIT_TYPE_UNKNOWN = 0;
+
+	public static int getNonprofitLabelType(String nonprofitLabel) {
+		if (nonprofitLabel.equals(NON_PROFIT_LABEL_GROUP_EXEMPTION) || nonprofitLabel.equals(NON_PROFIT_STATUS_LABEL_GROUP_EXEMPTION)) {
+			return NON_PROFIT_TYPE_GROUP_EXEMPTION;
+		}
+		else if (nonprofitLabel.equals(NON_PROFIT_LABEL_NONCHARITY)) {
+			return NON_PROFIT_TYPE_NONCHARITY;
+		}
+		else if (nonprofitLabel.equals(NON_PROFIT_LABEL_PRIVATE_FOUNDATION) || nonprofitLabel.equals(NON_PROFIT_STATUS_LABEL_PRIVATE_FOUNDATION)) {
+			return NON_PROFIT_TYPE_PRIVATE_FOUNDATION;
+		}
+		else if (nonprofitLabel.equals(NON_PROFIT_LABEL_PRIVATE_OPERATING_FOUNDATION) || nonprofitLabel.equals(NON_PROFIT_STATUS_LABEL_PRIVATE_OPERATING_FOUNDATION)) {
+			return NON_PROFIT_TYPE_PRIVATE_OPERATING_FOUNDATION;
+		}
+		else if (nonprofitLabel.equals(NON_PROFIT_LABEL_PUBLIC_CHARITY) || nonprofitLabel.equals(NON_PROFIT_STATUS_LABEL_PUBLIC_CHARITY)) {
+			return NON_PROFIT_TYPE_PUBLIC_CHARITY;
+		}
+		else {
+			return NON_PROFIT_TYPE_UNKNOWN;
+		}
+	}
+
+	public static String getNonprofitTypeLabel(int nonprofitType) {
+		if (nonprofitType == NON_PROFIT_TYPE_GROUP_EXEMPTION) {
+			return NON_PROFIT_LABEL_GROUP_EXEMPTION;
+		}
+		else if (nonprofitType == NON_PROFIT_TYPE_NONCHARITY) {
+			return NON_PROFIT_LABEL_NONCHARITY;
+		}
+		else if (nonprofitType == NON_PROFIT_TYPE_PRIVATE_FOUNDATION) {
+			return NON_PROFIT_LABEL_PRIVATE_FOUNDATION;
+		}
+		else if (nonprofitType == NON_PROFIT_TYPE_PRIVATE_OPERATING_FOUNDATION) {
+			return NON_PROFIT_LABEL_PRIVATE_OPERATING_FOUNDATION;
+		}
+		else if (nonprofitType == NON_PROFIT_TYPE_PUBLIC_CHARITY) {
+			return NON_PROFIT_LABEL_PUBLIC_CHARITY;
+		}
+		else {
+			return NON_PROFIT_LABEL_UNKNOWN;
+		}
+	}
+
+}
+%>

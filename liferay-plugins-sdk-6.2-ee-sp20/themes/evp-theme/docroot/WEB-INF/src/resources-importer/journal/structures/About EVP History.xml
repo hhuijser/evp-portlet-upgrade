@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header for this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="integer" fieldNamespace="ddm" indexType="keyword" localizable="true" name="year" readOnly="false" repeatable="true" required="false" showLabel="true" type="ddm-integer" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="timeline_event_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Timeline Event Header]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The header for the event on the EVP timeline.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="timeline_event_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Timeline Event Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for the event on the EVP timeline.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="timeline_event_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Timeline Event Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image for the year on the EVP timeline.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Year]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The year on the EVP timeline.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

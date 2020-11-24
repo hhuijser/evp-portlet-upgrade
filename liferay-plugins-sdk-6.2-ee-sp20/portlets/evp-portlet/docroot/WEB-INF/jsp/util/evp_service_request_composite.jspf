@@ -1,0 +1,598 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPServiceRequestComposite {
+
+	public EVPServiceRequestComposite(EVPServiceRequest evpServiceRequest, ThemeDisplay themeDisplay) throws Exception {
+		_evpServiceRequest = evpServiceRequest;
+		_themeDisplay = themeDisplay;
+	}
+
+	public EVPServiceRequestComposite(EVPServiceRequest evpServiceRequest, User user, ThemeDisplay themeDisplay) throws Exception {
+		_creatorUser = user;
+
+		_evpServiceRequest = evpServiceRequest;
+
+		_evpServiceRequest.setUserId(user.getUserId());
+
+		_themeDisplay = themeDisplay;
+	}
+
+	public String getBehalfOf() {
+		return _evpServiceRequest.getBehalfOf();
+	}
+
+	public String getBehalfOfOther() {
+		return _evpServiceRequest.getBehalfOfOther();
+	}
+
+	public Date getConfirmedEndDate() {
+		return _evpServiceRequest.getConfirmedEndDate();
+	}
+
+	public Calendar getConfirmedEndDateCalendar() {
+		return EVPUtil.getCalendar(getConfirmedEndDate());
+	}
+
+	public Date getConfirmedStartDate() {
+		return _evpServiceRequest.getConfirmedStartDate();
+	}
+
+	public Calendar getConfirmedStartDateCalendar() {
+		return EVPUtil.getCalendar(getConfirmedStartDate());
+	}
+
+	public int getConfirmedTotalHours() {
+		return _evpServiceRequest.getConfirmedTotalHours();
+	}
+
+	public String getContactBenefit() {
+		return _evpServiceRequest.getContactBenefit();
+	}
+
+	public String getContactComments() {
+		return _evpServiceRequest.getContactComments();
+	}
+
+	public User getContactUser() throws Exception {
+		if ((_contactUser == null) && (getContactUserId() > 0)) {
+			_contactUser = UserLocalServiceUtil.getUser(getContactUserId());
+		}
+
+		return _contactUser;
+	}
+
+	public EmailAddress getContactUserEmailAddress() throws Exception {
+		return EmailAddressLocalServiceUtil.fetchEmailAddress(getContactUserEmailAddressId());
+	}
+
+	public long getContactUserEmailAddressId() {
+		return _evpServiceRequest.getContactEmailAddressId();
+	}
+
+	public String getContactUserEmailAddressString() throws Exception {
+		EmailAddress contactUserEmailAddress = getContactUserEmailAddress();
+
+		if (contactUserEmailAddress == null) {
+			return StringPool.BLANK;
+		}
+
+		return contactUserEmailAddress.getAddress();
+	}
+
+	public String getContactUserFirstName() throws Exception {
+		User contactUser = getContactUser();
+
+		return contactUser.getFirstName();
+	}
+
+	public String getContactUserFullName() throws Exception {
+		User contactUser = getContactUser();
+
+		return contactUser.getFullName();
+	}
+
+	public long getContactUserId() {
+		return _evpServiceRequest.getContactUserId();
+	}
+
+	public String getContactUserLastName() throws Exception {
+		User contactUser = getContactUser();
+
+		return contactUser.getLastName();
+	}
+
+	public Phone getContactUserPhone() throws Exception {
+		return PhoneLocalServiceUtil.fetchPhone(getContactUserPhoneId());
+	}
+
+	public long getContactUserPhoneId() {
+		return _evpServiceRequest.getContactPhoneId();
+	}
+
+	public String getContactUserPhoneString() throws Exception {
+		Phone contactUserPhone = getContactUserPhone();
+
+		if (contactUserPhone == null) {
+			return StringPool.BLANK;
+		}
+
+		return contactUserPhone.getNumber();
+	}
+
+	public Date getCreateDate() {
+		return _evpServiceRequest.getCreateDate();
+	}
+
+	public long getCreatorEvpSubsidiaryCountryId() throws Exception {
+		EVPDivisionComposite subsidiaryEVPDivisionComposite = getCreatorSubsidiaryEVPDivisionComposite();
+
+		List<Address> organizationAddresses = AddressLocalServiceUtil.getAddresses(_themeDisplay.getCompanyId(), Organization.class.getName(), subsidiaryEVPDivisionComposite.getOrganizationId());
+
+		if (organizationAddresses.isEmpty()) {
+			if (_log.isInfoEnabled()) {
+				_log.info("Could not find address for the organization with the ID " + subsidiaryEVPDivisionComposite.getOrganizationId());
+			}
+
+			return 0;
+		}
+
+		Address organizationAddress = organizationAddresses.get(0);
+
+		Country subsidiaryCountry = CountryServiceUtil.getCountry(organizationAddress.getCountryId());
+
+		if (subsidiaryCountry == null) {
+			return 0;
+		}
+
+		return subsidiaryCountry.getCountryId();
+	}
+
+	public Date getCreatorStartDate() throws Exception {
+		return EVPUtil.getUserStartDate(getCreatorUser());
+	}
+
+	public long getCreatorStartDateTime() throws Exception {
+		Date creatorStartDate = getCreatorStartDate();
+
+		return creatorStartDate.getTime();
+	}
+
+	public EVPDivisionComposite getCreatorSubsidiaryEVPDivisionComposite() throws Exception {
+		if (_creatorSubsidiaryEVPDivisionComposite == null) {
+			_creatorSubsidiaryEVPDivisionComposite = new EVPDivisionComposite(EVPDivisionUtil.getSubsidiaryEVPDivision(getUserId()));
+		}
+
+		return _creatorSubsidiaryEVPDivisionComposite;
+	}
+
+	public String getCreatorSubsidiaryProperty(String portletPropsKey) throws Exception {
+		EVPDivisionComposite subsidiaryEVPDivisionComposite = getCreatorSubsidiaryEVPDivisionComposite();
+
+		return EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(_evpServiceRequest.getCompanyId(), subsidiaryEVPDivisionComposite.getOrganizationGroupId(), portletPropsKey);
+	}
+
+	public User getCreatorUser() throws Exception {
+		if (_creatorUser == null) {
+			_creatorUser = UserLocalServiceUtil.getUser(getUserId());
+		}
+		return _creatorUser;
+	}
+
+	public String getCreatorUserEmailAddressString() throws Exception {
+		User creatorUser = getCreatorUser();
+
+		return creatorUser.getEmailAddress();
+	}
+
+	public String getCreatorUserFirstName() throws Exception {
+		User creatorUser = getCreatorUser();
+
+		return creatorUser.getFirstName();
+	}
+
+	public String getCreatorUserFullName() throws Exception {
+		User creatorUser = getCreatorUser();
+
+		return creatorUser.getFullName();
+	}
+
+	public Phone getCreatorUserPhone() throws Exception {
+		return EVPPortalUtil.fetchUserPhone(getCreatorUser());
+	}
+
+	public String getCreatorUserPhoneString() throws Exception {
+		Phone phone = getCreatorUserPhone();
+
+		if (phone != null) {
+			return phone.getNumber();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	public String getDescription() {
+		return _evpServiceRequest.getDescription();
+	}
+
+	public String getEmployeeBenefit() {
+		return _evpServiceRequest.getEmployeeBenefit();
+	}
+
+	public int getEmploymentHoursPerWeek() {
+		return _evpServiceRequest.getEmploymentHoursPerWeek();
+	}
+
+	public int getEmploymentType() {
+		return _evpServiceRequest.getEmploymentType();
+	}
+
+	public String getEmploymentTypeLabel() {
+		return EVPConstants.getEmploymentTypeLabel(getEmploymentType());
+	}
+
+	public String getEmploymentTypeProperty(int employmentType) throws Exception {
+		String portletPropsKey = EVPConstants.getEmploymentTypePortletPropsKey(employmentType);
+
+		if (Validator.isNull(portletPropsKey)) {
+			return Boolean.TRUE.toString();
+		}
+
+		return getCreatorSubsidiaryProperty(portletPropsKey);
+	}
+
+	public EVPEmployee getEVPEmployee() throws Exception {
+		if (_evpEmployee == null) {
+			_evpEmployee = EVPEmployeeLocalServiceUtil.fetchEVPEmployeeByEmployeeUserId(getUserId());
+		}
+
+		return _evpEmployee;
+	}
+
+	public EVPRequestOrganization getEvpRequestOrganization() throws Exception {
+		if (_evpRequestOrganization == null) {
+			_evpRequestOrganization = EVPRequestOrganizationLocalServiceUtil.fetchEVPRequestOrganization(getEvpRequestOrganizationId());
+		}
+
+		return _evpRequestOrganization;
+	}
+
+	public String getEvpRequestOrganizationDescription() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return StringPool.BLANK;
+		}
+
+		return evpRequestOrganization.getDescription();
+	}
+
+	public long getEvpRequestOrganizationId() {
+		return _evpServiceRequest.getEvpRequestOrganizationId();
+	}
+
+	public int getEvpRequestOrganizationNonprofitType() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return EVPRequestOrganizationConstants.NON_PROFIT_TYPE_UNKNOWN;
+		}
+
+		return evpRequestOrganization.getNonprofitType();
+	}
+
+	public String getEvpRequestOrganizationNonprofitTypeLabel() throws Exception {
+		return EVPRequestOrganizationConstants.getNonprofitTypeLabel(getEvpRequestOrganizationNonprofitType());
+	}
+
+	public EVPServiceRequest getEvpServiceRequest() {
+		return _evpServiceRequest;
+	}
+
+	public long getEvpServiceRequestId() {
+		return _evpServiceRequest.getEvpServiceRequestId();
+	}
+
+	public String getFeedbackDescription() {
+		return _evpServiceRequest.getFeedbackDescription();
+	}
+
+	public List<String> getForkStatusLabels() throws Exception {
+		List<String> forkStatusLabels = new ArrayList<String>();
+
+		for (int status : getStatuses()) {
+			forkStatusLabels.add(EVPWorkflowConstants.getServiceStatusLabel(status));
+		}
+
+		return forkStatusLabels;
+	}
+
+	public User getManagerUser() throws Exception {
+		if (getManagerUserId() == 0) {
+			return null;
+		}
+
+		return UserLocalServiceUtil.getUser(getManagerUserId());
+	}
+
+	public String getManagerUserEmailAddressString() throws Exception{
+		User managerUser = getManagerUser();
+
+		if (getManagerUser() == null) {
+			return StringPool.BLANK;
+		}
+
+		return managerUser.getEmailAddress();
+	}
+
+	public long getManagerUserId() throws Exception {
+		if (_evpServiceRequest.getManagerUserId() > 0) {
+			return _evpServiceRequest.getManagerUserId();
+		}
+
+		EVPEmployee evpEmployee = getEVPEmployee();
+
+		if (evpEmployee == null) {
+			return 0;
+		}
+
+		return evpEmployee.getManagerUserId();
+	}
+
+	public Date getModifiedDate() {
+		return _evpServiceRequest.getModifiedDate();
+	}
+
+	public String getMostRecentComment() throws Exception {
+		return EVPUtil.getMostRecentComment(WorkflowInstance.class.getName(), getWorkflowInstanceId(), getUserId(), _themeDisplay.getScopeGroupId());
+	}
+
+	public Date getOneWeekFromRequestedEndDate() throws Exception {
+		Date requestedEndDate = getRequestedEndDate();
+
+		return EVPUtil.addDays(requestedEndDate, 7);
+	}
+
+	public Organization getOrganization() throws Exception {
+		return OrganizationLocalServiceUtil.fetchOrganization(getOrganizationId());
+	}
+
+	public long getOrganizationId() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return 0;
+		}
+
+		return evpRequestOrganization.getOrganizationId();
+	}
+
+	public String getOrganizationName() throws Exception {
+		Organization organization = getOrganization();
+
+		if (organization == null) {
+			return StringPool.BLANK;
+		}
+
+		return organization.getName();
+	}
+
+	public long getParentEVPServiceRequestId() {
+		return _evpServiceRequest.getParentEVPServiceRequestId();
+	}
+
+	public long getPrivateMessageId() throws Exception {
+		return _getMessageId(EVPServiceRequest.class.getName(), getEvpServiceRequestId());
+	}
+
+	public long getPrivateMessagesCount() throws Exception {
+		return _getThreadMessagesCount(EVPServiceRequest.class.getName(), getEvpServiceRequestId()) - 1;
+	}
+
+	public long getPrivateThreadId() throws Exception {
+		return _getThreadId(EVPServiceRequest.class.getName(), getEvpServiceRequestId());
+	}
+
+	public long getPublicMessageId() throws Exception {
+		return _getMessageId(WorkflowInstance.class.getName(), getWorkflowInstanceId());
+	}
+
+	public long getPublicMessagesCount() throws Exception {
+		return _getThreadMessagesCount(WorkflowInstance.class.getName(), getWorkflowInstanceId()) - 1;
+	}
+
+	public long getPublicThreadId() throws Exception {
+		return _getThreadId(WorkflowInstance.class.getName(), getWorkflowInstanceId());
+	}
+
+	public String getPurpose() {
+		return _evpServiceRequest.getPurpose();
+	}
+
+	public String getPurposeOther() {
+		return _evpServiceRequest.getPurposeOther();
+	}
+
+	public String getRecipientBenefit() {
+		return _evpServiceRequest.getRecipientBenefit();
+	}
+
+	public Date getRequestedEndDate() {
+		return _evpServiceRequest.getRequestedEndDate();
+	}
+
+	public Calendar getRequestedEndDateCalendar() {
+		return EVPUtil.getCalendar(getRequestedEndDate());
+	}
+
+	public Date getRequestedStartDate() {
+		return _evpServiceRequest.getRequestedStartDate();
+	}
+
+	public Calendar getRequestedStartDateCalendar() {
+		return EVPUtil.getCalendar(getRequestedStartDate());
+	}
+
+	public int getRequestedTotalHours() {
+		return _evpServiceRequest.getRequestedTotalHours();
+	}
+
+	public Address getRequestOrganizationAddress() throws Exception {
+		return AddressLocalServiceUtil.fetchAddress(getRequestOrganizationAddressId());
+	}
+
+	public long getRequestOrganizationAddressId() {
+		return _evpServiceRequest.getRequestOrganizationAddressId();
+	}
+
+	public long getRequestOrganizationWebsiteId() {
+		return _evpServiceRequest.getRequestOrganizationWebsiteId();
+	}
+
+	public String getRequestOrganizationWebsiteURL() throws Exception {
+		Website requestOrganizationWebsite = WebsiteLocalServiceUtil.fetchWebsite(getRequestOrganizationWebsiteId());
+
+		if (requestOrganizationWebsite == null) {
+			return StringPool.BLANK;
+		}
+
+		return requestOrganizationWebsite.getUrl();
+	}
+
+	public int getStatus() {
+		return _evpServiceRequest.getStatus();
+	}
+
+	public List<Integer> getStatuses() throws Exception {
+		return EVPKaleoForkInstanceUtil.getStatuses(_evpServiceRequest.getEvpServiceRequestId());
+	}
+
+	public String getStatusLabel() throws Exception {
+		return EVPWorkflowConstants.getServiceStatusLabel(getStatus());
+	}
+
+	public long getSubsidiaryGroupId() {
+		return _evpServiceRequest.getSubsidiaryGroupId();
+	}
+
+	public String getTaxIdentificationNumber() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return StringPool.BLANK;
+		}
+
+		return evpRequestOrganization.getTaxIdentificationNumber();
+	}
+
+	public long getUserId() {
+		return _evpServiceRequest.getUserId();
+	}
+
+	public long getWorkflowInstanceId() throws Exception {
+		return EVPWorkflowUtil.getWorkflowInstanceId(_themeDisplay, EVPServiceRequest.class.getName(), getEvpServiceRequestId(), getSubsidiaryGroupId());
+	}
+
+	public boolean hasForkStatus(int status) throws Exception {
+		List<Integer> statuses = getStatuses();
+
+		return statuses.contains(status);
+	}
+
+	public boolean isFork() throws Exception {
+		return ArrayUtil.contains(EVPWorkflowConstants.SERVICE_STATUSES_FORK, getStatus());
+	}
+
+	public boolean isPastDue() throws Exception {
+		int allowedDaysSinceService = 28;
+
+		Date now = new Date();
+
+		Date requestedEndDate = getRequestedEndDate();
+
+		if ((DateUtil.getDaysBetween(requestedEndDate, now) > allowedDaysSinceService) && requestedEndDate.before(now)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isPromoteTrip() {
+		return _evpServiceRequest.isPromoteTrip();
+	}
+
+	public boolean isShareStory() {
+		return _evpServiceRequest.isShareStory();
+	}
+
+	public boolean isStatusEditable() throws Exception {
+		if (getStatus() == EVPWorkflowConstants.SERVICE_STATUS_MORE_INFO_FROM_USER) {
+			return true;
+		}
+
+		List<Integer> statuses = getStatuses();
+
+		return statuses.contains(EVPWorkflowConstants.SERVICE_STATUS_MORE_INFO_FROM_USER);
+	}
+
+	public boolean isStatusEditableFeedback() throws Exception {
+		if (ArrayUtil.contains(EVPWorkflowConstants.SERVICE_STATUSES_FEEDBACK_USER_EDITABLE, getStatus())) {
+			return true;
+		}
+
+		for (int status : getStatuses()) {
+			if (ArrayUtil.contains(EVPWorkflowConstants.SERVICE_STATUSES_FEEDBACK_USER_EDITABLE, status)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private long _getMessageId(String className, long classPK) throws Exception {
+		MBMessage rootMessage = _getRootMessage(className, classPK);
+
+		return rootMessage.getMessageId();
+	}
+
+	private MBMessage _getRootMessage(String className, long classPK) throws Exception {
+		return EVPUtil.getRootMessage(_themeDisplay.getUserId(), _themeDisplay.getScopeGroupId(), className, classPK);
+	}
+
+	private long _getThreadId(String className, long classPK) throws Exception {
+		MBMessage rootMessage = _getRootMessage(className, classPK);
+
+		return rootMessage.getThreadId();
+	}
+
+	private long _getThreadMessagesCount(String className, long classPK) throws Exception {
+		return MBMessageLocalServiceUtil.getThreadMessagesCount(_getThreadId(className, classPK), WorkflowConstants.STATUS_ANY);
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(EVPServiceRequest.class);
+
+	private User _contactUser;
+	private EVPDivisionComposite _creatorSubsidiaryEVPDivisionComposite;
+	private User _creatorUser;
+	private EVPEmployee _evpEmployee;
+	private EVPRequestOrganization _evpRequestOrganization;
+	private EVPServiceRequest _evpServiceRequest;
+	private Address _requestOrganizationAddress;
+	private ThemeDisplay _themeDisplay;
+
+}
+%>

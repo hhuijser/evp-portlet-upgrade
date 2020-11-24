@@ -1,0 +1,808 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="story_title" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Story Title]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The title of the story.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="author_email" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Author Email]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The story author's email address.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="full_image" readOnly="false" repeatable="false" required="true" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Full Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The full size image.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="thumbnail" readOnly="false" repeatable="false" required="true" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Thumbnail]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The 160x160 thumbnail of the full size image.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="story_summary" readOnly="false" repeatable="false" required="true" showLabel="true" type="textarea" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Story Summary]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The summary of the story.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" multiple="false" name="grid_position" readOnly="false" repeatable="false" required="true" showLabel="true" type="select" width="">
+		<dynamic-element name="option2351014" type="option" value="0">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[1]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351124" type="option" value="1">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[2]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351234" type="option" value="2">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[3]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351344" type="option" value="3">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[4]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351454" type="option" value="4">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[5]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351564" type="option" value="5">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[6]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351674" type="option" value="6">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[7]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351784" type="option" value="7">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[8]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351894" type="option" value="8">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[9]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2351904" type="option" value="9">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[0]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352501" type="option" value="10">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[11]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352512" type="option" value="11">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[12]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352523" type="option" value="12">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[13]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352534" type="option" value="13">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[14]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352545" type="option" value="14">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[15]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352556" type="option" value="15">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[16]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352567" type="option" value="16">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[17]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352578" type="option" value="17">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[18]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352589" type="option" value="18">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[19]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2352590" type="option" value="19">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[20]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353601" type="option" value="20">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[21]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353612" type="option" value="21">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[22]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353623" type="option" value="22">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[23]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353634" type="option" value="23">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[24]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353645" type="option" value="24">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[25]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353656" type="option" value="25">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[26]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353667" type="option" value="26">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[27]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353678" type="option" value="27">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[28]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353689" type="option" value="28">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[29]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2353690" type="option" value="29">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[30]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354701" type="option" value="30">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[31]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354712" type="option" value="31">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[32]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354723" type="option" value="32">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[33]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354734" type="option" value="33">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[34]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354745" type="option" value="34">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[35]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354756" type="option" value="35">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[36]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354767" type="option" value="36">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[37]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354778" type="option" value="37">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[38]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354789" type="option" value="38">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[39]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2354790" type="option" value="39">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[40]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355801" type="option" value="40">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[41]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355812" type="option" value="41">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[42]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355823" type="option" value="42">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[43]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355834" type="option" value="43">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[44]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355845" type="option" value="44">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[45]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355856" type="option" value="45">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[46]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355867" type="option" value="46">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[47]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355878" type="option" value="47">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[48]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355889" type="option" value="48">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[49]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2355890" type="option" value="49">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[50]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356901" type="option" value="50">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[51]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356912" type="option" value="51">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[52]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356923" type="option" value="52">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[53]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356934" type="option" value="53">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[54]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356945" type="option" value="54">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[55]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356956" type="option" value="55">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[56]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356967" type="option" value="56">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[57]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356978" type="option" value="57">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[58]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356989" type="option" value="58">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[59]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2356990" type="option" value="59">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[60]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357001" type="option" value="60">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[61]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357012" type="option" value="61">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[62]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357023" type="option" value="62">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[63]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357034" type="option" value="63">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[64]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357045" type="option" value="64">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[65]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357056" type="option" value="65">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[66]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357067" type="option" value="66">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[67]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357078" type="option" value="67">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[68]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357089" type="option" value="68">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[69]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2357090" type="option" value="69">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[70]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358101" type="option" value="70">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[71]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358112" type="option" value="71">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[72]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358123" type="option" value="72">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[73]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358134" type="option" value="73">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[74]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358145" type="option" value="74">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[75]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358156" type="option" value="75">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[76]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358167" type="option" value="76">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[77]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358178" type="option" value="77">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[78]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358189" type="option" value="78">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[79]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2358190" type="option" value="79">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[80]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359201" type="option" value="80">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[81]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359212" type="option" value="81">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[82]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359223" type="option" value="82">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[83]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359234" type="option" value="83">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[84]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359245" type="option" value="84">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[85]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359256" type="option" value="85">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[86]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359267" type="option" value="86">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[87]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359278" type="option" value="87">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[88]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359289" type="option" value="88">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[89]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2359290" type="option" value="89">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[90]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350301" type="option" value="90">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[91]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350312" type="option" value="91">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[92]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350323" type="option" value="92">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[93]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350334" type="option" value="93">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[94]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350345" type="option" value="94">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[95]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350356" type="option" value="95">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[96]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350367" type="option" value="96">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[97]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350378" type="option" value="97">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[98]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350389" type="option" value="98">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[99]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option2350390" type="option" value="99">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[100]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Grid Position]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[[""]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The position of the image on the grid.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="loop_url" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Loop URL]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The URL of the corresponding Loop post.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="full_story_url" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Full Story URL]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The URL to the full story.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

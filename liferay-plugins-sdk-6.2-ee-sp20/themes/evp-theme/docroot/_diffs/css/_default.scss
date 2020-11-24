@@ -1,0 +1,55 @@
+a {
+	color: $orange;
+
+	&:active, &:focus, &:hover {
+		color: $teal;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $teal;
+
+	.header {
+		color: $white;
+	}
+}
+
+.btn {
+	&.btn-primary {
+		background: $teal;
+		color: $white;
+
+		&:hover {
+			background: $darkTeal;
+			color: $white;
+			text-shadow: none;
+		}
+	}
+}
+
+.content, .header {
+	color: $white;
+}
+
+#navigation {
+	&.navbar {
+		&, &.nav-scroll {
+			.selected a {
+				color: $teal;
+			}
+
+			a:hover {
+				color: $teal;
+				text-decoration: underline;
+			}
+		}
+
+		a {
+			color: $white;
+		}
+
+		&.nav-scroll a {
+			color: $grey;
+		}
+	}
+}

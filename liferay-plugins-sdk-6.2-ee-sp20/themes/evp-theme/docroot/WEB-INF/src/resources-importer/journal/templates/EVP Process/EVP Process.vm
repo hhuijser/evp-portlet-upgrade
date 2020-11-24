@@ -1,0 +1,97 @@
+#if ($background_image.getData() == "")
+	#set ($image_path = "@theme_image_path@/custom/evp_process.jpg")
+#else
+	#set ($image_path = $background_image.getData())
+#end
+
+<div class="banner-cover evp-process row-fluid" style="background-image: url($image_path);">
+	<div class="evp-process-infographic">
+		<svg class="evp-process-image" viewBox="0 0 690 610" xmlns="http://www.w3.org/2000/svg">
+			<g class="step" data-section="step-1">
+				<path class="highlight" d="M350.3 12.6v99h55.4v-99h-55.4zm22.2 88.3h-10.1v-11h10.1v11zm0-22.3h-10.1V67.7h10.1v10.9zm0-21.6h-10.1V46.1h10.1V57zm0-22.2h-10.1V23.9h10.1v10.9zm21.9 66.1h-10.1v-11h10.1v11zm0-22.3h-10.1V67.7h10.1v10.9zm0-21.6h-10.1V46.1h10.1V57zm0-22.2h-10.1V23.9h10.1v10.9zM261 111.6h77.2V34.8H261v76.8zm55.2-65.5h10.1V57h-10.1V46.1zm0 21.6h10.1v10.9h-10.1V67.7zm0 22.2h10.1v10.9h-10.1V89.9zm-21.3-43.8H305V57h-10.1V46.1zm0 21.6H305v10.9h-10.1V67.7zm0 22.2H305v10.9h-10.1V89.9zm-21.8-43.8h10.1V57h-10.1V46.1zm0 21.6h10.1v10.9h-10.1V67.7zm0 22.2h10.1v10.9h-10.1V89.9z" fill="#FFF" />
+
+				<text fill="#FFF" x="266.052" y="141.923">
+					$step_1_header.getData()
+				</text>
+
+				<path class="highlight stroke" d="M432.5 85.6s60.4 23.3 99.5 82.4" fill="none" stroke="#FFF" stroke-miterlimit="10" stroke-width="2" />
+
+				<path class="highlight" d="M541.4 160.2l-20.5 13 16.7 3.7" fill="#FFF" />
+			</g>
+
+			<g class="step" data-section="step-2">
+				<path class="highlight" d="M612.9 276.9H590v-4.5h22.9v4.5zm0-11.8H590v-4.5h22.9v4.5zm0-12H590v-4.5h22.9v4.5zm-58.2-16.5h58.2v4.5h-24.6v42.1h-45.7V298h82.1v-94.3h-82.1v36.1h12.1v-3.2zm58.2-7.7h-58.2v-4.5h58.2v4.5z" fill="#FFF" />
+
+				<path class="highlight" d="M542.8 264.2l43.1-19.6V280h-86v-35.4"fill="#FFF" />
+
+				<path class="highlight" d="M499.9 242.3h86l-43 19.2"fill="#FFF" />
+
+				<text fill="#FFF" transform="translate(500.6 330.5)">
+					$step_2_header.getData()
+				</text>
+
+				<path class="highlight stroke" d="M561.6 352.4s-9.9 38.8-32.3 70.4" fill="none" stroke="#FFF" stroke-miterlimit="10" stroke-width="2" />
+
+				<path class="highlight" d="M539.9 428.7l-19.4-14.6 2.4 17" fill="#FFF" />
+			</g>
+
+			<g class="step" data-section="step-3">
+				<path class="highlight" d="M405.3 484.5l17.6 14.9 10.4 8.8 46.7-66.1-12.4-8.7-36.1 52.3-16.1-13.9M461.1 491.6l28 23.8 46.7-66.1-12.4-8.7-36.2 52.3-16-13.9" fill="#FFF" />
+
+				<text fill="#FFF" transform="translate(401.89 549.117)">
+					$step_3_header.getData()
+				</text>
+
+				<path class="highlight stroke" d="M391.1 514.6s-39 8.9-77.4 3.2" fill="none" stroke="#FFF" stroke-miterlimit="10" stroke-width="2" />
+
+				<path class="highlight" d="M313.2 530l4.2-23.9-14 9.8" fill="#FFF" />
+			</g>
+
+			<g class="step" data-section="step-4">
+				<circle class="highlight" cx="157.8" cy="449.2" fill="#FFF" r="13" />
+
+				<path class="highlight" d="M178.5 499.8h-41.4V468l20.7-2.7 20.7 2.7M215.8 464.1c0 7.2-5.8 13-13 13s-13-5.8-13-13 5.8-13 13-13c7.1 0 13 5.8 13 13zM223.5 514.6h-41.4v-31.8l20.7-2.6 20.7 2.6" fill="#FFF" />
+
+				<circle class="highlight" cx="248.1" cy="444.6" fill="#FFF" r="13" />
+
+				<path class="highlight" d="M268.9 495.1h-41.5v-31.8l20.7-2.6 20.8 2.6" fill="#FFF" />
+
+				<text fill="#FFF" transform="translate(90.851 545.924)">
+					$step_4_header.getData()
+				</text>
+
+				<path class="highlight stroke" d="M147.9 408.4s-8.2-5.4-17.8-37.3" fill="none" stroke="#FFF" stroke-miterlimit="10" stroke-width="2" />
+
+				<path class="highlight" d="M119 375.9l23.3-6.7-15-8.3" fill="#FFF" />
+			</g>
+
+			<g class="step" data-section="step-5">
+				<path class="highlight" d="M70.8 265.6v36h33.3l14.8 7.1V301h8.4v-35.4M53.2 246.6h48.6l17.3 8.8v-8.8h8.2v-48.9H53.2v48.9zm12.4-41.2h49.2v3.8H65.6v-3.8zm0 10.3h49.2v3.8H65.6v-3.8zm0 10.1h49.2v3.8H65.6v-3.8zm0 10.2h49.2v3.8H65.6V236zM137.1 214.9v48.8h33.3l14.8 7.1v-7.7h8.3v-48.2h-56.4zm49.6 36.9h-43.3v-3.6h43.3v3.6zm0-10.2h-43.3V238h43.3v3.6zm0-10.1h-43.3v-3.6h43.3v3.6z" fill="#FFF" />
+
+				<text fill="#FFF" transform="translate(37.227 341.646)">
+					$step_5_header.getData()
+				</text>
+
+				<path class="highlight stroke" d="M140.7 188.6s28.7-58 91.1-91.7" fill="none" stroke="#FFF" stroke-miterlimit="10" stroke-width="2" />
+
+				<path class="highlight" d="M224.9 86.9l11.1 21.6 5.2-16.3" fill="#FFF" />
+			</g>
+		</svg>
+
+		<div class="evp-process-description">
+			<div class="content description-content text-center">
+				<span class="default-description description transition-fade-in">$default_description.getData()</span>
+
+				<span class="description hide step-1">$step_1_header.step_1_description.getData()</span>
+
+				<span class="description hide step-2">$step_2_header.step_2_description.getData()</span>
+
+				<span class="description hide step-3">$step_3_header.step_3_description.getData()</span>
+
+				<span class="description hide step-4">$step_4_header.step_4_description.getData()</span>
+
+				<span class="description hide step-5">$step_5_header.step_5_description.getData()</span>
+			</div>
+		</div>
+	</div>
+</div>

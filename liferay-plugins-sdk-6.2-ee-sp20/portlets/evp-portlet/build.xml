@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="evp-portlet" basedir="." default="deploy">
+	<property name="import.shared" value="alloy-mvc-shared" />
+
+	<import file="../build-common-alloy-portlet.xml" />
+
+	<target name="compile">
+		<if>
+			<not>
+				<available file="${app.server.portal.dir}/html/taglib/ui/discussion/page.portal.jsp" />
+			</not>
+			<then>
+				<copy
+					file="${app.server.portal.dir}/html/taglib/ui/discussion/page.jsp"
+					tofile="docroot/META-INF/custom_jsps/html/taglib/ui/discussion/page.jsp"
+					overwrite="true"
+				/>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/discussion/page.jsp">
+					<replacefilter
+						token="new MessageCreateDateComparator(true)"
+						value="new MessageCreateDateComparator(false)"
+					/>
+				</replace>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/discussion/page.jsp">
+					<replacetoken><![CDATA[<c:if test="<%= themeDisplay.isSignedIn() && !TrashUtil.isInTrash(className, classPK) %>">]]></replacetoken>
+					<replacevalue><![CDATA[<c:if test="<%= false %>">]]></replacevalue>
+				</replace>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/discussion/page.jsp">
+					<replacetoken><![CDATA[<c:if test="<%= !subscribed && themeDisplay.isSignedIn() %>">]]></replacetoken>
+					<replacevalue><![CDATA[<c:if test="<%= false %>">]]></replacevalue>
+				</replace>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/discussion/page.jsp">
+					<replacetoken><![CDATA[<div class="hide lfr-message-response" id="<%= randomNamespace %>discussion-status-messages"></div>]]></replacetoken>
+					<replacevalue>
+						<![CDATA[<div class="discussion-wrapper">
+							<div class="discussion-body offset2 span8">
+						<div class="hide lfr-message-response" id="<%= randomNamespace %>discussion-status-messages"></div>]]>
+					</replacevalue>
+				</replace>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/discussion/page.jsp">
+					<replacetoken><![CDATA[<div class="taglib-discussion" id="<portlet:namespace />discussion-container">]]></replacetoken>
+					<replacevalue><![CDATA[<div class="taglib-discussion discussion-content" id="<portlet:namespace />discussion-container">]]></replacevalue>
+				</replace>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/discussion/page.jsp">
+					<replacetoken><![CDATA[</aui:script>
+</c:if>]]></replacetoken>
+					<replacevalue><![CDATA[</aui:script>
+		</c:if>
+	</div>
+</div>]]></replacevalue>
+				</replace>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${app.server.portal.dir}/html/taglib/ui/input_date/page.portal.jsp" />
+			</not>
+			<then>
+				<copy
+					file="${app.server.portal.dir}/html/taglib/ui/input_date/page.jsp"
+					tofile="docroot/META-INF/custom_jsps/html/taglib/ui/input_date/page.jsp"
+					overwrite="true"
+				/>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/input_date/page.jsp">
+					<replacetoken><![CDATA[datePicker.after(
+				'selectionChange',
+				function(event) {
+					var input = A.one('#<%= nameId %>');
+
+					if (input) {
+						var form = input.get('form');
+
+						var formId = form.get('id');
+
+						var formInstance = Liferay.Form.get(formId);
+
+						formInstance.formValidator.validateField('<%= namespace + HtmlUtil.escapeAttribute(name) %>');
+					}
+				}
+			);]]></replacetoken>
+					<replacevalue><![CDATA[<c:choose>
+						<c:when test="<%= !BrowserSnifferUtil.isMobile(request) %>">
+							var calendar = datePicker.getCalendar();
+
+							if (calendar) {
+								calendar.after(
+									'dateClick',
+									function(event) {
+										var input = A.one('#<%= nameId %>');
+
+										if (input) {
+											var form = input.get('form');
+
+											var formId = form.get('id');
+
+											var formInstance = Liferay.Form.get(formId);
+
+											formInstance.formValidator.validateField('<%= namespace + HtmlUtil.escapeAttribute(name) %>');
+
+											input.focus();
+										}
+									}
+								);
+							}
+						</c:when>
+						<c:otherwise>
+							datePicker.after(
+								'selectionChange',
+								function(event) {
+									var input = A.one('#<%= nameId %>');
+
+									if (input) {
+										var form = input.get('form');
+
+										var formId = form.get('id');
+
+										var formInstance = Liferay.Form.get(formId);
+
+										formInstance.formValidator.validateField('<%= namespace + HtmlUtil.escapeAttribute(name) %>');
+									}
+								}
+							);
+						</c:otherwise>
+					</c:choose>]]></replacevalue>
+				</replace>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="${app.server.portal.dir}/html/taglib/ui/input_field/page.portal.jsp" />
+			</not>
+			<then>
+				<copy
+					file="${app.server.portal.dir}/html/taglib/ui/input_field/page.jsp"
+					tofile="docroot/META-INF/custom_jsps/html/taglib/ui/input_field/page.jsp"
+					overwrite="true"
+				/>
+
+				<replace file="docroot/META-INF/custom_jsps/html/taglib/ui/input_field/page.jsp">
+					<replacefilter
+						token="CalendarFactoryUtil.getCalendar(timeZone, locale)"
+						value="CalendarFactoryUtil.getCalendar(locale)"
+					/>
+				</replace>
+			</then>
+		</if>
+
+		<compile
+			module.dir="${basedir}"
+		/>
+	</target>
+</project>

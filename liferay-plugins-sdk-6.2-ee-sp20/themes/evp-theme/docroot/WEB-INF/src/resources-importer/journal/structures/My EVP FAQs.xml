@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="categories" readOnly="false" repeatable="true" required="false" showLabel="true" type="ddm-separator" width="">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="category_variable" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Category Conditional Variable]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The name of the conditional variable for the category.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="header" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Header]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The header for this category.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="description" readOnly="false" repeatable="false" required="true" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The description for this category.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element fieldNamespace="ddm" indexType="keyword" localizable="true" name="questions_answers" readOnly="false" repeatable="true" required="false" showLabel="true" type="ddm-separator" width="">
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="question_variable" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Question/Answer Conditional Variable]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The name of the conditional variable for the question.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" localizable="true" name="question" readOnly="false" repeatable="false" required="true" showLabel="true" type="textarea" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Question]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The question.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="html" fieldNamespace="ddm" indexType="keyword" localizable="true" name="answer" readOnly="false" repeatable="false" required="true" showLabel="true" type="ddm-text-html" width="medium">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Answer]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[The answer corresponding to the question.]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Question and Answer]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+				<entry name="style">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Category]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+			<entry name="style">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

@@ -1,0 +1,484 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPGrantRequestComposite {
+
+	public EVPGrantRequestComposite(EVPGrantRequest evpGrantRequest, ThemeDisplay themeDisplay) throws Exception {
+		_evpGrantRequest = evpGrantRequest;
+		_themeDisplay = themeDisplay;
+	}
+
+	public EVPGrantRequestComposite(EVPGrantRequest evpGrantRequest, User user, ThemeDisplay themeDisplay) throws Exception {
+		_creatorUser = user;
+
+		_evpGrantRequest = evpGrantRequest;
+
+		_evpGrantRequest.setUserId(user.getUserId());
+
+		_themeDisplay = themeDisplay;
+	}
+
+	public String getBehalfOf() {
+		return _evpGrantRequest.getBehalfOf();
+	}
+
+	public String getBehalfOfOther() {
+		return _evpGrantRequest.getBehalfOfOther();
+	}
+
+	public User getContactUser() throws Exception {
+		if (_contactUser == null) {
+			if (getContactUserId() > 0) {
+				_contactUser = UserLocalServiceUtil.getUser(getContactUserId());
+			}
+			else {
+				_contactUser = UserLocalServiceUtil.createUser(0);
+			}
+		}
+
+		return _contactUser;
+	}
+
+	public EmailAddress getContactUserEmailAddress() throws Exception {
+		return EmailAddressLocalServiceUtil.fetchEmailAddress(getContactUserEmailAddressId());
+	}
+
+	public long getContactUserEmailAddressId() {
+		return _evpGrantRequest.getContactEmailAddressId();
+	}
+
+	public String getContactUserEmailAddressString() throws Exception {
+		EmailAddress contactUserEmailAddress = getContactUserEmailAddress();
+
+		if (contactUserEmailAddress == null) {
+			return null;
+		}
+
+		return contactUserEmailAddress.getAddress();
+	}
+
+	public String getContactUserFirstName() throws Exception {
+		User contactUser = getContactUser();
+
+		return contactUser.getFirstName();
+	}
+
+	public String getContactUserFullName() throws Exception {
+		User contactUser = getContactUser();
+
+		return contactUser.getFullName();
+	}
+
+	public long getContactUserId() {
+		return _evpGrantRequest.getContactUserId();
+	}
+
+	public String getContactUserLastName() throws Exception {
+		User contactUser = getContactUser();
+
+		return contactUser.getLastName();
+	}
+
+	public Phone getContactUserPhone() throws Exception {
+		return PhoneLocalServiceUtil.fetchPhone(getContactUserPhoneId());
+	}
+
+	public long getContactUserPhoneId() {
+		return _evpGrantRequest.getContactPhoneId();
+	}
+
+	public String getContactUserPhoneString() throws Exception {
+		Phone contactUserPhone = getContactUserPhone();
+
+		if (contactUserPhone == null) {
+			return null;
+		}
+
+		return contactUserPhone.getNumber();
+	}
+
+	public Date getCreateDate() {
+		return _evpGrantRequest.getCreateDate();
+	}
+
+	public long getCreatorEvpSubsidiaryCountryId() throws Exception {
+		EVPDivisionComposite subsidiaryEVPDivisionComposite = getCreatorSubsidiaryEVPDivisionComposite();
+
+		List<Address> organizationAddresses = AddressLocalServiceUtil.getAddresses(_themeDisplay.getCompanyId(), Organization.class.getName(), subsidiaryEVPDivisionComposite.getOrganizationId());
+
+		if (organizationAddresses.isEmpty()) {
+			if (_log.isInfoEnabled()) {
+				_log.info("Could not find address for the organization with the ID " + subsidiaryEVPDivisionComposite.getOrganizationId());
+			}
+
+			return 0;
+		}
+
+		Address organizationAddress = organizationAddresses.get(0);
+
+		Country subsidiaryCountry = CountryServiceUtil.getCountry(organizationAddress.getCountryId());
+
+		if (subsidiaryCountry == null) {
+			return 0;
+		}
+
+		return subsidiaryCountry.getCountryId();
+	}
+
+	public Date getCreatorStartDate() throws Exception {
+		return EVPUtil.getUserStartDate(getCreatorUser());
+	}
+
+	public long getCreatorStartDateTime() throws Exception {
+		Date creatorStartDate = getCreatorStartDate();
+
+		return creatorStartDate.getTime();
+	}
+
+	public EVPDivisionComposite getCreatorSubsidiaryEVPDivisionComposite() throws Exception {
+		if (_creatorSubsidiaryEVPDivisionComposite == null) {
+			_creatorSubsidiaryEVPDivisionComposite = new EVPDivisionComposite(EVPDivisionUtil.getSubsidiaryEVPDivision(getUserId()));
+		}
+
+		return _creatorSubsidiaryEVPDivisionComposite;
+	}
+
+	public String getCreatorSubsidiaryProperty(String portletPropsKey) throws Exception {
+		EVPDivisionComposite subsidiaryEVPDivisionComposite = getCreatorSubsidiaryEVPDivisionComposite();
+
+		return EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(_evpGrantRequest.getCompanyId(), subsidiaryEVPDivisionComposite.getOrganizationGroupId(), portletPropsKey);
+	}
+
+	public User getCreatorUser() throws Exception {
+		if (_creatorUser == null) {
+			_creatorUser = UserLocalServiceUtil.getUser(getUserId());
+		}
+
+		return _creatorUser;
+	}
+
+	public String getCreatorUserEmailAddressString() throws Exception {
+		User creatorUser = getCreatorUser();
+
+		return creatorUser.getEmailAddress();
+	}
+
+	public String getCreatorUserFullName() throws Exception {
+		User creatorUser = getCreatorUser();
+
+		return creatorUser.getFullName();
+	}
+
+	public Phone getCreatorUserPhone() throws Exception {
+		return EVPPortalUtil.fetchUserPhone(getCreatorUser());
+	}
+
+	public String getCreatorUserPhoneString() throws Exception {
+		Phone creatorUserPhone = getCreatorUserPhone();
+
+		if (creatorUserPhone != null) {
+			return creatorUserPhone.getNumber();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	public String getDescription() {
+		return _evpGrantRequest.getDescription();
+	}
+
+	public int getEmploymentHoursPerWeek() {
+		return _evpGrantRequest.getEmploymentHoursPerWeek();
+	}
+
+	public int getEmploymentType() {
+		return _evpGrantRequest.getEmploymentType();
+	}
+
+	public String getEmploymentTypeLabel() {
+		return EVPConstants.getEmploymentTypeLabel(getEmploymentType());
+	}
+
+	public String getEmploymentTypeProperty(int employmentType) throws Exception {
+		String portletPropsKey = EVPConstants.getEmploymentTypePortletPropsKey(employmentType);
+
+		if (Validator.isNull(portletPropsKey)) {
+			return Boolean.TRUE.toString();
+		}
+
+		return getCreatorSubsidiaryProperty(portletPropsKey);
+	}
+
+	public EVPEmployee getEVPEmployee() throws Exception {
+		if (_evpEmployee == null) {
+			_evpEmployee = EVPEmployeeLocalServiceUtil.fetchEVPEmployeeByEmployeeUserId(getUserId());
+		}
+
+		return _evpEmployee;
+	}
+
+	public EVPGrantRequest getEvpGrantRequest() {
+		return _evpGrantRequest;
+	}
+
+	public long getEvpGrantRequestId() {
+		return _evpGrantRequest.getEvpGrantRequestId();
+	}
+
+	public Map<String, EVPGrantTransactionComposite> getEvpGrantTransactionCompositesMap() throws Exception {
+		if (_evpGrantTransactionCompositesMap == null) {
+			List<EVPGrantTransaction> evpGrantTransactions = getEvpGrantTransactions();
+
+			if (evpGrantTransactions != null) {
+				Map<String, EVPGrantTransactionComposite> evpGrantTransactionCompositesMap = new LinkedHashMap<String, EVPGrantTransactionComposite>();
+
+				for (EVPGrantTransaction evpGrantTransaction : evpGrantTransactions) {
+					evpGrantTransactionCompositesMap.put(EVPGrantTransactionConstants.getGrantTypeLabel(evpGrantTransaction.getGrantType()), new EVPGrantTransactionComposite(evpGrantTransaction));
+				}
+
+				_evpGrantTransactionCompositesMap = evpGrantTransactionCompositesMap;
+			}
+		}
+
+		return _evpGrantTransactionCompositesMap;
+	}
+
+	public List<EVPGrantTransaction> getEvpGrantTransactions() throws Exception {
+		if (_evpGrantTransactions == null) {
+			_evpGrantTransactions = EVPUtil.getEvpGrantTransactions(getEvpGrantRequestId());
+		}
+
+		return _evpGrantTransactions;
+	}
+
+	public String getEvpGrantTransactionsProperty(int grantType) throws Exception {
+		String portletPropsKey = EVPGrantTransactionConstants.getEvpGrantTransactionsPortletPropKeys(grantType);
+
+		return getCreatorSubsidiaryProperty(portletPropsKey);
+	}
+
+	public EVPRequestOrganization getEvpRequestOrganization() throws Exception {
+		if (_evpRequestOrganization == null) {
+			_evpRequestOrganization = EVPRequestOrganizationLocalServiceUtil.fetchEVPRequestOrganization(getEvpRequestOrganizationId());
+		}
+
+		return _evpRequestOrganization;
+	}
+
+	public String getEvpRequestOrganizationDescription() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return StringPool.BLANK;
+		}
+
+		return evpRequestOrganization.getDescription();
+	}
+
+	public long getEvpRequestOrganizationId() {
+		return _evpGrantRequest.getEvpRequestOrganizationId();
+	}
+
+	public int getEvpRequestOrganizationNonprofitType() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return EVPRequestOrganizationConstants.NON_PROFIT_TYPE_UNKNOWN;
+		}
+
+		return evpRequestOrganization.getNonprofitType();
+	}
+
+	public String getEvpRequestOrganizationNonprofitTypeLabel() throws Exception {
+		return EVPRequestOrganizationConstants.getNonprofitTypeLabel(getEvpRequestOrganizationNonprofitType());
+	}
+
+	public Date getModifiedDate() {
+		return _evpGrantRequest.getModifiedDate();
+	}
+
+	public String getMostRecentComment() throws Exception {
+		return EVPUtil.getMostRecentComment(WorkflowInstance.class.getName(), getWorkflowInstanceId(), getUserId(), _themeDisplay.getScopeGroupId());
+	}
+
+	public Organization getOrganization() throws Exception {
+		return OrganizationLocalServiceUtil.fetchOrganization(getOrganizationId());
+	}
+
+	public long getOrganizationId() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return 0;
+		}
+
+		return evpRequestOrganization.getOrganizationId();
+	}
+
+	public String getOrganizationName() throws Exception {
+		Organization organization = getOrganization();
+
+		if (organization == null) {
+			return StringPool.BLANK;
+		}
+
+		return organization.getName();
+	}
+
+	public long getParentEVPGrantRequestId() throws Exception {
+		return _evpGrantRequest.getParentEVPGrantRequestId();
+	}
+
+	public long getPrivateMessageId() throws Exception {
+		return _getMessageId(EVPGrantRequest.class.getName(), getEvpGrantRequestId());
+	}
+
+	public long getPrivateMessagesCount() throws Exception {
+		return _getThreadMessagesCount(EVPGrantRequest.class.getName(), getEvpGrantRequestId()) - 1;
+	}
+
+	public long getPrivateThreadId() throws Exception {
+		return _getThreadId(EVPGrantRequest.class.getName(), getEvpGrantRequestId());
+	}
+
+	public long getPublicMessageId() throws Exception {
+		return _getMessageId(WorkflowInstance.class.getName(), getWorkflowInstanceId());
+	}
+
+	public long getPublicMessagesCount() throws Exception {
+		return _getThreadMessagesCount(WorkflowInstance.class.getName(), getWorkflowInstanceId()) - 1;
+	}
+
+	public long getPublicThreadId() throws Exception {
+		return _getThreadId(WorkflowInstance.class.getName(), getWorkflowInstanceId());
+	}
+
+	public String getPurpose() {
+		return _evpGrantRequest.getPurpose();
+	}
+
+	public String getPurposeOther() {
+		return _evpGrantRequest.getPurposeOther();
+	}
+
+	public Address getRequestOrganizationAddress() throws Exception {
+		return AddressLocalServiceUtil.fetchAddress(getRequestOrganizationAddressId());
+	}
+
+	public long getRequestOrganizationAddressId() {
+		return _evpGrantRequest.getRequestOrganizationAddressId();
+	}
+
+	public long getRequestOrganizationWebsiteId() {
+		return _evpGrantRequest.getRequestOrganizationWebsiteId();
+	}
+
+	public String getRequestOrganizationWebsiteURL() throws Exception {
+		Website requestOrganizationWebsite = WebsiteLocalServiceUtil.fetchWebsite(getRequestOrganizationWebsiteId());
+
+		if (requestOrganizationWebsite == null) {
+			return StringPool.BLANK;
+		}
+
+		return requestOrganizationWebsite.getUrl();
+	}
+
+	public int getStatus() {
+		return _evpGrantRequest.getStatus();
+	}
+
+	public String getStatusLabel() {
+		return EVPWorkflowConstants.getGrantStatusLabel(getStatus());
+	}
+
+	public long getSubsidiaryGroupId() {
+		return _evpGrantRequest.getSubsidiaryGroupId();
+	}
+
+	public String getTaxIdentificationNumber() throws Exception {
+		EVPRequestOrganization evpRequestOrganization = getEvpRequestOrganization();
+
+		if (evpRequestOrganization == null) {
+			return StringPool.BLANK;
+		}
+
+		return evpRequestOrganization.getTaxIdentificationNumber();
+	}
+
+	public long getUserId() {
+		return _evpGrantRequest.getUserId();
+	}
+
+	public long getWorkflowInstanceId() throws Exception {
+		return EVPWorkflowUtil.getWorkflowInstanceId(_themeDisplay, EVPGrantRequest.class.getName(), getEvpGrantRequestId(), getSubsidiaryGroupId());
+	}
+
+	public boolean isFormerMatchingGrant() throws Exception {
+		List<EVPGrantTransaction> evpGrantTransactions = getEvpGrantTransactions();
+
+		for (EVPGrantTransaction evpGrantTransaction : evpGrantTransactions) {
+			if (evpGrantTransaction.getFileEntryId() > 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public boolean isStatusEditable() {
+		if (getStatus() == EVPWorkflowConstants.GRANT_STATUS_MORE_INFO_FROM_USER) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private long _getMessageId(String className, long classPK) throws Exception {
+		MBMessage rootMessage = _getRootMessage(className, classPK);
+
+		return rootMessage.getMessageId();
+	}
+
+	private MBMessage _getRootMessage(String className, long classPK) throws Exception {
+		return EVPUtil.getRootMessage(_themeDisplay.getUserId(), _themeDisplay.getScopeGroupId(), className, classPK);
+	}
+
+	private long _getThreadId(String className, long classPK) throws Exception {
+		MBMessage rootMessage = _getRootMessage(className, classPK);
+
+		return rootMessage.getThreadId();
+	}
+
+	private long _getThreadMessagesCount(String className, long classPK) throws Exception {
+		return MBMessageLocalServiceUtil.getThreadMessagesCount(_getThreadId(className, classPK), WorkflowConstants.STATUS_ANY);
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(EVPGrantRequest.class);
+
+	private User _contactUser;
+	private EVPDivisionComposite _creatorSubsidiaryEVPDivisionComposite;
+	private User _creatorUser;
+	private EVPEmployee _evpEmployee;
+	private EVPGrantRequest _evpGrantRequest;
+	private Map<String, EVPGrantTransactionComposite> _evpGrantTransactionCompositesMap;
+	private List<EVPGrantTransaction> _evpGrantTransactions;
+	private EVPRequestOrganization _evpRequestOrganization;
+	private Address _requestOrganizationAddress;
+	private ThemeDisplay _themeDisplay;
+
+}
+%>

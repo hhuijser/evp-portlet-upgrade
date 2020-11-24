@@ -1,0 +1,196 @@
+#set ($grid_items = [])
+
+#foreach ($i in [1..100])
+	#set($VOID = $grid_items.add($i))
+#end
+
+#set ($icon_path = $themeDisplay.getPathThemeImages() + '/custom/icons/')
+
+<div class="one-life" id="grid">
+	<div class="actions clearfix">
+		<div style="padding: 40px 0px 40px 0px;" id="grid-2">
+			In 2017, let's share stories of 100 lives being positively impacted -- one life at a time. Check back here often to keep up-to-date on the campaign.
+
+			<br/><br/>
+
+			Help us reach our goal by going to Loop and <a href="https://loop.liferay.com/web/guest/home/-/loop/topics/_onelife" target="_loop_post">making a post</a> in the #onelife topic!
+		</div>
+		<div class="pull-left search">
+			<svg class="icon-search" height="30" width="30">
+				<use xlink:href="${icon_path}icon_search.svg#icon-search"></use>
+			</svg>
+
+			<input class="search-input" id="searchInput" placeholder="#language ('search')" type="text" />
+		</div>
+
+		<div class="contribute pull-right">
+			<svg height="16" width="16">
+				<use xlink:href="${icon_path}icon_plus.svg#icon-plus"></use>
+			</svg>
+
+			#language ("contribute")
+		</div>
+	</div>
+
+	#if (!$entries.isEmpty())
+		#foreach ($entry in $entries)
+			#set ($renderer = $entry.getAssetRenderer())
+
+			#set ($class_name = $renderer.getClassName())
+
+			#if ($class_name == "com.liferay.portlet.journal.model.JournalArticle")
+				#set ($journal_article = $renderer.getArticle())
+
+				#set ($document = $saxReaderUtil.read($journal_article.getContent()))
+				#set ($root_element = $document.getRootElement())
+
+				#set ($grid_position = $saxReaderUtil.createXPath("dynamic-element[@name='grid_position']"))
+				#set ($grid_position_val = $grid_position.selectSingleNode($root_element).getStringValue())
+				#set ($grid_position_index = $getterUtil.getInteger($grid_position_val))
+
+				#set ($VOID = $grid_items.set($grid_position_index, $entry))
+			#end
+		#end
+	#end
+
+	<div class="grid" style="padding-bottom: 350px;">
+		#set ($storyIndex = 0)
+
+		#foreach ($grid_item in $grid_items)
+			#if ($grid_item.class.name != "java.lang.Integer")
+				<div class="grid-item search-nodes selectable">
+					#set ($renderer = $grid_item.getAssetRenderer())
+
+					#set ($class_name = $renderer.getClassName())
+
+					#if ($class_name == "com.liferay.portlet.journal.model.JournalArticle")
+						#set ($journal_article = $renderer.getArticle())
+
+						#set ($document = $saxReaderUtil.read($journal_article.getContent()))
+						#set ($root_element = $document.getRootElement())
+
+						#set ($author_email = $saxReaderUtil.createXPath("dynamic-element[@name='author_email']"))
+						#set ($author_email_val = $author_email.selectSingleNode($root_element).getStringValue())
+						#set ($full_image = $saxReaderUtil.createXPath("dynamic-element[@name='full_image']"))
+						#set ($full_image_val = $full_image.selectSingleNode($root_element).getStringValue())
+						#set ($full_story_url = $saxReaderUtil.createXPath("dynamic-element[@name='full_story_url']"))
+						#set ($full_story_url_val = $full_story_url.selectSingleNode($root_element).getStringValue())
+						#set ($loop_url = $saxReaderUtil.createXPath("dynamic-element[@name='loop_url']"))
+						#set ($loop_url_val = $loop_url.selectSingleNode($root_element).getStringValue())
+						#set ($story_summary = $saxReaderUtil.createXPath("dynamic-element[@name='story_summary']"))
+						#set ($story_summary_val = $story_summary.selectSingleNode($root_element).getStringValue())
+						#set ($story_title = $saxReaderUtil.createXPath("dynamic-element[@name='story_title']"))
+						#set ($story_title_val = $story_title.selectSingleNode($root_element).getStringValue())
+						#set ($thumbnail = $saxReaderUtil.createXPath("dynamic-element[@name='thumbnail']"))
+						#set ($thumbnail_val = $thumbnail.selectSingleNode($root_element).getStringValue())
+
+						#set ($article_id = $journal_article.getArticleId())
+
+						<div class="grid-square" data-index="$storyIndex" id="story_${article_id}" style="background-image: url($thumbnail_val)" title="$story_title_val">
+							<a href="javascript:;">
+								<div class="overlay"></div>
+							</a>
+						</div>
+
+						<div class="hide">
+							<div class="story-content" data-index="$storyIndex">
+								#set ($userLocalService = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+								#set ($author = $userLocalService.getUserByEmailAddress($themeDisplay.getCompanyId(), $author_email_val))
+
+								<div class="story-header">
+									<div class="author-info">
+										<div class="avatar-wrapper">
+											<img alt="$author.firstName $author.lastName" class="author-avatar" src="$author.getPortraitURL($themeDisplay)" />
+										</div>
+
+										<div class="name-date">
+											<h4 class="author-name">$author.firstName $author.lastName</h4>
+
+											<div class="post-date">
+												$dateTool.format("MMMM d, yyyy", $grid_item.publishDate, $locale, $themeDisplay.getTimeZone())
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="story-image">
+									<img alt="$story_title_val" src="$full_image_val.trim()" />
+								</div>
+
+								<div class="story-details">
+									<div class="story-summary">$story_summary_val</div>
+
+									<div class="links">
+										#if ($full_story_url_val.trim() != "")
+											<div class="button-wrapper">
+												<a class="btn view-story" href="$full_story_url_val">#language ('read-full-story')</a>
+											</div>
+										#end
+
+										<div class="loop-wrapper">
+											<a class="loop-link" href="$loop_url_val" target="_loop_link">
+												<svg class='loop-logo'>
+													<use xlink:href="$themeDisplay.getPathThemeImages()/custom/icons/icon_loop.svg#icon-loop"></use>
+												</svg>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="hide search-content">
+							$story_title_val $story_summary_val $author_email_val
+						</div>
+
+						#set ($storyIndex = $storyIndex + 1)
+					#end
+				</div>
+			#else
+				<div class="grid-item search-nodes">
+					<div class="blank grid-square"></div>
+				</div>
+			#end
+		#end
+	</div>
+
+	<div class="hide">
+		<div class="contribute-modal">
+			<div class="modal-header-content">
+				<h3 class="text-center">
+					#language ('contribute-a-story')
+
+					<span class="close-modal">
+						<svg height="16" width="16">
+							<use xlink:href="${icon_path}icon_close.svg#icon-close"></use>
+						</svg>
+					</span>
+				</h3>
+			</div>
+
+			<div class="modal-body-content text-center">
+				<div class="contribute-message">#language ('share-on-loop-message')</div>
+
+				<div class="button-wrapper">
+					<a class="btn btn-primary" href="https://loop.liferay.com/web/guest/home/-/loop/topics/_onelife" target="_loop_link">#language ('take-me-to-loop')</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="story-modal">
+			<div class="modal-body-content">
+				<span class="close-story-popup">
+					<svg class="close-story" height="24" width="24">
+						<use xlink:href="${icon_path}icon_close.svg#icon-close"></use>
+					</svg>
+				</span>
+
+				<div class="prev-story"></div>
+
+				<div class="story-content-container"></div>
+
+				<div class="next-story"></div>
+			</div>
+		</div>
+	</div>
+</div>

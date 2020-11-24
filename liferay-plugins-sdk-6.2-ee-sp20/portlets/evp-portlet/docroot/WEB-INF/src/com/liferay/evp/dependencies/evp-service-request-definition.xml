@@ -1,0 +1,3286 @@
+<?xml version="1.0"?>
+
+<workflow-definition xmlns="urn:liferay.com:liferay-workflow_7.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.0.0 https://cdn.rawgit.com/liferay/liferay-portal/master/definitions/liferay-workflow-definition_7_0_0.xsd"
+>
+	<name>EVP - Service Request</name>
+	<description>A process to approve Service Requests.</description>
+	<version>1</version>
+	<state>
+		<name>request-created</name>
+		<initial>true</initial>
+		<transitions>
+			<transition>
+				<name>determine-notification-path</name>
+				<target>determine-notification-path</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<condition>
+		<name>determine-notification-path</name>
+		<script>
+			<![CDATA[
+				if (evpServiceRequestContext.PARENT_EVP_SERVICE_REQUEST_ID > 0) {
+					returnValue = "ready-for-group-service";
+				}
+				else {
+					returnValue = "determine-review-path";
+				}
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>determine-review-path</name>
+				<target>determine-review-path</target>
+			</transition>
+			<transition>
+				<name>ready-for-group-service</name>
+				<target>ready-for-group-service</target>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>ready-for-group-service</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>
+					<![CDATA[
+						[Liferay EVP] ${evpServiceRequestContext.CREATOR_USER_FULL_NAME} Requested to Join Your Service Trip
+					]]>
+				</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.TEAM_LEAD_USER_FIRST_NAME},<br /><br />
+
+						${evpServiceRequestContext.CREATOR_USER_FULL_NAME} would like to join your service trip with ${evpServiceRequestContext.ORGANIZATION_NAME} from ${evpServiceRequestContext.SERVICE_START_DATE} to ${evpServiceRequestContext.SERVICE_END_DATE}. If you have any questions/concerns with ${evpServiceRequestContext.CREATOR_USER_FIRST_NAME} joining your team, please contact him/her directly at ${evpServiceRequestContext.CREATOR_USER_EMAIL} or ${evpServiceRequestContext.CREATOR_USER_PHONE}. If after discussing with ${evpServiceRequestContext.CREATOR_USER_FIRST_NAME} you still have concerns, please contact this employee's EVP Team at ${evpServiceRequestContext.SUBSIDIARY_EMAIL} to discuss and possibly request rejection of ${evpServiceRequestContext.CREATOR_USER_FIRST_NAME}'s service request.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<scripted-recipient>
+						<script>
+							<![CDATA[
+								import com.liferay.portal.service.UserLocalServiceUtil;
+
+								user = UserLocalServiceUtil.getUser(evpServiceRequestContext.TEAM_LEAD_USER_ID as long);
+
+								roles = null;
+							]]>
+						</script>
+						<script-language>groovy</script-language>
+						<script-required-contexts>kaleo-web,portal-scripting-api,portal-scripting-groovy</script-required-contexts>
+					</scripted-recipient>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>determine-review-path</name>
+				<target>determine-review-path</target>
+			</transition>
+		</transitions>
+	</state>
+	<condition>
+		<name>determine-review-path</name>
+		<script>
+			<![CDATA[
+				if (evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_FORK_ENABLED) {
+					returnValue = "pending-review-by-manager-and-evp-team-fork";
+				}
+				else {
+					returnValue = "request-submitted";
+				}
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>request-submitted</name>
+				<target>request-submitted</target>
+			</transition>
+			<transition>
+				<name>pending-review-by-manager-and-evp-team-fork</name>
+				<target>pending-review-by-manager-and-evp-team-fork</target>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>request-submitted</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review</description>
+				<template>
+					<![CDATA[
+						A new or updated volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						Please review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The submitter says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-review-by-evp-team</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-evp-team</name>
+		<actions>
+			<action>
+				<name>service-status-pending-review-by-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 222;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>EVP Team</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>approved-by-evp-team</name>
+				<target>approved-by-evp-team</target>
+			</transition>
+			<transition>
+				<name>rejected-by-evp-team</name>
+				<target>rejected-by-evp-team</target>
+			</transition>
+			<transition>
+				<name>request-country-coordinator-validation</name>
+				<target>pending-review-by-country-coordinator</target>
+			</transition>
+			<transition>
+				<name>request-hr-validation</name>
+				<target>pending-review-by-hr</target>
+			</transition>
+			<transition>
+				<name>request-global-evp-team-validation</name>
+				<target>pending-validation-by-global-evp-team</target>
+			</transition>
+			<transition>
+				<name>request-more-information-from-user</name>
+				<target>pending-more-information-from-user</target>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>pending-review-by-country-coordinator</name>
+		<actions>
+			<action>
+				<name>service-status-pending-review-by-country-coordinator-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 244;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>country-coordinator-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Country Coordinator Approval</description>
+				<template>
+					<![CDATA[
+						Dear Country Coordinator,<br /><br />
+
+						A new volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate that ${evpServiceRequestContext.ORGANIZATION_NAME} is a valid nonprofit in your country.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The EVP Team says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>Country Coordinator</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>Country Coordinator</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-country-coordinator</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>validated-by-country-coordinator</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review (Validated by Country Coordinator)</description>
+				<template>
+					<![CDATA[
+						The Country Coordinator determined that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s requested organization ${evpServiceRequestContext.ORGANIZATION_NAME} is a valid nonprofit.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The Country Coordinator says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>return-country-coordinator-validated-request-to-evp-team-for-review</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-hr</name>
+		<actions>
+			<action>
+				<name>service-status-pending-review-by-hr-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 221;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>hr-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending HR Approval</description>
+				<template>
+					<![CDATA[
+						Dear HR,<br /><br />
+
+						A new volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate ${evpServiceRequestContext.CREATOR_USER_FIRST_NAME}'s eligibility to participate in EVP.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>HR</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>HR</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-hr</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>validated-by-hr</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review (Validated by HR)</description>
+				<template>
+					<![CDATA[
+						HR determined that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request is valid.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							HR says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>return-hr-validated-request-to-evp-team-for-review</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-validation-by-global-evp-team</name>
+		<actions>
+			<action>
+				<name>service-status-validation-requested-from-global-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 223;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>global-evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Global EVP Team Approval</description>
+				<template>
+					<![CDATA[
+						A new volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate the request.<br /><br />
+
+						EVP Team says:<br />
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>regular</role-type>
+							<name>EVP Team (Global)</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Team (Global)</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-global-evp-team</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>validated-by-global-evp-team</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP]Volunteer Service Request - Pending Review (Validated by Global EVP Team)</description>
+				<template>
+					<![CDATA[
+						The Global EVP Team determined that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request is valid.
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The Global EVP Team says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-review-by-evp-team</name>
+				<target>pending-review-by-evp-team</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-more-information-from-user</name>
+		<actions>
+			<action>
+				<name>service-status-more-info-from-user-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 203;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request – Additional Info Required</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Additional information is required in order to properly review your volunteer service request:<br /><br />
+
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REQUEST_EDITOR}">${evpServiceRequestContext.LINK_TO_REQUEST_EDITOR}</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<user />
+		</assignments>
+		<transitions>
+			<transition>
+				<name>resubmit</name>
+				<target>request-submitted</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>approved-by-evp-team</name>
+		<actions>
+			<action>
+				<name>service-status-approved-by-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 208;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>approved-by-evp-team</name>
+				<target>determine-manager-review-path</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>rejected-by-evp-team</name>
+		<actions>
+			<action>
+				<name>service-status-rejected-by-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 209;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>rejected-by-evp-team</name>
+				<target>rejected</target>
+			</transition>
+		</transitions>
+	</state>
+	<condition>
+		<name>determine-manager-review-path</name>
+		<script>
+			<![CDATA[
+				if (evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_ENABLED) {
+					returnValue = "approved-by-evp-team-pending-review-by-manager";
+				}
+				else {
+					returnValue = "approved-by-evp-team-without-manager";
+				}
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>approved-by-evp-team-without-manager</name>
+				<target>approved-by-evp-team-without-manager</target>
+			</transition>
+			<transition>
+				<name>approved-by-evp-team-pending-review-by-manager</name>
+				<target>pending-review-by-manager</target>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>approved-by-evp-team-without-manager</name>
+		<actions>
+			<notification>
+				<name>hr-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Approved</description>
+				<template>
+					<![CDATA[
+						Dear HR,<br /><br />
+
+						${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request with organization ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} and ending on ${evpServiceRequestContext.SERVICE_END_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours was approved. Please also approve this employee's time off in Replicon.<br /><br />
+
+						Please note that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME} may not have entered time off in Replicon yet. You may click the link below for further details about the service request:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>HR</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+			<notification>
+				<name>manager-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Approved</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.MANAGER_USER_FULL_NAME},<br /><br />
+
+						${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request with organization ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} and ending on ${evpServiceRequestContext.SERVICE_END_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours has been approved by the EVP Team.<br /><br />
+
+						Please review this employee's time off in Replicon and either "Approve" or "Reject".<br /><br />
+
+						Please note that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME} may not have entered time off in Replicon yet, but you will receive a notification from Replicon once that occurs.<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<scripted-recipient>
+						<script>
+							<![CDATA[
+								import com.liferay.portal.service.UserLocalServiceUtil;
+
+								user = UserLocalServiceUtil.getUser(evpServiceRequestContext.MANAGER_USER_ID as long);
+
+								roles = null;
+							]]>
+						</script>
+						<script-language>groovy</script-language>
+						<script-required-contexts>kaleo-web,portal-scripting-api,portal-scripting-groovy</script-required-contexts>
+					</scripted-recipient>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+			<notification>
+				<name>user-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Approved</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your volunteer service request was approved! Please go ahead and enter the dates/hours in Replicon (<a href="${evpServiceRequestContext.LINK_TO_WTS}">link</a>), if you haven't done so already:<br /><br />
+
+						1. Log in to Replicon<br />
+						2. Click on the "Time Off" tab<br />
+						3. Book time off using the "EVP Service" option<br />
+						4. If you do not see "EVP Service" as an option, it's probably because you do not meet the "Employee Eligibility" guidelines yet (<a href="${evpServiceRequestContext.LINK_TO_EMPLOYEE_ELIGIBILITY_GUIDELINES}">link</a>). Please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a> to let them know.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						IMPORTANT NOTES:
+						<ul>
+							<li>You are not considered approved to participate in your service until you have been approved through Replicon. Once approved in Replicon, you may participate in your service with ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} and ending on ${evpServiceRequestContext.SERVICE_END_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours.</li>
+
+							<#if (evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_GRANT_TYPE_SPONSORSHIP_ENABLED)>
+								<li>You also have the option to get your travel expenses reimbursed through a Sponsorship grant. Only certain types of reimbursement are allowed, so please check out the "SPONSORSHIP GUIDELINES" section of the <a href="${evpServiceRequestContext.LINK_TO_EMPLOYEE_ELIGIBILITY_GUIDELINES}">FAQs page</a> for complete details.</li>
+							</#if>
+
+							<li>If you haven't already picked up an EVP t-shirt, please contact your EVP Country Coordinator or GM to get one and proudly wear it during your trip!</li>
+
+							<li>For further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.</li>
+						</ul>
+
+						Wishing you a rewarding time serving others!<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>determine-promote-trip-path</name>
+				<target>determine-promote-trip-path</target>
+			</transition>
+		</transitions>
+	</state>
+	<condition>
+		<name>determine-promote-trip-path</name>
+		<script>
+			<![CDATA[
+				if (evpServiceRequestContext.PROMOTE_TRIP) {
+					returnValue = "evp-web-team-promote-trip-notification";
+				}
+				else {
+					returnValue = "pending-service-completion";
+				}
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>evp-web-team-promote-trip-notification</name>
+				<target>evp-web-team-promote-trip-notification</target>
+			</transition>
+			<transition>
+				<name>pending-service-completion</name>
+				<target>pending-service-completion</target>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>evp-web-team-promote-trip-notification</name>
+		<actions>
+			<notification>
+				<name>evp-web-team-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Trip Promotion Requested</description>
+				<template>
+					<![CDATA[
+						Dear EVP Web Team,<br /><br />
+
+						${evpServiceRequestContext.CREATOR_USER_FULL_NAME} has requested that his/her service trip be promoted on the EVP site. Please reference the link below for more details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>regular</role-type>
+							<name>EVP Web Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-service-completion</name>
+				<target>pending-service-completion</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-service-completion</name>
+		<actions>
+			<action>
+				<name>service-status-pending-service-completion-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 212;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Hidden</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>cancel-request</name>
+				<target>cancelled</target>
+			</transition>
+			<transition>
+				<name>service-completed</name>
+				<target>proof-and-feedback-fork</target>
+			</transition>
+		</transitions>
+	</task>
+	<fork>
+		<name>proof-and-feedback-fork</name>
+		<transitions>
+			<transition>
+				<name>determine-proof-of-service</name>
+				<target>determine-proof-of-service</target>
+			</transition>
+			<transition>
+				<name>pending-feedback-form</name>
+				<target>pending-feedback-form</target>
+			</transition>
+		</transitions>
+	</fork>
+	<condition>
+		<name>determine-proof-of-service</name>
+		<script>
+			<![CDATA[
+				if (evpServiceRequestContext.PARENT_EVP_SERVICE_REQUEST_ID > 0) {
+					returnValue = "pending-proof-of-service-completion-form";
+				}
+				else {
+					returnValue = "ready-for-proof-of-service-completion-form";
+				}
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>pending-proof-of-service-completion-form</name>
+				<target>pending-proof-of-service-completion-form</target>
+			</transition>
+			<transition>
+				<name>ready-for-proof-of-service-completion-form</name>
+				<target>ready-for-proof-of-service-completion-form</target>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>ready-for-proof-of-service-completion-form</name>
+		<actions>
+			<notification>
+				<name>organization-contact-action-requested-notification</name>
+				<description>[Liferay EVP] Proof of Service Completion Form</description>
+				<template>
+					<![CDATA[
+						<#if (evpServiceRequestContext.EMPLOYEE_NAMES != "")>
+							<#assign employeeNames="${evpServiceRequestContext.EMPLOYEE_NAMES}">
+						<#else>
+							<#assign employeeNames="${evpServiceRequestContext.CREATOR_USER_FULL_NAME}">
+						</#if>
+
+						Dear ${evpServiceRequestContext.ORGANIZATION_CONTACT_NAME},<br /><br />
+
+						Recently, Liferay employee(s) ${employeeNames} completed volunteer hours with your organization through our company's Employee Volunteer Program (EVP). Please help us verify this service by filling out <a href="${evpServiceRequestContext.LINK_TO_PROOF_OF_COMPLETION_FORM}">this online form.</a><br /><br />
+
+						We would appreciate a response by ${evpServiceRequestContext.ONE_WEEK_FROM_REQUESTED_END_DATE}. If we do not receive it in a timely manner, ${employeeNames} may be ineligible to participate in volunteer service next year.<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The Liferay EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<scripted-recipient>
+						<script>
+							<![CDATA[
+								import com.liferay.portal.service.UserLocalServiceUtil;
+
+								contactUser = UserLocalServiceUtil.getUser(evpServiceRequestContext.ORGANIZATION_CONTACT_USER_ID as long);
+
+								contactUser.emailAddress = evpServiceRequestContext.ORGANIZATION_CONTACT_EMAIL;
+
+								user = contactUser;
+
+								roles = null;
+							]]>
+						</script>
+						<script-language>groovy</script-language>
+						<script-required-contexts>kaleo-web,portal-scripting-api,portal-scripting-groovy</script-required-contexts>
+					</scripted-recipient>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-proof-of-service-completion-form</name>
+				<target>pending-proof-of-service-completion-form</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-proof-of-service-completion-form</name>
+		<actions>
+			<action>
+				<name>service-status-pending-proof-of-service-completion-form-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 214;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Hidden</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Contact</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>resend-organization-email</name>
+				<target>organization-one-week-reminder</target>
+			</transition>
+			<transition>
+				<name>submit-proof-of-service-completion-form</name>
+				<target>pending-proof-of-service-review</target>
+			</transition>
+			<transition>
+				<name>user-one-week-reminder</name>
+				<target>user-one-week-reminder</target>
+			</transition>
+			<transition>
+				<name>user-four-week-warning</name>
+				<target>user-four-week-warning</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>user-one-week-reminder</name>
+		<actions>
+			<notification>
+				<name>user-explanation-notification</name>
+				<description>[Liferay EVP] Proof of Service Completion Form - Reminder</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						We still haven't received a proof of service completion from your contact ${evpServiceRequestContext.ORGANIZATION_CONTACT_NAME} (${evpServiceRequestContext.ORGANIZATION_CONTACT_EMAIL}).<br /><br />
+
+						This is a reminder to please reach out to your contact and ask them to submit your proof of completion. If we do not receive the completed form soon, you may be ineligible to participate in volunteer service next year.<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>organization-one-week-reminder</name>
+				<target>organization-one-week-reminder</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>organization-one-week-reminder</name>
+		<actions>
+			<notification>
+				<name>organization-contact-action-requested-notification</name>
+				<description>[Liferay EVP] Proof of Service Completion Form - Reminder</description>
+				<template>
+					<![CDATA[
+						<#if (evpServiceRequestContext.EMPLOYEE_NAMES != "")>
+							<#assign employeeNames="${evpServiceRequestContext.EMPLOYEE_NAMES}">
+						<#else>
+							<#assign employeeNames="${evpServiceRequestContext.CREATOR_USER_FULL_NAME}">
+						</#if>
+
+						Dear ${evpServiceRequestContext.ORGANIZATION_CONTACT_NAME},<br /><br />
+
+						This is a gentle reminder to please verify ${employeeNames} completed volunteer service hours with your organization by filling out <a href="${evpServiceRequestContext.LINK_TO_PROOF_OF_COMPLETION_FORM}">this online form.</a><br /><br />
+
+						We would appreciate a response as soon as possible. If we do not receive it in a timely manner, ${employeeNames} may be ineligible to participate in volunteer service next year.
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The Liferay EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<scripted-recipient>
+						<script>
+							<![CDATA[
+								import com.liferay.portal.service.UserLocalServiceUtil;
+
+								contactUser = UserLocalServiceUtil.getUser(evpServiceRequestContext.ORGANIZATION_CONTACT_USER_ID as long);
+
+								contactUser.emailAddress = evpServiceRequestContext.ORGANIZATION_CONTACT_EMAIL;
+
+								user = contactUser;
+
+								roles = null;
+							]]>
+						</script>
+						<script-language>groovy</script-language>
+						<script-required-contexts>kaleo-web,portal-scripting-api,portal-scripting-groovy</script-required-contexts>
+					</scripted-recipient>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-proof-of-service-completion-form</name>
+				<target>pending-proof-of-service-completion-form</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>user-four-week-warning</name>
+		<actions>
+			<notification>
+				<name>user-explanation-notification</name>
+				<description>[Liferay EVP] Proof of Service Completion Form - Warning</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your contact ${evpServiceRequestContext.ORGANIZATION_CONTACT_NAME} (${evpServiceRequestContext.ORGANIZATION_CONTACT_EMAIL}) still has not completed your Proof of Service Completion form for service you completed on ${evpServiceRequestContext.SERVICE_END_DATE}. Unfortunately, if we do not receive the completed form soon, we'll be forced to flag you as ineligible to participate in volunteer service next year. Please reach out to your contact ASAP to resolve this issue.<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-proof-of-service-completion-form</name>
+				<target>pending-proof-of-service-completion-form</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-proof-of-service-review</name>
+		<actions>
+			<action>
+				<name>service-status-pending-proof-of-service-review-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 215;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Proof of Service Completion Form - Pending Review</description>
+				<template>
+					<![CDATA[
+						A new or updated proof of service completion form was submitted by ${evpServiceRequestContext.ORGANIZATION_CONTACT_EMAIL} from ${evpServiceRequestContext.ORGANIZATION_NAME} on behalf of ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						Please review the form and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The submitter says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the form details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>EVP Team</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>approve-proof-of-service-completion-form</name>
+				<target>proof-of-service-completion-form-approved</target>
+			</transition>
+			<transition>
+				<name>reject-proof-of-service-completion-form</name>
+				<target>proof-of-service-completion-form-rejected</target>
+			</transition>
+			<transition>
+				<name>request-more-information-from-service-organization</name>
+				<target>pending-more-information-from-service-organization</target>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>pending-more-information-from-service-organization</name>
+		<actions>
+			<action>
+				<name>service-status-pending-info-from-service-organization-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 218;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>organization-contact-action-requested-notification</name>
+				<description>[Liferay EVP] Proof of Service Completion Form – Additional Info Required</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.ORGANIZATION_CONTACT_NAME},<br /><br />
+
+						Additional information is required on the proof of service completion form for ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						Reviewer says:<br />
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						Update and resubmit the proof of service completion form <a href="${evpServiceRequestContext.LINK_TO_PROOF_OF_COMPLETION_FORM}">here.</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The Liferay EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<scripted-recipient>
+						<script>
+							<![CDATA[
+								import com.liferay.portal.service.UserLocalServiceUtil;
+
+								contactUser = UserLocalServiceUtil.getUser(evpServiceRequestContext.ORGANIZATION_CONTACT_USER_ID as long);
+
+								contactUser.emailAddress = evpServiceRequestContext.ORGANIZATION_CONTACT_EMAIL;
+
+								user = contactUser;
+
+								roles = null;
+							]]>
+						</script>
+						<script-language>groovy</script-language>
+						<script-required-contexts>kaleo-web,portal-scripting-api,portal-scripting-groovy</script-required-contexts>
+					</scripted-recipient>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Hidden</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Contact</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>resend-organization-email</name>
+				<target>pending-more-information-from-service-organization</target>
+			</transition>
+			<transition>
+				<name>resubmit</name>
+				<target>pending-proof-of-service-review</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>proof-of-service-completion-form-approved</name>
+		<actions>
+			<action>
+				<name>service-status-proof-of-service-completion-form-approved-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 216;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-information-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Completed</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your organization contact submitted a proof of service completion on your behalf, and it was approved.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>complete-proof-of-service</name>
+				<target>proof-and-feedback-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>proof-of-service-completion-form-rejected</name>
+		<actions>
+			<action>
+				<name>service-status-proof-of-service-completion-form-rejected-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 217;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-information-notification</name>
+				<description>[Liferay EVP] Proof of Service Completion Form - Rejected</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your proof of service completion was rejected for the following reason:<br /><br />
+
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						Due to an invalid proof of service completion, you will be ineligible to participate in volunteer service next year.<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>complete-proof-of-service</name>
+				<target>proof-and-feedback-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-feedback-form</name>
+		<actions>
+			<action>
+				<name>service-status-pending-feedback-form-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil
+
+						int status = 227;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-action-requested-notification</name>
+				<description>[Liferay EVP] 2017 One Life Campaign!</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Thank you for your service with ${evpServiceRequestContext.ORGANIZATION_NAME}! <br /><br />
+
+						<b>Please participate in our One Life Campaign by clicking <a href="https://loop.liferay.com/home/-/loop/topics/_onelife"><u>this link</u></a> and posting a picture and short description of one life that was positively affected by your trip. Help us reach our goal of 100 lives by the end of 2017, and do not forget to tag it with #onelife!</b><br /><br />
+
+						In addition, we would love to hear more about your experience! Please fill out the following form for our records:<br /><br />
+
+						<a href="${evpServiceRequestContext.LINK_TO_FEEDBACK_EDITOR}">${evpServiceRequestContext.LINK_TO_FEEDBACK_EDITOR}</a><br /><br />
+
+						Also, a link to your Proof of Service Completion form has been sent to ${evpServiceRequestContext.ORGANIZATION_CONTACT_NAME} at ${evpServiceRequestContext.ORGANIZATION_NAME}. Your contact will need to fill out the form within 4 weeks to verify your service with the organization. You do not need to do anything unless we cannot reach this person, in which case we'll contact you for help. <br /><br />
+
+						Note that since the Proof of Service Completion form is our only way to validate your service, if this form is not filled out by your contact in a timely manner, you may be ineligible to participate in volunteer service in the following year. Please check out the EVP guidelines <a href="${evpServiceRequestContext.LINK_TO_EMPLOYEE_ELIGIBILITY_GUIDELINES}">here</a> for more information.<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Hidden</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>EVP Team</name>
+				</role>
+				<role>
+					<role-type>regular</role-type>
+					<name>Owner</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>submit-feedback-form</name>
+				<target>determine-share-story-path</target>
+			</transition>
+			<transition>
+				<name>force-submission-of-feedback-form</name>
+				<target>feedback-form-approved</target>
+			</transition>
+		</transitions>
+	</task>
+	<condition>
+		<name>determine-share-story-path</name>
+		<script>
+			<![CDATA[
+				if (evpServiceRequestContext.SHARE_STORY) {
+					returnValue = "evp-web-team-share-story-notification";
+				}
+				else {
+					returnValue = "submit-feedback-form";
+				}
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>evp-web-team-share-story-notification</name>
+				<target>evp-web-team-share-story-notification</target>
+			</transition>
+			<transition>
+				<name>submit-feedback-form</name>
+				<target>pending-feedback-form-review</target>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>evp-web-team-share-story-notification</name>
+		<actions>
+			<notification>
+				<name>evp-web-team-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Share Story Requested</description>
+				<template>
+					<![CDATA[
+						Dear EVP Web Team,<br /><br />
+
+						${evpServiceRequestContext.CREATOR_USER_FULL_NAME} would like to share his/her service trip story on the EVP site. Please reference the link below for more details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>regular</role-type>
+							<name>EVP Web Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>submit-feedback-form</name>
+				<target>pending-feedback-form-review</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-feedback-form-review</name>
+		<actions>
+			<action>
+				<name>service-status-pending-feedback-form-review-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil
+
+						int status = 230;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Feedback Form - Pending Review</description>
+				<template>
+					<![CDATA[
+						An updated volunteer service feedback form has been submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						Please review the form and "Approve" or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The submitter says:<br/>
+							${evpServiceRequestContext.NOTES}<br/><br/>
+						</#if>
+
+						Click on the link below to view the form:<br /><br />
+
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>EVP Team</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>approve-feedback-form</name>
+				<target>feedback-form-approved</target>
+			</transition>
+			<transition>
+				<name>request-more-information-from-user</name>
+				<target>feedback-form-pending-more-information-from-user</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>feedback-form-approved</name>
+		<actions>
+			<action>
+				<name>service-status-feedback-form-approved-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 229;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>complete-feedback-form</name>
+				<target>proof-and-feedback-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>feedback-form-pending-more-information-from-user</name>
+		<actions>
+			<action>
+				<name>service-status-feedback-pending-info-from-user-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil
+
+						int status = 228;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Feedback Form - Additional Information Requested</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FIRST_NAME},<br/><br/>
+
+						Additional information is required in order to properly review your feedback form:<br /><br />
+
+						${evpServiceRequestContext.NOTES}<br/><br/>
+
+						Click on the link below to view the request details:<br /><br />
+
+						<a href="${evpServiceRequestContext.LINK_TO_FEEDBACK_EDITOR}">${evpServiceRequestContext.LINK_TO_FEEDBACK_EDITOR}</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Hidden</name>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>EVP Team</name>
+				</role>
+				<role>
+					<role-type>regular</role-type>
+					<name>Owner</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>submit-feedback-form</name>
+				<target>pending-feedback-form-review</target>
+			</transition>
+		</transitions>
+	</task>
+	<join>
+		<name>proof-and-feedback-join</name>
+		<transitions>
+			<transition>
+				<name>result</name>
+				<target>proof-and-feedback-join-determine-state</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</join>
+	<condition>
+		<name>proof-and-feedback-join-determine-state</name>
+		<script>
+			<![CDATA[
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+
+				long classPK = workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK) as long;
+
+				returnValue = PortletBeanLocatorUtil.locate("evp-portlet", "com.liferay.evp.util.EVPWorkflowUtil").doJoin(classPK);
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>completed</name>
+				<target>completed</target>
+			</transition>
+			<transition>
+				<name>rejected</name>
+				<target>disqualified</target>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>completed</name>
+		<actions>
+			<action>
+				<name>service-status-completed-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 234;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
+	<state>
+		<name>cancelled</name>
+		<actions>
+			<action>
+				<name>service-status-request-cancelled-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 225;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>hr-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Cancelled</description>
+				<template>
+					<![CDATA[
+						Dear HR,<br /><br />
+
+						${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request with organization ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} and ending on ${evpServiceRequestContext.SERVICE_END_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours was cancelled.<br /><br />
+
+						<#if (evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_FORK_ENABLED || evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_ENABLED)>
+							If this employee already requested time off, please also reject this employee's time off request.<br /><br />
+						<#else>
+							If this employee already requested time off in Replicon, please reject this employee's request in Replicon as well. Please note that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME} may not have entered time off in Replicon yet.<br /><br />
+						</#if>
+
+						You may click the link below for further details about the service request:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>HR</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+			<notification>
+				<name>user-information-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Cancelled</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your volunteer service request with organization ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours was cancelled for the following reason:<br /><br />
+
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+	</state>
+	<state>
+		<name>disqualified</name>
+		<actions>
+			<action>
+				<name>service-status-disqualified-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil
+
+						int status = 233;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
+	<state>
+		<name>rejected</name>
+		<actions>
+			<action>
+				<name>service-status-request-rejected-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 211;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>hr-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Rejected</description>
+				<template>
+					<![CDATA[
+						Dear HR,<br /><br />
+
+						${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request with organization ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} and ending on ${evpServiceRequestContext.SERVICE_END_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours was rejected.<br /><br />
+
+						<#if (evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_FORK_ENABLED || evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_APPROVE_WITH_MANAGER_ENABLED)>
+							If this employee already requested time off, please also reject this employee's time off request.<br /><br />
+						<#else>
+							If this employee already requested time off in Replicon, please reject this employee's request in Replicon as well. Please note that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME} may not have entered time off in Replicon yet.<br /><br />
+						</#if>
+
+						You may click the link below for further details about the service request:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>HR</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+			<notification>
+				<name>user-information-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Rejected</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your volunteer service request with organization ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours was rejected for the following reason:<br /><br />
+
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+	</state>
+	<state>
+		<name>approved-by-manager-and-evp-team</name>
+		<actions>
+			<action>
+				<name>service-status-approved-by-manager-and-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 210;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-explanation-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Approved</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Your volunteer service request has been approved! Please book time off for your service days in the same way you would for other types of PTO. Once approved, you may participate in your service with ${evpServiceRequestContext.ORGANIZATION_NAME} starting on ${evpServiceRequestContext.SERVICE_START_DATE} and ending on ${evpServiceRequestContext.SERVICE_END_DATE} for ${evpServiceRequestContext.SERVICE_TOTAL_HOURS} hours.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The reviewer says:<br/>
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						IMPORTANT NOTES:
+						<ul>
+							<#if (evpServiceRequestContext.SUBSIDIARY_CONFIGURATION_GRANT_TYPE_SPONSORSHIP_ENABLED)>
+								<li>You also have the option to get your travel expenses reimbursed through a Sponsorship grant. Only certain types of reimbursement are allowed, so please check out the "SPONSORSHIP GUIDELINES" section of the <a href="${evpServiceRequestContext.LINK_TO_EMPLOYEE_ELIGIBILITY_GUIDELINES}">FAQs page</a> for complete details.</li>
+							</#if>
+
+							<li>If you haven't already picked up an EVP t-shirt, please contact your EVP Country Coordinator or GM to get one and proudly wear it during your trip!</li>
+
+							<li>For further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.</li>
+						</ul>
+
+						Wishing you a rewarding time serving others!<br/>
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>determine-promote-trip-path</name>
+				<target>determine-promote-trip-path</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-manager</name>
+		<actions>
+			<action>
+				<name>service-status-pending-review-by-manager-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 237;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.MANAGER_USER_FULL_NAME},<br /><br />
+
+						A new or updated volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						Please review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The submitter says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<scripted-recipient>
+						<script>
+							<![CDATA[
+								import com.liferay.portal.service.UserLocalServiceUtil;
+
+								user = UserLocalServiceUtil.getUser(evpServiceRequestContext.MANAGER_USER_ID as long);
+
+								roles = null;
+							]]>
+						</script>
+						<script-language>groovy</script-language>
+						<script-required-contexts>kaleo-web,portal-scripting-api,portal-scripting-groovy</script-required-contexts>
+					</scripted-recipient>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<scripted-assignment>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.service.UserLocalServiceUtil;
+
+						user = UserLocalServiceUtil.getUser(evpServiceRequestContext.MANAGER_USER_ID as long);
+
+						roles = null;
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+			</scripted-assignment>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>approved-by-manager</name>
+				<target>approved-by-manager-and-evp-team</target>
+			</transition>
+			<transition>
+				<name>rejected-by-manager</name>
+				<target>rejected-by-manager</target>
+			</transition>
+			<transition>
+				<name>request-more-information-from-user</name>
+				<target>pending-more-information-from-user</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>rejected-by-manager</name>
+		<actions>
+			<action>
+				<name>service-status-rejected-by-manager-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 207;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>rejected-by-manager</name>
+				<target>rejected</target>
+			</transition>
+		</transitions>
+	</state>
+	<fork>
+		<name>pending-review-by-manager-and-evp-team-fork</name>
+		<transitions>
+			<transition>
+				<name>pending-review-by-manager</name>
+				<target>pending-review-by-manager-in-fork</target>
+			</transition>
+			<transition>
+				<name>pending-review-by-evp-team</name>
+				<target>pending-initial-review-by-evp-team-in-fork</target>
+			</transition>
+		</transitions>
+	</fork>
+	<task>
+		<name>pending-review-by-manager-in-fork</name>
+		<actions>
+			<action>
+			<name>service-status-pending-review-by-manager-in-fork-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 236;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>manager-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.MANAGER_USER_FULL_NAME},<br /><br />
+
+						A new or updated volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The submitter says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please review the request and "Approve", "Reject", or "Request More Info". Click on the link below to view the request details:<br /><br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<scripted-recipient>
+						<script>
+							<![CDATA[
+								import com.liferay.portal.service.UserLocalServiceUtil;
+
+								user = UserLocalServiceUtil.getUser(evpServiceRequestContext.MANAGER_USER_ID as long);
+
+								roles = null;
+							]]>
+						</script>
+						<script-language>groovy</script-language>
+						<script-required-contexts>kaleo-web,portal-scripting-api,portal-scripting-groovy</script-required-contexts>
+					</scripted-recipient>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<scripted-assignment>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.service.UserLocalServiceUtil;
+
+						user = UserLocalServiceUtil.getUser(evpServiceRequestContext.MANAGER_USER_ID as long);
+
+						roles = null;
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+			</scripted-assignment>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>approved-by-manager</name>
+				<target>approved-by-manager-in-fork</target>
+			</transition>
+			<transition>
+				<name>rejected-by-manager</name>
+				<target>rejected-by-manager-in-fork</target>
+			</transition>
+			<transition>
+				<name>request-more-information-from-user</name>
+				<target>manager-requested-more-information-from-user-in-fork</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>approved-by-manager-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-approved-by-manager-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 206;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>approved-by-manager</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>rejected-by-manager-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-auto-join-rejected-by-manager-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 243;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>rejected-by-manager</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>manager-requested-more-information-from-user-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-auto-join-manager-requested-info-from-user-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 239;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>join</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>pending-initial-review-by-evp-team-in-fork</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review</description>
+				<template>
+					<![CDATA[
+						A new or updated volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}.<br /><br />
+
+						Please review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The submitter says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>pending-review-by-evp-team</name>
+				<target>pending-review-by-evp-team-in-fork</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-evp-team-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-pending-review-by-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 235;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>EVP Team</name>
+					<auto-create>true</auto-create>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>approved-by-evp-team</name>
+				<target>approved-by-evp-team-in-fork</target>
+			</transition>
+			<transition>
+				<name>rejected-by-evp-team</name>
+				<target>rejected-by-evp-team-in-fork</target>
+			</transition>
+			<transition>
+				<name>request-country-coordinator-validation</name>
+				<target>pending-review-by-country-coordinator-in-fork</target>
+			</transition>
+			<transition>
+				<name>request-hr-validation</name>
+				<target>pending-review-by-hr-in-fork</target>
+			</transition>
+			<transition>
+				<name>request-global-evp-team-validation</name>
+				<target>pending-validation-by-global-evp-team-in-fork</target>
+			</transition>
+			<transition>
+				<name>request-more-information-from-user</name>
+				<target>evp-team-requested-more-information-from-user</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>approved-by-evp-team-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-approved-by-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 208;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>approved-by-evp-team-in-fork</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>rejected-by-evp-team-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-auto-join-rejected-by-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 240;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>rejected-by-evp-team-in-fork</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-country-coordinator-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-pending-review-by-country-coordinator-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 244;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>country-coordinator-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Country Coordinator Approval</description>
+				<template>
+					<![CDATA[
+						Dear Country Coordinator,<br /><br />
+
+						A new volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate that ${evpServiceRequestContext.ORGANIZATION_NAME} is a valid nonprofit in your country.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The EVP Team says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+					<recipients receptionType="bcc">
+						<roles>
+							<role>
+								<role-type>organization</role-type>
+								<name>EVP History</name>
+							</role>
+						</roles>
+					</recipients>
+					<recipients>
+						<roles>
+							<role>
+								<role-type>organization</role-type>
+								<name>Country Coordinator</name>
+							</role>
+						</roles>
+					</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>Country Coordinator</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected-by-country-coordinator-in-fork</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-country-coordinator-in-fork</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>rejected-by-country-coordinator-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-auto-join-rejected-by-country-coordinator-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 245;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>rejected-by-country-coordinator</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>validated-by-country-coordinator-in-fork</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review (Validated by Country Coordinator)</description>
+				<template>
+					<![CDATA[
+						The Country Coordinator determined that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s requested organization ${evpServiceRequestContext.ORGANIZATION_NAME} is a valid nonprofit.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The Country Coordinator says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>return-country-coordinator-validated-request-to-evp-team-for-review</name>
+				<target>pending-review-by-evp-team-in-fork</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-review-by-hr-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-pending-review-by-hr-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 221;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>hr-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending HR Approval</description>
+				<template>
+					<![CDATA[
+						Dear HR,<br /><br />
+
+						A new volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate ${evpServiceRequestContext.CREATOR_USER_FIRST_NAME}'s eligibility to participate in EVP.<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The reviewer says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a><br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+					<recipients receptionType="bcc">
+						<roles>
+							<role>
+								<role-type>organization</role-type>
+								<name>EVP History</name>
+							</role>
+						</roles>
+					</recipients>
+					<recipients>
+						<roles>
+							<role>
+								<role-type>organization</role-type>
+								<name>HR</name>
+							</role>
+						</roles>
+					</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>HR</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected-by-hr-in-fork</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-hr-in-fork</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>rejected-by-hr-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-auto-join-rejected-by-hr-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 241;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>rejected-by-hr</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>validated-by-hr-in-fork</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Review (Validated by HR)</description>
+				<template>
+					<![CDATA[
+						HR has determined that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request is valid.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							HR says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>return-hr-validated-request-to-evp-team-for-review</name>
+				<target>pending-review-by-evp-team-in-fork</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>pending-validation-by-global-evp-team-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-validation-requested-from-global-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 223;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>global-evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Global EVP Approval</description>
+				<template>
+					<![CDATA[
+						A new volunteer service request was submitted by ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}, and the EVP Team requested you to validate the request.<br /><br />
+
+						EVP Team says:<br />
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						Please review and mark it as either "Valid" or "Invalid".<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>regular</role-type>
+							<name>EVP Team (Global)</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>EVP Team (Global)</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>mark-as-invalid</name>
+				<target>rejected-by-global-evp-team-in-fork</target>
+			</transition>
+			<transition>
+				<name>mark-as-valid</name>
+				<target>validated-by-global-evp-team-in-fork</target>
+			</transition>
+		</transitions>
+	</task>
+	<state>
+		<name>rejected-by-global-evp-team-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-auto-join-rejected-by-global-evp-team-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 242;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>rejected-by-global-evp-team</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>validated-by-global-evp-team-in-fork</name>
+		<actions>
+			<notification>
+				<name>evp-team-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request - Pending Approval (Approved by Global EVP Team)</description>
+				<template>
+					<![CDATA[
+						The Global EVP Team has determined that ${evpServiceRequestContext.CREATOR_USER_FULL_NAME}'s volunteer service request is valid.<br /><br />
+
+						Please continue to review the request and "Approve", "Reject", or "Request More Info".<br /><br />
+
+						<#if (evpServiceRequestContext.NOTES != "")>
+							The Global EVP Team says:<br />
+							${evpServiceRequestContext.NOTES}<br /><br />
+						</#if>
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}">${evpServiceRequestContext.LINK_TO_REVIEWER_DASHBOARD}</a>
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP Team</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<transitions>
+			<transition>
+				<name>return-global-evp-team-validated-request-to-evp-team-for-review</name>
+				<target>pending-review-by-evp-team-in-fork</target>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>evp-team-requested-more-information-from-user</name>
+		<actions>
+			<action>
+				<name>service-status-auto-join-evp-team-requested-info-from-user-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 238;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<transitions>
+			<transition>
+				<name>join</name>
+				<target>pending-review-by-manager-and-evp-team-join</target>
+			</transition>
+		</transitions>
+	</state>
+	<join>
+		<name>pending-review-by-manager-and-evp-team-join</name>
+		<transitions>
+			<transition>
+				<name>result</name>
+				<target>evp-team-and-manager-join-determine-state</target>
+			</transition>
+		</transitions>
+	</join>
+	<condition>
+		<name>evp-team-and-manager-join-determine-state</name>
+		<script>
+			<![CDATA[
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+
+				long classPK = workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK) as long;
+
+				returnValue = PortletBeanLocatorUtil.locate("evp-portlet", "com.liferay.evp.util.EVPWorkflowUtil").doJoin(classPK);
+			]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>completed</name>
+				<target>approved-by-manager-and-evp-team</target>
+			</transition>
+			<transition>
+				<name>rejected</name>
+				<target>rejected</target>
+			</transition>
+			<transition>
+				<name>request-more-information-from-user</name>
+				<target>pending-more-information-from-user-in-fork</target>
+			</transition>
+		</transitions>
+	</condition>
+	<task>
+		<name>pending-more-information-from-user-in-fork</name>
+		<actions>
+			<action>
+				<name>service-status-more-info-from-user-action</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+
+						int status = 203;
+
+						WorkflowStatusManagerUtil.updateStatus(status, workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<notification>
+				<name>user-action-requested-notification</name>
+				<description>[Liferay EVP] Volunteer Service Request – Additional Info Required</description>
+				<template>
+					<![CDATA[
+						Dear ${evpServiceRequestContext.CREATOR_USER_FULL_NAME},<br /><br />
+
+						Additional information is required in order to properly review your volunteer service request:<br /><br />
+
+						${evpServiceRequestContext.NOTES}<br /><br />
+
+						Click on the link below to view the request details:<br />
+						<a href="${evpServiceRequestContext.LINK_TO_REQUEST_EDITOR}">${evpServiceRequestContext.LINK_TO_REQUEST_EDITOR}</a><br /><br />
+
+						If you have any further questions, please contact <a href="mailto:${evpServiceRequestContext.SUBSIDIARY_EMAIL}">${evpServiceRequestContext.SUBSIDIARY_EMAIL}</a>.<br /><br />
+
+						Thanks,<br />
+						The EVP Team
+					]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<recipients receptionType="bcc">
+					<roles>
+						<role>
+							<role-type>organization</role-type>
+							<name>EVP History</name>
+						</role>
+					</roles>
+				</recipients>
+				<recipients>
+					<user />
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<user></user>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>resubmit</name>
+				<target>pending-review-by-manager-and-evp-team-fork</target>
+			</transition>
+		</transitions>
+	</task>
+</workflow-definition>

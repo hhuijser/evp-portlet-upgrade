@@ -1,0 +1,84 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPRequestOrganizationUtil {
+
+	public static Organization fetchOrganization(ThemeDisplay themeDisplay, String name) throws Exception {
+		Organization organization = OrganizationLocalServiceUtil.fetchOrganization(themeDisplay.getCompanyId(), name);
+
+		if (organization != null) {
+			return organization;
+		}
+
+		organization = OrganizationLocalServiceUtil.addOrganization(themeDisplay.getUserId(), 0, name, false);
+
+		Role organizationOwnerRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), RoleConstants.ORGANIZATION_OWNER);
+
+		UserGroupRoleLocalServiceUtil.deleteUserGroupRoles(themeDisplay.getUserId(), organization.getGroupId(), new long[] {organizationOwnerRole.getRoleId()});
+
+		return organization;
+	}
+
+	public static EVPRequestOrganization fetchRequestOrganization(long organizationId) throws Exception {
+		AlloyServiceInvoker evpRequestOrganizationAlloyServiceInvoker = new AlloyServiceInvoker(EVPRequestOrganization.class.getName());
+
+		List<EVPRequestOrganization> evpRequestOrganizations = evpRequestOrganizationAlloyServiceInvoker.executeDynamicQuery(new Object[] {"organizationId", organizationId});
+
+		if (!evpRequestOrganizations.isEmpty()) {
+			return evpRequestOrganizations.get(0);
+		}
+
+		return EVPRequestOrganizationLocalServiceUtil.createEVPRequestOrganization(0);
+	}
+
+	public static int getNonprofitType(String ein) throws Exception {
+		String irsPage = null;
+
+		try {
+			irsPage = HttpUtil.URLtoString(String.format(_IRS_EIN_URL, ein.replace(StringPool.SPACE, StringPool.BLANK)));
+		}
+		catch (Exception e) {
+			_log.error("IRS page screen scrape threw exception", e);
+
+			return EVPRequestOrganizationConstants.NON_PROFIT_TYPE_UNKNOWN;
+		}
+
+		Matcher matcher = _pattern.matcher(irsPage);
+
+		if (!matcher.find()) {
+			_log.warn("Nonprofit type regex did not match IRS page contents");
+
+			return EVPRequestOrganizationConstants.NON_PROFIT_TYPE_UNKNOWN;
+		}
+
+		String nonprofitStatusLabel = matcher.group(1);
+
+		if (ArrayUtil.contains(EVPRequestOrganizationConstants.NON_PROFIT_STATUS_LABELS, nonprofitStatusLabel)) {
+			return EVPRequestOrganizationConstants.getNonprofitLabelType(nonprofitStatusLabel);
+		}
+
+		return EVPRequestOrganizationConstants.NON_PROFIT_TYPE_NONCHARITY;
+	}
+
+	private static final String _IRS_EIN_URL = "http://apps.irs.gov/app/eos/pub78Search.do?ein1=%s&names=&city=&state=All...&country=US&deductibility=all&dispatchMethod=searchCharities&submitName=Search";
+
+	private static Log _log = LogFactoryUtil.getLog("jsp.evp.util.EVPRequestOrganizationUtil");
+
+	private static Pattern _pattern = Pattern.compile("epi-dataTable.*?\\<tr.*?\\<tr.*\\<td.*?\\<a.*?\\>\\s*([A-Z]+)\\s*\\</a\\>", Pattern.DOTALL);
+
+}
+%>

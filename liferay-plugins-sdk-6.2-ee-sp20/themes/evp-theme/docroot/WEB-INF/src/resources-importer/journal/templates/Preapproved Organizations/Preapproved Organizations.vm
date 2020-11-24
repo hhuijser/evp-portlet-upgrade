@@ -1,0 +1,83 @@
+<div class="preapproved-organizations row-fluid">
+	<div class="heading span6">
+		<h2 class="section-title">$section_title.getData()</h2>
+
+		<div class="row-fluid">
+			<div class="description span6">
+				$section_description.getData()
+			</div>
+		</div>
+	</div>
+
+	<div class="images span6">
+		<div class="organizations row-fluid">
+			#if (!$organization.getSiblings().isEmpty())
+				#set ($organizations = $organization.getSiblings())
+				#set ($organization_size = $organizations.size())
+				#set ($organization_index = $mathTool.random(1, $organization_size))
+
+				#set ($span_css_class = "span")
+
+				#if ($organization_size < 4)
+					#set ($span_number = 12 / $organization_size)
+
+					#set ($css_class = $span_css_class + $span_number)
+				#else
+					#set ($css_class = $span_css_class + 3)
+				#end
+
+				#foreach ($organization in $organizations)
+					#if ($velocityCount < 5)
+						#set ($full_color_logo = $organization.full_color_logo.getData())
+
+						<div class="organization $css_class">
+							<div class="organization-content">
+								<div class="organization-grey transition-fade-in">
+									<div class="logo-wrapper">
+										<img alt="$organization.organization_name.getData()" class="logo" src="$organization.greyscale_logo.getData()">
+									</div>
+								</div>
+
+								<div class="organization-color">
+									<div class="logo-wrapper">
+										<img alt="$organization.organization_name.getData()" class="logo" src="$full_color_logo" />
+									</div>
+
+									<div class="more-info">
+										<button class="btn btn-primary more-info-btn" data-info=".info-$velocityCount" href="javascript:;">$organization.link_label.getData()</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="hide">
+							<div class="info-$velocityCount">
+								<div class="logo-wrapper">
+									<img alt="$organization.organization_name.getData()" class="logo" src="$full_color_logo">
+								</div>
+
+								<div class="organization-location row-fluid">
+									<div class="span6">
+										$organization.location.getData()
+									</div>
+
+									<div class="span6">
+										<a class="btn btn-primary pull-right" href="$organization.service_url.getData()" target="_blank">#language ("serve-now")</a>
+									</div>
+								</div>
+
+								<div class="organization-description">
+									$organization.description.getData()
+								</div>
+
+								<a class="btn btn-primary" href="$organization.organization_url.getData()" target="_blank">#language ("learn-more")</a>
+							</div>
+						</div>
+					#end
+				#end
+			#end
+		</div>
+	</div>
+
+	<div class="organization-info-box"></div>
+</div>

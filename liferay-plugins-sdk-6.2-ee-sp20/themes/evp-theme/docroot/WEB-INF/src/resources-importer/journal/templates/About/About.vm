@@ -1,0 +1,87 @@
+#set ($image_path = "@theme_image_path@/custom/")
+
+#set ($author_name = $about_evp.author.author_name.getData())
+
+#if ($about_evp.author.author_image.getData() == "")
+	#set ($author_image = "@theme_image_path@/custom/bryan_cheung.jpg")
+#else
+	#set ($author_image = $about_evp.author.author_image.getData())
+#end
+
+#if ($about_evp.author.author_image_hover.getData() == "")
+	#set ($author_image_mouseover = "@theme_image_path@/custom/bryan_cheung_hover.jpg")
+#else
+	#set ($author_image_mouseover = $about_evp.author.author_image_hover.getData())
+#end
+
+#set ($image_path_play_button = "@theme_image_path@/custom/icons/play_button.svg")
+
+<div class="about row-fluid">
+	<div class="offset3 span6">
+		<div class="about-evp">
+			<div class="description">
+				$about_evp.about_evp_description.getData()
+			</div>
+
+			<div class="author-images span6">
+				<img alt="$author_name" class="author-image default-image" onmouseout="this.src='${author_image}'" onmouseover="this.src='${author_image_mouseover}'" src="$author_image" />
+			</div>
+
+			<div class="author-signature span6">
+				<div class="signature">
+					<svg class="signature-svg">
+						<use xlink:href="${image_path}${about_evp.author.author_signature.getData()}" />
+					</svg>
+				</div>
+
+				<div class="author-name">
+					$author_name
+				</div>
+
+				<div class="author-title">
+					$about_evp.author.author_job_title.getData()
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="inside-look row-fluid">
+		<div class="inside-look-info span6">
+			<div class="video-container">
+				<div class="video-player">
+					<div class="offset2 span8">
+						<h2 class="header">$header.getData()</h2>
+
+						<div class="description">
+							$header.description.getData()
+						</div>
+					</div>
+
+					<iframe class="video-iframe" frameborder="0"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="span6 video-wrapper">
+			#if (!$header.videos.getSiblings().isEmpty())
+				#foreach ($video in $header.videos.getSiblings())
+					<div class="banner-cover video" data-autoplay="true" data-url="$video.video_source.getData()" style="background-image: url($video.video_image.getData())">
+						<h3 class="header">$video.video_title.getData()</h3>
+
+						<div class="location">
+							$video.video_location.getData()
+						</div>
+
+						<svg class="play-button">
+							<use xlink:href="${image_path_play_button}#playButton" />
+						</svg>
+					</div>
+
+					#if ($velocityCount == 3)
+						#break
+					#end
+				#end
+			#end
+		</div>
+	</div>
+</div>

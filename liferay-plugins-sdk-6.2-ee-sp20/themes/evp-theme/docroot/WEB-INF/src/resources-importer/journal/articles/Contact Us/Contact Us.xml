@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Contact Us]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="description" type="text_box" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Please contact your regional EVP Team if your question is location specific]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="americas" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="americas_button_label" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Americas]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="americas_email" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[evp-americas@liferay.com]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="emea" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="emea_button_label" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Europe and Middle East]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="emea_email" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[evp-emea@liferay.com]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="apac" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="apac_button_label" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Asia Pacific]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="apac_email" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[evp-apac@liferay.com]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="global" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="global_button_label" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Contact Our Global Team]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="global_email" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[evp-global@liferay.com]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+</root>

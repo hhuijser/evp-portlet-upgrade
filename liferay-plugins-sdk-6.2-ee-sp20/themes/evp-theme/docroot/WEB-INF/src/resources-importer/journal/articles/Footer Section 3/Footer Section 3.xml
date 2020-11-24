@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="link_url" type="text" index-type="keyword" index="0">
+		<dynamic-element name="link_icon_css_class" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[icon-loop]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_icon_file_name" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[icon_loop.svg]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[https://loop.liferay.com/web/guest/home/-/loop/teams/_EVP+Global]]></dynamic-content>
+	</dynamic-element>
+</root>

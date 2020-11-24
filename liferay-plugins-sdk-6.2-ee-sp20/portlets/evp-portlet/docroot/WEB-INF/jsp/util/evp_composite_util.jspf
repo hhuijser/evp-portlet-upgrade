@@ -1,0 +1,79 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPCompositeUtil {
+
+	public static <T> T getComposite(Class<T> compositeClass, Class<?>[] parameterTypes, Object[] parameters) throws Exception {
+		Constructor<T> constructor = compositeClass.getConstructor(parameterTypes);
+
+		return constructor.newInstance(parameters);
+	}
+
+	public static <T> List<T> getComposites(List<?> objects, Class<T> compositeClass) throws Exception {
+		if (objects.isEmpty()) {
+			return Collections.emptyList();
+		}
+
+		Object object = objects.get(0);
+
+		Class<?> clazz = object.getClass();
+
+		String className = clazz.getName();
+
+		String implTokenName = ".impl.";
+
+		int pos = className.indexOf(implTokenName);
+
+		if (pos >= 0) {
+			String simpleClassName = className.substring(pos + implTokenName.length());
+
+			simpleClassName = simpleClassName.substring(0, simpleClassName.length() - 4);
+
+			String modelClassName = className.substring(0, pos) + StringPool.PERIOD + simpleClassName;
+
+			clazz = Class.forName(modelClassName);
+		}
+
+		return getComposites(objects, compositeClass, new Class<?>[] {clazz}, new Object[0]);
+	}
+
+	public static <T> List<T> getComposites(List<?> objects, Class<T> compositeClass, Class<?>[] parameterTypes, Object[] parameters) throws Exception {
+		return getComposites(objects, compositeClass, parameterTypes, parameters, false);
+	}
+
+	public static <T> List<T> getComposites(List<?> objects, Class<T> compositeClass, Class<?>[] parameterTypes, Object[] parameters, boolean sort) throws Exception {
+		List<T> composites = new ArrayList<T>();
+
+		Object[] newParameters = new Object[parameters.length + 1];
+
+		System.arraycopy(parameters, 0, newParameters, 1, parameters.length);
+
+		for (Object object : objects) {
+			newParameters[0] = object;
+
+			composites.add(getComposite(compositeClass, parameterTypes, newParameters));
+		}
+
+		if (sort) {
+			ListUtil.sort(composites);
+		}
+
+		return composites;
+	}
+
+}
+%>

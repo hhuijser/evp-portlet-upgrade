@@ -1,0 +1,52 @@
+#if ($background_image.getData() == "")
+	#set ($image_path = "@theme_image_path@/custom/about_evp.jpg")
+#else
+	#set ($image_path = $background_image.getData())
+#end
+
+<div class="about-evp banner-cover row-fluid" style="background-image: url($image_path);">
+	<div class="about-evp-wrapper span12">
+		<h2 class="section-title white-text">$header.getData()</h2>
+
+		<div class="offset2 span4 video-wrapper">
+			<div class="mask video video-player" data-autoplay="true" data-url="$header.video_url.getData()">
+				<svg class="video-mask">
+					<use xlink:href="@theme_image_path@/custom/video_frame.svg#videoMask" />
+				</svg>
+
+				<iframe class="video-iframe" frameborder="0"></iframe>
+			</div>
+		</div>
+
+		<div class="info span4">
+			<div class="description white-text">
+				$header.description.getData()
+			</div>
+
+			#set ($link_1_url = $link_1_label.link_1_url.getData())
+			#set ($link_2_url = $link_2_label.link_2_url.getData())
+
+			#set ($link_1_label = $link_1_label.getData())
+			#set ($link_2_label = $link_2_label.getData())
+
+			#set ($link_1_target = "_self")
+			#set ($link_2_target = "_self")
+
+			#if ($link_1_url.contains("http"))
+				#set ($link_1_target = "_blank")
+			#end
+
+			#if ($link_2_url.contains("http"))
+				#set ($link_2_target = "_blank")
+			#end
+
+			#if ($link_1_url != "" && $link_1_label != "")
+				<a class="btn btn-transparent" href="$link_1_url" target="$link_1_target">$link_1_label</a>
+			#end
+
+			#if ($link_2_url != "" && $link_2_label != "")
+				<a class="btn btn-transparent" href="$link_2_url" target="$link_2_target">$link_2_label</a>
+			#end
+		</div>
+	</div>
+</div>

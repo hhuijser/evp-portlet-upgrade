@@ -1,0 +1,399 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPUtil extends com.liferay.evp.util.EVPUtil {
+
+	public static void addCommentsToDiscussion(HttpServletRequest request) throws Exception {
+		addCommentsToDiscussion(request, "comments");
+	}
+
+	public static void addCommentsToDiscussion(HttpServletRequest request, String commentsParam) throws Exception {
+		String className = ParamUtil.getString(request, "className");
+		long classPK = ParamUtil.getLong(request, "classPK");
+		String permissionClassName = ParamUtil.getString(request, "permissionClassName");
+		long permissionClassPK = ParamUtil.getLong(request, "permissionClassPK");
+		long permissionOwnerId = ParamUtil.getLong(request, "permissionOwnerId");
+		String subject = ParamUtil.getString(request, "subject");
+
+		String body = ParamUtil.getString(request, commentsParam, getWorkflowTaskComments(request));
+
+		if (Validator.isNull(body)) {
+			body = ParamUtil.getString(request, "notes");
+		}
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(MBMessage.class.getName(), (PortletRequest)request.getAttribute(JavaConstants.JAVAX_PORTLET_REQUEST));
+
+		long messageId = ParamUtil.getLong(request, "messageId");
+
+		if (messageId <= 0) {
+			long threadId = ParamUtil.getLong(request, "threadId");
+			long parentMessageId = ParamUtil.getLong(request, "parentMessageId");
+
+			MBMessageServiceUtil.addDiscussionMessage(serviceContext.getScopeGroupId(), className, classPK, permissionClassName, permissionClassPK, permissionOwnerId, threadId, parentMessageId, subject, body, serviceContext);
+		}
+		else {
+			MBMessageServiceUtil.updateDiscussionMessage(className, classPK, permissionClassName, permissionClassPK, permissionOwnerId, messageId, subject, body, serviceContext);
+		}
+	}
+
+	public static Date addDays(Date date, int days) throws Exception {
+		Calendar calendar = getCalendar(date);
+
+		calendar.add(Calendar.DATE, days);
+
+		return calendar.getTime();
+	}
+
+	public static Date fetchDate(HttpServletRequest request, String dateParam) throws Exception {
+		if (request.getParameter(dateParam) == null) {
+			return null;
+		}
+
+		int month = ParamUtil.getInteger(request, dateParam + "Month");
+		int day = ParamUtil.getInteger(request, dateParam + "Day");
+		int year = ParamUtil.getInteger(request, dateParam + "Year");
+
+		return PortalUtil.getDate(month, day, year);
+	}
+
+	public static Date fetchDate(HttpServletRequest request, String dateParam, DateFormat dateFormat) throws Exception {
+		if (request.getParameter(dateParam) == null) {
+			return null;
+		}
+
+		return ParamUtil.getDate(request, dateParam, dateFormat, null);
+	}
+
+	public static String generateHash(long evpRequestId) throws Exception {
+		String hash = DigesterUtil.digestHex(Long.toString(System.currentTimeMillis() + evpRequestId));
+
+		return hash.substring(0, 20);
+	}
+
+	public static Map<String, String> getBehalfOfTypeMap() throws Exception {
+		Map<String, String> behalfOfTypeMap = new HashMap<String, String>();
+
+		for (int behalfOfType : EVPConstants.BEHALF_OF_TYPES) {
+			behalfOfTypeMap.put(String.valueOf(behalfOfType), EVPConstants.getBehalfOfTypeLabel(behalfOfType));
+		}
+
+		return behalfOfTypeMap;
+	}
+
+	public static Calendar getCalendar(Date date) {
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
+
+		calendar.setTime(date);
+
+		return calendar;
+	}
+
+	public static String getCheckedTypesString(HttpServletRequest request, int[] types, String typeLabelPrefix) {
+		List<Integer> checkedTypes = new ArrayList<Integer>();
+
+		for (int type : types) {
+			boolean checked = ParamUtil.getBoolean(request, typeLabelPrefix + type);
+
+			if (checked) {
+				checkedTypes.add(type);
+			}
+		}
+
+		return StringUtil.merge(checkedTypes);
+	}
+
+	public static int getEmploymentType(long userId) throws Exception {
+		EVPEmployee evpEmployee = EVPEmployeeLocalServiceUtil.fetchEVPEmployeeByEmployeeUserId(userId);
+
+		if (evpEmployee != null) {
+			return evpEmployee.getEmploymentType();
+		}
+
+		return EVPConstants.EMPLOYMENT_TYPE_UNKNOWN;
+	}
+
+	public static Map<Integer, String> getEmploymentTypeMap() throws Exception {
+		Map<Integer, String> employmentTypeMap = new HashMap<Integer, String>();
+
+		for (int employmentType : EVPConstants.EMPLOYMENT_TYPES_ELIGIBLE) {
+			employmentTypeMap.put(employmentType, EVPConstants.getEmploymentTypeLabel(employmentType));
+		}
+
+		return employmentTypeMap;
+	}
+
+	public static List<String> getEnabledEmploymentTypeLabels(long companyId, long groupId) throws Exception {
+		List<String> enabledEmploymentTypeLabels = new ArrayList<String>();
+
+		for (int eligibleEmploymentType : EVPConstants.EMPLOYMENT_TYPES_ELIGIBLE) {
+			boolean employmentTypeEnabled = false;
+
+			if (eligibleEmploymentType == EVPConstants.EMPLOYMENT_TYPE_FULL_TIME) {
+				employmentTypeEnabled = true;
+			}
+			else {
+				String portletPropsKey = EVPConstants.getEmploymentTypePortletPropsKey(eligibleEmploymentType);
+
+				employmentTypeEnabled = GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(companyId, groupId, portletPropsKey));
+			}
+
+			if (employmentTypeEnabled) {
+				enabledEmploymentTypeLabels.add(EVPConstants.getEmploymentTypeLabel(eligibleEmploymentType));
+			}
+		}
+
+		return ListUtil.sort(enabledEmploymentTypeLabels);
+	}
+
+	public static List<EVPGrantTransaction> getEvpGrantTransactions(long evpGrantRequestId) throws Exception {
+		AlloyServiceInvoker evpGrantTransactionAlloyServiceInvoker = new AlloyServiceInvoker(EVPGrantTransaction.class.getName());
+
+		OrderByComparator obc = OrderByComparatorFactoryUtil.create(EVPGrantTransactionModelImpl.TABLE_NAME, "grantType", true);
+
+		return evpGrantTransactionAlloyServiceInvoker.executeDynamicQuery(new Object[] {"evpGrantRequestId", evpGrantRequestId}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+	}
+
+	public static Map<Integer, String> getGrantTypeMap(List<EVPDivision> subsidiaryEVPDivisions) throws Exception {
+		Map<Integer, String> grantTypeMap = new HashMap<Integer, String>();
+
+		for (int grantType : EVPGrantTransactionConstants.GRANT_TYPES) {
+			for (EVPDivision subsidiaryEVPDivision : subsidiaryEVPDivisions) {
+				if (GetterUtil.getBoolean(EVPDivisionLocalServiceUtil.getSubsidiaryPortletPropsValue(subsidiaryEVPDivision.getCompanyId(), subsidiaryEVPDivision.getOrganizationGroupId(), EVPGrantTransactionConstants.getEvpGrantTransactionsPortletPropKeys(grantType)))) {
+					grantTypeMap.put(grantType, EVPGrantTransactionConstants.getGrantTypeLabel(grantType));
+
+					break;
+				}
+			}
+		}
+
+		return grantTypeMap;
+	}
+
+	public static Map<Integer, String> getGrantTypeMap(long userId) throws Exception {
+		List<EVPDivision> evpDivisions = new ArrayList<EVPDivision>();
+
+		EVPDivision subsidiaryEVPDivision = EVPDivisionUtil.getSubsidiaryEVPDivision(userId);
+
+		evpDivisions.add(subsidiaryEVPDivision);
+
+		return getGrantTypeMap(evpDivisions);
+	}
+
+	public static String getMostRecentComment(String className, long classPK, long userId, long groupId) {
+		try {
+			MBMessageDisplay mbMessageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(userId, groupId, className, classPK, WorkflowConstants.STATUS_ANY);
+
+			MBTreeWalker mbTreeWalker = mbMessageDisplay.getTreeWalker();
+
+			List<MBMessage> messages = ListUtil.sort(mbTreeWalker.getMessages(), new MessageCreateDateComparator(true));
+
+			MBMessage mbMessage = messages.get(messages.size() - 1);
+
+			if (Validator.equals(mbMessage.getBody(), String.valueOf(classPK))) {
+				return StringPool.BLANK;
+			}
+
+			return mbMessage.getBody();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			return StringPool.BLANK;
+		}
+	}
+
+	public static Map<String, String> getPurposeTypeMap() throws Exception {
+		Map<String, String> purposeTypeMap = new HashMap<String, String>();
+
+		for (int purposeType : EVPConstants.PURPOSE_TYPES) {
+			purposeTypeMap.put(String.valueOf(purposeType), EVPConstants.getPurposeTypeLabel(purposeType));
+		}
+
+		return purposeTypeMap;
+	}
+
+	public static MBMessage getRootMessage(long userId, long groupId, String commentClassName, long commentClassPK) throws Exception {
+		MBMessageDisplay messageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(userId, groupId, commentClassName, commentClassPK, WorkflowConstants.STATUS_ANY, MBThreadConstants.THREAD_VIEW_FLAT);
+
+		MBThread thread = messageDisplay.getThread();
+
+		return MBMessageLocalServiceUtil.getMessage(thread.getRootMessageId());
+	}
+
+	public static String getSubmissionConfirmationURL(AlloyController alloyController, long evpRequestId, boolean duplicateOrganization) {
+		ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(alloyController.getRequest(), PortletKeys.EVP, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+		portletURL.setParameter("confirmation", "true");
+
+		String confirmationMessage = ParamUtil.getString(alloyController.getRequest(), "confirmationMessage");
+
+		portletURL.setParameter("confirmationMessage", confirmationMessage);
+
+		String controller = ParamUtil.getString(alloyController.getRequest(), "controller");
+
+		portletURL.setParameter("controllerPath", controller);
+
+		if (duplicateOrganization) {
+			portletURL.setParameter("evpRequestId", String.valueOf(evpRequestId));
+		}
+
+		return portletURL.toString();
+	}
+
+	public static String getURL(AlloyController alloyController, String controller, long classPK, String action) throws Exception {
+		StringBundler sb = new StringBundler(10);
+
+		String layoutFriendlyURL = StringPool.BLANK;
+
+		ThemeDisplay themeDisplay = alloyController.getThemeDisplay();
+
+		Layout layout = themeDisplay.getLayout();
+
+		if (layout != null) {
+			layoutFriendlyURL = GetterUtil.getString(PortalUtil.getLayoutFriendlyURL(layout, themeDisplay));
+		}
+
+		if (!layoutFriendlyURL.startsWith(Http.HTTP_WITH_SLASH) && !layoutFriendlyURL.startsWith(Http.HTTPS_WITH_SLASH)) {
+			HttpServletRequest request = alloyController.getRequest();
+
+			sb.append(PortalUtil.getPortalURL(request, request.isSecure()));
+		}
+
+		sb.append(layoutFriendlyURL);
+		sb.append(Portal.FRIENDLY_URL_SEPARATOR);
+
+		Portlet portlet = alloyController.getPortlet();
+
+		sb.append(portlet.getFriendlyURLMapping());
+		sb.append(StringPool.SLASH);
+		sb.append(controller);
+		sb.append(StringPool.SLASH);
+		sb.append(classPK);
+		sb.append(StringPool.SLASH);
+		sb.append(action);
+
+		return sb.toString();
+	}
+
+	public static Date getUserStartDate(User user) throws Exception {
+		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyyMMddHHmmss");
+
+		EVPEmployee evpEmployee = EVPEmployeeLocalServiceUtil.fetchEVPEmployeeByEmployeeUserId(user.getUserId());
+
+		if (evpEmployee == null) {
+			return user.getCreateDate();
+		}
+
+		return evpEmployee.getHireDate();
+	}
+
+	public static double getUsersTotalGrantAmountUsed(long userId, int year, long excludableEVPGrantRequestId) throws Exception {
+		double total = 0;
+
+		AlloyServiceInvoker evpGrantTransactionAlloyServiceInvoker = new AlloyServiceInvoker(EVPGrantTransaction.class.getName());
+
+		DynamicQuery evpGrantTransactionDynamicQuery = evpGrantTransactionAlloyServiceInvoker.buildDynamicQuery(new Object [] {"userId", userId});
+
+		if (year > 0) {
+			Property createDateProperty = PropertyFactoryUtil.forName("createDate");
+
+			Date yearBeginDate = PortalUtil.getDate(Calendar.JANUARY, 1, year);
+			Date yearEndDate = PortalUtil.getDate(Calendar.JANUARY, 1, year + 1);
+
+			evpGrantTransactionDynamicQuery.add(createDateProperty.between(yearBeginDate, yearEndDate));
+		}
+
+		AlloyServiceInvoker evpGrantRequestAlloyServiceInvoker = new AlloyServiceInvoker(EVPGrantRequest.class.getName());
+
+		DynamicQuery evpGrantRequestDynamicQuery = evpGrantRequestAlloyServiceInvoker.buildDynamicQuery(new Object [] {"userId", userId});
+
+		Property evpGrantRequestIdProperty = PropertyFactoryUtil.forName("evpGrantRequestId");
+
+		evpGrantRequestDynamicQuery.add(evpGrantRequestIdProperty.ne(excludableEVPGrantRequestId));
+
+		Property statusProperty = PropertyFactoryUtil.forName("status");
+
+		for (int status : EVPWorkflowConstants.GRANT_STATUSES_EXCLUDABLE) {
+			evpGrantRequestDynamicQuery.add(statusProperty.ne(status));
+		}
+
+		Projection evpGrantRequestIdProjection = ProjectionFactoryUtil.property("evpGrantRequestId");
+
+		evpGrantRequestDynamicQuery.setProjection(ProjectionFactoryUtil.distinct(evpGrantRequestIdProjection));
+
+		evpGrantTransactionDynamicQuery.add(evpGrantRequestIdProperty.in(evpGrantRequestDynamicQuery));
+
+		List<EVPGrantTransaction> evpGrantTransactions = evpGrantTransactionAlloyServiceInvoker.executeDynamicQuery(evpGrantTransactionDynamicQuery);
+
+		for (EVPGrantTransaction evpGrantTransaction : evpGrantTransactions) {
+			total = BigDecimalUtil.add(total, evpGrantTransaction.getAmount());
+		}
+
+		return total;
+	}
+
+	public static int getUsersTotalServiceHoursUsed(long userId, int year, long excludableEVPServiceRequestId) throws Exception {
+		int total = 0;
+
+		AlloyServiceInvoker evpServiceRequestAlloyServiceInvoker = new AlloyServiceInvoker(EVPServiceRequest.class.getName());
+
+		DynamicQuery evpServiceRequestDynamicQuery = evpServiceRequestAlloyServiceInvoker.buildDynamicQuery(new Object [] {"userId", userId});
+
+		if (year > 0) {
+			Property requestedStartDateProperty = PropertyFactoryUtil.forName("requestedStartDate");
+
+			Date yearBeginDate = PortalUtil.getDate(Calendar.JANUARY, 1, year);
+			Date yearEndDate = PortalUtil.getDate(Calendar.JANUARY, 1, year + 1);
+
+			evpServiceRequestDynamicQuery.add(requestedStartDateProperty.between(yearBeginDate, yearEndDate));
+		}
+
+		Property evpServiceRequestIdProperty = PropertyFactoryUtil.forName("evpServiceRequestId");
+
+		evpServiceRequestDynamicQuery.add(evpServiceRequestIdProperty.ne(excludableEVPServiceRequestId));
+
+		Property statusProperty = PropertyFactoryUtil.forName("status");
+
+		for (int status : EVPWorkflowConstants.SERVICE_STATUSES_EXCLUDABLE) {
+			evpServiceRequestDynamicQuery.add(statusProperty.ne(status));
+		}
+
+		List<EVPServiceRequest> evpServiceRequests = evpServiceRequestAlloyServiceInvoker.executeDynamicQuery(evpServiceRequestDynamicQuery);
+
+		for (EVPServiceRequest evpServiceRequest : evpServiceRequests) {
+			total += evpServiceRequest.getRequestedTotalHours();
+		}
+
+		return total;
+	}
+
+	public static String getWorkflowTaskComments(HttpServletRequest request) {
+		String workflowTaskId = ParamUtil.getString(request, "workflowTaskId");
+
+		return ParamUtil.getString(request, workflowTaskId + "Comments");
+	}
+
+	public static String quoteString(String s) {
+		return StringPool.QUOTE + s + StringPool.QUOTE;
+	}
+
+	private static Log _log = LogFactoryUtil.getLog("jsp.evp.util.EVPUtil");
+
+}
+%>

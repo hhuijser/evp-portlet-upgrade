@@ -1,0 +1,75 @@
+<nav class="navbar navbar-fixed-top" id="navigation" role="navigation">
+	<div class="navbar-inner">
+		<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+			<svg class="logo-scroll" enable-background="new 0 0 70 56" height="56px" version="1.1" viewBox="0 0 70 56" width="70px" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+				<g>
+					<polygon class="icon-right" fill="#93CCD0" points="23.3,35.7 21.1,33.5 48.2,6.3 63.5,21.6 48.2,36.9 36.6,25.3 38.9,23.1 48.2,32.4 59,21.6 48.2,10.8" />
+				</g>
+				<g>
+					<polygon class="icon-left" fill="#00B7B8" points="44.5,36.1 35.2,45.5 11,21.3 21.8,10.5 31.5,20.2 33.8,17.9 21.8,6 21.8,6 21.7,6 6.5,21.3 35.2,50 46.8,38.4" />
+				</g>
+			</svg>
+
+			<img alt="$logo_description" class="logo-fixed" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+		</a>
+
+		<div class="nav-section pages">
+			<a class="btn btn-navbar btn-transparent">
+				<i class="icon-reorder"></i>
+			</a>
+
+			<div class="collapse nav-collapse">
+				<ul aria-label="#language ("site-pages")" class="inline nav unstyled" role="menubar">
+					#foreach ($nav_item in $nav_items)
+						#set ($nav_item_attr_has_popup = "")
+						#set ($nav_item_attr_selected = "")
+						#set ($nav_item_css_class = "")
+
+						#if ($nav_item.isSelected())
+							#set ($nav_item_attr_selected="aria-selected='true'")
+							#set ($nav_item_css_class = "selected")
+						#end
+
+						#if ($nav_item.hasChildren())
+							#set ($nav_item_attr_has_popup="aria-haspopup='true'")
+						#end
+
+						<li class="$nav_item_css_class" id="layout_$nav_item.getLayoutId()" $nav_item_attr_selected role="presentation">
+							<a aria-labelledby="layout_$nav_item.getLayoutId()" href="$nav_item.getURL()" $nav_item_attr_has_popup $nav_item.getTarget() role="menuitem"><span>$nav_item.icon() $nav_item.getName()</span></a>
+
+							#if ($nav_item.hasChildren())
+								<ul class="child-menu" role="menu">
+									#foreach ($nav_child in $nav_item.getChildren())
+										#set ($nav_child_attr_selected="")
+										#set ($nav_child_css_class = "false")
+
+										#if ($nav_child.isSelected())
+											#set ($nav_child_attr_selected="aria-selected='true'")
+											#set ($nav_child_css_class = "selected")
+										#end
+
+										<li class="$nav_child_css_class" id="layout_$nav_child.getLayoutId()" $nav_child_attr_selected role="presentation">
+											<a aria-labelledby="layout_$nav_child.getLayoutId()" href="$nav_child.getURL()" $nav_child.getTarget() role="menuitem">$nav_child.getName()</a>
+										</li>
+									#end
+								</ul>
+							#end
+						</li>
+					#end
+
+					<li>
+						#if (!$is_signed_in)
+							<a data-redirect="$is_login_redirect_required" href="$sign_in_url" id="sign-in" rel="nofollow"><span>$sign_in_text</span></a>
+						#else
+							<a href="$sign_out_url" id="sign-out" rel="nofollow"><span>$sign_out_text</span></a>
+						#end
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<script>
+	Liferay.Data.NAV_LIST_SELECTOR = '.navbar-inner .nav-collapse > ul';
+</script>

@@ -1,0 +1,65 @@
+.dark-teal {
+	a {
+		&:active, &:focus, &:hover {
+			color: $darkTeal;
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		color: $darkTeal;
+	}
+
+	.btn {
+		&.btn-primary {
+			background: $darkTeal;
+
+			&:hover {
+				background: $darkerTeal;
+				color: $white;
+				text-shadow: none;
+			}
+		}
+
+		&.btn-transparent {
+			background: transparent;
+			border: 1px solid $darkTeal;
+			color: $darkTeal;
+
+			&:hover {
+				color: $white;
+			}
+		}
+	}
+
+	#navigation.navbar {
+		&.nav-scroll a:hover, .selected a, a:hover {
+			color: $darkTeal;
+		}
+
+		.navbar-inner {
+			.pages .nav > li > a:hover > span {
+				border-bottom-color: $darkTeal;
+			}
+
+			.default-logo .logo-scroll {
+				.icon-left {
+					fill: $darkerTeal;
+				}
+
+				.icon-right {
+					fill: $darkTeal;
+				}
+			}
+		}
+	}
+
+	#footer {
+		.footer-section.footer-section-3 {
+			ul li a:hover {
+				.social-icon {
+					fill: $darkTeal;
+				}
+			}
+		}
+	}
+}

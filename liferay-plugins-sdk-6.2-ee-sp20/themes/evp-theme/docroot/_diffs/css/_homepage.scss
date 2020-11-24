@@ -1,0 +1,743 @@
+.default {
+	.homepage {
+		.banner {
+			.banner-content {
+				padding-top: 50vh;
+				position: relative;
+				z-index: 1;
+
+				.content-box {
+					background: rgba(0, 0, 0, 0.6);
+					padding: 24px;
+
+					.header {
+						font-size: 3em;
+						line-height: 50px;
+					}
+
+					.description {
+						font-size: 1.75em;
+						line-height: 34px;
+						padding-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	.about-evp {
+		background-attachment: fixed;
+		background-size: cover;
+
+		.about-evp-wrapper {
+			display: inline-block;
+			padding: 60px 70px;
+
+			.section-title {
+				color: $white;
+				text-align: center;
+			}
+
+			.info {
+				margin-bottom: 40px;
+				margin-top: 50px;
+
+				.description {
+					color: $white;
+					font-size: 1.75em;
+					line-height: 38px;
+					margin: 0 0 10px;
+				}
+
+				.btn {
+					margin-top: 10px;
+				}
+			}
+
+			.video-wrapper {
+				margin-bottom: 40px;
+				margin-top: 40px;
+
+				.video {
+					display: flex;
+					height: 0;
+					overflow: hidden;
+					padding-bottom: 56.25%;
+					position: relative;
+
+					&.mask {
+						margin-left: auto;
+
+						&:hover {
+							cursor: pointer;
+
+							.video-mask {
+								stroke: $brightTeal;
+							}
+						}
+
+						.video-iframe {
+							display: none;
+						}
+
+						.video-mask {
+							color: $white;
+							fill: transparent;
+							height: 100%;
+							position: absolute;
+							stroke: $white;
+							stroke-width: 1.5px;
+							width: 100%;
+						}
+					}
+
+					&.player {
+						padding-top: 30px;
+
+						.video-iframe {
+							height: 100%;
+							left: 0;
+							position: absolute;
+							top: 0;
+							width: 100%;
+						}
+
+						.video-mask {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.evp-process {
+		box-sizing: border-box;
+		height: 720px;
+		padding: 60px;
+
+		.evp-process-infographic {
+			display: flex;
+			height: 100%;
+			position: relative;
+			z-index: 1;
+
+			.evp-process-image {
+				height: 100%;
+				margin-top: 10px;
+				position: absolute;
+				right: 50%;
+				transform: translateX(50%);
+				width: 100%;
+
+				.step {
+					&.fill {
+						.highlight {
+							fill: $teal;
+						}
+
+						.highlight.stroke {
+							fill: none;
+							stroke: $teal;
+						}
+					}
+				}
+			}
+
+			.evp-process-description {
+				margin: auto;
+
+				.description-content {
+					margin: auto;
+					max-width: 240px;
+					text-align: center;
+
+					.description {
+						opacity: 0;
+
+						&.transition-fade-in {
+							opacity: 1;
+							transition: opacity 0.7s;
+						}
+					}
+
+					.description {
+						font-size: 1.875em;
+						line-height: 38px;
+
+						&.default-description {
+							font-size: 2.5em;
+							line-height: 52px;
+							text-transform: uppercase;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.available-through-evp {
+		background-color: $white;
+		padding-bottom: 20px;
+		padding-top: 100px;
+
+		.header, .image-header, .spacer {
+			color: $grey;
+		}
+
+		.header {
+			font-size: 2.375em;
+			margin: 10px auto;
+		}
+
+		.available-through-evp-description {
+			margin-top: 30px;
+
+			.section:hover .description-content {
+				opacity: 1;
+				transition-delay: 0s;
+				visibility: visible;
+			}
+
+			.description-content {
+				color: $grey;
+				font-size: 1.2vw;
+				opacity: 0;
+				transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+				visibility: hidden;
+			}
+
+			.image-header {
+				font-size: 1.6vw;
+				line-height: 1.5vw;
+				margin: 15px 0;
+				text-transform: uppercase;
+			}
+
+			.spacer {
+				font-size: 3vw;
+				line-height: 7vw;
+			}
+		}
+	}
+
+	.evp-statistics-container {
+		display: flex;
+
+		.evp-statistics {
+			min-height: 800px;
+			padding-top: 275px;
+			z-index: 2;
+
+			.evp-statistics-info {
+				border-right: 1px solid $white;
+				height: 24vw;
+				max-height: 300px;
+				padding: 20px 2.76% 0 0;
+
+				&:last-child {
+					border-right-width: 0;
+				}
+
+				.header {
+					font-size: 1.3vw;
+					line-height: 1.3vw;
+				}
+
+				.content {
+					font-size: 3vw;
+					font-weight: bold;
+					line-height: 3vw;
+				}
+			}
+		}
+	}
+
+	.preapproved-organizations {
+		background: $white;
+		min-height: 160px;
+
+		.heading {
+			padding: 20px;
+
+			.section-title {
+				text-shadow: none;
+			}
+
+			.description {
+				color: $grey;
+			}
+		}
+
+		.images {
+			padding: 20px;
+
+			.organizations {
+				.organization {
+					height: 120px;
+					overflow: hidden;
+
+					.organization-content {
+						display: flex;
+						height: 100%;
+
+						.organization-color {
+							display: none;
+							opacity: 0;
+
+							&.transition-fade-in {
+								opacity: 1;
+								transition: opacity 0.5s;
+							}
+						}
+
+						.organization-grey, .organization-color {
+							margin: auto;
+
+							&.mobile {
+								display: block;
+								opacity: 1;
+							}
+
+							.logo-wrapper {
+								margin: 10px auto;
+
+								.logo {
+									display: block;
+									margin: auto;
+									max-width: 100%;
+								}
+							}
+						}
+
+						.more-info {
+							display: flex;
+
+							.more-info-btn {
+								margin: auto;
+							}
+						}
+
+						&:hover {
+							.organization-color {
+								display: block;
+							}
+
+							.organization-grey {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.organization-info-box {
+			div[class^="info"] {
+				box-sizing: border-box;
+				padding: 0 40px 40px;
+
+				.logo-wrapper {
+					display: flex;
+
+					.logo {
+						margin: auto;
+					}
+				}
+
+				.organization-location {
+					color: $lightGrey;
+					font-size: 1.125em;
+					margin: 30px 0;
+				}
+
+				.organization-description {
+					color: $grey;
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+
+	.trip-summaries {
+		.past-trips, .upcoming-trips {
+			margin-left: 0;
+
+			.past-title .title {
+				color: $darkerTeal;
+			}
+
+			.upcoming-title .title {
+				color: $brightTeal;
+			}
+
+			.past-trip {
+				.more-info-btn {
+					float: right;
+
+					&:active, &:hover {
+						text-decoration: none;
+					}
+				}
+			}
+
+			.upcoming-trip {
+				.trip-info, .title {
+					float: right;
+					margin-right: 0;
+				}
+
+				.trip-link {
+					float: left;
+				}
+
+				.trip-info, .trip-title {
+					text-align: right;
+
+					.deadline {
+						background: $white;
+						color: $darkGrey;
+						font-size: 0.875em;
+						font-weight: normal;
+						margin-right: 15px;
+						padding: 0 8px;
+						text-shadow: none;
+						text-transform: uppercase;
+						vertical-align: middle;
+					}
+				}
+			}
+
+			.past-trip, .upcoming-trip {
+				box-sizing: border-box;
+				min-height: 200px;
+				padding: 20px 40px;
+				position: relative;
+				width: 100%;
+				z-index: 2;
+
+				&.past-title, &.upcoming-title {
+					background: $white;
+					min-height: 180px;
+					padding: 100px 40px 20px;
+
+					&:after, &:before {
+						display: none;
+					}
+				}
+
+				&:after, &:before {
+					background-color: $blue;
+					bottom: 0;
+					content: "";
+					left: 0;
+					opacity: 0.5;
+					position: absolute;
+					right: 0;
+					top: 0;
+					transition: opacity 0.5s;
+				}
+
+				&:after {
+					mix-blend-mode: multiply;
+					z-index: -1;
+				}
+
+				&:before {
+					mix-blend-mode: lighten;
+					z-index: 0;
+				}
+
+				&.all-trips, &.all-stories {
+					.link-text {
+						color: $white;
+						font-size: 1.5em;
+						font-weight: bold;
+						line-height: 40px;
+						margin: 60px 0 0;
+						overflow: hidden;
+						text-transform: uppercase;
+						transition: margin 0.2s linear;
+
+						.arrow {
+							transition: margin 0.1s linear;
+							transition-delay: 0.2s;
+
+							&.icon-arrow-left {
+								margin-right: -20px;
+							}
+
+							&.icon-arrow-right {
+								margin-left: -20px;
+							}
+						}
+					}
+
+					.redirect {
+						bottom: 0;
+						left: 0;
+						position: absolute;
+						right: 0;
+						top: 0;
+					}
+
+					&:after, &:before {
+						display: none;
+					}
+
+					&:hover {
+						.link-text {
+							margin: 60px 40px 0;
+							transition: margin 0.2s linear;
+							transition-delay: 0.3s;
+
+							.arrow {
+								display: inline-block;
+								margin: 0;
+								transition: margin 0.1s linear;
+								transition-delay: 0.2s;
+							}
+						}
+					}
+				}
+
+				&.all-trips {
+					background-color: $brightTeal;
+
+					.link-text {
+						float: right
+					}
+				}
+
+				&.all-stories {
+					background-color: $darkerTeal;
+				}
+
+				&:hover {
+					&:after, &:before {
+						opacity: 0;
+						transition: opacity 0.5s;
+					}
+
+					.more-info-btn  {
+						opacity: 1;
+						position: relative;
+						transition: opacity 0.5s;
+
+						&:active, &:hover {
+							text-decoration: none;
+						}
+					}
+				}
+
+				.more-info-btn {
+					background: $white;
+					color: $darkGrey;
+					font-family: proxima-nova-condensed;
+					font-weight: bold;
+					opacity: 0;
+					padding: 8px 15px;
+				}
+
+				.trip-info, .trip-title {
+					color: $white;
+					text-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+				}
+
+				.trip-info {
+					font-size: 17px;
+				}
+
+				.trip-title {
+					font-weight: bold;
+				}
+			}
+
+			@include respond-to(tablet, desktop) {
+				width: 50%;
+			}
+		}
+	}
+
+	@include respond-to(tablet) {
+		.about-evp .about-evp-wrapper .video-wrapper {
+			margin-bottom: 95px;
+			margin-top: 95px;
+		}
+
+		.preapproved-organizations {
+			.images {
+				.organizations .organization {
+					height: 145px;
+				}
+			}
+		}
+
+		.trip-summaries {
+			.past-trips .past-trip, .upcoming-trips .upcoming-trip {
+				height: 250px;
+
+				&.all-trips, &.all-stories {
+					text-align: center;
+
+					.link-text {
+						display: inline-block;
+						float: none;
+					}
+				}
+			}
+		}
+	}
+
+	@include respond-to(phone) {
+		.homepage {
+			.banner .banner-content {
+				padding: 200px 20px 0;
+
+				.content-box {
+					.header {
+						font-size: 2.5em;
+						line-height: 45px;
+					}
+
+					.description {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.trip-summaries {
+			.past-trips .past-trip, .upcoming-trips .upcoming-trip {
+				min-height: 200px;
+
+				&.past-title, &.upcoming-title {
+					.title {
+						text-align: center;
+					}
+				}
+
+				&.all-trips, &.all-stories {
+					text-align: center;
+
+					.link-text {
+						display: inline-block;
+						float: none;
+					}
+				}
+
+				.more-info-btn {
+					padding: 8px;
+				}
+
+				&.upcoming-title .title, .trip-info, .trip-link {
+					float: none;
+				}
+
+				.trip-info, .trip-title, .link-text {
+					margin-bottom: 20px;
+					text-align: center;
+
+					.deadline {
+						display: block;
+						margin-right: 0;
+					}
+				}
+			}
+		}
+
+		.about-evp .about-evp-wrapper {
+			padding: 50px;
+
+			.info .description {
+				font-size: 1.5em;
+				line-height: 30px;
+			}
+
+			.video-wrapper .video {
+				&.mask, &.player {
+					margin: auto;
+				}
+			}
+		}
+
+		.evp-process {
+			height: 500px;
+			padding: 0;
+
+			.evp-process-infographic .evp-process-description .description-content {
+				max-width: 30vw;
+
+				.description {
+					font-size: 4vw;
+					line-height: 5vw;
+
+					&.default-description {
+						font-size: 5vw;
+						line-height: 6vw;
+					}
+				}
+			}
+		}
+
+		.available-through-evp {
+			.available-through-evp-description {
+				.description-content {
+					font-size: 0.875em;
+					margin: 0 10px 10px;
+				}
+
+				.image-header {
+					font-size: 1.5em;
+					line-height: 24px;
+				}
+
+				.spacer {
+					font-size: 2.5em;
+				}
+			}
+
+			.header {
+				padding: 0 10px;
+			}
+		}
+
+		.evp-statistics-container {
+			background-color: $teal;
+			background-image: none !important;
+
+			&:after {
+				-webkit-clip-path: none;
+				bottom: 0;
+			}
+
+			.evp-statistics {
+				padding: 100px 0;
+
+				.evp-statistics-info {
+					border-right-width: 0;
+					height: 250px;
+					padding-right: 0;
+					text-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+
+					.content {
+						font-size: 2.125em;
+						font-weight: bold;
+						line-height: 44px;
+					}
+
+					.header {
+						font-size: 1em;
+						line-height: 20px;
+					}
+				}
+			}
+		}
+
+		.preapproved-organizations {
+			.heading .section-title, .description {
+				text-align: center;
+			}
+		}
+	}
+}

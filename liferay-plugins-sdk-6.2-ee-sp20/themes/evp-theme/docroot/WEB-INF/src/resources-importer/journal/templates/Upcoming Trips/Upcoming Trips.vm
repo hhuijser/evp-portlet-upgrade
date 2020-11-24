@@ -1,0 +1,178 @@
+#set ($additional_details = $additional_information.additional_details.getData())
+#set ($alternate_date = $trip_details.alternate_date.getData())
+#set ($alternate_signup_link = $additional_information.alternate_signup_link.getData())
+#set ($contact_email = $contact_info.contact_email.getData())
+#set ($contact_name = $contact_info.contact_name.getData())
+#set ($cost = $trip_details.cost.getData())
+#set ($end_date = $trip_details.end_date.getData())
+#set ($follow_link = $additional_information.follow_link.getData())
+#set ($group_service_request_id = $additional_information.group_service_request_id.getData())
+#set ($important_notes = $additional_information.important_notes.getData())
+#set ($location = $trip_details.location.getData())
+#set ($organization_name =$trip_details.organization_name.getData())
+#set ($purpose = $trip_details.purpose.getData())
+#set ($service_description = $trip_details.service_description.getData())
+#set ($signup_deadline = $trip_details.signup_deadline.getData())
+#set ($start_date = $trip_details.start_date.getData())
+#set ($trip_interest_header = $trip_interest.trip_interest_header.getData())
+#set ($trip_interest_link = $trip_interest.trip_interest_link.getData())
+#set ($trip_interest_message = $trip_interest.trip_interest_message.getData())
+#set ($video_links = $additional_information.video_links.getSiblings())
+
+#set ($user_email = $permissionChecker.getUser().getEmailAddress())
+
+#set ($video_urls = "")
+
+#foreach($video_link in $video_links)
+	#if ($velocityCount > 1)
+		#set ($video_urls = $video_urls + ",")
+	#end
+
+	#set ($video_urls = $video_urls + $stringUtil.trim($video_link.getData()))
+#end
+
+#set ($deadline_date_long = $getterUtil.getLong($signup_deadline))
+#set ($end_date_long = $getterUtil.getLong($end_date))
+#set ($start_date_long = $getterUtil.getLong($start_date))
+
+#set ($display_trip_date = $stringUtil.trim($alternate_date))
+
+#set ($one_day = 86400000)
+#set ($thirty_days = 2592000000)
+
+#set ($current_date = $dateTool.getDate().getTime())
+
+#set ($days_until_deadline = $deadline_date_long + $one_day - $current_date)
+
+#if ($start_date_long > 0 && $end_date_long > 0 && $display_trip_date == "")
+	#set ($end_date_object = $dateUtil.newDate($end_date_long))
+	#set ($start_date_object = $dateUtil.newDate($start_date_long))
+
+	#set ($display_end_date = $dateUtil.getDate($end_date_object, "MMM d, yyyy", $locale))
+	#set ($display_start_date = $dateUtil.getDate($start_date_object, "MMM d", $locale))
+
+	#set ($display_trip_date = $languageUtil.format($locale, "x-x", [$display_start_date, $display_end_date]))
+#end
+
+#set ($signup_link = $alternate_signup_link)
+
+#if ($stringUtil.trim($group_service_request_id) != "")
+	#set ($signup_link = $group_service_request_id)
+#end
+
+#set ($contact_email = $stringUtil.trim($contact_email))
+
+<div class="row-fluid">
+	<div class="span12 trip-stories upcoming-trips video-wrapper" data-portlet-namespace="$request.portlet-namespace" id="upcomingTrips">
+		<div class="trip-wrapper video-group">
+			<div class="banner-cover trip-display upcoming-trip" data-url="$video_urls" id="$reserved-article-id.data" style="background-image: url($banner_image.getData());">
+				<div class="row-fluid trip-info">
+					<div class="section span6">
+						<h3 class="trip-title">
+							#if (($deadline_date_long - $current_date) < $thirty_days && ($deadline_date_long > $current_date))
+								<span class="deadline">#language ("deadline-approaching")</span>
+							#end
+
+							#if ($deadline_date_long < $current_date)
+								<span class="deadline">#language ("deadline-past")</span>
+							#end
+
+							$trip_title.getData()
+						</h3>
+
+						<div class="trip-location">
+							$location
+						</div>
+
+						<div class="trip-date">
+							$display_trip_date
+						</div>
+
+						#if (($deadline_date_long - $current_date) < $thirty_days)
+							#set ($deadline_date_obj = $dateUtil.newDate($deadline_date_long))
+							#set ($deadline_date = $dateUtil.getDate($deadline_date_obj, "MMM d", $locale))
+
+							<div class="trip-date">
+								Sign-up Deadline: $deadline_date
+							</div>
+						#end
+
+						<div class="row-fluid">
+							<div class="span10 trip-details">
+								<a class="open-details-box toggler-header-collapsed" href="javascript:;">
+									#language ("more-details")
+									<span class="expanded">-</span>
+									<span class="collapsed">+</span>
+								</a>
+
+								<div class="more-details-box toggler-content-collapsed">
+									<ul class="more-details-list unstyled">
+										<li class="primary-contact">#language ("primary-contact"): <a href="mailto:$contact_email">$contact_name</a></li>
+
+										<li>#language ("organization"): $organization_name</li>
+
+										#if ($stringUtil.trim($cost) != "")
+											<li>#language ("cost-of-the-trip"): $cost</li>
+										#end
+
+										#if ($stringUtil.trim($purpose) != "")
+											<li>#language ("why"): $purpose</li>
+										#end
+
+										#if ($stringUtil.trim($important_notes) != "")
+											<li class="important-notes">#language ("important-notes"): $important_notes</li>
+										#end
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="section span6">
+						<div class="row-fluid">
+							<div class="span10 trip-summary">
+								$service_description
+							</div>
+						</div>
+
+						<div class="row-fluid trip-buttons">
+							#if ($stringUtil.trim($signup_link) != "" && ($deadline_date_long >= $current_date))
+								#set ($target = "_self")
+
+								#if ($signup_link.contains("http"))
+									#set ($target = "_blank")
+								#end
+
+								<a class="btn btn-transparent trip-signup-btn" href="$signup_link" target="$target">#language ("sign-up-now")</a>
+							#end
+
+							#set ($trip_interest_link_val = $stringUtil.trim($trip_interest_link))
+
+							#if ($trip_interest_link_val != "")
+								<button class="btn btn-transparent trip-interest-btn" data-header="$trip_interest_header" data-href="$trip_interest_link$user_email" data-message="$trip_interest_message">#language ("im-interested")</button>
+							#end
+
+							#if ($stringUtil.trim($follow_link) != "")
+								<a class="btn btn-transparent trip-follow-btn" href="$follow_link" target="_blank">#language ("follow")</a>
+							#end
+
+							<button class="btn btn-transparent share-trip-btn" onClick="Liferay.EVP.openShareDialog('${htmlUtil.escapeJS($request.get("attributes").CURRENT_COMPLETE_URL)}')">
+								#language ("share")
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row toggler-content-expanded trip-breakdown">
+				<div class="content-wrapper offset2 span8">
+					<div class="content">
+						$additional_details
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="interest-modal"></div>
+</div>

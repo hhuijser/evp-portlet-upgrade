@@ -1,0 +1,33 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%!
+public static class EVPRoleConstants extends com.liferay.evp.util.EVPRoleConstants {
+
+	public static final String ROLE_NAME_EVP_ADMIN = "EVP Admin";
+
+	public static final String ROLE_NAME_EVP_TEAM = "EVP Team";
+
+	public static final String ROLE_NAME_EVP_TEAM_GLOBAL = "EVP Team (Global)";
+
+	public static final String ROLE_NAME_FINANCE = "Finance";
+
+	public static final String ROLE_NAME_HR = "HR";
+
+	public static final String[] ROLE_NAMES_INCLUDABLE = {ROLE_NAME_EVP_ADMIN, ROLE_NAME_EVP_TEAM, ROLE_NAME_EVP_TEAM_GLOBAL, ROLE_NAME_FINANCE, ROLE_NAME_HR};
+
+}
+%>

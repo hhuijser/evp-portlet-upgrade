@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[What is available to employees through EVP?]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[A header for the section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="section_1_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="section_1_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Section 1 Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image used in the first section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="section_1_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Section 1 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[Description for the first section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Section 1 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Service Hours]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header used in the first section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="spacer_section_1_section_2" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Spacer between Section 1 and Section 2]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[+]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The spacer used between the first and second sections.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="section_2_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="section_2_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Section 2 Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image used in the second section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="section_2_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Section 2 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[Description for the second section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Section 2 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Grant Funds]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header used in the second section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="spacer_section_2_section_3" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Spacer between Section 2 and Section 3]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[=]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The spacer used between the second and third sections.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="section_3_header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="section_3_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Section 3 Image]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The image used in the third section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="section_3_description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Section 3 Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[Description for the third section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Section 3 Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Grant Funds]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header used in the third section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

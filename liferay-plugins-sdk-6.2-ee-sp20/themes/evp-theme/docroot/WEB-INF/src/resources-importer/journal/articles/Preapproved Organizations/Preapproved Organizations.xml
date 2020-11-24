@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="section_title" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Not sure where to serve?]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="section_description" type="text_box" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Check out these preapproved service organizatoins in your region!]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="organization" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="logo" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="logo_grey" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="organization_name" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Name]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_label" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Learn More]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="organization_url" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[http://www.liferay.com]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="service_url" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[http://www.liferay.com]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="location" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Location, Anywhere]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Morbi faucibus dolor et nibh faucibus fermentum. Integer volutpat dignissim neque, sit amet facilisis nisi sollicitudin nec. Vivamus tempor consectetur erat, a varius eros hendrerit eget. Aliquam sed maximus nulla. Curabitur laoreet vel lacus at consequat. Sed interdum tempus rhoncus. Proin et libero magna. Vestibulum ac lacus vel tellus rhoncus dictum in eget odio. Integer vel lacus venenatis, dapibus quam iaculis, ultricies ante. Cras eu metus ipsum. Vestibulum sit amet metus in tortor sodales dictum in non libero.]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="organization" type="selection_break" index-type="keyword" index="1">
+		<dynamic-element name="logo" index="1" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="logo_grey" index="1" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="organization_name" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Organization]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_label" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Learn More]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="organization_url" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[http://www.liferay.com]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="service_url" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[http://www.liferay.com]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="location" index="1" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Location, Somewhere]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="description" index="1" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Morbi faucibus dolor et nibh faucibus fermentum. Integer volutpat dignissim neque, sit amet facilisis nisi sollicitudin nec. Vivamus tempor consectetur erat, a varius eros hendrerit eget. Aliquam sed maximus nulla. Curabitur laoreet vel lacus at consequat. Sed interdum tempus rhoncus. Proin et libero magna. Vestibulum ac lacus vel tellus rhoncus dictum in eget odio. Integer vel lacus venenatis, dapibus quam iaculis, ultricies ante. Cras eu metus ipsum. Vestibulum sit amet metus in tortor sodales dictum in non libero.]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+</root>

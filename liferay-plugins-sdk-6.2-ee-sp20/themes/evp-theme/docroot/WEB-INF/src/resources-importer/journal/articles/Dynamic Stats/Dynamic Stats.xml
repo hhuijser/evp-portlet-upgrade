@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="background_image" type="image" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="statistic_1_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="statistic_1_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Years EVP has been active]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="statistic_2_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="statistic_2_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Service hours completed]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="statistic_3_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="statistic_3_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Grant money distributed]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="statistic_4_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="statistic_4_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Number of nonprofits served]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="statistic_5_header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="statistic_5_image" index="0" type="image" index-type="keyword">
+			<dynamic-content language-id="en_US"></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Employees that have participated in EVP]]></dynamic-content>
+	</dynamic-element>
+</root>

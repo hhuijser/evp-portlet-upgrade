@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="background_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Background Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The background image for this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="header" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="video_url" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Video URL]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[https://www.youtube.com/watch?v=zgEKmqIuZOM]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The YouTube video URL to be displayed. It is best to use the "Share" URL but the direct URL will also work.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="description" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Description]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[EVP is our Employee Volunteer Program, born out of Liferay's vision to see people reach their full potential to serve others.]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The short description for this section.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Header]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[What does EVP mean to you?]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The header title for this section.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_1_label" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_1_url" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[First Link URL]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[/about]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The first link's URL.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[First Link Label]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[Learn More About EVP]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The first link's label.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_2_label" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+		<dynamic-element dataType="string" indexType="keyword" localizable="true" name="link_2_url" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Second Link URL]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[The second link's URL.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Second Link Label]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The second link's label.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

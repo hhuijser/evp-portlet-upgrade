@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="trip_title" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[ZOE International 2016]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="banner_image" type="image" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="trip_details" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="organization_name" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[ZOE International]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="service_description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Our team will be teaching vocational skills to young adults at the ZOE Children's Home.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="location" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Chiang Mai, Thailand]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="purpose" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[To teach skills to young adults to help them find employment]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="start_date" index="0" type="ddm-date" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[1464912000000]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="end_date" index="0" type="ddm-date" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[1465603200000]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="alternate_date" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="signup_deadline" index="0" type="ddm-date" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[1458950400000]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="cost" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Approximately $2500]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="contact_info" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="contact_name" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Gabriel Lee]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="contact_email" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[gabriel.lee@liferay.com]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="trip_interest" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="trip_interest_header" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Want to get involved?]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="trip_interest_message" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[This trip is tentatively scheduled, and we're working out all the logistics. If you're interested in joining the team, we can notify you when the trip details are more final so you can officially sign up. Would you like us to contact you?]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="trip_interest_link" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[https://docs.google.com/forms/d/1jPfWq7SQ83wOfenFt1fjMB6_Tk1b7JfPt1e_R9fjHh8/formResponse?entry.1707503789=]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="additional_information" type="selection_break" index-type="keyword" index="0">
+		<dynamic-element name="follow_link" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[http://loop.liferay.com]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="group_service_request_id" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="alternate_signup_link" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="important_notes" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[Make sure your passport is valid!]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="additional_details" index="0" type="text_area" index-type="keyword">
+			<dynamic-content language-id="en_US">
+				<![CDATA[
+					<h1>The following is placeholder text.</h1>
+
+					<div>The exact details of the trip are still in the works, but here is a sample itinerary:</div>
+
+					<div>&nbsp;</div>
+
+					<div><strong><u>Saturday, June 4</u></strong></div>
+
+					<div><em>AM:</em></div>
+
+					<div>- Leave LAX</div>
+
+					<div>&nbsp;</div>
+
+					<div><strong><u>Sunday, June 5</u></strong></div>
+
+					<div>
+						<em>Afternoon:</em><br />
+						- Arrive<br />
+						- Settle in&nbsp;<br />
+						- Rest or Walking Street Shopping<br />
+						&nbsp;<br />
+						<strong><u>Monday, June 6&nbsp;</u></strong><br />
+						<em>AM and Afternoon:</em><br />
+						- Orientation and Tour<br />
+						- Service Project<br />
+						- Rest - Acclimating to Time Change<br /><br />
+						<em>PM:&nbsp;</em><br />
+						- Meet the ZOE Family<br />
+						- Optional Prayer Meeting<br />
+						&nbsp;<br />
+						<strong><u>Tuesday, June 7</u></strong><br />
+						<em>AM and Afternoon:</em><br />
+						- Service Projects<br /><br />
+						<em>PM:</em><br />
+						- Khantoke<br />
+						- Night Bazaar<br />
+						<br />
+						<strong><u>Wednesday, June 8</u></strong><br />
+						<em>AM:</em><br />
+						- Cultural Activity (Elephants)<br />
+						<br />
+						<em>Afternoon and PM:</em><br />
+						- Service Projects<br />
+						<br />
+						<strong><u>Thursday, June 9</u></strong><br />
+						<em>AM and Afternoon:</em><br />
+						- Service Projects<br />
+						<br />
+						<em>PM:</em><br />
+						- Dinner in Night Bazaar<br />
+						<br />
+						<strong><u>Friday June 10</u></strong><br />
+						<em>AM:</em><br />
+						- Cultural Activity (Sticky Falls / Tiger Kingdom)<br />
+						<br />
+						<em>Afternoon and PM:</em><br />
+						- Service Project<br />
+						- Rest or Night Bazaar<br />
+						<br />
+						<strong><u>Saturday, June 11</u></strong><br />
+						<em>AM and PM:</em><br />
+						- Spend time with our children-youth and ZOE family<br />
+						<br />
+						<strong><u>Sunday, June 12</u></strong><br />
+						<em>AM:</em><br />
+						- Depart
+					</div>
+
+					<div class="video-player"></div>
+
+					<div class="video-player"></div>
+				]]>
+			</dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="video_links" type="text" index-type="keyword" index="0">
+			<dynamic-content language-id="en_US"><![CDATA[https://youtu.be/-K8TbaDAPXE]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="video_links" type="text" index-type="keyword" index="1">
+			<dynamic-content language-id="en_US"><![CDATA[https://youtu.be/PUtkGRQzXVs]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+</root>

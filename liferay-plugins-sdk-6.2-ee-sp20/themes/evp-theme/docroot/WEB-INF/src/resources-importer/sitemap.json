@@ -1,0 +1,96 @@
+{
+	"layoutTemplateId": "1_column",
+	"publicPages": [
+		{
+			"columns": [
+				[
+					"Homepage Banner.xml",
+					"About EVP.xml",
+					{
+						"portletId": "101",
+						"portletPreferences": {
+							"portletSetupShowBorders": "false"
+						}
+					},
+					"EVP Process.xml",
+					"Available Through EVP.xml",
+					"Dynamic Stats.xml",
+					"Preapproved Organizations.xml"
+				]
+			],
+			"friendlyURL": "/home",
+			"name": "Home",
+			"title": "Home"
+		},
+		{
+			"columns": [
+				[
+					"Simple Banner Upcoming Trips.xml",
+					{
+						"portletId": "101",
+						"portletPreferences": {
+							"portletSetupShowBorders": "false"
+						}
+					}
+				]
+			],
+			"friendlyURL": "/upcoming",
+			"name": "Upcoming",
+			"title": "Upcoming"
+		},
+		{
+			"columns": [
+				[
+					"Simple Banner Past Trips.xml",
+					{
+						"portletId": "101",
+						"portletPreferences": {
+							"portletSetupShowBorders": "false"
+						}
+					}
+				]
+			],
+			"friendlyURL": "/stories",
+			"name": "Stories",
+			"title": "Stories"
+		},
+		{
+			"columns": [
+				[
+					"Simple Banner About.xml",
+					"About.xml",
+					"About EVP History.xml",
+					"Contact Us.xml"
+				]
+			],
+			"friendlyURL": "/about",
+			"name": "About",
+			"title": "About"
+		},
+		{
+			"columns": [
+				[
+					"Simple Banner FAQs.xml",
+					"FAQs.xml"
+				]
+			],
+			"friendlyURL": "/faqs",
+			"name": "FAQs",
+			"title": "FAQs"
+		},
+		{
+			"columns": [
+				[
+					"Simple Banner My EVP.xml",
+					{
+						"portletId": "1_WAR_evpportlet"
+					},
+					"My EVP FAQs.xml"
+				]
+			],
+			"friendlyURL": "/my-evp",
+			"name": "My EVP",
+			"title": "My EVP"
+		}
+	]
+}

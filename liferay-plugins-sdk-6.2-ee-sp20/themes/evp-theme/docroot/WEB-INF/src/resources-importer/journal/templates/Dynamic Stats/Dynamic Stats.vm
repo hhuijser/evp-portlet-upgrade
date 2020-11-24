@@ -1,0 +1,107 @@
+#set ($image_path = "@theme_image_path@/custom")
+
+#if ($background_image.getData() == "")
+	#set ($background = "${image_path}/evp_statistics.jpg")
+#else
+	#set ($background = $background_image.getData())
+#end
+
+#if ($statistic_1_header.statistic_1_image.getData() == "")
+	#set ($statistic_1_image = "${image_path}/evp_statistics_years.svg")
+#else
+	#set ($statistic_1_image = $statistic_1_header.statistic_1_image.getData())
+#end
+
+#if ($statistic_2_header.statistic_2_image.getData() == "")
+	#set ($statistic_2_image = "${image_path}/evp_statistics_hours.svg")
+#else
+	#set ($statistic_2_image = $statistic_2_header.statistic_2_image.getData())
+#end
+
+#if ($statistic_3_header.statistic_3_image.getData() == "")
+	#set ($statistic_3_image = "${image_path}/evp_statistics_money.svg")
+#else
+	#set ($statistic_3_image = $statistic_3_header.statistic_3_image.getData())
+#end
+
+#if ($statistic_4_header.statistic_4_image.getData() == "")
+	#set ($statistic_4_image = "${image_path}/evp_statistics_nonprofits.svg")
+#else
+	#set ($statistic_4_image = $statistic_4_header.statistic_4_image.getData())
+#end
+
+#if ($statistic_5_header.statistic_5_image.getData() == "")
+	#set ($statistic_5_image = "${image_path}/evp_statistics_employees.svg")
+#else
+	#set ($statistic_5_image = $statistic_5_header.statistic_5_image.getData())
+#end
+
+#set ($vm_variables = $request.attributes.VM_VARIABLES)
+#set ($vm_variables_json_object = $jsonFactoryUtil.createJSONObject($vm_variables))
+
+#set ($money_distributed = $vm_variables_json_object.getString("evpStatGrantMoneyDistributed"))
+
+#set ($money_distributed_formatted = 0)
+#set ($money_distributed_formatted = $mathTool.round($numberTool.toNumber($money_distributed)))
+
+#set ($one_million = 1000000)
+
+#if ($money_distributed_formatted >= $one_million)
+	#set ($money_distributed_formatted = $mathTool.div($money_distributed_formatted, $one_million))
+	#set ($money_distributed_formatted = $mathTool.roundTo(2, $money_distributed_formatted))
+	#set ($money_distributed_formatted = $money_distributed_formatted.toString() + "M")
+#end
+
+<div class="banner-cover evp-statistics-container" style="background-image: url($background);">
+	<div class="evp-statistics row-fluid span12">
+		<div class="evp-statistics-info offset1 span2 text-center">
+			<img alt="$statistic_1_header.getData()" src="$statistic_1_image" />
+
+			<div class="content">
+				$vm_variables_json_object.getString("evpStatYearsActive")
+			</div>
+
+			<h5 class="header">$statistic_1_header.getData()</h5>
+		</div>
+
+		<div class="evp-statistics-info span2 text-center">
+			<img alt="$statistic_2_header.getData()" src="$statistic_2_image" />
+
+			<div class="content">
+				$vm_variables_json_object.getString("evpStatServiceHoursCompleted")
+			</div>
+
+			<h5 class="header">$statistic_2_header.getData()</h5>
+		</div>
+
+		<div class="evp-statistics-info span2 text-center">
+			<img alt="$statistic_3_header.getData()" src="$statistic_3_image" />
+
+			<div class="content">
+				$money_distributed_formatted $vm_variables_json_object.getString("evpStatCurrencyCode")
+			</div>
+
+			<h5 class="header">$statistic_3_header.getData()</h5>
+		</div>
+
+		<div class="evp-statistics-info span2 text-center">
+			<img alt="$statistic_4_header.getData()" src="$statistic_4_image" />
+
+			<div class="content">
+				$vm_variables_json_object.getString("evpStatNonprofitsServed")
+			</div>
+
+			<h5 class="header">$statistic_4_header.getData()</h5>
+		</div>
+
+		<div class="evp-statistics-info span2 text-center">
+			<img alt="$statistic_5_header.getData()" src="$statistic_5_image" />
+
+			<div class="content">
+				$vm_variables_json_object.getString("evpStatEmployeesParticipated")
+			</div>
+
+			<h5 class="header">$statistic_5_header.getData()</h5>
+		</div>
+	</div>
+</div>

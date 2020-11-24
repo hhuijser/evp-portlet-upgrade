@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="trip_title" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Haiti Earthquake Relief]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="banner_image" type="image" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[[]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="location" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[Haiti]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="trip_date" type="ddm-date" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[1289260800000]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="abstract" type="text_box" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[2 Liferay employees traveled to Haiti after the devastation caused by the 2010 earthquake to help in the rebuilding effort. Though they went at different times, they both came away with new perspectives.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="story" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<h1>The following is placeholder text.</h1>
+
+				<div class="pull-quote">Through all of the terrible tragedy and daily hardships that we can barely imagine, they keep going -- Stephen Kostas</div>
+
+				<div>&nbsp;</div>
+
+				<div>In January 2010, Haiti was hit with a magnitude 7.0 earthquake that left the country in shambles. It claimed nearly 316,000 lives and left 1 million more homeless. Feeling the weight of the tragedy, Stephen Kostas and Martin Yan took separate EVP trips to Haiti to help in the aftermath of the disaster.</div>
+
+				<div>&nbsp;</div>
+
+				<div>Stephen visited just months after the earthquake. He assisted families by rebuilding homes that were destroyed. Over a two-day span, Stephen and his team carried 500 cinder blocks and a half-ton of mortar over a quarter mile down a very treacherous and steep mountain path. After local workers discovered Stephen's IT knowledge, he was asked to work at the data center where he helped to build desktops and install software onto laptops, ultimately assembling seven PCs and a dozen laptops. "It's great to actually put to good use these skills that you don't immediately associate with relief work," he said.</div>
+
+				<div>&nbsp;</div>
+
+				<div class="video-player"></div>
+
+				<div>&nbsp;</div>
+
+				<div>
+					<center><img alt="" src="/documents/20195/58880/Computer+Lab.jpg/edaec66a-ab15-43fe-b72e-557d7f9d40ce?t=1444160105425" style="width: 600px;" /></center>
+
+					<center><strong>Stephen and his team working on the data center</strong></center>
+				</div>
+
+				<div>&nbsp;</div>
+
+				<div>Nearly 2 years after Stephen’s trip, Martin and his team arrived in a poor rural area to perform a medical clinic. Over the course of a week, a few hundred people walked several miles and waited for hours to be treated for various medical conditions. Many ailments were, by western standards, very basic and easily treatable. However, in a third world country recovering from a massive earthquake, many of these ailments could become debilitating or even life-threatening. Through his experience, Martin realized that their clinic provided much more than just physical healing: “When we started to engage the patients in conversation or joke around with them, we became more human to each other. With each conversation or simple smile or silly face, they knew that we cared more than just about their physical well-being. Slowly, we became more aware that  one of our biggest tasks was really to help heal the brokenness of their hearts and spirits.”</div>
+
+				<div>&nbsp;</div>
+
+				<div style="text-align: center;">
+					<img alt="" src="/documents/20195/58880/Martin+and+Kids.jpg/ef770522-7b3d-4e5c-94d0-832c97cbdb93?t=1444160124825" style="width: 400px;" /><br />
+					<strong>Martin hanging out with the kids</strong>
+				</div>
+
+				<div>&nbsp;</div>
+
+				<div class="video-player"></div>
+
+				<div>&nbsp;</div>
+
+				<div>For both Stephen and Martin, their experiences in Haiti put things in perspective. By being immersed in the country's steep poverty, Stephen realized how blessed he is to have simple amenities like clean, running water. As he did his best to encourage them, he found himself just as encouraged in return. "Through all of the terrible tragedy and daily hardships that we can barely imagine, they keep going," he said. Martin was also impacted by the strength and resilience of the people of Haiti. "They're no stranger to suffering, but perhaps it is because of it they are able to love and embrace life more openly. More simply. They don't take for granted the small things...I was reminded of how similar we are, how we all need love, healing, redemption and purpose."</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="video_links" type="text" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[https://youtu.be/-K8TbaDAPXE]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="video_links" type="text" index-type="keyword" index="1">
+		<dynamic-content language-id="en_US"><![CDATA[https://youtu.be/PUtkGRQzXVs]]></dynamic-content>
+	</dynamic-element>
+</root>

@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.evp.model.impl.EVPDivisionModelImpl">
+		<attributes>
+			<id name="evpDivisionId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="organizationId" />
+			<basic name="parentEVPDivisionId" />
+			<basic name="abbreviation" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.evp.model.impl.EVPEmployeeModelImpl">
+		<attributes>
+			<id name="evpEmployeeId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="employeeUserId" />
+			<basic name="managerUserId" />
+			<basic name="subsidiaryEVPDivisionId" />
+			<basic name="employmentType" />
+			<basic name="hireDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="employeeUserUuid" />
+			<transient name="managerUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.evp.model.impl.EVPGrantRequestModelImpl">
+		<attributes>
+			<id name="evpGrantRequestId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="contactEmailAddressId" />
+			<basic name="contactPhoneId" />
+			<basic name="contactUserId" />
+			<basic name="evpRequestOrganizationId" />
+			<basic name="parentEVPGrantRequestId" />
+			<basic name="requestOrganizationAddressId" />
+			<basic name="requestOrganizationWebsiteId" />
+			<basic name="subsidiaryGroupId" />
+			<basic name="description" />
+			<basic name="employmentType" />
+			<basic name="employmentHoursPerWeek" />
+			<basic name="purpose" />
+			<basic name="purposeOther" />
+			<basic name="behalfOf" />
+			<basic name="behalfOfOther" />
+			<basic name="status" />
+			<basic name="statusByUserId" />
+			<basic name="statusByUserName" />
+			<basic name="statusDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="contactUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="statusByUserUuid" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.evp.model.impl.EVPGrantTransactionModelImpl">
+		<attributes>
+			<id name="evpGrantTransactionId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="evpGrantRequestId" />
+			<basic name="fileEntryId" />
+			<basic name="grantType" />
+			<basic name="amount" />
+			<basic name="currencyCode" />
+			<basic name="date">
+				<column name="DATE_" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="note" />
+			<basic name="number">
+				<column name="NUMBER_" />
+			</basic>
+			<basic name="bankBICCode" />
+			<basic name="bankIBANCode" />
+			<basic name="bankName" />
+			<basic name="purposeOfUse" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.evp.model.impl.EVPKaleoForkInstanceModelImpl">
+		<attributes>
+			<id name="evpKaleoForkInstanceId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="classNameId" />
+			<basic name="classPK" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="status" />
+			<transient name="className" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.evp.model.impl.EVPRequestOrganizationModelImpl">
+		<attributes>
+			<id name="evpRequestOrganizationId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="organizationId" />
+			<basic name="subsidiaryGroupId" />
+			<basic name="description" />
+			<basic name="taxIdentificationNumber" />
+			<basic name="nonprofitType" />
+			<basic name="verified" />
+			<basic name="shared" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.evp.model.impl.EVPServiceRequestModelImpl">
+		<attributes>
+			<id name="evpServiceRequestId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="contactEmailAddressId" />
+			<basic name="contactPhoneId" />
+			<basic name="contactUserId" />
+			<basic name="evpRequestOrganizationId" />
+			<basic name="managerUserId" />
+			<basic name="parentEVPServiceRequestId" />
+			<basic name="requestOrganizationAddressId" />
+			<basic name="requestOrganizationWebsiteId" />
+			<basic name="subsidiaryGroupId" />
+			<basic name="description" />
+			<basic name="employmentType" />
+			<basic name="employmentHoursPerWeek" />
+			<basic name="purpose" />
+			<basic name="purposeOther" />
+			<basic name="behalfOf" />
+			<basic name="behalfOfOther" />
+			<basic name="requestedStartDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="requestedEndDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="requestedTotalHours" />
+			<basic name="promoteTrip" />
+			<basic name="confirmedStartDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="confirmedEndDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="confirmedTotalHours" />
+			<basic name="contactBenefit" />
+			<basic name="contactComments" />
+			<basic name="hash" />
+			<basic name="feedbackDescription" />
+			<basic name="employeeBenefit" />
+			<basic name="recipientBenefit" />
+			<basic name="shareStory" />
+			<basic name="status" />
+			<basic name="statusByUserId" />
+			<basic name="statusByUserName" />
+			<basic name="statusDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="contactUserUuid" />
+			<transient name="managerUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="statusByUserUuid" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.evp.model.impl.EVPDivisionImpl" name="EVPDivision">
+		<table name="EVPDivision" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.evp.model.impl.EVPEmployeeImpl" name="EVPEmployee">
+		<table name="EVPEmployee" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.evp.model.impl.EVPGrantRequestImpl" name="EVPGrantRequest">
+		<table name="EVPGrantRequest" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.evp.model.impl.EVPGrantTransactionImpl" name="EVPGrantTransaction">
+		<table name="EVPGrantTransaction" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.evp.model.impl.EVPKaleoForkInstanceImpl" name="EVPKaleoForkInstance">
+		<table name="EVPKaleoForkInstance" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.evp.model.impl.EVPRequestOrganizationImpl" name="EVPRequestOrganization">
+		<table name="EVPRequestOrganization" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.evp.model.impl.EVPServiceRequestImpl" name="EVPServiceRequest">
+		<table name="EVPServiceRequest" />
+		<attributes />
+	</entity>
+</entity-mappings>

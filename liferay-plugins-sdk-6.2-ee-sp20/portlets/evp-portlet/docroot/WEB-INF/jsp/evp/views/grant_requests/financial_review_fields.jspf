@@ -1,0 +1,33 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<aui:model-context model="<%= EVPGrantTransaction.class %>" />
+
+<c:forEach items="${grantTypeMap}" var="grantTypeEntry">
+	<c:set value="${grantTypeEntry.value}-check" var="grantTransactionLabel" />
+
+	<c:set value="${evpGrantRequestComposite.evpGrantTransactionCompositesMap[grantTypeEntry.value]}" var="grantTransactionComposite" />
+
+	<c:if test="${grantTransactionComposite != null}">
+		<c:if test="${(evpGrantRequestComposite.getCreatorSubsidiaryProperty(PortletPropsKeys.SUBSIDIARY_CONFIGURATION_GRANT_BANK_WIRE_ENABLED))}">
+			<c:set value="${grantTypeEntry.value}-transaction" var="grantTransactionLabel" />
+		</c:if>
+
+		<aui:input field="date" fieldParam="${grantTypeEntry.value}Date" label="${grantTransactionLabel}-date" name="${grantTypeEntry.value}Date" />
+
+		<aui:input field="number" fieldParam="${grantTypeEntry.value}Number" label="${grantTransactionLabel}-number" name="${grantTypeEntry.value}Number" />
+	</c:if>
+</c:forEach>

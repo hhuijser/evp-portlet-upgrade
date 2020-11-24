@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="background_image" type="image" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US"><![CDATA[[$FILE=images/about_evp.jpg$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="header" type="text" index-type="keyword" index="0">
+		<dynamic-element name="video_url" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[https://www.youtube.com/embed/zgEKmqIuZOM]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="description" index="0" type="text_box" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[EVP is our Employee Volunteer Program, born out of Liferay's vision to see people reach their full potential to serve others.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[What does EVP mean to you?]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="link_1_label" type="text" index-type="keyword" index="0">
+		<dynamic-element name="link_1_url" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[/about]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[Learn more about EVP]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="link_2_label" type="text" index-type="keyword" index="0">
+		<dynamic-element name="link_2_url" index="0" type="text" index-type="keyword">
+			<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content language-id="en_US"><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+</root>

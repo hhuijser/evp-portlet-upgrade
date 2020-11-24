@@ -1,0 +1,128 @@
+#if (!$entries.isEmpty())
+	<div class="row-fluid">
+		<div class="past-trips span12 trip-stories video-wrapper" data-portlet-id="$themeDisplay.getPortletDisplay().getId()" id="pastTrips">
+
+			#foreach ($entry in $entries)
+				#set ($entry_id = $entry.getEntryId())
+				#set ($renderer = $entry.getAssetRenderer())
+				#set ($class_name = $renderer.getClassName())
+
+				#if ($class_name == "com.liferay.portlet.journal.model.JournalArticle")
+					#set ($journal_article = $renderer.getArticle())
+
+					#set ($document = $saxReaderUtil.read($journal_article.getContent()))
+
+					#set ($root_element = $document.getRootElement())
+
+					#set ($abstract = $saxReaderUtil.createXPath("dynamic-element[@name='abstract']"))
+					#set ($banner_image = $saxReaderUtil.createXPath("dynamic-element[@name='banner_image']"))
+					#set ($location = $saxReaderUtil.createXPath("dynamic-element[@name='location']"))
+					#set ($story = $saxReaderUtil.createXPath("dynamic-element[@name='story']"))
+					#set ($trip_date = $saxReaderUtil.createXPath("dynamic-element[@name='trip_date']"))
+					#set ($trip_title = $saxReaderUtil.createXPath("dynamic-element[@name='trip_title']"))
+					#set ($video_links = $saxReaderUtil.createXPath("dynamic-element[@name='video_links']"))
+
+					#set ($abstract_val = $abstract.selectSingleNode($root_element).getStringValue())
+					#set ($banner_image_val = $banner_image.selectSingleNode($root_element).getStringValue())
+					#set ($location_val = $location.selectSingleNode($root_element).getStringValue())
+					#set ($story_val = $story.selectSingleNode($root_element).getStringValue())
+					#set ($trip_date_val = $trip_date.selectSingleNode($root_element).getStringValue())
+					#set ($trip_title_val = $trip_title.selectSingleNode($root_element).getStringValue())
+					#set ($video_links_val = $video_links.selectNodes($root_element))
+
+					#set ($video_urls = "")
+
+					#foreach($video_link in $video_links_val)
+						#if ($velocityCount > 1)
+							#set ($video_urls = $video_urls + ",")
+						#end
+
+						#set ($video_urls = $video_urls + $stringUtil.trim($video_link.getStringValue()))
+					#end
+
+					#set ($dateLong = $getterUtil.getLong($trip_date_val))
+
+					#set ($dateObj = $dateUtil.newDate($dateLong))
+
+					#set ($tripDate = $dateUtil.getDate($dateObj, "MMMM yyyy", $locale))
+
+					#set ($full_page_story = $assetPublisherHelper.getAssetViewURL($renderRequest, $renderResponse, $entry))
+
+					#set ($full_page_story = $httpUtil.removeParameter($full_page_story, "inheritRedirect"))
+
+					#set ($full_page_story = $httpUtil.removeParameter($full_page_story, "redirect"))
+
+					#set ($full_page_story = $htmlUtil.escapeJS($full_page_story))
+
+					<div class="trip-wrapper video-group">
+						<div class="banner-cover past-trip" id="entry${entry_id}" style="background-image: url($banner_image_val);">
+							<div class="row-fluid trip-info">
+								<div class="section span6">
+									<h3 class="trip-title">
+										$trip_title_val
+									</h3>
+
+									<div class="trip-location">
+										$location_val
+									</div>
+
+									<div class="trip-date">
+										$tripDate
+									</div>
+								</div>
+
+								<div class="section span6">
+									<div class="row-fluid">
+										<div class="span10 trip-summary">
+											$abstract_val
+										</div>
+									</div>
+
+									<div class="row-fluid trip-buttons">
+										<button class="btn btn-transparent toggler-header-collapsed trip-breakdown-btn video" data-toggler-id="$entry_id" data-url="$video_urls" onClick="Liferay.EVP.scrollIntoView('#entry${entry_id}')">
+											#language ("read-more")
+											<span class="expanded">-</span>
+											<span class="collapsed">+</span>
+										</button>
+
+										#if ($stringUtil.trim($full_page_story) != "")
+											<button class="btn btn-transparent share-trip-btn" onClick="Liferay.EVP.openShareDialog('${full_page_story}')">
+												#language ("share")
+											</button>
+										#end
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row-fluid toggler-content-collapsed trip-breakdown">
+							<div class="span12">
+								<div class="row-fluid">
+									<div class="offset2 span8">
+										<div class="content">
+											$story_val
+										</div>
+									</div>
+								</div>
+
+								<div class="row-fluid">
+									<div class="discussion-container">
+										#set ($action_url = $renderResponse.createActionURL())
+										#set ($form_action = "/asset_publisher/" + $renderer.getDiscussionPath())
+										#set ($struts_action = $action_url.setParameter("struts_action", $form_action))
+
+										#set ($form_name = "fm" + $entry.getClassPK())
+
+										$taglibLiferay.discussion($entry.getClassName(), $entry.getClassPK(), $action_url.toString(), $form_name, false, false, $currentURL, $user.getUserId())
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				#end
+			#end
+		</div>
+
+		<div class="share-modal"></div>
+	</div>
+#end

@@ -1,0 +1,356 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.evp.service;
+
+import com.liferay.portal.service.ServiceWrapper;
+
+/**
+ * Provides a wrapper for {@link EVPDivisionLocalService}.
+ *
+ * @author Val Nagy
+ * @see EVPDivisionLocalService
+ * @generated
+ */
+public class EVPDivisionLocalServiceWrapper implements EVPDivisionLocalService,
+	ServiceWrapper<EVPDivisionLocalService> {
+	public EVPDivisionLocalServiceWrapper(
+		EVPDivisionLocalService evpDivisionLocalService) {
+		_evpDivisionLocalService = evpDivisionLocalService;
+	}
+
+	/**
+	* Adds the e v p division to the database. Also notifies the appropriate model listeners.
+	*
+	* @param evpDivision the e v p division
+	* @return the e v p division that was added
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.evp.model.EVPDivision addEVPDivision(
+		com.liferay.evp.model.EVPDivision evpDivision)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.addEVPDivision(evpDivision);
+	}
+
+	/**
+	* Creates a new e v p division with the primary key. Does not add the e v p division to the database.
+	*
+	* @param evpDivisionId the primary key for the new e v p division
+	* @return the new e v p division
+	*/
+	@Override
+	public com.liferay.evp.model.EVPDivision createEVPDivision(
+		long evpDivisionId) {
+		return _evpDivisionLocalService.createEVPDivision(evpDivisionId);
+	}
+
+	/**
+	* Deletes the e v p division with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param evpDivisionId the primary key of the e v p division
+	* @return the e v p division that was removed
+	* @throws PortalException if a e v p division with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.evp.model.EVPDivision deleteEVPDivision(
+		long evpDivisionId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.deleteEVPDivision(evpDivisionId);
+	}
+
+	/**
+	* Deletes the e v p division from the database. Also notifies the appropriate model listeners.
+	*
+	* @param evpDivision the e v p division
+	* @return the e v p division that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.evp.model.EVPDivision deleteEVPDivision(
+		com.liferay.evp.model.EVPDivision evpDivision)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.deleteEVPDivision(evpDivision);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _evpDivisionLocalService.dynamicQuery();
+	}
+
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	@SuppressWarnings("rawtypes")
+	public java.util.List dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.dynamicQuery(dynamicQuery);
+	}
+
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.evp.model.impl.EVPDivisionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	@SuppressWarnings("rawtypes")
+	public java.util.List dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.dynamicQuery(dynamicQuery, start, end);
+	}
+
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.evp.model.impl.EVPDivisionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query
+	* @param start the lower bound of the range of model instances
+	* @param end the upper bound of the range of model instances (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	@SuppressWarnings("rawtypes")
+	public java.util.List dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.dynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.dynamicQueryCount(dynamicQuery);
+	}
+
+	/**
+	* Returns the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.dynamicQueryCount(dynamicQuery,
+			projection);
+	}
+
+	@Override
+	public com.liferay.evp.model.EVPDivision fetchEVPDivision(
+		long evpDivisionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.fetchEVPDivision(evpDivisionId);
+	}
+
+	/**
+	* Returns the e v p division with the primary key.
+	*
+	* @param evpDivisionId the primary key of the e v p division
+	* @return the e v p division
+	* @throws PortalException if a e v p division with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.evp.model.EVPDivision getEVPDivision(long evpDivisionId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getEVPDivision(evpDivisionId);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns a range of all the e v p divisions.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.evp.model.impl.EVPDivisionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of e v p divisions
+	* @param end the upper bound of the range of e v p divisions (not inclusive)
+	* @return the range of e v p divisions
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public java.util.List<com.liferay.evp.model.EVPDivision> getEVPDivisions(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getEVPDivisions(start, end);
+	}
+
+	/**
+	* Returns the number of e v p divisions.
+	*
+	* @return the number of e v p divisions
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public int getEVPDivisionsCount()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getEVPDivisionsCount();
+	}
+
+	/**
+	* Updates the e v p division in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param evpDivision the e v p division
+	* @return the e v p division that was updated
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.evp.model.EVPDivision updateEVPDivision(
+		com.liferay.evp.model.EVPDivision evpDivision)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.updateEVPDivision(evpDivision);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _evpDivisionLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_evpDivisionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _evpDivisionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	@Override
+	public java.lang.String fetchSubsidiaryPortletPropsValue(long companyId,
+		long groupId, java.lang.String portletPropsKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.fetchSubsidiaryPortletPropsValue(companyId,
+			groupId, portletPropsKey);
+	}
+
+	@Override
+	public java.util.Map<java.lang.String, java.lang.Object> getEVPStats(
+		long companyId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getEVPStats(companyId, userId);
+	}
+
+	@Override
+	public com.liferay.evp.model.EVPDivision getSubsidiaryEVPDivision(
+		long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getSubsidiaryEVPDivision(userId);
+	}
+
+	@Override
+	public java.lang.String getSubsidiaryPortletPropsValue(long companyId,
+		long subsidiaryGroupId, java.lang.String portletPropsKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getSubsidiaryPortletPropsValue(companyId,
+			subsidiaryGroupId, portletPropsKey);
+	}
+
+	@Override
+	public java.util.Map<java.lang.String, java.lang.Object> getSubsidiaryPortletPropsValues(
+		long companyId, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _evpDivisionLocalService.getSubsidiaryPortletPropsValues(companyId,
+			groupId);
+	}
+
+	/**
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
+	 */
+	public EVPDivisionLocalService getWrappedEVPDivisionLocalService() {
+		return _evpDivisionLocalService;
+	}
+
+	/**
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
+	 */
+	public void setWrappedEVPDivisionLocalService(
+		EVPDivisionLocalService evpDivisionLocalService) {
+		_evpDivisionLocalService = evpDivisionLocalService;
+	}
+
+	@Override
+	public EVPDivisionLocalService getWrappedService() {
+		return _evpDivisionLocalService;
+	}
+
+	@Override
+	public void setWrappedService(
+		EVPDivisionLocalService evpDivisionLocalService) {
+		_evpDivisionLocalService = evpDivisionLocalService;
+	}
+
+	private EVPDivisionLocalService _evpDivisionLocalService;
+}

@@ -1,0 +1,65 @@
+.purple {
+	a {
+		&:active, &:focus, &:hover {
+			color: $purple;
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		color: $purple;
+	}
+
+	.btn {
+		&.btn-primary {
+			background: $purple;
+
+			&:hover {
+				background: $darkPurple;
+				color: $white;
+				text-shadow: none;
+			}
+		}
+
+		&.btn-transparent {
+			background: transparent;
+			border: 1px solid $purple;
+			color: $purple;
+
+			&:hover {
+				color: $white;
+			}
+		}
+	}
+
+	#navigation.navbar {
+		&.nav-scroll a:hover, .selected a, a:hover {
+			color: $purple;
+		}
+
+		.navbar-inner {
+			.pages .nav > li > a:hover > span {
+				border-bottom-color: $purple;
+			}
+
+			.default-logo .logo-scroll {
+				.icon-left {
+					fill: $purple;
+				}
+
+				.icon-right {
+					fill: $lightPurple;
+				}
+			}
+		}
+	}
+
+	#footer {
+		.footer-section.footer-section-3 {
+			ul li a:hover {
+				.social-icon {
+					fill: $purple;
+				}
+			}
+		}
+	}
+}

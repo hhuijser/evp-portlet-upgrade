@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="trip_title" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Story Title]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The title of the story.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="image" fieldNamespace="wcm" indexType="keyword" localizable="true" name="banner_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="wcm-image" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Banner Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The banner image for the story.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="location" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Trip Location]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The location where the service was performed (City/Region, Country).]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" localizable="true" name="trip_date" readOnly="false" repeatable="false" required="true" showLabel="true" type="ddm-date" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Trip Date]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The date of the trip.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="abstract" readOnly="false" repeatable="false" required="true" showLabel="true" type="textarea" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Story Abstract]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The abstract for the story.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="html" fieldNamespace="ddm" indexType="keyword" localizable="true" name="story" readOnly="false" repeatable="false" required="true" showLabel="true" type="ddm-text-html" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Story]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The story describing the background and problem the team addressed with their service, the service provided and what was done to help solve the problem, the response from those who were served (quotes are always great!), and the feedback from the team, especially how they were positively impacted through their serving. When using a block quote, wrap the quote in a blockquote tag or a div with class "block-quote". Citations for quotes should be wrapped in a div with class "citation". When using a pull quote to emphasize some text repeated elsewhere in the content wrap it in a div with the class "pull-quote".]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" localizable="true" name="video_links" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="medium">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[YouTube Video Link]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[The YouTube URL for each video in the Story. It is best to use the "Share" URL but the direct URL will also work. For each video, place <div class="video-player"></div> into the Story section source code where you want to video to be displayed.]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>
