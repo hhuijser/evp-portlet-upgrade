@@ -1,0 +1,4 @@
+tasks:
+    mode: patch
+    quality:
+        checks:
