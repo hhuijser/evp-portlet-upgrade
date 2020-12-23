@@ -1,0 +1,17 @@
+tasks:
+    mode: pr
+    quality:
+        categories:
+            - name: Bug Prevention
+            - name: Performance
+    upgrade:
+        currentVersion: '6.2'
+        upgradeVersion: '7.3'
+        upgrades:
+            - name: upgrade-workspace-version
+            - name: use-target-platform
+            - name: use-release-api
+            - name: auto-correct-breaking-changes
+            - name: find-breaking-changes
+        workspacePath: liferay-workspace/
+
