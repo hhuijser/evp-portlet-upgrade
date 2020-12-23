@@ -1,0 +1,6 @@
+tasks:
+    mode: pr
+    quality:
+        categories:
+            - name: Performance
+            - name: Styling
