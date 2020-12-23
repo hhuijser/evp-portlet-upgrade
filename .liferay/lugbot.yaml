@@ -1,0 +1,12 @@
+tasks:
+    mode: patch
+    quality:
+        checks:
+            - name: JSPWhitespaceCheck
+            - name: JSPStylingCheck
+            - name: JSPIndentationCheck
+            - name: JSPEmptyLinesCheck
+            - name: JSPTagAttributesCheck
+            - name: HTMLWhitespaceCheck
+            - name: HTMLEmptyLinesCheck
+            - name: XMLTagAttributesCheck
