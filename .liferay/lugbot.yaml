@@ -1,0 +1,8 @@
+tasks:
+    mode: patch
+    quality:
+        categories:
+            - name: Bug Prevention
+            - name: Performance
+        checks:
+            - name: JSPStylingCheck
