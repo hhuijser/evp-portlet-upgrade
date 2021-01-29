@@ -25,14 +25,19 @@ Base Connector for Python (CGI and WSGI).
 See config.py for configuration settings
 
 """
-import cgi, os
 
-from fckutil import *
-from fckcommands import * 	# default command's implementation
-from fckoutput import * 	# base http, xml and html output mixins
+import cgi, os
 import config as Config
 
-class FCKeditorConnectorBase( object ):
+from fckcommands import * 	# default command's implementation
+
+from fckoutput import * 	# base http, \
+	xml and html output mixins
+
+from fckutil import *
+
+class FCKeditorConnectorBase(object):
+
 	"The base connector class. Subclass it to extend functionality (see Zope example)"
 
 	def __init__(self, environ=None):
@@ -51,6 +56,7 @@ class FCKeditorConnectorBase( object ):
 		return
 
 class FCKeditorRequest(object):
+
 	"A wrapper around the request object"
 	def __init__(self, environ):
 		if environ: # WSGI
@@ -74,9 +80,6 @@ class FCKeditorRequest(object):
 		else:
 			self.get_request={}
 
-	def has_key(self, key):
-		return self.request.has_key(key) or self.get_request.has_key(key)
-
 	def get(self, key, default=None):
 		if key in self.request.keys():
 			field = self.request[key]
@@ -88,3 +91,6 @@ class FCKeditorRequest(object):
 			return field
 		else:
 			return field.value
+
+	def has_key(self, key):
+		return self.request.has_key(key) or self.get_request.has_key(key)
