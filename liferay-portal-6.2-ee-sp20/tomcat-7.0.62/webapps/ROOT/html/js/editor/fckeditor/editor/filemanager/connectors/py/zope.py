@@ -29,11 +29,15 @@ releases.
 
 """
 
-from fckutil import *
 from connector import *
+
+from fckutil import *
+
+import Products.zope as connector
 import config as Config
 
 class FCKeditorConnectorZope(FCKeditorConnector):
+
 	"""
 	Zope versiof FCKeditorConnector
 	"""
@@ -49,56 +53,17 @@ class FCKeditorConnectorZope(FCKeditorConnector):
 		self.context = context
 		self.request = FCKeditorRequest(context)
 
-	def getZopeRootContext(self):
-		if self.zopeRootContext is None:
-			self.zopeRootContext = self.context.getPhysicalRoot()
-		return self.zopeRootContext
-
-	def getZopeUploadContext(self):
-		if self.zopeUploadContext is None:
-			folderNames = self.userFilesFolder.split("/")
-			c = self.getZopeRootContext()
-			for folderName in folderNames:
-				if (folderName <> ""):
-					c = c[folderName]
-			self.zopeUploadContext = c
-		return self.zopeUploadContext
-
-	def setHeader(self, key, value):
-		self.context.REQUEST.RESPONSE.setHeader(key, value)
-
-	def getFolders(self, resourceType, currentFolder):
-		# Open the folders node
-		s = ""
-		s += """<Folders>"""
+	def createFolder(self, resourceType, currentFolder):
+		# Find out where we are
 		zopeFolder = self.findZopeFolder(resourceType, currentFolder)
-		for (name, o) in zopeFolder.objectItems(["Folder"]):
-			s += """<Folder name="%s" />""" % (
-					convertToXmlAttribute(name)
-					)
-		# Close the folders node
-		s += """</Folders>"""
-		return s
-
-	def getZopeFoldersAndFiles(self, resourceType, currentFolder):
-		folders = self.getZopeFolders(resourceType, currentFolder)
-		files = self.getZopeFiles(resourceType, currentFolder)
-		s = folders + files
-		return s
-
-	def getZopeFiles(self, resourceType, currentFolder):
-		# Open the files node
-		s = ""
-		s += """<Files>"""
-		zopeFolder = self.findZopeFolder(resourceType, currentFolder)
-		for (name, o) in zopeFolder.objectItems(["File","Image"]):
-			s += """<File name="%s" size="%s" />""" % (
-					convertToXmlAttribute(name),
-					((o.get_size() / 1024) + 1)
-					)
-		# Close the files node
-		s += """</Files>"""
-		return s
+		errorNo = 0
+		errorMsg = ""
+		if self.request.has_key("NewFolderName"):
+			newFolder = self.request.get("NewFolderName", None)
+			zopeFolder.manage_addProduct["OFSP"].manage_addFolder(id=newFolder, title=newFolder)
+		else:
+			errorNo = 102
+		return self.sendErrorNode ( errorNo, errorMsg )
 
 	def findZopeFolder(self, resourceType, folderName):
 		# returns the context of the resource / folder
@@ -117,17 +82,56 @@ class FCKeditorConnectorZope(FCKeditorConnector):
 				zopeFolder = zopeFolder[folderName]
 		return zopeFolder
 
-	def createFolder(self, resourceType, currentFolder):
-		# Find out where we are
+	def getFolders(self, resourceType, currentFolder):
+		# Open the folders node
+		s = ""
+		s += """<Folders>"""
 		zopeFolder = self.findZopeFolder(resourceType, currentFolder)
-		errorNo = 0
-		errorMsg = ""
-		if self.request.has_key("NewFolderName"):
-			newFolder = self.request.get("NewFolderName", None)
-			zopeFolder.manage_addProduct["OFSP"].manage_addFolder(id=newFolder, title=newFolder)
-		else:
-			errorNo = 102
-		return self.sendErrorNode ( errorNo, errorMsg )
+		for (name, o) in zopeFolder.objectItems(["Folder"]):
+			s += """<Folder name="%s" />""" % (
+					convertToXmlAttribute(name)
+					)
+		# Close the folders node
+		s += """</Folders>"""
+		return s
+
+	def getZopeFiles(self, resourceType, currentFolder):
+		# Open the files node
+		s = ""
+		s += """<Files>"""
+		zopeFolder = self.findZopeFolder(resourceType, currentFolder)
+		for (name, o) in zopeFolder.objectItems(["File","Image"]):
+			s += """<File name="%s" size="%s" />""" % (
+					convertToXmlAttribute(name),
+					((o.get_size() / 1024) + 1)
+					)
+		# Close the files node
+		s += """</Files>"""
+		return s
+
+	def getZopeFoldersAndFiles(self, resourceType, currentFolder):
+		folders = self.getZopeFolders(resourceType, currentFolder)
+		files = self.getZopeFiles(resourceType, currentFolder)
+		s = folders + files
+		return s
+
+	def getZopeRootContext(self):
+		if self.zopeRootContext is None:
+			self.zopeRootContext = self.context.getPhysicalRoot()
+		return self.zopeRootContext
+
+	def getZopeUploadContext(self):
+		if self.zopeUploadContext is None:
+			folderNames = self.userFilesFolder.split("/")
+			c = self.getZopeRootContext()
+			for folderName in folderNames:
+				if (folderName <> ""):
+					c = c[folderName]
+			self.zopeUploadContext = c
+		return self.zopeUploadContext
+
+	def setHeader(self, key, value):
+		self.context.REQUEST.RESPONSE.setHeader(key, value)
 
 	def uploadFile(self, resourceType, currentFolder, count=None):
 		zopeFolder = self.findZopeFolder(resourceType, currentFolder)
@@ -155,16 +159,17 @@ class FCKeditorConnectorZope(FCKeditorConnector):
 		return self.sendUploadResults( 0 )
 
 class FCKeditorRequest(object):
+
 	"A wrapper around the request object"
 	def __init__(self, context=None):
 		r = context.REQUEST
 		self.request = r
 
-	def has_key(self, key):
-		return self.request.has_key(key)
-
 	def get(self, key, default=None):
 		return self.request.get(key, default)
+
+	def has_key(self, key):
+		return self.request.has_key(key)
 
 """
 Running from zope, you will need to modify this connector.
@@ -182,7 +187,5 @@ we then have a like to the Zope context.
 ##parameters=*args, **kws
 ##title=ALIAS
 ##
-
-import Products.zope as connector
 return connector.FCKeditorConnectorZope(context=context).doResponse()
 """

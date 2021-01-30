@@ -24,10 +24,10 @@ Sample page.
 """
 
 import cgi
+import fckeditor
 import os
 
 # Ensure that the fckeditor.py is included in your classpath
-import fckeditor
 
 # Tell the browser to render html
 print "Content-Type: text/html"
