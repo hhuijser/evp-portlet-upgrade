@@ -3,50 +3,50 @@
 }
 .v-slider-base {
 	/* changing the borders will require adjustments to ISlider.java */
-	height: 2px;
-	border-top: 1px solid #ddd;
 	background: #eee;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #eee;
+	border-top: 1px solid #ddd;
+	height: 2px;
 	
 }
 .v-slider-handle {
 	background: #aaa;
-	width: 12px;
+	font-size: 0;
 	height: 12px;
 	margin-top: -5px;
-	font-size: 0;
+	width: 12px;
 }
 
 .v-slider-vertical {
-	width: 2px;
-	height: auto;
-	margin: 0 5px;
 	border: none;
 	border-left: 1px solid #cccfd0;
 	border-right: 1px solid #cccfd0;
+	height: auto;
+	margin: 0 5px;
+	width: 2px;
 }
 .v-slider-vertical .v-slider-base {
-	width: 2px;
 	border-bottom: 1px solid #eee;
 	border-right: none;
+	width: 2px;
 }
 .v-slider-vertical .v-slider-handle {
-	width: 12px;
-	height: 12px;
 	font-size: 0;
+	height: 12px;
 	margin-left: -5px;
+	width: 12px;
 }
 
 .v-slider-feedback {
-	padding: 2px 5px;
 	background: #444;
-	color: #fff;
-	font-size: 11px;
-	line-height: 13px;
-	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
 	border-radius: 4px;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 13px;
+	padding: 2px 5px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	margin: -2px 0 0 2px;
@@ -64,7 +64,7 @@
 }
 */
 
-/* IE specific styles */
+/* ---------- IE specific styles ---------- */
 .v-ie6 .v-slider,
 .v-ie6 .v-slider-vertical {
 	margin: 0;

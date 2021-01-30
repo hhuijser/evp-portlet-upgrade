@@ -98,7 +98,7 @@ serverURL.setParameter("tabs3", tabs3);
 					</c:when>
 					<c:otherwise>
 						<div class="form-search">
-							<liferay-ui:input-search placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-categories") %>' />
+							<liferay-ui:input-search placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "search-categories") %>' />
 						</div>
 
 						<%
@@ -215,7 +215,7 @@ serverURL.setParameter("tabs3", tabs3);
 				/>
 
 				<div class="form-search">
-					<liferay-ui:input-search placeholder='<%= LanguageUtil.get(locale, "keywords") %>' />
+					<liferay-ui:input-search placeholder='<%= LanguageUtil.get(request, "keywords") %>' />
 				</div>
 
 				<%
@@ -434,21 +434,21 @@ serverURL.setParameter("tabs3", tabs3);
 													String[] parameterSelectEntries = StringUtil.split(parameterPair[1], CharPool.SEMICOLON);
 											%>
 
-												<aui:select label="<%= parameterPair[0] %>" name="<%= convertProcess.getClass().getName() + StringPool.PERIOD + parameterPair[0] %>">
+													<aui:select label="<%= parameterPair[0] %>" name="<%= convertProcess.getClass().getName() + StringPool.PERIOD + parameterPair[0] %>">
 
-													<%
-													for (String parameterSelectEntry : parameterSelectEntries) {
-													%>
+														<%
+														for (String parameterSelectEntry : parameterSelectEntries) {
+														%>
 
-														<aui:option label="<%= parameterSelectEntry %>" />
+															<aui:option label="<%= parameterSelectEntry %>" />
 
-													<%
-													}
-													%>
+														<%
+														}
+														%>
 
-												</aui:select>
+													</aui:select>
 
-											<%
+												<%
 												}
 												else {
 													String[] parameterPair = StringUtil.split(parameter, CharPool.EQUAL);
@@ -463,7 +463,7 @@ serverURL.setParameter("tabs3", tabs3);
 													else {
 														parameterName = parameter;
 													}
-											%>
+												%>
 
 													<aui:input cssClass="lfr-input-text-container" label="<%= parameterName %>" name="<%= convertProcess.getClass().getName() + StringPool.PERIOD + parameterName %>" type='<%= parameterType != null ? parameterType : "" %>' />
 
@@ -530,11 +530,11 @@ serverURL.setParameter("tabs3", tabs3);
 
 					<liferay-ui:panel-container extended="<%= true %>" id="adminShoppingCartImagesPanelContainer" persistState="<%= true %>">
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="adminShoppingCartImagesPanel" persistState="<%= true %>" title="shopping-cart-images">
-							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext,"large-image") + ")" %>' name="shoppingImageLargeMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_LARGE_MAX_SIZE) %>" />
+							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext, "large-image") + ")" %>' name="shoppingImageLargeMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_LARGE_MAX_SIZE) %>" />
 
-							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext,"medium-image") + ")" %>' name="shoppingImageMediumMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_MEDIUM_MAX_SIZE) %>" />
+							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext, "medium-image") + ")" %>' name="shoppingImageMediumMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_MEDIUM_MAX_SIZE) %>" />
 
-							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext,"small-image") + ")" %>' name="shoppingImageSmallMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_SMALL_MAX_SIZE) %>" />
+							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext, "small-image") + ")" %>' name="shoppingImageSmallMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_SMALL_MAX_SIZE) %>" />
 
 							<aui:input cssClass="lfr-input-text-container" label="allowed-file-extensions" name="shoppingImageExtensions" type="text" value="<%= PrefsPropsUtil.getString(PropsKeys.SHOPPING_IMAGE_EXTENSIONS) %>" />
 						</liferay-ui:panel>
@@ -618,10 +618,9 @@ serverURL.setParameter("tabs3", tabs3);
 								Properties resourceLimitsProperties = ImageMagickUtil.getResourceLimitsProperties();
 
 								for (String label : _IMAGEMAGICK_RESOURCE_LIMIT_LABELS) {
-									String name = "imageMagickLimit" + StringUtil.upperCaseFirstLetter(label);
 								%>
 
-									<aui:input cssClass="lfr-input-text-container" label="<%= label %>" name="<%= name %>" type="text" value="<%= resourceLimitsProperties.getProperty(label) %>" />
+									<aui:input cssClass="lfr-input-text-container" label="<%= label %>" name='<%= "imageMagickLimit" + StringUtil.upperCaseFirstLetter(label) %>' type="text" value="<%= resourceLimitsProperties.getProperty(label) %>" />
 
 								<%
 								}
@@ -761,7 +760,7 @@ serverURL.setParameter("tabs3", tabs3);
 					<aui:select name="language">
 
 						<%
-						for (String supportedLanguage: ScriptingUtil.getSupportedLanguages()) {
+						for (String supportedLanguage : ScriptingUtil.getSupportedLanguages()) {
 						%>
 
 							<aui:option label="<%= TextFormatter.format(supportedLanguage, TextFormatter.J) %>" selected="<%= supportedLanguage.equals(language) %>" value="<%= supportedLanguage %>" />
@@ -853,30 +852,30 @@ serverURL.setParameter("tabs3", tabs3);
 				<br />
 
 				<table class="lfr-table">
-				<tr>
-					<td>
-						<liferay-ui:message key="used-memory" />:
-					</td>
-					<td>
-						<%= numberFormat.format(usedMemory) %> <liferay-ui:message key="bytes" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<liferay-ui:message key="total-memory" />:
-					</td>
-					<td>
-						<%= numberFormat.format(runtime.totalMemory()) %> <liferay-ui:message key="bytes" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<liferay-ui:message key="maximum-memory" />:
-					</td>
-					<td>
-						<%= numberFormat.format(runtime.maxMemory()) %> <liferay-ui:message key="bytes" />
-					</td>
-				</tr>
+					<tr>
+						<td>
+							<liferay-ui:message key="used-memory" />:
+						</td>
+						<td>
+							<%= numberFormat.format(usedMemory) %> <liferay-ui:message key="bytes" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<liferay-ui:message key="total-memory" />:
+						</td>
+						<td>
+							<%= numberFormat.format(runtime.totalMemory()) %> <liferay-ui:message key="bytes" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<liferay-ui:message key="maximum-memory" />:
+						</td>
+						<td>
+							<%= numberFormat.format(runtime.maxMemory()) %> <liferay-ui:message key="bytes" />
+						</td>
+					</tr>
 				</table>
 
 				<br />
@@ -884,162 +883,162 @@ serverURL.setParameter("tabs3", tabs3);
 				<liferay-ui:panel-container extended="<%= true %>" id="adminServerAdministrationActionsPanelContainer" persistState="<%= true %>">
 					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="adminServerAdministrationActionsPanel" persistState="<%= true %>" title="actions">
 						<table class="table table-condensed table-hover">
-						<tr>
-							<td>
-								<liferay-ui:message key="run-the-garbage-collector-to-free-up-memory" />
-							</td>
-							<td>
+							<tr>
+								<td>
+									<liferay-ui:message key="run-the-garbage-collector-to-free-up-memory" />
+								</td>
+								<td>
 
-								<%
-								String taglibGC = renderResponse.getNamespace() + "saveServer('gc');";
-								%>
+									<%
+									String taglibGC = renderResponse.getNamespace() + "saveServer('gc');";
+									%>
 
-								<aui:button onClick="<%= taglibGC %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="clear-content-cached-by-this-vm" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibGC %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="clear-content-cached-by-this-vm" />
+								</td>
+								<td>
 
-								<%
-								String taglibCacheSingle = renderResponse.getNamespace() + "saveServer('cacheSingle');";
-								%>
+									<%
+									String taglibCacheSingle = renderResponse.getNamespace() + "saveServer('cacheSingle');";
+									%>
 
-								<aui:button onClick="<%= taglibCacheSingle %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="clear-content-cached-across-the-cluster" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibCacheSingle %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="clear-content-cached-across-the-cluster" />
+								</td>
+								<td>
 
-								<%
-								String taglibCacheMulti = renderResponse.getNamespace() + "saveServer('cacheMulti');";
-								%>
+									<%
+									String taglibCacheMulti = renderResponse.getNamespace() + "saveServer('cacheMulti');";
+									%>
 
-								<aui:button onClick="<%= taglibCacheMulti %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="clear-the-database-cache" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibCacheMulti %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="clear-the-database-cache" />
+								</td>
+								<td>
 
-								<%
-								String taglibCacheDb = renderResponse.getNamespace() + "saveServer('cacheDb');";
-								%>
+									<%
+									String taglibCacheDb = renderResponse.getNamespace() + "saveServer('cacheDb');";
+									%>
 
-								<aui:button onClick="<%= taglibCacheDb %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="clear-the-direct-servlet-cache" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibCacheDb %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="clear-the-direct-servlet-cache" />
+								</td>
+								<td>
 
-								<%
-								String taglibCacheServlet = renderResponse.getNamespace() + "saveServer('cacheServlet');";
-								%>
+									<%
+									String taglibCacheServlet = renderResponse.getNamespace() + "saveServer('cacheServlet');";
+									%>
 
-								<aui:button onClick="<%= taglibCacheServlet %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="reindex-all-search-indexes" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibCacheServlet %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="reindex-all-search-indexes" />
+								</td>
+								<td>
 
-								<%
-								String taglibReindex = renderResponse.getNamespace() + "saveServer('reindex');";
-								%>
+									<%
+									String taglibReindex = renderResponse.getNamespace() + "saveServer('reindex');";
+									%>
 
-								<aui:button onClick="<%= taglibReindex %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="reindex-all-spell-check-indexes" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibReindex %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="reindex-all-spell-check-indexes" />
+								</td>
+								<td>
 
-								<%
-								String taglibReindexDictionaries = renderResponse.getNamespace() + "saveServer('reindexDictionaries');";
-								%>
+									<%
+									String taglibReindexDictionaries = renderResponse.getNamespace() + "saveServer('reindexDictionaries');";
+									%>
 
-								<aui:button onClick="<%= taglibReindexDictionaries %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="reset-preview-and-thumbnail-files-for-documents-and-media-portlet" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibReindexDictionaries %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="reset-preview-and-thumbnail-files-for-documents-and-media-portlet" />
+								</td>
+								<td>
 
-								<%
-								String taglibDLPreviews = renderResponse.getNamespace() + "saveServer('dlPreviews');";
-								%>
+									<%
+									String taglibDLPreviews = renderResponse.getNamespace() + "saveServer('dlPreviews');";
+									%>
 
-								<aui:button onClick="<%= taglibDLPreviews %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="generate-thread-dump" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibDLPreviews %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="generate-thread-dump" />
+								</td>
+								<td>
 
-								<%
-								String taglibThreadDump = renderResponse.getNamespace() + "saveServer('threadDump');";
-								%>
+									<%
+									String taglibThreadDump = renderResponse.getNamespace() + "saveServer('threadDump');";
+									%>
 
-								<aui:button onClick="<%= taglibThreadDump %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="verify-database-tables-of-all-plugins" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibThreadDump %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="verify-database-tables-of-all-plugins" />
+								</td>
+								<td>
 
-								<%
-								String taglibVerifyPluginTables = renderResponse.getNamespace() + "saveServer('verifyPluginTables');";
-								%>
+									<%
+									String taglibVerifyPluginTables = renderResponse.getNamespace() + "saveServer('verifyPluginTables');";
+									%>
 
-								<aui:button onClick="<%= taglibVerifyPluginTables %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="verify-membership-policies" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibVerifyPluginTables %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="verify-membership-policies" />
+								</td>
+								<td>
 
-								<%
-								String taglibVerifyMembershipPolicies = renderResponse.getNamespace() + "saveServer('verifyMembershipPolicies');";
-								%>
+									<%
+									String taglibVerifyMembershipPolicies = renderResponse.getNamespace() + "saveServer('verifyMembershipPolicies');";
+									%>
 
-								<aui:button onClick="<%= taglibVerifyMembershipPolicies %>" value="execute" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<liferay-ui:message key="clean-up-permissions" /> <liferay-ui:icon-help message="clean-up-permissions-help" />
-							</td>
-							<td>
+									<aui:button onClick="<%= taglibVerifyMembershipPolicies %>" value="execute" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="clean-up-permissions" /> <liferay-ui:icon-help message="clean-up-permissions-help" />
+								</td>
+								<td>
 
-								<%
-								String taglibCleanUpPermissions = renderResponse.getNamespace() + "saveServer('cleanUpPermissions');";
-								%>
+									<%
+									String taglibCleanUpPermissions = renderResponse.getNamespace() + "saveServer('cleanUpPermissions');";
+									%>
 
-								<aui:button onClick="<%= taglibCleanUpPermissions %>" value="execute" />
-							</td>
-						</tr>
+									<aui:button onClick="<%= taglibCleanUpPermissions %>" value="execute" />
+								</td>
+							</tr>
 						</table>
 					</liferay-ui:panel>
 				</liferay-ui:panel-container>
@@ -1049,5 +1048,5 @@ serverURL.setParameter("tabs3", tabs3);
 </c:choose>
 
 <%!
-private static final String[] _IMAGEMAGICK_RESOURCE_LIMIT_LABELS= {"area", "disk", "file", "map", "memory", "thread", "time"};
+private static final String[] _IMAGEMAGICK_RESOURCE_LIMIT_LABELS = {"area", "disk", "file", "map", "memory", "thread", "time"};
 %>

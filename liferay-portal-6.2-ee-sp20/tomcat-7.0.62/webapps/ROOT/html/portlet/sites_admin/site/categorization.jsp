@@ -16,13 +16,9 @@
 
 <%@ include file="/html/portlet/sites_admin/init.jsp" %>
 
-<%
-Group liveGroup = (Group)request.getAttribute("site.liveGroup");
-%>
-
 <liferay-ui:error-marker key="errorSection" value="categorization" />
 
-<aui:model-context bean="<%= liveGroup %>" model="<%= Group.class %>" />
+<aui:model-context bean='<%= (Group)request.getAttribute("site.liveGroup") %>' model="<%= Group.class %>" />
 
 <h3><liferay-ui:message key="categorization" /></h3>
 

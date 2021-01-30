@@ -1,4 +1,4 @@
-/* Default Tabsheet styles */
+/* ---------- Default tabsheet styles ---------- */
 
 .v-tabsheet-tabitemcell,
 .v-tabsheet-spacertd {
@@ -15,42 +15,42 @@
 }
 .v-tabsheet-tabitem,
 .v-tabsheet-spacertd div {
+	background: transparent repeat-x;
 	border: none;
 	height: 32px;
-	background: transparent repeat-x;
 	background-image: url(img/framed/tab-bg.png); /** sprite-ref: verticals; sprite-alignment: repeat */
-	padding: 0;
 	color: #222;
+	padding: 0;
 	text-shadow: #fff 0 1px 0;
 }
 .v-tabsheet-tabitem .v-caption {
+	background: no-repeat right top;
 	border: none;
 	height: 23px;
-	background: no-repeat right top;
 	background-image: url(img/framed/tab-right.png); /** sprite-ref: verticals; sprite-alignment: right */
 	padding: 9px 8px 0 6px;
 }
 .v-tabsheet-tabitem .v-caption-closable {
-	padding-right: 0;
 	padding-left: 17px;
+	padding-right: 0;
 }
 .v-tabsheet-tabitem .v-captiontext {
 	height: 16px;
 	line-height: 16px;
 }
 .v-tabsheet-caption-close {
+	background: transparent;
 	float: right;
-	width: 19px;
 	height: 18px;
 	margin: -1px -1px 0;
 	padding-left: 2px;
-	background: transparent;
+	width: 19px;
 	background-image: url(img/close-btn.png); /** sprite-ref: verticals */
 	cursor: default;
-	text-indent: -999px;
-	overflow: hidden;
 	font-size: 14px;
 	font-weight: normal;
+	overflow: hidden;
+	text-indent: -999px;
 }
 .v-ff .v-tabsheet-caption-close,
 .v-ie7 .v-tabsheet-caption-close {
@@ -113,20 +113,20 @@
 	border-color: rgba(0,0,0,.1);
 }
 .blue .v-tabsheet-deco {
-	border-color: #92a3ac;
 	background: #adc2cd;
+	border-color: #92a3ac;
 }
 .v-tabsheet-deco,
 .white .v-tabsheet-deco {
-	height: 1px;
-	border-top: 1px solid #bebebe;
 	background: #e2e2e2;
+	border-top: 1px solid #bebebe;
+	height: 1px;
 	overflow: hidden;
 }
 .v-sa .v-tabsheet-deco,
 .v-ff3 .v-tabsheet-deco {
-	border-top-color: rgba(0,0,0,.1);
 	background: rgba(0,0,0,.08);
+	border-top-color: rgba(0,0,0,.1);
 }
 
 
@@ -142,14 +142,14 @@
 	display: inline-block;
 }
 .v-tabsheet-tabs .v-icon {
-	width: 16px !important;
 	height: 16px !important;
+	width: 16px !important;
 }
 .v-tabsheet-tabs .v-errorindicator {
-	display: inline-block;
-	width: 13px;
-	height: 16px;
 	background: transparent url(../common/icons/error.png) no-repeat 50%;
+	display: inline-block;
+	height: 16px;
+	width: 13px;
 }
 .v-ff2 .v-tabsheet-tabs .v-icon,
 .v-ff2 .v-tabsheet-tabs .v-errorindicator {
@@ -159,8 +159,8 @@
 	background-image: url(../common/icons/error-ie6.png);
 }
 .v-ie .v-tabsheet-tabs .v-errorindicator {
-	zoom: 1;
 	display: inline;
+	zoom: 1;
 }
 .v-ie8 .v-tabsheet-tabs .v-errorindicator,
 .v-ie9 .v-tabsheet-tabs .v-errorindicator {

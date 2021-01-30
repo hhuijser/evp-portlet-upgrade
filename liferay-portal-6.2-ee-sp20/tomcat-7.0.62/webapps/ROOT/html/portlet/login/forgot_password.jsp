@@ -71,13 +71,11 @@ if (reminderAttempts == null) {
 					loginParameter = "userId";
 					loginLabel = "id";
 				}
-
-				String loginValue = ParamUtil.getString(request, loginParameter);
 				%>
 
 				<aui:input name="step" type="hidden" value="1" />
 
-				<aui:input label="<%= loginLabel %>" name="<%= loginParameter %>" size="30" type="text" value="<%= loginValue %>">
+				<aui:input label="<%= loginLabel %>" name="<%= loginParameter %>" size="30" type="text" value="<%= ParamUtil.getString(request, loginParameter) %>">
 					<aui:validator name="required" />
 				</aui:input>
 
@@ -92,7 +90,6 @@ if (reminderAttempts == null) {
 				<aui:button-row>
 					<aui:button type="submit" value='<%= PropsValues.USERS_REMINDER_QUERIES_ENABLED ? "next" : "send-new-password" %>' />
 				</aui:button-row>
-
 			</c:when>
 			<c:when test="<%= (user2 != null) && Validator.isNotNull(user2.getEmailAddress()) %>">
 				<aui:input name="step" type="hidden" value="2" />

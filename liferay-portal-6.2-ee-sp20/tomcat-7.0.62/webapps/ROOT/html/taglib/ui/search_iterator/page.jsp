@@ -153,7 +153,6 @@ int sortColumnIndex = -1;
 							width="1%"
 						</c:if>
 					>
-
 						<c:if test="<%= orderKey != null %>">
 							<div class="table-sort-liner">
 
@@ -172,7 +171,7 @@ int sortColumnIndex = -1;
 										<a href="<%= url %>">
 									</c:when>
 									<c:otherwise>
-										<a href="<%= StringUtil.replace(orderByJS, new String[] { "orderKey", "orderByType" }, new String[] { HtmlUtil.escapeJS(orderKey), HtmlUtil.escapeJS(orderByType) }) %>">
+										<a href="<%= StringUtil.replace(orderByJS, new String[] {"orderKey", "orderByType"}, new String[] {HtmlUtil.escapeJS(orderKey), HtmlUtil.escapeJS(orderByType)}) %>">
 									</c:otherwise>
 								</c:choose>
 						</c:if>

@@ -9,12 +9,12 @@
 
 .v-label-h1,
 .v-label h1 {
+	font-size: 24px;
+	font-weight: normal;
+	letter-spacing: -0.03em;
+	line-height: normal;
 	margin: 0;
 	padding: 8px 0 4px;
-	font-size: 24px;
-	line-height: normal;
-	letter-spacing: -0.03em;
-	font-weight: normal;
 	text-shadow: 0 1px 1px #fff;
 }
 
@@ -22,16 +22,16 @@
 .v-label h2 {
 	color: #f14c1a;
 	font-size: 18px;
-	letter-spacing: -0.03em;
 	font-weight: normal;
+	letter-spacing: -0.03em;
 	padding: 13px 0 5px;
 }
 
 .v-label-h3,
 .v-label h3 {
 	font-size: 15px;
-	letter-spacing: -0.03em;
 	font-weight: normal;
+	letter-spacing: -0.03em;
 	text-shadow: 0 1px 1px #fff;
 }
 
@@ -39,23 +39,23 @@
 .v-label h4 {
 	font-size: 13px;
 	font-weight: normal;
-	text-shadow: 0 1px 1px #fff;
 	margin: 0;
 	padding: 8px 0 4px;
+	text-shadow: 0 1px 1px #fff;
 }
 
 .v-label-small {
+	color: #707679;
 	font-size: .87em;
 	line-height: 1.4;
-	color: #707679;
 }
 
 .v-label hr,
 .v-label-hr {
+	background: #ccd2d3;
 	height: 2px;
 	overflow: hidden;
-	background: #ccd2d3;
-	color: #ccd2d3; /* For IE */
+	color: #ccd2d3; /* ---------- For IE ---------- */
 	border: none;
 	border-bottom: 1px solid #fff;
 	margin: 0;

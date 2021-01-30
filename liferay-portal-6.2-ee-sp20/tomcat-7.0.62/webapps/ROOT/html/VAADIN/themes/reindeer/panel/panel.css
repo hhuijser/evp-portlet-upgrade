@@ -8,7 +8,7 @@
 .white .v-panel-caption,
 .white .v-panel-nocaption {
 	border-bottom: 1px solid #e5e5e5;
-	line-height: 16px; /* accommodate minimum icon size */
+	line-height: 16px; /* ---------- accommodate minimum icon size ---------- */
 }
 .v-webkit .v-panel-caption,
 .v-webkit .v-panel-nocaption,
@@ -44,35 +44,35 @@
 	background: #fff;
 }
 .blue .v-panel-deco {
-	border-color: #92a3ac;
 	background: #adc2cd;
+	border-color: #92a3ac;
 }
 .v-panel-deco,
 .white .v-panel-deco {
-	height: 1px;
-	border-top: 1px solid #bebebe;
 	background: #e2e2e2;
+	border-top: 1px solid #bebebe;
+	height: 1px;
 	overflow: hidden;
 }
 .v-webkit .v-panel-deco,
 .v-gecko .v-panel-deco,
 .v-ie9 .v-panel-deco {
-	border-top-color: rgba(0,0,0,.1);
 	background: rgba(0,0,0,.08);
+	border-top-color: rgba(0,0,0,.1);
 }
 .v-panel-caption .v-errorindicator {
-	height: 16px;
-	width: 13px;
 	background: url(../common/icons/error.png) no-repeat 50%;
 	display: inline;
 	display: inline-block;
+	height: 16px;
 	vertical-align: middle;
+	width: 13px;
 }
 .v-ie6 .v-panel-caption .v-errorindicator {
 	background-image: url(../common/icons/error-ie6.png);
 }
 
-/* Light style */
+/* ---------- Light style ---------- */
 .v-panel-light .v-panel-caption-light,
 .v-panel-light .v-panel-nocaption-light {
 	border: none;
@@ -87,6 +87,6 @@
 	background: transparent;
 }
 .v-panel-light .v-panel-deco-light {
-	height: 0;
 	border: none;
+	height: 0;
 }

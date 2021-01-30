@@ -20,6 +20,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 
 Role role = (Role)request.getAttribute("edit_role_permissions.jsp-role");
@@ -63,6 +64,7 @@ for (int i = 0; i < permissions.size(); i++) {
 	String curModelName = null;
 	String curModelLabel = null;
 	String actionId = permission.getActionId();
+
 	String actionLabel = _getActionLabel(pageContext, themeDisplay, resource.getName(), actionId);
 
 	if (PortletLocalServiceUtil.hasPortlet(company.getCompanyId(), resource.getName())) {
@@ -98,9 +100,7 @@ for (int i = 0; i < permissions.size(); i++) {
 
 permissionDisplays = ListUtil.sort(permissionDisplays);
 
-int total = permissionDisplays.size();
-
-searchContainer.setTotal(total);
+searchContainer.setTotal(permissionDisplays.size());
 
 List results = ListUtil.subList(permissionDisplays, searchContainer.getStart(), searchContainer.getEnd());
 
@@ -113,6 +113,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	Permission permission = permissionDisplay.getPermission();
 	Resource resource = permissionDisplay.getResource();
+
 	String curResource = resource.getName();
 	String curPortletName = permissionDisplay.getPortletName();
 	String curPortletLabel = permissionDisplay.getPortletLabel();
@@ -132,9 +133,9 @@ for (int i = 0; i < results.size(); i++) {
 		List rolePermissions = new ArrayList();
 
 		rolePermissions.add(curResource);
-		rolePermissions.add(new Integer(ResourceConstants.SCOPE_GROUP));
+		rolePermissions.add(Integer.valueOf(ResourceConstants.SCOPE_GROUP));
 		rolePermissions.add(actionId);
-		rolePermissions.add(new Long(role.getRoleId()));
+		rolePermissions.add(Long.valueOf(role.getRoleId()));
 
 		groupParams.put("rolePermissions", rolePermissions);
 

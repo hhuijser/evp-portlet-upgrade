@@ -1,15 +1,17 @@
 <#-- ---------- Common variables ---------- -->
 
-<#assign theme_display = themeDisplay />
-<#assign portlet_display = portletDisplay />
+<#assign
+	theme_display = themeDisplay
+	portlet_display = portletDisplay
 
-<#assign theme_timestamp = themeDisplay.getTheme().getTimestamp() />
-<#assign theme_settings = themeDisplay.getThemeSettings() />
+	theme_timestamp = themeDisplay.getTheme().getTimestamp()
+	theme_settings = themeDisplay.getThemeSettings()
 
-<#assign root_css_class = "aui " + languageUtil.get(locale, "lang.dir") />
-<#assign css_class = htmlUtil.escape(theme_display.getColorScheme().getCssClass()) + " yui3-skin-sam" />
+	root_css_class = "aui " + languageUtil.get(locale, "lang.dir")
+	css_class = htmlUtil.escape(theme_display.getColorScheme().getCssClass()) + " yui3-skin-sam"
 
-<#assign liferay_toggle_controls = sessionClicks.get(request, "liferay_toggle_controls", "visible") />
+	liferay_toggle_controls = sessionClicks.get(request, "liferay_toggle_controls", "visible")
+/>
 
 <#if layout??>
 	<#assign page_group = layout.getGroup() />
@@ -43,76 +45,86 @@
 	<#assign css_class = css_class + " page-maximized" />
 </#if>
 
-<#assign css_folder = theme_display.getPathThemeCss() />
-<#assign images_folder = theme_display.getPathThemeImages() />
-<#assign javascript_folder = theme_display.getPathThemeJavaScript() />
-<#assign templates_folder = theme_display.getPathThemeTemplates() />
+<#assign
+	css_folder = theme_display.getPathThemeCss()
+	images_folder = theme_display.getPathThemeImages()
+	javascript_folder = theme_display.getPathThemeJavaScript()
+	templates_folder = theme_display.getPathThemeTemplates()
 
-<#assign full_css_path = fullCssPath />
-<#assign full_templates_path = fullTemplatesPath />
+	full_css_path = fullCssPath
+	full_templates_path = fullTemplatesPath
 
-<#assign css_main_file = htmlUtil.escape(portalUtil.getStaticResourceURL(request, "${css_folder}/main.css")) />
-<#assign js_main_file = htmlUtil.escape(portalUtil.getStaticResourceURL(request, "${javascript_folder}/main.js")) />
+	css_main_file = htmlUtil.escape(portalUtil.getStaticResourceURL(request, "${css_folder}/main.css"))
+	js_main_file = htmlUtil.escape(portalUtil.getStaticResourceURL(request, "${javascript_folder}/main.js"))
 
-<#assign company_id = company.getCompanyId() />
-<#assign company_name = company.getName() />
-<#assign company_logo = htmlUtil.escape(theme_display.getCompanyLogo()) />
-<#assign company_logo_height = theme_display.getCompanyLogoHeight() />
-<#assign company_logo_width = theme_display.getCompanyLogoWidth() />
-<#assign company_url = theme_display.getURLHome() />
+	company_id = company.getCompanyId()
+	company_name = company.getName()
+	company_logo = htmlUtil.escape(theme_display.getCompanyLogo())
+	company_logo_height = theme_display.getCompanyLogoHeight()
+	company_logo_width = theme_display.getCompanyLogoWidth()
+	company_url = theme_display.getURLHome()
+/>
 
 <#if !request.isRequestedSessionIdFromCookie()>
 	<#assign company_url = portalUtil.getURLWithSessionId(company_url, request.getSession().getId()) />
 </#if>
 
-<#assign user_id = user.getUserId() />
-<#assign is_default_user = user.isDefaultUser() />
-<#assign user_first_name = user.getFirstName() />
-<#assign user_middle_name = user.getMiddleName() />
-<#assign user_last_name = user.getLastName() />
-<#assign user_name = user.getFullName() />
-<#assign is_male = user.isMale() />
-<#assign is_female = user.isFemale() />
-<#assign user_birthday = user.getBirthday() />
-<#assign user_email_address = user.getEmailAddress() />
-<#assign language = locale.getLanguage() />
-<#assign language_id = user.getLanguageId() />
-<#assign w3c_language_id = localeUtil.toW3cLanguageId(theme_display.getLanguageId()) />
-<#assign time_zone = user.getTimeZoneId() />
-<#assign user_greeting = htmlUtil.escape(user.getGreeting()) />
-<#assign user_comments = user.getComments() />
-<#assign user_login_ip = user.getLoginIP() />
-<#assign user_last_login_ip = user.getLastLoginIP() />
+<#assign
+	user_id = user.getUserId()
+	is_default_user = user.isDefaultUser()
+	user_first_name = user.getFirstName()
+	user_middle_name = user.getMiddleName()
+	user_last_name = user.getLastName()
+	user_name = user.getFullName()
+	is_male = user.isMale()
+	is_female = user.isFemale()
+	user_birthday = user.getBirthday()
+	user_email_address = user.getEmailAddress()
+	language = locale.getLanguage()
+	language_id = user.getLanguageId()
+	w3c_language_id = localeUtil.toW3cLanguageId(theme_display.getLanguageId())
+	time_zone = user.getTimeZoneId()
+	user_greeting = htmlUtil.escape(user.getGreeting())
+	user_comments = user.getComments()
+	user_login_ip = user.getLoginIP()
+	user_last_login_ip = user.getLastLoginIP()
 
-<#assign is_login_redirect_required = portalUtil.isLoginRedirectRequired(request) />
-<#assign is_signed_in = theme_display.isSignedIn() />
+	is_login_redirect_required = portalUtil.isLoginRedirectRequired(request)
+	is_signed_in = theme_display.isSignedIn()
 
-<#assign group_id = theme_display.getScopeGroupId() />
+	group_id = theme_display.getScopeGroupId()
+/>
 
 <#-- ---------- URLs ---------- -->
 
 <#assign show_add_content = theme_display.isShowAddContentIcon() />
 
 <#if show_add_content>
-	<#assign add_content_text = languageUtil.get(locale, "add-application") />
-	<#assign add_content_url = theme_display.getURLAddContent() />
+	<#assign
+		add_content_text = languageUtil.get(locale, "add-application")
+		add_content_url = theme_display.getURLAddContent()
 
-	<#assign layout_text = languageUtil.get(locale, "layout-template") />
-	<#assign layout_url = theme_display.getURLLayoutTemplates() />
+		layout_text = languageUtil.get(locale, "layout-template")
+		layout_url = theme_display.getURLLayoutTemplates()
+	/>
 </#if>
 
 <#assign show_control_panel = theme_display.isShowControlPanelIcon() />
 
 <#if show_control_panel>
-	<#assign control_panel_text = languageUtil.get(locale, "control-panel") />
-	<#assign control_panel_url = htmlUtil.escape(theme_display.getURLControlPanel()) />
+	<#assign
+		control_panel_text = languageUtil.get(locale, "control-panel")
+		control_panel_url = htmlUtil.escape(theme_display.getURLControlPanel())
+	/>
 </#if>
 
 <#assign show_home = theme_display.isShowHomeIcon() />
 
 <#if show_home>
-	<#assign home_text = languageUtil.get(locale, "home") />
-	<#assign home_url = htmlUtil.escape(theme_display.getURLHome()) />
+	<#assign
+		home_text = languageUtil.get(locale, "home")
+		home_url = htmlUtil.escape(theme_display.getURLHome())
+	/>
 
 	<#if !request.isRequestedSessionIdFromCookie()>
 		<#assign home_url = htmlUtil.escape(portalUtil.getURLWithSessionId(home_url, request.getSession().getId())) />
@@ -128,8 +140,10 @@
 	</#if>
 </#if>
 
-<#assign show_page_settings = theme_display.isShowPageSettingsIcon() />
-<#assign show_site_settings = theme_display.isShowSiteSettingsIcon() />
+<#assign
+	show_page_settings = theme_display.isShowPageSettingsIcon()
+	show_site_settings = theme_display.isShowSiteSettingsIcon()
+/>
 
 <#if show_page_settings>
 	<#assign page_settings_text = languageUtil.get(locale, "manage-pages") />
@@ -142,56 +156,68 @@
 <#assign show_sign_in = theme_display.isShowSignInIcon() />
 
 <#if show_sign_in>
-	<#assign sign_in_text = languageUtil.get(locale, "sign-in") />
-	<#assign sign_in_url = htmlUtil.escape(theme_display.getURLSignIn()) />
+	<#assign
+		sign_in_text = languageUtil.get(locale, "sign-in")
+		sign_in_url = htmlUtil.escape(theme_display.getURLSignIn())
+	/>
 </#if>
 
 <#assign show_sign_out = theme_display.isShowSignOutIcon() />
 
 <#if show_sign_out>
-	<#assign sign_out_text = languageUtil.get(locale, "sign-out") />
-	<#assign sign_out_url = htmlUtil.escape(theme_display.getURLSignOut()) />
+	<#assign
+		sign_out_text = languageUtil.get(locale, "sign-out")
+		sign_out_url = htmlUtil.escape(theme_display.getURLSignOut())
+	/>
 </#if>
 
 <#assign show_toggle_controls = theme_display.isSignedIn() />
 
 <#if show_toggle_controls>
-	<#assign toggle_controls_text = languageUtil.get(locale, "toggle-edit-controls") />
-	<#assign toggle_controls_url = "javascript:;" />
+	<#assign
+		toggle_controls_text = languageUtil.get(locale, "toggle-edit-controls")
+		toggle_controls_url = "javascript:;"
+	/>
 </#if>
 
 <#-- ---------- Page ---------- -->
 
-<#assign the_title = "" />
-<#assign selectable = theme_display.isTilesSelectable() />
-<#assign is_maximized = layoutTypePortlet.hasStateMax() />
-<#assign is_freeform = themeDisplay.isFreeformLayout() />
+<#assign
+	the_title = ""
+	selectable = theme_display.isTilesSelectable()
+	is_maximized = layoutTypePortlet.hasStateMax()
+	is_freeform = themeDisplay.isFreeformLayout()
 
-<#assign page_javascript_1 = "" />
-<#assign page_javascript_2 = "" />
-<#assign page_javascript_3 = "" />
+	page_javascript_1 = ""
+	page_javascript_2 = ""
+	page_javascript_3 = ""
+/>
 
 <#if layout??>
-	<#assign page = layout />
+	<#assign
+		page = layout
 
-	<#assign is_first_child = page.isFirstChild() />
-	<#assign is_first_parent = page.isFirstParent() />
+		is_first_child = page.isFirstChild()
+		is_first_parent = page.isFirstParent()
 
-	<#assign the_title = languageUtil.get(locale, the_title, page.getName(locale)) />
+		the_title = languageUtil.get(locale, the_title, page.getName(locale))
 
-	<#assign is_portlet_page = false />
+		is_portlet_page = false
+	/>
 
 	<#if page.getType() = "portlet">
 		<#assign is_portlet_page = true />
 	</#if>
 
 	<#if is_portlet_page && theme_display.isWapTheme()>
-		<#assign all_portlets = layoutTypePortlet.getPortlets() />
-		<#assign column_1_portlets = layoutTypePortlet.getAllPortlets("column-1") />
-		<#assign column_2_portlets = layoutTypePortlet.getAllPortlets("column-2") />
-		<#assign column_3_portlets = layoutTypePortlet.getAllPortlets("column-3") />
-		<#assign column_4_portlets = layoutTypePortlet.getAllPortlets("column-4") />
-		<#assign column_5_portlets = layoutTypePortlet.getAllPortlets("column-5") />
+		<#assign
+			all_portlets = layoutTypePortlet.getPortlets()
+			column_1_portlets = layoutTypePortlet.getAllPortlets("column-1")
+			column_2_portlets = layoutTypePortlet.getAllPortlets("column-2")
+			column_3_portlets = layoutTypePortlet.getAllPortlets("column-3")
+			column_4_portlets = layoutTypePortlet.getAllPortlets("column-4")
+			column_5_portlets = layoutTypePortlet.getAllPortlets("column-5")
+		/>
 
 		<#if layoutTypePortlet.hasStateMax()>
 			<#assign maximized_portlet_id = layoutTypePortlet.getStateMaxPortletId() />
@@ -204,11 +230,13 @@
 		<#assign page_javascript = typeSettingsProperties["javascript"]! />
 	</#if>
 
-	<#assign site_name = htmlUtil.escape(page_group.getDescriptiveName()) />
+	<#assign
+		site_name = htmlUtil.escape(page_group.getDescriptiveName())
 
-	<#assign community_name = site_name />
+		community_name = site_name
 
-	<#assign is_guest_group = page_group.getName() == "Guest" />
+		is_guest_group = page_group.getName() == "Guest"
+	/>
 
 	<#if is_guest_group>
 		<#assign css_class = css_class + " guest-site" />
@@ -244,26 +272,29 @@
 		<#assign site_type = "site" />
 	</#if>
 
-	<#assign css_class = css_class + " " + site_type />
+	<#assign
+		css_class = css_class + " " + site_type
 
-	<#assign site_default_public_url = htmlUtil.escape(page_group.getDisplayURL(theme_display, false)) />
+		site_default_public_url = htmlUtil.escape(page_group.getDisplayURL(theme_display, false))
 
-	<#assign community_default_public_url = site_default_public_url />
+		community_default_public_url = site_default_public_url
 
-	<#assign site_default_private_url = htmlUtil.escape(page_group.getDisplayURL(theme_display, true)) />
+		site_default_private_url = htmlUtil.escape(page_group.getDisplayURL(theme_display, true))
 
-	<#assign community_default_private_url = site_default_private_url />
+		community_default_private_url = site_default_private_url
 
-	<#assign site_default_url = site_default_public_url />
+		site_default_url = site_default_public_url
 
-	<#assign community_default_url = site_default_url />
+		community_default_url = site_default_url
+	/>
 
 	<#if layout.isPrivateLayout()>
-		<#assign site_default_url = site_default_private_url />
+		<#assign
+			site_default_url = site_default_private_url
 
-		<#assign community_default_url = site_default_url />
-	</#if>
-</#if>
+			community_default_url = site_default_url
+		/>
+	</#if></#if>
 
 <#assign the_title = "" />
 
@@ -279,7 +310,7 @@
 	<#assign the_title = pageSubtitle + " - " + the_title />
 </#if>
 
-<#if tilesTitle != "">
+<#if validator.isNotNull(tilesTitle)>
 	<#assign the_title = languageUtil.get(locale, tilesTitle) />
 </#if>
 
@@ -287,7 +318,7 @@
 	<#assign the_title = page_group.getDescriptiveName() />
 </#if>
 
-<#if tilesTitle == "">
+<#if validator.isNull(tilesTitle)>
 	<#assign the_title = htmlUtil.escape(the_title) />
 </#if>
 
@@ -297,10 +328,12 @@
 
 <#-- ---------- Logo ---------- -->
 
-<#assign logo_css_class = "logo" />
-<#assign use_company_logo = !layout.layoutSet.isLogo() />
-<#assign site_logo_height = company_logo_height />
-<#assign site_logo_width = company_logo_width />
+<#assign
+	logo_css_class = "logo"
+	use_company_logo = !layout.layoutSet.isLogo()
+	site_logo_height = company_logo_height
+	site_logo_width = company_logo_width
+/>
 
 <#if company.getLogoId() == 0 && use_company_logo>
 	<#assign logo_css_class = logo_css_class + " default-logo" />
@@ -308,24 +341,27 @@
 	<#assign logo_css_class = logo_css_class + " custom-logo" />
 </#if>
 
-<#assign show_site_name_supported = getterUtil.getBoolean(theme_settings["show-site-name-supported"]!"", true) />
+<#assign
+	show_site_name_supported = getterUtil.getBoolean(theme_settings["show-site-name-supported"]!"", true)
 
-<#assign show_site_name_default = getterUtil.getBoolean(theme_settings["show-site-name-default"]!"", show_site_name_supported) />
+	show_site_name_default = getterUtil.getBoolean(theme_settings["show-site-name-default"]!"", show_site_name_supported)
 
-<#assign show_site_name = getterUtil.getBoolean(layout.layoutSet.getSettingsProperty("showSiteName"), show_site_name_default) />
+	show_site_name = getterUtil.getBoolean(layout.layoutSet.getSettingsProperty("showSiteName"), show_site_name_default)
 
-<#assign site_logo = company_logo />
-<#assign logo_description = htmlUtil.escape(site_name) />
+	site_logo = company_logo
+	logo_description = htmlUtil.escape(site_name)
+/>
 
 <#-- ---------- Navigation ---------- -->
 
 <#assign has_navigation = false />
 
 <#if navItems??>
-	<#assign nav_items = navItems />
-	<#assign has_navigation = (nav_items?size > 0) />
+	<#assign
+		nav_items = navItems
+		has_navigation = (nav_items?size > 0)
+	/>
 </#if>
-
 <#assign nav_css_class = "sort-pages modify-pages" />
 
 <#if !has_navigation>
@@ -342,14 +378,18 @@
 
 <#-- ---------- My sites ---------- -->
 
-<#assign show_my_sites = user.hasMySites() />
+<#assign
+	show_my_sites = user.hasMySites()
 
-<#assign show_my_places = show_my_sites />
+	show_my_places = show_my_sites
+/>
 
 <#if show_my_sites>
-	<#assign my_sites_text = languageUtil.get(locale, "my-sites") />
+	<#assign
+		my_sites_text = languageUtil.get(locale, "my-sites")
 
-	<#assign my_places_text = my_sites_text />
+		my_places_text = my_sites_text
+	/>
 </#if>
 
 <#-- ---------- Includes ---------- -->
@@ -360,19 +400,23 @@
 	<#assign dir_include = "/html" />
 </#if>
 
-<#assign body_bottom_include = "${dir_include}/common/themes/body_bottom.jsp" />
-<#assign body_top_include = "${dir_include}/common/themes/body_top.jsp" />
-<#assign bottom_include = "${dir_include}/common/themes/bottom.jsp" />
-<#assign bottom_ext_include = bottom_include />
-<#assign content_include = "${dir_include}${tilesContent}" />
-<#assign top_head_include = "${dir_include}/common/themes/top_head.jsp" />
-<#assign top_messages_include = "${dir_include}/common/themes/top_messages.jsp" />
+<#assign
+	body_bottom_include = "${dir_include}/common/themes/body_bottom.jsp"
+	body_top_include = "${dir_include}/common/themes/body_top.jsp"
+	bottom_include = "${dir_include}/common/themes/bottom.jsp"
+	bottom_ext_include = bottom_include
+	content_include = "${dir_include}${tilesContent}"
+	top_head_include = "${dir_include}/common/themes/top_head.jsp"
+	top_messages_include = "${dir_include}/common/themes/top_messages.jsp"
+/>
 
 <#-- ---------- Date ---------- -->
 
-<#assign date = dateUtil />
-<#assign current_time = date.newDate() />
-<#assign the_year = current_time?date?string("yyyy") />
+<#assign
+	date = dateUtil
+	current_time = date.newDate()
+	the_year = current_time?date?string("yyyy")
+/>
 
 <#-- ---------- Custom init ---------- -->
 

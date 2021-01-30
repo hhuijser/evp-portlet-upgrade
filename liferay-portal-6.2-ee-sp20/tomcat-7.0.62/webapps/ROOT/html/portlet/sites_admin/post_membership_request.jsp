@@ -22,10 +22,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 ActionUtil.getGroup(request);
 
 Group group = (Group)request.getAttribute(WebKeys.GROUP);
-
-long groupId = BeanParamUtil.getLong(group, request, "groupId");
-
-MembershipRequest membershipRequest = (MembershipRequest)request.getAttribute(WebKeys.MEMBERSHIP_REQUEST);
 %>
 
 <portlet:actionURL var="postMembershipRequestURL">
@@ -35,7 +31,7 @@ MembershipRequest membershipRequest = (MembershipRequest)request.getAttribute(We
 <aui:form action="<%= postMembershipRequestURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
+	<aui:input name="groupId" type="hidden" value='<%= BeanParamUtil.getLong(group, request, "groupId") %>' />
 
 	<c:if test="<%= !layout.isTypeControlPanel() %>">
 		<liferay-ui:header
@@ -48,7 +44,7 @@ MembershipRequest membershipRequest = (MembershipRequest)request.getAttribute(We
 
 	<liferay-ui:error exception="<%= MembershipRequestCommentsException.class %>" message="please-enter-valid-comments" />
 
-	<aui:model-context bean="<%= membershipRequest %>" model="<%= MembershipRequest.class %>" />
+	<aui:model-context bean="<%= (MembershipRequest)request.getAttribute(WebKeys.MEMBERSHIP_REQUEST) %>" model="<%= MembershipRequest.class %>" />
 
 	<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
 		<aui:field-wrapper label="description">

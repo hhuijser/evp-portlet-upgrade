@@ -57,18 +57,15 @@ portletURL.setParameter("tabs1", tabs1);
 		orderByCol = portalPreferences.getValue(PortletKeys.DYNAMIC_DATA_MAPPING, "entries-order-by-col", "id");
 		orderByType = portalPreferences.getValue(PortletKeys.DYNAMIC_DATA_MAPPING, "entries-order-by-type", "asc");
 	}
-
-	OrderByComparator orderByComparator = DDMUtil.getStructureOrderByComparator(orderByCol, orderByType);
 	%>
 
 	<liferay-ui:search-container
 		orderByCol="<%= orderByCol %>"
-		orderByComparator="<%= orderByComparator %>"
+		orderByComparator="<%= DDMUtil.getStructureOrderByComparator(orderByCol, orderByType) %>"
 		orderByType="<%= orderByType %>"
 		rowChecker="<%= new RowChecker(renderResponse) %>"
 		searchContainer="<%= new StructureSearch(renderRequest, portletURL) %>"
 	>
-
 		<c:if test="<%= showToolbar %>">
 			<liferay-util:include page="/html/portlet/dynamic_data_mapping/toolbar.jsp">
 				<liferay-util:param name="groupId" value="<%= String.valueOf(groupId) %>" />

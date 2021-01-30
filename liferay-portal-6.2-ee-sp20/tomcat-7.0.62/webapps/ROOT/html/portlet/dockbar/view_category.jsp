@@ -64,9 +64,7 @@ for (String portletId : portletIds) {
 		if (portletApp.isWARFile() && Validator.isNull(externalPortletCategory)) {
 			PortletConfig curPortletConfig = PortletConfigFactoryUtil.create(portlet, application);
 
-			ResourceBundle resourceBundle = curPortletConfig.getResourceBundle(locale);
-
-			externalPortletCategory = ResourceBundleUtil.getString(resourceBundle, portletCategory.getName());
+			externalPortletCategory = ResourceBundleUtil.getString(curPortletConfig.getResourceBundle(locale), portletCategory.getName());
 		}
 	}
 }
@@ -74,13 +72,10 @@ for (String portletId : portletIds) {
 portlets = ListUtil.sort(portlets, new PortletTitleComparator(application, locale));
 
 if (!categories.isEmpty() || !portlets.isEmpty()) {
-	String panelId = renderResponse.getNamespace() + "portletCategory" + portletCategoryIndex;
-	String title = Validator.isNotNull(externalPortletCategory) ? externalPortletCategory : LanguageUtil.get(pageContext, portletCategory.getName());
 %>
 
 	<div class="lfr-add-content">
-		<liferay-ui:panel collapsible="<%= layout.isTypePortlet() %>" cssClass="lfr-content-category panel-page-category unstyled" defaultState="closed" extended="<%= true %>" id="<%= panelId %>" parentId="<%= panelContainerId %>" persistState="<%= true %>" title="<%= title %>">
-
+		<liferay-ui:panel collapsible="<%= layout.isTypePortlet() %>" cssClass="lfr-content-category panel-page-category unstyled" defaultState="closed" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "portletCategory" + portletCategoryIndex %>' parentId="<%= panelContainerId %>" persistState="<%= true %>" title="<%= Validator.isNotNull(externalPortletCategory) ? externalPortletCategory : LanguageUtil.get(pageContext, portletCategory.getName()) %>">
 			<aui:nav collapsible="<%= false %>" cssClass="nav-list">
 
 				<%
@@ -189,13 +184,12 @@ if (!categories.isEmpty() || !portlets.isEmpty()) {
 								portletItemData.put("title", HtmlUtil.escape(portletItem.getName()));
 							%>
 
-								<aui:nav-item cssClass="lfr-content-item lfr-archived-setup" data="<%= portletItemData %>" href="">
+								<aui:nav-item cssClass="lfr-archived-setup lfr-content-item" data="<%= portletItemData %>" href="">
 									<span <%= AUIUtil.buildData(portletItemData) %> class="<%= cssClass %>">
 										<i class="<%= portletInstanceable ? "icon-th-large" : "icon-stop" %>"></i>
 
 										<liferay-ui:message key="<%= HtmlUtil.escape(portletItem.getName()) %>" />
 									</span>
-
 									<span <%= AUIUtil.buildData(portletItemData) %> class='add-content-item <%= portletLocked ? "lfr-portlet-used" : StringPool.BLANK %>'>
 										<liferay-ui:message key="add" />
 									</span>

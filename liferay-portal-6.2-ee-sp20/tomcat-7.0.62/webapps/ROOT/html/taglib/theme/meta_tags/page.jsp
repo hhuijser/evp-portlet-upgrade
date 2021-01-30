@@ -21,6 +21,7 @@
 	<%
 	String currentLanguageId = LanguageUtil.getLanguageId(request);
 	Locale defaultLocale = LocaleUtil.getSiteDefault();
+
 	String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 	String w3cCurrentLanguageId = LocaleUtil.toW3cLanguageId(currentLanguageId);
@@ -96,7 +97,6 @@
 		else {
 			metaKeywords = pageKeywordsListMergeable.mergeToString(StringPool.COMMA);
 		}
-
 	}
 	%>
 

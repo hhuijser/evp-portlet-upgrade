@@ -20,7 +20,6 @@
 LayoutRevision layoutRevision = (LayoutRevision)request.getAttribute("view.jsp-layoutRevision");
 LayoutSetBranch layoutSetBranch = (LayoutSetBranch)request.getAttribute("view.jsp-layoutSetBranch");
 List<LayoutSetBranch> layoutSetBranches = (List<LayoutSetBranch>)request.getAttribute("view.jsp-layoutSetBranches");
-String stagingFriendlyURL = (String)request.getAttribute("view.jsp-stagingFriendlyURL");
 %>
 
 <c:if test="<%= (layoutSetBranches != null) && (layoutSetBranches.size() >= 1) %>">
@@ -28,6 +27,7 @@ String stagingFriendlyURL = (String)request.getAttribute("view.jsp-stagingFriend
 		<div class="variations-options">
 			<liferay-util:buffer var="taglibMessage">
 				<liferay-ui:message key="<%= HtmlUtil.escape(layoutSetBranchDisplayContext.getLayoutSetBranchDisplayName(layoutSetBranch)) %>" localizeKey="<%= false %>" />
+
 				<small>(<liferay-ui:message arguments="<%= layouts.size() %>" key='<%= (layouts.size() == 1) ? "1-page" : "x-pages" %>' translateArguments="<%= false %>" />)</small>
 			</liferay-util:buffer>
 
@@ -46,7 +46,7 @@ String stagingFriendlyURL = (String)request.getAttribute("view.jsp-stagingFriend
 							<portlet:actionURL var="layoutSetBranchURL">
 								<portlet:param name="struts_action" value="/dockbar/edit_layouts" />
 								<portlet:param name="<%= Constants.CMD %>" value="select_layout_set_branch" />
-								<portlet:param name="redirect" value="<%= stagingFriendlyURL %>" />
+								<portlet:param name="redirect" value='<%= (String)request.getAttribute("view.jsp-stagingFriendlyURL") %>' />
 								<portlet:param name="groupId" value="<%= String.valueOf(curLayoutSetBranch.getGroupId()) %>" />
 								<portlet:param name="privateLayout" value="<%= String.valueOf(layout.isPrivateLayout()) %>" />
 								<portlet:param name="layoutSetBranchId" value="<%= String.valueOf(curLayoutSetBranch.getLayoutSetBranchId()) %>" />

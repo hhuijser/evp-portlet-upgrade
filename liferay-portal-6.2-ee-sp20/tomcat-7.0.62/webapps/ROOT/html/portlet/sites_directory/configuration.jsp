@@ -41,11 +41,13 @@
 					<aui:option label="list-hierarchy" selected='<%= displayStyle.equals("list-hierarchy") %>' />
 				</aui:select>
 			</aui:fieldset>
+
 			<aui:button-row>
 				<aui:button type="submit" />
 			</aui:button-row>
 		</aui:form>
 	</aui:col>
+
 	<aui:col width="<%= 50 %>">
 		<liferay-portlet:preview
 			portletName="<%= portletResource %>"

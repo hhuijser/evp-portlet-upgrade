@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -158,7 +158,6 @@ portletURL.setParameter("category", category);
 									<li class="switch">
 										<i class="icon-chevron-right"></i>
 									</li>
-
 									<li>
 										<liferay-ui:message key="this-app-contains" />
 									</li>
@@ -198,7 +197,7 @@ portletURL.setParameter("category", category);
 						<liferay-ui:icon-menu>
 							<liferay-portlet:actionURL name="updatePluginSettings" var="activateURL">
 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
-								<portlet:param name="active" value="<%= String.valueOf(true) %>" />
+								<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
 							</liferay-portlet:actionURL>
 
 							<liferay-ui:icon
@@ -208,7 +207,7 @@ portletURL.setParameter("category", category);
 
 							<liferay-portlet:actionURL name="updatePluginSettings" var="deactivateURL">
 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
-								<portlet:param name="active" value="<%= String.valueOf(false) %>" />
+								<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
 							</liferay-portlet:actionURL>
 
 							<liferay-ui:icon
@@ -219,7 +218,7 @@ portletURL.setParameter("category", category);
 							<liferay-portlet:actionURL name="uninstallApp" var="uninstallURL">
 								<portlet:param name="remoteAppId" value="<%= String.valueOf(app.getRemoteAppId()) %>" />
 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
-								<portlet:param name="activate" value="<%= String.valueOf(false) %>" />
+								<portlet:param name="activate" value="<%= Boolean.FALSE.toString() %>" />
 							</liferay-portlet:actionURL>
 
 							<liferay-ui:icon-delete

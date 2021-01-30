@@ -32,10 +32,9 @@ boolean allowTrackbacks = PropsValues.BLOGS_TRACKBACK_ENABLED && BeanParamUtil.g
 boolean smallImage = BeanParamUtil.getBoolean(entry, request, "smallImage");
 
 boolean preview = ParamUtil.getBoolean(request, "preview");
-boolean showHeader = ParamUtil.getBoolean(request, "showHeader", true);
 %>
 
-<c:if test="<%= showHeader %>">
+<c:if test='<%= ParamUtil.getBoolean(request, "showHeader", true) %>'>
 	<liferay-ui:header
 		backURL="<%= backURL %>"
 		localizeTitle="<%= (entry == null) %>"
@@ -182,12 +181,7 @@ boolean showHeader = ParamUtil.getBoolean(request, "showHeader", true);
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= EntrySmallImageSizeException.class %>">
-
-				<%
-				long imageMaxSize = PrefsPropsUtil.getLong(PropsKeys.BLOGS_IMAGE_SMALL_MAX_SIZE) / 1024;
-				%>
-
-				<liferay-ui:message arguments="<%= imageMaxSize %>" key="please-enter-a-small-image-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
+				<liferay-ui:message arguments="<%= PrefsPropsUtil.getLong(PropsKeys.BLOGS_IMAGE_SMALL_MAX_SIZE) / 1024 %>" key="please-enter-a-small-image-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
 			</liferay-ui:error>
 
 			<aui:fieldset>

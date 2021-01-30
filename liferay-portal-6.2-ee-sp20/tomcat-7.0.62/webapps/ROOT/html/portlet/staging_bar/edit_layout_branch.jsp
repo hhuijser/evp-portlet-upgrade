@@ -30,7 +30,7 @@ if (layoutBranchId > 0) {
 long layoutRevisionId = ParamUtil.getLong(request, "layoutRevisionId");
 %>
 
-<div class='<%= (layoutBranch != null) ? StringPool.BLANK : "hide" %>' data-namespace="<portlet:namespace />" id="<portlet:namespace /><%= layoutBranch != null ? "updateBranch" : "addBranch" %>">
+<div class="<%= (layoutBranch != null) ? StringPool.BLANK : "hide" %>" data-namespace="<portlet:namespace />" id="<portlet:namespace /><%= layoutBranch != null ? "updateBranch" : "addBranch" %>">
 	<aui:model-context bean="<%= layoutBranch %>" model="<%= LayoutBranch.class %>" />
 
 	<portlet:actionURL var="editLayoutBranchURL">
@@ -40,7 +40,7 @@ long layoutRevisionId = ParamUtil.getLong(request, "layoutRevisionId");
 	<aui:form action="<%= editLayoutBranchURL %>" method="post" name="fm3">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= layoutBranch != null ? Constants.UPDATE : Constants.ADD %>" />
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="groupId" type="hidden"  value="<%= String.valueOf(scopeGroupId) %>" />
+		<aui:input name="groupId" type="hidden" value="<%= String.valueOf(scopeGroupId) %>" />
 		<aui:input name="layoutBranchId" type="hidden" value="<%= layoutBranchId %>" />
 		<aui:input name="copyLayoutRevisionId" type="hidden" value="<%= String.valueOf(layoutRevisionId) %>" />
 		<aui:input name="workflowAction" type="hidden" value="<%= String.valueOf(WorkflowConstants.ACTION_SAVE_DRAFT) %>" />

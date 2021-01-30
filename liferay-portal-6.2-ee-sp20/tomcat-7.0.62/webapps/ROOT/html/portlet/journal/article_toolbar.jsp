@@ -26,7 +26,7 @@ long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
 
 <div class="article-toolbar" id="<portlet:namespace />articleToolbar"></div>
 
-<aui:script use="aui-toolbar,aui-dialog-iframe-deprecated,aui-tooltip,liferay-util-window">
+<aui:script use="aui-dialog-iframe-deprecated,aui-toolbar,aui-tooltip,liferay-util-window">
 	var permissionPopUp = null;
 
 	var toolbarButtonGroup = [];
@@ -77,7 +77,7 @@ long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
 		toolbarButtonGroup.push(
 			{
 				icon: 'icon-search',
-				id: '<portlet:namespace/>basicPreviewButton',
+				id: '<portlet:namespace />basicPreviewButton',
 				label: '<%= UnicodeLanguageUtil.get(pageContext, "basic-preview") %>',
 				on: {
 					click: function(event) {
@@ -110,7 +110,7 @@ long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
 					render: function(event) {
 						new A.Tooltip(
 							{
-								trigger: '#<portlet:namespace/>basicPreviewButton'
+								trigger: '#<portlet:namespace />basicPreviewButton'
 							}
 						).render();
 					}
@@ -121,12 +121,13 @@ long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
 	</c:if>
 
 	<c:if test='<%= JournalArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) && ((classNameId == JournalArticleConstants.CLASSNAME_ID_DEFAULT) || ArrayUtil.contains(PropsValues.JOURNAL_ARTICLE_FORM_DEFAULT_VALUES, "permissions")) %>'>
-		<liferay-security:permissionsURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"
+		<liferay-security:permissionsURL
 			modelResource="<%= JournalArticle.class.getName() %>"
 			modelResourceDescription="<%= HtmlUtil.escape(article.getTitle(locale)) %>"
 			resourceGroupId="<%= String.valueOf(article.getGroupId()) %>"
 			resourcePrimKey="<%= String.valueOf(article.getResourcePrimKey()) %>"
 			var="permissionsURL"
+			windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 		/>
 
 		toolbarButtonGroup.push(

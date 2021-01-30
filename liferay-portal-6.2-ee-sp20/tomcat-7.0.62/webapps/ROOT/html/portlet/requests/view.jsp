@@ -49,6 +49,7 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 						userId="<%= socialRequest.getUserId() %>"
 					/>
 				</aui:col>
+
 				<aui:col width="<%= 50 %>">
 					<c:choose>
 						<c:when test="<%= requestFeedEntry == null %>">

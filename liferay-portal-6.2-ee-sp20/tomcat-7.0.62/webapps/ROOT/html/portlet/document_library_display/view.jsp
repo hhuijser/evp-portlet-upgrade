@@ -98,7 +98,6 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 		/>
 
 		<%@ include file="/html/portlet/document_library/view_file_entries.jspf" %>
-
 	</c:when>
 	<c:when test='<%= topLink.equals("home") %>'>
 		<c:if test="<%= (folder != null) %>">
@@ -173,7 +172,6 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 				iteratorURL="<%= portletURL %>"
 				total="<%= DLAppServiceUtil.getGroupFileEntriesCount(repositoryId, groupFileEntriesUserId, defaultFolderId, null, status) %>"
 			>
-
 				<liferay-ui:search-container-results
 					results="<%= DLAppServiceUtil.getGroupFileEntries(repositoryId, groupFileEntriesUserId, defaultFolderId, null, status, searchContainer.getStart(), searchContainer.getEnd(), null) %>"
 				/>

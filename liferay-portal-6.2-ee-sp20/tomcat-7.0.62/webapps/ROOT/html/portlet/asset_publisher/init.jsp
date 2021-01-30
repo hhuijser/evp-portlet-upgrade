@@ -20,7 +20,6 @@
 page import="com.liferay.portal.kernel.util.DateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil" %><%@
 page import="com.liferay.portal.kernel.util.PredicateFilter" %><%@
-page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portlet.asset.DuplicateQueryRuleException" %><%@
 page import="com.liferay.portlet.asset.NoSuchTagException" %><%@
 page import="com.liferay.portlet.asset.NoSuchTagPropertyException" %><%@
@@ -31,9 +30,7 @@ page import="com.liferay.portlet.assetpublisher.search.AssetSearch" %><%@
 page import="com.liferay.portlet.assetpublisher.util.AssetPublisherHelperImpl" %><%@
 page import="com.liferay.portlet.assetpublisher.util.AssetPublisherHelperUtil" %><%@
 page import="com.liferay.portlet.assetpublisher.util.AssetPublisherUtil" %><%@
-page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %><%@
 page import="com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil" %><%@
-page import="com.liferay.portlet.documentlibrary.util.DocumentConversionUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.util.DDMImpl" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.util.DDMIndexerUtil" %><%@
 page import="com.liferay.portlet.messageboards.model.MBDiscussion" %><%@

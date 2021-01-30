@@ -71,6 +71,7 @@
 					<aui:nav-item cssClass="current-user-language" href='<%= HttpUtil.setParameter(PortalUtil.getCurrentURL(request), "doAsUserLanguageId", doAsUserLanguageId) %>' label="<%= changeLanguageMessage %>" />
 				</c:if>
 			</c:if>
+
 			<c:if test="<%= userSetupComplete && Validator.isNotNull(themeDisplay.getURLMyAccount()) %>">
 
 				<%

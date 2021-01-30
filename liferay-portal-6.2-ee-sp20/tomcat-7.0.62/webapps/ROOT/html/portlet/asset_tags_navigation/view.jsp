@@ -37,7 +37,7 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 
 		Map<String, Object> contextObjects = new HashMap<String, Object>();
 
-		contextObjects.put("scopeGroupId", new Long(scopeGroupId));
+		contextObjects.put("scopeGroupId", Long.valueOf(scopeGroupId));
 		%>
 
 		<%= PortletDisplayTemplateUtil.renderDDMTemplate(pageContext, portletDisplayDDMTemplateId, assetTags, contextObjects) %>

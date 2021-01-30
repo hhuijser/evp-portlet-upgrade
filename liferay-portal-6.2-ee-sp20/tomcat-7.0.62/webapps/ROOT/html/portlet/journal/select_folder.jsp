@@ -46,12 +46,8 @@ if (folder != null) {
 	portletURL.setParameter("folderId", String.valueOf(folderId));
 	%>
 
-	<%
-	boolean hasAddFolderPermission = JournalFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_FOLDER);
-	%>
-
 	<aui:button-row>
-		<c:if test="<%= hasAddFolderPermission %>">
+		<c:if test="<%= JournalFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_FOLDER) %>">
 			<portlet:renderURL var="editFolderURL">
 				<portlet:param name="struts_action" value="/journal/edit_folder" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -149,7 +145,6 @@ if (folder != null) {
 					<aui:button cssClass="selector-button" data="<%= data %>" value="choose" />
 				</liferay-ui:search-container-column-text>
 			</c:if>
-
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />

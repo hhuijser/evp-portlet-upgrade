@@ -101,7 +101,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 												<span class="selected-labels" id="<portlet:namespace />selectedConfiguration_<%= selPortlet.getRootPortletId() %>"></span>
 
 												<%
-												Map<String,Object> data = new HashMap<String,Object>();
+												Map<String, Object> data = new HashMap<String, Object>();
 
 												data.put("portletid", selPortlet.getRootPortletId());
 												%>
@@ -186,20 +186,19 @@ portletURL.setParameter("tabs3", "current-and-previous");
 														&nbsp;
 
 														<liferay-ui:input-time
-															amPmParam='<%= "startDateAmPm" %>'
+															amPmParam="startDateAmPm"
 															amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
 															dateParam="startDateTime"
 															dateValue="<%= startCalendar.getTime() %>"
 															disabled="<%= false %>"
-															hourParam='<%= "startDateHour" %>'
+															hourParam="startDateHour"
 															hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
-															minuteParam='<%= "startDateMinute" %>'
+															minuteParam="startDateMinute"
 															minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
 															name="startTime"
 														/>
 													</aui:fieldset>
 												</li>
-
 												<li>
 													<aui:fieldset label="end-date">
 														<liferay-ui:input-date
@@ -217,14 +216,14 @@ portletURL.setParameter("tabs3", "current-and-previous");
 														&nbsp;
 
 														<liferay-ui:input-time
-															amPmParam='<%= "endDateAmPm" %>'
+															amPmParam="endDateAmPm"
 															amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
 															dateParam="startDateTime"
 															dateValue="<%= endCalendar.getTime() %>"
 															disabled="<%= false %>"
-															hourParam='<%= "endDateHour" %>'
+															hourParam="endDateHour"
 															hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
-															minuteParam='<%= "endDateMinute" %>'
+															minuteParam="endDateMinute"
 															minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
 															name="endTime"
 														/>
@@ -256,7 +255,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 									<liferay-ui:icon
 										image="calendar"
 										label="<%= true %>"
-										message='<%= LanguageUtil.get(locale, "date-range") + selectedLabelsHTML %>'
+										message='<%= LanguageUtil.get(request, "date-range") + selectedLabelsHTML %>'
 									/>
 								</li>
 
@@ -312,7 +311,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 
 																			if (ArrayUtil.isNotEmpty(childrenControls)) {
 																				request.setAttribute("render_controls.jsp-controls", childrenControls);
-																			%>
+																		%>
 
 																				<aui:field-wrapper label="content-metadata">
 																					<ul class="lfr-tree unstyled">
@@ -320,7 +319,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 																					</ul>
 																				</aui:field-wrapper>
 
-																			<%
+																		<%
 																			}
 																		}
 																		%>
@@ -336,7 +335,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 															<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= selPortlet.getRootPortletId() %>"></span>
 
 															<%
-															Map<String,Object> data = new HashMap<String,Object>();
+															Map<String, Object> data = new HashMap<String, Object>();
 
 															data.put("portletid", selPortlet.getRootPortletId());
 															%>

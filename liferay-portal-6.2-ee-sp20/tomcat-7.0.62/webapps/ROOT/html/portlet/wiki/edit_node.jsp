@@ -20,8 +20,6 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 WikiNode node = (WikiNode)request.getAttribute(WebKeys.WIKI_NODE);
-
-long nodeId = BeanParamUtil.getLong(node, request, "nodeId");
 %>
 
 <portlet:actionURL var="editNodeURL">
@@ -31,7 +29,7 @@ long nodeId = BeanParamUtil.getLong(node, request, "nodeId");
 <aui:form action="<%= editNodeURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveNode();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="nodeId" type="hidden" value="<%= nodeId %>" />
+	<aui:input name="nodeId" type="hidden" value='<%= BeanParamUtil.getLong(node, request, "nodeId") %>' />
 
 	<liferay-ui:header
 		backURL="<%= redirect %>"

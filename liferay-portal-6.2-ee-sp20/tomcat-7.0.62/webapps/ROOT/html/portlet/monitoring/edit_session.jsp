@@ -124,12 +124,12 @@ userTracker = userTracker.toEscapedModel();
 							UserTrackerPath userTrackerPath = paths.get(i);
 						%>
 
-						<dt>
-							<%= StringUtil.replace(userTrackerPath.getPath(), "&", "& ") %>
-						</dt>
-						<dd>
-							<%= dateFormatDateTime.format(userTrackerPath.getPathDate()) %>
-						</dd>
+							<dt>
+								<%= StringUtil.replace(userTrackerPath.getPath(), "&", "& ") %>
+							</dt>
+							<dd>
+								<%= dateFormatDateTime.format(userTrackerPath.getPathDate()) %>
+							</dd>
 
 						<%
 						}

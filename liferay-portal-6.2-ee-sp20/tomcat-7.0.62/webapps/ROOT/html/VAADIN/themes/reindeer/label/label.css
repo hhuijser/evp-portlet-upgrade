@@ -32,8 +32,8 @@
 .black .v-label hr,
 .white .black .v-label hr {
 	background: #0c0d0e;
-	color: #0c0d0e;
 	border-bottom-color: #292b2e;
+	color: #0c0d0e;
 }
 
 /**********************
@@ -64,8 +64,8 @@
 .blue .v-label hr,
 .white .blue .v-label hr {
 	background: #a3bcc9;
-	color: #a3bcc9;
 	border-bottom-color: #cfe2eb;
+	color: #a3bcc9;
 }
 
 /**********************
@@ -79,12 +79,12 @@
 .white .v-label-h2,
 .white .v-caption-h1,
 .white .v-caption-h2 {
+	color: #44698b;
 	font-family: Helvetica, Arial, "Lucida Grande", Geneva, Tahoma, Verdana, sans-serif;
 	font-size: 24px;
-	line-height: 30px;
 	font-weight: bold;
-	color: #44698b;
 	letter-spacing: -0.02em;
+	line-height: 30px;
 	text-shadow: #fff 0 -1px 1px;
 }
 .v-label-h2,
@@ -96,17 +96,17 @@
 }
 .v-label-light,
 .white .v-label-light {
+	color: #707070;
 	font-size: 11px;
 	line-height: 13px;
-	color: #707070;
 }
 
 .v-label hr,
 .white .v-label hr {
+	background: #dcdcdc;
 	height: 2px;
 	overflow: hidden;
-	background: #dcdcdc;
-	color: #dcdcdc; /* For IE */
+	color: #dcdcdc; /* ---------- For IE ---------- */
 	border: none;
 	border-bottom: 1px solid #fff;
 }

@@ -21,15 +21,15 @@
 .v-orderedlayout-spacing-on,
 .v-horizontallayout-spacing-on,
 .v-verticallayout-spacing-on {
-	padding-top: 6px;
 	padding-left: 6px;
+	padding-top: 6px;
 }
-/* This can be used to define spacing if spacing is off server side */
+/* ---------- This can be used to define spacing if spacing is off server side ---------- */
 .v-orderedlayout-spacing-off,
 .v-horizontallayout-spacing-off,
 .v-verticallayout-spacing-off {
-	padding-top: 0;
 	padding-left: 0;
+	padding-top: 0;
 }
 /* To make sure IE don't expand elements larger than they should */
 .v-ie6 .v-orderedlayout,

@@ -94,7 +94,6 @@
 		keyProperty="primaryKeyObj"
 		modelVar="result"
 	>
-
 		<%@ include file="/html/portlet/message_boards/cast_result.jspf" %>
 
 		<%

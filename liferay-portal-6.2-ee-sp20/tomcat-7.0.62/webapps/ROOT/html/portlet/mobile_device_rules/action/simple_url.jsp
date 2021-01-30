@@ -16,16 +16,11 @@
 
 <%@ include file="/html/portlet/mobile_device_rules/action/init.jsp" %>
 
-<%
-String url = GetterUtil.getString(typeSettingsProperties.get("url"));
-boolean ajax = GetterUtil.getBoolean(request.getParameter("ajax"));
-%>
-
-<aui:input cssClass="lfr-input-text-container" name="url" type="text" value="<%= url %>">
+<aui:input cssClass="lfr-input-text-container" name="url" type="text" value='<%= GetterUtil.getString(typeSettingsProperties.get("url")) %>'>
 	<aui:validator name="required" />
 </aui:input>
 
-<c:if test="<%= ajax %>">
+<c:if test='<%= GetterUtil.getBoolean(request.getParameter("ajax")) %>'>
 	<aui:script use="liferay-form">
 		var form = Liferay.Form.get('<portlet:namespace />fm');
 
