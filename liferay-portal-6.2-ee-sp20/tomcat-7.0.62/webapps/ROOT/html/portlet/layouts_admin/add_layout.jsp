@@ -113,7 +113,7 @@ else {
 									<aui:input checked="<%= true %>" id="addLayoutSelectedPageTemplateBlank" label="empty-page" name="selectedPageTemplate" type="radio" />
 
 									<div class="lfr-page-template-description">
-										<small><%= LanguageUtil.get(pageContext, "empty-page-description" ) %></small>
+										<small><%= LanguageUtil.get(pageContext, "empty-page-description") %></small>
 									</div>
 								</div>
 
@@ -174,7 +174,7 @@ else {
 									<aui:input disabled="<%= (layoutsCount == 0) && !PortalUtil.isLayoutFirstPageable(PropsValues.LAYOUT_TYPES[i]) %>" id='<%= "addLayoutSelectedPageTemplate" + PropsValues.LAYOUT_TYPES[i] %>' label='<%= "layout.types." + PropsValues.LAYOUT_TYPES[i] %>' name="selectedPageTemplate" type="radio" />
 
 									<div class="lfr-page-template-description">
-										<small><%= LanguageUtil.get(pageContext, "layout.types." + PropsValues.LAYOUT_TYPES[i] + ".description" ) %></small>
+										<small><%= LanguageUtil.get(pageContext, "layout.types." + PropsValues.LAYOUT_TYPES[i] + ".description") %></small>
 									</div>
 								</div>
 
@@ -193,7 +193,7 @@ else {
 									<aui:input id="addLayoutSelectedPageTemplateCopyOfPage" label="copy-of-a-page" name="selectedPageTemplate" type="radio" />
 
 									<div class="lfr-page-template-description">
-										<small><%= LanguageUtil.get(pageContext, "copy-of-a-page-description" ) %></small>
+										<small><%= LanguageUtil.get(pageContext, "copy-of-a-page-description") %></small>
 									</div>
 								</div>
 

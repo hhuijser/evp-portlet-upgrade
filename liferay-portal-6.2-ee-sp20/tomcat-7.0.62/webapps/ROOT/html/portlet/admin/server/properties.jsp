@@ -34,7 +34,7 @@ serverURL.setParameter("tabs3", tabs3);
 />
 
 <div class="form-search">
-	<liferay-ui:input-search placeholder='<%= LanguageUtil.get(locale, "keywords") %>' />
+	<liferay-ui:input-search placeholder='<%= LanguageUtil.get(request, "keywords") %>' />
 </div>
 
 <%
@@ -147,5 +147,5 @@ List filteredPropertiesList = ListUtil.fromCollection(filteredProperties.entrySe
 		</c:if>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator/>
+	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
