@@ -224,6 +224,7 @@ if (forcePost && (portletURL != null)) {
 							</c:otherwise>
 						</c:choose>
 					</div>
+
 					<div class="lfr-pagination-delta-selector">
 						<c:choose>
 							<c:when test="<%= !deltaConfigurable || themeDisplay.isFacebook() %>">
@@ -268,7 +269,7 @@ if (forcePost && (portletURL != null)) {
 			<%@ include file="/html/taglib/ui/page_iterator/showing_x_results.jspf" %>
 		</c:if>
 
-		<ul class="pager lfr-pagination-buttons">
+		<ul class="lfr-pagination-buttons pager">
 			<c:if test='<%= type.equals("approximate") || type.equals("more") || type.equals("regular") %>'>
 				<li class="<%= (cur != 1) ? "" : "disabled" %> first">
 					<a href="<%= (cur != 1) ? _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) : "javascript:;" %>" onclick="<%= (cur != 1 && forcePost) ? _getOnClick(namespace, curParam, 1) : "" %>" tabIndex="<%= (cur != 1) ? "0" : "-1" %>" target="<%= target %>">
@@ -282,7 +283,6 @@ if (forcePost && (portletURL != null)) {
 					<liferay-ui:message key="previous" />
 				</a>
 			</li>
-
 			<li class="<%= (cur != pages) ? "" : "disabled" %>">
 				<a href="<%= (cur != pages) ? _getHREF(formName, namespace + curParam, cur + 1, jsCall, url, urlAnchor) : "javascript:;" %>" onclick="<%= (cur != pages && forcePost) ? _getOnClick(namespace, curParam, cur + 1) : "" %>" tabIndex="<%= (cur != pages) ? "0" : "-1" %>" target="<%= target %>">
 					<c:choose>

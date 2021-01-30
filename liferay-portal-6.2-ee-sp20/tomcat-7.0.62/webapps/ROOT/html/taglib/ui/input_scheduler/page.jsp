@@ -40,10 +40,6 @@ int startHour = ParamUtil.get(request, "schedulerStartDateHour", cal.get(Calenda
 if (DateUtil.isFormatAmPm(locale)) {
 	startHour = ParamUtil.get(request, "schedulerStartDateHour", cal.get(Calendar.HOUR));
 }
-
-int startMinute = ParamUtil.get(request, "schedulerStartDateMinute", cal.get(Calendar.MINUTE));
-int startMonth = ParamUtil.get(request, "schedulerStartDateMonth", cal.get(Calendar.MONTH));
-int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calendar.YEAR));
 %>
 
 <aui:fieldset>
@@ -55,9 +51,9 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 				disabled="<%= false %>"
 				firstDayOfWeek="<%= cal.getFirstDayOfWeek() - 1 %>"
 				monthParam="schedulerStartDateMonth"
-				monthValue="<%= startMonth %>"
+				monthValue='<%= ParamUtil.get(request, "schedulerStartDateMonth", cal.get(Calendar.MONTH)) %>'
 				yearParam="schedulerStartDateYear"
-				yearValue="<%= startYear %>"
+				yearValue='<%= ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calendar.YEAR)) %>'
 			/>
 
 			&nbsp;
@@ -68,7 +64,7 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 				hourParam="schedulerStartDateHour"
 				hourValue="<%= startHour %>"
 				minuteParam="schedulerStartDateMinute"
-				minuteValue="<%= startMinute %>"
+				minuteValue='<%= ParamUtil.get(request, "schedulerStartDateMinute", cal.get(Calendar.MINUTE)) %>'
 			/>
 		</div>
 	</aui:field-wrapper>

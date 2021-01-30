@@ -17,7 +17,6 @@
 <%@ include file="/html/common/init.jsp" %>
 
 <%
-String duplicateEntryAction = (String)request.getAttribute("liferay-ui:restore-entry:duplicateEntryAction");
 String overrideMessage = (String)request.getAttribute("liferay-ui:restore-entry:overrideMessage");
 String renameMessage = (String)request.getAttribute("liferay-ui:restore-entry:renameMessage");
 String restoreEntryAction = (String)request.getAttribute("liferay-ui:restore-entry:restoreEntryAction");
@@ -30,7 +29,7 @@ String restoreEntryAction = (String)request.getAttribute("liferay-ui:restore-ent
 	</portlet:actionURL>
 
 	<portlet:renderURL var="duplicateEntryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-		<portlet:param name="struts_action" value="<%= duplicateEntryAction %>" />
+		<portlet:param name="struts_action" value='<%= (String)request.getAttribute("liferay-ui:restore-entry:duplicateEntryAction") %>' />
 		<portlet:param name="redirect" value="<%= PortalUtil.getCurrentURL(request) %>" />
 		<portlet:param name="restoreEntryAction" value="<%= restoreEntryAction %>" />
 	</portlet:renderURL>
