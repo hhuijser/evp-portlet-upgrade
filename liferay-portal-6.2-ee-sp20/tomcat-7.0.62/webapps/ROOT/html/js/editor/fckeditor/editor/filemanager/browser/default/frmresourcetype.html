@@ -8,14 +8,14 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
@@ -24,8 +24,11 @@
 <html>
 	<head>
 		<title>Available types</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link href="browser.css" type="text/css" rel="stylesheet">
+
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+		<link href="browser.css" rel="stylesheet" type="text/css" />
+
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript">
 
@@ -54,12 +57,13 @@ window.onload = function()
 
 		</script>
 	</head>
+
 	<body>
-		<table class="fullHeight" cellSpacing="0" cellPadding="0" width="100%" border="0">
+		<table border="0" cellPadding="0" cellSpacing="0" class="fullHeight" width="100%">
 			<tr>
 				<td nowrap>
 					Resource Type<BR>
-					<select id="cmbType" style="WIDTH: 100%" onchange="SetResourceType(this.value);">
+					<select id="cmbType" onchange="SetResourceType(this.value);" style="WIDTH: 100%">
 						<option>&nbsp;
 					</select>
 				</td>
