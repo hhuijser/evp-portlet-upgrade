@@ -16,13 +16,9 @@
 
 <%@ include file="/html/portlet/users_admin/init.jsp" %>
 
-<%
-User selUser = (User)request.getAttribute("user.selUser");
-%>
-
 <liferay-ui:error-marker key="errorSection" value="openId" />
 
-<aui:model-context bean="<%= selUser %>" model="<%= User.class %>" />
+<aui:model-context bean='<%= (User)request.getAttribute("user.selUser") %>' model="<%= User.class %>" />
 
 <h3><liferay-ui:message key="open-id" /></h3>
 
