@@ -28,12 +28,12 @@ tabs1Names = HtmlUtil.escape(tabs1Names);
 String tabs1Values = tabs1Names;
 
 String viewUsersRedirect = ParamUtil.getString(request, "viewUsersRedirect");
+
 String redirect = ParamUtil.getString(request, "redirect", viewUsersRedirect);
-String backURL = ParamUtil.getString(request, "backURL", redirect);
 %>
 
 <liferay-ui:tabs
-	backURL="<%= backURL %>"
+	backURL='<%= ParamUtil.getString(request, "backURL", redirect) %>'
 	names="<%= tabs1Names %>"
 	tabsValues="<%= tabs1Values %>"
 	url="<%= tabs1URL.toString() %>"

@@ -224,9 +224,7 @@ AssetEntry assetEntry = (AssetEntry)request.getAttribute("view_entry_content.jsp
 						<span class="comments">
 
 							<%
-							long classNameId = PortalUtil.getClassNameId(BlogsEntry.class.getName());
-
-							int messagesCount = MBMessageLocalServiceUtil.getDiscussionMessagesCount(classNameId, entry.getEntryId(), WorkflowConstants.STATUS_APPROVED);
+							int messagesCount = MBMessageLocalServiceUtil.getDiscussionMessagesCount(PortalUtil.getClassNameId(BlogsEntry.class.getName()), entry.getEntryId(), WorkflowConstants.STATUS_APPROVED);
 							%>
 
 							<c:choose>
@@ -257,7 +255,6 @@ AssetEntry assetEntry = (AssetEntry)request.getAttribute("view_entry_content.jsp
 						portletURL="<%= renderResponse.createRenderURL() %>"
 					/>
 				</span>
-
 				<span class="entry-tags">
 					<liferay-ui:asset-tags-summary
 						className="<%= BlogsEntry.class.getName() %>"

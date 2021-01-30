@@ -46,16 +46,16 @@
 						String portletDescription = PortalUtil.getPortletDescription(categoryPortlet, application, locale);
 					%>
 
-							<li role="presentation">
-								<liferay-ui:icon
-									ariaRole="menuitem"
-									cssClass="control-panel-home-link"
-									id='<%= "controlPanelPortletLink_" + categoryPortletId %>'
-									label="<%= true %>"
-									message="<%= PortalUtil.getPortletTitle(categoryPortlet, application, locale) %>"
-									src='<%= Validator.isNull(categoryPortlet.getIcon())? themeDisplay.getPathContext() + "/html/icons/default.png" : categoryPortlet.getStaticResourcePath().concat(categoryPortlet.getIcon()) %>'
-									url="<%= urlCategoryPortlet %>"
-								/>
+						<li role="presentation">
+							<liferay-ui:icon
+								ariaRole="menuitem"
+								cssClass="control-panel-home-link"
+								id='<%= "controlPanelPortletLink_" + categoryPortletId %>'
+								label="<%= true %>"
+								message="<%= PortalUtil.getPortletTitle(categoryPortlet, application, locale) %>"
+								src='<%= Validator.isNull(categoryPortlet.getIcon())? themeDisplay.getPathContext() + "/html/icons/default.png" : categoryPortlet.getStaticResourcePath().concat(categoryPortlet.getIcon()) %>'
+								url="<%= urlCategoryPortlet %>"
+							/>
 
 							<c:if test='<%= Validator.isNotNull(portletDescription) && !portletDescription.startsWith("javax.portlet.description") %>'>
 								<liferay-ui:icon-help message="<%= portletDescription %>" />
@@ -79,6 +79,7 @@
 			</div>
 		</c:if>
 	</aui:row>
+
 	<aui:row>
 		<liferay-util:include page="/html/portlet/control_panel_home/view_actions.jsp" />
 	</aui:row>

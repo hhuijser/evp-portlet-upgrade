@@ -20,76 +20,74 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 SCLicense license = (SCLicense)request.getAttribute(WebKeys.SOFTWARE_CATALOG_LICENSE);
-
-long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 %>
 
 <form action="<portlet:actionURL><portlet:param name="struts_action" value="/software_catalog/edit_license" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveLicense(); return false;">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(redirect) %>" />
-<input name="<portlet:namespace />licenseId" type="hidden" value="<%= licenseId %>" />
+	<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(redirect) %>" />
+	<input name="<portlet:namespace />licenseId" type="hidden" value="<%= BeanParamUtil.getLong(license, request, "licenseId") %>" />
 
-<liferay-ui:header
-	backURL="<%= redirect %>"
-	localizeTitle="<%= (license == null) %>"
-	title='<%= (license == null) ? "new-license" : license.getName() %>'
-/>
+	<liferay-ui:header
+		backURL="<%= redirect %>"
+		localizeTitle="<%= (license == null) %>"
+		title='<%= (license == null) ? "new-license" : license.getName() %>'
+	/>
 
-<liferay-ui:error exception="<%= LicenseNameException.class %>" message="please-enter-a-valid-name" />
-<liferay-ui:error exception="<%= RequiredLicenseException.class %>" message="the-selected-license-is-used-by-at-least-one-product" />
+	<liferay-ui:error exception="<%= LicenseNameException.class %>" message="please-enter-a-valid-name" />
+	<liferay-ui:error exception="<%= RequiredLicenseException.class %>" message="the-selected-license-is-used-by-at-least-one-product" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<liferay-ui:input-field autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" bean="<%= license %>" field="name" model="<%= SCLicense.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="url" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= license %>" field="url" model="<%= SCLicense.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="open-source" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="openSource" model="<%= SCLicense.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="active" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="active" model="<%= SCLicense.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="recommended" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="recommended" model="<%= SCLicense.class %>" />
-	</td>
-</tr>
-</table>
+	<table class="lfr-table">
+		<tr>
+			<td>
+				<liferay-ui:message key="name" />
+			</td>
+			<td>
+				<liferay-ui:input-field autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" bean="<%= license %>" field="name" model="<%= SCLicense.class %>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="url" />
+			</td>
+			<td>
+				<liferay-ui:input-field bean="<%= license %>" field="url" model="<%= SCLicense.class %>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="open-source" />
+			</td>
+			<td>
+				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="openSource" model="<%= SCLicense.class %>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="active" />
+			</td>
+			<td>
+				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="active" model="<%= SCLicense.class %>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="recommended" />
+			</td>
+			<td>
+				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="recommended" model="<%= SCLicense.class %>" />
+			</td>
+		</tr>
+	</table>
 
-<div class="btn-toolbar">
-	<aui:button cssClass="btn-primary" type="submit" value="save" />
+	<div class="btn-toolbar">
+		<aui:button cssClass="btn-primary" type="submit" value="save" />
 
-	<%
-	String taglibCancel = "location.href = '" + HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) + "';";
-	%>
+		<%
+		String taglibCancel = "location.href = '" + HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) + "';";
+		%>
 
-	<aui:button onClick="<%= taglibCancel %>" value="cancel" />
-</div>
+		<aui:button onClick="<%= taglibCancel %>" value="cancel" />
+	</div>
 </form>
 
 <aui:script>
