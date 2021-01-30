@@ -22,13 +22,11 @@ String backURL = ParamUtil.getString(request, "backURL");
 
 long repositoryId = ParamUtil.getLong(request, "repositoryId");
 long folderId = ParamUtil.getLong(request, "folderId");
-
-List<DLFileEntryType> fileEntryTypes = DLFileEntryTypeServiceUtil.getFolderFileEntryTypes(PortalUtil.getSiteAndCompanyGroupIds(themeDisplay), folderId, true);
 %>
 
 <liferay-ui:search-container>
 	<liferay-ui:search-container-results
-		results="<%= fileEntryTypes %>"
+		results="<%= DLFileEntryTypeServiceUtil.getFolderFileEntryTypes(PortalUtil.getSiteAndCompanyGroupIds(themeDisplay), folderId, true) %>"
 	/>
 
 	<liferay-ui:search-container-row

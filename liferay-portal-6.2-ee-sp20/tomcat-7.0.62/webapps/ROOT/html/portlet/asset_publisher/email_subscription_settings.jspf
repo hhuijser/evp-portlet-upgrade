@@ -29,7 +29,6 @@ String currentLanguageId = LanguageUtil.getLanguageId(request);
 String emailSubjectParam = (String)request.getAttribute("configuration.jsp-emailSubjectParam");
 String emailBodyParam = (String)request.getAttribute("configuration.jsp-emailBodyParam");
 
-String emailSubject = PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject);
 String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBodyParam, defaultEmailBody);
 %>
 
@@ -41,7 +40,7 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 <aui:fieldset>
 	<aui:input id="enableEmailSubscription" label="enable-email-subscription" name="preferences--emailAssetEntryAddedEnabled--" type="checkbox" value="<%= emailAssetEntryAddedEnabled %>" />
 
-	<div class='<%= emailAssetEntryAddedEnabled ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />emailSubscriptionSettings">
+	<div class="<%= emailAssetEntryAddedEnabled ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />emailSubscriptionSettings">
 		<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" value="<%= emailFromName %>" />
 
 		<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" />
@@ -69,7 +68,7 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 
 		</aui:select>
 
-		<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= emailSubject %>" />
+		<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject) %>" />
 
 		<aui:field-wrapper label="body">
 			<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" />

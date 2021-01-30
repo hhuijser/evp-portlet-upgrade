@@ -35,7 +35,7 @@
 		/>
 	</div>
 
-	<aui:select cssClass="hidden-field abstract-length" helpMessage="abstract-length-key-help" name="preferences--abstractLength--">
+	<aui:select cssClass="abstract-length hidden-field" helpMessage="abstract-length-key-help" name="preferences--abstractLength--">
 		<aui:option label="100" selected="<%= abstractLength == 100 %>" />
 		<aui:option label="200" selected="<%= abstractLength == 200 %>" />
 		<aui:option label="300" selected="<%= abstractLength == 300 %>" />
@@ -47,7 +47,7 @@
 
 	<aui:input cssClass="hidden-field show-context-link" name="preferences--showContextLink--" type="checkbox" value="<%= showContextLink %>" />
 
-	<aui:select cssClass="hidden-field asset-link-behavior" name="preferences--assetLinkBehavior--">
+	<aui:select cssClass="asset-link-behavior hidden-field" name="preferences--assetLinkBehavior--">
 		<aui:option label="show-full-content" selected='<%= assetLinkBehavior.equals("showFullContent") %>' value="showFullContent" />
 		<aui:option label="view-in-context" selected='<%= assetLinkBehavior.equals("viewInPortlet") %>' value="viewInPortlet" />
 	</aui:select>
@@ -96,9 +96,9 @@
 			for (String conversion : conversions) {
 			%>
 
-			<aui:field-wrapper inlineField="<%= true %>" inlineLabel="left" label="<%= StringUtil.toUpperCase(conversion) %>">
-				<input <%= ArrayUtil.contains(extensions, conversion) ? "checked": "" %> <%= !openOfficeServerEnabled ? "disabled" : "" %> name="<portlet:namespace />extensions" type="checkbox" value="<%= conversion %>" />
-			</aui:field-wrapper>
+				<aui:field-wrapper inlineField="<%= true %>" inlineLabel="left" label="<%= StringUtil.toUpperCase(conversion) %>">
+					<input <%= ArrayUtil.contains(extensions, conversion) ? "checked": "" %> <%= !openOfficeServerEnabled ? "disabled" : "" %> name="<portlet:namespace />extensions" type="checkbox" value="<%= conversion %>" />
+				</aui:field-wrapper>
 
 			<%
 			}
