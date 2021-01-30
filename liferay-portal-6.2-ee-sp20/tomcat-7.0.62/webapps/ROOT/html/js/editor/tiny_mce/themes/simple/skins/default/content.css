@@ -11,7 +11,7 @@ body {
 	border: 1px dashed #BBBBBB;
 }
 
-/* MSIE specific */
+/* ---------- MSIE specific ---------- */
 
 * html body {
 	scrollbar-3dlight-color: #F0F0EE;
