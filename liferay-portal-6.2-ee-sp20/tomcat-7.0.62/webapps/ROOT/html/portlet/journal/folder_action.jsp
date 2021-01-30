@@ -37,16 +37,16 @@ String resourcePrimKey = null;
 boolean hasPermissionsPermission = false;
 
 if (folder != null) {
-	modelResource= JournalFolder.class.getName();
+	modelResource = JournalFolder.class.getName();
 	modelResourceDescription = folder.getName();
-	resourcePrimKey= String.valueOf(folder.getPrimaryKey());
+	resourcePrimKey = String.valueOf(folder.getPrimaryKey());
 
 	hasPermissionsPermission = JournalFolderPermission.contains(permissionChecker, folder, ActionKeys.PERMISSIONS);
 }
 else {
-	modelResource= "com.liferay.portlet.journal";
+	modelResource = "com.liferay.portlet.journal";
 	modelResourceDescription = themeDisplay.getScopeGroupName();
-	resourcePrimKey= String.valueOf(scopeGroupId);
+	resourcePrimKey = String.valueOf(scopeGroupId);
 
 	hasPermissionsPermission = JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
 }
@@ -82,6 +82,7 @@ else {
 						url="<%= moveURL %>"
 					/>
 				</c:if>
+
 				<c:if test="<%= JournalFolderPermission.contains(permissionChecker, folder, ActionKeys.DELETE) %>">
 					<portlet:actionURL var="deleteURL">
 						<portlet:param name="struts_action" value="/journal/edit_folder" />

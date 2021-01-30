@@ -206,7 +206,7 @@ request.setAttribute("view_entries.jsp-entryEnd", String.valueOf(searchContainer
 %>
 
 <c:if test="<%= results.isEmpty() %>">
-	<div class="entries-empty alert alert-info">
+	<div class="alert alert-info entries-empty">
 		<c:choose>
 			<c:when test="<%= Validator.isNotNull(displayTerms.getStructureId()) %>">
 				<c:if test="<%= total == 0 %>">
@@ -293,7 +293,6 @@ for (int i = 0; i < results.size(); i++) {
 										<dt>
 											<liferay-ui:message key="site" />:
 										</dt>
-
 										<dd>
 
 											<%
@@ -317,7 +316,6 @@ for (int i = 0; i < results.size(); i++) {
 										<dt>
 											<liferay-ui:message key="scope" />:
 										</dt>
-
 										<dd>
 											<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 										</dd>

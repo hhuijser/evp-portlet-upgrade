@@ -19,10 +19,7 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-long groupId = ParamUtil.getLong(request, "groupId");
 String oldArticleId = ParamUtil.getString(request, "oldArticleId");
-String newArticleId = ParamUtil.getString(request, "newArticleId");
-double version = ParamUtil.getDouble(request, "version");
 %>
 
 <portlet:actionURL var="copyArticleURL">
@@ -32,9 +29,9 @@ double version = ParamUtil.getDouble(request, "version");
 <aui:form action="<%= copyArticleURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.COPY %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
+	<aui:input name="groupId" type="hidden" value='<%= ParamUtil.getLong(request, "groupId") %>' />
 	<aui:input name="oldArticleId" type="hidden" value="<%= oldArticleId %>" />
-	<aui:input name="version" type="hidden" value="<%= version %>" />
+	<aui:input name="version" type="hidden" value='<%= ParamUtil.getDouble(request, "version") %>' />
 
 	<liferay-ui:header
 		backURL="<%= redirect %>"
@@ -55,7 +52,7 @@ double version = ParamUtil.getDouble(request, "version");
 				<aui:input name="autoArticleId" type="hidden" value="<%= true %>" />
 			</c:when>
 			<c:otherwise>
-				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" bean="<%= null %>" cssClass="lfr-input-text-container" field="articleId" fieldParam="newArticleId" label="" model="<%= JournalArticle.class %>" name="newArticleId" value="<%= newArticleId %>" />
+				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" bean="<%= null %>" cssClass="lfr-input-text-container" field="articleId" fieldParam="newArticleId" label="" model="<%= JournalArticle.class %>" name="newArticleId" value='<%= ParamUtil.getString(request, "newArticleId") %>' />
 			</c:otherwise>
 		</c:choose>
 	</aui:fieldset>
