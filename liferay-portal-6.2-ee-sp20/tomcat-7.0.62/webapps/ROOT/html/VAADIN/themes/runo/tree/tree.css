@@ -19,10 +19,10 @@
 .v-tree-node-selected span {
 	background: #57a7ed;
 	color: #fff;
-	padding: 1px 2px 0;
 	display: inline-block;
-	zoom: 1;
 	margin: -1px -1px 0;
+	padding: 1px 2px 0;
+	zoom: 1;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;	
@@ -32,17 +32,17 @@
 }
 /* IMPORTANT keep the offsetWidth (width + padding) of this element the same as the margin-left of v-tree-node-caption */
 .v-ie6 .v-tree-node-ie6compatnode {
-	width: 14px;
 	height: 10px;
 	padding: 1px;
+	width: 14px;
 }
 .v-tree{
 	outline:none;	
 }
 .v-tree-node-caption.v-tree-node-focused span{
+	padding-bottom: 0px;
 	padding-left: 1px;
 	padding-top: 0px;
-	padding-bottom: 0px;
 }
 .v-tree-node-focused span{
 	border: 1px dotted black;	

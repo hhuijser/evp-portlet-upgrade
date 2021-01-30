@@ -2,47 +2,47 @@
 	background: transparent url(img/top-left.png) no-repeat;
 }
 .v-panel-caption .v-errorindicator {
-	padding-right: 20px;
 	background: transparent url(../icons/16/error.png) no-repeat bottom center;
+	padding-right: 20px;
 	
 }
 .v-panel-caption,
 .v-panel-caption-light {
-	font-size: 18px;
-	line-height: normal;
-	font-weight: normal;
-	letter-spacing: -0.03em;
-	color: #f14c1a;
-	height: 18px;
-	padding: 13px 18px 16px 8px;
-	margin-left: 10px;
 	background: transparent url(img/top-right.png) no-repeat right top;
+	color: #f14c1a;
+	font-size: 18px;
+	font-weight: normal;
+	height: 18px;
+	letter-spacing: -0.03em;
+	line-height: normal;
+	margin-left: 10px;
+	padding: 13px 18px 16px 8px;
 	text-overflow: ellipsis;
 }
 .v-panel-nocaption {
+	background: transparent url(img/top-right.png) no-repeat right top;
 	height: 9px;
 	margin-left: 10px;
-	background: transparent url(img/top-right.png) no-repeat right top;
 }
 .v-panel-content {
+	background-color: #fff;
 	border: 1px solid #babfc0;
 	border-bottom: 1px solid #dee2e3;
-	background-color: #fff;
 }
 .v-panel-deco {
-	height: 9px;
 	background: transparent url(img/bottom-right.png) repeat-x right top;
+	height: 9px;
 	margin-left: 9px;
 }
 .v-panel-deco:before {
-	display: block;
+	background: transparent url(img/bottom-left.png) no-repeat;
 	content: "";
-	width: 9px;
+	display: block;
 	height: 9px;
 	margin-left: -9px;
-	background: transparent url(img/bottom-left.png) no-repeat;
+	width: 9px;
 }
-/* Light panel style */
+/* ---------- Light panel style ---------- */
 .v-panel-light,
 .v-panel-caption-light {
 	background: transparent;
@@ -59,33 +59,33 @@
 	margin: 0;
 }
 .v-panel-content-light {
-	border: none;
 	background: transparent;
+	border: none;
 }
 .v-panel-deco-light {
 	height: 0;
 	overflow: hidden;
 }
-/* IE specific rules */
+/* ---------- IE specific rules ---------- */
 .v-ie6 .v-panel {
 	background: transparent;
 }
 .v-ie6 .v-panel-caption {
+	background: #fff;
 	border: 1px solid #babfc0;
 	border-bottom: none;
-	background: #fff;
 	margin: 0;
 	padding-left: 18px
 }
 .v-ie6 .v-panel-nocaption {
-	border: none;
 	background: transparent;
-	margin: 0;
+	border: none;
 	height: 0;
+	margin: 0;
 }
 .v-ie6 .v-panel-caption-light {
-	border: none;
 	background: transparent;
+	border: none;
 }
 .v-ie6 .v-panel-content,
 .v-ie7 .v-panel-content,

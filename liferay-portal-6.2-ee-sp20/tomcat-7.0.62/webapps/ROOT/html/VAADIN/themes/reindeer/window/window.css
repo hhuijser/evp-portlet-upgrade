@@ -21,8 +21,8 @@
 .v-ff2 .v-window-contents,
 .v-ie6 .v-window-contents {
 	border: 1px solid #808386;
-	border-top: none;
 	border-bottom: none;
+	border-top: none;
 }
 .v-ff2 .v-window-footer,
 .v-ie6 .v-window-footer {
@@ -30,34 +30,34 @@
 	border-top: none;
 }
 .v-window-outerheader {
-	padding: 12px 32px 0 14px;
-	height: 25px;
 	background: black repeat-x;
+	height: 25px;
+	padding: 12px 32px 0 14px;
 	background-image: url(img/header-bg.png); /** sprite-ref: verticals; sprite-alignment: repeat */
 }
 .v-window-header {
-	font-weight: bold;
-	font-size: 12px;
-	line-height: normal;
 	color: #fff;
-	text-shadow: #000 0 -1px 0;
-	white-space: nowrap;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: normal;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-shadow: #000 0 -1px 0;
+	white-space: nowrap;
 	-ms-text-overflow: ellipsis;
 }
 .v-window-error .v-window-header {
-	padding-left: 13px;
 	background: transparent url(../common/icons/error.png) no-repeat 0 50%;
+	padding-left: 13px;
 }
 .v-ie6 .v-window-error .v-window-header {
 	background-image: url(../common/icons/error-ie6.png);
 }
 .v-window-resizebox {
-	width: 15px;
-	height: 15px;
-	cursor: se-resize;
 	background: transparent;
+	cursor: se-resize;
+	height: 15px;
+	width: 15px;
 	background-image: url(img/resize.png); /** sprite-ref: verticals */
 }
 .v-window-footer {
@@ -67,11 +67,11 @@
 	height: 15px;
 }
 .v-window-closebox {
-	top: 12px;
-	right: 10px;
-	width: 15px;
-	height: 16px;
 	background: transparent;
+	height: 16px;
+	right: 10px;
+	top: 12px;
+	width: 15px;
 	background-image: url(img/close.png); /** sprite-ref: verticals */
 }
 .v-window-closebox:hover {
@@ -98,17 +98,17 @@
 
 .v-window-light .v-window-outerheader {
 	background: transparent;
-	padding: 15px 32px 0 18px;
 	height: 23px;
+	padding: 15px 32px 0 18px;
 }
 .v-window-light .v-window-header {
-	font-size: 16px;
 	color: #292e34;
+	font-size: 16px;
 	text-shadow: none;
 }
 .v-window-light .v-window-resizebox {
-	width: 12px;
 	height: 12px;
+	width: 12px;
 	background-image: url(img/resize-light.png); /** sprite-ref: verticals */
 }
 .v-window-light .v-window-footer {
@@ -116,10 +116,10 @@
 	height: 12px;
 }
 .v-window-light .v-window-closebox {
+	height: 15px;
 	right: 1px;
 	top: 17px;
 	width: 19px;
-	height: 15px;
 	background-image: url(img/close-light.png); /** sprite-ref: verticals */
 }
 .v-window-light .v-window-closebox:hover {
@@ -171,23 +171,23 @@
 	background-color: rgba(29,32,33,.9);
 }
 .v-window-black .v-window-outerheader {
-	height: auto;
-	padding: 7px 14px;
-	height: 15px;
 	background: transparent repeat-x;
+	height: auto;
+	height: 15px;
+	padding: 7px 14px;
 	background-image: url(img/black/header-bg.png); /** sprite-ref: black-verticals; sprite-alignment: repeat */
 	text-align: center;
 	-moz-border-radius-topright: 7px;
 	-moz-border-radius-topleft: 7px;
 	-webkit-border-top-right-radius: 7px;
 	-webkit-border-top-left-radius: 7px;
-	overflow: hidden;
 	border: none;
+	overflow: hidden;
 }
 .v-window-black .v-window-header {
+	color: #dddfe1;
 	font-size: 12px;
 	font-weight: normal;
-	color: #dddfe1;
 }
 .v-window-black .v-window-closebox {
 	top: 8px;
@@ -200,8 +200,8 @@
 .v-window-black .v-window-resizebox {
 	background: transparent no-repeat;
 	background-image: url(img/black/resize.png); /** sprite-ref: black-verticals; sprite-margin-bottom: 4px */
-	width: 14px;
 	height: 14px;
+	width: 14px;
 }
 .v-ie6 .v-window-black .v-window-resizebox {
 	background-image: url(img/black/resize-ie6.png); /** sprite-ref: black-verticals; sprite-margin-bottom: 4px */
@@ -209,9 +209,9 @@
 .v-ie6 .v-window-black .v-window-contents {
 	background: transparent url(img/black/content-bg-ie6.png) repeat-x;
 }
-/* Must be last to make this image last in the sprites */
+/* ---------- Must be last to make this image last in the sprites ---------- */
 .v-window-black .v-window-contents {
-	border: none;
 	background: transparent repeat-x;
+	border: none;
 	background-image: url(img/black/content-bg.png); /** sprite-ref: black-verticals; sprite-alignment: repeat */
 }
