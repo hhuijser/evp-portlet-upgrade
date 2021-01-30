@@ -23,8 +23,8 @@
 		}
 
 		.lfr-content-category h2 {
-			border-width: 0;
 			border-bottom: 1px solid transparent;
+			border-width: 0;
 		}
 	}
 
@@ -33,7 +33,7 @@
 	}
 }
 
-/* Skin */
+/* ---------- Skin ---------- */
 
 .lfr-panel-page {
 	.panel-page-content {
