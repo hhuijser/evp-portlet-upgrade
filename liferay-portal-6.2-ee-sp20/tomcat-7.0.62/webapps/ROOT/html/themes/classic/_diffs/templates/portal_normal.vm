@@ -33,7 +33,6 @@ $theme.include($body_top_include)
 						</span>
 					#end
 				</a>
-
 			</h1>
 
 			<h2 class="page-title">
