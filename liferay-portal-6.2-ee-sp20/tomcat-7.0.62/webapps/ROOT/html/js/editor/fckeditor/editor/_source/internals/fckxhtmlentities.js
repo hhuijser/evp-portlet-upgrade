@@ -35,7 +35,7 @@ FCKXHtmlEntities.Initialize = function()
 	{
 		FCKXHtmlEntities.Entities = {
 			// Latin-1 Entities
-			' ':'nbsp',
+			' ':'nbsp',
 			'¡':'iexcl',
 			'¢':'cent',
 			'£':'pound',
@@ -336,7 +336,7 @@ FCKXHtmlEntities.Initialize = function()
 		// Even if we are not processing the entities, we must render the &nbsp;
 		// correctly. As we don't want HTML entities, let's use its numeric
 		// representation (&#160).
-		sChars = ' ' ;
+		sChars = ' ' ;
 	}
 
 	// Create the Regex used to find entities in the text.
