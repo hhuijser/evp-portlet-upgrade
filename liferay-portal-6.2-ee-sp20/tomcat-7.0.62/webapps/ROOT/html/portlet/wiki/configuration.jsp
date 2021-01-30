@@ -46,10 +46,6 @@ else if (tabs2.equals("page-updated-email")) {
 String emailSubjectParam = emailParam + "Subject";
 String emailBodyParam = emailParam + "Body";
 String emailSignatureParam = emailParam + "Signature";
-
-String emailSubject = PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject);
-String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBodyParam, defaultEmailBody);
-String emailSignature = PrefsParamUtil.getString(portletPreferences, request, emailSignatureParam, defaultEmailSignature);
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
@@ -158,11 +154,11 @@ String emailSignature = PrefsParamUtil.getString(portletPreferences, request, em
 					</c:when>
 				</c:choose>
 
-				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= emailSubject %>" />
+				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject) %>" />
 
-				<aui:input cssClass="lfr-textarea-container" label="body" name='<%= "preferences--" + emailBodyParam + "--" %>' type="textarea" value="<%= emailBody %>" />
+				<aui:input cssClass="lfr-textarea-container" label="body" name='<%= "preferences--" + emailBodyParam + "--" %>' type="textarea" value="<%= PrefsParamUtil.getString(portletPreferences, request, emailBodyParam, defaultEmailBody) %>" />
 
-				<aui:input cssClass="lfr-textarea-container" label="signature" name='<%= "preferences--" + emailSignatureParam + "--" %>' type="textarea" value="<%= emailSignature %>" wrap="soft" />
+				<aui:input cssClass="lfr-textarea-container" label="signature" name='<%= "preferences--" + emailSignatureParam + "--" %>' type="textarea" value="<%= PrefsParamUtil.getString(portletPreferences, request, emailSignatureParam, defaultEmailSignature) %>" wrap="soft" />
 			</aui:fieldset>
 
 			<div class="definition-of-terms">

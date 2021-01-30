@@ -80,13 +80,11 @@ String title = ddmDisplay.getViewTemplatesTitle(structure, controlPanel, locale)
 		orderByCol = portalPreferences.getValue(PortletKeys.DYNAMIC_DATA_MAPPING, "entries-order-by-col", "id");
 		orderByType = portalPreferences.getValue(PortletKeys.DYNAMIC_DATA_MAPPING, "entries-order-by-type", "asc");
 	}
-
-	OrderByComparator orderByComparator = DDMUtil.getTemplateOrderByComparator(orderByCol, orderByType);
 	%>
 
 	<liferay-ui:search-container
 		orderByCol="<%= orderByCol %>"
-		orderByComparator="<%= orderByComparator %>"
+		orderByComparator="<%= DDMUtil.getTemplateOrderByComparator(orderByCol, orderByType) %>"
 		orderByType="<%= orderByType %>"
 		rowChecker="<%= new RowChecker(renderResponse) %>"
 		searchContainer="<%= new TemplateSearch(renderRequest, portletURL) %>"

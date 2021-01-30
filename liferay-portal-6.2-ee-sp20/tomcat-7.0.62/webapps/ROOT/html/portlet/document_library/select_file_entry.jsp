@@ -112,7 +112,6 @@ if (folder != null) {
 				name="num-of-documents"
 				value="<%= String.valueOf(fileEntriesCount) %>"
 			/>
-
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />
@@ -138,15 +137,10 @@ if (folder != null) {
 			modelVar="curFile"
 			rowVar="row"
 		>
-
-			<%
-			String icon = "../file_system/small/" + curFile.getIcon();
-			%>
-
 			<liferay-ui:search-container-column-text
 				name="document"
 			>
-				<liferay-ui:icon image="<%= icon %>" label="<%= true %>" message="<%= HtmlUtil.escape(curFile.getTitle()) %>" />
+				<liferay-ui:icon image='<%= "../file_system/small/" + curFile.getIcon() %>' label="<%= true %>" message="<%= HtmlUtil.escape(curFile.getTitle()) %>" />
 
 				<c:if test="<%= Validator.isNotNull(curFile.getDescription()) %>">
 					<br />
