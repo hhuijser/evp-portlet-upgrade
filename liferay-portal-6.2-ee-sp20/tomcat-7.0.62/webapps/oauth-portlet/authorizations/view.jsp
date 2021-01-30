@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -60,16 +60,16 @@
 		/>
 
 		<c:if test="<%= OAuthUserPermission.contains(permissionChecker, oAuthUser, ActionKeys.DELETE) %>">
-				<liferay-portlet:actionURL name="deleteOAuthUser" var="revokeURL">
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="oAuthApplicationId" value="<%= String.valueOf(oAuthApplication.getOAuthApplicationId()) %>" />
-				</liferay-portlet:actionURL>
+			<liferay-portlet:actionURL name="deleteOAuthUser" var="revokeURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="oAuthApplicationId" value="<%= String.valueOf(oAuthApplication.getOAuthApplicationId()) %>" />
+			</liferay-portlet:actionURL>
 
-				<liferay-ui:search-container-column-text
-					href="<%= revokeURL %>"
-					translate="<%= true %>"
-					value="revoke"
-				/>
+			<liferay-ui:search-container-column-text
+				href="<%= revokeURL %>"
+				translate="<%= true %>"
+				value="revoke"
+			/>
 		</c:if>
 	</liferay-ui:search-container-row>
 
