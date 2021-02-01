@@ -233,7 +233,7 @@ for (int i = 0; i < portlets.size(); i++) {
 
 				String tagsString = element.elementText("tags");
 
-				tagsString = tagsString.replaceAll("[\\[\\]]","");
+				tagsString = tagsString.replaceAll("[\\[\\]]", "");
 
 				String[] tags = StringUtil.split(tagsString);
 

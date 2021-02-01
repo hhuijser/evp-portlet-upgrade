@@ -20,6 +20,7 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 String modelResource = ParamUtil.getString(request, "modelResource");
+
 String modelResourceName = ResourceActionsUtil.getModelResource(pageContext, modelResource);
 
 ExpandoColumn column = (ExpandoColumn)request.getAttribute(WebKeys.EXPANDO_COLUMN);
@@ -55,7 +56,7 @@ portletURL.setParameter("modelResource", modelResource);
 <liferay-ui:header
 	backURL="<%= redirect %>"
 	localizeTitle="<%= false %>"
-	title='<%= modelResourceName + ": " + ((column == null) ? LanguageUtil.get(locale, "new-custom-field") : column.getName()) %>'
+	title='<%= modelResourceName + ": " + ((column == null) ? LanguageUtil.get(request, "new-custom-field") : column.getName()) %>'
 />
 
 <portlet:actionURL var="editExpandoURL">
@@ -102,6 +103,7 @@ portletURL.setParameter("modelResource", modelResource);
 						<aui:option label="text-field-secret" value="PresetTextFieldSecret()" />
 						<aui:option label="text-field-indexed" selected="<%= true %>" value="PresetTextFieldIndexed()" />
 					</optgroup>
+
 					<optgroup label="<liferay-ui:message key="primitives" />">
 
 						<%
@@ -199,7 +201,7 @@ portletURL.setParameter("modelResource", modelResource);
 					String xml = StringPool.BLANK;
 
 					if (defaultValue != null) {
-						xml = LocalizationUtil.updateLocalization((Map<Locale,String>)defaultValue, StringPool.BLANK, "Data", LocaleUtil.toLanguageId(locale));
+						xml = LocalizationUtil.updateLocalization((Map<Locale, String>)defaultValue, StringPool.BLANK, "Data", LocaleUtil.toLanguageId(locale));
 					}
 					%>
 

@@ -69,9 +69,7 @@ portletURL.setParameter("portletResource", portletResource);
 
 	List archivedSetups = PortletItemLocalServiceUtil.getPortletItems(scopeGroupId, selPortlet.getRootPortletId(), com.liferay.portal.model.PortletPreferences.class.getName());
 
-	int total = archivedSetups.size();
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(archivedSetups.size());
 
 	List results = ListUtil.subList(archivedSetups, searchContainer.getStart(), searchContainer.getEnd());
 

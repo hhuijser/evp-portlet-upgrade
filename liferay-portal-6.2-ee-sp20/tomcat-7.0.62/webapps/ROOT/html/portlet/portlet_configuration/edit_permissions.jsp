@@ -93,6 +93,7 @@ try {
 			throw new NoSuchResourceException();
 		}
 	}
+
 	resource = ResourceLocalServiceUtil.getResource(company.getCompanyId(), selResource, ResourceConstants.SCOPE_INDIVIDUAL, resourcePrimKey);
 }
 catch (NoSuchResourceException nsre) {
@@ -139,9 +140,7 @@ renderPortletURL.setParameter("resourceGroupId", String.valueOf(resourceGroupId)
 renderPortletURL.setParameter("resourcePrimKey", resourcePrimKey);
 renderPortletURL.setParameter("roleTypes", roleTypesParam);
 
-long controlPanelPlid = PortalUtil.getControlPanelPlid(company.getCompanyId());
-
-PortletURLImpl definePermissionsURL = new PortletURLImpl(request, PortletKeys.ROLES_ADMIN, controlPanelPlid, PortletRequest.RENDER_PHASE);
+PortletURLImpl definePermissionsURL = new PortletURLImpl(request, PortletKeys.ROLES_ADMIN, PortalUtil.getControlPanelPlid(company.getCompanyId()), PortletRequest.RENDER_PHASE);
 
 definePermissionsURL.setParameter("struts_action", "/roles_admin/edit_role_permissions");
 definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
@@ -174,10 +173,10 @@ iteratorURL.setParameter("roleTypes", roleTypesParam);
 		</c:when>
 		<c:otherwise>
 			<liferay-ui:header
-					backURL="<%= redirect %>"
-					localizeTitle="<%= false %>"
-					title="<%= HtmlUtil.unescape(selResourceDescription) %>"
-					/>
+				backURL="<%= redirect %>"
+				localizeTitle="<%= false %>"
+				title="<%= HtmlUtil.unescape(selResourceDescription) %>"
+			/>
 		</c:otherwise>
 	</c:choose>
 
@@ -262,8 +261,7 @@ iteratorURL.setParameter("roleTypes", roleTypesParam);
 				}
 				else {
 					if (parentGroup.isOrganization()) {
-						roleTypes =
-							RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
+						roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
 					}
 					else if (parentGroup.isUser()) {
 						roleTypes = RoleConstants.TYPES_REGULAR;

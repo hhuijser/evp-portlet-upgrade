@@ -1,5 +1,5 @@
 .v-captionwrapper {
-	text-align: left; /* Force default alignment */
+	text-align: left; /* ---------- Force default alignment ---------- */
 }
 .v-caption {
 	overflow: hidden;
@@ -24,9 +24,9 @@
 
 .v-caption-clearelem {
 	clear: both;
-	width: 0;
 	height: 0;
 	overflow: hidden;
+	width: 0;
 }
 
 /* Fix IE6 "double-float-margin-bug" */
@@ -40,6 +40,6 @@
 .v-ie9 .v-gridlayout-margin>div>div>.v-caption,
 .v-ie9 .v-verticallayout>div>div>.v-caption,
 .v-ie9 .v-horizontallayout>div>div>.v-caption {
-	/* Fix possible sub pixel rounding errors that cause error indicators to drop */
+	/* ---------- Fix possible sub pixel rounding errors that cause error indicators to drop ---------- */
 	margin-right:-0.5px;
 }

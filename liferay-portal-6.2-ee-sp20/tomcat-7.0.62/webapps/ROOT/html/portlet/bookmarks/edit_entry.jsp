@@ -42,8 +42,6 @@ else {
 		PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-bookmark"), currentURL);
 	}
 }
-
-boolean showHeader = ParamUtil.getBoolean(request, "showHeader", true);
 %>
 
 <c:if test="<%= Validator.isNull(referringPortletResource) %>">
@@ -62,7 +60,7 @@ boolean showHeader = ParamUtil.getBoolean(request, "showHeader", true);
 	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
 	<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
 
-	<c:if test="<%= showHeader %>">
+	<c:if test='<%= ParamUtil.getBoolean(request, "showHeader", true) %>'>
 		<liferay-ui:header
 			backURL="<%= backURL %>"
 			localizeTitle="<%= (entry == null) %>"

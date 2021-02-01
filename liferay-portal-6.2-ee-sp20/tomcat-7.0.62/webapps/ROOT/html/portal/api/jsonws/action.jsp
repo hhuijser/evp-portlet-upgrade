@@ -89,6 +89,7 @@ String signature = ParamUtil.getString(request, "signature");
 					</p>
 				</c:if>
 			</div>
+
 			<div class="lfr-api-param">
 				<span class="lfr-api-param-name">
 					<span class="method-name"><%= actionMethod.getName() %></span>
@@ -123,7 +124,6 @@ String signature = ParamUtil.getString(request, "signature");
 					<span class="lfr-api-param-name">
 						p_auth
 					</span>
-
 					<span class="lfr-action-label lfr-api-param-type">
 						String
 					</span>
@@ -141,7 +141,7 @@ String signature = ParamUtil.getString(request, "signature");
 			for (int i = 0; i < methodParameters.length; i++) {
 				MethodParameter methodParameter = methodParameters[i];
 
-				Class methodParameterTypeClass = methodParameter.getType();
+				Class<?> methodParameterTypeClass = methodParameter.getType();
 
 				String methodParameterTypeClassName = null;
 
@@ -157,7 +157,6 @@ String signature = ParamUtil.getString(request, "signature");
 					<span class="lfr-api-param-name">
 						<%= methodParameter.getName() %>
 					</span>
-
 					<span class="lfr-action-label lfr-api-param-type">
 						<%= methodParameterTypeClassName %>
 					</span>
@@ -283,12 +282,15 @@ String signature = ParamUtil.getString(request, "signature");
 					<liferay-ui:section>
 						<pre class="lfr-code-block" id="serviceOutput"></pre>
 					</liferay-ui:section>
+
 					<liferay-ui:section>
 						<pre class="lfr-code-block" id="jsExample"></pre>
 					</liferay-ui:section>
+
 					<liferay-ui:section>
 						<pre class="lfr-code-block" id="curlExample"></pre>
 					</liferay-ui:section>
+
 					<liferay-ui:section>
 						<pre class="lfr-code-block" id="urlExample"></pre>
 					</liferay-ui:section>

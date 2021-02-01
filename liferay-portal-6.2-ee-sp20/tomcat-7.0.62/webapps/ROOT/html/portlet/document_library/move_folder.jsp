@@ -58,7 +58,7 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 	<liferay-ui:error exception="<%= InvalidFolderException.class %>">
 
 		<%
-			InvalidFolderException ife = (InvalidFolderException)errorException;
+		InvalidFolderException ife = (InvalidFolderException)errorException;
 		%>
 
 		<liferay-ui:message arguments="<%= ife.getMessageArgument(locale) %>" key="<%= ife.getMessageKey() %>" translateArguments="<%= false %>" />
@@ -97,6 +97,7 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 				<aui:button disabled="<%= (parentFolderId <= 0) %>" name="removeFolderButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
 			</div>
 		</aui:field-wrapper>
+
 		<aui:button-row>
 			<aui:button type="submit" value="move" />
 

@@ -19,7 +19,6 @@
 <%
 String key = (String)request.getAttribute("liferay-ui:error:key");
 String message = (String)request.getAttribute("liferay-ui:error:message");
-boolean translateMessage = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:error:translateMessage"));
 String rowBreak = (String)request.getAttribute("liferay-ui:error:rowBreak");
 %>
 
@@ -45,7 +44,7 @@ String rowBreak = (String)request.getAttribute("liferay-ui:error:rowBreak");
 			<div class="alert alert-error">
 
 			<c:choose>
-				<c:when test="<%= translateMessage %>">
+				<c:when test='<%= GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:error:translateMessage")) %>'>
 					<%= LanguageUtil.get(pageContext, message) %>
 				</c:when>
 				<c:otherwise>

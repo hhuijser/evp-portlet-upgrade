@@ -167,8 +167,8 @@ int total = 0;
 List<WikiPage> results = null;
 
 if (type.equals("all_pages")) {
-	orderableHeaders.put("page", "title");
 	orderableHeaders.put("date", "modifiedDate");
+	orderableHeaders.put("page", "title");
 
 	total = WikiPageServiceUtil.getPagesCount(themeDisplay.getScopeGroupId(), node.getNodeId(), true, themeDisplay.getUserId(), true, WorkflowConstants.STATUS_APPROVED);
 
@@ -177,8 +177,8 @@ if (type.equals("all_pages")) {
 	results = WikiPageServiceUtil.getPages(themeDisplay.getScopeGroupId(), node.getNodeId(), true, themeDisplay.getUserId(), true, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
 }
 else if (type.equals("categorized_pages") || type.equals("tagged_pages")) {
-	orderableHeaders.put("page", "title");
 	orderableHeaders.put("date", "modifiedDate");
+	orderableHeaders.put("page", "title");
 
 	AssetEntryQuery assetEntryQuery = new AssetEntryQuery(WikiPage.class.getName(), searchContainer);
 

@@ -301,7 +301,6 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 										versions="<%= versions %>"
 									/>
 								</c:when>
-
 								<c:when test="<%= curFolder != null %>">
 
 									<%
@@ -335,7 +334,6 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 										url="<%= rowURL.toString() %>"
 									/>
 								</c:when>
-
 								<c:otherwise>
 									<div style="float: left; margin: 100px 10px 0px;">
 										<img alt="<liferay-ui:message key="image" />" border="no" src="<%= themeDisplay.getPathThemeImages() %>/application/forbidden_action.png" />
@@ -399,7 +397,6 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 										url="<%= rowURL.toString() %>"
 									/>
 								</c:when>
-
 								<c:otherwise>
 									<div style="float: left; margin: 100px 10px 0px;">
 										<img alt="<liferay-ui:message key="image" />" border="no" src="<%= themeDisplay.getPathThemeImages() %>/application/forbidden_action.png" />
@@ -442,8 +439,8 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 	<%
 	request.setAttribute("view.jsp-total", String.valueOf(total));
 
-	request.setAttribute("view_entries.jsp-entryStart", String.valueOf(searchContainer.getStart()));
 	request.setAttribute("view_entries.jsp-entryEnd", String.valueOf(searchContainer.getEnd()));
+	request.setAttribute("view_entries.jsp-entryStart", String.valueOf(searchContainer.getStart()));
 	%>
 
 	<aui:script>
@@ -467,16 +464,14 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 <c:choose>
 	<c:when test="<%= searchType == JournalSearchConstants.SINGLE %>">
 		<div class="search-results-container" id="<portlet:namespace />searchResultsContainer">
-
 			<%= searchResults %>
-
 		</div>
 	</c:when>
 	<c:when test="<%= searchType == JournalSearchConstants.FRAGMENT %>">
 		<div class="aa">
-		<div id="<portlet:namespace />fragmentSearchResults">
-			<%= searchResults %>
-		</div>
+			<div id="<portlet:namespace />fragmentSearchResults">
+				<%= searchResults %>
+			</div>
 		</div>
 	</c:when>
 </c:choose>

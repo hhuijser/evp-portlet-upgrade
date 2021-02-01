@@ -27,7 +27,7 @@ int depth = ((Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DE
 %>
 
 <tr>
-	<td class="table-cell" style="padding-left: <%= depth * 10 %>px; width: 90%">
+	<td class="table-cell" style="padding-left: <%= depth * 10 %>px; width: 90%;">
 		<c:if test="<%= !message.isRoot() %>">
 			<c:choose>
 				<c:when test="<%= !lastNode %>">
@@ -48,29 +48,27 @@ int depth = ((Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DE
 	<td class="table-cell"></td>
 	<td class="table-cell" nowrap="nowrap">
 		<a href="<%= rowHREF %>">
-
-		<c:choose>
-			<c:when test="<%= message.isAnonymous() %>">
-				<c:choose>
-					<c:when test="<%= Validator.isNull(message.getUserName()) %>">
-						<liferay-ui:message key="anonymous" />
-					</c:when>
-					<c:otherwise>
-						<%= HtmlUtil.escape(message.getUserName()) %>
-					</c:otherwise>
-				</c:choose>
-			</c:when>
-			<c:otherwise>
-				<%= HtmlUtil.escape(PortalUtil.getUserName(message)) %>
-			</c:otherwise>
-		</c:choose>
-
+			<c:choose>
+				<c:when test="<%= message.isAnonymous() %>">
+					<c:choose>
+						<c:when test="<%= Validator.isNull(message.getUserName()) %>">
+							<liferay-ui:message key="anonymous" />
+						</c:when>
+						<c:otherwise>
+							<%= HtmlUtil.escape(message.getUserName()) %>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:otherwise>
+					<%= HtmlUtil.escape(PortalUtil.getUserName(message)) %>
+				</c:otherwise>
+			</c:choose>
 		</a>
 	</td>
 	<td class="table-cell"></td>
 	<td class="table-cell" nowrap="nowrap">
 		<a href="<%= rowHREF %>">
-		<%= dateFormatDateTime.format(message.getModifiedDate()) %>
+			<%= dateFormatDateTime.format(message.getModifiedDate()) %>
 		</a>
 	</td>
 </tr>
@@ -93,7 +91,7 @@ for (int i = range[0]; i < range[1]; i++) {
 	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER, treeWalker);
 	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CATEGORY, category);
 	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CUR_MESSAGE, curMessage);
-	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH, new Integer(depth));
+	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH, Integer.valueOf(depth));
 	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE, Boolean.valueOf(lastChildNode));
 	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_SEL_MESSAGE, selMessage);
 	request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD, thread);

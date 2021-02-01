@@ -29,12 +29,12 @@ if (wikiPage != null) {
 	}
 }
 
-Map<String,String> configParams = new HashMap();
+Map<String, String> configParams = new HashMap();
 
 configParams.put("attachmentURLPrefix", attachmentURLPrefix);
 configParams.put("wikiPageResourcePrimKey", String.valueOf(resourcePrimKey));
 
-Map<String,String> fileBrowserParams = new HashMap();
+Map<String, String> fileBrowserParams = new HashMap();
 
 if (format.equals("html")) {
 	if (resourcePrimKey == 0) {

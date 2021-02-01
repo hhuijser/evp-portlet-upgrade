@@ -1,7 +1,7 @@
 .blend {
+	border: 0;
 	font-family: courier new;
 	font-size: 10pt;
-	border: 0;
 	margin-bottom:-1;
 }
 .normalLabel {
@@ -22,8 +22,8 @@
 .controlWindowBody {
 	font-family:arial, helvetica, sans-serif;
 	font-size:8pt;
-	padding: 7px ;		/* by FredCK */
-	margin: 0px ;		/* by FredCK */
+	padding: 7px ;		/* ---------- by FredCK ---------- */
+	margin: 0px ;		/* ---------- by FredCK ---------- */
 	/* color:000000;				by FredCK */
 	/* background-color:DADADA;		by FredCK */
 }

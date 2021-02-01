@@ -36,51 +36,50 @@ List hitLayoutIds = JournalContentSearchLocalServiceUtil.getLayoutIds(layout.get
 	<c:when test="<%= !hitLayoutIds.isEmpty() %>">
 		<span style="font-size: xx-small;">
 
-		<%
-		for (int i = 0; i < hitLayoutIds.size(); i++) {
-			Long hitLayoutId = (Long)hitLayoutIds.get(i);
+			<%
+			for (int i = 0; i < hitLayoutIds.size(); i++) {
+				Long hitLayoutId = (Long)hitLayoutIds.get(i);
 
-			Layout hitLayout = null;
+				Layout hitLayout = null;
 
-			try {
-				hitLayout = LayoutLocalServiceUtil.getLayout(layout.getGroupId(), layout.isPrivateLayout(), hitLayoutId.longValue());
-			}
-			catch (Exception e) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("Journal content search is stale and contains layout {" + layout.getGroupId() + ", " + layout.isPrivateLayout() + ", " + hitLayoutId.longValue() + "}");
+				try {
+					hitLayout = LayoutLocalServiceUtil.getLayout(layout.getGroupId(), layout.isPrivateLayout(), hitLayoutId.longValue());
+				}
+				catch (Exception e) {
+					if (_log.isWarnEnabled()) {
+						_log.warn("Journal content search is stale and contains layout {" + layout.getGroupId() + ", " + layout.isPrivateLayout() + ", " + hitLayoutId.longValue() + "}");
+					}
+
+					continue;
 				}
 
-				continue;
+				String hitLayoutURL = PortalUtil.getLayoutFullURL(hitLayout, themeDisplay);
+			%>
+
+				<br /><a href="<%= hitLayoutURL %>"><%= StringUtil.shorten(hitLayoutURL, 100) %></a>
+
+			<%
 			}
-
-			String hitLayoutURL = PortalUtil.getLayoutFullURL(hitLayout, themeDisplay);
-		%>
-
-			<br /><a href="<%= hitLayoutURL %>"><%= StringUtil.shorten(hitLayoutURL, 100) %></a>
-
-		<%
-		}
-		%>
+			%>
 
 		</span>
 	</c:when>
 	<c:otherwise>
 		<span style="font-size: xx-small;">
 
-		<%
-		if (Validator.isNull(targetPortletId)) {
-			targetPortletId = PortletKeys.JOURNAL_CONTENT;
-		}
+			<%
+			if (Validator.isNull(targetPortletId)) {
+				targetPortletId = PortletKeys.JOURNAL_CONTENT;
+			}
 
-		PortletURL webContentPortletURL = PortletURLFactoryUtil.create(request, targetPortletId, plid, PortletRequest.RENDER_PHASE);
+			PortletURL webContentPortletURL = PortletURLFactoryUtil.create(request, targetPortletId, plid, PortletRequest.RENDER_PHASE);
 
-		webContentPortletURL.setParameter("struts_action", "/journal_content/view");
-		webContentPortletURL.setParameter("groupId", String.valueOf(articleGroupId));
-		webContentPortletURL.setParameter("articleId", articleId);
-		%>
+			webContentPortletURL.setParameter("struts_action", "/journal_content/view");
+			webContentPortletURL.setParameter("groupId", String.valueOf(articleGroupId));
+			webContentPortletURL.setParameter("articleId", articleId);
+			%>
 
-		<br /><a href="<%= webContentPortletURL.toString() %>"><%= StringUtil.shorten(webContentPortletURL.toString(), 100) %></a>
-
+			<br /><a href="<%= webContentPortletURL.toString() %>"><%= StringUtil.shorten(webContentPortletURL.toString(), 100) %></a>
 		</span>
 	</c:otherwise>
 </c:choose>

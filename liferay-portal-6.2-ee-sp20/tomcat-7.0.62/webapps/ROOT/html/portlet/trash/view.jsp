@@ -78,7 +78,6 @@ if (Validator.isNotNull(keywords)) {
 	<c:if test="<%= tpe.getType() == TrashPermissionException.RESTORE_RENAME %>">
 		<liferay-ui:message key="you-do-not-have-permission-to-rename-this-item" />
 	</c:if>
-
 </liferay-ui:error>
 
 <c:if test="<%= group.isStagingGroup() %>">
@@ -106,9 +105,7 @@ if (Validator.isNotNull(keywords)) {
 		EntrySearchTerms searchTerms = (EntrySearchTerms)searchContainer.getSearchTerms();
 
 		if (Validator.isNotNull(searchTerms.getKeywords())) {
-			Sort sort = SortFactoryUtil.getSort(TrashEntry.class, searchContainer.getOrderByCol(), searchContainer.getOrderByType());
-
-			Hits hits = TrashEntryLocalServiceUtil.search(company.getCompanyId(), groupId, user.getUserId(), searchTerms.getKeywords(), searchContainer.getStart(), searchContainer.getEnd(), sort);
+			Hits hits = TrashEntryLocalServiceUtil.search(company.getCompanyId(), groupId, user.getUserId(), searchTerms.getKeywords(), searchContainer.getStart(), searchContainer.getEnd(), SortFactoryUtil.getSort(TrashEntry.class, searchContainer.getOrderByCol(), searchContainer.getOrderByType()));
 
 			searchContainer.setTotal(hits.getLength());
 
@@ -175,7 +172,8 @@ if (Validator.isNotNull(keywords)) {
 			<liferay-ui:icon
 				label="<%= true %>"
 				message="<%= HtmlUtil.escape(trashRenderer.getTitle(locale)) %>"
-				method="get" src="<%= trashRenderer.getIconPath(renderRequest) %>"
+				method="get"
+				src="<%= trashRenderer.getIconPath(renderRequest) %>"
 				url="<%= viewContentURLString %>"
 			/>
 

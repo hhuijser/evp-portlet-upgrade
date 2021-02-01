@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -25,13 +25,9 @@ calendarBooking = RecurrenceUtil.getCalendarBookingInstance(calendarBooking, ins
 
 Calendar calendar = calendarBooking.getCalendar();
 
-long startTime = calendarBooking.getStartTime();
+java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(calendarBooking.getStartTime(), userTimeZone);
 
-java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(startTime, userTimeZone);
-
-long endTime = calendarBooking.getEndTime();
-
-java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(endTime, userTimeZone);
+java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(calendarBooking.getEndTime(), userTimeZone);
 
 AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBooking.class.getName(), calendarBooking.getCalendarBookingId());
 %>

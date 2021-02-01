@@ -18,6 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 
 LayoutPrototype layoutPrototype = (LayoutPrototype)request.getAttribute(WebKeys.LAYOUT_PROTOTYPE);
@@ -28,8 +29,6 @@ if (layoutPrototype == null) {
 	layoutPrototype.setNew(true);
 	layoutPrototype.setActive(true);
 }
-
-long layoutPrototypeId = BeanParamUtil.getLong(layoutPrototype, request, "layoutPrototypeId");
 %>
 
 <liferay-util:include page="/html/portlet/layout_prototypes/toolbar.jsp">
@@ -52,7 +51,7 @@ request.setAttribute("edit_layout_prototype.jsp-redirect", redirect);
 <aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveLayoutPrototype();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="layoutPrototypeId" type="hidden" value="<%= layoutPrototypeId %>" />
+	<aui:input name="layoutPrototypeId" type="hidden" value='<%= BeanParamUtil.getLong(layoutPrototype, request, "layoutPrototypeId") %>' />
 
 	<aui:model-context bean="<%= layoutPrototype %>" model="<%= LayoutPrototype.class %>" />
 

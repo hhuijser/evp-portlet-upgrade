@@ -3,7 +3,7 @@
 
 <service-builder package-path="com.liferay.opensocial">
 	<namespace>OpenSocial</namespace>
-	<entity name="Gadget" uuid="true" local-service="true" remote-service="true">
+	<entity local-service="true" name="Gadget" remote-service="true" uuid="true">
 		<!-- PK fields -->
 		<column name="gadgetId" type="long" primary="true"></column>
 		<!-- Audit fields -->
@@ -27,7 +27,7 @@
 			<finder-column name="url"></finder-column>
 		</finder>
 	</entity>
-	<entity name="OAuthConsumer" local-service="true" remote-service="false">
+	<entity local-service="true" name="OAuthConsumer" remote-service="false">
 		<!-- PK fields -->
 		<column name="oAuthConsumerId" type="long" primary="true"></column>
 		<!-- Audit fields -->
@@ -53,7 +53,7 @@
 			<finder-column name="serviceName"></finder-column>
 		</finder>
 	</entity>
-	<entity name="OAuthToken" local-service="true" remote-service="false">
+	<entity local-service="true" name="OAuthToken" remote-service="false">
 		<!-- PK fields -->
 		<column name="oAuthTokenId" type="long" primary="true"></column>
 		<!-- Audit fields -->

@@ -20,6 +20,7 @@
 AssetRendererFactory assetRendererFactory = (AssetRendererFactory)request.getAttribute(WebKeys.ASSET_RENDERER_FACTORY);
 
 JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_ARTICLE);
+
 JournalArticleResource articleResource = JournalArticleResourceLocalServiceUtil.getArticleResource(article.getResourcePrimKey());
 
 String templateId = (String)request.getAttribute(WebKeys.JOURNAL_TEMPLATE_ID);

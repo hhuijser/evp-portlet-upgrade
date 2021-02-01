@@ -41,12 +41,7 @@ String type = ParamUtil.getString(request, "type");
 
 <c:choose>
 	<c:when test='<%= type.equals("html") %>'>
-
-		<%
-		String diffHtmlResults = (String)request.getAttribute(WebKeys.DIFF_HTML_RESULTS);
-		%>
-
-		<liferay-ui:diff-html diffHtmlResults="<%= diffHtmlResults %>" />
+		<liferay-ui:diff-html diffHtmlResults="<%= (String)request.getAttribute(WebKeys.DIFF_HTML_RESULTS) %>" />
 	</c:when>
 	<c:otherwise>
 
@@ -54,11 +49,10 @@ String type = ParamUtil.getString(request, "type");
 		String title = (String)request.getAttribute(WebKeys.TITLE);
 		double sourceVersion = (Double)request.getAttribute(WebKeys.SOURCE_VERSION);
 		double targetVersion = (Double)request.getAttribute(WebKeys.TARGET_VERSION);
-		List[] diffResults = (List[])request.getAttribute(WebKeys.DIFF_RESULTS);
 		%>
 
 		<liferay-ui:diff
-			diffResults="<%= diffResults %>"
+			diffResults="<%= (List[])request.getAttribute(WebKeys.DIFF_RESULTS) %>"
 			sourceName="<%= title + StringPool.SPACE + sourceVersion %>"
 			targetName="<%= title + StringPool.SPACE + targetVersion %>"
 		/>

@@ -6,37 +6,37 @@
 .v-splitpanel-hsplitter,
 .v-splitpanel-hsplitter-locked {
 	width: 6px;
-	font-size: 1px; /* for IE6 */
+	font-size: 1px; /* ---------- for IE6 ---------- */
 }
 
 .v-splitpanel-hsplitter div,
 .v-splitpanel-hsplitter-locked div {
 	width: 6px;
-	font-size: 1px; /* for IE6 */
-	position: absolute;
-	top: 0;
-	bottom: 0;
+	font-size: 1px; /* ---------- for IE6 ---------- */
 	background: #ccd2d0 url(img/bg_hor.png);
 	border: 1px solid #b6bbbc;
+	bottom: 0;
 	margin: 0 -1px;
+	position: absolute;
+	top: 0;
 }
 
 .v-splitpanel-vsplitter,
 .v-splitpanel-vsplitter-locked {
 	height: 6px;
-	font-size: 1px; /* for IE6 */
+	font-size: 1px; /* ---------- for IE6 ---------- */
 }
 
 .v-splitpanel-vsplitter div,
 .v-splitpanel-vsplitter-locked div {
 	height: 6px;
-	font-size: 1px; /* for IE6 */
+	font-size: 1px; /* ---------- for IE6 ---------- */
 	background: #ccd2d0 url(img/bg_ver.png);
 	border: 1px solid #b6bbbc;
 	margin: -1px 0;
 }
 
-/* IE6 specific styles */
+/* ---------- IE6 specific styles ---------- */
 
 .v-ie6 .v-splitpanel-hsplitter div,
 .v-ie6 .v-splitpanel-hsplitter-locked div {
@@ -54,7 +54,7 @@
 }
 
 
-/* Rounded style */
+/* ---------- Rounded style ---------- */
 .v-splitpanel-hsplitter-rounded div,
 .v-splitpanel-vsplitter-rounded div,
 .v-splitpanel-hsplitter-rounded-locked div,
@@ -65,8 +65,8 @@
 }
 .v-splitpanel-hsplitter-rounded div,
 .v-splitpanel-hsplitter-rounded-locked div {
-	top: 4px;
 	bottom: 4px;
+	top: 4px;
 }
 .v-splitpanel-vsplitter-rounded div,
 .v-splitpanel-vsplitter-rounded-locked div {
@@ -78,7 +78,7 @@
 }
 
 
-/* Small style */
+/* ---------- Small style ---------- */
 .v-splitpanel-hsplitter-small,
 .v-splitpanel-vsplitter-small,
 .v-splitpanel-hsplitter-small-locked,
@@ -95,15 +95,15 @@
 }
 .v-splitpanel-hsplitter-small div,
 .v-splitpanel-hsplitter-small-locked div {
-	border: none;
 	background: transparent;
-	width: 5px;
+	border: none;
 	margin: 0 0 0 -2px;
+	width: 5px;
 }
 .v-splitpanel-vsplitter-small div,
 .v-splitpanel-vsplitter-small-locked div {
-	border: none;
 	background: transparent;
+	border: none;
 	height: 5px;
 	margin: -2px 0 0 0;
 }

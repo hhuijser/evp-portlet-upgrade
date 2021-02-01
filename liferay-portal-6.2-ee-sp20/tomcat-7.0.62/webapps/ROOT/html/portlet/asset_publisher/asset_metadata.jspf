@@ -49,9 +49,7 @@ for (int j = 0; j < metadataFields.length; j++) {
 		value = LanguageUtil.get(pageContext, "priority") + StringPool.COLON + StringPool.SPACE + assetEntry.getPriority();
 	}
 	else if (metadataFields[j].equals("author")) {
-		String userName = PortalUtil.getUserName(assetRenderer.getUserId(), assetRenderer.getUserName());
-
-		value = LanguageUtil.get(pageContext, "by") + StringPool.SPACE + HtmlUtil.escape(userName);
+		value = LanguageUtil.get(pageContext, "by") + StringPool.SPACE + HtmlUtil.escape(PortalUtil.getUserName(assetRenderer.getUserId(), assetRenderer.getUserName()));
 	}
 	else if (metadataFields[j].equals("view-count")) {
 		int viewCount = assetEntry.getViewCount();
@@ -89,41 +87,41 @@ for (int j = 0; j < metadataFields.length; j++) {
 
 			<span class="vertical-separator"><!-- --></span>
 
-<%
+		<%
 		}
 
 		if (previous || hasCategoriesOrTags) {
 			previous = true;
 		}
-%>
+		%>
 
-	<dl>
-		<aui:column cssClass="help-block">
-			<dt class="<%= showLabel ? StringPool.BLANK : "hide" %>"><%= LanguageUtil.get(request.getLocale(), metadataFields[j]) %></dt>
+		<dl>
+			<aui:column cssClass="help-block">
+				<dt class="<%= showLabel ? StringPool.BLANK : "hide" %>"><%= LanguageUtil.get(request.getLocale(), metadataFields[j]) %></dt>
 
-			<dd class="metadata-entry <%= "metadata-" + metadataFields[j] %>">
-				<c:choose>
-					<c:when test='<%= value.equals("categories") %>' >
-						<liferay-ui:asset-categories-summary
-							className="<%= assetEntry.getClassName() %>"
-							classPK="<%= assetEntry.getClassPK () %>"
-							portletURL="<%= filterByMetadata ? renderResponse.createRenderURL() : null %>"
-						/>
-					</c:when>
-					<c:when test='<%= value.equals("tags") %>' >
-						<liferay-ui:asset-tags-summary
-							className="<%= assetEntry.getClassName() %>"
-							classPK="<%= assetEntry.getClassPK () %>"
-							portletURL="<%= filterByMetadata ? renderResponse.createRenderURL() : null %>"
-						/>
-					</c:when>
-					<c:otherwise>
-						<%= value %>
-					</c:otherwise>
-				</c:choose>
-			</dd>
-		</aui:column>
-	</dl>
+				<dd class="metadata-entry <%= "metadata-" + metadataFields[j] %>">
+					<c:choose>
+						<c:when test='<%= value.equals("categories") %>'>
+							<liferay-ui:asset-categories-summary
+								className="<%= assetEntry.getClassName() %>"
+								classPK="<%= assetEntry.getClassPK () %>"
+								portletURL="<%= filterByMetadata ? renderResponse.createRenderURL() : null %>"
+							/>
+						</c:when>
+						<c:when test='<%= value.equals("tags") %>'>
+							<liferay-ui:asset-tags-summary
+								className="<%= assetEntry.getClassName() %>"
+								classPK="<%= assetEntry.getClassPK () %>"
+								portletURL="<%= filterByMetadata ? renderResponse.createRenderURL() : null %>"
+							/>
+						</c:when>
+						<c:otherwise>
+							<%= value %>
+						</c:otherwise>
+					</c:choose>
+				</dd>
+			</aui:column>
+		</dl>
 
 <%
 	}

@@ -26,14 +26,13 @@
 					String currentSiteCategory = PortletCategoryKeys.CURRENT_SITE.concat(StringPool.PERIOD);
 				%>
 
-					<ul class="unstyled site-administration-menu">
+					<ul class="site-administration-menu unstyled">
 
 						<%
 						for (String category : categoriesMap.keySet()) {
-							String url = HttpUtil.setParameter(themeDisplay.getURLSiteAdministration(), "controlPanelCategory", StringUtil.replace(category, PortletCategoryKeys.SITE_ADMINISTRATION, currentSiteCategory));
 						%>
 
-							<aui:nav-item anchorId='<%= "siteAdministrationLink-" + category %>' href="<%= url %>" iconCssClass="icon-chevron-right" label='<%= "category." + category %>' />
+							<aui:nav-item anchorId='<%= "siteAdministrationLink-" + category %>' href='<%= HttpUtil.setParameter(themeDisplay.getURLSiteAdministration(), "controlPanelCategory", StringUtil.replace(category, PortletCategoryKeys.SITE_ADMINISTRATION, currentSiteCategory)) %>' iconCssClass="icon-chevron-right" label='<%= "category." + category %>' />
 
 						<%
 						}

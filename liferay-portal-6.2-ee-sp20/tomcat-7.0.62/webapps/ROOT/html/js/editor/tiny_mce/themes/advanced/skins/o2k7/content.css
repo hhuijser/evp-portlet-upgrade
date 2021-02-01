@@ -20,7 +20,7 @@ cite {border-bottom:1px dashed blue}
 acronym {border-bottom:1px dotted #CCC; cursor:help}
 abbr {border-bottom:1px dashed #CCC; cursor:help}
 
-/* IE */
+/* ---------- IE ---------- */
 * html body {
 scrollbar-3dlight-color:#F0F0EE;
 scrollbar-arrow-color:#676662;

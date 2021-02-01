@@ -293,6 +293,7 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 								<aui:button disabled="<%= toLanguageId.equals(defaultLanguageId) || !ArrayUtil.contains(translations, toLanguageId) %>" name="removeArticleLocaleButton" onClick='<%= renderResponse.getNamespace() + "removeArticleLocale();" %>' value="remove-translation" />
 							</c:otherwise>
 						</c:choose>
+
 						<aui:button href="<%= redirect %>" type="cancel" />
 					</aui:button-row>
 				</liferay-util:buffer>
@@ -324,7 +325,6 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 						%>
 
 						<%= htmlBottom %>
-
 					</c:otherwise>
 				</c:choose>
 			</div>

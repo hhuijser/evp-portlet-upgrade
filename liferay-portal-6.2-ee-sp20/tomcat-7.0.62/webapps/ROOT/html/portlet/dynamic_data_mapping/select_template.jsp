@@ -71,7 +71,6 @@ String title = ddmDisplay.getViewTemplatesTitle(structure, locale);
 			keyProperty="templateId"
 			modelVar="template"
 		>
-
 			<liferay-ui:search-container-column-text
 				name="id"
 				value="<%= String.valueOf(template.getTemplateId()) %>"

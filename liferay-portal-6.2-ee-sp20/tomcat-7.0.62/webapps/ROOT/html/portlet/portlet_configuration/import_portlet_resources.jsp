@@ -127,7 +127,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 											<span class="selected-labels" id="<portlet:namespace />selectedConfiguration_<%= selPortlet.getRootPortletId() %>"></span>
 
 											<%
-											Map<String,Object> data = new HashMap<String,Object>();
+											Map<String, Object> data = new HashMap<String, Object>();
 
 											data.put("portletid", selPortlet.getRootPortletId());
 											%>
@@ -183,7 +183,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 														<aui:field-wrapper label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'>
 															<ul class="lfr-tree unstyled">
 																<li class="tree-item">
-																	<aui:input data-name='<%= LanguageUtil.get(locale, "delete-portlet-data") %>' label="delete-portlet-data-before-importing" name="<%= PortletDataHandlerKeys.DELETE_PORTLET_DATA %>" type="checkbox" />
+																	<aui:input data-name='<%= LanguageUtil.get(request, "delete-portlet-data") %>' label="delete-portlet-data-before-importing" name="<%= PortletDataHandlerKeys.DELETE_PORTLET_DATA %>" type="checkbox" />
 
 																	<div id="<portlet:namespace />showDeleteContentWarning">
 																		<div class="alert alert-block">
@@ -248,7 +248,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 												<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= selPortlet.getRootPortletId() %>"></span>
 
 												<%
-												Map<String,Object> data = new HashMap<String,Object>();
+												Map<String, Object> data = new HashMap<String, Object>();
 
 												data.put("portletid", selPortlet.getRootPortletId());
 												%>
@@ -327,17 +327,17 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 
 		<div class="hide" id="<portlet:namespace />importStrategy">
 			<aui:fieldset cssClass="options-group" label="update-data">
-				<aui:input checked="<%= true %>" data-name='<%= LanguageUtil.get(locale, "mirror") %>' helpMessage="import-data-strategy-mirror-help" id="mirror" label="mirror" name="<%= PortletDataHandlerKeys.DATA_STRATEGY %>" type="radio" value="<%= PortletDataHandlerKeys.DATA_STRATEGY_MIRROR %>" />
+				<aui:input checked="<%= true %>" data-name='<%= LanguageUtil.get(request, "mirror") %>' helpMessage="import-data-strategy-mirror-help" id="mirror" label="mirror" name="<%= PortletDataHandlerKeys.DATA_STRATEGY %>" type="radio" value="<%= PortletDataHandlerKeys.DATA_STRATEGY_MIRROR %>" />
 
-				<aui:input data-name='<%= LanguageUtil.get(locale, "mirror-with-overwriting") %>' helpMessage="import-data-strategy-mirror-with-overwriting-help" id="mirrorWithOverwriting" label="mirror-with-overwriting" name="<%= PortletDataHandlerKeys.DATA_STRATEGY %>" type="radio" value="<%= PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE %>" />
+				<aui:input data-name='<%= LanguageUtil.get(request, "mirror-with-overwriting") %>' helpMessage="import-data-strategy-mirror-with-overwriting-help" id="mirrorWithOverwriting" label="mirror-with-overwriting" name="<%= PortletDataHandlerKeys.DATA_STRATEGY %>" type="radio" value="<%= PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE %>" />
 
-				<aui:input data-name='<%= LanguageUtil.get(locale, "copy-as-new") %>' disabled="<%= !portletDataHandler.isSupportsDataStrategyCopyAsNew() %>" helpMessage='<%= portletDataHandler.isSupportsDataStrategyCopyAsNew() ? "import-data-strategy-copy-as-new-help" : "not-supported" %>' id="copyAsNew" label="copy-as-new" name="<%= PortletDataHandlerKeys.DATA_STRATEGY %>" type="radio" value="<%= PortletDataHandlerKeys.DATA_STRATEGY_COPY_AS_NEW %>" />
+				<aui:input data-name='<%= LanguageUtil.get(request, "copy-as-new") %>' disabled="<%= !portletDataHandler.isSupportsDataStrategyCopyAsNew() %>" helpMessage='<%= portletDataHandler.isSupportsDataStrategyCopyAsNew() ? "import-data-strategy-copy-as-new-help" : "not-supported" %>' id="copyAsNew" label="copy-as-new" name="<%= PortletDataHandlerKeys.DATA_STRATEGY %>" type="radio" value="<%= PortletDataHandlerKeys.DATA_STRATEGY_COPY_AS_NEW %>" />
 			</aui:fieldset>
 
 			<aui:fieldset cssClass="options-group" label="authorship-of-the-content">
-				<aui:input checked="<%= true %>" data-name='<%= LanguageUtil.get(locale, "use-the-original-author") %>' helpMessage="use-the-original-author-help"  id="currentUserId" label="use-the-original-author" name="<%= PortletDataHandlerKeys.USER_ID_STRATEGY %>" type="radio" value="<%= UserIdStrategy.CURRENT_USER_ID %>" />
+				<aui:input checked="<%= true %>" data-name='<%= LanguageUtil.get(request, "use-the-original-author") %>' helpMessage="use-the-original-author-help" id="currentUserId" label="use-the-original-author" name="<%= PortletDataHandlerKeys.USER_ID_STRATEGY %>" type="radio" value="<%= UserIdStrategy.CURRENT_USER_ID %>" />
 
-				<aui:input data-name='<%= LanguageUtil.get(locale, "always-use-my-user-id") %>' helpMessage="use-the-current-user-as-author-help" id="alwaysCurrentUserId" label="use-the-current-user-as-author" name="<%= PortletDataHandlerKeys.USER_ID_STRATEGY %>" type="radio" value="<%= UserIdStrategy.ALWAYS_CURRENT_USER_ID %>" />
+				<aui:input data-name='<%= LanguageUtil.get(request, "always-use-my-user-id") %>' helpMessage="use-the-current-user-as-author-help" id="alwaysCurrentUserId" label="use-the-current-user-as-author" name="<%= PortletDataHandlerKeys.USER_ID_STRATEGY %>" type="radio" value="<%= UserIdStrategy.ALWAYS_CURRENT_USER_ID %>" />
 			</aui:fieldset>
 
 			<aui:button-row>

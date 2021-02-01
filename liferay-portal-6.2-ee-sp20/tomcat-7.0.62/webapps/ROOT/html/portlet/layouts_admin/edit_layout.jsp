@@ -107,7 +107,6 @@ if (!group.isUser() && selLayout.isTypePortlet()) {
 
 String[][] categorySections = {mainSections};
 
-String displayStyle = ParamUtil.getString(request, "displayStyle");
 boolean showAddAction = ParamUtil.getBoolean(request, "showAddAction", true);
 %>
 
@@ -125,12 +124,15 @@ boolean showAddAction = ParamUtil.getBoolean(request, "showAddAction", true);
 			<c:if test="<%= LayoutPermissionUtil.contains(permissionChecker, selPlid, ActionKeys.ADD_LAYOUT) && showAddAction && PortalUtil.isLayoutParentable(selLayout) %>">
 				<aui:nav-item data-value="add-child-page" iconCssClass="icon-plus" label="add-child-page" />
 			</c:if>
+
 			<c:if test="<%= LayoutPermissionUtil.contains(permissionChecker, selPlid, ActionKeys.PERMISSIONS) %>">
 				<aui:nav-item data-value="permissions" iconCssClass="icon-lock" label="permissions" />
 			</c:if>
+
 			<c:if test="<%= LayoutPermissionUtil.contains(permissionChecker, selPlid, ActionKeys.DELETE) %>">
 				<aui:nav-item data-value="delete" iconCssClass="icon-remove" label="delete" />
 			</c:if>
+
 			<c:if test="<%= LayoutPermissionUtil.contains(permissionChecker, selLayout, ActionKeys.UPDATE) %>">
 				<aui:nav-item data-value="copy-applications" iconCssClass="icon-list-alt" label="copy-applications" />
 			</c:if>
@@ -344,7 +346,7 @@ boolean showAddAction = ParamUtil.getBoolean(request, "showAddAction", true);
 				<liferay-ui:form-navigator
 					categoryNames="<%= _CATEGORY_NAMES %>"
 					categorySections="<%= categorySections %>"
-					displayStyle="<%= displayStyle %>"
+					displayStyle='<%= ParamUtil.getString(request, "displayStyle") %>'
 					jspPath="/html/portlet/layouts_admin/layout/"
 					showButtons="<%= (selLayout.getGroupId() == groupId) && SitesUtil.isLayoutUpdateable(selLayout) && LayoutPermissionUtil.contains(permissionChecker, selPlid, ActionKeys.UPDATE) %>"
 				/>

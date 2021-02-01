@@ -315,9 +315,7 @@ if (Validator.isNull(redirect)) {
 							for (int i = 0; i < attachmentsFileEntries.size(); i++) {
 								FileEntry attachmentsFileEntry = attachmentsFileEntries.get(i);
 
-								String portletFileEntryURL = PortletFileRepositoryUtil.getPortletFileEntryURL(themeDisplay, attachmentsFileEntry, StringPool.BLANK);
-
-								String downloadPortletFileEntryURL = HttpUtil.addParameter(portletFileEntryURL, "download", true);
+								String downloadPortletFileEntryURL = HttpUtil.addParameter(PortletFileRepositoryUtil.getPortletFileEntryURL(themeDisplay, attachmentsFileEntry, StringPool.BLANK), "download", true);
 							%>
 
 								<aui:a href="<%= (templatePage != null) && (templatePage.getAttachmentsFileEntriesCount() > 0) ? downloadPortletFileEntryURL : null %>"><%= attachmentsFileEntry.getTitle() %></aui:a> (<%= TextFormatter.formatStorageSize(attachmentsFileEntry.getSize(), locale) %>)<%= (i < (attachmentsFileEntries.size() - 1)) ? ", " : "" %>

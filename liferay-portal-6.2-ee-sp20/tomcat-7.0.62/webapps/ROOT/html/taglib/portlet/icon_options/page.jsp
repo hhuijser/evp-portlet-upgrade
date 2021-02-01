@@ -101,17 +101,12 @@
 		</c:if>
 
 		<c:if test="<%= iGoogleShowAddAppLink %>">
-
-			<%
-			String googleGadgetHREF = "http://fusion.google.com/add?source=atgs&moduleurl=" + PortalUtil.getGoogleGadgetURL(portlet, themeDisplay);
-			%>
-
 			<liferay-ui:icon
 				cssClass='<%= portletDisplay.getNamespace() + "expose-as-widget" %>'
 				image="../aui/plus-sign"
 				label="<%= true %>"
 				message="add-to-igoogle"
-				url="<%= googleGadgetHREF %>"
+				url='<%= "http://fusion.google.com/add?source=atgs&moduleurl=" + PortalUtil.getGoogleGadgetURL(portlet, themeDisplay) %>'
 			/>
 		</c:if>
 

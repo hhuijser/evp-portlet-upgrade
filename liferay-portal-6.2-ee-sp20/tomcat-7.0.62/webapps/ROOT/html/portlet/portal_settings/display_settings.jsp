@@ -98,11 +98,9 @@
 
 	<%
 	User defaultUser = company.getDefaultUser();
-
-	String timeZoneId = ParamUtil.getString(request, "timeZoneId", defaultUser.getTimeZoneId());
 	%>
 
-	<aui:input label="time-zone" name="timeZoneId" type="timeZone" value="<%= timeZoneId %>" />
+	<aui:input label="time-zone" name="timeZoneId" type="timeZone" value='<%= ParamUtil.getString(request, "timeZoneId", defaultUser.getTimeZoneId()) %>' />
 </aui:fieldset>
 
 <h3><liferay-ui:message key="logo" /></h3>
@@ -135,7 +133,7 @@
 
 		List<Theme> themes = ThemeLocalServiceUtil.getThemes(company.getCompanyId(), 0, user.getUserId(), false);
 
-		for (Theme curTheme: themes) {
+		for (Theme curTheme : themes) {
 			if (Validator.equals(defaultRegularThemeId, curTheme.getThemeId())) {
 				deployed = true;
 			}
@@ -162,7 +160,7 @@
 
 			List<Theme> themes = ThemeLocalServiceUtil.getThemes(company.getCompanyId(), 0, user.getUserId(), true);
 
-			for (Theme curTheme: themes) {
+			for (Theme curTheme : themes) {
 				if (Validator.equals(defaultWapThemeId, curTheme.getThemeId())) {
 					deployed = true;
 				}
@@ -195,7 +193,7 @@
 			themes.add(controlPanelTheme);
 		}
 
-		for (Theme curTheme: themes) {
+		for (Theme curTheme : themes) {
 			if (Validator.equals("classic", curTheme.getThemeId())) {
 				continue;
 			}
