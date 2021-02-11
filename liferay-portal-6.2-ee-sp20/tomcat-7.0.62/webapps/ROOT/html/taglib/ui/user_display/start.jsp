@@ -41,7 +41,6 @@ if (Validator.isNull(url) && (userDisplay != null)) {
 		<span class="user-profile-image">
 			<img alt="<%= taglibAlt %>" class="avatar" src="<%= HtmlUtil.escape(taglibSrc) %>" width="65" />
 		</span>
-
 		<span class="user-name">
 			<%= (userDisplay != null) ? HtmlUtil.escape(userDisplay.getFullName()) : HtmlUtil.escape(userName) %>
 		</span>

@@ -67,7 +67,6 @@ else if (tabs2.equals("web-content-updated-email")) {
 String emailSubjectParam = emailParam + "Subject";
 String emailBodyParam = emailParam + "Body";
 
-String emailSubject = PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject);
 String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBodyParam, defaultEmailBody);
 %>
 
@@ -159,7 +158,7 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 					</c:when>
 				</c:choose>
 
-				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= emailSubject %>" />
+				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject) %>" />
 
 				<aui:field-wrapper label="body">
 					<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" />
@@ -275,7 +274,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 							</dd>
 						</c:otherwise>
 					</c:choose>
-
 				</dl>
 			</div>
 		</c:when>

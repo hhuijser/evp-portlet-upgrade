@@ -7,14 +7,14 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
@@ -23,7 +23,9 @@
 <html>
 	<head>
 		<title>FCKeditor - Uploaders Tests</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
 		<script type="text/javascript">
 
 // Automatically detect the correct document.domain (#1919).
@@ -119,14 +121,15 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 
 		</script>
 	</head>
+
 	<body>
-		<table cellSpacing="0" cellPadding="0" width="100%" border="0" height="100%">
+		<table border="0" cellPadding="0" cellSpacing="0" height="100%" width="100%">
 			<tr>
 				<td>
-					<table cellSpacing="0" cellPadding="0" width="100%" border="0">
+					<table border="0" cellPadding="0" cellSpacing="0" width="100%">
 						<tr>
 							<td nowrap>
-								Select the "File Uploader" to use: <br>
+								Select the "File Uploader" to use: <br />
 								<select id="cmbUploaderUrl">
 									<option selected value="asp/upload.asp">ASP</option>
 									<option value="aspx/upload.aspx">ASP.Net</option>
@@ -150,35 +153,38 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 							</select>
 						</td>
 						<td>
-						Current Folder: <br>
-						<input type="text" name="CurrentFolder" id="CurrentFolder" value="/">
+						Current Folder: <br />
+						<input id="CurrentFolder" name="CurrentFolder" type="text" value="/" />
 						</td>
 							<td nowrap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							<td width="100%">
 								Custom Uploader URL:<BR>
-								<input id="txtCustomUrl" style="WIDTH: 100%; BACKGROUND-COLOR: #dcdcdc" disabled type="text">
+								<input id="txtCustomUrl" style="WIDTH: 100%; BACKGROUND-COLOR: #dcdcdc" disabled type="text" />
 							</td>
 						</tr>
 					</table>
-					<br>
-					<table cellSpacing="0" cellPadding="0" width="100%" border="0">
+
+					<br />
+
+					<table border="0" cellPadding="0" cellSpacing="0" width="100%">
 						<tr>
 							<td noWrap>
-								<form id="frmUpload" target="UploadWindow" enctype="multipart/form-data" action="" method="post">
-									Upload a new file:<br>
-									<input type="file" name="NewFile"><br>
+								<form action="" enctype="multipart/form-data" id="frmUpload" method="post" target="UploadWindow">
+									Upload a new file:<br />
+									<input type="file" name="NewFile" /><br />
 
-									<input type="button" value="Send it to the Server" onclick="SendFile();">
+									<input onclick="SendFile();" type="button" value="Send it to the Server" />
 								</form>
 							</td>
 							<td style="WIDTH: 16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							<td vAlign="top" width="100%">
-								Uploaded File URL:<br>
+								Uploaded File URL:<br />
 								<INPUT id="txtUrl" style="WIDTH: 100%" readonly type="text">
 							</td>
 						</tr>
 					</table>
-					<br>
+
+					<br />
 					Post URL: <span id="eURL">&nbsp;</span>
 				</td>
 			</tr>

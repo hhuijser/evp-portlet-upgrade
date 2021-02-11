@@ -35,13 +35,13 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		if (!itemsInStock) {
 			if (confirm("<%= UnicodeLanguageUtil.get(pageContext, "your-cart-has-items-that-are-out-of-stock") %>")) {
 				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.CHECKOUT %>";
-				document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value='<%= Constants.CHECKOUT %>'/></portlet:actionURL>";
+				document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value="<%= Constants.CHECKOUT %>" /></portlet:actionURL>";
 				<portlet:namespace />updateCart();
 			}
 		}
 		else {
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.CHECKOUT %>";
-			document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value='<%= Constants.CHECKOUT %>'/></portlet:actionURL>";
+			document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value="<%= Constants.CHECKOUT %>" /></portlet:actionURL>";
 			<portlet:namespace />updateCart();
 		}
 	}
@@ -60,7 +60,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		var subtotal = 0;
 
 		<%
-		int itemsCount= 0;
+		int itemsCount = 0;
 
 		for (ShoppingCartItem cartItem : items.keySet()) {
 			ShoppingItem item = cartItem.getItem();
@@ -181,9 +181,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 	searchContainer.setEmptyResultsMessage("your-cart-is-empty");
 	searchContainer.setHover(false);
 
-	int total = items.size();
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(items.size());
 
 	List resultRows = searchContainer.getResultRows();
 
@@ -203,7 +201,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		ShoppingItemPrice[] itemPrices = (ShoppingItemPrice[])ShoppingItemPriceLocalServiceUtil.getItemPrices(item.getItemId()).toArray(new ShoppingItemPrice[0]);
 
 		if (!SessionErrors.isEmpty(renderRequest)) {
-			count = new Integer(ParamUtil.getInteger(request, "item_" + item.getItemId() + "_" + itemsCount + "_count"));
+			count = Integer.valueOf(ParamUtil.getInteger(request, "item_" + item.getItemId() + "_" + itemsCount + "_count"));
 		}
 
 		ResultRow row = new ResultRow(item, item.getItemId(), itemsCount);
@@ -261,6 +259,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 		while (enu.hasMoreElements()) {
 			String propsKey = (String)enu.nextElement();
+
 			String propsValue = props.getProperty(propsKey, StringPool.BLANK);
 
 			sb.append("<br />");
@@ -326,10 +325,10 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 				sb.append(": ");
 			}
 			else if (itemPrice.getMaxQuantity() != 0) {
-				sb.append(LanguageUtil.format(pageContext, "price-for-x-to-x-items", new Object[] {"<strong>" + new Integer(itemPrice.getMinQuantity()) + "</strong>", "<strong>" + new Integer(itemPrice.getMaxQuantity()) + "</strong>"}, false));
+				sb.append(LanguageUtil.format(pageContext, "price-for-x-to-x-items", new Object[] {"<strong>" + Integer.valueOf(itemPrice.getMinQuantity()) + "</strong>", "<strong>" + Integer.valueOf(itemPrice.getMaxQuantity()) + "</strong>"}, false));
 			}
 			else if (itemPrice.getMaxQuantity() == 0) {
-				sb.append(LanguageUtil.format(pageContext, "price-for-x-items-and-above", "<strong>" + new Integer(itemPrice.getMinQuantity()) + "</strong>", false));
+				sb.append(LanguageUtil.format(pageContext, "price-for-x-items-and-above", "<strong>" + Integer.valueOf(itemPrice.getMinQuantity()) + "</strong>", false));
 			}
 
 			if (itemPrice.getDiscount() <= 0) {
@@ -426,18 +425,18 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		double discountSubtotal = ShoppingUtil.calculateDiscountSubtotal(items);
 		%>
 
-			<c:choose>
-				<c:when test="<%= subtotal == actualSubtotal %>">
-					<aui:input name="subtotal" type="resource" value="<%= currencyFormat.format(subtotal) %>" />
-				</c:when>
-				<c:otherwise>
-					<aui:field-wrapper label="subtotal">
-						<div class="alert alert-success">
-							<strike><%= currencyFormat.format(subtotal) %></strike> <%= currencyFormat.format(actualSubtotal) %>
-						</div>
-					</aui:field-wrapper>
-				</c:otherwise>
-			</c:choose>
+		<c:choose>
+			<c:when test="<%= subtotal == actualSubtotal %>">
+				<aui:input name="subtotal" type="resource" value="<%= currencyFormat.format(subtotal) %>" />
+			</c:when>
+			<c:otherwise>
+				<aui:field-wrapper label="subtotal">
+					<div class="alert alert-success">
+						<strike><%= currencyFormat.format(subtotal) %></strike> <%= currencyFormat.format(actualSubtotal) %>
+					</div>
+				</aui:field-wrapper>
+			</c:otherwise>
+		</c:choose>
 
 		<c:if test="<%= subtotal != actualSubtotal %>">
 			<aui:field-wrapper label="you-save">
@@ -489,7 +488,6 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		<aui:input label="coupon-code" name="couponCodes" size="30" style="text-transform: uppercase;" type="text" value="<%= cart.getCouponCodes() %>" />
 
 		<c:if test="<%= coupon != null %>">
-
 			<portlet:renderURL var="viewCouponURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 				<portlet:param name="struts_action" value="/shopping/view_coupon" />
 				<portlet:param name="couponId" value="<%= String.valueOf(coupon.getCouponId()) %>" />
@@ -527,9 +525,9 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 			<img alt="<%= HtmlUtil.escapeAttribute(ccTypes[i]) %>" src="<%= themeDisplay.getPathThemeImages() %>/shopping/cc_<%= HtmlUtil.escapeAttribute(ccTypes[i]) %>.png" />
 
-	<%
+		<%
 		}
-	%>
+		%>
 
 		<br /><br />
 

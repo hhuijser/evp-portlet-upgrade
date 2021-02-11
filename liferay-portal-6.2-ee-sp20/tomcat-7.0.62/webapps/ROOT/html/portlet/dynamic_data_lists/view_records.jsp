@@ -47,9 +47,7 @@ portletURL.setParameter("recordSetId", String.valueOf(recordSet.getRecordSetId()
 	<%
 	DDMStructure ddmStructure = recordSet.getDDMStructure(formDDMTemplateId);
 
-	String languageId = LanguageUtil.getLanguageId(request);
-
-	Map<String, Map<String, String>> fieldsMap = ddmStructure.getFieldsMap(languageId);
+	Map<String, Map<String, String>> fieldsMap = ddmStructure.getFieldsMap(LanguageUtil.getLanguageId(request));
 
 	List<String> headerNames = new ArrayList<String>();
 
@@ -75,7 +73,6 @@ portletURL.setParameter("recordSetId", String.valueOf(recordSet.getRecordSetId()
 	<liferay-ui:search-container
 		searchContainer='<%= new SearchContainer(renderRequest, new DisplayTerms(request), null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, LanguageUtil.format(pageContext, "no-x-records-were-found", HtmlUtil.escape(ddmStructure.getName(locale)), false)) %>'
 	>
-
 		<aui:nav-bar>
 			<aui:nav>
 				<c:if test="<%= showAddRecordButton %>">
@@ -131,11 +128,11 @@ portletURL.setParameter("recordSetId", String.valueOf(recordSet.getRecordSetId()
 				if (GetterUtil.getBoolean(fields.get(FieldConstants.PRIVATE))) {
 					continue;
 				}
-			%>
+		%>
 
 				<%@ include file="/html/portlet/dynamic_data_lists/record_row_value.jspf" %>
 
-			<%
+		<%
 			}
 
 			if (hasUpdatePermission) {

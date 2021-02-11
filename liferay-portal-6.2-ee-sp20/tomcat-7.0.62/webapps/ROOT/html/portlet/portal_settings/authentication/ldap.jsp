@@ -88,7 +88,7 @@ if (ldapAuthEnabled && (ldapServerIds.length <= 0) && Validator.isNull(PrefsProp
 		try {
 			CompanyServiceUtil.updatePreferences(company.getCompanyId(), properties);
 
-			CompanyServiceUtil.removePreferences(company.getCompanyId(), keys.toArray(new String[keys.size()]));
+			CompanyServiceUtil.removePreferences(company.getCompanyId(), keys.toArray(new String[0]));
 		}
 		catch (Exception e) {
 		}
@@ -130,7 +130,7 @@ if (ldapAuthEnabled && (ldapServerIds.length <= 0) && Validator.isNull(PrefsProp
 	<c:if test="<%= ldapServerIds.length > 0 %>">
 		<br /><br />
 
-		<div class="searchcontainer-content ldap-servers">
+		<div class="ldap-servers searchcontainer-content">
 			<table class="table table-bordered table-hover table-striped">
 			<thead class="table-columns">
 			<tr>
@@ -163,25 +163,16 @@ if (ldapAuthEnabled && (ldapServerIds.length <= 0) && Validator.isNull(PrefsProp
 					<td align="right" class="table-cell">
 						<div class="control">
 							<c:if test="<%= ldapServerIds.length > 1 %>">
-
-								<%
-								String taglibUpURL = "javascript:" + renderResponse.getNamespace() + "raiseLDAPServerPriority(" + ldapServerId + ");";
-								%>
-
 								<liferay-ui:icon
 									image="top"
 									message="up"
-									url="<%= taglibUpURL %>"
+									url='<%= "javascript:" + renderResponse.getNamespace() + "raiseLDAPServerPriority(" + ldapServerId + ");" %>'
 								/>
-
-								<%
-								String taglibDownURL = "javascript:" + renderResponse.getNamespace() + "lowerLDAPServerPriority(" + ldapServerId + ");";
-								%>
 
 								<liferay-ui:icon
 									image="bottom"
 									message="down"
-									url="<%= taglibDownURL %>"
+									url='<%= "javascript:" + renderResponse.getNamespace() + "lowerLDAPServerPriority(" + ldapServerId + ");" %>'
 								/>
 							</c:if>
 

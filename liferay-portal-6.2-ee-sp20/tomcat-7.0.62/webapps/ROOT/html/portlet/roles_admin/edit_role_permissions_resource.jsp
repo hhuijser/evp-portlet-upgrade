@@ -55,9 +55,7 @@ SearchContainer searchContainer = new SearchContainer(liferayPortletRequest, nul
 
 searchContainer.setRowChecker(new ResourceActionRowChecker(liferayPortletResponse));
 
-int total = curActions.size();
-
-searchContainer.setTotal(total);
+searchContainer.setTotal(curActions.size());
 
 List results = curActions;
 
@@ -96,6 +94,7 @@ for (int i = 0; i < results.size(); i++) {
 	boolean supportsFilterByGroup = false;
 	List<Group> groups = Collections.emptyList();
 	String groupIds = ParamUtil.getString(request, "groupIds" + target, null);
+
 	long[] groupIdsArray = StringUtil.split(groupIds, 0L);
 	List<String> groupNames = new ArrayList<String>();
 
@@ -117,9 +116,9 @@ for (int i = 0; i < results.size(); i++) {
 		List<Object> rolePermissions = new ArrayList<Object>();
 
 		rolePermissions.add(curResource);
-		rolePermissions.add(new Integer(ResourceConstants.SCOPE_GROUP));
+		rolePermissions.add(Integer.valueOf(ResourceConstants.SCOPE_GROUP));
 		rolePermissions.add(actionId);
-		rolePermissions.add(new Long(role.getRoleId()));
+		rolePermissions.add(Long.valueOf(role.getRoleId()));
 
 		groupParams.put("rolePermissions", rolePermissions);
 

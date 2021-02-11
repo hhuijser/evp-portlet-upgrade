@@ -51,7 +51,6 @@ String currentLanguageId = LanguageUtil.getLanguageId(request);
 String emailSubjectParam = emailParam + "Subject_" + currentLanguageId;
 String emailBodyParam = emailParam + "Body_" + currentLanguageId;
 
-String emailSubject = PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject);
 String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBodyParam, defaultEmailBody);
 %>
 
@@ -66,12 +65,8 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
 
-	<%
-	String tabs2Names = "display-settings,email-from,document-added-email,document-updated-email";
-	%>
-
 	<liferay-ui:tabs
-		names="<%= tabs2Names %>"
+		names="display-settings,email-from,document-added-email,document-updated-email"
 		param="tabs2"
 		url="<%= configurationRenderURL %>"
 	/>
@@ -362,7 +357,7 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 
 				</aui:select>
 
-				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= emailSubject %>" />
+				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject) %>" />
 
 				<aui:field-wrapper label="body">
 					<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" />
@@ -469,6 +464,7 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 			</div>
 		</c:when>
 	</c:choose>
+
 	<aui:button-row>
 		<aui:button type="submit" />
 	</aui:button-row>

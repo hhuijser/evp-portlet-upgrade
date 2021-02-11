@@ -66,7 +66,6 @@ else {
 			keyProperty="categoryId"
 			modelVar="curCategory"
 		>
-
 			<portlet:renderURL var="rowURL">
 				<portlet:param name="struts_action" value="/message_boards/select_category" />
 				<portlet:param name="mbCategoryId" value="<%= String.valueOf(curCategory.getCategoryId()) %>" />
@@ -129,7 +128,7 @@ else {
 			data.put("name", categoryName);
 			%>
 
-			<aui:button cssClass="selector-button"  data="<%= data %>" value="choose-this-category" />
+			<aui:button cssClass="selector-button" data="<%= data %>" value="choose-this-category" />
 		</aui:button-row>
 
 		<liferay-ui:search-iterator />

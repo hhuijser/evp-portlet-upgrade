@@ -12,13 +12,13 @@
 }
 
 .v-contextmenu .gwt-MenuItem {
-	padding: 3px 8px 2px 8px;
-	height: 16px;
-	color: #2c2f34;
-	text-shadow: -1px -1px #fff;
-	font-weight: bold;
 	border-bottom: 1px solid #bcbbbb;
 	border-top: 1px solid #eee;
+	color: #2c2f34;
+	font-weight: bold;
+	height: 16px;
+	padding: 3px 8px 2px 8px;
+	text-shadow: -1px -1px #fff;
 }
 
 .v-contextmenu tr:last-child .gwt-MenuItem {

@@ -33,19 +33,10 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 
 <aui:fieldset cssClass="lfr-portrait-editor">
 	<c:if test="<%= !group.isLayoutPrototype() %>">
-
-		<%
-		String queryString = GetterUtil.getString(layoutTypeSettings.getProperty("query-string"));
-		%>
-
-		<aui:input helpMessage="query-string-help" label="query-string" name="TypeSettingsProperties--query-string--" size="30" type="text" value="<%= queryString %>" />
+		<aui:input helpMessage="query-string-help" label="query-string" name="TypeSettingsProperties--query-string--" size="30" type="text" value='<%= GetterUtil.getString(layoutTypeSettings.getProperty("query-string")) %>' />
 	</c:if>
 
-	<%
-	String curTarget = GetterUtil.getString(layoutTypeSettings.getProperty("target"));
-	%>
-
-	<aui:input label="target" name="TypeSettingsProperties--target--" size="15" type="text" value="<%= curTarget %>" />
+	<aui:input label="target" name="TypeSettingsProperties--target--" size="15" type="text" value='<%= GetterUtil.getString(layoutTypeSettings.getProperty("target")) %>' />
 
 	<aui:input name="iconImage" type="hidden" value="<%= selLayout.isIconImage() %>" />
 

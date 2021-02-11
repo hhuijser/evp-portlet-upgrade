@@ -193,7 +193,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 							<img alt="<liferay-ui:message key="thumbnail" />" border="no" class="thumbnail" src="<%= thumbnailSrc %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
 						</span>
-
 						<span class="user-date">
 
 							<%
@@ -380,7 +379,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 													<div class="lfr-preview-file-image-container">
 														<img class="lfr-preview-file-image-current" id="<portlet:namespace /><%= randomNamespace %>previewFileImage" src="<%= previewFileURL + "1" %>" />
 													</div>
-													<span class="lfr-preview-file-actions hide" id="<portlet:namespace /><%= randomNamespace %>previewFileActions">
+
+													<span class="hide lfr-preview-file-actions" id="<portlet:namespace /><%= randomNamespace %>previewFileActions">
 														<span class="lfr-preview-file-toolbar" id="<portlet:namespace /><%= randomNamespace %>previewToolbar"></span>
 
 														<span class="lfr-preview-file-info">
@@ -482,7 +482,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 								/>
 							</c:if>
 						</span>
-
 						<span class="conversions">
 
 							<%
@@ -502,13 +501,11 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 							%>
 
 						</span>
-
 						<span class="webdav-url">
 							<c:choose>
 								<c:when test="<%= portletDisplay.isWebDAVEnabled() && fileEntry.isSupportsSocial() %>">
 									<liferay-ui:message key="get-url-or-webdav-url" />
 								</c:when>
-
 								<c:otherwise>
 									<liferay-ui:message key="get-url" />
 								</c:otherwise>
@@ -533,14 +530,14 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 								}
 								%>
 
-								<aui:input helpMessage="<%= webDavHelpMessage %>" name="webDavURL"  type="resource" value="<%= webDavURL %>" />
+								<aui:input helpMessage="<%= webDavHelpMessage %>" name="webDavURL" type="resource" value="<%= webDavURL %>" />
 							</div>
 						</c:if>
 					</div>
 				</c:if>
 
 				<%
-					request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+				request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 				%>
 
 				<div class="lfr-asset-panels">
@@ -566,7 +563,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 						%>
 
 									<liferay-ui:panel collapsible="<%= true %>" cssClass="metadata" extended="<%= true %>" id="documentLibraryMetadataPanel" persistState="<%= true %>" title="<%= HtmlUtil.escape(ddmStructure.getName(locale)) %>">
-
 										<liferay-ddm:html
 											classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
 											classPK="<%= ddmStructure.getPrimaryKey() %>"
@@ -575,7 +571,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 											readOnly="<%= true %>"
 											requestedLocale="<%= (fields != null) ? fields.getDefaultLocale() : locale %>"
 										/>
-
 									</liferay-ui:panel>
 
 						<%
@@ -613,11 +608,9 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 								}
 
 								if (fields != null) {
-									String name = "metadata." + ddmStructure.getName(locale, true);
 						%>
 
-									<liferay-ui:panel collapsible="<%= true %>" cssClass="lfr-asset-metadata" id="documentLibraryAssetMetadataPanel" persistState="<%= true %>" title="<%= name %>">
-
+									<liferay-ui:panel collapsible="<%= true %>" cssClass="lfr-asset-metadata" id="documentLibraryAssetMetadataPanel" persistState="<%= true %>" title='<%= "metadata." + ddmStructure.getName(locale, true) %>'>
 										<liferay-ddm:html
 											classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
 											classPK="<%= ddmStructure.getPrimaryKey() %>"
@@ -626,7 +619,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 											readOnly="<%= true %>"
 											requestedLocale="<%= locale %>"
 										/>
-
 									</liferay-ui:panel>
 
 						<%
@@ -968,6 +960,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 						}
 					);
 				</c:if>
+
 				<c:if test="<%= fileEntry.hasLock() %>">
 					fileEntryButtonGroup.push(
 						{

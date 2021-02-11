@@ -109,12 +109,8 @@ portletURL.setParameter("fileShortcutId", String.valueOf(fileShortcutId));
 			<aui:button name="selectGroupButton" value="select" />
 		</div>
 
-		<%
-		String toFileEntryTitle = BeanPropertiesUtil.getString(toFileEntry, "title");
-		%>
-
 		<div class="control-group">
-			<aui:input label="document" name="toFileEntryTitle" type="resource" value="<%= toFileEntryTitle %>" />
+			<aui:input label="document" name="toFileEntryTitle" type="resource" value='<%= BeanPropertiesUtil.getString(toFileEntry, "title") %>' />
 
 			<aui:button disabled="<%= (toGroup == null) %>" name="selectToFileEntryButton" value="select" />
 		</div>

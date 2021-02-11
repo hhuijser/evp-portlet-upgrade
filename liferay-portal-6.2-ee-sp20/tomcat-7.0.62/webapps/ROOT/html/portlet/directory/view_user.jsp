@@ -41,39 +41,39 @@ request.setAttribute("websites.classPK", selContact.getContactId());
 <liferay-util:include page="/html/portlet/directory/tabs1.jsp" />
 
 <div class="user-information">
-	<div class="section entity-details">
+	<div class="entity-details section">
 		<liferay-util:include page="/html/portlet/directory/user/details.jsp" />
 	</div>
 
-	<div class="section entity-addresses">
+	<div class="entity-addresses section">
 		<liferay-util:include page="/html/portlet/directory/user/addresses.jsp" />
 	</div>
 
-	<div class="section entity-email-addresses">
+	<div class="entity-email-addresses section">
 		<liferay-util:include page="/html/portlet/directory/common/additional_email_addresses.jsp" />
 	</div>
 
-	<div class="section entity-websites">
+	<div class="entity-websites section">
 		<liferay-util:include page="/html/portlet/directory/common/websites.jsp" />
 	</div>
 
-	<div class="section entity-phones">
+	<div class="entity-phones section">
 		<liferay-util:include page="/html/portlet/directory/user/phone_numbers.jsp" />
 	</div>
 
-	<div class="section entity-instant-messenger">
+	<div class="entity-instant-messenger section">
 		<liferay-util:include page="/html/portlet/directory/user/instant_messenger.jsp" />
 	</div>
 
-	<div class="section entity-social-network">
+	<div class="entity-social-network section">
 		<liferay-util:include page="/html/portlet/directory/user/social_network.jsp" />
 	</div>
 
-	<div class="section entity-sms">
+	<div class="entity-sms section">
 		<liferay-util:include page="/html/portlet/directory/user/sms.jsp" />
 	</div>
 
-	<div class="section entity-comments">
+	<div class="entity-comments section">
 		<liferay-util:include page="/html/portlet/directory/user/comments.jsp" />
 	</div>
 </div>

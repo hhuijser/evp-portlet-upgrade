@@ -81,16 +81,16 @@ try {
 
 	request.setAttribute("view.jsp-results", results);
 
-	request.setAttribute("view.jsp-assetEntryIndex", new Integer(assetEntryIndex));
+	request.setAttribute("view.jsp-assetEntryIndex", Integer.valueOf(assetEntryIndex));
 
 	request.setAttribute("view.jsp-assetEntry", assetEntry);
-	request.setAttribute("view.jsp-assetRendererFactory", assetRendererFactory);
 	request.setAttribute("view.jsp-assetRenderer", assetRenderer);
+	request.setAttribute("view.jsp-assetRendererFactory", assetRendererFactory);
 
 	request.setAttribute("view.jsp-title", title);
 
-	request.setAttribute("view.jsp-show", new Boolean(show));
-	request.setAttribute("view.jsp-print", new Boolean(print));
+	request.setAttribute("view.jsp-print", Boolean.valueOf(print));
+	request.setAttribute("view.jsp-show", Boolean.valueOf(show));
 %>
 
 	<div>

@@ -28,7 +28,6 @@ if (termCollectors.isEmpty()) {
 
 int frequencyThreshold = dataJSONObject.getInt("frequencyThreshold");
 int maxTerms = dataJSONObject.getInt("maxTerms");
-boolean showAssetCount = dataJSONObject.getBoolean("showAssetCount", true);
 %>
 
 <div class="<%= cssClass %>" data-facetFieldName="<%= HtmlUtil.escapeAttribute(facet.getFieldId()) %>" id="<%= randomNamespace %>facet">
@@ -75,7 +74,7 @@ boolean showAssetCount = dataJSONObject.getBoolean("showAssetCount", true);
 				<a data-value="<%= curGroupId %>" href="javascript:;">
 					<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 
-					<c:if test="<%= showAssetCount %>">
+					<c:if test='<%= dataJSONObject.getBoolean("showAssetCount", true) %>'>
 						<span class="badge badge-info frequency"><%= termCollector.getFrequency() %></span>
 					</c:if>
 				</a>

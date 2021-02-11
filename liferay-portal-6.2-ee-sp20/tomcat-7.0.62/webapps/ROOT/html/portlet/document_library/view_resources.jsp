@@ -65,15 +65,12 @@ request.setAttribute("view.jsp-repositoryId", String.valueOf(repositoryId));
 		<span id="<portlet:namespace />addButton">
 			<liferay-util:include page="/html/portlet/document_library/add_button.jsp" />
 		</span>
-
 		<span id="<portlet:namespace />displayStyleButtons">
 			<liferay-util:include page="/html/portlet/document_library/display_style_buttons.jsp" />
 		</span>
-
 		<span id="<portlet:namespace />sortButton">
 			<liferay-util:include page="/html/portlet/document_library/sort_button.jsp" />
 		</span>
-
 		<span id="<portlet:namespace />breadcrumb">
 			<div class="portlet-breadcrumb">
 				<c:if test='<%= !navigation.equals("recent") && !navigation.equals("mine") && Validator.isNull(browseBy) %>'>

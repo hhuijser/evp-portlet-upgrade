@@ -56,7 +56,7 @@ portletURL.setParameter("keywords", keywords);
 	/>
 
 	<div class="form-search">
-		<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-pages") %>' />
+		<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "search-pages") %>' />
 	</div>
 
 	<liferay-ui:search-container
@@ -119,7 +119,7 @@ portletURL.setParameter("keywords", keywords);
 			<liferay-ui:app-view-search-entry
 				containerIcon="all_pages"
 				containerName="<%= curNode.getName() %>"
-				containerType='<%= LanguageUtil.get(locale, "wiki-node") %>'
+				containerType='<%= LanguageUtil.get(request, "wiki-node") %>'
 				cssClass='<%= MathUtil.isEven(index) ? "search" : "search alt" %>'
 				description="<%= (summary != null) ? summary.getContent() : wikiPage.getSummary() %>"
 				fileEntryTuples="<%= searchResult.getFileEntryTuples() %>"

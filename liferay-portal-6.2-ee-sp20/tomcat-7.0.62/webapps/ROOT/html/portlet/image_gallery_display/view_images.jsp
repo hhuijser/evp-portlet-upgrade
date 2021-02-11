@@ -122,7 +122,6 @@ List results = searchContainer.getResults();
 									<img alt="<liferay-ui:message key="locked" />" class="locked-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
 								</c:if>
 							</span>
-
 							<span class="image-title"><%= HtmlUtil.escape(fileVersion.getTitle()) %></span>
 						</a>
 					</div>
@@ -154,7 +153,6 @@ List results = searchContainer.getResults();
 					</div>
 				</c:if>
 			</c:when>
-
 			<c:when test="<%= curFolder != null %>">
 				<portlet:renderURL var="viewFolderURL">
 					<portlet:param name="struts_action" value="/image_gallery_display/view" />
@@ -176,16 +174,13 @@ List results = searchContainer.getResults();
 						<%
 						try {
 							int curFoldersCount = DLAppServiceUtil.getFoldersCount(curFolder.getRepositoryId(), curFolder.getFolderId());
-
-							String folderImageSrc = themeDisplay.getPathThemeImages() + "/file_system/large/drive.png";
 						%>
 
 							<div class="image-icon">
 								<a class="image-link" href="<%= viewFolderURL.toString() %>" title="<%= HtmlUtil.escapeAttribute(curFolderTitle) %>">
 									<span class="image-thumbnail">
-										<img alt="<liferay-ui:message key="repository" />" border="no" src="<%= folderImageSrc %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
+										<img alt="<liferay-ui:message key="repository" />" border="no" src="<%= themeDisplay.getPathThemeImages() + "/file_system/large/drive.png" %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
 									</span>
-
 									<span class="image-title"><%= HtmlUtil.escape(StringUtil.shorten(curFolder.getName(), 60)) %></span>
 								</a>
 							</div>
@@ -193,12 +188,11 @@ List results = searchContainer.getResults();
 						<%
 						}
 						catch (Exception e) {
-							String folderImageSrc = themeDisplay.getPathThemeImages() + "/file_system/large/drive_error.png";
 						%>
 
 							<div class="image-icon">
-								<span class="image-thumbnail error" title="<%= LanguageUtil.get(pageContext, "an-unexpected-error-occurred-while-connecting-to-the-repository") %>">
-									<img alt="<liferay-ui:message key="error" />" border="no" src="<%= folderImageSrc %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
+								<span class="error image-thumbnail" title="<%= LanguageUtil.get(pageContext, "an-unexpected-error-occurred-while-connecting-to-the-repository") %>">
+									<img alt="<liferay-ui:message key="error" />" border="no" src="<%= themeDisplay.getPathThemeImages() + "/file_system/large/drive_error.png" %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
 
 									<span class="image-title"><%= HtmlUtil.escape(StringUtil.shorten(curFolder.getName(), 60)) %></span>
 								</span>
@@ -237,7 +231,6 @@ List results = searchContainer.getResults();
 								<span class="image-thumbnail">
 									<img alt="<liferay-ui:message key="folder" />" border="no" src="<%= folderImageSrc %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
 								</span>
-
 								<span class="image-title"><%= HtmlUtil.escape(StringUtil.shorten(curFolder.getName(), 60)) %></span>
 							</a>
 						</div>

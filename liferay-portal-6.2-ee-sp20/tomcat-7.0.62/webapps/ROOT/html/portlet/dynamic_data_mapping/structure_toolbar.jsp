@@ -21,7 +21,6 @@ String toolbarItem = ParamUtil.getString(request, "toolbarItem");
 
 long groupId = ParamUtil.getLong(request, "groupId", scopeGroupId);
 long classPK = ParamUtil.getLong(request, "classPK");
-String eventName = ParamUtil.getString(request, "eventName", "selectStructure");
 %>
 
 <aui:nav-bar>
@@ -29,7 +28,7 @@ String eventName = ParamUtil.getString(request, "eventName", "selectStructure");
 		<portlet:renderURL var="viewStructureURL">
 			<portlet:param name="struts_action" value="/dynamic_data_mapping/select_structure" />
 			<portlet:param name="classPK" value="<%= String.valueOf(classPK) %>" />
-			<portlet:param name="eventName" value="<%= eventName %>" />
+			<portlet:param name="eventName" value='<%= ParamUtil.getString(request, "eventName", "selectStructure") %>' />
 		</portlet:renderURL>
 
 		<c:if test="<%= ddmDisplay.isShowAddStructureButton() && DDMPermission.contains(permissionChecker, groupId, ddmDisplay.getResourceName(), ddmDisplay.getAddStructureActionId()) %>">

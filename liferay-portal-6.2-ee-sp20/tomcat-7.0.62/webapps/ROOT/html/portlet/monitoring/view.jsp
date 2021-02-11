@@ -101,7 +101,6 @@ portletURL.setParameter("struts_action", "/monitoring/view");
 					name="num-of-hits"
 					property="hits"
 				/>
-
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator />

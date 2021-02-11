@@ -124,7 +124,7 @@
 </aui:form>
 
 <liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectFolderURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-	<portlet:param name="struts_action" value='<%= "/image_gallery_display/select_folder" %>' />
+	<portlet:param name="struts_action" value="/image_gallery_display/select_folder" />
 </liferay-portlet:renderURL>
 
 <aui:script use="aui-base">

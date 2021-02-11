@@ -8,14 +8,14 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
@@ -24,8 +24,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Resources</title>
-	<link href="browser.css" type="text/css" rel="stylesheet">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<link href="browser.css" rel="stylesheet" type="text/css" />
+
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript">
 
@@ -39,12 +42,10 @@ oListManager.Clear = function()
 function ProtectPath(path)
 {
 	path = path.replace( /\\/g, '\\\\') ;
-	
-						
+
 							path = path.replace( /'/g, '\\\'') ;
 							path = path.replace( /&#039;/g, '\\\'') ;
-						
-					
+
 	return path ;
 }
 
@@ -94,8 +95,7 @@ function OpenFolder( folderPath )
 
 function OpenFile( fileUrl, errorMessage )
 {
-	
-				
+
 					if (!errorMessage) {
 						var match = window.top.location.search.match(/(?:[\?&]|&amp;)CKEditorFuncNum=([^&]+)/i);
 
@@ -106,8 +106,7 @@ function OpenFile( fileUrl, errorMessage )
 					else {
 						alert(errorMessage);
 					}
-				
-			
+
 	window.top.close() ;
 	window.top.opener.focus() ;
 }
@@ -115,23 +114,21 @@ function OpenFile( fileUrl, errorMessage )
 function LoadResources( doAsGroupId, resourceType, sortType, ascending, folderPath )
 {
 	oListManager.Clear() ;
-	
-				
+
 					oConnector.DoAsGroupId = doAsGroupId;
 					oConnector.ResourceType = resourceType;
 					oConnector.SortType = sortType;
 					oConnector.Ascending = ascending;
-				
-			
+
 	oConnector.CurrentFolder = folderPath ;
 	oConnector.SendCommand( 'GetFoldersAndFiles', null, GetFoldersAndFilesCallBack ) ;
 }
 
 function Refresh()
 {
-	
+
 				LoadResources( oConnector.DoAsGroupId, oConnector.ResourceType, oConnector.SortType, oConnector.Ascending, oConnector.CurrentFolder ) ;
-			
+
 }
 
 function GetFoldersAndFilesCallBack( fckXml )
@@ -193,6 +190,7 @@ window.onload = function()
 }
 	</script>
 </head>
+
 <body class="FileArea">
 </body>
 </html>

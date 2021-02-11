@@ -1,4 +1,4 @@
-/* Generic */
+/* ---------- Generic ---------- */
 body {
 font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11px;
 background:#F0F0EE;
@@ -14,7 +14,7 @@ a:link, a:visited {color:black;background-color:transparent;}
 a:hover {color:#2B6FB6;background-color:transparent;}
 .nowrap {white-space: nowrap}
 
-/* Forms */
+/* ---------- Forms ---------- */
 fieldset {margin:0; padding:4px; border:1px solid #919B9C; font-family:Verdana, Arial; font-size:10px;}
 legend {color:#2B6FB6; font-weight:bold;}
 label.msg {display:none;}
@@ -27,7 +27,7 @@ input.radio {border:1px none #000000; background:transparent; vertical-align:mid
 input.checkbox {border:1px none #000000; background:transparent; vertical-align:middle;}
 .input_noborder {border:0;}
 
-/* Buttons */
+/* ---------- Buttons ---------- */
 #insert, #cancel, input.button, .updateButton {
 font-weight:bold;
 width:94px; height:23px;
@@ -38,7 +38,7 @@ float:left;
 
 #cancel {float:right}
 
-/* Browse */
+/* ---------- Browse ---------- */
 a.pickcolor, a.browse {text-decoration:none}
 a.browse span {display:block; width:20px; height:18px; background:url(../../img/icons.gif) -860px 0; border:1px solid #FFF; margin-left:1px;}
 .mceOldBoxModel a.browse span {width:22px; height:20px;}
@@ -50,7 +50,7 @@ a.pickcolor span {display:block; width:20px; height:16px; background:url(../../i
 a.pickcolor:hover span {background-color:#B2BBD0;}
 a.pickcolor:hover span.disabled {}
 
-/* Charmap */
+/* ---------- Charmap ---------- */
 table.charmap {border:1px solid #AAA; text-align:center}
 td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #AAA; text-align:center; font-size:12px; vertical-align:middle; line-height: 18px;}
 #charmap a {display:block; color:#000; text-decoration:none; border:0}
@@ -58,11 +58,11 @@ td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #A
 #charmap #codeN {font-size:10px; font-family:Arial,Helvetica,sans-serif; text-align:center}
 #charmap #codeV {font-size:40px; height:80px; border:1px solid #AAA; text-align:center}
 
-/* Source */
+/* ---------- Source ---------- */
 .wordWrapCode {vertical-align:middle; border:1px none #000000; background:transparent;}
 .mceActionPanel {margin-top:5px;}
 
-/* Tabs classes */
+/* ---------- Tabs classes ---------- */
 .tabs {width:100%; height:18px; line-height:normal;}
 .tabs ul {margin:0; padding:0; list-style:none;}
 .tabs li {float:left; border: 1px solid black; border-bottom:0; margin:0 2px 0 0; padding:0 0 0 10px; line-height:17px; height:18px; display:block; cursor:pointer;}
@@ -71,23 +71,23 @@ td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #A
 .tabs a {text-decoration:none; font-family:Verdana, Arial; font-size:10px;}
 .tabs a:link, .tabs a:visited, .tabs a:hover {color:black;}
 
-/* Panels */
+/* ---------- Panels ---------- */
 .panel_wrapper div.panel {display:none;}
 .panel_wrapper div.current {display:block; width:100%; height:300px; overflow:visible;}
 .panel_wrapper {border:1px solid #919B9C; padding:10px; padding-top:5px; clear:both; background:white;}
 
-/* Columns */
+/* ---------- Columns ---------- */
 .column {float:left;}
 .properties {width:100%;}
 .properties .column1 {}
 .properties .column2 {text-align:left;}
 
-/* Titles */
+/* ---------- Titles ---------- */
 h1, h2, h3, h4 {color:#2B6FB6; margin:0; padding:0; padding-top:5px;}
 h3 {font-size:14px;}
 .title {font-size:12px; font-weight:bold; color:#2B6FB6;}
 
-/* Dialog specific */
+/* ---------- Dialog specific ---------- */
 #link .panel_wrapper, #link div.current {height:125px;}
 #image .panel_wrapper, #image div.current {height:200px;}
 #plugintable thead {font-weight:bold; background:#DDD;}

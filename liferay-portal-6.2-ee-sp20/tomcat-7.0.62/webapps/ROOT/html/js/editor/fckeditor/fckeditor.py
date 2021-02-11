@@ -27,30 +27,21 @@ import re
 import string
 
 def escape(text, replace=string.replace):
-    """Converts the special characters '<', '>', and '&'.
+	"""Converts the special characters '<', '>', and '&'.
 
     RFC 1866 specifies that these characters be represented
     in HTML as &lt; &gt; and &amp; respectively. In Python
     1.5 we use the new string.replace() function for speed.
     """
-    text = replace(text, '&', '&amp;') # must be done 1st
-    text = replace(text, '<', '&lt;')
-    text = replace(text, '>', '&gt;')
-    text = replace(text, '"', '&quot;')
-    text = replace(text, "'", '&#39;')
-    return text
+	text = replace(text, '&', '&amp;') # must be done 1st
+	text = replace(text, '<', '&lt;')
+	text = replace(text, '>', '&gt;')
+	text = replace(text, '"', '&quot;')
+	text = replace(text, "'", '&#39;')
+	return text
 
 # The FCKeditor class
 class FCKeditor(object):
-	def __init__(self, instanceName):
-		self.InstanceName = instanceName
-		self.BasePath = '/fckeditor/'
-		self.Width = '100%'
-		self.Height = '200'
-		self.ToolbarSet = 'Default'
-		self.Value = '';
-
-		self.Config = {}
 
 	def Create(self):
 		return self.CreateHtml()
@@ -107,6 +98,26 @@ class FCKeditor(object):
 					)
 		return Html
 
+	def GetConfigFieldString(self):
+		sParams = ""
+		bFirst = True
+		for sKey in self.Config.keys():
+			sValue = self.Config[sKey]
+			if (not bFirst):
+				sParams += "&amp;"
+			else:
+				bFirst = False
+			if (sValue):
+				k = escape(sKey)
+				v = escape(sValue)
+				if (sValue == "true"):
+					sParams += "%s=true" % k
+				elif (sValue == "false"):
+					sParams += "%s=false" % k
+				else:
+					sParams += "%s=%s" % (k, v)
+		return sParams
+
 	def IsCompatible(self):
 		if (os.environ.has_key("HTTP_USER_AGENT")):
 			sAgent = os.environ.get("HTTP_USER_AGENT", "")
@@ -139,22 +150,12 @@ class FCKeditor(object):
 		else:
 			return False
 
-	def GetConfigFieldString(self):
-		sParams = ""
-		bFirst = True
-		for sKey in self.Config.keys():
-			sValue = self.Config[sKey]
-			if (not bFirst):
-				sParams += "&amp;"
-			else:
-				bFirst = False
-			if (sValue):
-				k = escape(sKey)
-				v = escape(sValue)
-				if (sValue == "true"):
-					sParams += "%s=true" % k
-				elif (sValue == "false"):
-					sParams += "%s=false" % k
-				else:
-					sParams += "%s=%s" % (k, v)
-		return sParams
+	def __init__(self, instanceName):
+		self.InstanceName = instanceName
+		self.BasePath = '/fckeditor/'
+		self.Width = '100%'
+		self.Height = '200'
+		self.ToolbarSet = 'Default'
+		self.Value = '';
+
+		self.Config = {}

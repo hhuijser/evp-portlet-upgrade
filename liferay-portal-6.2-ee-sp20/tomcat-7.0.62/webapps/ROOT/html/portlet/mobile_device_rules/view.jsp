@@ -33,12 +33,10 @@ portletURL.setParameter("groupId", String.valueOf(groupId));
 
 	<%
 	RuleGroupSearch ruleGroupSearch = new RuleGroupSearch(liferayPortletRequest, portletURL);
-
-	RowChecker rowChecker = new RuleGroupChecker(renderResponse);
 	%>
 
 	<liferay-ui:search-container
-		rowChecker="<%= rowChecker %>"
+		rowChecker="<%= new RuleGroupChecker(renderResponse) %>"
 		searchContainer="<%= ruleGroupSearch %>"
 	>
 		<aui:nav-bar>

@@ -28,7 +28,7 @@ if (mergeUrlTags || mergeLayoutTags) {
 		Set<String> layoutTagNames = AssetUtil.getLayoutTagNames(request);
 
 		if (!layoutTagNames.isEmpty()) {
-			compilerTagNames = ArrayUtil.append(compilerTagNames, layoutTagNames.toArray(new String[layoutTagNames.size()]));
+			compilerTagNames = ArrayUtil.append(compilerTagNames, layoutTagNames.toArray(new String[0]));
 		}
 	}
 
@@ -94,7 +94,7 @@ boolean hasAddPortletURLs = false;
 		}
 	%>
 
-		<div class="lfr-meta-actions add-asset-selector">
+		<div class="add-asset-selector lfr-meta-actions">
 			<%@ include file="/html/portlet/asset_publisher/add_asset.jspf" %>
 		</div>
 

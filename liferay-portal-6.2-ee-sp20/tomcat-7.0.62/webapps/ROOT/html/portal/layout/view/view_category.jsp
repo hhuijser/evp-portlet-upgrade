@@ -40,9 +40,7 @@ for (String portletId : portletIds) {
 		if (portletApp.isWARFile() && Validator.isNull(externalPortletCategory)) {
 			PortletConfig curPortletConfig = PortletConfigFactoryUtil.create(portlet, application);
 
-			ResourceBundle resourceBundle = curPortletConfig.getResourceBundle(locale);
-
-			externalPortletCategory = ResourceBundleUtil.getString(resourceBundle, portletCategory.getName());
+			externalPortletCategory = ResourceBundleUtil.getString(curPortletConfig.getResourceBundle(locale), portletCategory.getName());
 		}
 	}
 }
@@ -50,10 +48,9 @@ for (String portletId : portletIds) {
 portlets = ListUtil.sort(portlets, new PortletTitleComparator(application, locale));
 
 if (!portletCategories.isEmpty() || !portlets.isEmpty()) {
-	String title = Validator.isNotNull(externalPortletCategory) ? externalPortletCategory : LanguageUtil.get(pageContext, portletCategory.getName());
 %>
 
-	<liferay-ui:panel collapsible="<%= true %>" cssClass="lfr-content-category panel-page-category unstyled" extended="<%= true %>" title="<%= title %>">
+	<liferay-ui:panel collapsible="<%= true %>" cssClass="lfr-content-category panel-page-category unstyled" extended="<%= true %>" title="<%= Validator.isNotNull(externalPortletCategory) ? externalPortletCategory : LanguageUtil.get(pageContext, portletCategory.getName()) %>">
 		<aui:nav cssClass="nav-list">
 
 			<%

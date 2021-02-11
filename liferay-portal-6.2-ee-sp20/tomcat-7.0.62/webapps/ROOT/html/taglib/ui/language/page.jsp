@@ -58,10 +58,10 @@ for (int i = 0; i < locales.length; i++) {
 	Integer count = (Integer)langCounts.get(locales[i].getLanguage());
 
 	if (count == null) {
-		count = new Integer(1);
+		count = Integer.valueOf(1);
 	}
 	else {
-		count = new Integer(count.intValue() + 1);
+		count = Integer.valueOf(count.intValue() + 1);
 	}
 
 	langCounts.put(locales[i].getLanguage(), count);

@@ -22,20 +22,20 @@
 LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
 userParams.put("inherit", Boolean.TRUE);
-userParams.put("usersGroups", new Long(groupId));
+userParams.put("usersGroups", Long.valueOf(groupId));
 
 int usersCount = UserLocalServiceUtil.searchCount(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams);
 
 LinkedHashMap<String, Object> organizationParams = new LinkedHashMap<String, Object>();
 
-organizationParams.put("groupOrganization", new Long(groupId));
-organizationParams.put("organizationsGroups", new Long(groupId));
+organizationParams.put("groupOrganization", Long.valueOf(groupId));
+organizationParams.put("organizationsGroups", Long.valueOf(groupId));
 
 int organizationsCount = OrganizationLocalServiceUtil.searchCount(company.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, null, null, null, null, organizationParams);
 
 LinkedHashMap<String, Object> userGroupParams = new LinkedHashMap<String, Object>();
 
-userGroupParams.put("userGroupsGroups", new Long(groupId));
+userGroupParams.put("userGroupsGroups", Long.valueOf(groupId));
 
 int userGroupsCount = UserGroupLocalServiceUtil.searchCount(company.getCompanyId(), null, userGroupParams);
 
@@ -62,7 +62,6 @@ if (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED) {
 		<dt class="first">
 			<liferay-ui:message key="members" />:
 		</dt>
-
 		<dd class="members-info">
 			<c:if test="<%= (usersCount == 0) && (organizationsCount == 0) && (userGroupsCount == 0) %>">
 				<liferay-ui:message key="none" />
@@ -106,7 +105,6 @@ if (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED) {
 			<dt class="hide-accessible">
 				<liferay-ui:message key="request-pending" />
 			</dt>
-
 			<dd class="membership-requests">
 				<liferay-ui:icon
 					image="manage_task"
@@ -124,7 +122,6 @@ if (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED) {
 				message='<%= LanguageUtil.get(pageContext, "membership-type") + StringPool.COLON + StringPool.SPACE %>'
 			/>
 		</dt>
-
 		<dd class="last">
 			<%= LanguageUtil.get(pageContext, GroupConstants.getTypeLabel(group.getType())) %>
 		</dd>

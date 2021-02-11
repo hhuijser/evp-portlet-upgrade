@@ -23,8 +23,6 @@
 		String topLink = ParamUtil.getString(request, "topLink", "home");
 
 		long folderId = GetterUtil.getLong((String)request.getAttribute("view.jsp-folderId"));
-
-		long repositoryId = GetterUtil.getLong((String)request.getAttribute("view.jsp-repositoryId"));
 		%>
 
 		<c:if test="<%= showTabs || showFoldersSearch %>">
@@ -36,6 +34,7 @@
 						PortletURL portletURL = renderResponse.createRenderURL();
 
 						String label = "home";
+
 						boolean selected = topLink.equals(label);
 
 						portletURL.setParameter("topLink", label);
@@ -78,7 +77,7 @@
 							<aui:form action="<%= searchURL %>" method="get" name="searchFm">
 								<liferay-portlet:renderURLParams varImpl="searchURL" />
 								<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-								<aui:input name="repositoryId" type="hidden" value="<%= repositoryId %>" />
+								<aui:input name="repositoryId" type="hidden" value='<%= GetterUtil.getLong((String)request.getAttribute("view.jsp-repositoryId")) %>' />
 								<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
 								<aui:input name="breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />
 								<aui:input name="searchFolderIds" type="hidden" value="<%= folderId %>" />
