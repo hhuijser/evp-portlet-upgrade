@@ -65,12 +65,6 @@ if (group.isGuest()) {
 }
 
 String[][] categorySections = {mainSections};
-
-boolean hasExportImportLayoutsPermission = GroupPermissionUtil.contains(permissionChecker, liveGroupId, ActionKeys.EXPORT_IMPORT_LAYOUTS);
-
-boolean hasAddPageLayoutsPermission = GroupPermissionUtil.contains(permissionChecker, groupId, ActionKeys.ADD_LAYOUT);
-
-boolean hasViewPagesPermission = (pagesCount > 0) && (liveGroup.isStaged() || selGroup.isLayoutSetPrototype() || selGroup.isStagingGroup() || portletName.equals(PortletKeys.MY_SITES) || portletName.equals(PortletKeys.GROUP_PAGES) || portletName.equals(PortletKeys.SITES_ADMIN) || portletName.equals(PortletKeys.USERS_ADMIN));
 %>
 
 <div class="add-content-menu hide" id="<portlet:namespace /><%= randomNamespace %>addLayout">
@@ -81,13 +75,15 @@ boolean hasViewPagesPermission = (pagesCount > 0) && (liveGroup.isStaged() || se
 
 <aui:nav-bar>
 	<aui:nav id="layoutsNav">
-		<c:if test="<%= hasViewPagesPermission %>">
+		<c:if test="<%= (pagesCount > 0) && (liveGroup.isStaged() || selGroup.isLayoutSetPrototype() || selGroup.isStagingGroup() || portletName.equals(PortletKeys.MY_SITES) || portletName.equals(PortletKeys.GROUP_PAGES) || portletName.equals(PortletKeys.SITES_ADMIN) || portletName.equals(PortletKeys.USERS_ADMIN)) %>">
 			<aui:nav-item data-value="view-pages" iconCssClass="icon-file" label="view-pages" />
 		</c:if>
-		<c:if test="<%= hasAddPageLayoutsPermission %>">
+
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, groupId, ActionKeys.ADD_LAYOUT) %>">
 			<aui:nav-item data-value="add-page" iconCssClass="icon-plus" label="add-page" />
 		</c:if>
-		<c:if test="<%= hasExportImportLayoutsPermission %>">
+
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, liveGroupId, ActionKeys.EXPORT_IMPORT_LAYOUTS) %>">
 			<aui:nav-item data-value="export" iconCssClass="icon-arrow-down" label="export" />
 			<aui:nav-item data-value="import" iconCssClass="icon-arrow-up" label="import" />
 		</c:if>

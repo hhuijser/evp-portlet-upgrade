@@ -2,7 +2,7 @@
  * Tabsheet "minimal" style --------------
  */
 
-/* Minimal tabsheet on blue background */
+/* ---------- Minimal tabsheet on blue background ---------- */
 .blue .v-tabsheet-tabs-minimal .v-tabsheet-spacertd div,
 .blue .v-tabsheet-tabs-minimal .v-tabsheet-tabitem,
 .blue .v-tabsheet-tabs-minimal .v-tabsheet-tabitem-selected  {
@@ -12,8 +12,8 @@
 	color: #7c8a91;
 }
 .blue .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:hover {
-	color: #BCD3DE;
 	background: #778d98;
+	color: #BCD3DE;
 }
 .blue .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:active {
 	background: #4f6874;
@@ -22,30 +22,30 @@
 /* Default & white styles */
 .v-tabsheet-tabs-minimal .v-tabsheet-spacertd div,
 .white .v-tabsheet-tabs-minimal .v-tabsheet-spacertd div {
+	background: transparent;
 	border-bottom: 1px solid #bfbfbf;
 	height: auto;
-	background: transparent;
 }
 .v-tabsheet-tabs-minimal .v-tabsheet-tabitemcell,
 .v-tabsheet-tabs-minimal .v-tabsheet-spacertd {
-	height: auto;
 	background: transparent;
+	height: auto;
 	padding-left: 0;
 }
 .v-tabsheet-tabs-minimal .v-tabsheet-tabitem,
 .white .v-tabsheet-tabs-minimal .v-tabsheet-tabitem {
+	background: transparent;
 	border: none;
 	border-bottom: 1px solid #bfbfbf;
 	color: #4d748f;
-	padding: 0;
 	height: auto;
-	background: transparent;
+	padding: 0;
 	text-shadow: none;
 }
 .v-tabsheet-tabs-minimal .v-tabsheet-tabitem .v-caption {
-	padding: 5px 16px;
-	height: auto;
 	background: transparent;
+	height: auto;
+	padding: 5px 16px;
 }
 .v-tabsheet-tabs-minimal .v-tabsheet-tabitemcell-selected {
 	background: transparent;
@@ -74,15 +74,15 @@
 }
 .v-tabsheet-deco-minimal,
 .white .v-tabsheet-deco-minimal {
-	height: 0;
 	border: none;
+	height: 0;
 }
 .v-tabsheet-tabcontainer-minimal .v-tabsheet-scroller {
-	margin-top: -20px;
-	height: 17px;
-	padding: 0;
-	border: none;
 	background: transparent;
+	border: none;
+	height: 17px;
+	margin-top: -20px;
+	padding: 0;
 }
 .v-tabsheet-tabcontainer-minimal .v-tabsheet-scroller button {
 	margin-top: 0;
@@ -90,15 +90,15 @@
 .v-tabsheet-tabs-minimal .v-tabsheet-caption-close,
 .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:hover,
 .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:active {
-	text-indent: 0;
 	background: transparent;
+	color: #999;
+	height: 14px;
+	line-height: 14px;
 	margin-left: 3px;
 	margin-right: -3px;
 	padding: 0;
-	color: #999;
+	text-indent: 0;
 	width: 14px;
-	height: 14px;
-	line-height: 14px;
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
 }
@@ -111,15 +111,15 @@
 }
 .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:hover,
 .white .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:hover {
-	color: #fff;
 	background: #aaa;
+	color: #fff;
 }
 .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:active,
 .white .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:active {
 	background: #777;
 }
 
-/* Minimal tabsheet on black background */
+/* ---------- Minimal tabsheet on black background ---------- */
 .black .v-tabsheet-tabs-minimal .v-tabsheet-spacertd div,
 .black .v-tabsheet-tabs-minimal .v-tabsheet-tabitem,
 .black .v-tabsheet-tabs-minimal .v-tabsheet-tabitem-selected  {
@@ -138,8 +138,8 @@
 	color: #72787c;
 }
 .black .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:hover {
-	color: #1d2021;
 	background: #4d5154;
+	color: #1d2021;
 }
 .black .v-tabsheet-tabs-minimal .v-tabsheet-caption-close:active {
 	background: #626669;

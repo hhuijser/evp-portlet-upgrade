@@ -35,31 +35,31 @@ request.setAttribute("websites.classPK", organizationId);
 <liferay-util:include page="/html/portlet/directory/tabs1.jsp" />
 
 <div class="organization-information">
-	<div class="section entity-details">
+	<div class="entity-details section">
 		<liferay-util:include page="/html/portlet/directory/organization/details.jsp" />
 	</div>
 
-	<div class="section entity-email-addresses">
+	<div class="entity-email-addresses section">
 		<liferay-util:include page="/html/portlet/directory/common/additional_email_addresses.jsp" />
 	</div>
 
-	<div class="section entity-websites">
+	<div class="entity-websites section">
 		<liferay-util:include page="/html/portlet/directory/common/websites.jsp" />
 	</div>
 
-	<div class="section entity-addresses">
+	<div class="entity-addresses section">
 		<liferay-util:include page="/html/portlet/directory/organization/addresses.jsp" />
 	</div>
 
-	<div class="section entity-phones">
+	<div class="entity-phones section">
 		<liferay-util:include page="/html/portlet/directory/organization/phone_numbers.jsp" />
 	</div>
 
-	<div class="section entity-services">
+	<div class="entity-services section">
 		<liferay-util:include page="/html/portlet/directory/organization/services.jsp" />
 	</div>
 
-	<div class="section entity-comments">
+	<div class="entity-comments section">
 		<liferay-util:include page="/html/portlet/directory/organization/comments.jsp" />
 	</div>
 </div>

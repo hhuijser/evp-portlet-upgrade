@@ -4,7 +4,7 @@
 <service-builder package-path="com.liferay.marketplace">
 	<author>Ryan Park</author>
 	<namespace>Marketplace</namespace>
-	<entity name="App" uuid="true" local-service="true" remote-service="true">
+	<entity local-service="true" name="App" remote-service="true" uuid="true">
 		<!-- PK fields -->
 		<column name="appId" type="long" primary="true"></column>
 		<!-- Audit fields -->
@@ -31,7 +31,7 @@
 			<finder-column name="category"></finder-column>
 		</finder>
 	</entity>
-	<entity name="Module" uuid="true" local-service="true" remote-service="false">
+	<entity local-service="true" name="Module" remote-service="false" uuid="true">
 		<!-- PK fields -->
 		<column name="moduleId" type="long" primary="true"></column>
 		<!-- Other fields -->

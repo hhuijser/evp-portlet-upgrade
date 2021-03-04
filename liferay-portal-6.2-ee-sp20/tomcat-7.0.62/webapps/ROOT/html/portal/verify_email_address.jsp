@@ -24,8 +24,6 @@ if (referer.equals(themeDisplay.getPathMain() + "/portal/update_email_address"))
 }
 
 PasswordPolicy passwordPolicy = user.getPasswordPolicy();
-
-String ticketKey = ParamUtil.getString(request, "ticketKey");
 %>
 
 <aui:form action='<%= themeDisplay.getPathMain() + "/portal/verify_email_address" %>' method="post" name="fm">
@@ -64,7 +62,7 @@ String ticketKey = ParamUtil.getString(request, "ticketKey");
 		</c:choose>
 	</c:if>
 
-	<aui:input autoFocus="<%= true %>" class="lfr-input-text-container" label="email-verification-code" name="ticketKey" size="36" type="text" value="<%= ticketKey %>" />
+	<aui:input autoFocus="<%= true %>" class="lfr-input-text-container" label="email-verification-code" name="ticketKey" size="36" type="text" value='<%= ParamUtil.getString(request, "ticketKey") %>' />
 
 	<aui:button-row>
 		<aui:button type="submit" value="verify" />

@@ -1,7 +1,7 @@
 .v-formlayout-cell .v-errorindicator {
-	width: 10px;
-	height: 16px;
 	background: transparent url(../icons/16/error.png) no-repeat top right;
+	height: 16px;
+	width: 10px;
 }
 .v-formlayout-captioncell {
 	text-align:right;
@@ -49,13 +49,13 @@
 .v-ie6 .v-formlayout-margin-right .v-formlayout-row .v-formlayout-contentcell {
 	padding-right: expression(/v-formlayout-margin-right/.test(this.parentNode.parentNode.parentNode.className) ? "18px" : "0px");
 }
-/* form */
+/* ---------- form ---------- */
 .v-form-errormessage {
 	background: transparent url(../icons/16/error.png) no-repeat top left;
-	padding-left: 20px;
 	margin-bottom: 5px;
 	margin-top: 5px;
 	min-height: 20px;
+	padding-left: 20px;
 }
 .v-ie6 .v-form-errormessage {
 	height: 20px
@@ -71,8 +71,8 @@
 	display: none;
 }
 .v-form legend {
+	color: #464f52;
+	font-weight: bold;
 	margin: 0;
 	padding: 0 4px 0.3em 4px;
-	font-weight: bold;
-	color: #464f52;
 }

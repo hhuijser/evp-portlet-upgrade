@@ -30,7 +30,7 @@ refererURL.setParameter("updateLayout", "true");
 
 	<div class="row-fluid" id="<portlet:namespace />applicationList">
 		<c:if test="<%= layout.isTypePortlet() %>">
-			<div class="search-panel btn-toolbar">
+			<div class="btn-toolbar search-panel">
 				<aui:input cssClass="search-query span12" label="" name="searchApplication" type="text" />
 			</div>
 		</c:if>
@@ -53,13 +53,8 @@ refererURL.setParameter("updateLayout", "true");
 
 		<liferay-ui:panel-container id="<%= panelContainerId %>">
 			<c:if test="<%= portlets.size() > 0 %>">
-
-				<%
-				String panelId = renderResponse.getNamespace() + "portletCategory" + portletCategoryIndex;
-				%>
-
 				<div class="lfr-add-content">
-					<liferay-ui:panel collapsible="<%= layout.isTypePortlet() %>" cssClass="lfr-content-category lfr-component panel-page-category" extended="<%= true %>" id="<%= panelId %>" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "highlighted") %>'>
+					<liferay-ui:panel collapsible="<%= layout.isTypePortlet() %>" cssClass="lfr-component lfr-content-category panel-page-category" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "portletCategory" + portletCategoryIndex %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "highlighted") %>'>
 						<aui:nav collapsible="<%= false %>" cssClass="nav-list">
 
 							<%
@@ -86,21 +81,21 @@ refererURL.setParameter("updateLayout", "true");
 								}
 							%>
 
-							<aui:nav-item cssClass="lfr-content-item" href="">
-								<span <%= AUIUtil.buildData(data) %> class="<%= cssClass %>">
-									<i class="<%= portletInstanceable ? "icon-th-large" : "icon-stop" %>"></i>
+								<aui:nav-item cssClass="lfr-content-item" href="">
+									<span <%= AUIUtil.buildData(data) %> class="<%= cssClass %>">
+										<i class="<%= portletInstanceable ? "icon-th-large" : "icon-stop" %>"></i>
 
-									<liferay-ui:message key="<%= PortalUtil.getPortletTitle(portlet, application, locale) %>" />
-								</span>
+										<liferay-ui:message key="<%= PortalUtil.getPortletTitle(portlet, application, locale) %>" />
+									</span>
 
-								<%
-								data.remove("draggable");
-								%>
+									<%
+									data.remove("draggable");
+									%>
 
-								<span <%= AUIUtil.buildData(data) %> class='add-content-item <%= portletLocked ? "lfr-portlet-used" : StringPool.BLANK %>'>
-									<liferay-ui:message key="add" />
-								</span>
-							</aui:nav-item>
+									<span <%= AUIUtil.buildData(data) %> class='add-content-item <%= portletLocked ? "lfr-portlet-used" : StringPool.BLANK %>'>
+										<liferay-ui:message key="add" />
+									</span>
+								</aui:nav-item>
 
 							<%
 							}
@@ -134,9 +129,9 @@ refererURL.setParameter("updateLayout", "true");
 				request.setAttribute(WebKeys.PORTLET_CATEGORY_INDEX, String.valueOf(portletCategoryIndex));
 			%>
 
-			<liferay-util:include page="/html/portlet/dockbar/view_category.jsp">
-				<liferay-util:param name="panelContainerId" value="<%= panelContainerId %>" />
-			</liferay-util:include>
+				<liferay-util:include page="/html/portlet/dockbar/view_category.jsp">
+					<liferay-util:param name="panelContainerId" value="<%= panelContainerId %>" />
+				</liferay-util:include>
 
 			<%
 				portletCategoryIndex++;
@@ -163,9 +158,7 @@ refererURL.setParameter("updateLayout", "true");
 		<c:if test="<%= !layout.isTypePanel() && permissionChecker.isOmniadmin() && PortletLocalServiceUtil.hasPortlet(themeDisplay.getCompanyId(), PortletKeys.MARKETPLACE_STORE) %>">
 
 			<%
-			long controlPanelPlid = PortalUtil.getControlPanelPlid(company.getCompanyId());
-
-			PortletURLImpl marketplaceURL = new PortletURLImpl(request, PortletKeys.MARKETPLACE_STORE, controlPanelPlid, PortletRequest.RENDER_PHASE);
+			PortletURLImpl marketplaceURL = new PortletURLImpl(request, PortletKeys.MARKETPLACE_STORE, PortalUtil.getControlPanelPlid(company.getCompanyId()), PortletRequest.RENDER_PHASE);
 			%>
 
 			<p class="lfr-install-more">

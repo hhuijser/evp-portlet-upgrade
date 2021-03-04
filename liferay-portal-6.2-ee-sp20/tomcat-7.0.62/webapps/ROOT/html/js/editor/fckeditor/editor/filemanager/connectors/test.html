@@ -7,24 +7,27 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
  * Test page for the File Browser connectors.
 -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>FCKeditor - Connectors Tests</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
 	<script type="text/javascript">
 
 // Automatically detect the correct document.domain (#1919).
@@ -134,11 +137,12 @@ function SetAction()
 
 	</script>
 </head>
+
 <body>
-	<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0">
+	<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
 		<tr>
 			<td>
-				<table cellspacing="0" cellpadding="0" border="0">
+				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td>
 							Connector:<br />
@@ -171,8 +175,10 @@ function SetAction()
 						</td>
 					</tr>
 				</table>
+
 				<br />
-				<table cellspacing="0" cellpadding="0" border="0">
+
+				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td valign="top">
 							<a href="#" onclick="GetFolders();">Get Folders</a></td>
@@ -187,22 +193,25 @@ function SetAction()
 						<td>
 							&nbsp;&nbsp;&nbsp;</td>
 						<td valign="top">
-							<form id="frmUpload" action="" target="eRunningFrame" method="post" enctype="multipart/form-data">
+							<form action="" enctype="multipart/form-data" id="frmUpload" method="post" target="eRunningFrame">
 								File Upload<br />
-								<input id="txtFileUpload" type="file" name="NewFile" />
-								<input type="submit" value="Upload" onclick="SetAction();" />
+								<input id="txtFileUpload" name="NewFile" type="file" />
+								<input onclick="SetAction();" type="submit" value="Upload" />
 							</form>
 						</td>
 					</tr>
 				</table>
+
 				<br />
 				URL: <span id="eUrl"></span>
 			</td>
 		</tr>
 		<tr>
 			<td height="100%" valign="top">
-				<iframe id="eRunningFrame" src="javascript:void(0)" name="eRunningFrame" width="100%"
-					height="100%"></iframe>
+				<iframe
+					id="eRunningFrame" src="javascript:void(0)" name="eRunningFrame" width="100%"
+					height="100%"></iframe
+				>
 			</td>
 		</tr>
 	</table>

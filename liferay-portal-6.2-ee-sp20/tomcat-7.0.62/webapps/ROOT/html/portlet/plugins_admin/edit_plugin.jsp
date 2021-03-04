@@ -22,6 +22,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 String moduleId = ParamUtil.getString(request, "moduleId");
 String pluginId = ParamUtil.getString(request, "pluginId");
 String pluginType = ParamUtil.getString(request, "pluginType");
+
 String title = ParamUtil.getString(request, "title", pluginType);
 
 PluginSetting pluginSetting = PluginSettingLocalServiceUtil.getPluginSetting(company.getCompanyId(), pluginId, pluginType);
@@ -103,7 +104,7 @@ if (pluginType.equals(Plugin.TYPE_PORTLET)) {
 						<div class="permission-group">
 							<b><liferay-ui:message key="action.ADD_TO_PAGE" /></b>: <liferay-ui:message key="the-users-with-the-following-roles-can-add-this-portlet-to-the-pages-they-manage" />
 
-							<liferay-ui:search-container >
+							<liferay-ui:search-container>
 								<liferay-ui:search-container-results
 									results="<%= addToPageRoles %>"
 								/>
@@ -112,7 +113,6 @@ if (pluginType.equals(Plugin.TYPE_PORTLET)) {
 									className="com.liferay.portal.model.Role"
 									keyProperty="name"
 									modelVar="role"
-
 								>
 									<liferay-util:param name="className" value="<%= RolesAdminUtil.getCssClassName(role) %>" />
 									<liferay-util:param name="classHoverName" value="<%= RolesAdminUtil.getCssClassName(role) %>" />
@@ -146,7 +146,7 @@ if (pluginType.equals(Plugin.TYPE_PORTLET)) {
 						<div class="permission-group">
 							<strong><liferay-ui:message key="action.ACCESS_IN_CONTROL_PANEL" /></strong>: <liferay-ui:message key="the-users-with-the-following-roles-can-access-this-portlet-in-the-control-panel" />
 
-							<liferay-ui:search-container >
+							<liferay-ui:search-container>
 								<liferay-ui:search-container-results
 									results="<%= accessInControlPanelRoles %>"
 								/>

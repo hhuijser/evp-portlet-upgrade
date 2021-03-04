@@ -58,20 +58,15 @@ if (Validator.isNotNull(publicLayoutSet.getLayoutSetPrototypeUuid())) {
 		<aui:fieldset label="public-site-template">
 			<c:choose>
 				<c:when test="<%= publicLayoutSetPrototypeLinkEnabled %>">
-
-					<%
-					boolean layoutsUpdateable = GetterUtil.getBoolean(publicLayoutSetPrototype.getSettingsProperty("layoutsUpdateable"), true);
-					%>
-
-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(publicLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+					<liferay-ui:message arguments="<%= HtmlUtil.escape(publicLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
 
 					<aui:field-wrapper label="site-template-settings">
 						<aui:input disabled="<%= true %>" name="active" type="checkbox" value="<%= publicLayoutSetPrototype.isActive() %>" />
-						<aui:input disabled="<%= true %>" name="site-template-allows-modifications" type="checkbox" value="<%= layoutsUpdateable %>" />
+						<aui:input disabled="<%= true %>" name="site-template-allows-modifications" type="checkbox" value='<%= GetterUtil.getBoolean(publicLayoutSetPrototype.getSettingsProperty("layoutsUpdateable"), true) %>' />
 					</aui:field-wrapper>
 				</c:when>
 				<c:otherwise>
-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(publicLayoutSetPrototype.getName(locale))} %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
+					<liferay-ui:message arguments="<%= HtmlUtil.escape(publicLayoutSetPrototype.getName(locale)) %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
 				</c:otherwise>
 			</c:choose>
 		</aui:fieldset>
@@ -81,20 +76,15 @@ if (Validator.isNotNull(publicLayoutSet.getLayoutSetPrototypeUuid())) {
 		<aui:fieldset label="private-site-template">
 			<c:choose>
 				<c:when test="<%= privateLayoutSetPrototypeLinkEnabled %>">
-
-					<%
-					boolean layoutsUpdateable = GetterUtil.getBoolean(privateLayoutSetPrototype.getSettingsProperty("layoutsUpdateable"), true);
-					%>
-
-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+					<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
 
 					<aui:field-wrapper label="site-template-settings">
 						<aui:input disabled="<%= true %>" name="active" type="checkbox" value="<%= privateLayoutSetPrototype.isActive() %>" />
-						<aui:input disabled="<%= true %>" name="site-template-allows-modifications" type="checkbox" value="<%= layoutsUpdateable %>" />
+						<aui:input disabled="<%= true %>" name="site-template-allows-modifications" type="checkbox" value='<%= GetterUtil.getBoolean(privateLayoutSetPrototype.getSettingsProperty("layoutsUpdateable"), true) %>' />
 					</aui:field-wrapper>
 				</c:when>
 				<c:otherwise>
-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
+					<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
 				</c:otherwise>
 			</c:choose>
 		</aui:fieldset>

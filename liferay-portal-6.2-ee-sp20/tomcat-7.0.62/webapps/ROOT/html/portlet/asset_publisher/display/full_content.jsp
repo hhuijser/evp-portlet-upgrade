@@ -87,6 +87,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<%@ include file="/html/portlet/asset_publisher/asset_export.jspf" %>
 				</div>
 			</c:if>
+
 			<c:if test="<%= (showAvailableLocales && assetRenderer.isLocalizable()) && !print %>">
 
 				<%
@@ -154,8 +155,8 @@ request.setAttribute("view.jsp-showIconLabel", true);
 		<%
 		String path = assetRenderer.render(renderRequest, renderResponse, AssetRenderer.TEMPLATE_FULL_CONTENT);
 
-		request.setAttribute(WebKeys.ASSET_RENDERER_FACTORY, assetRendererFactory);
 		request.setAttribute(WebKeys.ASSET_RENDERER, assetRenderer);
+		request.setAttribute(WebKeys.ASSET_RENDERER_FACTORY, assetRendererFactory);
 		%>
 
 		<liferay-util:include page="<%= path %>" portletId="<%= assetRendererFactory.getPortletId() %>">

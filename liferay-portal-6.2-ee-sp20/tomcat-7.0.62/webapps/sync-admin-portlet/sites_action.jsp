@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -31,16 +31,11 @@ String currentURL = currentURLObj.toString();
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
 	<c:choose>
 		<c:when test='<%= GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), !group.isCompany()) %>'>
-
-			<%
-			String editDefaultFilePermissionsDialogURL = "javascript:" + renderResponse.getNamespace() + "editDefaultFilePermissions(" + groupId + ");";
-			%>
-
 			<liferay-ui:icon
 				iconCssClass="icon-lock"
 				label="<%= true %>"
 				message="default-file-permissions"
-				url="<%= editDefaultFilePermissionsDialogURL %>"
+				url='<%= "javascript:" + renderResponse.getNamespace() + "editDefaultFilePermissions(" + groupId + ");" %>'
 			/>
 
 			<portlet:actionURL name="updateSites" var="disableSiteURL">

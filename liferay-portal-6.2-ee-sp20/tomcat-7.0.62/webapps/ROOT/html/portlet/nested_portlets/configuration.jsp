@@ -52,7 +52,7 @@
 				<td align="center" width="<%= 100 / CELLS_PER_ROW %>%">
 					<img alt="<liferay-ui:message key="thumbnail" />" onclick="document.getElementById('<portlet:namespace />layoutTemplateId<%= i %>').checked = true;" src="<%= layoutTemplate.getStaticResourcePath() %><%= HtmlUtil.escapeAttribute(layoutTemplate.getThumbnailPath()) %>" /><br />
 
-					<aui:input checked="<%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) %>" id='<%= "layoutTemplateId" + i %>' label='<%= LanguageUtil.get(locale, "layout-template-" + layoutTemplateName, layoutTemplateName) %>' name="preferences--layoutTemplateId--" type="radio" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
+					<aui:input checked="<%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) %>" id='<%= "layoutTemplateId" + i %>' label='<%= LanguageUtil.get(request, "layout-template-" + layoutTemplateName, layoutTemplateName) %>' name="preferences--layoutTemplateId--" type="radio" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
 				</td>
 
 				<c:if test="<%= (i % CELLS_PER_ROW) == (CELLS_PER_ROW - 1) %>">
@@ -70,12 +70,10 @@
 
 	<%
 	boolean portletDecorateDefault = GetterUtil.getBoolean(themeDisplay.getThemeSetting("portlet-setup-show-borders-default"), true);
-
-	boolean portletSetupShowBorders = GetterUtil.getBoolean(portletPreferences.getValue("portletSetupShowBorders", String.valueOf(portletDecorateDefault)));
 	%>
 
 	<aui:fieldset label="display-settings">
-		<aui:input label="show-borders" name="preferences--portletSetupShowBorders--" type="checkbox" value="<%= portletSetupShowBorders %>" />
+		<aui:input label="show-borders" name="preferences--portletSetupShowBorders--" type="checkbox" value='<%= GetterUtil.getBoolean(portletPreferences.getValue("portletSetupShowBorders", String.valueOf(portletDecorateDefault))) %>' />
 	</aui:fieldset>
 
 	<aui:button-row>

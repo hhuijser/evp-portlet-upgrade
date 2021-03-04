@@ -22,7 +22,7 @@
 
 	<liferay-ui:app-view-entry
 		displayStyle="icon"
-		showCheckbox="<%= Boolean.FALSE %>"
+		showCheckbox="<%= false %>"
 		thumbnailSrc="<%= thumbnailSrc %>"
 		thumbnailStyle="<%= DLUtil.getThumbnailStyle() %>"
 		title="{title}"
@@ -31,7 +31,7 @@
 
 	<liferay-ui:app-view-entry
 		displayStyle="descriptive"
-		showCheckbox="<%= Boolean.FALSE %>"
+		showCheckbox="<%= false %>"
 		thumbnailSrc="<%= thumbnailSrc %>"
 		thumbnailStyle="<%= DLUtil.getThumbnailStyle() %>"
 		title="{title}"

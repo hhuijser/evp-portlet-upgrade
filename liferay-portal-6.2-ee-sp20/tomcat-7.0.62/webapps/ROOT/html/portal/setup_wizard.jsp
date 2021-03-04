@@ -36,7 +36,6 @@
 						<%= PropsValues.COMPANY_DEFAULT_NAME %>
 					</span>
 				</span>
-
 				<span class="configuration-title" title="<liferay-ui:message key="basic-configuration" />">
 					<i class="icon-cog"></i>
 
@@ -362,12 +361,10 @@
 
 					<%
 					SetupWizardUtil.setSetupFinished(true);
-
-					boolean propertiesFileCreated = GetterUtil.getBoolean((Boolean)session.getAttribute(WebKeys.SETUP_WIZARD_PROPERTIES_FILE_CREATED));
 					%>
 
 					<c:choose>
-						<c:when test="<%= propertiesFileCreated %>">
+						<c:when test="<%= GetterUtil.getBoolean((Boolean)session.getAttribute(WebKeys.SETUP_WIZARD_PROPERTIES_FILE_CREATED)) %>">
 
 							<%
 							PortletURL loginURL = new PortletURLImpl(request, PortletKeys.LOGIN, plid, PortletRequest.ACTION_PHASE);

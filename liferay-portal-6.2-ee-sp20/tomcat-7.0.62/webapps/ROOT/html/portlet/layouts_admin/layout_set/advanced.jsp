@@ -22,8 +22,6 @@ boolean privateLayout = ((Boolean)request.getAttribute("edit_pages.jsp-privateLa
 UnicodeProperties groupTypeSettings = (UnicodeProperties)request.getAttribute("edit_pages.jsp-groupTypeSettings");
 
 Group guestGroup = GroupLocalServiceUtil.getGroup(company.getCompanyId(), GroupConstants.GUEST);
-
-boolean mergeGuestPublicPages = PropertiesParamUtil.getBoolean(groupTypeSettings, request, "mergeGuestPublicPages");
 %>
 
 <liferay-ui:error-marker key="errorSection" value="advanced" />
@@ -33,13 +31,7 @@ boolean mergeGuestPublicPages = PropertiesParamUtil.getBoolean(groupTypeSettings
 <aui:fieldset>
 	<c:choose>
 		<c:when test="<%= !privateLayout && (liveGroup.getGroupId() != guestGroup.getGroupId()) %>">
-
-			<%
-			String taglibLabel = LanguageUtil.format(pageContext, "merge-x-public-pages", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false);
-			String taglibHelpMessage = LanguageUtil.format(pageContext, "you-can-configure-the-top-level-pages-of-this-public-site-to-merge-with-the-top-level-pages-of-the-public-x-site", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false);
-			%>
-
-			<aui:input helpMessage="<%= taglibHelpMessage %>" label="<%= taglibLabel %>" name="mergeGuestPublicPages" type="checkbox" value="<%= mergeGuestPublicPages %>" />
+			<aui:input helpMessage='<%= LanguageUtil.format(pageContext, "you-can-configure-the-top-level-pages-of-this-public-site-to-merge-with-the-top-level-pages-of-the-public-x-site", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false) %>' label='<%= LanguageUtil.format(pageContext, "merge-x-public-pages", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false) %>' name="mergeGuestPublicPages" type="checkbox" value='<%= PropertiesParamUtil.getBoolean(groupTypeSettings, request, "mergeGuestPublicPages") %>' />
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-info">

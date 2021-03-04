@@ -24,9 +24,7 @@ String message = GetterUtil.getString((String)request.getAttribute("liferay-ui:a
 PortletURL portletURL = (PortletURL)request.getAttribute("liferay-ui:asset-tags-summary:portletURL");
 
 if (assetTagNames.length == 0) {
-	List<AssetTag> tags = AssetTagServiceUtil.getTags(className, classPK);
-
-	assetTagNames = StringUtil.split(ListUtil.toString(tags, AssetTag.NAME_ACCESSOR));
+	assetTagNames = StringUtil.split(ListUtil.toString(AssetTagServiceUtil.getTags(className, classPK), AssetTag.NAME_ACCESSOR));
 }
 %>
 

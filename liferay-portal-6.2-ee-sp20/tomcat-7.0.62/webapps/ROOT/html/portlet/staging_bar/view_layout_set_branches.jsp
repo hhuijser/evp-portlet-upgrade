@@ -85,7 +85,6 @@ request.setAttribute("view_layout_set_branches.jsp-currentLayoutSetBranchId", St
 			keyProperty="layoutSetBranchId"
 			modelVar="curLayoutSetBranch"
 		>
-
 			<liferay-ui:search-container-column-text
 				buffer="buffer"
 				name="name"

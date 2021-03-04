@@ -23,16 +23,20 @@ http://www.mozilla.org/MPL/MPL-1.1.html
 This is the "File Uploader" for Python
 
 """
+
+import cgi
+import config as Config
 import os
 
-from fckutil import *
 from fckcommands import * 	# default command's implementation
-from fckconnector import FCKeditorConnectorBase # import base connector
-import config as Config
 
-class FCKeditorQuickUpload(	FCKeditorConnectorBase,
-							UploadFileCommandMixin,
-							BaseHttpMixin, BaseHtmlMixin):
+from fckconnector import FCKeditorConnectorBase # import base connector
+
+from fckutil import *
+
+class FCKeditorQuickUpload(FCKeditorConnectorBase, UploadFileCommandMixin,
+	BaseHttpMixin, BaseHtmlMixin):
+
 	def doResponse(self):
 		"Main function. Process the request, set headers and return a string as response."
 		# Check if this connector is disabled
@@ -84,5 +88,4 @@ if __name__ == '__main__':
 	except:
 		print "Content-Type: text/plain"
 		print
-		import cgi
 		cgi.print_exception()

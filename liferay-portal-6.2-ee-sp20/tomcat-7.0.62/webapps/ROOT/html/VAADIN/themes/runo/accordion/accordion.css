@@ -1,19 +1,19 @@
 .v-accordion-item-caption {
-	height: 31px;
 	background: #edf0f0 url(img/bg.png);
-	font-size: 15px;
-	color: #656d73;
 	border: none;
 	border-top: 1px solid #c8cccd;
+	color: #656d73;
+	font-size: 15px;
+	height: 31px;
 }
 .v-accordion-item-caption .v-caption {
-	padding: 7px 0 6px 31px;
 	background: transparent url(img/collapsed-icon.png) no-repeat 18px 50%;
+	padding: 7px 0 6px 31px;
 }
 .v-accordion-item-open .v-accordion-item-caption {
-	color: #3b4b57;
 	background: #d5dee2 url(img/selected-bg.png);
 	border-bottom: 1px solid #b4b9ba;
+	color: #3b4b57;
 	text-shadow: 0 1px 0 #fff;
 }
 .v-accordion-item-open .v-accordion-item-caption .v-caption {
@@ -27,22 +27,22 @@
 	color: #3b4b57;
 }
 
-/* Light style */
+/* ---------- Light style ---------- */
 .v-accordion-light .v-accordion-item-caption {
-	height: 24px;
-	padding: 3px 2px;
 	background: transparent;
 	border: none;
+	height: 24px;
+	padding: 3px 2px;
 }
 .v-accordion-light .v-accordion-item-caption .v-caption {
-	padding: 4px 15px 4px 28px;
-	font-size: 12px;
-	line-height: 16px;
-	height: 16px;
-	font-weight: bold;
 	border: 1px solid #c8cccd;
+	font-size: 12px;
+	font-weight: bold;
+	height: 16px;
+	line-height: 16px;
+	padding: 4px 15px 4px 28px;
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
-	border-radius: 12px;
 	background-position: 15px 50%;
+	border-radius: 12px;
 }

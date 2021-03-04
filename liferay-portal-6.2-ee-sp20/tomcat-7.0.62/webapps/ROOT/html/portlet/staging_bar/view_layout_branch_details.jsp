@@ -20,7 +20,6 @@
 LayoutBranch layoutBranch = (LayoutBranch)request.getAttribute("view.jsp-layoutBranch");
 LayoutRevision layoutRevision = (LayoutRevision)request.getAttribute("view.jsp-layoutRevision");
 LayoutSetBranch layoutSetBranch = (LayoutSetBranch)request.getAttribute("view.jsp-layoutSetBranch");
-String stagingFriendlyURL = (String)request.getAttribute("view.jsp-stagingFriendlyURL");
 %>
 
 <div class="page-variations-options span5">
@@ -52,7 +51,7 @@ String stagingFriendlyURL = (String)request.getAttribute("view.jsp-stagingFriend
 							<portlet:actionURL var="layoutBranchURL">
 								<portlet:param name="struts_action" value="/dockbar/edit_layouts" />
 								<portlet:param name="<%= Constants.CMD %>" value="select_layout_branch" />
-								<portlet:param name="redirect" value="<%= stagingFriendlyURL %>" />
+								<portlet:param name="redirect" value='<%= (String)request.getAttribute("view.jsp-stagingFriendlyURL") %>' />
 								<portlet:param name="groupId" value="<%= String.valueOf(curLayoutBranch.getGroupId()) %>" />
 								<portlet:param name="layoutBranchId" value="<%= String.valueOf(curLayoutBranch.getLayoutBranchId()) %>" />
 								<portlet:param name="layoutSetBranchId" value="<%= String.valueOf(curLayoutBranch.getLayoutSetBranchId()) %>" />

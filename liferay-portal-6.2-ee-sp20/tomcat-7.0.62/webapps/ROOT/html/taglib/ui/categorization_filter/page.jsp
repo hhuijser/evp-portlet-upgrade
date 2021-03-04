@@ -93,7 +93,7 @@ if (assetCategoryId != 0) {
 		PortalUtil.addPageKeywords(assetTagName, request);
 		%>
 
-		<h2 class="taglib-categorization-filter entry-title">
+		<h2 class="entry-title taglib-categorization-filter">
 			<liferay-ui:message arguments="<%= new String[] {assetVocabularyTitle, removeCategory, removeTag} %>" key='<%= assetType.concat("-with-x-x-and-tag-x") %>' translateArguments="<%= false %>" />
 		</h2>
 	</c:when>
@@ -105,7 +105,7 @@ if (assetCategoryId != 0) {
 		PortalUtil.addPageKeywords(assetCategoryTitle, request);
 		%>
 
-		<h2 class="taglib-categorization-filter entry-title">
+		<h2 class="entry-title taglib-categorization-filter">
 			<liferay-ui:message arguments="<%= new String[] {assetVocabularyTitle, removeCategory} %>" key='<%= assetType.concat("-with-x-x") %>' translateArguments="<%= false %>" />
 		</h2>
 	</c:when>
@@ -117,7 +117,7 @@ if (assetCategoryId != 0) {
 		PortalUtil.addPageKeywords(assetTagName, request);
 		%>
 
-		<h2 class="taglib-categorization-filter entry-title">
+		<h2 class="entry-title taglib-categorization-filter">
 			<liferay-ui:message arguments="<%= removeTag %>" key='<%= assetType.concat("-with-tag-x") %>' translateArguments="<%= false %>" />
 		</h2>
 	</c:when>

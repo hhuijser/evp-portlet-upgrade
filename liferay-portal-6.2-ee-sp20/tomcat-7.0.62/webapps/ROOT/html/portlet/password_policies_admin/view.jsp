@@ -75,9 +75,7 @@ boolean passwordPolicyEnabled = LDAPSettingsUtil.isPasswordPolicyEnabled(company
 		<%
 		PasswordPolicyDisplayTerms searchTerms = (PasswordPolicyDisplayTerms)searchContainer.getSearchTerms();
 
-		int total = PasswordPolicyServiceUtil.searchCount(company.getCompanyId(), searchTerms.getName());
-
-		searchContainer.setTotal(total);
+		searchContainer.setTotal(PasswordPolicyServiceUtil.searchCount(company.getCompanyId(), searchTerms.getName()));
 
 		List results = PasswordPolicyServiceUtil.search(company.getCompanyId(), searchTerms.getName(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 

@@ -47,10 +47,10 @@ code
 	color: #fff;
 	font-size: 10px;
 	font-weight: bold;
+	margin: 0 0 0 3px;
 	padding: 1px 4px;
 	text-shadow: 0 1px 0 #C97626;
 	text-transform: uppercase;
-	margin: 0 0 0 3px;
 
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -72,9 +72,9 @@ h1.samples
 
 h1.samples a
 {
+	border-bottom: 1px dotted #0782C1;
 	color: #0782C1;
 	text-decoration: none;
-	border-bottom: 1px dotted #0782C1;
 }
 
 .samples a:hover
@@ -141,7 +141,7 @@ pre.samples
 	overflow: auto;
 	padding: 0.25em;
 	white-space: pre-wrap; /* CSS 2.1 */
-	word-wrap: break-word; /* IE7 */
+	word-wrap: break-word; /* ---------- IE7 ---------- */
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	-webkit-tab-size: 4;
@@ -156,16 +156,16 @@ pre.samples
 
 #footer hr
 {
-	margin: 10px 0 15px 0;
-	height: 1px;
 	border: solid 1px gray;
 	border-bottom: none;
+	height: 1px;
+	margin: 10px 0 15px 0;
 }
 
 #footer p
 {
-	margin: 0 10px 10px 10px;
 	float: left;
+	margin: 0 10px 10px 10px;
 }
 
 #footer #copy
@@ -175,22 +175,22 @@ pre.samples
 
 #outputSample
 {
-	width: 100%;
 	table-layout: fixed;
+	width: 100%;
 }
 
 #outputSample thead th
 {
-	color: #dddddd;
 	background-color: #999999;
+	color: #dddddd;
 	padding: 4px;
 	white-space: nowrap;
 }
 
 #outputSample tbody th
 {
-	vertical-align: top;
 	text-align: left;
+	vertical-align: top;
 }
 
 #outputSample pre
@@ -203,8 +203,8 @@ pre.samples
 {
 	border: 1px dotted #B7B7B7;
 	margin-bottom: 10px;
-	padding: 10px 10px 0;
 	overflow: hidden;
+	padding: 10px 10px 0;
 }
 
 label
@@ -218,7 +218,7 @@ label
  *	plus cke_editable_(inline|themed) depending on the editor type.
  */
 
-/* Style a bit the inline editables. */
+/* ---------- Style a bit the inline editables. ---------- */
 .cke_editable.cke_editable_inline
 {
 	cursor: pointer;
@@ -228,10 +228,10 @@ label
    added to it, so we can style it differently. */
 .cke_editable.cke_editable_inline.cke_focus
 {
-	box-shadow: inset 0px 0px 20px 3px #ddd, inset 0 0 1px #000;
-	outline: none;
 	background: #eee;
+	box-shadow: inset 0px 0px 20px 3px #ddd, inset 0 0 1px #000;
 	cursor: text;
+	outline: none;
 }
 
 /* Avoid pre-formatted overflows inline editable. */
@@ -275,8 +275,8 @@ dl.samples
 dl.samples > dt
 {
 	display: list-item;
-	list-style-type: disc;
 	list-style-position: outside;
+	list-style-type: disc;
 	margin: 0 0 3px;
 }
 dl.samples > dd
@@ -288,34 +288,34 @@ dl.samples > dd
     color: #ff0000;
 	background-color: #FFCCBA;
     border: 2px dotted #ff0000;
-	padding: 15px 10px;
 	margin: 10px 0;
+	padding: 15px 10px;
 }
 
-/* Used on inline samples */
+/* ---------- Used on inline samples ---------- */
 
 blockquote
 {
-	font-style: italic;
-	font-family: Georgia, Times, "Times New Roman", serif;
-	padding: 2px 0;
-	border-style: solid;
 	border-color: #ccc;
+	border-style: solid;
 	border-width: 0;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-style: italic;
+	padding: 2px 0;
 }
 
 .cke_contents_ltr blockquote
 {
+	border-left-width: 5px;
 	padding-left: 20px;
 	padding-right: 8px;
-	border-left-width: 5px;
 }
 
 .cke_contents_rtl blockquote
 {
+	border-right-width: 5px;
 	padding-left: 8px;
 	padding-right: 20px;
-	border-right-width: 5px;
 }
 
 img.right {

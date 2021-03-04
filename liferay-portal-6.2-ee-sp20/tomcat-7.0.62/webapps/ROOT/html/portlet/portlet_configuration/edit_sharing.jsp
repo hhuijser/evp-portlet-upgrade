@@ -123,40 +123,25 @@ String widgetURL = PortalUtil.getWidgetURL(portlet, themeDisplay);
 				</c:if>
 			</c:when>
 			<c:when test='<%= tabs2.equals("opensocial-gadget") %>'>
-
-				<%
-				boolean iGoogleShowAddAppLink = PrefsParamUtil.getBoolean(portletPreferences, request, "lfrIgoogleShowAddAppLink");
-				%>
-
 				<div class="alert alert-info">
 					<liferay-ui:message key="use-the-opensocial-gadget-url-to-create-an-opensocial-gadget" />
 				</div>
 
 				<aui:input name="opensocialGadgetURL" type="resource" value="<%= PortalUtil.getGoogleGadgetURL(portlet, themeDisplay) %>" />
 
-				<aui:input label='<%= LanguageUtil.format(pageContext, "allow-users-to-add-x-to-igoogle", HtmlUtil.escape(portletDisplay.getTitle()), false) %>' name="iGoogleShowAddAppLink" type="checkbox" value="<%= iGoogleShowAddAppLink %>" />
+				<aui:input label='<%= LanguageUtil.format(pageContext, "allow-users-to-add-x-to-igoogle", HtmlUtil.escape(portletDisplay.getTitle()), false) %>' name="iGoogleShowAddAppLink" type="checkbox" value='<%= PrefsParamUtil.getBoolean(portletPreferences, request, "lfrIgoogleShowAddAppLink") %>' />
 			</c:when>
 			<c:when test='<%= tabs2.equals("netvibes") %>'>
-
-				<%
-				boolean netvibesShowAddAppLink = PrefsParamUtil.getBoolean(portletPreferences, request, "lfrNetvibesShowAddAppLink");
-				%>
-
 				<div class="alert alert-info">
 					<liferay-ui:message key="use-the-netvibes-widget-url-to-create-a-netvibes-widget" />
 				</div>
 
 				<aui:input name="netvibesWidgetURL" type="resource" value="<%= PortalUtil.getNetvibesURL(portlet, themeDisplay) %>" />
 
-				<aui:input label='<%= LanguageUtil.format(pageContext, "allow-users-to-add-x-to-netvibes-pages", HtmlUtil.escape(portletDisplay.getTitle()), false) %>' name="netvibesShowAddAppLink" type="checkbox" value="<%= netvibesShowAddAppLink %>" />
+				<aui:input label='<%= LanguageUtil.format(pageContext, "allow-users-to-add-x-to-netvibes-pages", HtmlUtil.escape(portletDisplay.getTitle()), false) %>' name="netvibesShowAddAppLink" type="checkbox" value='<%= PrefsParamUtil.getBoolean(portletPreferences, request, "lfrNetvibesShowAddAppLink") %>' />
 			</c:when>
 			<c:when test='<%= tabs2.equals("friends") %>'>
-
-				<%
-				boolean appShowShareWithFriendsLink = GetterUtil.getBoolean(portletPreferences.getValue("lfrAppShowShareWithFriendsLink", null));
-				%>
-
-				<aui:input label='<%= LanguageUtil.format(pageContext, "allow-users-to-share-x-with-friends", HtmlUtil.escape(portletDisplay.getTitle()), false) %>' name="appShowShareWithFriendsLink" type="checkbox" value="<%= appShowShareWithFriendsLink %>" />
+				<aui:input label='<%= LanguageUtil.format(pageContext, "allow-users-to-share-x-with-friends", HtmlUtil.escape(portletDisplay.getTitle()), false) %>' name="appShowShareWithFriendsLink" type="checkbox" value='<%= GetterUtil.getBoolean(portletPreferences.getValue("lfrAppShowShareWithFriendsLink", null)) %>' />
 			</c:when>
 		</c:choose>
 	</aui:fieldset>

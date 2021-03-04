@@ -8,14 +8,14 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
@@ -24,8 +24,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="robots" content="noindex, nofollow" />
+
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta content="noindex, nofollow" name="robots" />
+
 		<script type="text/javascript">
 // <![CDATA[
 
@@ -264,7 +266,7 @@ var Throbber = function()
 			throbberParent.style.top = parseInt( y, 10 ) + 'px' ;
 
 			// Show it.
-			throbberParent.style.visibility = ''  ;
+			throbberParent.style.visibility = '' ;
 
 			// Hide tabs and buttons:
 			$( 'Tabs' ).style.visibility = 'hidden' ;
@@ -462,7 +464,7 @@ var Tabs = function()
 
 		var eTabsRow = $( 'Tabs' ) ;
 
-		var oCell = eTabsRow.insertCell(  eTabsRow.cells.length - 1 ) ;
+		var oCell = eTabsRow.insertCell( eTabsRow.cells.length - 1 ) ;
 		oCell.noWrap = true ;
 
 		var oDiv = document.createElement( 'DIV' ) ;
@@ -754,18 +756,21 @@ var onReadyRegister = function()
 // ]]>
 		</script>
 	</head>
-	<body onload="Init();" class="PopupBody">
+
+	<body class="PopupBody" onload="Init();">
 		<div class="contents" id="contents">
 			<div id="header">
-				<div id="TitleArea" class="PopupTitle PopupTitleBorder">
+				<div class="PopupTitle PopupTitleBorder" id="TitleArea">
 					<script type="text/javascript">
 // <![CDATA[
 document.write( Args().Title ) ;
 // ]]>
 					</script>
+
 					<div id="closeButton" onclick="Cancel();"></div>
 				</div>
-				<div id="TabsRow" class="PopupTabArea" style="display: none">
+
+				<div class="PopupTabArea" id="TabsRow" style="display: none">
 					<table border="0" cellpadding="0" cellspacing="0" width="100%">
 						<tr id="Tabs">
 							<td class="PopupTabEmptyArea">&nbsp;</td>
@@ -774,20 +779,22 @@ document.write( Args().Title ) ;
 					</table>
 				</div>
 			</div>
+
 			<div id="innerContents"></div>
-			<div id="PopupButtons" class="PopupButtons">
+			<div class="PopupButtons" id="PopupButtons">
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="100%">&nbsp;</td>
 						<td nowrap="nowrap">
-							<input id="btnOk" style="visibility: hidden;" type="button" value="Ok" class="Button" onclick="Ok();" fckLang="DlgBtnOK" />
+							<input class="Button" fckLang="DlgBtnOK" id="btnOk" onclick="Ok();" style="visibility: hidden;" type="button" value="Ok" />
 							&nbsp;
-							<input id="btnCancel" type="button" value="Cancel" class="Button" onclick="Cancel();" fckLang="DlgBtnCancel" />
+							<input class="Button" fckLang="DlgBtnCancel" id="btnCancel" onclick="Cancel();" type="button" value="Cancel" />
 						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
+
 		<div class="tl"></div>
 		<div class="tc"></div>
 		<div class="tr"></div>
@@ -798,6 +805,7 @@ document.write( Args().Title ) ;
 		<div class="br"></div>
 		<div class="cover" id="cover" style="display:none"></div>
 		<div id="throbberBlock" style="position: absolute; visibility: hidden"></div>
+
 		<script type="text/javascript">
 // <![CDATA[
 			// Set the class name for language direction.

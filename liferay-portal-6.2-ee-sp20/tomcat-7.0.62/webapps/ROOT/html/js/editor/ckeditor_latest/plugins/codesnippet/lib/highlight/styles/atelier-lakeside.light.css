@@ -3,13 +3,13 @@
 /* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
 /* https://github.com/jmblog/color-themes-for-highlightjs */
 
-/* Atelier Lakeside Light Comment */
+/* ---------- Atelier lakeside light comment ---------- */
 .hljs-comment,
 .hljs-title {
   color: #5a7b8c;
 }
 
-/* Atelier Lakeside Light Red */
+/* ---------- Atelier lakeside light red ---------- */
 .hljs-variable,
 .hljs-attribute,
 .hljs-tag,
@@ -25,7 +25,7 @@
   color: #d22d72;
 }
 
-/* Atelier Lakeside Light Orange */
+/* ---------- Atelier lakeside light orange ---------- */
 .hljs-number,
 .hljs-preprocessor,
 .hljs-pragma,
@@ -36,13 +36,13 @@
   color: #935c25;
 }
 
-/* Atelier Lakeside Light Yellow */
+/* ---------- Atelier lakeside light yellow ---------- */
 .hljs-ruby .hljs-class .hljs-title,
 .css .hljs-rules .hljs-attribute {
   color: #8a8a0f;
 }
 
-/* Atelier Lakeside Light Green */
+/* ---------- Atelier lakeside light green ---------- */
 .hljs-string,
 .hljs-value,
 .hljs-inheritance,
@@ -52,12 +52,12 @@
   color: #568c3b;
 }
 
-/* Atelier Lakeside Light Aqua */
+/* ---------- Atelier lakeside light aqua ---------- */
 .css .hljs-hexcolor {
   color: #2d8f6f;
 }
 
-/* Atelier Lakeside Light Blue */
+/* ---------- Atelier lakeside light blue ---------- */
 .hljs-function,
 .python .hljs-decorator,
 .python .hljs-title,
@@ -69,7 +69,7 @@
   color: #257fad;
 }
 
-/* Atelier Lakeside Light Purple */
+/* ---------- Atelier lakeside light purple ---------- */
 .hljs-keyword,
 .javascript .hljs-function {
   color: #5d5db1;

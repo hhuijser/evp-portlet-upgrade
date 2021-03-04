@@ -87,11 +87,11 @@ if (showLinkTitle) {
 				<img alt="" border="no" class="img-polaroid" src="<%= HtmlUtil.escapeAttribute(thumbnailSrc) %>" style="<%= thumbnailStyle %>" />
 
 				<c:if test="<%= shortcut %>">
-					<img alt="<liferay-ui:message key="shortcut" />" class="shortcut-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
+					<img alt="<liferay-ui:message key="shortcut" />" class="img-polaroid shortcut-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
 				</c:if>
 
 				<c:if test="<%= locked %>">
-					<img alt="<liferay-ui:message key="locked" />" class="locked-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
+					<img alt="<liferay-ui:message key="locked" />" class="img-polaroid locked-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
 				</c:if>
 
 				<c:if test="<%= !folder && ((status != WorkflowConstants.STATUS_ANY) && (status != WorkflowConstants.STATUS_APPROVED)) %>">
@@ -103,7 +103,6 @@ if (showLinkTitle) {
 				<span class="entry-title-text">
 					<%= HtmlUtil.escape(shortTitle) %>
 				</span>
-
 				<span class="entry-result-icon"></span>
 			</span>
 
@@ -132,11 +131,11 @@ if (showLinkTitle) {
 				<img alt="" border="no" class="img-polaroid" src="<%= HtmlUtil.escapeAttribute(thumbnailSrc) %>" style="<%= thumbnailStyle %>" />
 
 				<c:if test="<%= shortcut %>">
-					<img alt="<liferay-ui:message key="shortcut" />" class="shortcut-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
+					<img alt="<liferay-ui:message key="shortcut" />" class="img-polaroid shortcut-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
 				</c:if>
 
 				<c:if test="<%= locked %>">
-					<img alt="<liferay-ui:message key="locked" />" class="locked-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
+					<img alt="<liferay-ui:message key="locked" />" class="img-polaroid locked-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
 				</c:if>
 
 				<c:if test="<%= !folder && (status != WorkflowConstants.STATUS_ANY) && (status != WorkflowConstants.STATUS_APPROVED) %>">
@@ -149,7 +148,6 @@ if (showLinkTitle) {
 					<span class="entry-title-text">
 						<%= HtmlUtil.escape(title) %>
 					</span>
-
 					<span class="entry-result-icon"></span>
 				</span>
 
@@ -171,7 +169,6 @@ if (showLinkTitle) {
 								<dt>
 									<liferay-ui:message key="site" />:
 								</dt>
-
 								<dd>
 
 									<%
@@ -195,7 +192,6 @@ if (showLinkTitle) {
 								<dt>
 									<liferay-ui:message key="scope" />:
 								</dt>
-
 								<dd>
 									<%= group.getDescriptiveName(locale) %>
 								</dd>
@@ -206,7 +202,6 @@ if (showLinkTitle) {
 							<dt>
 								<liferay-ui:message key='<%= Validator.isNotNull(version) ? "version" : "status" %>' />:
 							</dt>
-
 							<dd>
 								<c:if test="<%= Validator.isNotNull(version) %>">
 									<%= HtmlUtil.escape(version) %>
@@ -242,9 +237,7 @@ if (showLinkTitle) {
 								<liferay-ui:message key="display-date" />:
 							</dt>
 							<dd>
-
 								<%= HtmlUtil.escape(dateFormatDateTime.format(displayDate)) %>
-
 							</dd>
 						</c:if>
 
@@ -253,9 +246,7 @@ if (showLinkTitle) {
 								<liferay-ui:message key="expiration-date" />:
 							</dt>
 							<dd>
-
 								<%= HtmlUtil.escape(dateFormatDateTime.format(expirationDate)) %>
-
 							</dd>
 						</c:if>
 
@@ -264,9 +255,7 @@ if (showLinkTitle) {
 								<liferay-ui:message key="review-date" />:
 							</dt>
 							<dd>
-
 								<%= HtmlUtil.escape(dateFormatDateTime.format(reviewDate)) %>
-
 							</dd>
 						</c:if>
 					</dl>
@@ -295,23 +284,19 @@ if (showLinkTitle) {
 								<liferay-ui:message key="latest-aproved-version" />
 							</dt>
 							<dd>
-
 								<%= HtmlUtil.escape(latestApprovedVersion) %>
-
 							</dd>
-
 							<dt>
 								<liferay-ui:message key="latest-aproved-version-author" />:
 							</dt>
 							<dd>
-
 								<%= HtmlUtil.escape(latestApprovedVersionAuthor) %>
-
 							</dd>
 						</dl>
 					</c:if>
 				</small>
 			</div>
+
 			<c:choose>
 				<c:when test="<%= Validator.isNull(url) %>">
 					</span>

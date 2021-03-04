@@ -86,7 +86,7 @@ String discountType = BeanParamUtil.getString(coupon, request, "discountType");
 
 		<aui:input dateTogglerCheckboxLabel="never-expire" disabled="<%= neverExpire %>" label="expiration-date" name="endDate" />
 
-		<aui:input name="active" value="<%= Boolean.TRUE %>" />
+		<aui:input name="active" value="<%= true %>" />
 	</aui:fieldset>
 
 	<aui:button-row>

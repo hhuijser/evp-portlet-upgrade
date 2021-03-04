@@ -1,15 +1,15 @@
-/* Tomorrow Night Blue Theme */
+/* ---------- Tomorrow night blue theme ---------- */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
-/* Tomorrow Comment */
+/* ---------- Tomorrow comment ---------- */
 .hljs-comment,
 .hljs-title {
   color: #7285b7;
 }
 
-/* Tomorrow Red */
+/* ---------- Tomorrow red ---------- */
 .hljs-variable,
 .hljs-attribute,
 .hljs-tag,
@@ -25,7 +25,7 @@
   color: #ff9da4;
 }
 
-/* Tomorrow Orange */
+/* ---------- Tomorrow orange ---------- */
 .hljs-number,
 .hljs-preprocessor,
 .hljs-pragma,
@@ -36,13 +36,13 @@
   color: #ffc58f;
 }
 
-/* Tomorrow Yellow */
+/* ---------- Tomorrow yellow ---------- */
 .ruby .hljs-class .hljs-title,
 .css .hljs-rules .hljs-attribute {
   color: #ffeead;
 }
 
-/* Tomorrow Green */
+/* ---------- Tomorrow green ---------- */
 .hljs-string,
 .hljs-value,
 .hljs-inheritance,
@@ -52,12 +52,12 @@
   color: #d1f1a9;
 }
 
-/* Tomorrow Aqua */
+/* ---------- Tomorrow aqua ---------- */
 .css .hljs-hexcolor {
   color: #99ffff;
 }
 
-/* Tomorrow Blue */
+/* ---------- Tomorrow blue ---------- */
 .hljs-function,
 .python .hljs-decorator,
 .python .hljs-title,
@@ -69,7 +69,7 @@
   color: #bbdaff;
 }
 
-/* Tomorrow Purple */
+/* ---------- Tomorrow purple ---------- */
 .hljs-keyword,
 .javascript .hljs-function {
   color: #ebbbff;
