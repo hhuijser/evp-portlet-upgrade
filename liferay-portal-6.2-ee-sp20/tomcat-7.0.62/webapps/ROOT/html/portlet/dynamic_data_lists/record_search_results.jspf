@@ -33,8 +33,8 @@ if (Validator.isNull(displayTerms.getKeywords())) {
 else {
 	SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-	searchContext.setAttribute("recordSetId", recordSet.getRecordSetId());
 	searchContext.setAttribute(Field.STATUS, status);
+	searchContext.setAttribute("recordSetId", recordSet.getRecordSetId());
 	searchContext.setEnd(searchContainer.getEnd());
 	searchContext.setKeywords(displayTerms.getKeywords());
 	searchContext.setStart(searchContainer.getStart());

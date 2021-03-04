@@ -1,18 +1,18 @@
 .v-accordion {
-	position: relative;
 	outline: none;
 	overflow: hidden;
-	text-align: left /* Force default alignment */
+	position: relative;
+	text-align: left /* ---------- Force default alignment ---------- */
 }
 .v-accordion-item {
 	position: relative;
 	zoom: 1;
 }
 .v-accordion-item-caption {
-	overflow: hidden;
-	white-space: nowrap;
 	background: #eee;
 	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	white-space: nowrap;
 }
 .v-accordion-item-caption .v-caption {
 	cursor: pointer;

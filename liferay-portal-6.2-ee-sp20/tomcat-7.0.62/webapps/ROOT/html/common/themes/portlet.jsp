@@ -69,17 +69,13 @@ portletDisplay.setTitle(portletTitle);
 
 // Portlet description
 
-String portletDescription = PortalUtil.getPortletDescription(portlet, application, locale);
-
-portletDisplay.setDescription(portletDescription);
+portletDisplay.setDescription(PortalUtil.getPortletDescription(portlet, application, locale));
 
 Group group = layout.getGroup();
-
-boolean wsrp = ParamUtil.getBoolean(PortalUtil.getOriginalServletRequest(request), "wsrp");
 %>
 
 <c:choose>
-	<c:when test="<%= wsrp %>">
+	<c:when test='<%= ParamUtil.getBoolean(PortalUtil.getOriginalServletRequest(request), "wsrp") %>'>
 		<liferay-wsrp-portlet>
 			<%@ include file="/html/common/themes/portlet_content_wrapper.jspf" %>
 		</liferay-wsrp-portlet>

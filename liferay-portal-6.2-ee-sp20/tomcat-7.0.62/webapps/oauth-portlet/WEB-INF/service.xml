@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.liferay.oauth" auto-namespace-tables="true">
+<service-builder auto-namespace-tables="true" package-path="com.liferay.oauth">
 	<author>Ivica Cardic</author>
 	<namespace>OAuth</namespace>
-	<entity name="OAuthApplication" local-service="true" remote-service="true">
+	<entity local-service="true" name="OAuthApplication" remote-service="true">
 		<!-- PK fields -->
 		<column name="oAuthApplicationId" type="long" primary="true"></column>
 		<!-- Audit fields -->
@@ -44,7 +44,7 @@
 		<!-- References -->
 		<reference package-path="com.liferay.portal" entity="Image"></reference>
 	</entity>
-	<entity name="OAuthUser" local-service="true" remote-service="true">
+	<entity local-service="true" name="OAuthUser" remote-service="true">
 		<!-- PK fields -->
 		<column name="oAuthUserId" type="long" primary="true"></column>
 		<!-- Audit fields -->

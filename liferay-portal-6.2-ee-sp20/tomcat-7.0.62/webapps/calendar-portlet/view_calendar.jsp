@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -91,7 +91,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 					<div class="calendar-portlet-list-header toggler-header-expanded">
 						<span class="calendar-portlet-list-arrow"></span>
 
-						<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= new String[] {groupCalendarResource.getName(locale)} %>" key="x-calendars" /></span>
+						<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= groupCalendarResource.getName(locale) %>" key="x-calendars" /></span>
 
 						<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
 							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"><i class="icon-caret-down"></i></span>
@@ -149,7 +149,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 				<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
 
-				<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
+				<liferay-util:param name="readOnly" value="<%= Boolean.FALSE.toString() %>" />
 
 				<liferay-security:permissionsURL
 					modelResource="<%= CalendarBooking.class.getName() %>"
@@ -178,7 +178,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 <%@ include file="/view_calendar_menus.jspf" %>
 
-<aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
+<aui:script use="aui-toggler,json,liferay-calendar-list,liferay-scheduler,liferay-store">
 	Liferay.CalendarUtil.USER_CLASS_NAME_ID = <%= PortalUtil.getClassNameId(User.class) %>;
 
 	<c:if test="<%= defaultCalendar != null %>">

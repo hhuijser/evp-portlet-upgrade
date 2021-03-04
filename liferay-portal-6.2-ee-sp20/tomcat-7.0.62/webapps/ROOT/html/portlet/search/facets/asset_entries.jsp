@@ -71,7 +71,7 @@ if (dataJSONObject.has("values")) {
 				</aui:script>
 			</c:if>
 
-		<%
+			<%
 			int frequency = 0;
 
 			if (termCollector != null) {
@@ -83,7 +83,7 @@ if (dataJSONObject.has("values")) {
 			}
 
 			AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetType);
-		%>
+			%>
 
 			<li class="facet-value <%= fieldParam.equals(termCollector.getTerm()) ? "active" : StringPool.BLANK %>">
 				<a data-value="<%= HtmlUtil.escapeAttribute(assetType) %>" href="javascript:;">

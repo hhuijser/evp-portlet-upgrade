@@ -42,6 +42,7 @@ String toolbarItem = ParamUtil.getString(request, "toolbarItem");
 
 			<aui:nav-item href="<%= taglibHREF %>" iconCssClass="icon-plus" label='<%= LanguageUtil.format(pageContext, "add-new-x", "definition") %>' />
 		</c:if>
+
 		<aui:nav-item href="<%= addWorkflowDefinitionURL %>" iconCssClass="icon-upload" label="upload-definition" selected='<%= toolbarItem.equals("add") %>' />
 	</aui:nav>
 </aui:nav-bar>

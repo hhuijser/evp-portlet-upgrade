@@ -39,9 +39,7 @@ if (threadView.equals(MBThreadConstants.THREAD_VIEW_COMBINATION) || threadView.e
 
 	searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, cur, delta, portletURL, null, null);
 
-	int total = MBMessageServiceUtil.getThreadMessagesCount(message.getGroupId(), category.getCategoryId(), message.getThreadId(), WorkflowConstants.STATUS_ANY);
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(MBMessageServiceUtil.getThreadMessagesCount(message.getGroupId(), category.getCategoryId(), message.getThreadId(), WorkflowConstants.STATUS_ANY));
 
 	messages = MBMessageServiceUtil.getThreadMessages(message.getGroupId(), category.getCategoryId(), message.getThreadId(), WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd());
 
@@ -67,13 +65,13 @@ for (int i = 0; i < messages.size(); i++) {
 
 	viewableThread = true;
 
+	request.setAttribute("edit-message.jsp-showDeletedAttachmentsFileEntries", Boolean.TRUE);
+	request.setAttribute("edit-message.jsp-showPermanentLink", Boolean.TRUE);
+	request.setAttribute("edit-message.jsp-showRecentPosts", Boolean.TRUE);
 	request.setAttribute("edit_message.jsp-category", category);
 	request.setAttribute("edit_message.jsp-depth", depth);
 	request.setAttribute("edit_message.jsp-editable", Boolean.TRUE);
 	request.setAttribute("edit_message.jsp-message", message);
-	request.setAttribute("edit-message.jsp-showDeletedAttachmentsFileEntries", Boolean.TRUE);
-	request.setAttribute("edit-message.jsp-showPermanentLink", Boolean.TRUE);
-	request.setAttribute("edit-message.jsp-showRecentPosts", Boolean.TRUE);
 	request.setAttribute("edit_message.jsp-thread", thread);
 %>
 

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.liferay.calendar" auto-namespace-tables="false">
+<service-builder auto-namespace-tables="false" package-path="com.liferay.calendar">
 	<author>Eduardo Lundgren</author>
 	<namespace>Calendar</namespace>
-	<entity name="Calendar" uuid="true" local-service="true" remote-service="true">
+	<entity local-service="true" name="Calendar" remote-service="true" uuid="true">
 		<!-- PK fields -->
 		<column name="calendarId" type="long" primary="true"></column>
 		<!-- Group instance -->
@@ -41,7 +41,7 @@
 			<finder-column name="defaultCalendar"></finder-column>
 		</finder>
 	</entity>
-	<entity name="CalendarBooking" uuid="true" local-service="true" remote-service="true" trash-enabled="true">
+	<entity local-service="true" name="CalendarBooking" remote-service="true" trash-enabled="true" uuid="true">
 		<!-- PK fields -->
 		<column name="calendarBookingId" type="long" primary="true"></column>
 		<!-- Group instance -->
@@ -118,7 +118,7 @@
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivityCounter"></reference>
 		<reference package-path="com.liferay.portlet.trash" entity="TrashEntry"></reference>
 	</entity>
-	<entity name="CalendarImporter" local-service="true" remote-service="false">
+	<entity local-service="true" name="CalendarImporter" remote-service="false">
 		<!-- References -->
 		<reference package-path="com.liferay.portal" entity="ClassName"></reference>
 		<reference package-path="com.liferay.portal" entity="Group"></reference>
@@ -139,7 +139,7 @@
 		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats"></reference>
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity"></reference>
 	</entity>
-	<entity name="CalendarNotificationTemplate" uuid="true" local-service="true" remote-service="true">
+	<entity local-service="true" name="CalendarNotificationTemplate" remote-service="true" uuid="true">
 		<!-- PK fields -->
 		<column name="calendarNotificationTemplateId" type="long" primary="true"></column>
 		<!-- Group instance -->
@@ -167,7 +167,7 @@
 			<finder-column name="notificationTemplateType"></finder-column>
 		</finder>
 	</entity>
-	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="true">
+	<entity local-service="true" name="CalendarResource" remote-service="true" uuid="true">
 		<!-- PK fields -->
 		<column name="calendarResourceId" type="long" primary="true"></column>
 		<!-- Group instance -->

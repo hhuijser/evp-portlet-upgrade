@@ -20,8 +20,6 @@
 String randomNamespace = PortalUtil.generateRandomKey(request, "portlet_asset_category_admin_edit_vocabulary") + StringPool.UNDERLINE;
 
 AssetVocabulary vocabulary = (AssetVocabulary)request.getAttribute(WebKeys.ASSET_VOCABULARY);
-
-long vocabularyId = BeanParamUtil.getLong(vocabulary, request, "vocabularyId");
 %>
 
 <portlet:actionURL var="editVocabularyURL">
@@ -32,7 +30,7 @@ long vocabularyId = BeanParamUtil.getLong(vocabulary, request, "vocabularyId");
 	<div class="hide lfr-message-response" id="vocabularyMessagesEdit"></div>
 
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= vocabulary == null ? Constants.ADD : Constants.UPDATE %>" />
-	<aui:input name="vocabularyId" type="hidden" value="<%= vocabularyId %>" />
+	<aui:input name="vocabularyId" type="hidden" value='<%= BeanParamUtil.getLong(vocabulary, request, "vocabularyId") %>' />
 
 	<aui:model-context bean="<%= vocabulary %>" model="<%= AssetVocabulary.class %>" />
 

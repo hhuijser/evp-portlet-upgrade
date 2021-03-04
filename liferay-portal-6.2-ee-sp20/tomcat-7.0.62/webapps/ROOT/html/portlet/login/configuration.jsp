@@ -42,7 +42,6 @@ String currentLanguageId = LanguageUtil.getLanguageId(request);
 String emailSubjectParam = emailParam + "Subject_" + currentLanguageId;
 String emailBodyParam = emailParam + "Body_" + currentLanguageId;
 
-String emailSubject = PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject);
 String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBodyParam, defaultEmailBody);
 %>
 
@@ -67,7 +66,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 
 	<c:choose>
 		<c:when test='<%= tabs1.equals("email-notifications") %>'>
-
 			<liferay-ui:tabs
 				names="general,password-changed-notification,password-reset-notification"
 				param="tabs2"
@@ -107,7 +105,7 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 
 						</aui:select>
 
-						<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= emailSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= PrefsParamUtil.getString(portletPreferences, request, emailSubjectParam, defaultEmailSubject) %>" />
 
 						<aui:field-wrapper label="body">
 							<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" />
@@ -160,7 +158,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 							<dd>
 								<liferay-ui:message key="the-browser's-remote-host" />
 							</dd>
-
 							<dt>
 								[$TO_ADDRESS$]
 							</dt>
@@ -173,7 +170,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 							<dd>
 								<liferay-ui:message key="the-name-of-the-email-recipient" />
 							</dd>
-
 							<dt>
 								[$USER_ID$]
 							</dt>

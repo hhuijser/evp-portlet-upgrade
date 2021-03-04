@@ -43,7 +43,6 @@ double trashEntriesMaxAge = PropertiesParamUtil.getInteger(groupTypeSettings, re
 			<aui:validator name="min"><%= PropsValues.TRASH_ENTRY_CHECK_INTERVAL / 1440.0 %></aui:validator>
 		</aui:input>
 	</div>
-
 </aui:fieldset>
 
 <aui:script use="aui-base">

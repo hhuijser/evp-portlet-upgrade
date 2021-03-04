@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.liferay.sync" auto-namespace-tables="false">
+<service-builder auto-namespace-tables="false" package-path="com.liferay.sync">
 	<namespace>Sync</namespace>
-	<entity name="SyncDevice" local-service="true" remote-service="true" uuid="true">
+	<entity local-service="true" name="SyncDevice" remote-service="true" uuid="true">
 		<!-- PK fields -->
 		<column name="syncDeviceId" type="long" primary="true"></column>
 		<!-- Audit fields -->
@@ -27,7 +27,7 @@
 			<finder-column name="userName" case-sensitive="false" comparator="LIKE"></finder-column>
 		</finder>
 	</entity>
-	<entity name="SyncDLFileVersionDiff" local-service="true" remote-service="false">
+	<entity local-service="true" name="SyncDLFileVersionDiff" remote-service="false">
 		<!-- PK fields -->
 		<column name="syncDLFileVersionDiffId" type="long" primary="true"></column>
 		<!-- Other fields -->
@@ -53,7 +53,7 @@
 		<reference package-path="com.liferay.portal" entity="Company"></reference>
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp"></reference>
 	</entity>
-	<entity name="SyncDLObject" local-service="true" remote-service="true">
+	<entity local-service="true" name="SyncDLObject" remote-service="true">
 		<!-- PK fields -->
 		<column name="syncDLObjectId" type="long" primary="true"></column>
 		<!-- Audit fields -->

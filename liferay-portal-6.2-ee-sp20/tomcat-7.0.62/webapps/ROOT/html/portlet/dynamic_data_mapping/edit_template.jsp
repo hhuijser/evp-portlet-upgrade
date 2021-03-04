@@ -56,7 +56,7 @@ if (Validator.isNull(script)) {
 		try {
 			script = StringUtil.read(templateHandlerClass.getClassLoader(), templateHandler.getTemplatesHelpPath(language));
 		}
-		catch(Exception e) {
+		catch (Exception e) {
 			script = StringUtil.read(PortalClassLoaderUtil.getClassLoader(), templateHandler.getTemplatesHelpPath(language));
 		}
 	}
@@ -112,12 +112,7 @@ if (Validator.isNotNull(structureAvailableFields)) {
 	</liferay-ui:error>
 
 	<liferay-ui:error exception="<%= TemplateSmallImageSizeException.class %>">
-
-		<%
-		long imageMaxSize = PrefsPropsUtil.getLong(PropsKeys.DYNAMIC_DATA_MAPPING_IMAGE_SMALL_MAX_SIZE) / 1024;
-		%>
-
-		<liferay-ui:message arguments="<%= imageMaxSize %>" key="please-enter-a-small-image-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
+		<liferay-ui:message arguments="<%= PrefsPropsUtil.getLong(PropsKeys.DYNAMIC_DATA_MAPPING_IMAGE_SMALL_MAX_SIZE) / 1024 %>" key="please-enter-a-small-image-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
 	</liferay-ui:error>
 
 	<%

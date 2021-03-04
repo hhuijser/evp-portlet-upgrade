@@ -55,14 +55,14 @@ request.setAttribute("view.jsp-tabs1", tabs1);
 		groupParams.put("site", Boolean.TRUE);
 
 		if (tabs1.equals("my-sites")) {
-			groupParams.put("usersGroups", new Long(user.getUserId()));
+			groupParams.put("usersGroups", Long.valueOf(user.getUserId()));
 			groupParams.put("active", Boolean.TRUE);
 		}
 		else {
 			List types = new ArrayList();
 
-			types.add(new Integer(GroupConstants.TYPE_SITE_OPEN));
-			types.add(new Integer(GroupConstants.TYPE_SITE_RESTRICTED));
+			types.add(Integer.valueOf(GroupConstants.TYPE_SITE_OPEN));
+			types.add(Integer.valueOf(GroupConstants.TYPE_SITE_RESTRICTED));
 
 			groupParams.put("types", types);
 			groupParams.put("active", Boolean.TRUE);
@@ -151,26 +151,26 @@ request.setAttribute("view.jsp-tabs1", tabs1);
 				orderable="<%= true %>"
 			>
 
-			<%
-			if (rowURL != null) {
-				buffer.append("<a href=\"");
-				buffer.append(rowURL.toString());
-				buffer.append("\" target=\"_blank\"><strong>");
-				buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
-				buffer.append("</strong></a>");
-			}
-			else {
-				buffer.append("<strong>");
-				buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
-				buffer.append("</strong>");
-			}
+				<%
+				if (rowURL != null) {
+					buffer.append("<a href=\"");
+					buffer.append(rowURL.toString());
+					buffer.append("\" target=\"_blank\"><strong>");
+					buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
+					buffer.append("</strong></a>");
+				}
+				else {
+					buffer.append("<strong>");
+					buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
+					buffer.append("</strong>");
+				}
 
-			if (!tabs1.equals("my-sites") && Validator.isNotNull(group.getDescription())) {
-				buffer.append("<br /><em>");
-				buffer.append(HtmlUtil.escape(group.getDescription()));
-				buffer.append("</em>");
-			}
-			%>
+				if (!tabs1.equals("my-sites") && Validator.isNotNull(group.getDescription())) {
+					buffer.append("<br /><em>");
+					buffer.append(HtmlUtil.escape(group.getDescription()));
+					buffer.append("</em>");
+				}
+				%>
 
 			</liferay-ui:search-container-column-text>
 
@@ -178,7 +178,7 @@ request.setAttribute("view.jsp-tabs1", tabs1);
 			LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
 			userParams.put("inherit", Boolean.TRUE);
-			userParams.put("usersGroups", new Long(group.getGroupId()));
+			userParams.put("usersGroups", Long.valueOf(group.getGroupId()));
 			%>
 
 			<liferay-ui:search-container-column-text
@@ -206,7 +206,6 @@ request.setAttribute("view.jsp-tabs1", tabs1);
 				align="right"
 				path="/html/portlet/my_sites/site_action.jsp"
 			/>
-
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />

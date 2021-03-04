@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" ?>
 <!--
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
  * Copyright (C) 2003-2008 Frederico Caldeira Knabben
@@ -8,14 +8,14 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
@@ -25,17 +25,17 @@
  * See FCKConfig.TemplatesXmlPath in the configuration file.
 -->
 <Templates imagesBasePath="fck_template/images/">
-	<Template title="Image and Title" image="template1.gif">
+	<Template image="template1.gif" title="Image and Title">
 		<Description>One main image with a title and text that surround the image.</Description>
 		<Html>
 			<![CDATA[
-				<img style="MARGIN-RIGHT: 10px" height="100" alt="" width="100" align="left"/>
+				<img style="MARGIN-RIGHT: 10px" height="100" alt="" width="100" align="left" />
 				<h3>Type the title here</h3>
 				Type the text here
 			]]>
 		</Html>
 	</Template>
-	<Template title="Strange Template" image="template2.gif">
+	<Template image="template2.gif" title="Strange Template">
 		<Description>A template that defines two colums, each one with a title, and some text.</Description>
 		<Html>
 			<![CDATA[
@@ -61,7 +61,7 @@
 			]]>
 		</Html>
 	</Template>
-	<Template title="Text and Table" image="template3.gif">
+	<Template image="template3.gif" title="Text and Table">
 		<Description>A title with some text and a table.</Description>
 		<Html>
 			<![CDATA[

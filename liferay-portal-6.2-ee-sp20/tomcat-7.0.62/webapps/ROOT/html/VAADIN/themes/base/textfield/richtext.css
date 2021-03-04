@@ -10,15 +10,15 @@
 	height: 100%;
 }
 .v-richtextarea .gwt-RichTextToolbar {
-	white-space: nowrap;
 	background: #959595 url(img/richtext-toolbar-bg.png) repeat-x 0 -42px;
 	border-bottom: 1px solid #7d7d7d;
-	padding: 2px;
 	overflow: hidden;
+	padding: 2px;
+	white-space: nowrap;
 }
 .v-richtextarea .gwt-RichTextToolbar-top {
-	padding-bottom: 1px;
 	overflow: hidden;
+	padding-bottom: 1px;
 	white-space: normal;
 }
 .v-richtextarea .gwt-RichTextToolbar-bottom {
@@ -28,15 +28,15 @@
 }
 .v-richtextarea .gwt-RichTextToolbar .gwt-ToggleButton,
 .v-richtextarea .gwt-RichTextToolbar .gwt-PushButton {
-	float: left;
-	display: inline;
-	width: 22px;
-	height: 21px;
-	overflow: hidden;
 	background: transparent url(img/richtext-toolbar-bg.png) repeat-x;
 	cursor: pointer;
+	display: inline;
+	float: left;
+	height: 21px;
 	margin-right: 2px;
+	overflow: hidden;
 	text-align: center;
+	width: 22px;
 }
 .v-richtextarea .gwt-RichTextToolbar .gwt-ToggleButton-down,
 .v-richtextarea .gwt-RichTextToolbar .gwt-PushButton-down,
@@ -49,8 +49,8 @@
 	
 }
 .v-richtextarea .gwt-RichTextToolbar .gwt-ListBox {
-	width: 24.5%;
 	margin-right: 2px;
+	width: 24.5%;
 }
 
 .v-richtextarea-readonly {

@@ -2,9 +2,9 @@
 	width: 13px;
 }
 .v-formlayout-cell .v-errorindicator {
-	width: 13px;
-	height: 16px;
 	background: transparent url(../common/icons/error.png) no-repeat 50%;
+	height: 16px;
+	width: 13px;
 }
 .v-ie6 .v-formlayout-cell .v-errorindicator {
 	background-image: url(../common/icons/error-ie6.png);
@@ -55,17 +55,17 @@
 .v-ie6 .v-formlayout-margin-right .v-formlayout-row .v-formlayout-contentcell {
 	padding-right: expression(/v-formlayout-margin-right/.test(this.parentNode.parentNode.parentNode.className) ? "18px" : "0px");
 }
-/* form */
+/* ---------- form ---------- */
 .v-form-errormessage {
 	background: transparent url(../common/icons/error.png) no-repeat 3px 2px;
-	padding-left: 20px;
 	margin-bottom: 5px;
 	margin-top: 5px;
 	min-height: 20px;
+	padding-left: 20px;
 }
 .v-ie6 .v-form-errormessage {
-	height: 20px;
 	background-image: url(../common/icons/error-ie6.png);
+	height: 20px;
 }
 .v-form fieldset {
 	border: none;
@@ -78,10 +78,10 @@
 	display: none;
 }
 .v-form legend {
+	color: #222;
+	font-weight: bold;
 	margin: 0 0 0 20px;
 	padding: 0 5px;
-	font-weight: bold;
-	color: #222;
 }
 .black .v-form legend {
 	color: #e3e6e8;

@@ -44,12 +44,7 @@ String toLanguageId = (String)request.getAttribute("edit_article.jsp-toLanguageI
 </liferay-ui:error>
 
 <liferay-ui:error exception="<%= ArticleSmallImageSizeException.class %>">
-
-	<%
-	long imageMaxSize = PrefsPropsUtil.getLong(PropsKeys.JOURNAL_IMAGE_SMALL_MAX_SIZE) / 1024;
-	%>
-
-	<liferay-ui:message arguments="<%= imageMaxSize %>" key="please-enter-a-small-image-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
+	<liferay-ui:message arguments="<%= PrefsPropsUtil.getLong(PropsKeys.JOURNAL_IMAGE_SMALL_MAX_SIZE) / 1024 %>" key="please-enter-a-small-image-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
 </liferay-ui:error>
 
 <liferay-ui:error exception="<%= NoSuchArticleImageException.class %>" message="please-select-an-existing-small-image" />

@@ -23,7 +23,6 @@ WikiNode node = (WikiNode)request.getAttribute(WebKeys.WIKI_NODE);
 WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 
 String title = wikiPage.getTitle();
-String newTitle = ParamUtil.get(request, "newTitle", StringPool.BLANK);
 %>
 
 <liferay-util:include page="/html/portlet/wiki/top_links.jsp" />
@@ -67,7 +66,7 @@ String newTitle = ParamUtil.get(request, "newTitle", StringPool.BLANK);
 			<aui:fieldset>
 				<aui:input name="currentTitle" type="resource" value="<%= wikiPage.getTitle() %>" />
 
-				<aui:input name="newTitle" value="<%= newTitle %>" />
+				<aui:input name="newTitle" value='<%= ParamUtil.get(request, "newTitle", StringPool.BLANK) %>' />
 
 				<c:if test="<%= pending %>">
 					<div class="alert alert-info">
@@ -82,6 +81,7 @@ String newTitle = ParamUtil.get(request, "newTitle", StringPool.BLANK);
 				</aui:button-row>
 			</aui:fieldset>
 		</liferay-ui:section>
+
 		<liferay-ui:section>
 			<div class="alert alert-info">
 				<liferay-ui:message key="use-the-form-below-to-move-a-page-and-all-of-its-history-to-be-the-child-of-a-new-parent-page" />
@@ -139,9 +139,9 @@ String newTitle = ParamUtil.get(request, "newTitle", StringPool.BLANK);
 						<%
 						for (WikiPage childPage : childPages) {
 							if (Validator.isNull(childPage.getRedirectTitle())) {
-								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PARENT, childPage);
-								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PAGE, wikiPage);
 								request.setAttribute(WebKeys.WIKI_TREE_WALKER_DEPTH, 1);
+								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PAGE, wikiPage);
+								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PARENT, childPage);
 						%>
 
 								<liferay-util:include page="/html/portlet/wiki/page_tree.jsp" />

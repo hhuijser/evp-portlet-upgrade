@@ -95,7 +95,7 @@ portletURL.setParameter("tabs3", tabs3);
 				LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
 				if (tabs3.equals("current")) {
-					userParams.put("usersPasswordPolicies", new Long(passwordPolicy.getPasswordPolicyId()));
+					userParams.put("usersPasswordPolicies", Long.valueOf(passwordPolicy.getPasswordPolicyId()));
 				}
 				%>
 
@@ -113,7 +113,6 @@ portletURL.setParameter("tabs3", tabs3);
 					<liferay-ui:search-container-column-text
 						name="name"
 					>
-
 						<%= (user2.getFullName()) %>
 
 						<%
@@ -183,7 +182,7 @@ portletURL.setParameter("tabs3", tabs3);
 				LinkedHashMap<String, Object> organizationParams = new LinkedHashMap<String, Object>();
 
 				if (tabs3.equals("current")) {
-					organizationParams.put("organizationsPasswordPolicies", new Long(passwordPolicy.getPasswordPolicyId()));
+					organizationParams.put("organizationsPasswordPolicies", Long.valueOf(passwordPolicy.getPasswordPolicyId()));
 				}
 				%>
 
@@ -207,7 +206,6 @@ portletURL.setParameter("tabs3", tabs3);
 						name="name"
 						orderable="<%= true %>"
 					>
-
 						<%= HtmlUtil.escape(organization.getName()) %>
 
 						<%

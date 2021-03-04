@@ -34,15 +34,13 @@ else {
 	orderByCol = portalPreferences.getValue(PortletKeys.BACKGROUND_TASK, "entries-order-by-col", "create-date");
 	orderByType = portalPreferences.getValue(PortletKeys.BACKGROUND_TASK, "entries-order-by-type", "desc");
 }
-
-OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType);
 %>
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-publication-processes-were-found"
 	iteratorURL="<%= portletURL %>"
 	orderByCol="<%= orderByCol %>"
-	orderByComparator="<%= orderByComparator %>"
+	orderByComparator="<%= BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType) %>"
 	orderByType="<%= orderByType %>"
 	total="<%= BackgroundTaskLocalServiceUtil.getBackgroundTasksCount(groupId, selPortlet.getPortletId(), PortletStagingBackgroundTaskExecutor.class.getName()) %>"
 >

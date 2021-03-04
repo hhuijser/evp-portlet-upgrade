@@ -19,9 +19,7 @@
 <%@ page import="com.liferay.taglib.ui.LanguageTag" %>
 
 <%
-Locale[] availableLocales = LanguageUtil.getAvailableLocales(themeDisplay.getSiteGroupId());
-
-String[] availableLanguageIds = LocaleUtil.toLanguageIds(availableLocales);
+String[] availableLanguageIds = LocaleUtil.toLanguageIds(LanguageUtil.getAvailableLocales(themeDisplay.getSiteGroupId()));
 
 String[] languageIds = StringUtil.split(portletPreferences.getValue("languageIds", StringUtil.merge(availableLanguageIds)));
 boolean displayCurrentLocale = GetterUtil.getBoolean(portletPreferences.getValue("displayCurrentLocale", null), true);

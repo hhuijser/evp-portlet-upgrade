@@ -20,7 +20,7 @@
 	}
 }
 
-/* Skin */
+/* ---------- Skin ---------- */
 
 .js .lfr-flyout-has-children {
 	background: url(@theme_image_path@/arrows/04_left.png) no-repeat 5px 50%;

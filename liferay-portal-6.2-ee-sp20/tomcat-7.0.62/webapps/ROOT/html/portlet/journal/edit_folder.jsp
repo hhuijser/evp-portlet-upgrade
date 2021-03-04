@@ -24,8 +24,6 @@ JournalFolder folder = (JournalFolder)request.getAttribute(WebKeys.JOURNAL_FOLDE
 long folderId = BeanParamUtil.getLong(folder, request, "folderId");
 
 long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
-boolean mergeWithParentFolderDisabled = ParamUtil.getBoolean(request, "mergeWithParentFolderDisabled");
 %>
 
 <portlet:actionURL var="editFolderURL">
@@ -112,7 +110,7 @@ boolean mergeWithParentFolderDisabled = ParamUtil.getBoolean(request, "mergeWith
 					<aui:button disabled="<%= (parentFolderId <= 0) %>" name="removeFolderButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
 				</div>
 
-				<aui:input disabled="<%= mergeWithParentFolderDisabled %>" label="merge-with-parent-folder" name="mergeWithParentFolder" type="checkbox" />
+				<aui:input disabled='<%= ParamUtil.getBoolean(request, "mergeWithParentFolderDisabled") %>' label="merge-with-parent-folder" name="mergeWithParentFolder" type="checkbox" />
 			</aui:field-wrapper>
 		</c:if>
 

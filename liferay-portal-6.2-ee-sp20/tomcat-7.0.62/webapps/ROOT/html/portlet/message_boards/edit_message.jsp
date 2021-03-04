@@ -77,7 +77,6 @@ if (Validator.isNull(redirect)) {
 }
 
 if (curParentMessage != null) {
-
 	MBUtil.addPortletBreadcrumbEntries(curParentMessage, request, renderResponse);
 
 	if (!layout.isTypeControlPanel()) {
@@ -135,14 +134,14 @@ else {
 
 	int depth = 0;
 
+	request.setAttribute("edit-message.jsp-showDeletedAttachmentsFileEntries", Boolean.TRUE);
+	request.setAttribute("edit-message.jsp-showPermanentLink", Boolean.TRUE);
+	request.setAttribute("edit-message.jsp-showRecentPosts", Boolean.TRUE);
 	request.setAttribute("edit_message.jsp-assetTagNames", ParamUtil.getString(request, "assetTagNames"));
 	request.setAttribute("edit_message.jsp-category", category);
 	request.setAttribute("edit_message.jsp-depth", depth);
 	request.setAttribute("edit_message.jsp-editable", Boolean.FALSE);
 	request.setAttribute("edit_message.jsp-message", previewMessage);
-	request.setAttribute("edit-message.jsp-showDeletedAttachmentsFileEntries", Boolean.TRUE);
-	request.setAttribute("edit-message.jsp-showPermanentLink", Boolean.TRUE);
-	request.setAttribute("edit-message.jsp-showRecentPosts", Boolean.TRUE);
 	request.setAttribute("edit_message.jsp-thread", thread);
 	%>
 
@@ -157,6 +156,7 @@ else {
 
 <portlet:actionURL var="editMessageURL">
 	<portlet:param name="struts_action" value="/message_boards/edit_message" />
+
 	<liferay-portlet:param name="uploadExceptionRedirect" value="<%= uploadExceptionRedirect %>" />
 </portlet:actionURL>
 
@@ -234,6 +234,7 @@ else {
 					<%@ include file="/html/portlet/message_boards/html_editor.jspf" %>
 				</c:otherwise>
 			</c:choose>
+
 			<aui:input name="body" type="hidden" />
 		</aui:field-wrapper>
 
@@ -490,13 +491,13 @@ else {
 
 		int depth = 0;
 
+		request.setAttribute("edit-message.jsp-showDeletedAttachmentsFileEntries", Boolean.TRUE);
+		request.setAttribute("edit-message.jsp-showPermanentLink", Boolean.TRUE);
+		request.setAttribute("edit-message.jsp-showRecentPosts", Boolean.TRUE);
 		request.setAttribute("edit_message.jsp-category", category);
 		request.setAttribute("edit_message.jsp-depth", depth);
 		request.setAttribute("edit_message.jsp-editable", Boolean.FALSE);
 		request.setAttribute("edit_message.jsp-message", message);
-		request.setAttribute("edit-message.jsp-showDeletedAttachmentsFileEntries", Boolean.TRUE);
-		request.setAttribute("edit-message.jsp-showPermanentLink", Boolean.TRUE);
-		request.setAttribute("edit-message.jsp-showRecentPosts", Boolean.TRUE);
 		request.setAttribute("edit_message.jsp-thread", thread);
 		%>
 

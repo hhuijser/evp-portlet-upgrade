@@ -91,7 +91,7 @@ portletURL.setParameter("eventName", eventName);
 			/>
 
 			<liferay-ui:search-container-column-text>
-				<c:if test="<%= Validator.isNull(p_u_i_d)|| RoleMembershipPolicyUtil.isRoleAllowed((selUser != null) ? selUser.getUserId() : 0, role.getRoleId()) %>">
+				<c:if test="<%= Validator.isNull(p_u_i_d) || RoleMembershipPolicyUtil.isRoleAllowed((selUser != null) ? selUser.getUserId() : 0, role.getRoleId()) %>">
 
 					<%
 					Map<String, Object> data = new HashMap<String, Object>();

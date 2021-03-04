@@ -80,6 +80,7 @@ Set<String> contextPaths = JSONWebServiceActionsManagerUtil.getContextPaths();
 		if (panelTitle.endsWith("Impl")) {
 			panelTitle = panelTitle.substring(0, panelTitle.length() - 4);
 		}
+
 		if (panelTitle.endsWith("Service")) {
 			panelTitle = panelTitle.substring(0, panelTitle.length() - 7);
 		}
@@ -100,12 +101,7 @@ Set<String> contextPaths = JSONWebServiceActionsManagerUtil.getContextPaths();
 				%>
 
 					<li class="lfr-api-signature <%= (serviceSignature.equals(signature)) ? "selected" : StringPool.BLANK %>">
-
-						<%
-						String methodURL = HttpUtil.addParameter(jsonWSContextPath, "signature", serviceSignature);
-						%>
-
-						<a class="method-name lfr-api-service-result" data-metaData="<%= jsonWebServiceClassName %>" href="<%= methodURL %>">
+						<a class="lfr-api-service-result method-name" data-metaData="<%= jsonWebServiceClassName %>" href="<%= HttpUtil.addParameter(jsonWSContextPath, "signature", serviceSignature) %>">
 							<%= path %>
 						</a>
 					</li>
