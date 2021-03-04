@@ -24,8 +24,15 @@ Connector for Python (CGI and WSGI).
 
 """
 
-from time import gmtime, strftime
+from time import gmtime, \
+	strftime
+
 import string
+
+def convertToXmlAttribute(value):
+	if (value is None):
+		value = ""
+	return escape(value)
 
 def escape(text, replace=string.replace):
 	"""
@@ -41,12 +48,27 @@ def escape(text, replace=string.replace):
 	text = replace(text, '"', '&quot;')
 	return text
 
-def convertToXmlAttribute(value):
-	if (value is None):
-		value = ""
-	return escape(value)
+class BaseHtmlMixin(object):
+
+	def sendUploadResults( self, errorNo = 0, fileUrl = '', fileName = '', customMsg = '' ):
+		self.setHttpHeaders("text/html")
+		"This is the function that sends the results of the uploading process"
+
+		"Minified version of the document.domain automatic fix script (#1919)."
+		"The original script can be found at _dev/domain_fix_template.js"
+		return """<script type="text/javascript">
+			(function(){var d=document.domain;while (true){try{var A=window.parent.document.domain;break;}catch(e) {};d=d.replace(/.*?(?:\.|$)/,'');if (d.length==0) break;try{document.domain=d;}catch (e){break;}}})();
+
+			window.parent.OnUploadCompleted(%(errorNumber)s,"%(fileUrl)s","%(fileName)s","%(customMsg)s");
+			</script>""" % {
+			'errorNumber': errorNo,
+			'fileUrl': fileUrl.replace ('"', '\\"'),
+			'fileName': fileName.replace ( '"', '\\"' ) ,
+			'customMsg': customMsg.replace ( '"', '\\"' ),
+			}
 
 class BaseHttpMixin(object):
+
 	def setHttpHeaders(self, content_type='text/xml'):
 		"Purpose: to prepare the headers for the xml to return"
 		# Prevent the browser from caching the result.
@@ -65,6 +87,11 @@ class BaseHttpMixin(object):
 		return
 
 class BaseXmlMixin(object):
+
+	def createXmlFooter(self):
+		"Purpose: returns the xml footer"
+		return """</Connector>"""
+
 	def createXmlHeader(self, command, resourceType, currentFolder, url):
 		"Purpose: returns the xml header"
 		self.setHttpHeaders()
@@ -82,10 +109,6 @@ class BaseXmlMixin(object):
 				)
 		return s
 
-	def createXmlFooter(self):
-		"Purpose: returns the xml footer"
-		return """</Connector>"""
-
 	def sendError(self, number, text):
 		"Purpose: in the event of an error, return an xml based error"
 		self.setHttpHeaders()
@@ -96,21 +119,3 @@ class BaseXmlMixin(object):
 
 	def sendErrorNode(self, number, text):
 		return """<Error number="%s" text="%s" />""" % (number, convertToXmlAttribute(text))
-
-class BaseHtmlMixin(object):
-	def sendUploadResults( self, errorNo = 0, fileUrl = '', fileName = '', customMsg = '' ):
-		self.setHttpHeaders("text/html")
-		"This is the function that sends the results of the uploading process"
-
-		"Minified version of the document.domain automatic fix script (#1919)."
-		"The original script can be found at _dev/domain_fix_template.js"
-		return """<script type="text/javascript">
-			(function(){var d=document.domain;while (true){try{var A=window.parent.document.domain;break;}catch(e) {};d=d.replace(/.*?(?:\.|$)/,'');if (d.length==0) break;try{document.domain=d;}catch (e){break;}}})();
-
-			window.parent.OnUploadCompleted(%(errorNumber)s,"%(fileUrl)s","%(fileName)s","%(customMsg)s");
-			</script>""" % {
-			'errorNumber': errorNo,
-			'fileUrl': fileUrl.replace ('"', '\\"'),
-			'fileName': fileName.replace ( '"', '\\"' ) ,
-			'customMsg': customMsg.replace ( '"', '\\"' ),
-			}

@@ -27,6 +27,7 @@ See config.py for configuration settings
 """
 
 from connector import FCKeditorConnector
+
 from upload import FCKeditorQuickUpload
 
 import cgitb

@@ -218,7 +218,7 @@ body.green, .green .portlet {
 		border-color: #B9BDAF;
 	}
 
-	/* This CSS sets the default styles for forms. */
+	/* ---------- This CSS sets the default styles for forms. ---------- */
 
 	button, input[type="button"], input[type="reset"], input[type="submit"] {
 		color: #404F34;

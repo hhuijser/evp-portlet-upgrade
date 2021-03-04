@@ -22,8 +22,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 DDLRecordSet recordSet = (DDLRecordSet)request.getAttribute(WebKeys.DYNAMIC_DATA_LISTS_RECORD_SET);
 
 long displayDDMTemplateId = ParamUtil.getLong(request, "displayDDMTemplateId");
-
-boolean spreadsheet = ParamUtil.getBoolean(request, "spreadsheet");
 %>
 
 <liferay-ui:header
@@ -38,7 +36,7 @@ boolean spreadsheet = ParamUtil.getBoolean(request, "spreadsheet");
 	</c:when>
 	<c:otherwise>
 		<c:choose>
-			<c:when test="<%= spreadsheet %>">
+			<c:when test='<%= ParamUtil.getBoolean(request, "spreadsheet") %>'>
 				<liferay-util:include page="/html/portlet/dynamic_data_lists/view_spreadsheet_records.jsp" />
 			</c:when>
 			<c:otherwise>

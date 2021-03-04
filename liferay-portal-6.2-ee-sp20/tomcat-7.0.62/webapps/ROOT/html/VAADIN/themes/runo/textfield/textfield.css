@@ -2,11 +2,11 @@
 .v-textarea {
 	background: #fff url(img/bg.png) repeat-x;
 	border: 1px solid #b6b6b6;
-	border-top-color: #9d9d9d;
 	border-bottom-color: #d6d6d6;
 	border-right-color: #d6d6d6;
-	margin: 0;
+	border-top-color: #9d9d9d;
 	line-height: 14px;
+	margin: 0;
 }
 input.v-textfield,
 input[type=text].v-textfield,
@@ -34,7 +34,7 @@ textarea.v-textarea-prompt {
 	background: #fff url(img/bg.png) repeat-x;
 }
 
-/* Small style */
+/* ---------- Small style ---------- */
 input.v-textfield-small,
 input[type=text].v-textfield-small,
 textarea.v-textarea-small {

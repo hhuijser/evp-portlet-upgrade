@@ -47,11 +47,10 @@ if (!tabs1.equals("cart")) {
 
 // Back URL
 
-String backURL = ParamUtil.getString(request, "backURL");
 %>
 
 <liferay-ui:tabs
-	backURL="<%= backURL %>"
+	backURL='<%= ParamUtil.getString(request, "backURL") %>'
 	names="<%= tabs1Names %>"
 	url="<%= viewURL.toString() %>"
 	urls="<%= new String[] {StringPool.BLANK, cartURL.toString()} %>"

@@ -77,11 +77,11 @@
 	}
 
 	.cancel-button {
-		position: absolute;
-		right: 5px;
 		margin-top: -0.85em;
 		overflow: hidden;
 		position: absolute;
+		position: absolute;
+		right: 5px;
 		top: 50%;
 		white-space: nowrap;
 		width: 0;
@@ -216,7 +216,7 @@
 	z-index: 100;
 }
 
-/* Skin */
+/* ---------- Skin ---------- */
 
 .lfr-upload-container {
 	.upload-target {
@@ -298,9 +298,9 @@
 	}
 
 	.cancel-button {
+		background-color: #800;
 		background-image: url(@theme_image_path@/common/delete.png);
 		background-repeat: no-repeat;
-		background-color: #800;
 		color: #FFF;
 		text-shadow: 1px 1px #500;
 	}

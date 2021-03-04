@@ -18,12 +18,8 @@
 
 <%@ include file="/html/portlet/layouts_admin/init_attributes.jspf" %>
 
-<%
-boolean showEditControls = themeDisplay.isShowLayoutTemplatesIcon() || themeDisplay.isShowPageSettingsIcon();
-%>
-
 <c:choose>
-	<c:when test="<%= showEditControls %>">
+	<c:when test="<%= themeDisplay.isShowLayoutTemplatesIcon() || themeDisplay.isShowPageSettingsIcon() %>">
 		<c:choose>
 			<c:when test='<%= SessionMessages.contains(renderRequest, "requestProcessed") || ((selPlid == 0) && Validator.isNotNull(closeRedirect)) %>'>
 

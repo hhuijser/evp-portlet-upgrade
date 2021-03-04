@@ -9,17 +9,17 @@
  * IE6 buttons --------------------------
  */
 .v-ie6 .v-button {
+	background: #d8d8d8 url(img/right.png) no-repeat 0 -1px;
 	border: 1px solid #b3b3b3;
 	border-bottom-color: #9a9a9a;
-	background: #d8d8d8 url(img/right.png) no-repeat 0 -1px;
-	padding: 0 15px;
 	height: 23px;
+	padding: 0 15px;
 }
 .v-ie6 .v-button .v-button-wrap {
 	background: transparent;
+	display: inline;
 	height: 20px;
 	padding: 3px 0 0;
-	display: inline;
 	zoom: 1;
 }
 .v-ie6 .v-button-primary {
@@ -36,16 +36,16 @@
 .v-ie6 .v-button.v-pressed {
 	background: transparent url(img/right-pressed.png) no-repeat 0 -1px;
 }
-/* Buttons on blue background */
+/* ---------- Buttons on blue background ---------- */
 .v-ie6 .blue .v-button {
+	border-bottom-color: #888d91;
 	border-color: #84949c;
 	border-top-color: #83939b;
-	border-bottom-color: #888d91;
 }
-/* Buttons on black background */
+/* ---------- Buttons on black background ---------- */
 .v-ie6 .black .v-button {
-	border: 1px solid #0d0e0f;
 	background: #202224 url(img/black/right.png) no-repeat 0 -1px;
+	border: 1px solid #0d0e0f;
 	color: #c9ccce;
 }
 .v-ie6 .black .v-button-primary {
@@ -59,7 +59,7 @@
 }
 
 
-/* Link style button */
+/* ---------- Link style button ---------- */
 .v-ie6 .v-button-link,
 .v-ie6 .black .v-button-link {
 	background: transparent;
@@ -70,6 +70,6 @@
 }
 .v-ie6 .v-button-link .v-button-wrap,
 .v-ie6 .black .v-button-link .v-button-wrap {
-	padding: 0;
 	height: auto;
+	padding: 0;
 }

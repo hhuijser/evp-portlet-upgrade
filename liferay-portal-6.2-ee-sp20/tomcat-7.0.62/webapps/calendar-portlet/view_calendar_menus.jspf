@@ -2,23 +2,19 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
 --%>
 
-<%
-String backURL = PortalUtil.getCurrentURL(request);
-%>
-
-<aui:script use="liferay-calendar-simple-menu,liferay-calendar-simple-color-picker">
+<aui:script use="liferay-calendar-simple-color-picker,liferay-calendar-simple-menu">
 	window.<portlet:namespace />calendarListsMenu = new Liferay.SimpleMenu(
 		{
 			align: {
@@ -122,7 +118,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 					<portlet:renderURL var="addCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 						<portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
-						<portlet:param name="backURL" value="<%= backURL %>" />
+						<portlet:param name="backURL" value="<%= PortalUtil.getCurrentURL(request) %>" />
 						<portlet:param name="calendarId" value="{calendarId}" />
 					</portlet:renderURL>
 

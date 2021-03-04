@@ -207,52 +207,52 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				<a name="<%= randomNamespace %>messages_top"></a>
 
 				<c:if test="<%= treeWalker != null %>">
-				<table class="table table-bordered table-hover table-striped tree-walker">
-					<thead class="table-columns">
-					<tr>
-						<th class="table-header" colspan="2">
-							<liferay-ui:message key="threaded-replies" />
-						</th>
-						<th class="table-header" colspan="2">
-							<liferay-ui:message key="author" />
-						</th>
-						<th class="table-header">
-							<liferay-ui:message key="date" />
-						</th>
-					</tr>
-					</thead>
+					<table class="table table-bordered table-hover table-striped tree-walker">
+						<thead class="table-columns">
+							<tr>
+								<th class="table-header" colspan="2">
+									<liferay-ui:message key="threaded-replies" />
+								</th>
+								<th class="table-header" colspan="2">
+									<liferay-ui:message key="author" />
+								</th>
+								<th class="table-header">
+									<liferay-ui:message key="date" />
+								</th>
+							</tr>
+						</thead>
 
-					<tbody class="table-data">
+						<tbody class="table-data">
 
-					<%
-					int[] range = treeWalker.getChildrenRange(rootMessage);
+							<%
+							int[] range = treeWalker.getChildrenRange(rootMessage);
 
-					for (i = range[0]; i < range[1]; i++) {
-						message = (MBMessage)messages.get(i);
+							for (i = range[0]; i < range[1]; i++) {
+								message = (MBMessage)messages.get(i);
 
-						boolean lastChildNode = false;
+								boolean lastChildNode = false;
 
-						if ((i + 1) == range[1]) {
-							lastChildNode = true;
-						}
+								if ((i + 1) == range[1]) {
+									lastChildNode = true;
+								}
 
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER, treeWalker);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CATEGORY, category);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CUR_MESSAGE, message);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH, new Integer(0));
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE, Boolean.valueOf(lastChildNode));
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_SEL_MESSAGE, rootMessage);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD, thread);
-					%>
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER, treeWalker);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CATEGORY, category);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CUR_MESSAGE, message);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH, Integer.valueOf(0));
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE, Boolean.valueOf(lastChildNode));
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_SEL_MESSAGE, rootMessage);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD, thread);
+							%>
 
-						<liferay-util:include page="/html/taglib/ui/discussion/view_message_thread.jsp" />
+								<liferay-util:include page="/html/taglib/ui/discussion/view_message_thread.jsp" />
 
-					<%
-					}
-					%>
+							<%
+							}
+							%>
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
 
 					<br />
 				</c:if>
@@ -344,17 +344,11 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 									<div class="lfr-discussion-controls">
 										<c:if test="<%= ratingsEnabled && !TrashUtil.isInTrash(message.getClassName(), message.getClassPK()) %>">
-
-											<%
-											RatingsEntry ratingsEntry = getRatingsEntry(ratingsEntries, message.getMessageId());
-											RatingsStats ratingStats = getRatingsStats(ratingsStatsList, message.getMessageId());
-											%>
-
 											<liferay-ui:ratings
 												className="<%= MBDiscussion.class.getName() %>"
 												classPK="<%= message.getMessageId() %>"
-												ratingsEntry="<%= ratingsEntry %>"
-												ratingsStats="<%= ratingStats %>"
+												ratingsEntry="<%= getRatingsEntry(ratingsEntries, message.getMessageId()) %>"
+												ratingsStats="<%= getRatingsStats(ratingsStatsList, message.getMessageId()) %>"
 												type="thumbs"
 											/>
 										</c:if>
@@ -390,17 +384,12 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 												</c:if>
 
 												<c:if test="<%= i > 0 %>">
-
-													<%
-													String taglibTopURL = "#" + randomNamespace + "messages_top";
-													%>
-
 													<li class="lfr-discussion-top-link">
 														<liferay-ui:icon
 															image="top"
 															label="<%= true %>"
-															url="<%= taglibTopURL %>"
-															/>
+															url='<%= "#" + randomNamespace + "messages_top" %>'
+														/>
 													</li>
 
 													<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), threadGroupId, permissionClassName, permissionClassPK, ActionKeys.UPDATE_DISCUSSION, message.getMessageId()) %>">
@@ -419,15 +408,10 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 													</c:if>
 
 													<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), threadGroupId, permissionClassName, permissionClassPK, ActionKeys.DELETE_DISCUSSION, message.getMessageId()) %>">
-
-														<%
-														String taglibDeleteURL = "javascript:" + randomNamespace + "deleteMessage(" + i + ");";
-														%>
-
 														<li class="lfr-discussion-delete">
 															<liferay-ui:icon-delete
 																label="<%= true %>"
-																url="<%= taglibDeleteURL %>"
+																url='<%= "javascript:" + randomNamespace + "deleteMessage(" + i + ");" %>'
 															/>
 														</li>
 													</c:if>
@@ -439,8 +423,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 							</aui:row>
 
 							<aui:row cssClass="lfr-discussion-form-container" fluid="<%= true %>">
-								<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
-
+								<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style="<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>">
 									<liferay-ui:user-display
 										displayStyle="<%= 2 %>"
 										userId="<%= user.getUserId() %>"
@@ -461,7 +444,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 								</div>
 
 								<c:if test="<%= !hideControls && MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), threadGroupId, permissionClassName, permissionClassPK, ActionKeys.UPDATE_DISCUSSION, message.getMessageId()) %>">
-									<div class="lfr-discussion-form lfr-discussion-form-edit span12" id="<%= randomNamespace %>editForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
+									<div class="lfr-discussion-form lfr-discussion-form-edit span12" id="<%= randomNamespace %>editForm<%= i %>" style="<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>">
 										<aui:input id='<%= randomNamespace + "editReplyBody" + i %>' label="" name='<%= "editReplyBody" + i %>' style='<%= "height: " + ModelHintsConstants.TEXTAREA_DISPLAY_HEIGHT + "px;" %>' title="reply-body" type="textarea" value="<%= message.getBody() %>" wrap="soft" />
 
 										<%
@@ -517,7 +500,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 												</div>
 
 												<div class="lfr-discussion-reply-user-name">
-														<%= HtmlUtil.escape(parentMessage.getUserName()) %>
+													<%= HtmlUtil.escape(parentMessage.getUserName()) %>
 												</div>
 
 												<div class="lfr-discussion-reply-creation-date">

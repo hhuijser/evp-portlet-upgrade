@@ -101,6 +101,7 @@ if (categoryId > 0) {
 			PortletURL frontPageURL = PortletURLUtil.clone(portletURL, renderResponse);
 
 			String label = WikiPageConstants.FRONT_PAGE;
+
 			boolean selected = (Validator.isNull(strutsAction) || (wikiPage != null) && wikiPage.getTitle().equals(label));
 
 			frontPageURL.setParameter("struts_action", "/wiki/view");

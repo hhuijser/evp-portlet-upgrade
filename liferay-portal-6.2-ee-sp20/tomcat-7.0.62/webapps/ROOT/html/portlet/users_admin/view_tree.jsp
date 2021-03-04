@@ -173,7 +173,6 @@ if (organization != null) {
 								portletURL="<%= renderResponse.createRenderURL() %>"
 							/>
 						</span>
-
 						<span class="entry-tags">
 							<liferay-ui:asset-tags-summary
 								className="<%= Organization.class.getName() %>"
@@ -196,23 +195,23 @@ if (organization != null) {
 						%>
 
 						<div class="organization-information">
-							<div class="section entity-email-addresses">
+							<div class="entity-email-addresses section">
 								<liferay-util:include page="/html/portlet/directory/common/additional_email_addresses.jsp" />
 							</div>
 
-							<div class="section entity-websites">
+							<div class="entity-websites section">
 								<liferay-util:include page="/html/portlet/directory/common/websites.jsp" />
 							</div>
 
-							<div class="section entity-addresses">
+							<div class="entity-addresses section">
 								<liferay-util:include page="/html/portlet/directory/organization/addresses.jsp" />
 							</div>
 
-							<div class="section entity-phones">
+							<div class="entity-phones section">
 								<liferay-util:include page="/html/portlet/directory/organization/phone_numbers.jsp" />
 							</div>
 
-							<div class="section entity-comments">
+							<div class="entity-comments section">
 								<liferay-util:include page="/html/portlet/directory/organization/comments.jsp" />
 							</div>
 						</div>
@@ -280,7 +279,6 @@ if (organization != null) {
 							%>
 
 							<%= organizationsTitle %>
-
 						</liferay-util:buffer>
 
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="usersAdminOrganizationsPanel" persistState="<%= true %>" title="<%= organizationsPanelTitle %>">
@@ -444,7 +442,7 @@ if (organization != null) {
 			<c:if test="<%= organization != null %>">
 				<aui:col cssClass="lfr-asset-column lfr-asset-column-actions" last="<%= true %>" width="<%= 25 %>">
 					<div class="lfr-asset-summary">
-						<img alt="<%= HtmlUtil.escape(organization.getName()) %>" class="avatar" src='<%= (organization != null) ? themeDisplay.getPathImage() + "/organization_logo?img_id=" + organization.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(organization.getLogoId()) : "" %>' />
+						<img alt="<%= HtmlUtil.escape(organization.getName()) %>" class="avatar" src="<%= (organization != null) ? themeDisplay.getPathImage() + "/organization_logo?img_id=" + organization.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(organization.getLogoId()) : "" %>" />
 
 						<div class="lfr-asset-name">
 							<h4><%= HtmlUtil.escape(organization.getName()) %></h4>
@@ -459,7 +457,6 @@ if (organization != null) {
 
 					<liferay-util:include page="/html/portlet/users_admin/organization_action.jsp" />
 				</aui:col>
-
 			</c:if>
 		</aui:row>
 	</c:when>

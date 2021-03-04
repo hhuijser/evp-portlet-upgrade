@@ -16,10 +16,6 @@
 
 <%@ include file="/html/portlet/login/init.jsp" %>
 
-<%
-String openId = ParamUtil.getString(request, "openId");
-%>
-
 <portlet:actionURL var="openIdURL">
 	<portlet:param name="struts_action" value="/login/open_id" />
 </portlet:actionURL>
@@ -35,7 +31,7 @@ String openId = ParamUtil.getString(request, "openId");
 	<liferay-ui:error exception="<%= MessageException.class %>" message="an-error-occurred-while-communicating-with-the-open-id-provider" />
 
 	<aui:fieldset>
-		<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" cssClass="openid-login" name="openId" type="text" value="<%= openId %>" />
+		<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" cssClass="openid-login" name="openId" type="text" value='<%= ParamUtil.getString(request, "openId") %>' />
 
 		<aui:button-row>
 			<aui:button type="submit" value="sign-in" />

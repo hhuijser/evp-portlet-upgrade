@@ -32,7 +32,7 @@
 
 					<img alt="" class="layout-template-entry modify-link <%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) ? "layout-selected" : StringPool.BLANK %>" height="25" onclick="document.getElementById('<portlet:namespace /><%= layoutTemplateIdPrefix + "layoutTemplateId" + i %>').checked = true;" src="<%= layoutTemplate.getStaticResourcePath() %><%= HtmlUtil.escapeAttribute(layoutTemplate.getThumbnailPath()) %>" width="25" />
 
-					<span><%= HtmlUtil.escape(com.liferay.portal.kernel.language.LanguageUtil.get(locale, "layout-template-" + layoutTemplateName, layoutTemplateName)) %></span>
+					<span><%= HtmlUtil.escape(com.liferay.portal.kernel.language.LanguageUtil.get(request, "layout-template-" + layoutTemplateName, layoutTemplateName)) %></span>
 				</label>
 			</div>
 

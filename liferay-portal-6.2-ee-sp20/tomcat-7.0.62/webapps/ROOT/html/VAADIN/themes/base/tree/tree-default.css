@@ -1,8 +1,8 @@
 .v-tree {
-	text-align: left; /* Force default alignment */
+	text-align: left; /* ---------- Force default alignment ---------- */
+	outline: none;
 	overflow: hidden;
 	padding: 1px 0;
-	outline: none;
 }
 .v-tree-node {
 	background: transparent url(../common/img/sprites.png) no-repeat 5px -37px;
@@ -45,14 +45,14 @@ div.v-tree-node-leaf {
 }
 /* IMPORTANT keep the offsetWidth of this element the same as the margin-left of v-tree-node-caption */
 .v-ie6 .v-tree-node-ie6compatnode {
-	display: inline;
-	float: left;
 	background: orange;
-	margin: 0;
-	width: 0.8em;
-	height: 0.8em;
-	padding: 0.1em;
+	display: inline;
 	filter: alpha(opacity=0);
+	float: left;
+	height: 0.8em;
+	margin: 0;
+	padding: 0.1em;
+	width: 0.8em;
 }
 .v-ie6 .v-tree-node,
 .v-ie6 .v-tree-node-children {
@@ -74,13 +74,13 @@ div.v-tree-node-leaf {
 .v-tree .v-tree-node-drag-top:before,
 .v-tree .v-tree-node-drag-bottom:after,
 .v-tree .v-tree-node-caption-drag-center:after {
-	display: block;
+	background: transparent url(../common/img/drag-slot-dot.png);
 	content: "";
-	position: absolute;
-	width: 6px;
+	display: block;
 	height: 6px;
 	margin-top: -4px;
-	background: transparent url(../common/img/drag-slot-dot.png);
+	position: absolute;
+	width: 6px;
 }
 .v-tree .v-tree-node-drag-bottom:after {
 	margin-top: -2px;
@@ -102,9 +102,9 @@ div.v-tree-node-leaf {
 	border: 2px solid #1d9dff;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+	background-color: #bcdcff;
 	border-radius: 4px;
 	margin: -2px 2px -2px -2px;
-	background-color: #bcdcff;
 }
 .v-ie6 .v-tree .v-tree-node-caption-drag-center div {
 	margin: -2px ;

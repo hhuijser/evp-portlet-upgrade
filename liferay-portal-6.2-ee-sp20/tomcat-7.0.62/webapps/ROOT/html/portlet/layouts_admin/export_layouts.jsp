@@ -210,7 +210,7 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 															<span class="selected-labels" id="<portlet:namespace />selectedConfiguration_<%= portlet.getRootPortletId() %>"></span>
 
 															<%
-															Map<String,Object> data = new HashMap<String,Object>();
+															Map<String, Object> data = new HashMap<String, Object>();
 
 															data.put("portletid", portlet.getRootPortletId());
 															data.put("portlettitle", portletTitle);
@@ -303,20 +303,19 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 																		&nbsp;
 
 																		<liferay-ui:input-time
-																			amPmParam='<%= "startDateAmPm" %>'
+																			amPmParam="startDateAmPm"
 																			amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
 																			dateParam="startDateTime"
 																			dateValue="<%= startCalendar.getTime() %>"
 																			disabled="<%= false %>"
-																			hourParam='<%= "startDateHour" %>'
+																			hourParam="startDateHour"
 																			hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
-																			minuteParam='<%= "startDateMinute" %>'
+																			minuteParam="startDateMinute"
 																			minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
 																			name="startTime"
 																		/>
 																	</aui:fieldset>
 																</li>
-
 																<li>
 																	<aui:fieldset label="end-date">
 																		<liferay-ui:input-date
@@ -334,14 +333,14 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 																		&nbsp;
 
 																		<liferay-ui:input-time
-																			amPmParam='<%= "endDateAmPm" %>'
+																			amPmParam="endDateAmPm"
 																			amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
 																			dateParam="startDateTime"
 																			dateValue="<%= endCalendar.getTime() %>"
 																			disabled="<%= false %>"
-																			hourParam='<%= "endDateHour" %>'
+																			hourParam="endDateHour"
 																			hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
-																			minuteParam='<%= "endDateMinute" %>'
+																			minuteParam="endDateMinute"
 																			minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
 																			name="endTime"
 																		/>
@@ -375,10 +374,9 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 											<liferay-ui:icon
 												image="calendar"
 												label="<%= true %>"
-												message='<%= LanguageUtil.get(locale, "date-range") + selectedLabelsHTML %>'
+												message='<%= LanguageUtil.get(request, "date-range") + selectedLabelsHTML %>'
 											/>
 										</li>
-
 										<li class="options">
 											<ul class="portlet-list">
 												<li class="tree-item">
@@ -465,15 +463,15 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 
 																						if (ArrayUtil.isNotEmpty(childrenControls)) {
 																							request.setAttribute("render_controls.jsp-controls", childrenControls);
-																						%>
+																				%>
 
-																						<aui:field-wrapper label="content-metadata">
-																							<ul class="lfr-tree unstyled">
-																								<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
-																							</ul>
-																						</aui:field-wrapper>
+																							<aui:field-wrapper label="content-metadata">
+																								<ul class="lfr-tree unstyled">
+																									<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
+																								</ul>
+																							</aui:field-wrapper>
 
-																						<%
+																				<%
 																						}
 																					}
 																				}
@@ -489,7 +487,7 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 																		<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= portlet.getPortletId() %>"></span>
 
 																		<%
-																		Map<String,Object> data = new HashMap<String,Object>();
+																		Map<String, Object> data = new HashMap<String, Object>();
 
 																		data.put("portletid", portlet.getPortletId());
 																		data.put("portlettitle", portletTitle);

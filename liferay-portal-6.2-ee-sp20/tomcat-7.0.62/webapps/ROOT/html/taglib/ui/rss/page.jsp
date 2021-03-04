@@ -17,7 +17,6 @@
 <%@ include file="/html/taglib/init.jsp" %>
 
 <%
-String message = (String)request.getAttribute("liferay-ui:rss:message");
 String url = (String)request.getAttribute("liferay-ui:rss:url");
 %>
 
@@ -25,7 +24,7 @@ String url = (String)request.getAttribute("liferay-ui:rss:url");
 	cssClass="taglib-rss"
 	image="rss"
 	label="<%= true %>"
-	message="<%= message %>"
+	message='<%= (String)request.getAttribute("liferay-ui:rss:message") %>'
 	method="get"
 	target="_blank"
 	url="<%= url %>"

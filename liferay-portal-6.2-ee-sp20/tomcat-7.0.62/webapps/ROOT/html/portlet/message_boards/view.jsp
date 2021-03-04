@@ -76,7 +76,6 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 		/>
 
 		<%@ include file="/html/portlet/message_boards/view_threads.jspf" %>
-
 	</c:when>
 	<c:when test='<%= topLink.equals("message-boards-home") %>'>
 

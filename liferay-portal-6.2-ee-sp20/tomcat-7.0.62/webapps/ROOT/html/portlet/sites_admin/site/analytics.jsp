@@ -41,22 +41,15 @@ for (String analyticsType : analyticsTypes) {
 
 	<c:choose>
 		<c:when test='<%= StringUtil.equalsIgnoreCase(analyticsType, "google") %>'>
-
-			<%
-			String googleAnalyticsId = PropertiesParamUtil.getString(groupTypeSettings, request, "googleAnalyticsId");
-			%>
-
-			<aui:input helpMessage="set-the-google-analytics-id-that-will-be-used-for-this-set-of-pages" label="google-analytics-id" name="googleAnalyticsId" size="30" type="text" value="<%= googleAnalyticsId %>" />
+			<aui:input helpMessage="set-the-google-analytics-id-that-will-be-used-for-this-set-of-pages" label="google-analytics-id" name="googleAnalyticsId" size="30" type="text" value='<%= PropertiesParamUtil.getString(groupTypeSettings, request, "googleAnalyticsId") %>' />
 		</c:when>
 		<c:otherwise>
 
 			<%
 			String analyticsName = TextFormatter.format(analyticsType, TextFormatter.J);
-
-			String analyticsScript = PropertiesParamUtil.getString(groupTypeSettings, request, Sites.ANALYTICS_PREFIX + analyticsType);
 			%>
 
-			<aui:input cols="60" helpMessage='<%= LanguageUtil.format(pageContext, "set-the-script-for-x-that-will-be-used-for-this-set-of-pages", analyticsName, false) %>' label="<%= analyticsName %>" name="<%= Sites.ANALYTICS_PREFIX + analyticsType %>" rows="15" type="textarea" value="<%= analyticsScript %>" wrap="soft" />
+			<aui:input cols="60" helpMessage='<%= LanguageUtil.format(pageContext, "set-the-script-for-x-that-will-be-used-for-this-set-of-pages", analyticsName, false) %>' label="<%= analyticsName %>" name="<%= Sites.ANALYTICS_PREFIX + analyticsType %>" rows="15" type="textarea" value="<%= PropertiesParamUtil.getString(groupTypeSettings, request, Sites.ANALYTICS_PREFIX + analyticsType) %>" wrap="soft" />
 		</c:otherwise>
 	</c:choose>
 

@@ -55,7 +55,7 @@ List<AssetTagProperty> tagProperties = AssetTagPropertyServiceUtil.getTagPropert
 	<div class="tag-field">
 		<c:choose>
 			<c:when test="<%= tag.getAssetCount() > 1 %>">
-				<label><liferay-ui:message key="count" />:</label> <liferay-ui:message key="used-in-x-assets" arguments="<%= tag.getAssetCount() %>" />
+				<label><liferay-ui:message key="count" />:</label> <liferay-ui:message arguments="<%= tag.getAssetCount() %>" key="used-in-x-assets" />
 			</c:when>
 			<c:when test="<%= tag.getAssetCount() == 1 %>">
 				<label><liferay-ui:message key="count" />:</label> <liferay-ui:message key="used-in-1-asset" />

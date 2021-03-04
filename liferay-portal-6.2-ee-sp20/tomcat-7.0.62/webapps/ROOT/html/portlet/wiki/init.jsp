@@ -68,6 +68,7 @@ boolean enableComments = PropsValues.WIKI_PAGE_COMMENTS_ENABLED && GetterUtil.ge
 boolean enableCommentRatings = GetterUtil.getBoolean(portletPreferences.getValue("enableCommentRatings", null), true);
 
 List<WikiNode> allNodes = WikiNodeServiceUtil.getNodes(scopeGroupId);
+
 List<String> allNodeNames = WikiUtil.getNodeNames(allNodes);
 
 String[] visibleNodes = null;
@@ -80,7 +81,7 @@ if (visibleNodesPreference != null) {
 	allNodes = WikiUtil.orderNodes(allNodes, visibleNodes);
 }
 else {
-	visibleNodes = allNodeNames.toArray(new String[allNodeNames.size()]);
+	visibleNodes = allNodeNames.toArray(new String[0]);
 }
 
 String[] hiddenNodes = StringUtil.split(portletPreferences.getValue("hiddenNodes", null));

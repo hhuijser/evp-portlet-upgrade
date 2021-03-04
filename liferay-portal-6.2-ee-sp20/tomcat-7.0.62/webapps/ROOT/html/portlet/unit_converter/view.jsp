@@ -49,6 +49,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (fromId == 9) ? "selected" : "" %> value="9"><liferay-ui:message key="talent" /></option>
 				<option <%= (fromId == 10) ? "selected" : "" %> value="10"><liferay-ui:message key="handbreath" /></option>
 			</c:if>
+
 			<c:if test="<%= type == 1 %>">
 				<option <%= (fromId == 0) ? "selected" : "" %> value="0"><liferay-ui:message key="square-kilometer" /></option>
 				<option <%= (fromId == 1) ? "selected" : "" %> value="1"><liferay-ui:message key="square-meter" /></option>
@@ -61,6 +62,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (fromId == 8) ? "selected" : "" %> value="8"><liferay-ui:message key="hectare" /></option>
 				<option <%= (fromId == 9) ? "selected" : "" %> value="9"><liferay-ui:message key="acre" /></option>
 			</c:if>
+
 			<c:if test="<%= type == 2 %>">
 				<option <%= (fromId == 0) ? "selected" : "" %> value="0">Liter</option>
 				<option <%= (fromId == 1) ? "selected" : "" %> value="1">Cubic Centimeter</option>
@@ -76,6 +78,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (fromId == 11) ? "selected" : "" %> value="11">Hin</option>
 				<option <%= (fromId == 12) ? "selected" : "" %> value="12">Log</option>
 			</c:if>
+
 			<c:if test="<%= type == 3 %>">
 				<option <%= (fromId == 0) ? "selected" : "" %> value="0"><liferay-ui:message key="kilogram" /></option>
 				<option <%= (fromId == 1) ? "selected" : "" %> value="1"><liferay-ui:message key="pound" /></option>
@@ -87,6 +90,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (fromId == 7) ? "selected" : "" %> value="7"><liferay-ui:message key="beka" /></option>
 				<option <%= (fromId == 8) ? "selected" : "" %> value="8"><liferay-ui:message key="gerah" /></option>
 			</c:if>
+
 			<c:if test="<%= type == 4 %>">
 				<option <%= (fromId == 0) ? "selected" : "" %> value="0">Kelvin</option>
 				<option <%= (fromId == 1) ? "selected" : "" %> value="1">Celcius</option>
@@ -118,6 +122,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (toId == 9) ? "selected" : "" %> value="9"><liferay-ui:message key="talent" /></option>
 				<option <%= (toId == 10) ? "selected" : "" %> value="10"><liferay-ui:message key="handbreath" /></option>
 			</c:if>
+
 			<c:if test="<%= type == 1 %>">
 				<option <%= (toId == 0) ? "selected" : "" %> value="0"><liferay-ui:message key="square-kilometer" /></option>
 				<option <%= (toId == 1) ? "selected" : "" %> value="1"><liferay-ui:message key="square-meter" /></option>
@@ -130,6 +135,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (toId == 8) ? "selected" : "" %> value="8"><liferay-ui:message key="hectare" /></option>
 				<option <%= (toId == 9) ? "selected" : "" %> value="9"><liferay-ui:message key="acre" /></option>
 			</c:if>
+
 			<c:if test="<%= type == 2 %>">
 				<option <%= (toId == 0) ? "selected" : "" %> value="0">Liter</option>
 				<option <%= (toId == 1) ? "selected" : "" %> value="1">Cubic Centimeter</option>
@@ -145,6 +151,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (toId == 11) ? "selected" : "" %> value="11">Hin</option>
 				<option <%= (toId == 12) ? "selected" : "" %> value="12">Log</option>
 			</c:if>
+
 			<c:if test="<%= type == 3 %>">
 				<option <%= (toId == 0) ? "selected" : "" %> value="0"><liferay-ui:message key="kilogram" /></option>
 				<option <%= (toId == 1) ? "selected" : "" %> value="1"><liferay-ui:message key="pound" /></option>
@@ -156,6 +163,7 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 				<option <%= (toId == 7) ? "selected" : "" %> value="7"><liferay-ui:message key="beka" /></option>
 				<option <%= (toId == 8) ? "selected" : "" %> value="8"><liferay-ui:message key="gerah" /></option>
 			</c:if>
+
 			<c:if test="<%= type == 4 %>">
 				<option <%= (toId == 0) ? "selected" : "" %> value="0">Kelvin</option>
 				<option <%= (toId == 1) ? "selected" : "" %> value="1">Celcius</option>
@@ -171,7 +179,8 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 		<liferay-ui:message key="type" />
 	</td>
 	<td>
-		<select name="<portlet:namespace />type"
+		<select
+			name="<portlet:namespace />type"
 			onChange="
 				if (this[this.selectedIndex].value == 0) {
 					Liferay.Util.setBox(document.<portlet:namespace />fm.<portlet:namespace />fromId, lengthArray);

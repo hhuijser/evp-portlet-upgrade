@@ -18,8 +18,6 @@
 
 <%
 String toolbarItem = ParamUtil.getString(request, "toolbarItem", "browse");
-
-String usersListView = ParamUtil.get(request, "usersListView", UserConstants.LIST_VIEW_TREE);
 %>
 
 <aui:nav>
@@ -33,7 +31,7 @@ String usersListView = ParamUtil.get(request, "usersListView", UserConstants.LIS
 		<aui:nav-item dropdown="<%= true %>" iconCssClass="icon-plus" label="add" selected='<%= toolbarItem.equals("add") %>'>
 			<portlet:renderURL var="viewUsersURL">
 				<portlet:param name="struts_action" value="/users_admin/view" />
-				<portlet:param name="sitesListView" value="<%= usersListView %>" />
+				<portlet:param name="sitesListView" value='<%= ParamUtil.get(request, "usersListView", UserConstants.LIST_VIEW_TREE) %>' />
 			</portlet:renderURL>
 
 			<c:if test="<%= hasAddUserPermission %>">

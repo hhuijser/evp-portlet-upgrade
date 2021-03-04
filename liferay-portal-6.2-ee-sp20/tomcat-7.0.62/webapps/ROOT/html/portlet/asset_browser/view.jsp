@@ -118,10 +118,10 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 						<%
 						Map<String, Object> data = new HashMap<String, Object>();
 
-						data.put("assetentryid", assetEntry.getEntryId());
 						data.put("assetclassname", assetEntry.getClassName());
-						data.put("assettype", assetRendererFactory.getTypeName(locale, true));
+						data.put("assetentryid", assetEntry.getEntryId());
 						data.put("assettitle", assetEntry.getTitle(locale));
+						data.put("assettype", assetRendererFactory.getTypeName(locale, true));
 						data.put("groupdescriptivename", group.getDescriptiveName(locale));
 						%>
 

@@ -36,7 +36,7 @@
 
 
 
-/* Black style */
+/* ---------- Black style ---------- */
 
 .black .v-button-small:focus {
 	background-image: url(img/black/small-left-focus.png); /** sprite-ref: black-buttons */

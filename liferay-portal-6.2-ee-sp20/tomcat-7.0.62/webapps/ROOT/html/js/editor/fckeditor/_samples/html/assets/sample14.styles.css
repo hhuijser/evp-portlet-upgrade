@@ -27,8 +27,8 @@
 body
 {
 	background-color: #ffffff;
-	padding: 5px 5px 5px 5px;
 	margin: 0px;
+	padding: 5px 5px 5px 5px;
 }
 
 body, td
@@ -68,14 +68,14 @@ a[href]
 
 .Subscript
 {
-	vertical-align: sub;
 	font-size: smaller;
+	vertical-align: sub;
 }
 
 .Superscript
 {
-	vertical-align: super;
 	font-size: smaller;
+	vertical-align: super;
 }
 
 /**
@@ -208,18 +208,18 @@ a[href]
 
 code
 {
-	font-family: courier, monospace;
 	background-color: #eeeeee;
+	border: #c0c0c0 1px solid;
+	font-family: courier, monospace;
 	padding-left: 1px;
 	padding-right: 1px;
-	border: #c0c0c0 1px solid;
 }
 
 kbd
 {
-	padding: 0px 1px 0px 1px;
-	border-width: 1px 2px 2px 1px;
 	border-style: solid;
+	border-width: 1px 2px 2px 1px;
+	padding: 0px 1px 0px 1px;
 }
 
 blockquote

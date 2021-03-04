@@ -24,17 +24,18 @@ Connector for Python (CGI and WSGI).
 
 """
 
+import config as Config
+import msvcrt
 import os
 try: # Windows needs stdio set for binary mode for file upload to work.
-	import msvcrt
 	msvcrt.setmode (0, os.O_BINARY) # stdin  = 0
 	msvcrt.setmode (1, os.O_BINARY) # stdout = 1
 except ImportError:
 	pass
 
-from fckutil import *
 from fckoutput import *
-import config as Config
+
+from fckutil import *
 
 class GetFoldersCommandMixin (object):
 	def getFolders(self, resourceType, currentFolder):

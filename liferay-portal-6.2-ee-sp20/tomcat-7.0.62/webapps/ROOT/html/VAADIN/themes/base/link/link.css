@@ -2,8 +2,8 @@
 	white-space: nowrap;	
 }
 .v-link a {
-	vertical-align: middle;
 	text-decoration: none;
+	vertical-align: middle;
 }
 .v-link span {
 	text-decoration: underline;

@@ -83,7 +83,7 @@ long assetClassPK = 0;
 	<aui:input name="repositoryId" type="hidden" value="<%= String.valueOf(repositoryId) %>" />
 	<aui:input name="folderId" type="hidden" value="<%= String.valueOf(folderId) %>" />
 
-	<div class="no-files-selected-info alert alert-info hide" id="<portlet:namespace />metadataExplanationContainer">
+	<div class="alert alert-info hide no-files-selected-info" id="<portlet:namespace />metadataExplanationContainer">
 		<liferay-ui:message key="select-documents-from-the-left-to-add-them-to-the-documents-and-media" />
 	</div>
 
@@ -103,7 +103,6 @@ long assetClassPK = 0;
 					<aui:input name="defaultLanguageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
 
 					<div class="document-type-selector">
-
 						<liferay-ui:icon-menu direction="down" icon='<%= themeDisplay.getPathThemeImages() + "/common/copy.png" %>' id="groupSelector" message='<%= (fileEntryTypeId > 0) ? HtmlUtil.escape(fileEntryType.getName(locale)) : "basic-document" %>' showWhenSingleIcon="<%= true %>">
 
 							<%
@@ -150,15 +149,15 @@ long assetClassPK = 0;
 								}
 					%>
 
-									<div class="document-type-fields">
-										<liferay-ddm:html
-											classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
-											classPK="<%= ddmStructure.getPrimaryKey() %>"
-											fields="<%= fields %>"
-											fieldsNamespace="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
-											requestedLocale="<%= locale %>"
-										/>
-									</div>
+								<div class="document-type-fields">
+									<liferay-ddm:html
+										classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
+										classPK="<%= ddmStructure.getPrimaryKey() %>"
+										fields="<%= fields %>"
+										fieldsNamespace="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
+										requestedLocale="<%= locale %>"
+									/>
+								</div>
 
 					<%
 							}

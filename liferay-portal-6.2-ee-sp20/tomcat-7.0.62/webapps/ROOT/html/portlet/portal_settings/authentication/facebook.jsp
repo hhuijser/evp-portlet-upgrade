@@ -26,11 +26,6 @@ String facebookConnectAppSecret = FacebookConnectUtil.getAppSecret(company.getCo
 if (Validator.isNotNull(facebookConnectAppSecret)) {
 	facebookConnectAppSecret = Portal.TEMP_OBFUSCATION_VALUE;
 }
-
-String facebookConnectGraphURL = FacebookConnectUtil.getGraphURL(company.getCompanyId());
-String facebookConnectOauthAuthURL = FacebookConnectUtil.getAuthURL(company.getCompanyId());
-String facebookConnectOauthTokenURL = FacebookConnectUtil.getAccessTokenURL(company.getCompanyId());
-String facebookConnectRedirectURL = FacebookConnectUtil.getRedirectURL(company.getCompanyId());
 %>
 
 <aui:fieldset>
@@ -42,11 +37,11 @@ String facebookConnectRedirectURL = FacebookConnectUtil.getRedirectURL(company.g
 
 	<aui:input cssClass="lfr-input-text-container" label="application-secret" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_APP_SECRET + "--" %>' type="password" value="<%= facebookConnectAppSecret %>" />
 
-	<aui:input cssClass="lfr-input-text-container" label="graph-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_GRAPH_URL + "--" %>' type="text" value="<%= facebookConnectGraphURL %>" />
+	<aui:input cssClass="lfr-input-text-container" label="graph-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_GRAPH_URL + "--" %>' type="text" value="<%= FacebookConnectUtil.getGraphURL(company.getCompanyId()) %>" />
 
-	<aui:input cssClass="lfr-input-text-container" label="oauth-authentication-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_OAUTH_AUTH_URL + "--" %>' type="text" value="<%= facebookConnectOauthAuthURL %>" />
+	<aui:input cssClass="lfr-input-text-container" label="oauth-authentication-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_OAUTH_AUTH_URL + "--" %>' type="text" value="<%= FacebookConnectUtil.getAuthURL(company.getCompanyId()) %>" />
 
-	<aui:input cssClass="lfr-input-text-container" label="oauth-token-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_OAUTH_TOKEN_URL + "--" %>' type="text" value="<%= facebookConnectOauthTokenURL %>" />
+	<aui:input cssClass="lfr-input-text-container" label="oauth-token-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_OAUTH_TOKEN_URL + "--" %>' type="text" value="<%= FacebookConnectUtil.getAccessTokenURL(company.getCompanyId()) %>" />
 
-	<aui:input cssClass="lfr-input-text-container" label="redirect-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_OAUTH_REDIRECT_URL + "--" %>' type="text" value="<%= facebookConnectRedirectURL %>" />
+	<aui:input cssClass="lfr-input-text-container" label="redirect-url" name='<%= "settings--" + PropsKeys.FACEBOOK_CONNECT_OAUTH_REDIRECT_URL + "--" %>' type="text" value="<%= FacebookConnectUtil.getRedirectURL(company.getCompanyId()) %>" />
 </aui:fieldset>

@@ -96,11 +96,9 @@ else {
 									<%
 									for (int i = 0; i < tagPropertiesIndexes.length; i++) {
 										int tagPropertiesIndex = tagPropertiesIndexes[i];
-
-										AssetTagProperty tagProperty = tagProperties.get(i);
 									%>
 
-										<aui:model-context bean="<%= tagProperty %>" model="<%= AssetTagProperty.class %>" />
+										<aui:model-context bean="<%= tagProperties.get(i) %>" model="<%= AssetTagProperty.class %>" />
 
 										<div class="lfr-form-row lfr-form-row-inline">
 											<div class="row-fields">

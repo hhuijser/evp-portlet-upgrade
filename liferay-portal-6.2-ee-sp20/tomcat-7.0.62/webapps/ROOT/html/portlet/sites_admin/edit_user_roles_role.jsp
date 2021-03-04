@@ -51,9 +51,7 @@ List<Role> roles = RoleLocalServiceUtil.search(company.getCompanyId(), searchTer
 
 roles = UsersAdminUtil.filterGroupRoles(permissionChecker, group.getGroupId(), roles);
 
-int total = roles.size();
-
-searchContainer.setTotal(total);
+searchContainer.setTotal(roles.size());
 
 List results = ListUtil.subList(roles, searchContainer.getStart(), searchContainer.getEnd());
 

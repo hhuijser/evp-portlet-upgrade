@@ -16,21 +16,13 @@
 
 <%@ include file="/html/portlet/document_library/init.jsp" %>
 
-<%
-String backURL = ParamUtil.getString(request, "backURL");
-
-String sourceName = (String)renderRequest.getAttribute(WebKeys.SOURCE_NAME);
-String targetName = (String)renderRequest.getAttribute(WebKeys.TARGET_NAME);
-List[] diffResults = (List[])renderRequest.getAttribute(WebKeys.DIFF_RESULTS);
-%>
-
 <liferay-ui:header
-	backURL="<%= backURL %>"
+	backURL='<%= ParamUtil.getString(request, "backURL") %>'
 	title="compare-versions"
 />
 
 <liferay-ui:diff
-	diffResults="<%= diffResults %>"
-	sourceName="<%= sourceName %>"
-	targetName="<%= targetName %>"
+	diffResults="<%= (List[])renderRequest.getAttribute(WebKeys.DIFF_RESULTS) %>"
+	sourceName="<%= (String)renderRequest.getAttribute(WebKeys.SOURCE_NAME) %>"
+	targetName="<%= (String)renderRequest.getAttribute(WebKeys.TARGET_NAME) %>"
 />
