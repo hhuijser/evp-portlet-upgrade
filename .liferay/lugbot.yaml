@@ -1,0 +1,19 @@
+codeUpgrade:
+    current: 6.2
+    upgrade: 7.3
+    upgrades:
+        - name: init-workspace
+        - name: upgrade-workspace-version
+        - args:
+              plugins:
+                  - foo-portlet
+                  - bar-portlet
+              pluginsSDKPath:
+                  - plugins-sdk/
+          name: convert-plugins
+        - args:
+              properties:
+                  - path/to/properties.properties
+                  - path/to/a/b/c.properties
+          name: portal-properties
+    workspacePath: liferay-workspace/
