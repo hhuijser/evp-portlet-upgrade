@@ -16,8 +16,8 @@
 
 <%@ include file="/html/portal/init.jsp" %>
 
-<%@ page import="com.liferay.portal.kernel.util.TreeView" %><%@
-page import="com.liferay.portal.util.PortletLister" %><%@
+
+<%@ page import="com.liferay.portal.util.PortletLister" %><%@
 page import="com.liferay.portal.util.PortletListerFactoryUtil" %>
 
 <%

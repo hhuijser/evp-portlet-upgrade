@@ -48,7 +48,7 @@ Locale[] availableLocales = new Locale[0];
 if (fields != null) {
 	Set<Locale> availableLocalesSet = fields.getAvailableLocales();
 
-	availableLocales = availableLocalesSet.toArray(new Locale[availableLocalesSet.size()]);
+	availableLocales = availableLocalesSet.toArray(new Locale[0]);
 }
 
 String defaultLanguageId = ParamUtil.getString(request, "defaultLanguageId");
