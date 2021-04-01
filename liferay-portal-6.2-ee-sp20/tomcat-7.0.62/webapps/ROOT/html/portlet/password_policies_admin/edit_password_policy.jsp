@@ -18,6 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 
 PasswordPolicy passwordPolicy = (PasswordPolicy)request.getAttribute(WebKeys.PASSWORD_POLICY);
@@ -94,7 +95,6 @@ boolean defaultPolicy = BeanParamUtil.getBoolean(passwordPolicy, request, "defau
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="passwordPoliciesAdminPasswordPolicySyntaxPanel" persistState="<%= true %>" title="password-syntax-checking">
 			<aui:fieldset>
-
 				<aui:input helpMessage="syntax-checking-enabled-help" label="syntax-checking-enabled" name="checkSyntax" />
 
 				<div class="password-policy-options" id="<portlet:namespace />syntaxSettings">
@@ -123,7 +123,6 @@ boolean defaultPolicy = BeanParamUtil.getBoolean(passwordPolicy, request, "defau
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="passwordPoliciesAdminPasswordPolicyHistoryPanel" persistState="<%= true %>" title="password-history">
 			<aui:fieldset>
-
 				<aui:input helpMessage="history-enabled-help" label="history-enabled" name="history" />
 
 				<div class="password-policy-options" id="<portlet:namespace />historySettings">
@@ -146,7 +145,6 @@ boolean defaultPolicy = BeanParamUtil.getBoolean(passwordPolicy, request, "defau
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="passwordPoliciesAdminPasswordPolicyExpirationPanel" persistState="<%= true %>" title="password-expiration">
 			<aui:fieldset>
-
 				<aui:input helpMessage="expiration-enabled-help" label="expiration-enabled" name="expireable" />
 
 				<div class="password-policy-options" id="<portlet:namespace />expirationSettings">

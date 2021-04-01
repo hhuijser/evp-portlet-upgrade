@@ -16,6 +16,7 @@
 ~ specific language governing permissions and limitations
 ~ under the License.
 --%>
+
 <%@ page import="org.apache.shiro.SecurityUtils" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -24,6 +25,7 @@
 <html>
 <head>
 </head>
+
 <body>
 
 <h2>Please Log in</h2>
@@ -64,6 +66,7 @@
 				<th>Password</th>
 			</tr>
 		</thead>
+
 		<tbody>
 			<tr>
 				<td>canonical</td>
@@ -79,6 +82,7 @@
 			</tr>
 		</tbody>
 	</table>
+
 	<br /><br />
 </shiro:guest>
 

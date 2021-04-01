@@ -80,7 +80,6 @@ List hitLayoutIds = JournalContentSearchLocalServiceUtil.getLayoutIds(layout.get
 			%>
 
 			<br /><a href="<%= webContentPortletURL.toString() %>"><%= StringUtil.shorten(webContentPortletURL.toString(), 100) %></a>
-
 		</span>
 	</c:otherwise>
 </c:choose>

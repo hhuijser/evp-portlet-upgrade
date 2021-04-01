@@ -220,6 +220,7 @@ boolean expired = true;
 						%>
 
 						<br />
+
 						<c:choose>
 							<c:when test="<%= Validator.isNull(articleId) %>">
 							</c:when>

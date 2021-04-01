@@ -124,7 +124,6 @@ for (JournalArticle curArticle : articles) {
 						<span class="folder-title">
 							<%= HtmlUtil.escape(folder.getName()) %>
 						</span>
-
 						<span class="error-message">
 							<%= LanguageUtil.get(pageContext, "you-do-not-have-the-required-permissions") %>
 						</span>
@@ -182,7 +181,6 @@ for (JournalArticle curArticle : articles) {
 						<span class="article-title" title="<%= HtmlUtil.escapeAttribute(invalidMoveArticle.getTitle()) %>">
 							<%= HtmlUtil.escape(invalidMoveArticle.getTitle()) %>
 						</span>
-
 						<span class="error-message">
 							<%= LanguageUtil.get(pageContext, "you-do-not-have-the-required-permissions") %>
 						</span>

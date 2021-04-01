@@ -44,7 +44,6 @@ OrderByComparator orderByComparator = BookmarksUtil.getEntryOrderByComparator(or
 
 		<%
 		if (useAssetEntryQuery) {
-
 			AssetEntryQuery assetEntryQuery = new AssetEntryQuery(BookmarksEntry.class.getName(), searchContainer);
 
 			assetEntryQuery.setExcludeZeroViewCount(false);
@@ -74,7 +73,6 @@ OrderByComparator orderByComparator = BookmarksUtil.getEntryOrderByComparator(or
 		keyProperty="primaryKeyObj"
 		modelVar="result"
 	>
-
 		<%@ include file="/html/portlet/bookmarks/cast_result.jspf" %>
 
 		<%

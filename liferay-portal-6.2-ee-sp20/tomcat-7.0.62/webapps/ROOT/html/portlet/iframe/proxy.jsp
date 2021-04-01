@@ -23,7 +23,6 @@ hiddenVariablesList.addAll(iframeVariables);
 %>
 
 <html dir="<liferay-ui:message key="lang.dir" />">
-
 	<head>
 		<meta content="no-cache" http-equiv="Cache-Control" />
 		<meta content="no-cache" http-equiv="Pragma" />
@@ -31,7 +30,6 @@ hiddenVariablesList.addAll(iframeVariables);
 	</head>
 
 	<body onLoad="setTimeout('document.fm.submit()', 100);">
-
 		<form action="<%= HtmlUtil.escapeAttribute(src) %>" method="<%= HtmlUtil.escapeAttribute(formMethod) %>" name="fm">
 
 			<%
@@ -98,9 +96,6 @@ hiddenVariablesList.addAll(iframeVariables);
 			%>
 
 			<input name="<%= HtmlUtil.escapeAttribute(passwordField) %>" type="hidden" value="<%= HtmlUtil.escapeAttribute(password) %>" />
-
 		</form>
-
 	</body>
-
 </html>

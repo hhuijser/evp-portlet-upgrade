@@ -189,7 +189,6 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 				</td>
 			</tr>
 		</c:if>
-
 	</table>
 
 	<div class="lfr-asset-panels">

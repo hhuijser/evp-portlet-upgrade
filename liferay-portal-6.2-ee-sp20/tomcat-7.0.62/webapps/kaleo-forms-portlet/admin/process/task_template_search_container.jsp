@@ -22,6 +22,7 @@ String backURL = ParamUtil.getString(request, "backURL");
 long kaleoProcessId = ParamUtil.getLong(request, "kaleoProcessId");
 long ddmStructureId = KaleoFormsUtil.getKaleoProcessDDMStructureId(kaleoProcessId, portletSession);
 String workflowDefinition = ParamUtil.getString(request, "workflowDefinition");
+
 String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyId(), workflowDefinition);
 
 TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPair(kaleoProcessId, ddmStructureId, workflowDefinition, initialStateName, portletSession);
@@ -33,7 +34,6 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 	<liferay-ui:search-container
 		searchContainer='<%= new SearchContainer<Object>(renderRequest, portletURL, null, "no-tasks-were-found") %>'
 	>
-
 		<liferay-ui:search-container-results>
 
 			<%
@@ -51,7 +51,6 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 			className="com.liferay.portal.workflow.kaleo.forms.util.TaskFormPair"
 			modelVar="taskFormsPair"
 		>
-
 			<liferay-ui:search-container-column-text
 				name="task"
 				value="<%= HtmlUtil.escape(taskFormsPair.getWorkflowTaskName()) %>"
@@ -100,7 +99,6 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 			>
 				<aui:button href="<%= selectFormURL %>" value="assign-form" />
 			</liferay-ui:search-container-column-text>
-
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />

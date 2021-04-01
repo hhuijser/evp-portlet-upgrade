@@ -348,6 +348,7 @@ if (Validator.isNotNull(content)) {
 											}
 
 											String taglibEditArticleURL = HttpUtil.addParameter(editArticleRenderPopUpURL.toString(), renderResponse.getNamespace() + "toLanguageId", LocaleUtil.toLanguageId(locales[i]));
+
 											String taglibEditURL = "javascript:Liferay.Util.openWindow({cache: false, id: '" + renderResponse.getNamespace() + LocaleUtil.toLanguageId(locales[i]) + "', title: '" + HtmlUtil.escapeJS(LanguageUtil.get(pageContext, "web-content-translation")) + "', uri: '" + HtmlUtil.escapeJS(taglibEditArticleURL) + "'});";
 										%>
 
@@ -498,7 +499,6 @@ if (Validator.isNotNull(content)) {
 						repeatable="<%= Validator.isNull(toLanguageId) %>"
 						requestedLocale="<%= LocaleUtil.fromLanguageId(requestedLanguageId) %>"
 					/>
-
 				</c:otherwise>
 			</c:choose>
 

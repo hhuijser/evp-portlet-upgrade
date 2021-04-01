@@ -46,7 +46,6 @@ catch (Exception e) {
 %>
 
 <form action="<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/password_generator/view" /></liferay-portlet:renderURL>" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
-
 	<table class="lfr-table">
 		<tr>
 			<td>
@@ -104,7 +103,6 @@ catch (Exception e) {
 	<br /><br />
 
 	<input type="submit" value="<liferay-ui:message key="generate" />" />
-
 </form>
 
 <aui:script use="aui-io-request,aui-parse-content">

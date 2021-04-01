@@ -95,7 +95,6 @@ searchContainer.setEmptyResultsMessage(emptyResultsMessage);
 			name="name"
 			orderable="<%= true %>"
 		>
-
 			<%= organization.getName() %>
 
 			<c:if test="<%= group.getOrganizationId() == organization.getOrganizationId() %>">

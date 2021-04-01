@@ -127,15 +127,11 @@ if (fileShortcut != null) {
 
 <c:choose>
 	<c:when test="<%= portletName.equals(PortletKeys.DOCUMENT_LIBRARY_DISPLAY) && !showMinimalActionButtons %>">
-
 		<%= iconMenu %>
-
 	</c:when>
 	<c:otherwise>
 		<span class="entry-action overlay">
-
 			<%= iconMenu %>
-
 		</span>
 	</c:otherwise>
 </c:choose>

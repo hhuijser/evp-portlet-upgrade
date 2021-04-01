@@ -48,7 +48,6 @@ PortletURL portletURL = (PortletURL)request.getAttribute("search.jsp-portletURL"
 	<span class="asset-entry-type">
 		<%= ResourceActionsUtil.getModelResource(locale, entryClassName) %>
 	</span>
-
 	<span class="toggle-details">[+]</span>
 
 	<span class="asset-entry-title">
@@ -162,6 +161,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("search.jsp-portletURL"
 				</th>
 			</tr>
 		</thead>
+
 		<tbody>
 
 			<%

@@ -75,7 +75,6 @@ portletURL.setParameter("recordSetId", String.valueOf(recordSet.getRecordSetId()
 	<liferay-ui:search-container
 		searchContainer='<%= new SearchContainer(renderRequest, new DisplayTerms(request), null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, LanguageUtil.format(pageContext, "no-x-records-were-found", HtmlUtil.escape(ddmStructure.getName(locale)), false)) %>'
 	>
-
 		<aui:nav-bar>
 			<aui:nav>
 				<c:if test="<%= showAddRecordButton %>">

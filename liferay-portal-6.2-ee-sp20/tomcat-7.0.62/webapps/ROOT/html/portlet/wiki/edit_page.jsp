@@ -255,7 +255,6 @@ if (Validator.isNull(redirect)) {
 							%>
 
 						</aui:select>
-
 					</c:when>
 					<c:otherwise>
 						<aui:input name="format" type="hidden" value="<%= format %>" />

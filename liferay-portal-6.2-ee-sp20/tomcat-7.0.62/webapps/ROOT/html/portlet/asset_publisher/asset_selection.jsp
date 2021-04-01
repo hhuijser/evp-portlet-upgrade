@@ -281,6 +281,7 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 				for (int queryLogicIndex : queryLogicIndexes) {
 					String queryValues = StringUtil.merge(portletPreferences.getValues("queryValues" + queryLogicIndex, new String[0]));
+
 					String tagNames = ParamUtil.getString(request, "queryTagNames" + queryLogicIndex, queryValues);
 					String categoryIds = ParamUtil.getString(request, "queryCategoryIds" + queryLogicIndex, queryValues);
 
@@ -379,7 +380,6 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 						<aui:option label="descending" selected='<%= orderByType1.equals("DESC") %>' value="DESC" />
 					</aui:select>
 				</span>
-
 				<span class="field-row">
 					<aui:select inlineField="<%= true %>" inlineLabel="left" label="and-then-by" name="preferences--orderByColumn2--">
 						<aui:option label="title" selected='<%= orderByColumn2.equals("title") %>' />
@@ -400,7 +400,6 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 						<aui:option label="descending" selected='<%= orderByType2.equals("DESC") %>' value="DESC" />
 					</aui:select>
 				</span>
-
 				<span class="field-row">
 					<aui:select inlineField="<%= true %>" inlineLabel="left" label="group-by" name="preferences--assetVocabularyId--">
 						<aui:option value="" />

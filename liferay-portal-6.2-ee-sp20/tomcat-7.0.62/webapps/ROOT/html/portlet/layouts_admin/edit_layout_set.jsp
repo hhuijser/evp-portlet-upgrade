@@ -84,9 +84,11 @@ boolean hasViewPagesPermission = (pagesCount > 0) && (liveGroup.isStaged() || se
 		<c:if test="<%= hasViewPagesPermission %>">
 			<aui:nav-item data-value="view-pages" iconCssClass="icon-file" label="view-pages" />
 		</c:if>
+
 		<c:if test="<%= hasAddPageLayoutsPermission %>">
 			<aui:nav-item data-value="add-page" iconCssClass="icon-plus" label="add-page" />
 		</c:if>
+
 		<c:if test="<%= hasExportImportLayoutsPermission %>">
 			<aui:nav-item data-value="export" iconCssClass="icon-arrow-down" label="export" />
 			<aui:nav-item data-value="import" iconCssClass="icon-arrow-up" label="import" />
