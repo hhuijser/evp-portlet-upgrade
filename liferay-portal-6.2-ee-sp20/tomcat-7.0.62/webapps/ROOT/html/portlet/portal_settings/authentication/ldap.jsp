@@ -88,7 +88,7 @@ if (ldapAuthEnabled && (ldapServerIds.length <= 0) && Validator.isNull(PrefsProp
 		try {
 			CompanyServiceUtil.updatePreferences(company.getCompanyId(), properties);
 
-			CompanyServiceUtil.removePreferences(company.getCompanyId(), keys.toArray(new String[keys.size()]));
+			CompanyServiceUtil.removePreferences(company.getCompanyId(), keys.toArray(new String[0]));
 		}
 		catch (Exception e) {
 		}

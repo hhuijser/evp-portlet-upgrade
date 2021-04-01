@@ -69,7 +69,7 @@ int delta = ParamUtil.getInteger(request, "delta", deltaDefault);
 			<%
 			long groupId = scopeGroupId;
 
-			long[] groupIds = new long[] {scopeGroupId};
+			long[] groupIds = {scopeGroupId};
 
 			boolean defaultAssetPublisher = false;
 
