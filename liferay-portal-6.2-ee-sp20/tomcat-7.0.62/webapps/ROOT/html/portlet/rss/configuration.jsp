@@ -82,7 +82,7 @@ configurationRenderURL.setParameter("portletResource", portletResource);
 						<%
 						if (urls.length == 0) {
 							urls = new String[1];
-							urls [0] = StringPool.BLANK;
+							urls[0] = StringPool.BLANK;
 						}
 
 						for (int i = 0; i < urls.length; i++) {

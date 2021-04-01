@@ -54,13 +54,13 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 		</aui:select>
 	</c:if>
 
-	<div class="layout-revision-container" id="<portlet:namespace/>layoutRevisionsContainer">
+	<div class="layout-revision-container" id="<portlet:namespace />layoutRevisionsContainer">
 
 		<%
 		for (LayoutRevision rootLayoutRevision : rootLayoutRevisions) {
 		%>
 
-			<div class="layout-variation-container <%= (recentLayoutRevision.getLayoutBranchId() == rootLayoutRevision.getLayoutBranchId()) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace/><%= rootLayoutRevision.getLayoutRevisionId() %>">
+			<div class="layout-variation-container <%= (recentLayoutRevision.getLayoutBranchId() == rootLayoutRevision.getLayoutBranchId()) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace /><%= rootLayoutRevision.getLayoutRevisionId() %>">
 				<c:if test="<%= rootLayoutRevisions.size() > 1 %>">
 
 					<%
@@ -200,8 +200,8 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 </c:if>
 
 <aui:script use="aui-base">
-	var variationsSelector = A.one('#<portlet:namespace/>variationsSelector');
-	var layoutRevisionsContainer = A.one('#<portlet:namespace/>layoutRevisionsContainer');
+	var variationsSelector = A.one('#<portlet:namespace />variationsSelector');
+	var layoutRevisionsContainer = A.one('#<portlet:namespace />layoutRevisionsContainer');
 
 	var layoutBranchesContainer = A.all('.layout-variation-container');
 
@@ -215,7 +215,7 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 				else {
 					layoutBranchesContainer.hide();
 
-					var layoutBranch = A.one('#<portlet:namespace/>' + variationsSelector.val());
+					var layoutBranch = A.one('#<portlet:namespace />' + variationsSelector.val());
 
 					layoutBranch.show();
 				}

@@ -56,7 +56,7 @@ if (Validator.isNull(script)) {
 		try {
 			script = StringUtil.read(templateHandlerClass.getClassLoader(), templateHandler.getTemplatesHelpPath(language));
 		}
-		catch(Exception e) {
+		catch (Exception e) {
 			script = StringUtil.read(PortalClassLoaderUtil.getClassLoader(), templateHandler.getTemplatesHelpPath(language));
 		}
 	}

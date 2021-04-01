@@ -151,5 +151,5 @@
 </aui:button-row>
 
 <%!
-private static final String[] _IMAGEMAGICK_RESOURCE_LIMIT_LABELS= {"area", "disk", "file", "map", "memory", "thread", "time"};
+private static final String[] _IMAGEMAGICK_RESOURCE_LIMIT_LABELS = {"area", "disk", "file", "map", "memory", "thread", "time"};
 %>
