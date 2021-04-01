@@ -98,15 +98,15 @@ BookmarksUtil.addPortletBreadcrumbEntries(entry, request, renderResponse);
 		</liferay-ui:custom-attributes-available>
 
 		<div class="lfr-asset-metadata">
-			<div class="lfr-asset-icon lfr-asset-author">
+			<div class="lfr-asset-author lfr-asset-icon">
 				<%= LanguageUtil.format(pageContext, "created-by-x", HtmlUtil.escape(PortalUtil.getUserName(entry.getUserId(), themeDisplay.getScopeGroupName())), false) %>
 			</div>
 
-			<div class="lfr-asset-icon lfr-asset-date">
+			<div class="lfr-asset-date lfr-asset-icon">
 				<%= dateFormatDate.format(entry.getCreateDate()) %>
 			</div>
 
-			<div class="lfr-asset-icon lfr-asset-downloads last">
+			<div class="last lfr-asset-downloads lfr-asset-icon">
 				<%= entry.getVisits() %> <liferay-ui:message key="visits" />
 			</div>
 		</div>

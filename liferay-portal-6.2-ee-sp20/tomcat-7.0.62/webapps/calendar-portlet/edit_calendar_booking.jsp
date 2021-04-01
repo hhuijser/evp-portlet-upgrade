@@ -173,7 +173,7 @@ for (long otherCalendarId : otherCalendarIds) {
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
 	<aui:input name="instanceIndex" type="hidden" value="<%= instanceIndex %>" />
 	<aui:input name="childCalendarIds" type="hidden" />
-	<aui:input name="status" type="hidden" value ="<%= status %>" />
+	<aui:input name="status" type="hidden" value="<%= status %>" />
 	<aui:input name="allFollowing" type="hidden" />
 	<aui:input name="updateCalendarBookingInstance" type="hidden" />
 

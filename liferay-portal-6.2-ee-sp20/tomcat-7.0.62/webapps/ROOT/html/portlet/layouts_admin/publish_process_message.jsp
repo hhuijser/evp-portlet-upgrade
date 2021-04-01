@@ -62,7 +62,7 @@ BackgroundTask backgroundTask = (BackgroundTask)row.getObject();
 		}
 		%>
 
-		<div class="progress progress-striped active">
+		<div class="active progress progress-striped">
 			<div class="bar" style="width: <%= percentage %>%;">
 				<c:if test="<%= (allProgressBarCountersTotal > 0) && (!Validator.equals(cmd, Constants.PUBLISH_TO_REMOTE) || (percentage < 100)) %>">
 					<%= percentage + StringPool.PERCENT %>

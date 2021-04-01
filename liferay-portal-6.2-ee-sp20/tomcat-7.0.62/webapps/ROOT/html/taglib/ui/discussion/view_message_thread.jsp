@@ -27,7 +27,7 @@ int depth = ((Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DE
 %>
 
 <tr>
-	<td class="table-cell" style="padding-left: <%= depth * 10 %>px; width: 90%">
+	<td class="table-cell" style="padding-left: <%= depth * 10 %>px; width: 90%;">
 		<c:if test="<%= !message.isRoot() %>">
 			<c:choose>
 				<c:when test="<%= !lastNode %>">

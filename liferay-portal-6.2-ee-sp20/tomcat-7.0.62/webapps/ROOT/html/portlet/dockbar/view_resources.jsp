@@ -130,7 +130,8 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 						}
 					%>
 
-						<aui:nav-item cssClass='<%= navItemCssClass %>'
+						<aui:nav-item
+							cssClass="<%= navItemCssClass %>"
 							data="<%= data %>"
 							href=""
 							iconCssClass='<%= displayStyle.equals("list") ? "icon-file" : StringPool.BLANK %>'
