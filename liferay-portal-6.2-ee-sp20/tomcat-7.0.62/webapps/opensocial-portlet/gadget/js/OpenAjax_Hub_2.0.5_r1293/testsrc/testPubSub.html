@@ -34,7 +34,7 @@ TODO:
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
 	<title>Publish/Subscribe Unit Tests</title>
 
@@ -42,7 +42,7 @@ TODO:
 		@import "../dojo/dojo/resources/dojo.css";
 	</style>
 
-	<script type="text/javascript" src="../dojo/dojo/dojo.js" djConfig="isDebug: true"></script>
+	<script djConfig="isDebug: true" src="../dojo/dojo/dojo.js" type="text/javascript"></script>
 
 	<script src="config.js"></script>
 	<!-- loadHub.js dynamically loads a particular configuration of the OpenAjax Hub,
@@ -50,13 +50,13 @@ TODO:
 		 test against multiple release configurations. -->
 	<script type="text/javascript">loadHub_dirDepth="1";</script>
 	<script src="util/loadHub.js"></script>
-	<script language="JavaScript" type="text/javascript" src="util/getTestURLParams.js"></script>
+	<script language="JavaScript" src="util/getTestURLParams.js" type="text/javascript"></script>
 
-	<script language="JavaScript" type="text/javascript" src="util/testHelper.js"></script>
-	<script language="JavaScript" type="text/javascript" src="util/test_hub.js"></script>
-	<script language="JavaScript" type="text/javascript" src="unmanagedHub/test_helper_unmanaged.js"></script>
+	<script language="JavaScript" src="util/testHelper.js" type="text/javascript"></script>
+	<script language="JavaScript" src="util/test_hub.js" type="text/javascript"></script>
+	<script language="JavaScript" src="unmanagedHub/test_helper_unmanaged.js" type="text/javascript"></script>
 
-	<script language="JavaScript" type="text/javascript" src="testPubSub.js"></script>
+	<script language="JavaScript" src="testPubSub.js" type="text/javascript"></script>
 
 	<script language="JavaScript" type="text/javascript">
 
