@@ -139,7 +139,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 						value = HtmlUtil.escape(value);
 					}
 				}
-				%>
+			%>
 
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"

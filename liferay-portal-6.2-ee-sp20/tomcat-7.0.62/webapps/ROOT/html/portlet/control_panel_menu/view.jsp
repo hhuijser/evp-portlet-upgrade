@@ -105,7 +105,7 @@
 										message="<%= HtmlUtil.escape(curScopeLayout.getName(locale)) %>"
 										src="<%= scopeGroup.getIconURL(themeDisplay) %>"
 										url='<%= HttpUtil.setParameter(PortalUtil.getCurrentURL(request), "doAsGroupId", scopeGroup.getGroupId()) %>'
-										/>
+									/>
 
 								<%
 								}
@@ -157,7 +157,7 @@
 								if (alloyPortletContext.getAttribute(BaseAlloyControllerImpl.TOUCH + portlet.getRootPortletId()) != Boolean.FALSE) {
 							%>
 
-								<iframe height="0" src="<%= portletURL %>" style="display: none; visibility: hidden;" width="0"></iframe>
+									<iframe height="0" src="<%= portletURL %>" style="display: none; visibility: hidden;" width="0"></iframe>
 
 							<%
 								}

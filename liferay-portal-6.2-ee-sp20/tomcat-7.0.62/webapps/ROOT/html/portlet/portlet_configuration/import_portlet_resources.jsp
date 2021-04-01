@@ -224,7 +224,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 
 																if (ArrayUtil.isNotEmpty(childrenControls)) {
 																	request.setAttribute("render_controls.jsp-controls", childrenControls);
-																%>
+															%>
 
 																	<aui:field-wrapper label="content-metadata">
 																		<ul class="lfr-tree unstyled">
@@ -233,9 +233,9 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 																	</aui:field-wrapper>
 
 																<%
+																	}
 																}
-															}
-															%>
+																%>
 
 														</c:if>
 													</aui:fieldset>

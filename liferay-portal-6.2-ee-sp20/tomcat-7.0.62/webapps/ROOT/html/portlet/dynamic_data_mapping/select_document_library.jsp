@@ -368,12 +368,12 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 
 			<%@ include file="/html/portlet/dynamic_data_mapping/select_document_library_search_results.jspf" %>
 
-	<%
+		<%
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 		}
-	%>
+		%>
 
 		<liferay-ui:search-iterator searchContainer="<%= fileEntrySearchContainer %>" />
 

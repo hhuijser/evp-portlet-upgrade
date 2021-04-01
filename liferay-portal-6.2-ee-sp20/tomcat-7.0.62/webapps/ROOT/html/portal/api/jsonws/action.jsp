@@ -253,7 +253,7 @@ String signature = ParamUtil.getString(request, "signature");
 				</div>
 
 			<%
-				}
+			}
 			%>
 
 		</div>
@@ -366,7 +366,7 @@ String signature = ParamUtil.getString(request, "signature");
 						<aui:input id='<%= "field" + i %>' label="<%= methodParameterName %>" name="<%= methodParameterName %>" size="<%= size %>" suffix="<%= methodParameterTypeClassName %>" />
 
 				<%
-					}
+				}
 				%>
 
 					<aui:script>

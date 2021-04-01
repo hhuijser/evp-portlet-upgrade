@@ -97,104 +97,104 @@ if (Validator.isNotNull(userFilter) && !userFilter.equals(StringPool.STAR)) {
 
 <table class="lfr-table" width="100%">
 
-<%
-boolean showMissingAttributeMessage = false;
+	<%
+	boolean showMissingAttributeMessage = false;
 
-int counter = 0;
+	int counter = 0;
 
-for (SearchResult searchResult : searchResults) {
-	Attributes attributes = searchResult.getAttributes();
+	for (SearchResult searchResult : searchResults) {
+		Attributes attributes = searchResult.getAttributes();
 
-	String screenName = StringUtil.toLowerCase(LDAPUtil.getAttributeString(attributes, userMappings.getProperty("screenName")));
-	String password = StringUtil.toLowerCase(LDAPUtil.getAttributeString(attributes, userMappings.getProperty("password")));
-	String emailAddress = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("emailAddress"));
-	String firstName = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("firstName"));
-	String lastName = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("lastName"));
-	String jobTitle = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("jobTitle"));
-	Attribute attribute = attributes.get(userMappings.getProperty("group"));
+		String screenName = StringUtil.toLowerCase(LDAPUtil.getAttributeString(attributes, userMappings.getProperty("screenName")));
+		String password = StringUtil.toLowerCase(LDAPUtil.getAttributeString(attributes, userMappings.getProperty("password")));
+		String emailAddress = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("emailAddress"));
+		String firstName = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("firstName"));
+		String lastName = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("lastName"));
+		String jobTitle = LDAPUtil.getAttributeString(attributes, userMappings.getProperty("jobTitle"));
+		Attribute attribute = attributes.get(userMappings.getProperty("group"));
 
-	if (Validator.isNull(screenName) || Validator.isNull(password) || Validator.isNull(emailAddress) || Validator.isNull(firstName) || Validator.isNull(lastName)) {
-		showMissingAttributeMessage = true;
+		if (Validator.isNull(screenName) || Validator.isNull(password) || Validator.isNull(emailAddress) || Validator.isNull(firstName) || Validator.isNull(lastName)) {
+			showMissingAttributeMessage = true;
+		}
+
+		if (counter == 0) {
+	%>
+
+			<tr>
+				<th>
+					#
+				</th>
+				<th>
+					<liferay-ui:message key="screen-name" />
+				</th>
+				<th>
+					<liferay-ui:message key="email-address" />
+				</th>
+				<th>
+					<liferay-ui:message key="first-name" />
+				</th>
+				<th>
+					<liferay-ui:message key="last-name" />
+				</th>
+				<th>
+					<liferay-ui:message key="password" />
+				</th>
+				<th>
+					<liferay-ui:message key="job-title" />
+				</th>
+				<th>
+					<liferay-ui:message key="group" />
+				</th>
+			</tr>
+
+		<%
+		}
+
+		counter++;
+		%>
+
+		<tr>
+			<td>
+				<%= counter %>
+			</td>
+			<td>
+				<%= screenName %>
+			</td>
+			<td>
+				<%= emailAddress %>
+			</td>
+			<td>
+				<%= firstName %>
+			</td>
+			<td>
+				<%= lastName %>
+			</td>
+			<td>
+				<%= Validator.isNotNull(password) ? "********" : StringPool.BLANK %>
+			</td>
+			<td>
+				<%= jobTitle %>
+			</td>
+			<td>
+				<%= (attribute == null) ? "0" : String.valueOf(attribute.size()) %>
+			</td>
+		</tr>
+
+	<%
 	}
 
 	if (counter == 0) {
-%>
+	%>
 
 		<tr>
-			<th>
-				#
-			</th>
-			<th>
-				<liferay-ui:message key="screen-name" />
-			</th>
-			<th>
-				<liferay-ui:message key="email-address" />
-			</th>
-			<th>
-				<liferay-ui:message key="first-name" />
-			</th>
-			<th>
-				<liferay-ui:message key="last-name" />
-			</th>
-			<th>
-				<liferay-ui:message key="password" />
-			</th>
-			<th>
-				<liferay-ui:message key="job-title" />
-			</th>
-			<th>
-				<liferay-ui:message key="group" />
-			</th>
+			<td colspan="7">
+				<liferay-ui:message key="no-users-were-found" />
+			</td>
 		</tr>
 
-<%
+	<%
 	}
-
-	counter++;
-%>
-
-	<tr>
-		<td>
-			<%= counter %>
-		</td>
-		<td>
-			<%= screenName %>
-		</td>
-		<td>
-			<%= emailAddress %>
-		</td>
-		<td>
-			<%= firstName %>
-		</td>
-		<td>
-			<%= lastName %>
-		</td>
-		<td>
-			<%= Validator.isNotNull(password) ? "********" : StringPool.BLANK %>
-		</td>
-		<td>
-			<%= jobTitle %>
-		</td>
-		<td>
-			<%= (attribute == null) ? "0" : String.valueOf(attribute.size()) %>
-		</td>
-	</tr>
-
-<%
-}
-
-if (counter == 0) {
-%>
-
-	<tr>
-		<td colspan="7">
-			<liferay-ui:message key="no-users-were-found" />
-		</td>
-	</tr>
-
-<%
-}
-%>
+	%>
 
 </table>
 
