@@ -24,6 +24,7 @@ Layout selLayout = (Layout)request.getAttribute("edit_pages.jsp-selLayout");
 LayoutTypePortletImpl selLayoutTypePortlet = new LayoutTypePortletImpl(selLayout);
 
 Locale defaultLocale = LocaleUtil.getDefault();
+
 String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 %>
 

@@ -48,7 +48,6 @@ int depth = ((Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DE
 	<td class="table-cell"></td>
 	<td class="table-cell" nowrap="nowrap">
 		<a href="<%= rowHREF %>">
-
 			<c:choose>
 				<c:when test="<%= message.isAnonymous() %>">
 					<c:choose>
@@ -64,7 +63,6 @@ int depth = ((Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DE
 					<%= HtmlUtil.escape(PortalUtil.getUserName(message)) %>
 				</c:otherwise>
 			</c:choose>
-
 		</a>
 	</td>
 	<td class="table-cell"></td>

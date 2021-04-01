@@ -158,7 +158,6 @@ portletURL.setParameter("category", category);
 									<li class="switch">
 										<i class="icon-chevron-right"></i>
 									</li>
-
 									<li>
 										<liferay-ui:message key="this-app-contains" />
 									</li>

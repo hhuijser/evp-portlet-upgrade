@@ -18,6 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 
 UserGroup userGroup = (UserGroup)request.getAttribute(WebKeys.USER_GROUP);
@@ -55,7 +56,6 @@ long userGroupId = BeanParamUtil.getLong(userGroup, request, "userGroupId");
 				label="<%= true %>"
 			/>
 		</liferay-ui:custom-attributes-available>
-
 	</aui:fieldset>
 
 	<%
@@ -149,7 +149,6 @@ long userGroupId = BeanParamUtil.getLong(userGroup, request, "userGroupId");
 					<aui:field-wrapper label="public-pages">
 						<c:choose>
 							<c:when test="<%= userGroupGroup != null %>">
-
 								<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="publicPagesURL">
 									<portlet:param name="struts_action" value="/MY_SITES/view" />
 									<portlet:param name="groupId" value="<%= String.valueOf(userGroupGroup.getGroupId()) %>" />

@@ -77,7 +77,6 @@ if (Validator.isNull(redirect)) {
 }
 
 if (curParentMessage != null) {
-
 	MBUtil.addPortletBreadcrumbEntries(curParentMessage, request, renderResponse);
 
 	if (!layout.isTypeControlPanel()) {
@@ -157,6 +156,7 @@ else {
 
 <portlet:actionURL var="editMessageURL">
 	<portlet:param name="struts_action" value="/message_boards/edit_message" />
+
 	<liferay-portlet:param name="uploadExceptionRedirect" value="<%= uploadExceptionRedirect %>" />
 </portlet:actionURL>
 
@@ -234,6 +234,7 @@ else {
 					<%@ include file="/html/portlet/message_boards/html_editor.jspf" %>
 				</c:otherwise>
 			</c:choose>
+
 			<aui:input name="body" type="hidden" />
 		</aui:field-wrapper>
 

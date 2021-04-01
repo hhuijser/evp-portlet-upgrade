@@ -199,7 +199,6 @@ portletURL.setParameter("tabs3", "current-and-previous");
 														/>
 													</aui:fieldset>
 												</li>
-
 												<li>
 													<aui:fieldset label="end-date">
 														<liferay-ui:input-date

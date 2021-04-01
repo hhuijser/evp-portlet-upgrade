@@ -87,7 +87,6 @@ if (step == 1) {
 					keyProperty="organizationId"
 					modelVar="organization"
 				>
-
 					<liferay-ui:search-container-column-text
 						name="name"
 						orderable="<%= true %>"
@@ -176,7 +175,6 @@ if (step == 1) {
 				);
 			</aui:script>
 		</c:when>
-
 		<c:when test="<%= step == 2 %>">
 
 			<%

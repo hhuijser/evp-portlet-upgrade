@@ -511,6 +511,5 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 				</td>
 			</tr>
 		</c:if>
-
 	</table>
 </div>

@@ -674,7 +674,6 @@ portletURL.setParameter("tabs1", tabs1);
 			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 		</c:when>
 	</c:choose>
-
 </form>
 
 <aui:script>

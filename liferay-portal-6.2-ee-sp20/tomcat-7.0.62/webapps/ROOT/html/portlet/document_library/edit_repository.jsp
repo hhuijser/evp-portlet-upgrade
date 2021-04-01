@@ -114,6 +114,7 @@ long folderId = ParamUtil.getLong(request, "folderId");
 				</div>
 			</c:otherwise>
 		</c:choose>
+
 		<c:if test="<%= repository == null %>">
 			<aui:field-wrapper label="permissions">
 				<liferay-ui:input-permissions
@@ -149,6 +150,7 @@ long folderId = ParamUtil.getLong(request, "folderId");
 						<aui:option label="<%= LanguageUtil.get(pageContext, HtmlUtil.escape(StringUtil.replace(StringUtil.toLowerCase(supportedConfiguration), CharPool.UNDERLINE, CharPool.DASH))) %>" selected="<%= supportedConfiguration.equals(supportedConfigurations[0]) %>" value="<%= HtmlUtil.escapeAttribute(supportedConfiguration) %>" />
 					</aui:select>
 				</div>
+
 				<div class="settings-parameters" id="<portlet:namespace />repository-<%= className %>-configuration-<%= HtmlUtil.escapeAttribute(supportedConfiguration) %>">
 
 					<%

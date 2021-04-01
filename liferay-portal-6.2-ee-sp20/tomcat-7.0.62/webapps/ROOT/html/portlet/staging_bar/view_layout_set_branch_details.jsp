@@ -28,6 +28,7 @@ String stagingFriendlyURL = (String)request.getAttribute("view.jsp-stagingFriend
 		<div class="variations-options">
 			<liferay-util:buffer var="taglibMessage">
 				<liferay-ui:message key="<%= HtmlUtil.escape(layoutSetBranchDisplayContext.getLayoutSetBranchDisplayName(layoutSetBranch)) %>" localizeKey="<%= false %>" />
+
 				<small>(<liferay-ui:message arguments="<%= layouts.size() %>" key='<%= (layouts.size() == 1) ? "1-page" : "x-pages" %>' translateArguments="<%= false %>" />)</small>
 			</liferay-util:buffer>
 

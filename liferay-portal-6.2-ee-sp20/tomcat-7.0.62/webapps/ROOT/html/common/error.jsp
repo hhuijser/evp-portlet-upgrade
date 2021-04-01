@@ -43,14 +43,12 @@ String message = exception.getMessage();
 %>
 
 <center>
-
 	<br />
 
 	<table border="0" cellpadding="0" cellspacing="0" width="95%">
 		<tr>
 			<td>
 				<font color="#FF0000" face="Verdana, Tahoma, Arial" size="2">
-
 					<c:choose>
 						<c:when test="<%= exception instanceof PrincipalException %>">
 							<liferay-ui:message key="you-do-not-have-permission-to-view-this-page" />
@@ -61,7 +59,6 @@ String message = exception.getMessage();
 					</c:choose>
 
 					<br />
-
 				</font>
 
 				<c:if test="<%= message != null %>">
@@ -69,13 +66,11 @@ String message = exception.getMessage();
 
 					<%= HtmlUtil.escape(message) %>
 				</c:if>
-
 			</td>
 		</tr>
 	</table>
 
 	<br />
-
 </center>
 
 <%!

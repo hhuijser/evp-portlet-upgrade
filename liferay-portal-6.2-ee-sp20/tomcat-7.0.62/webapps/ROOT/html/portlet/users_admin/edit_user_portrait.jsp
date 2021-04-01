@@ -62,7 +62,6 @@ long maxFileSize = PrefsPropsUtil.getLong(PropsKeys.USERS_IMAGE_MAX_SIZE) / 1024
 			<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />
 
 			<liferay-ui:error exception="<%= UserPortraitSizeException.class %>">
-
 				<liferay-ui:message arguments="<%= maxFileSize %>" key="please-enter-a-file-with-a-valid-file-size-no-larger-than-x" />
 			</liferay-ui:error>
 

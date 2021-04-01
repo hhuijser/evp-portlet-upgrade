@@ -89,7 +89,6 @@ boolean splitThread = true;
 		%>
 
 		<liferay-util:include page="/html/portlet/message_boards/view_thread_shortcut.jsp" />
-
 	</table>
 
 	<br />

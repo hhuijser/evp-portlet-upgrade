@@ -20,6 +20,7 @@
 User selUser = (User)request.getAttribute("user.selUser");
 List<Group> groups = (List<Group>)request.getAttribute("user.groups");
 List<Organization> organizations = (List<Organization>)request.getAttribute("user.organizations");
+
 Long[] organizationIds = UsersAdminUtil.getOrganizationIds(organizations);
 List<Role> roles = (List<Role>)request.getAttribute("user.roles");
 List<UserGroupRole> organizationRoles = (List<UserGroupRole>)request.getAttribute("user.organizationRoles");
@@ -505,7 +506,6 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "roles"
 				name="user-group"
 				value="<%= HtmlUtil.escape(userGroupGroupRole.getUserGroup().getName()) %>"
 			/>
-
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />

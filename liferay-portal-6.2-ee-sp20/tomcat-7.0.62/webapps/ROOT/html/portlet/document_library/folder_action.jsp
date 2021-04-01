@@ -415,15 +415,11 @@ String iconMenuId = null;
 
 <c:choose>
 	<c:when test="<%= (portletName.equals(PortletKeys.DOCUMENT_LIBRARY_DISPLAY) || portletName.equals(PortletKeys.MEDIA_GALLERY_DISPLAY)) && !showMinimalActionButtons %>">
-
 		<%= iconMenu %>
-
 	</c:when>
 	<c:otherwise>
 		<span class="entry-action overlay">
-
 			<%= iconMenu %>
-
 		</span>
 	</c:otherwise>
 </c:choose>
