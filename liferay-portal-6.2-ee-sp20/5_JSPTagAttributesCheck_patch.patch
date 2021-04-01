@@ -1,0 +1,2617 @@
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/api/jsonws/actions.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/api/jsonws/actions.jsp
+index da8314f..f3cac43 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/api/jsonws/actions.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/api/jsonws/actions.jsp
+@@ -106,7 +106,7 @@
+ 						String methodURL = HttpUtil.addParameter(jsonWSContextPath, "signature", serviceSignature);
+ 						%>
+ 
+-						<a class="method-name lfr-api-service-result" data-metaData="<%= jsonWebServiceClassName %>" href="<%= methodURL %>">
++						<a class="lfr-api-service-result method-name" data-metaData="<%= jsonWebServiceClassName %>" href="<%= methodURL %>">
+ 							<%= path %>
+ 						</a>
+ 					</li>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/emoticons.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/emoticons.jsp
+index fa628e7..95a16fb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/emoticons.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/emoticons.jsp
+@@ -23,7 +23,7 @@
+ 	String image = StringUtil.replace(emoticons[i][0], "@theme_images_path@", themeDisplay.getPathThemeImages());
+ %>
+ 
+-	<a class="lfr-button emoticon" emoticonCode="<%= emoticons[i][1] %>"><%= image %></a>
++	<a class="emoticon lfr-button" emoticonCode="<%= emoticons[i][1] %>"><%= image %></a>
+ 
+ <%
+ }
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/layout/edit/panel.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/layout/edit/panel.jsp
+index d915d78..28e4598 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/layout/edit/panel.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/layout/edit/panel.jsp
+@@ -38,11 +38,11 @@
+ 
+ <aui:input id='<%= HtmlUtil.escapeAttribute(idPrefix) + "panelSelectedPortlets" %>' name="TypeSettingsProperties--panelSelectedPortlets--" type="hidden" value="<%= panelSelectedPortlets %>" />
+ 
+-<div class="lfr-tree-loading" id='<portlet:namespace /><%= HtmlUtil.escapeAttribute(idPrefix) + "selectPortletsTreeLoading" %>'>
++<div class="lfr-tree-loading" id="<portlet:namespace /><%= HtmlUtil.escapeAttribute(idPrefix) + "selectPortletsTreeLoading" %>">
+ 	<span class="icon icon-loading lfr-tree-loading-icon"></span>
+ </div>
+ 
+-<div id='<portlet:namespace /><%= HtmlUtil.escapeAttribute(idPrefix) + "selectPortletsTree" %>' style="margin: 4px;"></div>
++<div id="<portlet:namespace /><%= HtmlUtil.escapeAttribute(idPrefix) + "selectPortletsTree" %>" style="margin: 4px;"></div>
+ 
+ <aui:script use="aui-tree-view">
+ 	var panelSelectedPortletsEl = A.one('#<portlet:namespace /><%= HtmlUtil.escapeJS(idPrefix) %>panelSelectedPortlets');
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp
+index fb0ee32..e822b73 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp
+@@ -661,7 +661,7 @@
+ 			Product
+ 		</td>
+ 		<td>
+-			<select name="productEntryName" onChange='if (this.value == "basic-cluster") {document.getElementById("maxServers").style.display = "";} else {document.getElementById("maxServers").style.display = "none";}'>
++			<select name="productEntryName" onChange="if (this.value == "basic-cluster") {document.getElementById("maxServers").style.display = "";} else {document.getElementById("maxServers").style.display = "none";}">
+ 				<option value=""></option>
+ 
+ 				<%
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_actions.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_actions.jsp
+index 35fff7a..5e175b4 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_actions.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_actions.jsp
+@@ -46,7 +46,7 @@
+ %>
+ 
+ <c:if test="<%= editPortletURL != null %>">
+-	<div class="lfr-meta-actions asset-actions">
++	<div class="asset-actions lfr-meta-actions">
+ 
+ 		<%
+ 		String taglibEditURL = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "editAsset', title: '" + HtmlUtil.escapeJS(LanguageUtil.format(pageContext, "edit-x", HtmlUtil.escape(assetRenderer.getTitle(locale)), false)) + "', uri:'" + HtmlUtil.escapeJS(editPortletURL.toString()) + "'});";
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/configuration_manual.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/configuration_manual.jsp
+index e807df8..967f6c2 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/configuration_manual.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/configuration_manual.jsp
+@@ -116,7 +116,7 @@
+ 			%>
+ 
+ 				<div class="select-asset-selector">
+-					<div class="lfr-meta-actions edit-controls">
++					<div class="edit-controls lfr-meta-actions">
+ 						<liferay-ui:icon-menu cssClass="select-existing-selector" direction="right" icon='<%= themeDisplay.getPathThemeImages() + "/common/add.png" %>' message='<%= LanguageUtil.format(pageContext, (groupIds.length == 1) ? "select" : "select-in-x", new Object[] {HtmlUtil.escape((GroupLocalServiceUtil.getGroup(groupId)).getDescriptiveName(locale))}, false) %>' showWhenSingleIcon="<%= true %>">
+ 
+ 							<%
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/display_settings.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/display_settings.jspf
+index cc909f6..649c74a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/display_settings.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/display_settings.jspf
+@@ -35,7 +35,7 @@
+ 		/>
+ 	</div>
+ 
+-	<aui:select cssClass="hidden-field abstract-length" helpMessage="abstract-length-key-help" name="preferences--abstractLength--">
++	<aui:select cssClass="abstract-length hidden-field" helpMessage="abstract-length-key-help" name="preferences--abstractLength--">
+ 		<aui:option label="100" selected="<%= abstractLength == 100 %>" />
+ 		<aui:option label="200" selected="<%= abstractLength == 200 %>" />
+ 		<aui:option label="300" selected="<%= abstractLength == 300 %>" />
+@@ -47,7 +47,7 @@
+ 
+ 	<aui:input cssClass="hidden-field show-context-link" name="preferences--showContextLink--" type="checkbox" value="<%= showContextLink %>" />
+ 
+-	<aui:select cssClass="hidden-field asset-link-behavior" name="preferences--assetLinkBehavior--">
++	<aui:select cssClass="asset-link-behavior hidden-field" name="preferences--assetLinkBehavior--">
+ 		<aui:option label="show-full-content" selected='<%= assetLinkBehavior.equals("showFullContent") %>' value="showFullContent" />
+ 		<aui:option label="view-in-context" selected='<%= assetLinkBehavior.equals("viewInPortlet") %>' value="viewInPortlet" />
+ 	</aui:select>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/email_subscription_settings.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/email_subscription_settings.jspf
+index 1b67ab2..ff17a7a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/email_subscription_settings.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/email_subscription_settings.jspf
+@@ -41,7 +41,7 @@
+ <aui:fieldset>
+ 	<aui:input id="enableEmailSubscription" label="enable-email-subscription" name="preferences--emailAssetEntryAddedEnabled--" type="checkbox" value="<%= emailAssetEntryAddedEnabled %>" />
+ 
+-	<div class='<%= emailAssetEntryAddedEnabled ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />emailSubscriptionSettings">
++	<div class="<%= emailAssetEntryAddedEnabled ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />emailSubscriptionSettings">
+ 		<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" value="<%= emailFromName %>" />
+ 
+ 		<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/view.jsp
+index 5f94b1e..a53f1db 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/view.jsp
+@@ -94,7 +94,7 @@
+ 		}
+ 	%>
+ 
+-		<div class="lfr-meta-actions add-asset-selector">
++		<div class="add-asset-selector lfr-meta-actions">
+ 			<%@ include file="/html/portlet/asset_publisher/add_asset.jspf" %>
+ 		</div>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view.jsp
+index ad3b1de..3e22dbe 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view.jsp
+@@ -47,7 +47,7 @@
+ 		</aui:nav-bar-search>
+ 	</aui:nav-bar>
+ 
+-	<div class="tags-admin-container lfr-app-column-view">
++	<div class="lfr-app-column-view tags-admin-container">
+ 		<div class="tags-admin-content-wrapper">
+ 			<aui:row cssClass="tags-admin-content">
+ 				<aui:col cssClass="tags-admin-list-container" width="<%= 35 %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view_tag.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view_tag.jsp
+index 3a18bc4..77d098e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view_tag.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tag_admin/view_tag.jsp
+@@ -55,7 +55,7 @@
+ 	<div class="tag-field">
+ 		<c:choose>
+ 			<c:when test="<%= tag.getAssetCount() > 1 %>">
+-				<label><liferay-ui:message key="count" />:</label> <liferay-ui:message key="used-in-x-assets" arguments="<%= tag.getAssetCount() %>" />
++				<label><liferay-ui:message key="count" />:</label> <liferay-ui:message arguments="<%= tag.getAssetCount() %>" key="used-in-x-assets" />
+ 			</c:when>
+ 			<c:when test="<%= tag.getAssetCount() == 1 %>">
+ 				<label><liferay-ui:message key="count" />:</label> <liferay-ui:message key="used-in-1-asset" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tags_navigation/configuration.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tags_navigation/configuration.jsp
+index 7c97860..eb9a5ff 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tags_navigation/configuration.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_tags_navigation/configuration.jsp
+@@ -32,7 +32,7 @@
+ 			<li class="tree-item">
+ 				<aui:input name="preferences--showAssetCount--" type="checkbox" value="<%= showAssetCount %>" />
+ 
+-				<ul class="lfr-tree hide unstyled" id="<portlet:namespace />assetCountOptions">
++				<ul class="hide lfr-tree unstyled" id="<portlet:namespace />assetCountOptions">
+ 					<li class="tree-item">
+ 						<aui:select helpMessage="asset-type-asset-count-help" label="asset-type" name="preferences--classNameId--">
+ 							<aui:option label="any" value="<%= classNameId == 0 %>" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/asset/folder_full_content.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/asset/folder_full_content.jsp
+index cddbfdd..c30f26a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/asset/folder_full_content.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/asset/folder_full_content.jsp
+@@ -42,7 +42,7 @@
+ 			</c:if>
+ 
+ 			<div class="lfr-asset-metadata">
+-				<div class="lfr-asset-icon lfr-asset-date">
++				<div class="lfr-asset-date lfr-asset-icon">
+ 					<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDate.format(folder.getModifiedDate()), false) %>
+ 				</div>
+ 
+@@ -50,7 +50,7 @@
+ 					<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
+ 				</div>
+ 
+-				<div class="lfr-asset-icon lfr-asset-items last">
++				<div class="last lfr-asset-icon lfr-asset-items">
+ 					<%= entriesCount %> <liferay-ui:message key='<%= (entriesCount == 1) ? "bookmark" : "bookmarks" %>' />
+ 				</div>
+ 			</div>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view.jsp
+index e406c1c..eac409a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view.jsp
+@@ -122,7 +122,7 @@
+ 						</div>
+ 
+ 						<div class="lfr-asset-metadata">
+-							<div class="lfr-asset-icon lfr-asset-date">
++							<div class="lfr-asset-date lfr-asset-icon">
+ 								<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDate.format(folder.getModifiedDate()), false) %>
+ 							</div>
+ 
+@@ -130,7 +130,7 @@
+ 								<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
+ 							</div>
+ 
+-							<div class="lfr-asset-icon lfr-asset-items last">
++							<div class="last lfr-asset-icon lfr-asset-items">
+ 								<%= entriesCount %> <liferay-ui:message key='<%= (entriesCount == 1) ? "entry" : "entries" %>' />
+ 							</div>
+ 						</div>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view_entry.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view_entry.jsp
+index 51d69e3..8313aee 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view_entry.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/bookmarks/view_entry.jsp
+@@ -98,15 +98,15 @@
+ 		</liferay-ui:custom-attributes-available>
+ 
+ 		<div class="lfr-asset-metadata">
+-			<div class="lfr-asset-icon lfr-asset-author">
++			<div class="lfr-asset-author lfr-asset-icon">
+ 				<%= LanguageUtil.format(pageContext, "created-by-x", HtmlUtil.escape(PortalUtil.getUserName(entry.getUserId(), themeDisplay.getScopeGroupName())), false) %>
+ 			</div>
+ 
+-			<div class="lfr-asset-icon lfr-asset-date">
++			<div class="lfr-asset-date lfr-asset-icon">
+ 				<%= dateFormatDate.format(entry.getCreateDate()) %>
+ 			</div>
+ 
+-			<div class="lfr-asset-icon lfr-asset-downloads last">
++			<div class="last lfr-asset-downloads lfr-asset-icon">
+ 				<%= entry.getVisits() %> <liferay-ui:message key="visits" />
+ 			</div>
+ 		</div>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/asset/abstract.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/asset/abstract.jsp
+index 9b9ee38..1752119 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/asset/abstract.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/asset/abstract.jsp
+@@ -39,39 +39,39 @@
+ %>
+ 
+ <div class="user-information">
+-	<div class="section entity-details">
++	<div class="entity-details section">
+ 		<liferay-util:include page="/html/portlet/directory/user/details.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-addresses">
++	<div class="entity-addresses section">
+ 		<liferay-util:include page="/html/portlet/directory/user/addresses.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-email-addresses">
++	<div class="entity-email-addresses section">
+ 		<liferay-util:include page="/html/portlet/directory/common/additional_email_addresses.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-websites">
++	<div class="entity-websites section">
+ 		<liferay-util:include page="/html/portlet/directory/common/websites.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-phones">
++	<div class="entity-phones section">
+ 		<liferay-util:include page="/html/portlet/directory/user/phone_numbers.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-instant-messenger">
++	<div class="entity-instant-messenger section">
+ 		<liferay-util:include page="/html/portlet/directory/user/instant_messenger.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-social-network">
++	<div class="entity-social-network section">
+ 		<liferay-util:include page="/html/portlet/directory/user/social_network.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-sms">
++	<div class="entity-sms section">
+ 		<liferay-util:include page="/html/portlet/directory/user/sms.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-comments">
++	<div class="entity-comments section">
+ 		<liferay-util:include page="/html/portlet/directory/user/comments.jsp" />
+ 	</div>
+ </div>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/organization_action.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/organization_action.jsp
+index de7748f..52ea87c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/organization_action.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/organization_action.jsp
+@@ -39,7 +39,8 @@
+ 	<liferay-ui:icon
+ 		image="view_users"
+ 		message="view-users"
+-		method="get" url="<%= viewUsersURL %>"
++		method="get"
++		url="<%= viewUsersURL %>"
+ 	/>
+ 
+ 	<c:if test="<%= organization.hasSuborganizations() %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_organization.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_organization.jsp
+index a44ba1e..fbeb21a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_organization.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_organization.jsp
+@@ -35,31 +35,31 @@
+ <liferay-util:include page="/html/portlet/directory/tabs1.jsp" />
+ 
+ <div class="organization-information">
+-	<div class="section entity-details">
++	<div class="entity-details section">
+ 		<liferay-util:include page="/html/portlet/directory/organization/details.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-email-addresses">
++	<div class="entity-email-addresses section">
+ 		<liferay-util:include page="/html/portlet/directory/common/additional_email_addresses.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-websites">
++	<div class="entity-websites section">
+ 		<liferay-util:include page="/html/portlet/directory/common/websites.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-addresses">
++	<div class="entity-addresses section">
+ 		<liferay-util:include page="/html/portlet/directory/organization/addresses.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-phones">
++	<div class="entity-phones section">
+ 		<liferay-util:include page="/html/portlet/directory/organization/phone_numbers.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-services">
++	<div class="entity-services section">
+ 		<liferay-util:include page="/html/portlet/directory/organization/services.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-comments">
++	<div class="entity-comments section">
+ 		<liferay-util:include page="/html/portlet/directory/organization/comments.jsp" />
+ 	</div>
+ </div>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_user.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_user.jsp
+index 04d1a55..ad6de0b 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_user.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/directory/view_user.jsp
+@@ -41,39 +41,39 @@
+ <liferay-util:include page="/html/portlet/directory/tabs1.jsp" />
+ 
+ <div class="user-information">
+-	<div class="section entity-details">
++	<div class="entity-details section">
+ 		<liferay-util:include page="/html/portlet/directory/user/details.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-addresses">
++	<div class="entity-addresses section">
+ 		<liferay-util:include page="/html/portlet/directory/user/addresses.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-email-addresses">
++	<div class="entity-email-addresses section">
+ 		<liferay-util:include page="/html/portlet/directory/common/additional_email_addresses.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-websites">
++	<div class="entity-websites section">
+ 		<liferay-util:include page="/html/portlet/directory/common/websites.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-phones">
++	<div class="entity-phones section">
+ 		<liferay-util:include page="/html/portlet/directory/user/phone_numbers.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-instant-messenger">
++	<div class="entity-instant-messenger section">
+ 		<liferay-util:include page="/html/portlet/directory/user/instant_messenger.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-social-network">
++	<div class="entity-social-network section">
+ 		<liferay-util:include page="/html/portlet/directory/user/social_network.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-sms">
++	<div class="entity-sms section">
+ 		<liferay-util:include page="/html/portlet/directory/user/sms.jsp" />
+ 	</div>
+ 
+-	<div class="section entity-comments">
++	<div class="entity-comments section">
+ 		<liferay-util:include page="/html/portlet/directory/user/comments.jsp" />
+ 	</div>
+ </div>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/add_application.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/add_application.jsp
+index 94ffded..ae5da16 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/add_application.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/add_application.jsp
+@@ -30,7 +30,7 @@
+ 
+ 	<div class="row-fluid" id="<portlet:namespace />applicationList">
+ 		<c:if test="<%= layout.isTypePortlet() %>">
+-			<div class="search-panel btn-toolbar">
++			<div class="btn-toolbar search-panel">
+ 				<aui:input cssClass="search-query span12" label="" name="searchApplication" type="text" />
+ 			</div>
+ 		</c:if>
+@@ -59,7 +59,7 @@
+ 				%>
+ 
+ 				<div class="lfr-add-content">
+-					<liferay-ui:panel collapsible="<%= layout.isTypePortlet() %>" cssClass="lfr-content-category lfr-component panel-page-category" extended="<%= true %>" id="<%= panelId %>" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "highlighted") %>'>
++					<liferay-ui:panel collapsible="<%= layout.isTypePortlet() %>" cssClass="lfr-component lfr-content-category panel-page-category" extended="<%= true %>" id="<%= panelId %>" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "highlighted") %>'>
+ 						<aui:nav collapsible="<%= false %>" cssClass="nav-list">
+ 
+ 							<%
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view.jsp
+index 395897d..f7d2ebd 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view.jsp
+@@ -31,7 +31,7 @@
+ String toggleControlsState = GetterUtil.getString(SessionClicks.get(request, "liferay_toggle_controls", "visible"));
+ %>
+ 
+-<aui:nav-bar cssClass="navbar-static-top dockbar" data-namespace="<%= renderResponse.getNamespace() %>" id="dockbar">
++<aui:nav-bar cssClass="dockbar navbar-static-top" data-namespace="<%= renderResponse.getNamespace() %>" id="dockbar">
+ 	<c:if test="<%= group.isControlPanel() %>">
+ 
+ 		<%
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_admin_links.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_admin_links.jspf
+index d107e60..d1e3080 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_admin_links.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_admin_links.jspf
+@@ -26,7 +26,7 @@
+ 					String currentSiteCategory = PortletCategoryKeys.CURRENT_SITE.concat(StringPool.PERIOD);
+ 				%>
+ 
+-					<ul class="unstyled site-administration-menu">
++					<ul class="site-administration-menu unstyled">
+ 
+ 						<%
+ 						for (String category : categoriesMap.keySet()) {
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_category.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_category.jsp
+index b54772a..4e538cd 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_category.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_category.jsp
+@@ -188,7 +188,7 @@
+ 								portletItemData.put("title", HtmlUtil.escape(portletItem.getName()));
+ 							%>
+ 
+-								<aui:nav-item cssClass="lfr-content-item lfr-archived-setup" data="<%= portletItemData %>" href="">
++								<aui:nav-item cssClass="lfr-archived-setup lfr-content-item" data="<%= portletItemData %>" href="">
+ 									<span <%= AUIUtil.buildData(portletItemData) %> class="<%= cssClass %>">
+ 										<i class="<%= portletInstanceable ? "icon-th-large" : "icon-stop" %>"></i>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_resources.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_resources.jsp
+index 11d03a3..4c7e1fb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_resources.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dockbar/view_resources.jsp
+@@ -130,7 +130,8 @@
+ 						}
+ 					%>
+ 
+-						<aui:nav-item cssClass='<%= navItemCssClass %>'
++						<aui:nav-item
++							cssClass="<%= navItemCssClass %>"
+ 							data="<%= data %>"
+ 							href=""
+ 							iconCssClass='<%= displayStyle.equals("list") ? "icon-file" : StringPool.BLANK %>'
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/asset/folder_full_content.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/asset/folder_full_content.jsp
+index a4e1f46..3f76348 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/asset/folder_full_content.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/asset/folder_full_content.jsp
+@@ -42,7 +42,7 @@
+ 			</c:if>
+ 
+ 			<div class="lfr-asset-metadata">
+-				<div class="lfr-asset-icon lfr-asset-date">
++				<div class="lfr-asset-date lfr-asset-icon">
+ 					<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDateTime.format(folder.getModifiedDate()), false) %>
+ 				</div>
+ 
+@@ -50,7 +50,7 @@
+ 					<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
+ 				</div>
+ 
+-				<div class="lfr-asset-icon lfr-asset-items last">
++				<div class="last lfr-asset-icon lfr-asset-items">
+ 					<%= fileEntriesCount %> <liferay-ui:message key='<%= (fileEntriesCount == 1) ? "document" : "documents" %>' />
+ 				</div>
+ 			</div>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_folder.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_folder.jsp
+index db1a5bb..1286ff3 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_folder.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_folder.jsp
+@@ -144,7 +144,7 @@
+ 
+ 				<div id="<portlet:namespace />overrideParentSettings">
+ 					<c:if test="<%= workflowEnabled %>">
+-						<div class='<%= (rootFolder || fileEntryTypes.isEmpty()) ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />defaultWorkflow">
++						<div class="<%= (rootFolder || fileEntryTypes.isEmpty()) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />defaultWorkflow">
+ 							<aui:select label="default-workflow-for-all-document-types" name='<%= "workflowDefinition" + DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_ALL %>'>
+ 								<aui:option label="no-workflow" value="" />
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entries_template.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entries_template.jspf
+index bba8714..6f49f9e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entries_template.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entries_template.jspf
+@@ -22,7 +22,7 @@
+ 
+ 	<liferay-ui:app-view-entry
+ 		displayStyle="icon"
+-		showCheckbox="<%= Boolean.FALSE %>"
++		showCheckbox="<%= false %>"
+ 		thumbnailSrc="<%= thumbnailSrc %>"
+ 		thumbnailStyle="<%= DLUtil.getThumbnailStyle() %>"
+ 		title="{title}"
+@@ -31,7 +31,7 @@
+ 
+ 	<liferay-ui:app-view-entry
+ 		displayStyle="descriptive"
+-		showCheckbox="<%= Boolean.FALSE %>"
++		showCheckbox="<%= false %>"
+ 		thumbnailSrc="<%= thumbnailSrc %>"
+ 		thumbnailStyle="<%= DLUtil.getThumbnailStyle() %>"
+ 		title="{title}"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/folder_action.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/folder_action.jsp
+index 43cf5d1..7370154 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/folder_action.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/folder_action.jsp
+@@ -451,7 +451,7 @@
+ 	<portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" />
+ </portlet:renderURL>
+ 
+-<aui:script use="uploader,liferay-util-window">
++<aui:script use="liferay-util-window,uploader">
+ 	if (!A.UA.ios && (A.Uploader.TYPE != 'none')) {
+ 		var uploadMultipleDocumentsIcon = A.all('.upload-multiple-documents:hidden');
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/search_resources.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/search_resources.jsp
+index 8c7bfd3..5b49350 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/search_resources.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/search_resources.jsp
+@@ -427,7 +427,7 @@
+ 				</div>
+ 			</c:when>
+ 			<c:otherwise>
+-				<div class="repository-search-results" data-repositoryId="<%= searchRepositoryId %>" id='<%= liferayPortletResponse.getNamespace() + "searchResultsContainer" + searchRepositoryId %>'>
++				<div class="repository-search-results" data-repositoryId="<%= searchRepositoryId %>" id="<%= liferayPortletResponse.getNamespace() + "searchResultsContainer" + searchRepositoryId %>">
+ 					<%= searchResults %>
+ 				</div>
+ 			</c:otherwise>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/toolbar.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/toolbar.jsp
+index b801525..708989f 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/toolbar.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/toolbar.jsp
+@@ -31,7 +31,7 @@
+ <aui:nav-bar>
+ 	<aui:nav collapsible="<%= false %>" cssClass="nav-display-style-buttons pull-right" id="displayStyleButtons">
+ 		<aui:nav-item>
+-			<span class="pull-left display-style-buttons-container" id="<portlet:namespace />displayStyleButtonsContainer">
++			<span class="display-style-buttons-container pull-left" id="<portlet:namespace />displayStyleButtonsContainer">
+ 				<c:if test='<%= !strutsAction.equals("/document_library/search") %>'>
+ 					<liferay-util:include page="/html/portlet/document_library/display_style_buttons.jsp" />
+ 				</c:if>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/upload_multiple_file_entries_resources.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/upload_multiple_file_entries_resources.jsp
+index 5768d2a..14d2107 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/upload_multiple_file_entries_resources.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/upload_multiple_file_entries_resources.jsp
+@@ -83,7 +83,7 @@
+ 	<aui:input name="repositoryId" type="hidden" value="<%= String.valueOf(repositoryId) %>" />
+ 	<aui:input name="folderId" type="hidden" value="<%= String.valueOf(folderId) %>" />
+ 
+-	<div class="no-files-selected-info alert alert-info hide" id="<portlet:namespace />metadataExplanationContainer">
++	<div class="alert alert-info hide no-files-selected-info" id="<portlet:namespace />metadataExplanationContainer">
+ 		<liferay-ui:message key="select-documents-from-the-left-to-add-them-to-the-documents-and-media" />
+ 	</div>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_entries.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_entries.jsp
+index 22bdf9a..14d8f8b 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_entries.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_entries.jsp
+@@ -334,7 +334,7 @@
+ </div>
+ 
+ <c:if test="<%= results.isEmpty() %>">
+-	<div class="entries-empty alert alert-info">
++	<div class="alert alert-info entries-empty">
+ 		<c:choose>
+ 			<c:when test="<%= (fileEntryTypeId >= 0) %>">
+ 				<liferay-ui:message arguments="<%= HtmlUtil.escape(dlFileEntryTypeName) %>" key="there-are-no-documents-or-media-files-of-type-x" translateArguments="<%= false %>" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_file_entry.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_file_entry.jsp
+index 425c17b..d1b0c43 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_file_entry.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_file_entry.jsp
+@@ -380,7 +380,7 @@
+ 														<img class="lfr-preview-file-image-current" id="<portlet:namespace /><%= randomNamespace %>previewFileImage" src="<%= previewFileURL + "1" %>" />
+ 													</div>
+ 
+-													<span class="lfr-preview-file-actions hide" id="<portlet:namespace /><%= randomNamespace %>previewFileActions">
++													<span class="hide lfr-preview-file-actions" id="<portlet:namespace /><%= randomNamespace %>previewFileActions">
+ 														<span class="lfr-preview-file-toolbar" id="<portlet:namespace /><%= randomNamespace %>previewToolbar"></span>
+ 
+ 														<span class="lfr-preview-file-info">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_folders.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_folders.jsp
+index b44819c..fe72787 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_folders.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/view_folders.jsp
+@@ -216,7 +216,7 @@
+ 						%>
+ 
+ 						<liferay-ui:app-view-navigation-entry
+-							cssClass="folder file-entry-type"
++							cssClass="file-entry-type folder"
+ 							dataView="<%= dataView %>"
+ 							entryTitle='<%= LanguageUtil.get(pageContext, "browse-by-type") %>'
+ 							iconImage="icon-file"
+@@ -278,7 +278,7 @@
+ 								}
+ 						%>
+ 
+-								<li class="app-view-navigation-entry folder error" title="<%= LanguageUtil.get(pageContext, errorMessage) %>">
++								<li class="app-view-navigation-entry error folder" title="<%= LanguageUtil.get(pageContext, errorMessage) %>">
+ 
+ 									<%
+ 									request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+@@ -348,7 +348,7 @@
+ 							%>
+ 
+ 							<liferay-ui:app-view-navigation-entry
+-								cssClass="folder file-entry-type"
++								cssClass="file-entry-type folder"
+ 								dataView="<%= dataView %>"
+ 								entryTitle='<%= LanguageUtil.get(pageContext, "basic-document") %>'
+ 								iconImage="icon-file"
+@@ -383,7 +383,7 @@
+ 							%>
+ 
+ 							<liferay-ui:app-view-navigation-entry
+-								cssClass="folder file-entry-type"
++								cssClass="file-entry-type folder"
+ 								dataView="<%= dataView %>"
+ 								entryTitle="<%= fileEntryType.getName(locale) %>"
+ 								iconImage="icon-file"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library_display/info_panel.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library_display/info_panel.jsp
+index 5ccf8d9..2e4febf 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library_display/info_panel.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library_display/info_panel.jsp
+@@ -51,7 +51,7 @@
+ 		</c:if>
+ 
+ 		<div class="lfr-asset-metadata">
+-			<div class="lfr-asset-icon lfr-asset-date">
++			<div class="lfr-asset-date lfr-asset-icon">
+ 				<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDateTime.format(folder.getModifiedDate()), false) %>
+ 			</div>
+ 
+@@ -59,7 +59,7 @@
+ 				<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
+ 			</div>
+ 
+-			<div class="lfr-asset-icon lfr-asset-items last">
++			<div class="last lfr-asset-icon lfr-asset-items">
+ 				<%= fileEntriesCount %> <liferay-ui:message key='<%= (fileEntriesCount == 1) ? "document" : "documents" %>' />
+ 			</div>
+ 		</div>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_list_display/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_list_display/view.jsp
+index c5bcb76..63367e7 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_list_display/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_list_display/view.jsp
+@@ -92,7 +92,7 @@
+ %>
+ 
+ <c:if test="<%= themeDisplay.isSignedIn() && !layout.isLayoutPrototypeLinkActive() && (showAddListIcon || showAddTemplateIcon || showEditDisplayTemplateIcon || showEditFormTemplateIcon || hasConfigurationPermission) %>">
+-	<div class="lfr-meta-actions icons-container">
++	<div class="icons-container lfr-meta-actions">
+ 		<div class="lfr-icon-actions">
+ 			<c:if test="<%= showAddTemplateIcon %>">
+ 				<liferay-portlet:renderURL portletName="<%= PortletKeys.DYNAMIC_DATA_MAPPING %>" var="addFormTemplateURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/record_toolbar.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/record_toolbar.jsp
+index 697aff0..04a8723 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/record_toolbar.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/record_toolbar.jsp
+@@ -26,7 +26,7 @@
+ 
+ <div class="record-toolbar" id="<portlet:namespace />recordToolbar"></div>
+ 
+-<aui:script use="aui-toolbar,aui-dialog-iframe-deprecated,liferay-util-window">
++<aui:script use="aui-dialog-iframe-deprecated,aui-toolbar,liferay-util-window">
+ 	var permissionPopUp = null;
+ 
+ 	var toolbarChildren = [
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/view_spreadsheet_records.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/view_spreadsheet_records.jsp
+index 2203d03..206241d 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/view_spreadsheet_records.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_lists/view_spreadsheet_records.jsp
+@@ -30,8 +30,8 @@
+ 
+ <div class="lfr-spreadsheet-container">
+ 	<div id="<portlet:namespace />spreadsheet">
+-		<div class="table-striped yui3-widget yui3-datatable" id="<portlet:namespace />dataTable">
+-			<div class="yui3-datatable-scrollable yui3-datatable-content" id="<portlet:namespace />dataTableContent"></div>
++		<div class="table-striped yui3-datatable yui3-widget" id="<portlet:namespace />dataTable">
++			<div class="yui3-datatable-content yui3-datatable-scrollable" id="<portlet:namespace />dataTableContent"></div>
+ 		</div>
+ 	</div>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/edit_template_display.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/edit_template_display.jspf
+index 14cabb4..b3a9edb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/edit_template_display.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/edit_template_display.jspf
+@@ -30,7 +30,7 @@
+ 			<c:if test="<%= DDMTemplateHelperUtil.isAutocompleteEnabled(language) %>">
+ 				<div class="lfr-template-palette-container pull-left" id="<portlet:namespace />templatePaletteContainer">
+ 					<div class="search" id="<portlet:namespace />paletteSearchContainer">
+-						<input class="field search-query span12" id="<portlet:namespace />paletteSearch" placeholder='<%= LanguageUtil.get(pageContext, "search") %>' type="text" />
++						<input class="field search-query span12" id="<portlet:namespace />paletteSearch" placeholder="<%= LanguageUtil.get(pageContext, "search") %>" type="text" />
+ 					</div>
+ 
+ 					<div class="lfr-template-palette" id="<portlet:namespace />paletteDataContainer">
+@@ -99,7 +99,7 @@
+ 	</liferay-ui:panel>
+ </liferay-ui:panel-container>
+ 
+-<aui:script use="aui-ace-autocomplete-freemarker,aui-ace-autocomplete-plugin,aui-ace-autocomplete-velocity,aui-toggler,aui-popover,autocomplete-base,autocomplete-filters,event-mouseenter,event-outside,liferay-util-window,resize,transition">
++<aui:script use="aui-ace-autocomplete-freemarker,aui-ace-autocomplete-plugin,aui-ace-autocomplete-velocity,aui-popover,aui-toggler,autocomplete-base,autocomplete-filters,event-mouseenter,event-outside,liferay-util-window,resize,transition">
+ 	var AArray = A.Array;
+ 	var ACPlugin = A.Plugin.AceAutoComplete;
+ 	var AObject = A.Object;
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/form_builder.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/form_builder.jspf
+index ec7fc3d..fa4fe3a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/form_builder.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/dynamic_data_mapping/form_builder.jspf
+@@ -30,7 +30,7 @@
+ 
+ <div class="separator"><!-- --></div>
+ 
+-<div class="hide lfr-message-response alert alert-error" id="<portlet:namespace />messageContainer"></div>
++<div class="alert alert-error hide lfr-message-response" id="<portlet:namespace />messageContainer"></div>
+ 
+ <liferay-ui:tabs
+ 	names='<%= LanguageUtil.get(pageContext, "view") + "," + LanguageUtil.get(pageContext, "source") %>'
+@@ -101,7 +101,7 @@
+ }
+ %>
+ 
+-<aui:script use="aui-datepicker-deprecated,event-custom-base,json,liferay-portlet-dynamic-data-lists,liferay-portlet-dynamic-data-mapping,liferay-portlet-dynamic-data-mapping-custom-fields,aui-tabview,aui-ace-editor,aui-loading-mask-deprecated,liferay-xml-formatter">
++<aui:script use="aui-ace-editor,aui-datepicker-deprecated,aui-loading-mask-deprecated,aui-tabview,event-custom-base,json,liferay-portlet-dynamic-data-lists,liferay-portlet-dynamic-data-mapping,liferay-portlet-dynamic-data-mapping-custom-fields,liferay-xml-formatter">
+ 	var Lang = A.Lang;
+ 
+ 	var MESSAGE_FAILURE = 0;
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/group_statistics/chart/tag_cloud.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/group_statistics/chart/tag_cloud.jspf
+index 51eec93..6c7cd8c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/group_statistics/chart/tag_cloud.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/group_statistics/chart/tag_cloud.jspf
+@@ -34,7 +34,7 @@
+ PortletURL portletURL = renderResponse.createRenderURL();
+ %>
+ 
+-<ul class="tag-items tag-cloud">
++<ul class="tag-cloud tag-items">
+ 
+ 	<%
+ 	for (AssetTag assetTag : assetTags) {
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view.jsp
+index 84791de..8b8192d 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view.jsp
+@@ -176,7 +176,7 @@
+ 								</div>
+ 
+ 								<div class="lfr-asset-metadata">
+-									<div class="lfr-asset-icon lfr-asset-date">
++									<div class="lfr-asset-date lfr-asset-icon">
+ 										<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDate.format(folder.getModifiedDate()), false) %>
+ 									</div>
+ 
+@@ -184,7 +184,7 @@
+ 										<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
+ 									</div>
+ 
+-									<div class="lfr-asset-icon lfr-asset-items last">
++									<div class="last lfr-asset-icon lfr-asset-items">
+ 										<%= imagesCount %> <liferay-ui:message key='<%= (imagesCount == 1) ? "image" : "images" %>' />
+ 									</div>
+ 								</div>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view_images.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view_images.jsp
+index 42f763d..98cccb9 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view_images.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/view_images.jsp
+@@ -194,7 +194,7 @@
+ 						%>
+ 
+ 							<div class="image-icon">
+-								<span class="image-thumbnail error" title="<%= LanguageUtil.get(pageContext, "an-unexpected-error-occurred-while-connecting-to-the-repository") %>">
++								<span class="error image-thumbnail" title="<%= LanguageUtil.get(pageContext, "an-unexpected-error-occurred-while-connecting-to-the-repository") %>">
+ 									<img alt="<liferay-ui:message key="error" />" border="no" src="<%= folderImageSrc %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
+ 
+ 									<span class="image-title"><%= HtmlUtil.escape(StringUtil.shorten(curFolder.getName(), 60)) %></span>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article/content.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article/content.jsp
+index 7e446ef..19288f9 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article/content.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article/content.jsp
+@@ -302,7 +302,7 @@
+ 
+ 							<span class="lfr-translation-manager-selector nobr">
+ 								<span class="article-default-language lfr-token lfr-token-primary" id="<portlet:namespace />textLanguageId">
+-									<img alt="<liferay-ui:message key="default-language" />" src='<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + defaultLanguageId + ".png") %>' />
++									<img alt="<liferay-ui:message key="default-language" />" src="<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + defaultLanguageId + ".png") %>" />
+ 
+ 									<%= LocaleUtil.fromLanguageId(defaultLanguageId).getDisplayName(locale) %>
+ 								</span>
+@@ -380,13 +380,13 @@
+ 					String[] translations = article.getAvailableLanguageIds();
+ 					%>
+ 
+-					<div class='<%= (Validator.isNull(toLanguageId) && ((translations.length > 1) || (translations.length == 1 && !translations[0].equals(defaultLanguageId)))) ? "contains-translations" :"" %>' id="<portlet:namespace />availableTranslationContainer">
++					<div class="<%= (Validator.isNull(toLanguageId) && ((translations.length > 1) || (translations.length == 1 && !translations[0].equals(defaultLanguageId)))) ? "contains-translations" :"" %>" id="<portlet:namespace />availableTranslationContainer">
+ 						<c:choose>
+ 							<c:when test="<%= Validator.isNotNull(toLanguageId) %>">
+ 								<liferay-util:buffer var="languageLabel">
+ 									<%= LocaleUtil.fromLanguageId(toLanguageId).getDisplayName(locale) %>
+ 
+-									<img alt="" src='<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + toLanguageId + ".png") %>' />
++									<img alt="" src="<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + toLanguageId + ".png") %>" />
+ 								</liferay-util:buffer>
+ 
+ 								<%= LanguageUtil.format(pageContext, "translating-web-content-to-x", languageLabel, false) %>
+@@ -409,7 +409,7 @@
+ 									%>
+ 
+ 										<a class="journal-article-translation-<%= translations[i] %> lfr-token" href="javascript:;" onClick="Liferay.Util.openWindow({cache: false, id: '<portlet:namespace /><%= translations[i] %>', title: '<%= UnicodeLanguageUtil.get(pageContext, "web-content-translation") %>', uri: '<%= editTranslationURL %>'});">
+-											<img alt="" src='<%= themeDisplay.getPathThemeImages() + "/language/" + translations[i] + ".png" %>' />
++											<img alt="" src="<%= themeDisplay.getPathThemeImages() + "/language/" + translations[i] + ".png" %>" />
+ 
+ 											<%= LocaleUtil.fromLanguageId(translations[i]).getDisplayName(locale) %>
+ 										</a>
+@@ -465,7 +465,7 @@
+ 
+ 											<aui:button cssClass="edit-button" value="edit-options" />
+ 
+-											<aui:button cssClass="repeatable-button hide" value="repeat" />
++											<aui:button cssClass="hide repeatable-button" value="repeat" />
+ 										</div>
+ 									</div>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_toolbar.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_toolbar.jsp
+index 95e0542..9168772 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_toolbar.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_toolbar.jsp
+@@ -26,7 +26,7 @@
+ 
+ <div class="article-toolbar" id="<portlet:namespace />articleToolbar"></div>
+ 
+-<aui:script use="aui-toolbar,aui-dialog-iframe-deprecated,aui-tooltip,liferay-util-window">
++<aui:script use="aui-dialog-iframe-deprecated,aui-toolbar,aui-tooltip,liferay-util-window">
+ 	var permissionPopUp = null;
+ 
+ 	var toolbarButtonGroup = [];
+@@ -121,12 +121,13 @@
+ 	</c:if>
+ 
+ 	<c:if test='<%= JournalArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) && ((classNameId == JournalArticleConstants.CLASSNAME_ID_DEFAULT) || ArrayUtil.contains(PropsValues.JOURNAL_ARTICLE_FORM_DEFAULT_VALUES, "permissions")) %>'>
+-		<liferay-security:permissionsURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"
++		<liferay-security:permissionsURL
+ 			modelResource="<%= JournalArticle.class.getName() %>"
+ 			modelResourceDescription="<%= HtmlUtil.escape(article.getTitle(locale)) %>"
+ 			resourceGroupId="<%= String.valueOf(article.getGroupId()) %>"
+ 			resourcePrimKey="<%= String.valueOf(article.getResourcePrimKey()) %>"
+ 			var="permissionsURL"
++			windowState="<%= LiferayWindowState.POP_UP.toString() %>"
+ 		/>
+ 
+ 		toolbarButtonGroup.push(
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_version_action.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_version_action.jsp
+index 50164cd..bcce0a4 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_version_action.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/article_version_action.jsp
+@@ -68,7 +68,10 @@
+ 			<portlet:param name="articleId" value="<%= article.getArticleId() + EditArticleAction.VERSION_SEPARATOR + article.getVersion() %>" />
+ 		</portlet:actionURL>
+ 
+-		<liferay-ui:icon image="time" message="expire" url="<%= expireURL %>"
++		<liferay-ui:icon
++			image="time"
++			message="expire"
++			url="<%= expireURL %>"
+ 		/>
+ 	</c:if>
+ 
+@@ -82,7 +85,8 @@
+ 			<portlet:param name="articleId" value="<%= article.getArticleId() + EditArticleAction.VERSION_SEPARATOR + article.getVersion() %>" />
+ 		</portlet:actionURL>
+ 
+-		<liferay-ui:icon-delete url="<%= deleteURL %>"
++		<liferay-ui:icon-delete
++			url="<%= deleteURL %>"
+ 		/>
+ 	</c:if>
+ </liferay-ui:icon-menu>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/asset/folder_full_content.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/asset/folder_full_content.jsp
+index 461580a..6e66ce1 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/asset/folder_full_content.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/asset/folder_full_content.jsp
+@@ -42,7 +42,7 @@
+ 			</c:if>
+ 
+ 			<div class="lfr-asset-metadata">
+-				<div class="lfr-asset-icon lfr-asset-date">
++				<div class="lfr-asset-date lfr-asset-icon">
+ 					<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDateTime.format(folder.getModifiedDate()), false) %>
+ 				</div>
+ 
+@@ -50,7 +50,7 @@
+ 					<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
+ 				</div>
+ 
+-				<div class="lfr-asset-icon lfr-asset-items last">
++				<div class="last lfr-asset-icon lfr-asset-items">
+ 					<%= entriesCount %> <liferay-ui:message key='<%= (entriesCount == 1) ? "article" : "articles" %>' />
+ 				</div>
+ 			</div>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/edit_feed.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/edit_feed.jsp
+index 755b236..8738eb9 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/edit_feed.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/edit_feed.jsp
+@@ -236,7 +236,7 @@
+ 				<aui:select label="feed-item-content" name="contentFieldSelector">
+ 					<aui:option label="<%= JournalFeedConstants.WEB_CONTENT_DESCRIPTION %>" selected="<%= contentField.equals(JournalFeedConstants.WEB_CONTENT_DESCRIPTION) %>" />
+ 
+-					<optgroup label='<liferay-ui:message key="<%= JournalFeedConstants.RENDERED_WEB_CONTENT %>" />'>
++					<optgroup label="<liferay-ui:message key="<%= JournalFeedConstants.RENDERED_WEB_CONTENT %>" />">
+ 						<aui:option data-contentField="<%= JournalFeedConstants.RENDERED_WEB_CONTENT %>" label="use-default-template" selected="<%= contentField.equals(JournalFeedConstants.RENDERED_WEB_CONTENT) %>" value="" />
+ 
+ 						<c:if test="<%= (ddmStructure != null) && (ddmTemplates.size() > 1) %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/toolbar.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/toolbar.jsp
+index 75b828e..647633e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/toolbar.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/toolbar.jsp
+@@ -23,7 +23,7 @@
+ <aui:nav-bar>
+ 	<aui:nav collapsible="<%= false %>" cssClass="nav-display-style-buttons pull-right" id="displayStyleButtons">
+ 		<aui:nav-item>
+-			<span class="pull-left display-style-buttons-container" id="<portlet:namespace />displayStyleButtonsContainer">
++			<span class="display-style-buttons-container pull-left" id="<portlet:namespace />displayStyleButtonsContainer">
+ 				<c:if test='<%= !strutsAction.equals("/journal/search") %>'>
+ 					<liferay-util:include page="/html/portlet/journal/display_style_buttons.jsp" />
+ 				</c:if>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/view_entries.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/view_entries.jsp
+index 1ace6b4..a8b2370 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/view_entries.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal/view_entries.jsp
+@@ -206,7 +206,7 @@
+ %>
+ 
+ <c:if test="<%= results.isEmpty() %>">
+-	<div class="entries-empty alert alert-info">
++	<div class="alert alert-info entries-empty">
+ 		<c:choose>
+ 			<c:when test="<%= Validator.isNotNull(displayTerms.getStructureId()) %>">
+ 				<c:if test="<%= total == 0 %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp
+index 190759f..7b5ff6c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp
+@@ -304,7 +304,7 @@
+ %>
+ 
+ 	<c:if test="<%= showIconsActions && !print && hasViewPermission %>">
+-		<div class="lfr-meta-actions icons-container">
++		<div class="icons-container lfr-meta-actions">
+ 			<div class="lfr-icon-actions">
+ 				<c:if test="<%= showEditArticleIcon %>">
+ 					<liferay-portlet:renderURL portletName="<%= PortletKeys.JOURNAL %>" var="editURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/details.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/details.jsp
+index e4c6c39..4a72826 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/details.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/details.jsp
+@@ -142,7 +142,7 @@
+ 
+ 		<aui:input label='<%= LanguageUtil.format(pageContext, "automatically-apply-changes-done-to-the-page-template-x", HtmlUtil.escape(layoutPrototype.getName(user.getLocale())), false) %>' name="layoutPrototypeLinkEnabled" type="checkbox" value="<%= selLayout.isLayoutPrototypeLinkEnabled() %>" />
+ 
+-		<div class='<%= selLayout.isLayoutPrototypeLinkEnabled() ? "" : "hide" %>' id="<portlet:namespace />layoutPrototypeMergeAlert">
++		<div class="<%= selLayout.isLayoutPrototypeLinkEnabled() ? "" : "hide" %>" id="<portlet:namespace />layoutPrototypeMergeAlert">
+ 
+ 			<%
+ 			request.setAttribute("edit_layout_prototype.jsp-layoutPrototype", layoutPrototype);
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/javascript.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/javascript.jsp
+index 1b92833..90a090d 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/javascript.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout/javascript.jsp
+@@ -33,5 +33,5 @@
+ <h3><liferay-ui:message key="javascript" /></h3>
+ 
+ <aui:fieldset>
+-	<aui:input cssClass="lfr-textarea-container" label="paste-javascript-code-that-will-be-executed-at-the-bottom-of-the-page" name="TypeSettingsProperties--javascript--" style="height: 300px" type="textarea" value='<%= layoutTypeSettings.getProperty("javascript") %>' wrap="soft" />
++	<aui:input cssClass="lfr-textarea-container" label="paste-javascript-code-that-will-be-executed-at-the-bottom-of-the-page" name="TypeSettingsProperties--javascript--" style="height: 300px;" type="textarea" value='<%= layoutTypeSettings.getProperty("javascript") %>' wrap="soft" />
+ </aui:fieldset>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout_set/javascript.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout_set/javascript.jsp
+index cc779f5..7dac34a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout_set/javascript.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/layout_set/javascript.jsp
+@@ -27,5 +27,5 @@
+ <h3><liferay-ui:message key="javascript" /></h3>
+ 
+ <aui:fieldset>
+-	<aui:input cssClass="lfr-textarea-container" label="paste-javascript-code-that-will-be-executed-at-the-bottom-of-every-page" name="TypeSettingsProperties--javascript--" style="width: 300px; height: 300px" type="textarea" value='<%= layoutSetTypeSettings.getProperty("javascript") %>' wrap="soft" />
++	<aui:input cssClass="lfr-textarea-container" label="paste-javascript-code-that-will-be-executed-at-the-bottom-of-every-page" name="TypeSettingsProperties--javascript--" style="width: 300px; height: 300px;" type="textarea" value='<%= layoutSetTypeSettings.getProperty("javascript") %>' wrap="soft" />
+ </aui:fieldset>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_process_message.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_process_message.jsp
+index b642532..61a4c2b 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_process_message.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_process_message.jsp
+@@ -62,7 +62,7 @@
+ 		}
+ 		%>
+ 
+-		<div class="progress progress-striped active">
++		<div class="active progress progress-striped">
+ 			<div class="bar" style="width: <%= percentage %>%;">
+ 				<c:if test="<%= (allProgressBarCountersTotal > 0) && (!Validator.equals(cmd, Constants.PUBLISH_TO_REMOTE) || (percentage < 100)) %>">
+ 					<%= percentage + StringPool.PERCENT %>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/view.jsp
+index fbeadf2..ec44b54 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/view.jsp
+@@ -176,7 +176,7 @@
+ 			</div>
+ 		</c:if>
+ 
+-		<div class='<%= !group.isLayoutPrototype() ? "span9" : "span12" %>'>
++		<div class="<%= !group.isLayoutPrototype() ? "span9" : "span12" %>">
+ 			<div id="<portlet:namespace />layoutsContainer">
+ 				<c:choose>
+ 					<c:when test="<%= selPlid > 0 %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/configuration.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/configuration.jsp
+index 1eceebe..a2dbc75 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/configuration.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/configuration.jsp
+@@ -431,7 +431,7 @@
+ 						</table>
+ 					</td>
+ 					<td>
+-						<table class='<%= (currentLocale.equals(defaultLocale) ? "hide" : "") + " lfr-table" %>' id="<portlet:namespace />localized-priorities-table">
++						<table class="<%= (currentLocale.equals(defaultLocale) ? "hide" : "") + " lfr-table" %>" id="<portlet:namespace />localized-priorities-table">
+ 							<tr>
+ 								<td class="lfr-label">
+ 									<liferay-ui:message key="name" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_category_question.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_category_question.jsp
+index 986a494..45993d8 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_category_question.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_category_question.jsp
+@@ -135,7 +135,7 @@
+ 				<span class="votes">
+ 					<span class="count"><%= String.valueOf(ratingScore) %></span> <span><%= LanguageUtil.get(pageContext, "votes") %></span>
+ 				</span>
+-				<span class="status <%= (answers != 0) ? "answered" : " unanswered" %> ">
++				<span class="status <%= (answers != 0) ? "answered" : " unanswered" %>">
+ 					<span class="count"><%= answers %></span> <span><%= LanguageUtil.get(pageContext, (answers != 1) ? "answers" : "answer") %></span>
+ 				</span>
+ 				<span class="views">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_thread_message.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_thread_message.jsp
+index 52ec094..37ab03c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_thread_message.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/message_boards/view_thread_message.jsp
+@@ -127,7 +127,7 @@
+ 				</c:choose>
+ 			</td>
+ 			<td class="lfr-top">
+-				<div class="thread-top float-container">
++				<div class="float-container thread-top">
+ 					<div class="subject">
+ 						<c:choose>
+ 							<c:when test="<%= showPermanentLink %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/edit_rule_group_instance_priorities.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/edit_rule_group_instance_priorities.jsp
+index 9d3aaf8..62c14d4 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/edit_rule_group_instance_priorities.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/edit_rule_group_instance_priorities.jsp
+@@ -65,7 +65,7 @@
+ 		%>
+ 
+ 			<div class="rule-group-instance <%= (i == 0) ? "rule-group-instance-first" : StringPool.BLANK %>" data-rule-group-instance-id="<%= ruleGroupInstance.getRuleGroupInstanceId() %>">
+-				<span class="rule-group-instance-handle icon icon-grip-dotted-vertical"></span>
++				<span class="icon icon-grip-dotted-vertical rule-group-instance-handle"></span>
+ 
+ 				<span class="rule-group-instance-label"><%= HtmlUtil.escape(ruleGroup.getName(locale)) %></span>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/rule/simple_rule.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/rule/simple_rule.jsp
+index 97c60ee..c69ed52 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/rule/simple_rule.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/mobile_device_rules/rule/simple_rule.jsp
+@@ -88,7 +88,7 @@
+ 		<liferay-ui:message key="minimum" />
+ 
+ 		<aui:input
+-			cssClass="physical-screen-size-field aui-field-digits"
++			cssClass="aui-field-digits physical-screen-size-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_PHYSICAL_WIDTH_MIN %>"
+ 			inlineField="<%= true %>"
+ 			label="width"
+@@ -100,7 +100,7 @@
+ 		x
+ 
+ 		<aui:input
+-			cssClass="physical-screen-size-field-field aui-field-digits"
++			cssClass="aui-field-digits physical-screen-size-field-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_PHYSICAL_HEIGHT_MIN %>"
+ 			inlineField="<%= true %>"
+ 			label="height"
+@@ -114,7 +114,7 @@
+ 		<liferay-ui:message key="maximum" />
+ 
+ 		<aui:input
+-			cssClass="physical-physical-screen-size-field-field aui-field-digits"
++			cssClass="aui-field-digits physical-physical-screen-size-field-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_PHYSICAL_WIDTH_MAX %>"
+ 			inlineField="<%= true %>"
+ 			label="width"
+@@ -126,7 +126,7 @@
+ 		x
+ 
+ 		<aui:input
+-			cssClass="screen-physical-size-field-field aui-field-digits"
++			cssClass="aui-field-digits screen-physical-size-field-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_PHYSICAL_HEIGHT_MAX %>"
+ 			inlineField="<%= true %>"
+ 			label="height"
+@@ -142,7 +142,7 @@
+ 		<liferay-ui:message key="minimum" />
+ 
+ 		<aui:input
+-			cssClass="screen-resolution-field aui-field-digits"
++			cssClass="aui-field-digits screen-resolution-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_RESOLUTION_WIDTH_MIN %>"
+ 			inlineField="<%= true %>"
+ 			label="width"
+@@ -154,7 +154,7 @@
+ 		x
+ 
+ 		<aui:input
+-			cssClass="screen-resolution-field aui-field-digits"
++			cssClass="aui-field-digits screen-resolution-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_RESOLUTION_HEIGHT_MIN %>"
+ 			inlineField="<%= true %>"
+ 			label="height"
+@@ -168,7 +168,7 @@
+ 		<liferay-ui:message key="maximum" />
+ 
+ 		<aui:input
+-			cssClass="screen-resolution-field aui-field-digits"
++			cssClass="aui-field-digits screen-resolution-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_RESOLUTION_WIDTH_MAX %>"
+ 			inlineField="<%= true %>"
+ 			label="width"
+@@ -180,7 +180,7 @@
+ 		x
+ 
+ 		<aui:input
+-			cssClass="screen-resolution-field aui-field-digits"
++			cssClass="aui-field-digits screen-resolution-field"
+ 			id="<%= SimpleRuleHandler.PROPERTY_SCREEN_RESOLUTION_HEIGHT_MAX %>"
+ 			inlineField="<%= true %>"
+ 			label="height"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/polls_display/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/polls_display/view.jsp
+index acac82c..82d4612 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/polls_display/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/polls_display/view.jsp
+@@ -129,7 +129,7 @@
+ 	redirectURL.setWindowState(LiferayWindowState.POP_UP);
+ 	%>
+ 
+-	<div class="lfr-meta-actions icons-container">
++	<div class="icons-container lfr-meta-actions">
+ 		<div class="lfr-icon-actions">
+ 			<c:if test="<%= showEditPollIcon %>">
+ 				<liferay-portlet:renderURL doAsGroupId="<%= scopeGroupId %>" plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.POLLS %>" refererPlid="<%= plid %>" var="editQuestionURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/authentication/ldap.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/authentication/ldap.jsp
+index 7236248..7e00929 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/authentication/ldap.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/authentication/ldap.jsp
+@@ -130,7 +130,7 @@
+ 	<c:if test="<%= ldapServerIds.length > 0 %>">
+ 		<br /><br />
+ 
+-		<div class="searchcontainer-content ldap-servers">
++		<div class="ldap-servers searchcontainer-content">
+ 			<table class="table table-bordered table-hover table-striped">
+ 			<thead class="table-columns">
+ 			<tr>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp
+index 587f2fa..675cedb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp
+@@ -79,7 +79,7 @@
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_USER_ADDED_NO_PASSWORD_BODY + "--" %>' type="hidden" value="<%= adminEmailUserAddedNoPasswordBody %>" />
+ 			</aui:field-wrapper>
+ 
+-			<div class="terms email-user-add definition-of-terms">
++			<div class="definition-of-terms email-user-add terms">
+ 				<%@ include file="/html/portlet/portal_settings/definition_of_terms.jspf" %>
+ 			</div>
+ 		</aui:fieldset>
+@@ -99,7 +99,7 @@
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_VERIFICATION_BODY + "--" %>' type="hidden" value="<%= adminEmailPasswordResetBody %>" />
+ 			</aui:field-wrapper>
+ 
+-			<div class="terms email-verification definition-of-terms">
++			<div class="definition-of-terms email-verification terms">
+ 				<%@ include file="/html/portlet/portal_settings/definition_of_terms.jspf" %>
+ 			</div>
+ 		</aui:fieldset>
+@@ -119,7 +119,7 @@
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_BODY + "--" %>' type="hidden" value="<%= adminEmailPasswordSentBody %>" />
+ 			</aui:field-wrapper>
+ 
+-			<div class="terms email-password-sent definition-of-terms">
++			<div class="definition-of-terms email-password-sent terms">
+ 				<%@ include file="/html/portlet/portal_settings/definition_of_terms.jspf" %>
+ 			</div>
+ 		</aui:fieldset>
+@@ -139,7 +139,7 @@
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_PASSWORD_RESET_BODY + "--" %>' type="hidden" value="<%= adminEmailPasswordResetBody %>" />
+ 			</aui:field-wrapper>
+ 
+-			<div class="terms email-password-sent definition-of-terms">
++			<div class="definition-of-terms email-password-sent terms">
+ 				<%@ include file="/html/portlet/portal_settings/definition_of_terms.jspf" %>
+ 			</div>
+ 		</aui:fieldset>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/quick_note/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/quick_note/view.jsp
+index 88989fe..fef6436 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/quick_note/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/quick_note/view.jsp
+@@ -29,8 +29,8 @@
+ 					</c:if>
+ 
+ 					<span class="note-color yellow"></span>
+-					<span class="note-color green"></span>
+-					<span class="note-color blue"></span>
++					<span class="green note-color"></span>
++					<span class="blue note-color"></span>
+ 					<span class="note-color red"></span>
+ 				</td>
+ 			</tr>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/roles_admin/edit_role_permissions_navigation.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/roles_admin/edit_role_permissions_navigation.jspf
+index 71d996c..63be8b2 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/roles_admin/edit_role_permissions_navigation.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/roles_admin/edit_role_permissions_navigation.jspf
+@@ -16,7 +16,7 @@
+ 
+ <div class="lfr-permission-navigation-container" id="<portlet:namespace />permissionNavigationContainer">
+ 	<div class="search" id="<portlet:namespace />permissionNavigationSearchContainer">
+-		<input class="field search-query span10" id="<portlet:namespace />permissionNavigationSearch" placeholder='<%= LanguageUtil.get(pageContext, "search") %>' type="text" />
++		<input class="field search-query span10" id="<portlet:namespace />permissionNavigationSearch" placeholder="<%= LanguageUtil.get(pageContext, "search") %>" type="text" />
+ 	</div>
+ 
+ 	<div class="lfr-permission-navigation" id="<portlet:namespace />permissionNavigationDataContainer">
+@@ -31,7 +31,7 @@
+ 			viewPermissionsURL.setParameter("roleId", String.valueOf(role.getRoleId()));
+ 			%>
+ 
+-			<div class='permission-navigation-item-summary <%= Validator.isNull(portletResource)? "selected" : "" %>'>
++			<div class="permission-navigation-item-summary <%= Validator.isNull(portletResource)? "selected" : "" %>">
+ 				<aui:a cssClass="permission-navigation-link" href="<%= viewPermissionsURL.toString() %>">
+ 					<liferay-ui:message key="summary" />
+ 				</aui:a>
+@@ -46,7 +46,7 @@
+ 					editPermissionsURL.setParameter("portletResource", usersAdminPortlet.getPortletId());
+ 					%>
+ 
+-					<div class='permission-navigation-item-users-admin <%= portletResource.equals(usersAdminPortlet.getPortletId())? "selected" : "" %>'>
++					<div class="permission-navigation-item-users-admin <%= portletResource.equals(usersAdminPortlet.getPortletId())? "selected" : "" %>">
+ 						<aui:a cssClass="permission-navigation-link" href="<%= editPermissionsURL.toString() %>">
+ 							<%= PortalUtil.getPortletLongTitle(usersAdminPortlet, application, locale) %>
+ 						</aui:a>
+@@ -69,7 +69,7 @@
+ 							<div class="permission-navigation-section">
+ 								<ul class="permission-navigation-item-content">
+ 									<li class="permission-navigation-item-container">
+-										<span class='permission-navigation-item <%= portletResource.equals(PortletKeys.PORTAL)? "selected" : "" %>'>
++										<span class="permission-navigation-item <%= portletResource.equals(PortletKeys.PORTAL)? "selected" : "" %>">
+ 											<aui:a cssClass="permission-navigation-link" href="<%= editPermissionsURL.toString() %>">
+ 												<liferay-ui:message key="general-permissions" />
+ 											</aui:a>
+@@ -85,13 +85,13 @@
+ 
+ 								<c:if test="<%= !categoryPortlets.isEmpty() %>">
+ 									<div class="permission-navigation-section">
+-										<div class='permission-navigation-item-header toggler-header toggler-header-<%= category.equals(PortletCategoryKeys.ALL[0])? "expanded" : "collapsed" %>'>
++										<div class="permission-navigation-item-header toggler-header toggler-header-<%= category.equals(PortletCategoryKeys.ALL[0])? "expanded" : "collapsed" %>">
+ 											<span class="permission-navigation-item-header-icon"></span>
+ 
+ 											<span><liferay-ui:message key='<%= "category." + category %>' /></span>
+ 										</div>
+ 
+-										<ul class='permission-navigation-item-content toggler-content toggler-content-<%= category.equals(PortletCategoryKeys.ALL[0])? "expanded" : "collapsed" %>'>
++										<ul class="permission-navigation-item-content toggler-content toggler-content-<%= category.equals(PortletCategoryKeys.ALL[0])? "expanded" : "collapsed" %>">
+ 
+ 											<%
+ 											for (Portlet categoryPortlet : categoryPortlets) {
+@@ -99,7 +99,7 @@
+ 											%>
+ 
+ 												<li class="permission-navigation-item-container">
+-													<span class='permission-navigation-item <%= portletResource.equals(categoryPortlet.getPortletId())? "selected" : "" %>'>
++													<span class="permission-navigation-item <%= portletResource.equals(categoryPortlet.getPortletId())? "selected" : "" %>">
+ 														<aui:a cssClass="permission-navigation-link" href="<%= editPermissionsURL.toString() %>">
+ 															<%= PortalUtil.getPortletLongTitle(categoryPortlet, application, locale) %>
+ 														</aui:a>
+@@ -153,7 +153,7 @@
+ 									%>
+ 
+ 										<li class="permission-navigation-item-container">
+-											<span class='permission-navigation-item <%= portletResource.equals(categoryPortlet.getPortletId())? "selected" : "" %>'>
++											<span class="permission-navigation-item <%= portletResource.equals(categoryPortlet.getPortletId())? "selected" : "" %>">
+ 												<aui:a cssClass="permission-navigation-link" href="<%= editPermissionsURL.toString() %>">
+ 													<%= PortalUtil.getPortletLongTitle(categoryPortlet, application, locale) %>
+ 												</aui:a>
+@@ -207,7 +207,7 @@
+ 							%>
+ 
+ 								<li class="permission-navigation-item-container">
+-									<span class='permission-navigation-item <%= portletResource.equals(curPortlet.getPortletId())? "selected" : "" %>'>
++									<span class="permission-navigation-item <%= portletResource.equals(curPortlet.getPortletId())? "selected" : "" %>">
+ 										<aui:a cssClass="permission-navigation-link" href="<%= editPermissionsURL.toString() %>">
+ 											<%= PortalUtil.getPortletLongTitle(curPortlet, application, locale) %>
+ 										</aui:a>
+@@ -241,7 +241,7 @@
+ 						%>
+ 
+ 							<li class="permission-navigation-item-container">
+-								<span class='permission-navigation-item <%= portletResource.equals(myAccountPortlet.getPortletId())? "selected" : "" %>'>
++								<span class="permission-navigation-item <%= portletResource.equals(myAccountPortlet.getPortletId())? "selected" : "" %>">
+ 									<aui:a cssClass="permission-navigation-link" href="<%= editPermissionsURL.toString() %>">
+ 										<%= PortalUtil.getPortletLongTitle(myAccountPortlet, application, locale) %>
+ 									</aui:a>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/rss/feed.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/rss/feed.jspf
+index 779aac7..7a3ed60 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/rss/feed.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/rss/feed.jspf
+@@ -83,7 +83,7 @@
+ 			</c:if>
+ 
+ 			<c:if test="<%= (publishedDate != null) && showFeedPublishedDate %>">
+-				<div class="feed-published-date feed-date">
++				<div class="feed-date feed-published-date">
+ 					<aui:a href="<%= _escapeJavaScriptLink(feedLink) %>" target="_blank"><%= dateFormatDateTime.format(publishedDate) %></aui:a>
+ 				</div>
+ 			</c:if>
+@@ -151,7 +151,7 @@
+ 				%>
+ 
+ 					<div class="feed-entry">
+-						<img alt="<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? LanguageUtil.get(pageContext, "collapse") : LanguageUtil.get(pageContext, "expand") %>" class="<portlet:namespace />entry-expander feed-entry-expander" src='<%= themeDisplay.getPathThemeImage() %>/arrows/01_<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? "minus" : "plus" %>.png' />
++						<img alt="<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? LanguageUtil.get(pageContext, "collapse") : LanguageUtil.get(pageContext, "expand") %>" class="<portlet:namespace />entry-expander feed-entry-expander" src="<%= themeDisplay.getPathThemeImage() %>/arrows/01_<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? "minus" : "plus" %>.png" />
+ 
+ 						<span class="feed-entry-title"><aui:a href="<%= _escapeJavaScriptLink(entryLink) %>" target="_blank"><%= HtmlUtil.escape(entry.getTitle()) %></aui:a></span>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/search/main_search_document_form.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/search/main_search_document_form.jsp
+index 4bc54e0..f31b901 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/search/main_search_document_form.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/search/main_search_document_form.jsp
+@@ -150,7 +150,7 @@
+ 		</div>
+ 	</c:if>
+ 
+-	<table class="lfr-table asset-entry-fields hide">
++	<table class="asset-entry-fields hide lfr-table">
+ 		<thead>
+ 			<tr>
+ 				<th class="key">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/cart.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/cart.jsp
+index a65d7bc..a1041f7 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/cart.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/cart.jsp
+@@ -35,13 +35,13 @@
+ 		if (!itemsInStock) {
+ 			if (confirm("<%= UnicodeLanguageUtil.get(pageContext, "your-cart-has-items-that-are-out-of-stock") %>")) {
+ 				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.CHECKOUT %>";
+-				document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value='<%= Constants.CHECKOUT %>'/></portlet:actionURL>";
++				document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value="<%= Constants.CHECKOUT %>" /></portlet:actionURL>";
+ 				<portlet:namespace />updateCart();
+ 			}
+ 		}
+ 		else {
+ 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.CHECKOUT %>";
+-			document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value='<%= Constants.CHECKOUT %>'/></portlet:actionURL>";
++			document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:actionURL><portlet:param name="struts_action" value="/shopping/checkout" /><portlet:param name="cmd" value="<%= Constants.CHECKOUT %>" /></portlet:actionURL>";
+ 			<portlet:namespace />updateCart();
+ 		}
+ 	}
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/edit_coupon.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/edit_coupon.jsp
+index da5ccd9..1347b86 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/edit_coupon.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/edit_coupon.jsp
+@@ -86,7 +86,7 @@
+ 
+ 		<aui:input dateTogglerCheckboxLabel="never-expire" disabled="<%= neverExpire %>" label="expiration-date" name="endDate" />
+ 
+-		<aui:input name="active" value="<%= Boolean.TRUE %>" />
++		<aui:input name="active" value="<%= true %>" />
+ 	</aui:fieldset>
+ 
+ 	<aui:button-row>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/view_item.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/view_item.jsp
+index 95a74b5..e3f2093 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/view_item.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/shopping/view_item.jsp
+@@ -66,7 +66,7 @@
+ 				<br /><br />
+ 
+ 				<c:if test="<%= item.isMediumImage() %>">
+-					<img alt="<liferay-ui:message key="image" />" src='<%= Validator.isNotNull(item.getMediumImageURL()) ? item.getMediumImageURL() : themeDisplay.getPathImage() + "/shopping/item?img_id=" + item.getMediumImageId() + "&t=" + WebServerServletTokenUtil.getToken(item.getMediumImageId()) %>' vspace="0" />
++					<img alt="<liferay-ui:message key="image" />" src="<%= Validator.isNotNull(item.getMediumImageURL()) ? item.getMediumImageURL() : themeDisplay.getPathImage() + "/shopping/item?img_id=" + item.getMediumImageId() + "&t=" + WebServerServletTokenUtil.getToken(item.getMediumImageId()) %>" vspace="0" />
+ 				</c:if>
+ 
+ 				<c:if test="<%= item.isLargeImage() %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/default_user_associations.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/default_user_associations.jsp
+index bb3bdc3..394a1f3 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/default_user_associations.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/default_user_associations.jsp
+@@ -243,7 +243,7 @@
+ 	<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
+ </portlet:renderURL>
+ 
+-<aui:script use="liferay-search-container,escape">
++<aui:script use="escape,liferay-search-container">
+ 	A.one('#<portlet:namespace />selectSiteRoleLink').on(
+ 		'click',
+ 		function(event) {
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/details.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/details.jsp
+index 8b3f329..e35075b 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/details.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/details.jsp
+@@ -263,7 +263,7 @@
+ 
+ 												<aui:input disabled="<%= disableLayoutSetPrototypeInput %>" label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(publicLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="publicLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
+ 
+-												<div class='<%= publicLayoutSetPrototypeLinkEnabled ? "" : "hide" %>' id="<portlet:namespace />publicLayoutSetPrototypeMergeAlert">
++												<div class="<%= publicLayoutSetPrototypeLinkEnabled ? "" : "hide" %>" id="<portlet:namespace />publicLayoutSetPrototypeMergeAlert">
+ 
+ 													<%
+ 													request.setAttribute("edit_layout_set_prototype.jsp-groupId", String.valueOf(group.getGroupId()));
+@@ -276,7 +276,7 @@
+ 												</div>
+ 											</c:when>
+ 											<c:when test="<%= publicLayoutSetPrototype != null %>">
+-												<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(publicLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++												<liferay-ui:message arguments="<%= HtmlUtil.escape(publicLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 												<aui:input name="publicLayoutSetPrototypeLinkEnabled" type="hidden" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
+ 											</c:when>
+@@ -366,7 +366,7 @@
+ 
+ 												<aui:input disabled="<%= disableLayoutSetPrototypeInput %>" label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(privateLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="privateLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />
+ 
+-												<div class='<%= privateLayoutSetPrototypeLinkEnabled ? "" : "hide" %>' id="<portlet:namespace />privateLayoutSetPrototypeMergeAlert">
++												<div class="<%= privateLayoutSetPrototypeLinkEnabled ? "" : "hide" %>" id="<portlet:namespace />privateLayoutSetPrototypeMergeAlert">
+ 
+ 													<%
+ 													request.setAttribute("edit_layout_set_prototype.jsp-groupId", String.valueOf(group.getGroupId()));
+@@ -379,7 +379,7 @@
+ 												</div>
+ 											</c:when>
+ 											<c:when test="<%= privateLayoutSetPrototype != null %>">
+-												<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++												<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 												<aui:input name="privateLayoutSetPrototypeLinkEnabled" type="hidden" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />
+ 											</c:when>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_template.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_template.jsp
+index 2831ebd..cdb9ff2 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_template.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_template.jsp
+@@ -63,7 +63,7 @@
+ 					boolean layoutsUpdateable = GetterUtil.getBoolean(publicLayoutSetPrototype.getSettingsProperty("layoutsUpdateable"), true);
+ 					%>
+ 
+-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(publicLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++					<liferay-ui:message arguments="<%= HtmlUtil.escape(publicLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 					<aui:field-wrapper label="site-template-settings">
+ 						<aui:input disabled="<%= true %>" name="active" type="checkbox" value="<%= publicLayoutSetPrototype.isActive() %>" />
+@@ -71,7 +71,7 @@
+ 					</aui:field-wrapper>
+ 				</c:when>
+ 				<c:otherwise>
+-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(publicLayoutSetPrototype.getName(locale))} %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
++					<liferay-ui:message arguments="<%= HtmlUtil.escape(publicLayoutSetPrototype.getName(locale)) %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
+ 				</c:otherwise>
+ 			</c:choose>
+ 		</aui:fieldset>
+@@ -86,7 +86,7 @@
+ 					boolean layoutsUpdateable = GetterUtil.getBoolean(privateLayoutSetPrototype.getSettingsProperty("layoutsUpdateable"), true);
+ 					%>
+ 
+-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++					<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 					<aui:field-wrapper label="site-template-settings">
+ 						<aui:input disabled="<%= true %>" name="active" type="checkbox" value="<%= privateLayoutSetPrototype.isActive() %>" />
+@@ -94,7 +94,7 @@
+ 					</aui:field-wrapper>
+ 				</c:when>
+ 				<c:otherwise>
+-					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
++					<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="this-site-was-cloned-from-site-template-x" translateArguments="<%= false %>" />
+ 				</c:otherwise>
+ 			</c:choose>
+ 		</aui:fieldset>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_url.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_url.jsp
+index 883ca1f..ad1fb19 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_url.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/site/site_url.jsp
+@@ -113,7 +113,7 @@
+ 	<aui:input label="public-pages" name="publicVirtualHost" type="text" value="<%= publicVirtualHost %>" />
+ 
+ 	<aui:input label="private-pages" name="privateVirtualHost" type="text" value="<%= privateVirtualHost %>">
+-		<aui:validator customValidatorRequired="<%= Boolean.FALSE %>" errorMessage="please-enter-a-unique-virtual-host" name="custom">
++		<aui:validator customValidatorRequired="<%= false %>" errorMessage="please-enter-a-unique-virtual-host" name="custom">
+ 			function(val, fieldNode, ruleValue) {
+ 				return (val != A.one('#<portlet:namespace />publicVirtualHost').val());
+ 			}
+@@ -137,7 +137,7 @@
+ 		%>
+ 
+ 		<aui:input label="staging-private-pages" name="stagingPrivateVirtualHost" type="text" value="<%= stagingPrivateVirtualHost %>">
+-			<aui:validator customValidatorRequired="<%= Boolean.FALSE %>" errorMessage="please-enter-a-unique-virtual-host" name="custom">
++			<aui:validator customValidatorRequired="<%= false %>" errorMessage="please-enter-a-unique-virtual-host" name="custom">
+ 				function(val, fieldNode, ruleValue) {
+ 					return (val != A.one('#<portlet:namespace />stagingPublicVirtualHost').val());
+ 				}
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jsp
+index 85ce2f4..a88bc59 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jsp
+@@ -245,7 +245,7 @@
+ 
+ 		<aui:col cssClass="lfr-asset-column lfr-asset-column-actions" last="<%= true %>" width="<%= 25 %>">
+ 			<div class="lfr-asset-summary">
+-				<img alt="<%= HtmlUtil.escape(group.getDescriptiveName()) %>" class="avatar" src='<%= themeDisplay.getPathImage() + "/layout_set_logo?img_id=" + layoutSet.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(layoutSet.getLogoId()) %>' />
++				<img alt="<%= HtmlUtil.escape(group.getDescriptiveName()) %>" class="avatar" src="<%= themeDisplay.getPathImage() + "/layout_set_logo?img_id=" + layoutSet.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(layoutSet.getLogoId()) %>" />
+ 
+ 				<div class="lfr-asset-name">
+ 					<h4><%= HtmlUtil.escape(group.getDescriptiveName()) %></h4>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jspf
+index 5cd3274..cbe8342 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/sites_admin/view_tree.jspf
+@@ -235,7 +235,7 @@
+ 
+ 		<aui:col cssClass="lfr-asset-column lfr-asset-column-actions" last="<%= true %>" width="<%= 25 %>">
+ 			<div class="lfr-asset-summary">
+-				<img alt="<%= HtmlUtil.escape(group.getDescriptiveName()) %>" class="avatar" src='<%= themeDisplay.getPathImage() + "/layout_set_logo?img_id=" + layoutSet.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(layoutSet.getLogoId()) %>' />
++				<img alt="<%= HtmlUtil.escape(group.getDescriptiveName()) %>" class="avatar" src="<%= themeDisplay.getPathImage() + "/layout_set_logo?img_id=" + layoutSet.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(layoutSet.getLogoId()) %>" />
+ 
+ 				<div class="lfr-asset-name">
+ 					<h4><%= HtmlUtil.escape(group.getDescriptiveName()) %></h4>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_framework_version.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_framework_version.jsp
+index f43fc73..113d6a4 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_framework_version.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_framework_version.jsp
+@@ -59,7 +59,7 @@
+ 				<liferay-ui:message key="active" />
+ 			</td>
+ 			<td>
+-				<liferay-ui:input-field bean="<%= frameworkVersion %>" defaultValue="<%= Boolean.TRUE %>" field="active" model="<%= SCFrameworkVersion.class %>" />
++				<liferay-ui:input-field bean="<%= frameworkVersion %>" defaultValue="<%= true %>" field="active" model="<%= SCFrameworkVersion.class %>" />
+ 			</td>
+ 		</tr>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_license.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_license.jsp
+index 36ee9f3..7ca8ea2 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_license.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_license.jsp
+@@ -60,7 +60,7 @@
+ 				<liferay-ui:message key="open-source" />
+ 			</td>
+ 			<td>
+-				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="openSource" model="<%= SCLicense.class %>" />
++				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="openSource" model="<%= SCLicense.class %>" />
+ 			</td>
+ 		</tr>
+ 		<tr>
+@@ -68,7 +68,7 @@
+ 				<liferay-ui:message key="active" />
+ 			</td>
+ 			<td>
+-				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="active" model="<%= SCLicense.class %>" />
++				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="active" model="<%= SCLicense.class %>" />
+ 			</td>
+ 		</tr>
+ 		<tr>
+@@ -76,7 +76,7 @@
+ 				<liferay-ui:message key="recommended" />
+ 			</td>
+ 			<td>
+-				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="recommended" model="<%= SCLicense.class %>" />
++				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="recommended" model="<%= SCLicense.class %>" />
+ 			</td>
+ 		</tr>
+ 	</table>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_product_entry.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_product_entry.jsp
+index d870ad5..7624be8 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_product_entry.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/software_catalog/edit_product_entry.jsp
+@@ -247,7 +247,7 @@
+ 										</tr>
+ 										<tr>
+ 											<td colspan="2">
+-												<liferay-ui:message key="use-existing-images" /> <liferay-ui:input-checkbox param='<%= "preserveScreenshot" + i %>' defaultValue="<%= true %>" />
++												<liferay-ui:message key="use-existing-images" /> <liferay-ui:input-checkbox defaultValue="<%= true %>" param='<%= "preserveScreenshot" + i %>' />
+ 											</td>
+ 										</tr>
+ 									</table>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_branch.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_branch.jsp
+index c5f251f..87acccd 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_branch.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_branch.jsp
+@@ -30,7 +30,7 @@
+ long layoutRevisionId = ParamUtil.getLong(request, "layoutRevisionId");
+ %>
+ 
+-<div class='<%= (layoutBranch != null) ? StringPool.BLANK : "hide" %>' data-namespace="<portlet:namespace />" id="<portlet:namespace /><%= layoutBranch != null ? "updateBranch" : "addBranch" %>">
++<div class="<%= (layoutBranch != null) ? StringPool.BLANK : "hide" %>" data-namespace="<portlet:namespace />" id="<portlet:namespace /><%= layoutBranch != null ? "updateBranch" : "addBranch" %>">
+ 	<aui:model-context bean="<%= layoutBranch %>" model="<%= LayoutBranch.class %>" />
+ 
+ 	<portlet:actionURL var="editLayoutBranchURL">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_set_branch.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_set_branch.jsp
+index afcef76..d2dcbbf 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_set_branch.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/edit_layout_set_branch.jsp
+@@ -28,7 +28,7 @@
+ }
+ %>
+ 
+-<div class='<%= (layoutSetBranch != null) ? StringPool.BLANK : "hide" %>' data-namespace="<portlet:namespace />" id="<portlet:namespace /><%= layoutSetBranch != null ? "updateBranch" : "addBranch" %>">
++<div class="<%= (layoutSetBranch != null) ? StringPool.BLANK : "hide" %>" data-namespace="<portlet:namespace />" id="<portlet:namespace /><%= layoutSetBranch != null ? "updateBranch" : "addBranch" %>">
+ 	<aui:model-context bean="<%= layoutSetBranch %>" model="<%= LayoutSetBranch.class %>" />
+ 
+ 	<portlet:actionURL var="editLayoutSetBranchURL">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/view.jsp
+index 5156187..dc6b448 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/staging_bar/view.jsp
+@@ -81,7 +81,7 @@
+ 			<c:choose>
+ 				<c:when test="<%= group.isStagingGroup() || group.isStagedRemotely() %>">
+ 					<c:if test="<%= stagingGroup != null %>">
+-						<aui:nav-item anchorCssClass="staging-link" cssClass="active staging-toggle site-variations" dropdown="<%= true %>" id="stagingLink" label="staging" toggle="<%= true %>">
++						<aui:nav-item anchorCssClass="staging-link" cssClass="active site-variations staging-toggle" dropdown="<%= true %>" id="stagingLink" label="staging" toggle="<%= true %>">
+ 							<aui:nav-item cssClass="row-fluid">
+ 								<c:choose>
+ 									<c:when test="<%= (group.isStagingGroup() || group.isStagedRemotely()) && branchingEnabled %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/restore_entry.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/restore_entry.jsp
+index c921bd5..1853232 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/restore_entry.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/restore_entry.jsp
+@@ -48,7 +48,7 @@
+ %>
+ 
+ <div class="alert alert-block" id="<portlet:namespace />messageContainer">
+-	<liferay-ui:message arguments="<%= new String[] {HtmlUtil.escape(oldName)} %>" key="an-entry-with-name-x-already-exists" translateArguments="<%= false %>" />
++	<liferay-ui:message arguments="<%= HtmlUtil.escape(oldName) %>" key="an-entry-with-name-x-already-exists" translateArguments="<%= false %>" />
+ </div>
+ 
+ <portlet:actionURL var="restoreActionURL">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view.jsp
+index af05560..554fa78 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view.jsp
+@@ -174,7 +174,8 @@
+ 			<liferay-ui:icon
+ 				label="<%= true %>"
+ 				message="<%= HtmlUtil.escape(trashRenderer.getTitle(locale)) %>"
+-				method="get" src="<%= trashRenderer.getIconPath(renderRequest) %>"
++				method="get"
++				src="<%= trashRenderer.getIconPath(renderRequest) %>"
+ 				url="<%= viewContentURLString %>"
+ 			/>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_container_model.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_container_model.jsp
+index 89b7acb..e64c469 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_container_model.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_container_model.jsp
+@@ -108,7 +108,8 @@
+ 						<liferay-ui:icon
+ 							label="<%= true %>"
+ 							message="<%= curContainerModel.getContainerModelName() %>"
+-							method="get" src="<%= containerTrashRenderer.getIconPath(renderRequest) %>"
++							method="get"
++							src="<%= containerTrashRenderer.getIconPath(renderRequest) %>"
+ 							url="<%= containerURL.toString() %>"
+ 						/>
+ 					</c:when>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_content.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_content.jsp
+index 01d9937..5f737b2 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_content.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/trash/view_content.jsp
+@@ -212,7 +212,7 @@
+ 
+ 				<c:if test="<%= (containerModelsCount + baseModelsCount) == 0 %>">
+ 					<div class="alert alert-info">
+-						<liferay-ui:message arguments="<%= new String[] {ResourceActionsUtil.getModelResource(locale, className)} %>" key="this-x-does-not-contain-an-entry" translateArguments="<%= false %>" />
++						<liferay-ui:message arguments="<%= ResourceActionsUtil.getModelResource(locale, className) %>" key="this-x-does-not-contain-an-entry" translateArguments="<%= false %>" />
+ 					</div>
+ 				</c:if>
+ 			</liferay-ui:panel-container>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/unit_converter/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/unit_converter/view.jsp
+index a4e6ead..5780f1e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/unit_converter/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/unit_converter/view.jsp
+@@ -179,7 +179,8 @@
+ 		<liferay-ui:message key="type" />
+ 	</td>
+ 	<td>
+-		<select name="<portlet:namespace />type"
++		<select
++			name="<portlet:namespace />type"
+ 			onChange="
+ 				if (this[this.selectedIndex].value == 0) {
+ 					Liferay.Util.setBox(document.<portlet:namespace />fm.<portlet:namespace />fromId, lengthArray);
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_groups_admin/edit_user_group.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_groups_admin/edit_user_group.jsp
+index 4bb361d..2ca3e39 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_groups_admin/edit_user_group.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_groups_admin/edit_user_group.jsp
+@@ -176,7 +176,7 @@
+ 										<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(publicLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="publicLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
+ 									</c:when>
+ 									<c:when test="<%= publicLayoutSetPrototype != null %>">
+-										<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(publicLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++										<liferay-ui:message arguments="<%= HtmlUtil.escape(publicLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 										<aui:input name="layoutSetPrototypeLinkEnabled" type="hidden" value="<%= true %>" />
+ 									</c:when>
+@@ -246,7 +246,7 @@
+ 										<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(privateLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="privateLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />
+ 									</c:when>
+ 									<c:when test="<%= privateLayoutSetPrototype != null %>">
+-										<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++										<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 										<aui:input name="layoutSetPrototypeLinkEnabled" type="hidden" value="<%= true %>" />
+ 									</c:when>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_statistics/user_display.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_statistics/user_display.jsp
+index 45b26d7..83d0a04 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_statistics/user_display.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/user_statistics/user_display.jsp
+@@ -63,7 +63,7 @@
+ 		</div>
+ 
+ 		<div class="contribution-score">
+-			<span class="statistics-label"><liferay-ui:message key='contribution-score' />:</span> <%= contributionActivityCounter.getCurrentValue() %>
++			<span class="statistics-label"><liferay-ui:message key="contribution-score" />:</span> <%= contributionActivityCounter.getCurrentValue() %>
+ 
+ 			<c:if test="<%= showTotals %>">
+ 				<span>(<liferay-ui:message key="total" />: <%= contributionActivityCounter.getTotalValue() %>)</span>
+@@ -71,7 +71,7 @@
+ 		</div>
+ 
+ 		<div class="participation-score">
+-			<span class="statistics-label"><liferay-ui:message key='participation-score' />:</span> <%= participationActivityCounter.getCurrentValue() %>
++			<span class="statistics-label"><liferay-ui:message key="participation-score" />:</span> <%= participationActivityCounter.getCurrentValue() %>
+ 
+ 			<c:if test="<%= showTotals %>">
+ 				<span>(<liferay-ui:message key="total" />: <%= participationActivityCounter.getTotalValue() %>)</span>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/details.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/details.jsp
+index c86d822..376bbc1 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/details.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/details.jsp
+@@ -101,7 +101,7 @@
+ 
+ 		<liferay-ui:error exception="<%= NoSuchCountryException.class %>" message="please-select-a-country" />
+ 
+-		<div class='<%= GetterUtil.getBoolean(PropsUtil.get(PropsKeys.ORGANIZATIONS_COUNTRY_ENABLED, new Filter(String.valueOf(type)))) ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />countryDiv">
++		<div class="<%= GetterUtil.getBoolean(PropsUtil.get(PropsKeys.ORGANIZATIONS_COUNTRY_ENABLED, new Filter(String.valueOf(type)))) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />countryDiv">
+ 			<aui:select label="country" name="countryId" />
+ 
+ 			<aui:select label="region" name="regionId" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/organization_site.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/organization_site.jsp
+index c5d1109..ede6e22 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/organization_site.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/organization/organization_site.jsp
+@@ -158,7 +158,7 @@
+ 											<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(publicLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="publicLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
+ 										</c:when>
+ 										<c:when test="<%= publicLayoutSetPrototype != null %>">
+-											<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(publicLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++											<liferay-ui:message arguments="<%= HtmlUtil.escape(publicLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 											<aui:input name="publicLayoutSetPrototypeLinkEnabled" type="hidden" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
+ 										</c:when>
+@@ -234,7 +234,7 @@
+ 											<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(privateLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="privateLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />
+ 										</c:when>
+ 										<c:when test="<%= privateLayoutSetPrototype != null %>">
+-											<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++											<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 											<aui:input name="privateLayoutSetPrototypeLinkEnabled" type="hidden" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />
+ 										</c:when>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/user/personal_site.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/user/personal_site.jsp
+index 3aa03d8..f8e8d5f 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/user/personal_site.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/user/personal_site.jsp
+@@ -140,7 +140,7 @@
+ 									<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(publicLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="publicLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
+ 								</c:when>
+ 								<c:when test="<%= publicLayoutSetPrototype != null %>">
+-									<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++									<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 									<aui:input name="layoutSetPrototypeLinkEnabled" type="hidden" value="<%= true %>" />
+ 								</c:when>
+@@ -212,7 +212,7 @@
+ 									<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(privateLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="privateLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />
+ 								</c:when>
+ 								<c:when test="<%= privateLayoutSetPrototype != null %>">
+-									<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
++									<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+ 
+ 									<aui:input name="layoutSetPrototypeLinkEnabled" type="hidden" value="<%= true %>" />
+ 								</c:when>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/view_tree.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/view_tree.jsp
+index b84094a..2ce3b0e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/view_tree.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/users_admin/view_tree.jsp
+@@ -195,23 +195,23 @@
+ 						%>
+ 
+ 						<div class="organization-information">
+-							<div class="section entity-email-addresses">
++							<div class="entity-email-addresses section">
+ 								<liferay-util:include page="/html/portlet/directory/common/additional_email_addresses.jsp" />
+ 							</div>
+ 
+-							<div class="section entity-websites">
++							<div class="entity-websites section">
+ 								<liferay-util:include page="/html/portlet/directory/common/websites.jsp" />
+ 							</div>
+ 
+-							<div class="section entity-addresses">
++							<div class="entity-addresses section">
+ 								<liferay-util:include page="/html/portlet/directory/organization/addresses.jsp" />
+ 							</div>
+ 
+-							<div class="section entity-phones">
++							<div class="entity-phones section">
+ 								<liferay-util:include page="/html/portlet/directory/organization/phone_numbers.jsp" />
+ 							</div>
+ 
+-							<div class="section entity-comments">
++							<div class="entity-comments section">
+ 								<liferay-util:include page="/html/portlet/directory/organization/comments.jsp" />
+ 							</div>
+ 						</div>
+@@ -442,7 +442,7 @@
+ 			<c:if test="<%= organization != null %>">
+ 				<aui:col cssClass="lfr-asset-column lfr-asset-column-actions" last="<%= true %>" width="<%= 25 %>">
+ 					<div class="lfr-asset-summary">
+-						<img alt="<%= HtmlUtil.escape(organization.getName()) %>" class="avatar" src='<%= (organization != null) ? themeDisplay.getPathImage() + "/organization_logo?img_id=" + organization.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(organization.getLogoId()) : "" %>' />
++						<img alt="<%= HtmlUtil.escape(organization.getName()) %>" class="avatar" src="<%= (organization != null) ? themeDisplay.getPathImage() + "/organization_logo?img_id=" + organization.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(organization.getLogoId()) : "" %>" />
+ 
+ 						<div class="lfr-asset-name">
+ 							<h4><%= HtmlUtil.escape(organization.getName()) %></h4>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/edit_page_attachment.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/edit_page_attachment.jsp
+index 6161040..2c8f38e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/edit_page_attachment.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/edit_page_attachment.jsp
+@@ -76,7 +76,7 @@
+ 		<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
+ 	</div>
+ 
+-	<div class="lfr-fallback hide" id="<portlet:namespace />fallback">
++	<div class="hide lfr-fallback" id="<portlet:namespace />fallback">
+ 		<aui:fieldset label="upload-files">
+ 			<aui:input label='<%= LanguageUtil.get(pageContext, "file") + " 1" %>' name="file1" type="file" />
+ 
+@@ -140,7 +140,7 @@
+ 	new Liferay.Upload(
+ 		{
+ 			boundingBox: '#<portlet:namespace />fileUpload',
+-			deleteFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="struts_action" value="/wiki/edit_page_attachment" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE_TEMP %>" /><portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" /><portlet:param name="title" value="<%= wikiPage.getTitle() %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= WikiPage.class.getName() %>" />',
++			deleteFile: '<liferay-portlet:actionURL doAsUserId="<%= user.getUserId() %>" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="struts_action" value="/wiki/edit_page_attachment" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE_TEMP %>" /><portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" /><portlet:param name="title" value="<%= wikiPage.getTitle() %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= WikiPage.class.getName() %>" />',
+ 			fallback: '#<portlet:namespace />fallback',
+ 			fileDescription: '<%= StringUtil.merge(PrefsPropsUtil.getStringArray(PropsKeys.DL_FILE_EXTENSIONS, StringPool.COMMA)) %>',
+ 			maxFileSize: '<%= PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE) %> B',
+@@ -154,7 +154,7 @@
+ 					tempFolderName: 'com.liferay.portlet.wiki.action.EditPageAttachmentsAction'
+ 				}
+ 			},
+-			uploadFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="struts_action" value="/wiki/edit_page_attachment" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /><portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" /><portlet:param name="title" value="<%= wikiPage.getTitle() %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= WikiPage.class.getName() %>" />'
++			uploadFile: '<liferay-portlet:actionURL doAsUserId="<%= user.getUserId() %>" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="struts_action" value="/wiki/edit_page_attachment" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /><portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" /><portlet:param name="title" value="<%= wikiPage.getTitle() %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= WikiPage.class.getName() %>" />'
+ 		}
+ 	);
+ </aui:script>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view.jsp
+index 414b416..0b6640e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view.jsp
+@@ -316,12 +316,15 @@
+ 							method="get"
+ 							url="<%= addPageURL.toString() %>"
+ 						/>,
+-					</c:if>
++					</c:if
++						>
+ 
+ 					<liferay-ui:icon
+ 						image="clip"
+ 						label="<%= true %>"
+-						message='<%= attachmentsFileEntriesCount + " " + LanguageUtil.get(pageContext, (attachmentsFileEntriesCount == 1) ? "attachment" : "attachments") %>' method="get" url="<%= viewAttachmentsURL.toString() %>"
++						message='<%= attachmentsFileEntriesCount + " " + LanguageUtil.get(pageContext, (attachmentsFileEntriesCount == 1) ? "attachment" : "attachments") %>'
++						method="get"
++						url="<%= viewAttachmentsURL.toString() %>"
+ 					/>
+ 				</div>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view_page_details.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view_page_details.jsp
+index d6f7982..e3ac1f7 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view_page_details.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/wiki/view_page_details.jsp
+@@ -52,7 +52,7 @@
+ 	<liferay-util:param name="tabs1" value="details" />
+ </liferay-util:include>
+ 
+-<table class="table table-bordered table-hover table-striped page-info">
++<table class="page-info table table-bordered table-hover table-striped">
+ 	<tr>
+ 		<th class="table-header">
+ 			<liferay-ui:message key="title" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/input/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/input/page.jsp
+index faa26d9..04ddacb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/input/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/input/page.jsp
+@@ -89,8 +89,8 @@
+ 			disabled="<%= disabled %>"
+ 			field="<%= field %>"
+ 			fieldParam="<%= fieldParam %>"
+-			formName="<%= formName %>"
+ 			format='<%= (Format)dynamicAttributes.get("format") %>'
++			formName="<%= formName %>"
+ 			id="<%= id %>"
+ 			ignoreRequestValue="<%= ignoreRequestValue %>"
+ 			languageId="<%= languageId %>"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/translation_manager/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/translation_manager/page.jsp
+index 35c2f0e..143601e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/translation_manager/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/aui/translation_manager/page.jsp
+@@ -26,7 +26,7 @@
+ 			Locale defaultLocale = LocaleUtil.fromLanguageId(defaultLanguageId);
+ 			%>
+ 
+-			<img alt="<%= defaultLocale.getDisplayName(locale) %>" src='<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + defaultLanguageId + ".png") %>' />
++			<img alt="<%= defaultLocale.getDisplayName(locale) %>" src="<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + defaultLanguageId + ".png") %>" />
+ 
+ 			<%= defaultLocale.getDisplayName(locale) %>
+ 		</span>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_entry/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_entry/page.jsp
+index a7a996f..3ab8069 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_entry/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_entry/page.jsp
+@@ -87,11 +87,11 @@
+ 				<img alt="" border="no" class="img-polaroid" src="<%= HtmlUtil.escapeAttribute(thumbnailSrc) %>" style="<%= thumbnailStyle %>" />
+ 
+ 				<c:if test="<%= shortcut %>">
+-					<img alt="<liferay-ui:message key="shortcut" />" class="shortcut-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
++					<img alt="<liferay-ui:message key="shortcut" />" class="img-polaroid shortcut-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
+ 				</c:if>
+ 
+ 				<c:if test="<%= locked %>">
+-					<img alt="<liferay-ui:message key="locked" />" class="locked-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
++					<img alt="<liferay-ui:message key="locked" />" class="img-polaroid locked-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
+ 				</c:if>
+ 
+ 				<c:if test="<%= !folder && ((status != WorkflowConstants.STATUS_ANY) && (status != WorkflowConstants.STATUS_APPROVED)) %>">
+@@ -131,11 +131,11 @@
+ 				<img alt="" border="no" class="img-polaroid" src="<%= HtmlUtil.escapeAttribute(thumbnailSrc) %>" style="<%= thumbnailStyle %>" />
+ 
+ 				<c:if test="<%= shortcut %>">
+-					<img alt="<liferay-ui:message key="shortcut" />" class="shortcut-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
++					<img alt="<liferay-ui:message key="shortcut" />" class="img-polaroid shortcut-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_link.png" />
+ 				</c:if>
+ 
+ 				<c:if test="<%= locked %>">
+-					<img alt="<liferay-ui:message key="locked" />" class="locked-icon img-polaroid" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
++					<img alt="<liferay-ui:message key="locked" />" class="img-polaroid locked-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
+ 				</c:if>
+ 
+ 				<c:if test="<%= !folder && (status != WorkflowConstants.STATUS_ANY) && (status != WorkflowConstants.STATUS_APPROVED) %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_search_entry/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_search_entry/page.jsp
+index a5cfe91..9ae230c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_search_entry/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/app_view_search_entry/page.jsp
+@@ -186,7 +186,7 @@
+ 	</c:if>
+ 
+ 	<c:if test="<%= showCheckbox %>">
+-		<aui:input cssClass="overlay entry-selector" label="" name="<%= RowChecker.ROW_IDS + rowCheckerName %>" type="checkbox" value="<%= rowCheckerId %>" />
++		<aui:input cssClass="entry-selector overlay" label="" name="<%= RowChecker.ROW_IDS + rowCheckerName %>" type="checkbox" value="<%= rowCheckerId %>" />
+ 	</c:if>
+ 
+ 	<c:if test="<%= Validator.isNotNull(actionJsp) %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/calendar/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/calendar/page.jsp
+index 2f77986..c80182c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/calendar/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/calendar/page.jsp
+@@ -54,7 +54,7 @@
+ %>
+ 
+ <div class="taglib-calendar">
+-	<table class="table table-bordered table-hover table-striped calendar-panel">
++	<table class="calendar-panel table table-bordered table-hover table-striped">
+ 
+ 	<thead class="table-columns">
+ 	<c:if test="<%= Validator.isNotNull(headerPattern) || (headerFormat != null) %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/categorization_filter/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/categorization_filter/page.jsp
+index 69badf9..0395462 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/categorization_filter/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/categorization_filter/page.jsp
+@@ -93,7 +93,7 @@
+ 		PortalUtil.addPageKeywords(assetTagName, request);
+ 		%>
+ 
+-		<h2 class="taglib-categorization-filter entry-title">
++		<h2 class="entry-title taglib-categorization-filter">
+ 			<liferay-ui:message arguments="<%= new String[] {assetVocabularyTitle, removeCategory, removeTag} %>" key='<%= assetType.concat("-with-x-x-and-tag-x") %>' translateArguments="<%= false %>" />
+ 		</h2>
+ 	</c:when>
+@@ -105,7 +105,7 @@
+ 		PortalUtil.addPageKeywords(assetCategoryTitle, request);
+ 		%>
+ 
+-		<h2 class="taglib-categorization-filter entry-title">
++		<h2 class="entry-title taglib-categorization-filter">
+ 			<liferay-ui:message arguments="<%= new String[] {assetVocabularyTitle, removeCategory} %>" key='<%= assetType.concat("-with-x-x") %>' translateArguments="<%= false %>" />
+ 		</h2>
+ 	</c:when>
+@@ -117,7 +117,7 @@
+ 		PortalUtil.addPageKeywords(assetTagName, request);
+ 		%>
+ 
+-		<h2 class="taglib-categorization-filter entry-title">
++		<h2 class="entry-title taglib-categorization-filter">
+ 			<liferay-ui:message arguments="<%= removeTag %>" key='<%= assetType.concat("-with-tag-x") %>' translateArguments="<%= false %>" />
+ 		</h2>
+ 	</c:when>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/page.jsp
+index cac3b9b..f5898d1 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/page.jsp
+@@ -439,7 +439,7 @@
+ 							</aui:row>
+ 
+ 							<aui:row cssClass="lfr-discussion-form-container" fluid="<%= true %>">
+-								<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
++								<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style="<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>">
+ 									<liferay-ui:user-display
+ 										displayStyle="<%= 2 %>"
+ 										userId="<%= user.getUserId() %>"
+@@ -460,7 +460,7 @@
+ 								</div>
+ 
+ 								<c:if test="<%= !hideControls && MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), threadGroupId, permissionClassName, permissionClassPK, ActionKeys.UPDATE_DISCUSSION, message.getMessageId()) %>">
+-									<div class="lfr-discussion-form lfr-discussion-form-edit span12" id="<%= randomNamespace %>editForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
++									<div class="lfr-discussion-form lfr-discussion-form-edit span12" id="<%= randomNamespace %>editForm<%= i %>" style="<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>">
+ 										<aui:input id='<%= randomNamespace + "editReplyBody" + i %>' label="" name='<%= "editReplyBody" + i %>' style='<%= "height: " + ModelHintsConstants.TEXTAREA_DISPLAY_HEIGHT + "px;" %>' title="reply-body" type="textarea" value="<%= message.getBody() %>" wrap="soft" />
+ 
+ 										<%
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/view_message_thread.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/view_message_thread.jsp
+index e705694..c335e97 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/view_message_thread.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/discussion/view_message_thread.jsp
+@@ -27,7 +27,7 @@
+ %>
+ 
+ <tr>
+-	<td class="table-cell" style="padding-left: <%= depth * 10 %>px; width: 90%">
++	<td class="table-cell" style="padding-left: <%= depth * 10 %>px; width: 90%;">
+ 		<c:if test="<%= !message.isRoot() %>">
+ 			<c:choose>
+ 				<c:when test="<%= !lastNode %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/flags/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/flags/page.jsp
+index a83e2f1..cc9f2cf 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/flags/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/flags/page.jsp
+@@ -82,7 +82,7 @@
+ 			</aui:script>
+ 		</c:when>
+ 		<c:otherwise>
+-			<div id="<%= randomNamespace %>signIn" style="display:none">
++			<div id="<%= randomNamespace %>signIn" style="display: none;">
+ 				<liferay-ui:message key="please-sign-in-to-flag-this-as-inappropriate" />
+ 			</div>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_date/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_date/page.jsp
+index 8b196b9..70e4b76 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_date/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_date/page.jsp
+@@ -104,7 +104,7 @@
+ 		</c:when>
+ 		<c:otherwise>
+ 			<aui:input disabled="<%= disabled %>" id="<%= HtmlUtil.getAUICompatibleId(name) %>" label="" name="<%= name %>" placeholder="<%= StringUtil.toLowerCase(placeholderValue) %>" required="<%= required %>" title="" type="text" value="<%= dateString %>" wrappedField="<%= true %>">
+-				<aui:validator customValidatorRequired="<%= Boolean.FALSE %>" errorMessage="please-enter-a-valid-date" name="custom">
++				<aui:validator customValidatorRequired="<%= false %>" errorMessage="please-enter-a-valid-date" name="custom">
+ 					function(val) {
+ 						return AUI().use('aui-datatype-date-parse').Parsers.date('<%= mask %>', val);
+ 					}
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp
+index 495e940..0830d50 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp
+@@ -242,7 +242,7 @@
+ 							<a class="palette-item-inner" href="javascript:void(0);">
+ 								<img alt="<%= curLocale.getDisplayName(LocaleUtil.fromLanguageId(LanguageUtil.getLanguageId(request))) %> <liferay-ui:message key="translation" />" class="lfr-input-localized-flag" data-languageid="<%= curLanguageId %>" src="<%= themeDisplay.getPathThemeImages() %>/language/<%= curLanguageId %>.png" />
+ 
+-								<div class='<%= errorLocales.contains(curLocale) ? "lfr-input-localized-state lfr-input-localized-state-error" : "lfr-input-localized-state" %>'></div>
++								<div class="<%= errorLocales.contains(curLocale) ? "lfr-input-localized-state lfr-input-localized-state-error" : "lfr-input-localized-state" %>"></div>
+ 							</a>
+ 						</li>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_repeat/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_repeat/page.jsp
+index 56c5427..00387f9 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_repeat/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_repeat/page.jsp
+@@ -227,11 +227,11 @@
+ 	</aui:col>
+ 
+ 	<aui:col last="<%= true %>" width="<%= 75 %>">
+-		<div class='<%= recurrenceType != Recurrence.NO_RECURRENCE ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />recurrenceTypeNeverTable">
++		<div class="<%= recurrenceType != Recurrence.NO_RECURRENCE ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />recurrenceTypeNeverTable">
+ 			<liferay-ui:message key="do-not-repeat-this-event" />
+ 		</div>
+ 
+-		<div class='<%= recurrenceType != Recurrence.DAILY ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />recurrenceTypeDailyTable">
++		<div class="<%= recurrenceType != Recurrence.DAILY ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />recurrenceTypeDailyTable">
+ 			<aui:input checked="<%= dailyType == 0 %>" cssClass="input-container" inlineField="<%= true %>" label="recur-every" name="dailyType" type="radio" value="0" />
+ 
+ 			<aui:input inlineField="<%= true %>" inlineLabel="right" label="day-s" maxlength="3" name="dailyInterval" size="3" type="text" value="<%= dailyInterval %>" />
+@@ -239,7 +239,7 @@
+ 			<aui:input checked="<%= (dailyType == 1) %>" label="every-weekday" name="dailyType" type="radio" value="1" />
+ 		</div>
+ 
+-		<div class='<%= recurrenceType != Recurrence.WEEKLY ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />recurrenceTypeWeeklyTable">
++		<div class="<%= recurrenceType != Recurrence.WEEKLY ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />recurrenceTypeWeeklyTable">
+ 			<aui:input inlineField="<%= true %>" inlineLabel="left" label="recur-every" maxlength="2" name="weeklyInterval" size="2" suffix="weeks-on" type="text" value="<%= weeklyInterval %>" />
+ 
+ 			<%
+@@ -271,7 +271,7 @@
+ 			</aui:row>
+ 		</div>
+ 
+-		<div class='<%= recurrenceType != Recurrence.MONTHLY ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />recurrenceTypeMonthlyTable">
++		<div class="<%= recurrenceType != Recurrence.MONTHLY ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />recurrenceTypeMonthlyTable">
+ 			<span class="field-row">
+ 				<aui:input checked="<%= monthlyType == 0 %>" cssClass="input-container" inlineField="<%= true %>" label="day" name="monthlyType" type="radio" value="0" />
+ 
+@@ -309,7 +309,7 @@
+ 		String[] months = CalendarUtil.getMonths(locale);
+ 		%>
+ 
+-		<div class='<%= recurrenceType != Recurrence.YEARLY ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />recurrenceTypeYearlyTable">
++		<div class="<%= recurrenceType != Recurrence.YEARLY ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />recurrenceTypeYearlyTable">
+ 			<span class="field-row">
+ 				<aui:input checked="<%= yearlyType == 0 %>" cssClass="input-container" inlineField="<%= true %>" label="every" name="yearlyType" type="radio" value="0" />
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/logo_selector/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/logo_selector/page.jsp
+index 093532a..74dd78a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/logo_selector/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/logo_selector/page.jsp
+@@ -43,8 +43,8 @@
+ 
+ <div class="taglib-logo-selector" id="<%= randomNamespace %>taglibLogoSelector">
+ 	<div class="taglib-logo-selector-content" id="<%= randomNamespace %>taglibLogoSelectorContent">
+-		<a class='lfr-change-logo <%= showBackground ? "show-background" : StringPool.BLANK %>' href="javascript:;">
+-			<img alt="<liferay-ui:message key="change-logo" />" class="img-polaroid avatar" id="<%= randomNamespace %>avatar" src="<%= imageSrc %>" />
++		<a class="lfr-change-logo <%= showBackground ? "show-background" : StringPool.BLANK %>" href="javascript:;">
++			<img alt="<liferay-ui:message key="change-logo" />" class="avatar img-polaroid" id="<%= randomNamespace %>avatar" src="<%= imageSrc %>" />
+ 		</a>
+ 
+ 		<div class="portrait-icons">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/page_iterator/start.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/page_iterator/start.jsp
+index 0a3e3ea..8f5d4fb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/page_iterator/start.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/page_iterator/start.jsp
+@@ -269,7 +269,7 @@
+ 			<%@ include file="/html/taglib/ui/page_iterator/showing_x_results.jspf" %>
+ 		</c:if>
+ 
+-		<ul class="pager lfr-pagination-buttons">
++		<ul class="lfr-pagination-buttons pager">
+ 			<c:if test='<%= type.equals("approximate") || type.equals("more") || type.equals("regular") %>'>
+ 				<li class="<%= (cur != 1) ? "" : "disabled" %> first">
+ 					<a href="<%= (cur != 1) ? _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) : "javascript:;" %>" onclick="<%= (cur != 1 && forcePost) ? _getOnClick(namespace, curParam, 1) : "" %>" tabIndex="<%= (cur != 1) ? "0" : "-1" %>" target="<%= target %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings/page.jsp
+index 4ea1adc..5e5ad38 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings/page.jsp
+@@ -112,7 +112,7 @@
+ 				</div>
+ 			</c:when>
+ 			<c:when test='<%= type.equals("thumbs") %>'>
+-				<div class="thumbrating liferay-rating-vote" id="<%= randomNamespace %>ratingThumb">
++				<div class="liferay-rating-vote thumbrating" id="<%= randomNamespace %>ratingThumb">
+ 					<div class="helper-clearfix rating-content thumbrating-content" id="<%= randomNamespace %>ratingThumbContent">
+ 						<liferay-util:whitespace-remover>
+ 							<div class="rating-label">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings_score/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings_score/page.jsp
+index 38881da..deb2a65 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings_score/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/ratings_score/page.jsp
+@@ -34,7 +34,7 @@
+ 		<%= scoreString %> Stars
+ 	</c:when>
+ 	<c:otherwise>
+-		<div class="taglib-ratings score" id="<%= randomNamespace %>averageRating">
++		<div class="score taglib-ratings" id="<%= randomNamespace %>averageRating">
+ 			<div class="helper-clearfix" id="<%= randomNamespace %>averageRatingContent">
+ 
+ 				<%
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/section/start.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/section/start.jsp
+index 50128f8..5541e85 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/section/start.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/section/start.jsp
+@@ -22,4 +22,4 @@
+ boolean selected = (Boolean)request.getAttribute("liferay-ui:section:selected");
+ %>
+ 
+-<div class='<%= selected ? StringPool.BLANK : "hide" %>' id="<%= namespace %><%= param %><%= StringUtil.toCharCode(name) %>TabsSection">
+\ No newline at end of file
++<div class="<%= selected ? StringPool.BLANK : "hide" %>" id="<%= namespace %><%= param %><%= StringUtil.toCharCode(name) %>TabsSection">
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp
+index 0de0c34..83e4b00 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp
+@@ -106,4 +106,4 @@
+ 		name="<%= feedTitle %>"
+ 		url="<%= feedLink %>"
+ 	/>
+-</c:if>
++</c:if>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/facebook.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/facebook.jsp
+index 5269f55..73f35ce 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/facebook.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/facebook.jsp
+@@ -33,7 +33,8 @@
+ 
+ <div id="fb-root"></div>
+ 
+-<div class="fb-like"
++<div
++	class="fb-like"
+ 	data-font=""
+ 	data-height="<%= (facebookDisplayStyle.equals("standard") || facebookDisplayStyle.equals("button_count")) ? 20 : StringPool.BLANK %>"
+ 	data-href="<%= url %>"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/plusone.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/plusone.jsp
+index 6346a71..60d11a7 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/plusone.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_bookmark/plusone.jsp
+@@ -46,7 +46,7 @@
+ </liferay-util:html-bottom>
+ 
+ <g:plusone
+-	count="<%= !displayStyle.equals("simple") %>"
++	count='<%= !displayStyle.equals("simple") %>'
+ 	href="<%= url %>"
+ 	size="<%= plusOneDisplayStyle %>"
+ >
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/trash_undo/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/trash_undo/page.jsp
+index d4af7c8..f3a7227 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/trash_undo/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/trash_undo/page.jsp
+@@ -74,7 +74,7 @@
+ 					<c:when test="<%= trashedEntriesCount > 1 %>">
+ 						<c:choose>
+ 							<c:when test="<%= Validator.equals(cmd, Constants.REMOVE) %>">
+-								<liferay-ui:message arguments="<%= new Object[] {trashedEntriesCount} %>" key="x-items-were-removed" translateArguments="<%= false %>" />
++								<liferay-ui:message arguments="<%= trashedEntriesCount %>" key="x-items-were-removed" translateArguments="<%= false %>" />
+ 							</c:when>
+ 							<c:otherwise>
+ 								<liferay-ui:message arguments="<%= new Object[] {trashedEntriesCount, trashLink.trim()} %>" key="x-items-were-moved-to-x" translateArguments="<%= false %>" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/_diffs/templates/navigation.vm b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/_diffs/templates/navigation.vm
+index 3cb98f8..440cccb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/_diffs/templates/navigation.vm
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/_diffs/templates/navigation.vm
+@@ -27,7 +27,7 @@
+ 						</a>
+ 
+ 						#if ($nav_item.hasChildren())
+-							<ul class="dropdown-menu child-menu" role="menu">
++							<ul class="child-menu dropdown-menu" role="menu">
+ 								#foreach ($nav_child in $nav_item.getChildren())
+ 									#set ($nav_child_attr_selected="")
+ 									#set ($nav_child_css_class="lfr-nav-item")
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/templates/navigation.vm b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/templates/navigation.vm
+index 3cb98f8..440cccb 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/templates/navigation.vm
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/themes/classic/templates/navigation.vm
+@@ -27,7 +27,7 @@
+ 						</a>
+ 
+ 						#if ($nav_item.hasChildren())
+-							<ul class="dropdown-menu child-menu" role="menu">
++							<ul class="child-menu dropdown-menu" role="menu">
+ 								#foreach ($nav_child in $nav_item.getChildren())
+ 									#set ($nav_child_attr_selected="")
+ 									#set ($nav_child_css_class="lfr-nav-item")
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/calendar_booking_recurrence_container.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/calendar_booking_recurrence_container.jspf
+index fcc1f96..1b67cba 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/calendar_booking_recurrence_container.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/calendar_booking_recurrence_container.jspf
+@@ -163,7 +163,7 @@
+ 
+ 					<aui:input checked="<%= ListUtil.isNotEmpty(weekdays) %>" inlineField="<%= true %>" label="day-of-the-week" name="repeatOnWeekday" type="radio" value="true" />
+ 
+-					<div class='<%= ListUtil.isEmpty(weekdays) ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />viewPositionalWeekday">
++					<div class="<%= ListUtil.isEmpty(weekdays) ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />viewPositionalWeekday">
+ 
+ 						<%
+ 						Weekday weekday = positionalWeekday.getWeekday();
+@@ -238,7 +238,7 @@
+ 	</table>
+ </div>
+ 
+-<aui:script use="liferay-util-window,liferay-calendar-recurrence-dialog">
++<aui:script use="liferay-calendar-recurrence-dialog,liferay-util-window">
+ 	var recurrenceContainerNode = A.one('#<portlet:namespace />recurrenceContainer');
+ 	var repeatCheckboxNode = A.one('#<portlet:namespace />repeatCheckbox');
+ 	var summaryNode = A.one('#<portlet:namespace />summary');
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/edit_calendar_booking.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/edit_calendar_booking.jsp
+index f10ad80..43c47c2 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/edit_calendar_booking.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/edit_calendar_booking.jsp
+@@ -173,7 +173,7 @@
+ 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
+ 	<aui:input name="instanceIndex" type="hidden" value="<%= instanceIndex %>" />
+ 	<aui:input name="childCalendarIds" type="hidden" />
+-	<aui:input name="status" type="hidden" value ="<%= status %>" />
++	<aui:input name="status" type="hidden" value="<%= status %>" />
+ 	<aui:input name="allFollowing" type="hidden" />
+ 	<aui:input name="updateCalendarBookingInstance" type="hidden" />
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/scheduler.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/scheduler.jsp
+index 33bb84e..c900364 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/scheduler.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/scheduler.jsp
+@@ -36,7 +36,7 @@
+ 
+ <%@ include file="/event_recorder.jspf" %>
+ 
+-<aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
++<aui:script use="aui-toggler,json,liferay-calendar-list,liferay-scheduler,liferay-store">
+ 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
+ 	Liferay.CalendarUtil.USER_TIME_ZONE = '<%= HtmlUtil.escapeJS(userTimeZone.getID()) %>';
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp
+index f55e402..038d56c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp
+@@ -91,7 +91,7 @@
+ 					<div class="calendar-portlet-list-header toggler-header-expanded">
+ 						<span class="calendar-portlet-list-arrow"></span>
+ 
+-						<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= new String[] {groupCalendarResource.getName(locale)} %>" key="x-calendars" /></span>
++						<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= groupCalendarResource.getName(locale) %>" key="x-calendars" /></span>
+ 
+ 						<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
+ 							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"><i class="icon-caret-down"></i></span>
+@@ -178,7 +178,7 @@
+ 
+ <%@ include file="/view_calendar_menus.jspf" %>
+ 
+-<aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
++<aui:script use="aui-toggler,json,liferay-calendar-list,liferay-scheduler,liferay-store">
+ 	Liferay.CalendarUtil.USER_CLASS_NAME_ID = <%= PortalUtil.getClassNameId(User.class) %>;
+ 
+ 	<c:if test="<%= defaultCalendar != null %>">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar_menus.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar_menus.jspf
+index 201e8d1..ea67c27 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar_menus.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar_menus.jspf
+@@ -18,7 +18,7 @@
+ String backURL = PortalUtil.getCurrentURL(request);
+ %>
+ 
+-<aui:script use="liferay-calendar-simple-menu,liferay-calendar-simple-color-picker">
++<aui:script use="liferay-calendar-simple-color-picker,liferay-calendar-simple-menu">
+ 	window.<portlet:namespace />calendarListsMenu = new Liferay.SimpleMenu(
+ 		{
+ 			align: {
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendars.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendars.jsp
+index 4602ea2..939cd0b 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendars.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendars.jsp
+@@ -68,7 +68,7 @@
+ 			align="center"
+ 			name="color"
+ 		>
+-			<span class="calendar-portlet-color-box" style="background-color:<%= ColorUtil.toHexString(calendar.getColor()) %>;">&nbsp;</span>
++			<span class="calendar-portlet-color-box" style="background-color: <%= ColorUtil.toHexString(calendar.getColor()) %>;">&nbsp;</span>
+ 		</liferay-ui:search-container-column-text>
+ 
+ 		<liferay-ui:search-container-column-text name="default">
+@@ -91,7 +91,7 @@
+ 	<liferay-ui:search-iterator />
+ </liferay-ui:search-container>
+ 
+-<div class="hide calendar-portlet-import-container" id="<portlet:namespace />importCalendarContainer">
++<div class="calendar-portlet-import-container hide" id="<portlet:namespace />importCalendarContainer">
+ 	<div class="hide portlet-msg-error" id="<portlet:namespace />portletErrorMessage"></div>
+ 
+ 	<div class="hide portlet-msg-success" id="<portlet:namespace />portletSuccessMessage">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-designer-portlet/designer/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-designer-portlet/designer/view.jsp
+index a95139c..63cd94a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-designer-portlet/designer/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-designer-portlet/designer/view.jsp
+@@ -29,7 +29,7 @@
+ 		<liferay-ui:search-container
+ 			emptyResultsMessage="no-workflow-definitions-are-defined"
+ 			iteratorURL="<%= iteratorURL %>"
+-			total= "<%= latestKaleoDraftDefinitions.size() %>"
++			total="<%= latestKaleoDraftDefinitions.size() %>"
+ 		>
+ 			<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) %>">
+ 				<portlet:renderURL var="editKaleoDraftDefinitionURL">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-forms-portlet/admin/process/workflow.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-forms-portlet/admin/process/workflow.jsp
+index 674f3d0..8da158f 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-forms-portlet/admin/process/workflow.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/kaleo-forms-portlet/admin/process/workflow.jsp
+@@ -83,7 +83,7 @@
+ <liferay-ui:search-container
+ 	emptyResultsMessage='<%= tabs1.equals("published") ? "there-are-no-published-definitions" : "there-are-no-unpublished-definitions" %>'
+ 	iteratorURL="<%= iteratorURL %>"
+-	total= '<%= tabs1.equals("published") ? WorkflowDefinitionManagerUtil.getActiveWorkflowDefinitionCount(company.getCompanyId()) : KaleoDraftDefinitionLocalServiceUtil.getLatestKaleoDraftDefinitionsCount(company.getCompanyId(), 0) %>'
++	total='<%= tabs1.equals("published") ? WorkflowDefinitionManagerUtil.getActiveWorkflowDefinitionCount(company.getCompanyId()) : KaleoDraftDefinitionLocalServiceUtil.getLatestKaleoDraftDefinitionsCount(company.getCompanyId(), 0) %>'
+ >
+ 	<portlet:renderURL var="editWorkflowURL">
+ 		<portlet:param name="mvcPath" value="/admin/process/edit_workflow.jsp" />
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf
+index 473abc4..ce79c93 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf
+@@ -69,7 +69,7 @@
+ 									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+-								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
++								<a class="activate btn btn-danger btn-mini" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+ 							</c:otherwise>
+ 						</c:choose>
+ 					</td>
+@@ -139,7 +139,7 @@
+ 							reindexURL.setParameter("portletId", portlet.getPortletId());
+ 							%>
+ 
+-							<a class="btn btn-mini btn-info reindex" href="<%= reindexURL %>"><liferay-ui:message key="reindex-search" /></a>
++							<a class="btn btn-info btn-mini reindex" href="<%= reindexURL %>"><liferay-ui:message key="reindex-search" /></a>
+ 						</c:if>
+ 
+ 						<c:choose>
+@@ -159,7 +159,7 @@
+ 									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+-								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
++								<a class="activate btn btn-danger btn-mini" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+ 							</c:otherwise>
+ 						</c:choose>
+ 					</td>
+@@ -201,7 +201,7 @@
+ 									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+-								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
++								<a class="activate btn btn-danger btn-mini" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+ 							</c:otherwise>
+ 						</c:choose>
+ 					</td>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/WEB-INF/authorize.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/WEB-INF/authorize.jsp
+index f407386..9288a44 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/WEB-INF/authorize.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/WEB-INF/authorize.jsp
+@@ -70,7 +70,7 @@
+ 
+ <html>
+ 	<head>
+-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
++		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+ 
+ 		<title>Your Friendly OAuth Provider</title>
+ 	</head>
+@@ -80,18 +80,18 @@
+ 
+ 		The following application wants to access your account information<br /><br />
+ 
+-		<h3><img src="${appIcon}" /> <b><c:out value="${appTitle}"/></b> is trying to access your information.</h3>
++		<h3><img src="${appIcon}" /> <b><c:out value="${appTitle}" /></b> is trying to access your information.</h3>
+ 
+-		<img src="${appThumbnail}" align="left" width="120" height="60" />
++		<img align="left" height="60" src="${appThumbnail}" width="120" />
+ 
+-		<c:out value="${appDesc}" default="" />
++		<c:out default="" value="${appDesc}" />
+ 
+ 		<br />
+ 
+-		<form name="authZForm" action="authorize" method="POST">
+-			<input type="hidden" name="oauth_token" value="<%= token %>" />
+-			<input type="submit" name="Authorize" value="Deny" />
+-			<input type="submit" name="Authorize" value="Authorize" />
++		<form action="authorize" method="POST" name="authZForm">
++			<input name="oauth_token" type="hidden" value="<%= token %>" />
++			<input name="Authorize" type="submit" value="Deny" />
++			<input name="Authorize" type="submit" value="Authorize" />
+ 		</form>
+ 	</body>
+ </html>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/adhoc_gadget/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/adhoc_gadget/view.jsp
+index af8b642..99379c9 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/adhoc_gadget/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/adhoc_gadget/view.jsp
+@@ -22,7 +22,7 @@
+ 
+ <c:choose>
+ 	<c:when test="<%= gadget == null %>">
+-		<div class="portlet-configuration alert alert-info">
++		<div class="alert alert-info portlet-configuration">
+ 			<a href="<%= portletDisplay.getURLConfiguration() %>" onClick="<%= portletDisplay.getURLConfigurationJS() %>">
+ 				<liferay-ui:message key="configure-a-gadget-to-be-displayed-in-this-portlet" />
+ 			</a>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/admin/edit_oauth_consumers.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/admin/edit_oauth_consumers.jsp
+index 4054581..cea2d7b 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/admin/edit_oauth_consumers.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/admin/edit_oauth_consumers.jsp
+@@ -99,7 +99,7 @@
+ 
+ 			<aui:input name="consumerKey" />
+ 
+-			<div id='<%= "consumerSecretField" + oAuthServiceCount %>'>
++			<div id="<%= "consumerSecretField" + oAuthServiceCount %>">
+ 				<aui:input name="consumerSecret" />
+ 			</div>
+ 		</aui:fieldset>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/login.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/login.jsp
+index a5829da..2ee18bc 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/login.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/opensocial-portlet/login.jsp
+@@ -86,10 +86,10 @@
+ 	<br /><br />
+ </shiro:guest>
+ 
+-<c:out value="${shiroLoginFailure}" default=""/><br />
++<c:out default="" value="${shiroLoginFailure}" /><br />
+ 
+ <form action="" method="post">
+-	<table align="left" border="0" cellspacing="0" cellpadding="3">
++	<table align="left" border="0" cellpadding="3" cellspacing="0">
+ 		<tr>
+ 			<td>Username:</td>
+ 			<td><input type="text" name="username" maxlength="30" /></td>
+@@ -99,10 +99,10 @@
+ 			<td><input type="password" name="password" maxlength="30" /></td>
+ 		</tr>
+ 		<tr>
+-			<td colspan="2" align="left"><input type="checkbox" name="rememberMe" /><font size="2">Remember Me</font></td>
++			<td align="left" colspan="2"><input type="checkbox" name="rememberMe" /><font size="2">Remember Me</font></td>
+ 		</tr>
+ 		<tr>
+-			<td colspan="2" align="right"><input type="submit" name="submit" value="Login" /></td>
++			<td align="right" colspan="2"><input type="submit" name="submit" value="Login" /></td>
+ 		</tr>
+ 	</table>
+ </form>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/configuration.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/configuration.jsp
+index c7d51a2..5edf4aa 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/configuration.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/configuration.jsp
+@@ -51,7 +51,7 @@
+ 
+ 	<liferay-ui:error exception="<%= DuplicateColumnNameException.class %>" message="please-enter-unique-field-names" />
+ 
+-	<liferay-ui:panel-container extended="<%= Boolean.TRUE %>" id="webFormConfiguration" persistState="<%= true %>">
++	<liferay-ui:panel-container extended="<%= true %>" id="webFormConfiguration" persistState="<%= true %>">
+ 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="webFormGeneral" persistState="<%= true %>" title="form-information">
+ 			<aui:fieldset>
+ 				<aui:field-wrapper cssClass="lfr-input-text-container" label="title">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/edit_field.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/edit_field.jsp
+index 62dc402..06126c8 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/edit_field.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/web-form-portlet/edit_field.jsp
+@@ -151,9 +151,9 @@
+ 
+ 					<aui:a cssClass="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</aui:a>
+ 
+-					<div class='validation-input <%= Validator.isNull(fieldValidationScript) ? "hide" : "" %>'>
++					<div class="validation-input <%= Validator.isNull(fieldValidationScript) ? "hide" : "" %>">
+ 						<aui:column columnWidth="50">
+-							<aui:input cols="80" cssClass="validation-script" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
++							<aui:input cols="80" cssClass="validation-script" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%;" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
+ 
+ 							<aui:input cols="80" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + index %>' size="80" value="<%= fieldValidationErrorMessage %>" wrapperCssClass="lfr-input-text-container" />
+ 						</aui:column>
