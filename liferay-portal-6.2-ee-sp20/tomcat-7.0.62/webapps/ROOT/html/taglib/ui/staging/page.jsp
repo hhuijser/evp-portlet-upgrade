@@ -17,7 +17,7 @@
 <%@ include file="/html/taglib/init.jsp" %>
 
 <%
-String cssClass = "staging-icon-menu " + GetterUtil.getString((String) request.getAttribute("liferay-ui:staging:cssClass"));
+String cssClass = "staging-icon-menu " + GetterUtil.getString((String)request.getAttribute("liferay-ui:staging:cssClass"));
 boolean extended = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:staging:extended"));
 long groupId = GetterUtil.getLong((String)request.getAttribute("liferay-ui:staging:groupId"));
 String icon = GetterUtil.getString((String)request.getAttribute("liferay-ui:staging:icon"));

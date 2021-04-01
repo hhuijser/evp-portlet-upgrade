@@ -147,5 +147,5 @@ List filteredPropertiesList = ListUtil.fromCollection(filteredProperties.entrySe
 		</c:if>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator/>
+	<liferay-ui:search-iterator />
 </liferay-ui:search-container>

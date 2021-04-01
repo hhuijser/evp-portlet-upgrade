@@ -14,7 +14,6 @@
  */
 --%>
 
-
 	<%@ include file="/html/common/themes/init.jsp" %>
 	<%@ include file="/html/common/themes/init.jsp" %>
 

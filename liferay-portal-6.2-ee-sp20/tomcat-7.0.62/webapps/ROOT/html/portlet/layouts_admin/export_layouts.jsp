@@ -210,7 +210,7 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 															<span class="selected-labels" id="<portlet:namespace />selectedConfiguration_<%= portlet.getRootPortletId() %>"></span>
 
 															<%
-															Map<String,Object> data = new HashMap<String,Object>();
+															Map<String, Object> data = new HashMap<String, Object>();
 
 															data.put("portletid", portlet.getRootPortletId());
 															data.put("portlettitle", portletTitle);
@@ -489,7 +489,7 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 																		<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= portlet.getPortletId() %>"></span>
 
 																		<%
-																		Map<String,Object> data = new HashMap<String,Object>();
+																		Map<String, Object> data = new HashMap<String, Object>();
 
 																		data.put("portletid", portlet.getPortletId());
 																		data.put("portlettitle", portletTitle);
