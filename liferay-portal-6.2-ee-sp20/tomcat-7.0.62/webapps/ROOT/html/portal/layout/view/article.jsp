@@ -27,11 +27,11 @@ String content = JournalContentUtil.getContent(scopeGroupId, articleId, null, la
 %>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tr>
-	<td>
-		<%= content %>
-	</td>
-</tr>
+	<tr>
+		<td>
+			<%= content %>
+		</td>
+	</tr>
 </table>
 
 <%@ include file="/html/portal/layout/view/common.jspf" %>

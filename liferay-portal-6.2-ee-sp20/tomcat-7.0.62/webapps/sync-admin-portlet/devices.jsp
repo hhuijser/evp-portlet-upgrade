@@ -53,21 +53,21 @@ portletURL.setParameter("delta", String.valueOf(delta));
 		iteratorURL="<%= portletURL %>"
 	>
 
-	<%
-	searchContainer.setOrderByType(orderByType);
-	searchContainer.setOrderByCol(orderByCol);
+		<%
+		searchContainer.setOrderByType(orderByType);
+		searchContainer.setOrderByCol(orderByCol);
 
-	List<SyncDevice> syncDevices = new ArrayList<SyncDevice>();
+		List<SyncDevice> syncDevices = new ArrayList<SyncDevice>();
 
-	String portletId = (String)request.getAttribute(WebKeys.PORTLET_ID);
+		String portletId = (String)request.getAttribute(WebKeys.PORTLET_ID);
 
-	if (portletId.equals(PortletKeys.SYNC_ADMIN)) {
-		syncDevices = SyncDeviceLocalServiceUtil.search(themeDisplay.getCompanyId(), keywords, searchContainer.getStart(), searchContainer.getEnd(), obc);
-	}
-	else {
-		syncDevices = SyncDeviceLocalServiceUtil.getSyncDevices(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), obc);
-	}
-	%>
+		if (portletId.equals(PortletKeys.SYNC_ADMIN)) {
+			syncDevices = SyncDeviceLocalServiceUtil.search(themeDisplay.getCompanyId(), keywords, searchContainer.getStart(), searchContainer.getEnd(), obc);
+		}
+		else {
+			syncDevices = SyncDeviceLocalServiceUtil.getSyncDevices(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), obc);
+		}
+		%>
 
 		<liferay-ui:search-container-results
 			results="<%= syncDevices %>"

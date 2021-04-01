@@ -49,28 +49,28 @@ int depth = ((Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DE
 	<td class="table-cell" nowrap="nowrap">
 		<a href="<%= rowHREF %>">
 
-		<c:choose>
-			<c:when test="<%= message.isAnonymous() %>">
-				<c:choose>
-					<c:when test="<%= Validator.isNull(message.getUserName()) %>">
-						<liferay-ui:message key="anonymous" />
-					</c:when>
-					<c:otherwise>
-						<%= HtmlUtil.escape(message.getUserName()) %>
-					</c:otherwise>
-				</c:choose>
-			</c:when>
-			<c:otherwise>
-				<%= HtmlUtil.escape(PortalUtil.getUserName(message)) %>
-			</c:otherwise>
-		</c:choose>
+			<c:choose>
+				<c:when test="<%= message.isAnonymous() %>">
+					<c:choose>
+						<c:when test="<%= Validator.isNull(message.getUserName()) %>">
+							<liferay-ui:message key="anonymous" />
+						</c:when>
+						<c:otherwise>
+							<%= HtmlUtil.escape(message.getUserName()) %>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:otherwise>
+					<%= HtmlUtil.escape(PortalUtil.getUserName(message)) %>
+				</c:otherwise>
+			</c:choose>
 
 		</a>
 	</td>
 	<td class="table-cell"></td>
 	<td class="table-cell" nowrap="nowrap">
 		<a href="<%= rowHREF %>">
-		<%= dateFormatDateTime.format(message.getModifiedDate()) %>
+			<%= dateFormatDateTime.format(message.getModifiedDate()) %>
 		</a>
 	</td>
 </tr>

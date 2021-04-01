@@ -150,15 +150,15 @@ long assetClassPK = 0;
 								}
 					%>
 
-									<div class="document-type-fields">
-										<liferay-ddm:html
-											classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
-											classPK="<%= ddmStructure.getPrimaryKey() %>"
-											fields="<%= fields %>"
-											fieldsNamespace="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
-											requestedLocale="<%= locale %>"
-										/>
-									</div>
+								<div class="document-type-fields">
+									<liferay-ddm:html
+										classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
+										classPK="<%= ddmStructure.getPrimaryKey() %>"
+										fields="<%= fields %>"
+										fieldsNamespace="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
+										requestedLocale="<%= locale %>"
+									/>
+								</div>
 
 					<%
 							}

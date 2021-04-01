@@ -87,7 +87,7 @@ if (!portletName.equals(PortletKeys.RELATED_ASSETS) || (assetEntryQuery.getLinke
 					</c:otherwise>
 				</c:choose>
 
-<%
+	<%
 			}
 
 			if (groupTotal > 0) {
@@ -136,7 +136,7 @@ if (!portletName.equals(PortletKeys.RELATED_ASSETS) || (assetEntryQuery.getLinke
 		searchContainer.setResults(results);
 
 		request.setAttribute("view.jsp-results", results);
-%>
+	%>
 
 		<c:choose>
 			<c:when test="<%= portletDisplayDDMTemplateId > 0 %>">
@@ -147,7 +147,7 @@ if (!portletName.equals(PortletKeys.RELATED_ASSETS) || (assetEntryQuery.getLinke
 			</c:otherwise>
 		</c:choose>
 
-<%
+	<%
 	}
 	else {
 		for (long classNameId : classNameIds) {
@@ -188,7 +188,7 @@ if (!portletName.equals(PortletKeys.RELATED_ASSETS) || (assetEntryQuery.getLinke
 			request.setAttribute("view.jsp-results", results);
 
 			if (!results.isEmpty() && (start < groupTotal)) {
-%>
+	%>
 
 				<h3 class="asset-entries-group-label"><%= ResourceActionsUtil.getModelResource(locale, groupAssetRendererFactory.getClassName()) %></h3>
 

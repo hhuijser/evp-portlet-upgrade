@@ -123,7 +123,7 @@ assetBrowserURL.setWindowState(LiferayWindowState.POP_UP);
 			String type = assetRendererFactory.getTypeName(locale, false);
 
 			data.put("type", assetRendererFactory.getClassName());
-		%>
+	%>
 
 			<liferay-ui:icon
 				cssClass="asset-selector"
@@ -134,7 +134,7 @@ assetBrowserURL.setWindowState(LiferayWindowState.POP_UP);
 				url="javascript:;"
 			/>
 
-		<%
+	<%
 		}
 	}
 	%>

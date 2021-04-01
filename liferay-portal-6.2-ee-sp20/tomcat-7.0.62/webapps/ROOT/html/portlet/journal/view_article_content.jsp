@@ -18,16 +18,16 @@
 
 <html>
 
-<head>
-	<liferay-util:include page="/html/common/themes/top_head.jsp" />
-</head>
+	<head>
+		<liferay-util:include page="/html/common/themes/top_head.jsp" />
+	</head>
 
-<body>
+	<body>
 
-<%= request.getAttribute(WebKeys.JOURNAL_ARTICLE_CONTENT) %>
+		<%= request.getAttribute(WebKeys.JOURNAL_ARTICLE_CONTENT) %>
 
-<liferay-util:include page="/html/common/themes/bottom.jsp" />
+		<liferay-util:include page="/html/common/themes/bottom.jsp" />
 
-</body>
+	</body>
 
 </html>

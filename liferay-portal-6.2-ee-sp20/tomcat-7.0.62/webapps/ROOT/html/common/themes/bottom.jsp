@@ -14,10 +14,10 @@
  */
 --%>
 
-	<%@ include file="/html/common/themes/init.jsp" %>
-	<%@ include file="/html/common/themes/init.jsp" %>
+<%@ include file="/html/common/themes/init.jsp" %>
+<%@ include file="/html/common/themes/init.jsp" %>
 
-	<c:if test="<%= permissionChecker.isOmniadmin() %>">
+<c:if test="<%= permissionChecker.isOmniadmin() %>">
 
 	<%
 	String lcsNotificationMessage = GetterUtil.getString(request.getAttribute("LCS_NOTIFICATION_MESSAGE"));
