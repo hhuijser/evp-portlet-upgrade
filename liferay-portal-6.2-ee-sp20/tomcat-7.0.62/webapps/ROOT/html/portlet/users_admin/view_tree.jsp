@@ -173,7 +173,6 @@ if (organization != null) {
 								portletURL="<%= renderResponse.createRenderURL() %>"
 							/>
 						</span>
-
 						<span class="entry-tags">
 							<liferay-ui:asset-tags-summary
 								className="<%= Organization.class.getName() %>"
@@ -280,7 +279,6 @@ if (organization != null) {
 							%>
 
 							<%= organizationsTitle %>
-
 						</liferay-util:buffer>
 
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="usersAdminOrganizationsPanel" persistState="<%= true %>" title="<%= organizationsPanelTitle %>">
@@ -459,7 +457,6 @@ if (organization != null) {
 
 					<liferay-util:include page="/html/portlet/users_admin/organization_action.jsp" />
 				</aui:col>
-
 			</c:if>
 		</aui:row>
 	</c:when>

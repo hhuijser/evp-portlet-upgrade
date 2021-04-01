@@ -98,6 +98,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 			Fields fieldsModel = ddlRecord.getFields();
 
 			// Columns
+
 			DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
 			DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();

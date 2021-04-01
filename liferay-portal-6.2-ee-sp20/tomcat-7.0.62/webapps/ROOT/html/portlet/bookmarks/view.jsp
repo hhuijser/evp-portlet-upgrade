@@ -82,7 +82,6 @@ if (folder != null) {
 		/>
 
 		<%@ include file="/html/portlet/bookmarks/view_entries.jspf" %>
-
 	</c:when>
 	<c:when test='<%= topLink.equals("home") %>'>
 		<aui:row>

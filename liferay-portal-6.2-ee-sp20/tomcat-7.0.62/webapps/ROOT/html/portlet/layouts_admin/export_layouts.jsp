@@ -316,7 +316,6 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 																		/>
 																	</aui:fieldset>
 																</li>
-
 																<li>
 																	<aui:fieldset label="end-date">
 																		<liferay-ui:input-date
@@ -378,7 +377,6 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 												message='<%= LanguageUtil.get(locale, "date-range") + selectedLabelsHTML %>'
 											/>
 										</li>
-
 										<li class="options">
 											<ul class="portlet-list">
 												<li class="tree-item">

@@ -75,6 +75,7 @@
 					<div class="activity-title">
 						<%= activityFeedEntry.getTitle() %>
 					</div>
+
 					<div class="activity-body">
 						<span class="time"><%= timeFormatDate.format(activity.getCreateDate()) %></span>
 

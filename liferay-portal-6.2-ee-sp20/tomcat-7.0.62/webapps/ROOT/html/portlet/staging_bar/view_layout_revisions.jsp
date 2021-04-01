@@ -115,7 +115,6 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 						<liferay-ui:search-container-column-text
 							name="status"
 						>
-
 							<aui:model-context bean="<%= curLayoutRevision %>" model="<%= LayoutRevision.class %>" />
 
 							<%
@@ -130,7 +129,6 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 									<aui:workflow-status showLabel="<%= false %>" status="<%= status %>" />
 								</c:otherwise>
 							</c:choose>
-
 						</liferay-ui:search-container-column-text>
 
 						<liferay-ui:search-container-column-text

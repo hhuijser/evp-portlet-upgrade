@@ -257,7 +257,6 @@ AssetEntry assetEntry = (AssetEntry)request.getAttribute("view_entry_content.jsp
 						portletURL="<%= renderResponse.createRenderURL() %>"
 					/>
 				</span>
-
 				<span class="entry-tags">
 					<liferay-ui:asset-tags-summary
 						className="<%= BlogsEntry.class.getName() %>"

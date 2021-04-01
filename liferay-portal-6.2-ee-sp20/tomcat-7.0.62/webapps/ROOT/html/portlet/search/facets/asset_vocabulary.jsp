@@ -62,7 +62,6 @@ if (assetVocabularies.isEmpty()) {
 				%>
 
 				<%= sb.toString() %>
-
 			</ul>
 		</div>
 

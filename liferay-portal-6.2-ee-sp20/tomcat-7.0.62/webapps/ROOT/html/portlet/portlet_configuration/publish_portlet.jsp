@@ -24,6 +24,7 @@ Layout exportableLayout = ExportImportHelperUtil.getExportableLayout(themeDispla
 String errorMessageKey = StringPool.BLANK;
 
 Group stagingGroup = themeDisplay.getScopeGroup();
+
 Group liveGroup = stagingGroup.getLiveGroup();
 
 Layout targetLayout = null;
@@ -252,7 +253,6 @@ portletURL.setParameter("tabs3", "current-and-previous");
 																/>
 															</aui:fieldset>
 														</li>
-
 														<li>
 															<aui:fieldset label="end-date">
 																<liferay-ui:input-date

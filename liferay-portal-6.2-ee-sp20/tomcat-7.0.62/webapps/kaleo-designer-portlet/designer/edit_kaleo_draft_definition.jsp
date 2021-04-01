@@ -142,6 +142,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="diagram-builder-content-container">
 							<div class="tabbable">
 								<div class="tabbable-content">
@@ -164,6 +165,7 @@
 												<div class="diagram-builder-drop-container"></div>
 											</div>
 										</div>
+
 										<div class="tab-pane">
 											<div class="lfr-template-editor-wrapper" id="<portlet:namespace />editorWrapper"></div>
 										</div>
@@ -189,7 +191,6 @@
 
 					<span class="lfr-portlet-workflowdesigner-message" id="<portlet:namespace />toolbarMessage"></span>
 				</aui:button-row>
-
 			</aui:fieldset>
 		</aui:form>
 

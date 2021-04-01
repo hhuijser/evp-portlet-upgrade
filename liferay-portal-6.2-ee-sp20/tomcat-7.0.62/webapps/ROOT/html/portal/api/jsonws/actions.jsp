@@ -80,6 +80,7 @@ Set<String> contextPaths = JSONWebServiceActionsManagerUtil.getContextPaths();
 		if (panelTitle.endsWith("Impl")) {
 			panelTitle = panelTitle.substring(0, panelTitle.length() - 4);
 		}
+
 		if (panelTitle.endsWith("Service")) {
 			panelTitle = panelTitle.substring(0, panelTitle.length() - 7);
 		}

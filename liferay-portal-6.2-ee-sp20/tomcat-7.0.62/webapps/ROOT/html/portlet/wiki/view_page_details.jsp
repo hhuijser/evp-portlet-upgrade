@@ -173,7 +173,6 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "det
 			</th>
 			<td>
 				<table class="lfr-table subscription-info">
-
 					<c:if test="<%= WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.SUBSCRIBE) %>">
 						<tr>
 							<c:choose>
@@ -265,7 +264,6 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "det
 							</c:choose>
 						</tr>
 					</c:if>
-
 				</table>
 			</td>
 		</tr>

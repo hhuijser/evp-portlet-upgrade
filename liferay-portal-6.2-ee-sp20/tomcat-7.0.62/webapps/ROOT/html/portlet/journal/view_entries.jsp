@@ -293,7 +293,6 @@ for (int i = 0; i < results.size(); i++) {
 										<dt>
 											<liferay-ui:message key="site" />:
 										</dt>
-
 										<dd>
 
 											<%
@@ -317,7 +316,6 @@ for (int i = 0; i < results.size(); i++) {
 										<dt>
 											<liferay-ui:message key="scope" />:
 										</dt>
-
 										<dd>
 											<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 										</dd>

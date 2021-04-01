@@ -261,6 +261,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 		while (enu.hasMoreElements()) {
 			String propsKey = (String)enu.nextElement();
+
 			String propsValue = props.getProperty(propsKey, StringPool.BLANK);
 
 			sb.append("<br />");
@@ -489,7 +490,6 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		<aui:input label="coupon-code" name="couponCodes" size="30" style="text-transform: uppercase;" type="text" value="<%= cart.getCouponCodes() %>" />
 
 		<c:if test="<%= coupon != null %>">
-
 			<portlet:renderURL var="viewCouponURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 				<portlet:param name="struts_action" value="/shopping/view_coupon" />
 				<portlet:param name="couponId" value="<%= String.valueOf(coupon.getCouponId()) %>" />

@@ -73,9 +73,7 @@ summary.setQueryTerms(queryTerms);
 								<liferay-ui:message key="versions" />:
 							</dt>
 							<dd>
-
 								<%= StringUtil.merge(versions, StringPool.COMMA_AND_SPACE) %>
-
 							</dd>
 						</c:if>
 
@@ -100,9 +98,7 @@ summary.setQueryTerms(queryTerms);
 								:
 							</dt>
 							<dd>
-
 								<%= HtmlUtil.escape(containerName) %>
-
 							</dd>
 						</c:if>
 					</dl>
@@ -140,7 +136,6 @@ summary.setQueryTerms(queryTerms);
 							message='<%= LanguageUtil.format(locale, "attachment-added-by-x", HtmlUtil.escape(fileEntry.getUserName()), false) %>'
 						/>
 					</span>
-
 					<span class="body">
 						<%= summary.getHighlightedContent() %>
 					</span>
@@ -178,7 +173,6 @@ summary.setQueryTerms(queryTerms);
 							message='<%= LanguageUtil.format(locale, "comment-by-x", HtmlUtil.escape(userDisplay.getFullName()), false) %>'
 						/>
 					</span>
-
 					<span class="body">
 						<%= summary.getHighlightedContent() %>
 					</span>

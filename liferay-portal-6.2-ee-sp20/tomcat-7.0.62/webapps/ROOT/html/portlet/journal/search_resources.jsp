@@ -301,7 +301,6 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 										versions="<%= versions %>"
 									/>
 								</c:when>
-
 								<c:when test="<%= curFolder != null %>">
 
 									<%
@@ -335,7 +334,6 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 										url="<%= rowURL.toString() %>"
 									/>
 								</c:when>
-
 								<c:otherwise>
 									<div style="float: left; margin: 100px 10px 0px;">
 										<img alt="<liferay-ui:message key="image" />" border="no" src="<%= themeDisplay.getPathThemeImages() %>/application/forbidden_action.png" />
@@ -399,7 +397,6 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 										url="<%= rowURL.toString() %>"
 									/>
 								</c:when>
-
 								<c:otherwise>
 									<div style="float: left; margin: 100px 10px 0px;">
 										<img alt="<liferay-ui:message key="image" />" border="no" src="<%= themeDisplay.getPathThemeImages() %>/application/forbidden_action.png" />
@@ -467,9 +464,7 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 <c:choose>
 	<c:when test="<%= searchType == JournalSearchConstants.SINGLE %>">
 		<div class="search-results-container" id="<portlet:namespace />searchResultsContainer">
-
 			<%= searchResults %>
-
 		</div>
 	</c:when>
 	<c:when test="<%= searchType == JournalSearchConstants.FRAGMENT %>">

@@ -97,6 +97,7 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 				<aui:button disabled="<%= (parentFolderId <= 0) %>" name="removeFolderButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
 			</div>
 		</aui:field-wrapper>
+
 		<aui:button-row>
 			<aui:button type="submit" value="move" />
 

@@ -27,6 +27,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 
 			<%
 			String displayStyleDefault = GetterUtil.getString(SessionClicks.get(request, "liferay_addpanel_displaystyle", "descriptive"));
+
 			String displayStyle = ParamUtil.getString(request, "displayStyle", displayStyleDefault);
 			String keywords = ParamUtil.getString(request, "keywords");
 
@@ -167,7 +168,6 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 			</liferay-ui:panel>
 		</div>
 	</c:when>
-
 	<c:when test="<%= viewPreview %>">
 
 		<%
@@ -180,6 +180,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 			<%
 			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
 			AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(className);
+
 			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(classPK);
 
 			request.setAttribute("add_panel.jsp-assetEntry", assetEntry);

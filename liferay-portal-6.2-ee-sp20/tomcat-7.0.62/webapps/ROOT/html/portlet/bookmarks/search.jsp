@@ -104,7 +104,6 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "sea
 			className="Object"
 			modelVar="obj"
 		>
-
 			<c:choose>
 				<c:when test="<%= obj instanceof BookmarksEntry %>">
 

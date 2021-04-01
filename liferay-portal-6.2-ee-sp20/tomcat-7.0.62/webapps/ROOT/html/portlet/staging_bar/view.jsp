@@ -112,7 +112,6 @@ if (layout != null) {
 
 										<liferay-ui:staging cssClass="branching-enabled span5" extended="<%= false %>" layoutSetBranchId="<%= layoutRevision.getLayoutSetBranchId() %>" onlyActions="<%= true %>" />
 									</c:when>
-
 									<c:otherwise>
 										<div class="staging-details">
 											<c:choose>

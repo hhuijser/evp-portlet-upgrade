@@ -158,7 +158,6 @@ if (!StringUtil.contains(tabs4Names, tabs4)) {
 					</td>
 				</tr>
 			</c:if>
-
 		</table>
 
 		<br />

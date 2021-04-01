@@ -82,7 +82,6 @@ for (long defaultTeamId : defaultTeamIds) {
 		keyProperty="roleId"
 		modelVar="role"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="title"
 			value="<%= HtmlUtil.escape(role.getTitle(locale)) %>"

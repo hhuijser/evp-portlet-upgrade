@@ -103,7 +103,6 @@ long assetClassPK = 0;
 					<aui:input name="defaultLanguageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
 
 					<div class="document-type-selector">
-
 						<liferay-ui:icon-menu direction="down" icon='<%= themeDisplay.getPathThemeImages() + "/common/copy.png" %>' id="groupSelector" message='<%= (fileEntryTypeId > 0) ? HtmlUtil.escape(fileEntryType.getName(locale)) : "basic-document" %>' showWhenSingleIcon="<%= true %>">
 
 							<%

@@ -44,7 +44,6 @@
 			<ul class="dropdown-menu pull-right user-notifications-list">
 				<div class="non-actionable">
 					<div class="user-notifications-header">
-
 						<liferay-portlet:renderURL plid="<%= notificationsPlid %>" portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNonActionableNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 							<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 							<portlet:param name="actionable" value="<%= Boolean.FALSE.toString() %>" />

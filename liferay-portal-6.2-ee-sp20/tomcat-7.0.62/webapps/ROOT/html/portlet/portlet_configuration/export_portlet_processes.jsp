@@ -131,7 +131,6 @@ OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBac
 					/>
 				</c:otherwise>
 			</c:choose>
-
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text>

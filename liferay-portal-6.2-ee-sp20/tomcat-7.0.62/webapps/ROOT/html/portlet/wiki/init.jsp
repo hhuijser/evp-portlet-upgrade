@@ -68,6 +68,7 @@ boolean enableComments = PropsValues.WIKI_PAGE_COMMENTS_ENABLED && GetterUtil.ge
 boolean enableCommentRatings = GetterUtil.getBoolean(portletPreferences.getValue("enableCommentRatings", null), true);
 
 List<WikiNode> allNodes = WikiNodeServiceUtil.getNodes(scopeGroupId);
+
 List<String> allNodeNames = WikiUtil.getNodeNames(allNodes);
 
 String[] visibleNodes = null;

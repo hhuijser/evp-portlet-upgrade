@@ -27,20 +27,18 @@ response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 %>
 
 <html dir="<liferay-ui:message key="lang.dir" />">
-
 	<head>
 		<meta content="<%= ContentTypes.TEXT_HTML_UTF8 %>" http-equiv="content-type" />
 		<meta content="no-cache" http-equiv="Cache-Control" />
 		<meta content="no-cache" http-equiv="Pragma" />
 		<meta content="0" http-equiv="Expires" />
 		<meta content="1; url=<%= redirect %>" http-equiv="refresh" />
+
 		<script src="<%= themeDisplay.getCDNHost() + themeDisplay.getPathJavaScript() %>/misc/xp_progress.js" type="text/javascript"></script>
 	</head>
 
 	<body onLoad="javascript:location.replace('<%= redirect %>')">
-
 		<center>
-
 			<table border="0" cellpadding="0" cellspacing="0" height="100%" width="600">
 				<tr>
 					<td align="center" valign="middle">
@@ -54,9 +52,6 @@ response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 					</td>
 				</tr>
 			</table>
-
 		</center>
-
 	</body>
-
 </html>
