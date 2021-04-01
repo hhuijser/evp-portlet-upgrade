@@ -1,0 +1,507 @@
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp
+index 6ad5e21..fb0ee32 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portal/license.jsp
+@@ -148,9 +148,6 @@
+ 			</c:when>
+ 		</c:choose>
+ 
+-		<%
+-		%>
+-
+ 		<c:if test="<%= Validator.isNotNull(successMessage) %>">
+ 			<div class="alert alert-success">
+ 				<%= successMessage %>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_selection.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_selection.jsp
+index bba8730..d608107 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_selection.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/asset_publisher/asset_selection.jsp
+@@ -218,11 +218,11 @@
+ 			%>
+ 
+ 			<div class="asset-subtypefield-selected <%= Validator.isNull(ddmStructureFieldName) ? "hide" : StringPool.BLANK %>">
+-				<aui:input name='<%= "preferences--ddmStructureFieldName--" %>' type="hidden" value="<%= ddmStructureFieldName %>" />
++				<aui:input name="preferences--ddmStructureFieldName--" type="hidden" value="<%= ddmStructureFieldName %>" />
+ 
+-				<aui:input name='<%= "preferences--ddmStructureFieldValue--" %>' type="hidden" value="<%= ddmStructureFieldValue %>" />
++				<aui:input name="preferences--ddmStructureFieldValue--" type="hidden" value="<%= ddmStructureFieldValue %>" />
+ 
+-				<aui:input name='<%= "preferences--ddmStructureDisplayFieldValue--" %>' type="hidden" value="<%= ddmStructureDisplayFieldValue %>" />
++				<aui:input name="preferences--ddmStructureDisplayFieldValue--" type="hidden" value="<%= ddmStructureDisplayFieldValue %>" />
+ 			</div>
+ 		</aui:fieldset>
+ 	</liferay-ui:panel>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_file_entry.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_file_entry.jsp
+index 038ee97..6dcdad7 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_file_entry.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/edit_file_entry.jsp
+@@ -277,7 +277,7 @@
+ 				<aui:button disabled="<%= folderId <= 0 %>" name="removeFolderButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
+ 
+ 				<liferay-portlet:renderURL var="selectFolderURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+-					<portlet:param name="struts_action" value='<%= "/document_library/select_folder" %>' />
++					<portlet:param name="struts_action" value="/document_library/select_folder" />
+ 				</liferay-portlet:renderURL>
+ 
+ 				<aui:script use="aui-base">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entry_history_action.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entry_history_action.jsp
+index 64ed20b..5e51186 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entry_history_action.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/document_library/file_entry_history_action.jsp
+@@ -29,7 +29,7 @@
+ FileVersion fileVersion = (FileVersion)objArray[1];
+ %>
+ 
+-<liferay-ui:icon-menu direction='<%= "down" %>' extended="<%= false %>" icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
++<liferay-ui:icon-menu direction="down" extended="<%= false %>" icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
+ 	<liferay-ui:icon
+ 		image="download"
+ 		url="<%= DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, StringPool.BLANK) %>"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/flags/edit_entry.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/flags/edit_entry.jsp
+index 2d2c742..6601398 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/flags/edit_entry.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/flags/edit_entry.jsp
+@@ -71,13 +71,17 @@
+ </div>
+ 
+ <div class="hide" id="<portlet:namespace />confirmation">
+-	<p><strong><liferay-ui:message key="thank-you-for-your-report" /></strong></p>
++	<p>
++		<strong><liferay-ui:message key="thank-you-for-your-report" /></strong>
++	</p>
+ 
+ 	<p><%= LanguageUtil.format(pageContext, "although-we-cannot-disclose-our-final-decision,-we-do-review-every-report-and-appreciate-your-effort-to-make-sure-x-is-a-safe-environment-for-everyone", HtmlUtil.escape(company.getName()), false) %></p>
+ </div>
+ 
+ <div class="hide" id="<portlet:namespace />error">
+-	<p><strong><liferay-ui:message key="an-error-occurred-while-sending-the-report.-please-try-again-in-a-few-minutes" /></strong></p>
++	<p>
++		<strong><liferay-ui:message key="an-error-occurred-while-sending-the-report.-please-try-again-in-a-few-minutes" /></strong>
++	</p>
+ </div>
+ 
+ <aui:script use="liferay-util-window">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/configuration.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/configuration.jsp
+index 0709f25..ac6103c 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/configuration.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/image_gallery_display/configuration.jsp
+@@ -124,7 +124,7 @@
+ </aui:form>
+ 
+ <liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectFolderURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+-	<portlet:param name="struts_action" value='<%= "/image_gallery_display/select_folder" %>' />
++	<portlet:param name="struts_action" value="/image_gallery_display/select_folder" />
+ </liferay-portlet:renderURL>
+ 
+ <aui:script use="aui-base">
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_articles/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_articles/view.jsp
+index a76f157..f300179 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_articles/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_articles/view.jsp
+@@ -257,7 +257,7 @@
+ 
+ 						<liferay-ui:page-iterator
+ 							cur="<%= articleDisplay.getCurrentPage() %>"
+-							curParam='<%= "page" %>'
++							curParam="page"
+ 							delta="<%= 1 %>"
+ 							id="articleDisplayPages"
+ 							maxPages="<%= 25 %>"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp
+index d09551e..df0a52e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/journal_content/view.jsp
+@@ -201,7 +201,7 @@
+ 						<c:if test="<%= articleDisplay.isPaginate() %>">
+ 							<liferay-ui:page-iterator
+ 								cur="<%= articleDisplay.getCurrentPage() %>"
+-								curParam='<%= "page" %>'
++								curParam="page"
+ 								delta="<%= 1 %>"
+ 								id="articleDisplayPages"
+ 								maxPages="<%= 25 %>"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/export_layouts.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/export_layouts.jsp
+index b3f7337..35471b4 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/export_layouts.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/export_layouts.jsp
+@@ -303,14 +303,14 @@
+ 																		&nbsp;
+ 
+ 																		<liferay-ui:input-time
+-																			amPmParam='<%= "startDateAmPm" %>'
++																			amPmParam="startDateAmPm"
+ 																			amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
+ 																			dateParam="startDateTime"
+ 																			dateValue="<%= startCalendar.getTime() %>"
+ 																			disabled="<%= false %>"
+-																			hourParam='<%= "startDateHour" %>'
++																			hourParam="startDateHour"
+ 																			hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
+-																			minuteParam='<%= "startDateMinute" %>'
++																			minuteParam="startDateMinute"
+ 																			minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
+ 																			name="startTime"
+ 																		/>
+@@ -334,14 +334,14 @@
+ 																		&nbsp;
+ 
+ 																		<liferay-ui:input-time
+-																			amPmParam='<%= "endDateAmPm" %>'
++																			amPmParam="endDateAmPm"
+ 																			amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
+ 																			dateParam="startDateTime"
+ 																			dateValue="<%= endCalendar.getTime() %>"
+ 																			disabled="<%= false %>"
+-																			hourParam='<%= "endDateHour" %>'
++																			hourParam="endDateHour"
+ 																			hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
+-																			minuteParam='<%= "endDateMinute" %>'
++																			minuteParam="endDateMinute"
+ 																			minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
+ 																			name="endTime"
+ 																		/>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_layouts_portlets_data.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_layouts_portlets_data.jspf
+index 12d69df..980d27d 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_layouts_portlets_data.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/layouts_admin/publish_layouts_portlets_data.jspf
+@@ -116,14 +116,14 @@
+ 											&nbsp;
+ 
+ 											<liferay-ui:input-time
+-												amPmParam='<%= "startDateAmPm" %>'
++												amPmParam="startDateAmPm"
+ 												amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
+ 												dateParam="startDateTime"
+ 												dateValue="<%= startCalendar.getTime() %>"
+ 												disabled="<%= false %>"
+-												hourParam='<%= "startDateHour" %>'
++												hourParam="startDateHour"
+ 												hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
+-												minuteParam='<%= "startDateMinute" %>'
++												minuteParam="startDateMinute"
+ 												minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
+ 												name="startTime"
+ 											/>
+@@ -147,14 +147,14 @@
+ 											&nbsp;
+ 
+ 											<liferay-ui:input-time
+-												amPmParam='<%= "endDateAmPm" %>'
++												amPmParam="endDateAmPm"
+ 												amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
+ 												dateParam="startDateTime"
+ 												dateValue="<%= endCalendar.getTime() %>"
+ 												disabled="<%= false %>"
+-												hourParam='<%= "endDateHour" %>'
++												hourParam="endDateHour"
+ 												hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
+-												minuteParam='<%= "endDateMinute" %>'
++												minuteParam="endDateMinute"
+ 												minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
+ 												name="endTime"
+ 											/>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp
+index 8336975..b370158 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portal_settings/email_notifications.jsp
+@@ -65,7 +65,7 @@
+ 			<liferay-ui:error key="emailUserAddedBody" message="please-enter-a-valid-body" />
+ 
+ 			<aui:field-wrapper helpMessage="account-created-notification-body-with-password-help" label="body-with-password">
+-				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod='<%= "initEmailUserAddedBodyEditor" %>' name="emailUserAddedBody" toolbarSet="email" width="470" />
++				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod="initEmailUserAddedBodyEditor" name="emailUserAddedBody" toolbarSet="email" width="470" />
+ 
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_USER_ADDED_BODY + "--" %>' type="hidden" value="<%= adminEmailUserAddedBody %>" />
+ 			</aui:field-wrapper>
+@@ -73,7 +73,7 @@
+ 			<liferay-ui:error key="emailUserAddedNoPasswordBody" message="please-enter-a-valid-body" />
+ 
+ 			<aui:field-wrapper helpMessage="account-created-notification-body-without-password-help" label="body-without-password">
+-				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod='<%= "initEmailUserAddedNoPasswordBodyEditor" %>' name="emailUserAddedNoPasswordBody" toolbarSet="email" width="470" />
++				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod="initEmailUserAddedNoPasswordBodyEditor" name="emailUserAddedNoPasswordBody" toolbarSet="email" width="470" />
+ 
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_USER_ADDED_NO_PASSWORD_BODY + "--" %>' type="hidden" value="<%= adminEmailUserAddedNoPasswordBody %>" />
+ 			</aui:field-wrapper>
+@@ -92,7 +92,7 @@
+ 			<liferay-ui:error key="emailVerificationBody" message="please-enter-a-valid-body" />
+ 
+ 			<aui:field-wrapper label="body">
+-				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod='<%= "initEmailVerificationBodyEditor" %>' name="emailVerificationBody" toolbarSet="email" width="470" />
++				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod="initEmailVerificationBodyEditor" name="emailVerificationBody" toolbarSet="email" width="470" />
+ 
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_VERIFICATION_BODY + "--" %>' type="hidden" value="<%= adminEmailPasswordResetBody %>" />
+ 			</aui:field-wrapper>
+@@ -111,7 +111,7 @@
+ 			<liferay-ui:error key="emailPasswordSentBody" message="please-enter-a-valid-body" />
+ 
+ 			<aui:field-wrapper label="body">
+-				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod='<%= "initEmailPasswordSentBodyEditor" %>' name="emailPasswordSentBody" toolbarSet="email" width="470" />
++				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod="initEmailPasswordSentBodyEditor" name="emailPasswordSentBody" toolbarSet="email" width="470" />
+ 
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_BODY + "--" %>' type="hidden" value="<%= adminEmailPasswordSentBody %>" />
+ 			</aui:field-wrapper>
+@@ -130,7 +130,7 @@
+ 			<liferay-ui:error key="emailPasswordResetBody" message="please-enter-a-valid-body" />
+ 
+ 			<aui:field-wrapper label="body">
+-				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod='<%= "initEmailPasswordResetBodyEditor" %>' name="emailPasswordResetBody" toolbarSet="email" width="470" />
++				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" initMethod="initEmailPasswordResetBodyEditor" name="emailPasswordResetBody" toolbarSet="email" width="470" />
+ 
+ 				<aui:input name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_PASSWORD_RESET_BODY + "--" %>' type="hidden" value="<%= adminEmailPasswordResetBody %>" />
+ 			</aui:field-wrapper>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/edit_permissions.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/edit_permissions.jsp
+index 621379b..ff07c00 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/edit_permissions.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/edit_permissions.jsp
+@@ -262,8 +262,7 @@
+ 				}
+ 				else {
+ 					if (parentGroup.isOrganization()) {
+-						roleTypes =
+-							RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
++						roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
+ 					}
+ 					else if (parentGroup.isUser()) {
+ 						roleTypes = RoleConstants.TYPES_REGULAR;
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/export_portlet.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/export_portlet.jsp
+index e0a2b6e..41f00e0 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/export_portlet.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/export_portlet.jsp
+@@ -186,14 +186,14 @@
+ 														&nbsp;
+ 
+ 														<liferay-ui:input-time
+-															amPmParam='<%= "startDateAmPm" %>'
++															amPmParam="startDateAmPm"
+ 															amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
+ 															dateParam="startDateTime"
+ 															dateValue="<%= startCalendar.getTime() %>"
+ 															disabled="<%= false %>"
+-															hourParam='<%= "startDateHour" %>'
++															hourParam="startDateHour"
+ 															hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
+-															minuteParam='<%= "startDateMinute" %>'
++															minuteParam="startDateMinute"
+ 															minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
+ 															name="startTime"
+ 														/>
+@@ -217,14 +217,14 @@
+ 														&nbsp;
+ 
+ 														<liferay-ui:input-time
+-															amPmParam='<%= "endDateAmPm" %>'
++															amPmParam="endDateAmPm"
+ 															amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
+ 															dateParam="startDateTime"
+ 															dateValue="<%= endCalendar.getTime() %>"
+ 															disabled="<%= false %>"
+-															hourParam='<%= "endDateHour" %>'
++															hourParam="endDateHour"
+ 															hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
+-															minuteParam='<%= "endDateMinute" %>'
++															minuteParam="endDateMinute"
+ 															minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
+ 															name="endTime"
+ 														/>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/publish_portlet.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/publish_portlet.jsp
+index 3ac5af8..ebf54a0 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/publish_portlet.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/portlet/portlet_configuration/publish_portlet.jsp
+@@ -239,14 +239,14 @@
+ 																&nbsp;
+ 
+ 																<liferay-ui:input-time
+-																	amPmParam='<%= "startDateAmPm" %>'
++																	amPmParam="startDateAmPm"
+ 																	amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
+ 																	dateParam="startDateTime"
+ 																	dateValue="<%= startCalendar.getTime() %>"
+ 																	disabled="<%= false %>"
+-																	hourParam='<%= "startDateHour" %>'
++																	hourParam="startDateHour"
+ 																	hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
+-																	minuteParam='<%= "startDateMinute" %>'
++																	minuteParam="startDateMinute"
+ 																	minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
+ 																	name="startTime"
+ 																/>
+@@ -270,14 +270,14 @@
+ 																&nbsp;
+ 
+ 																<liferay-ui:input-time
+-																	amPmParam='<%= "endDateAmPm" %>'
++																	amPmParam="endDateAmPm"
+ 																	amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
+ 																	dateParam="startDateTime"
+ 																	dateValue="<%= endCalendar.getTime() %>"
+ 																	disabled="<%= false %>"
+-																	hourParam='<%= "endDateHour" %>'
++																	hourParam="endDateHour"
+ 																	hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
+-																	minuteParam='<%= "endDateMinute" %>'
++																	minuteParam="endDateMinute"
+ 																	minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
+ 																	name="endTime"
+ 																/>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_field/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_field/page.jsp
+index e874e0a..c6209d0 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_field/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_field/page.jsp
+@@ -418,9 +418,9 @@
+ 						<c:otherwise>
+ 							<liferay-ui:input-editor
+ 								contentsLanguageId="<%= languageId %>"
+-								cssClass='<%= cssClass + \" lfr-input-text\" %>'
++								cssClass='<%= cssClass + " lfr-input-text" %>'
+ 								editorImpl="ckeditor"
+-								initMethod='<%= fieldParam + \"InitEditor\" %>'
++								initMethod='<%= fieldParam + "InitEditor" %>'
+ 								name="<%= fieldParam %>"
+ 								toolbarSet="simple"
+ 							/>
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp
+index c1e44ee..2897a0a 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/input_localized/page.jsp
+@@ -66,7 +66,7 @@
+ 
+ String fieldSuffix = StringPool.BLANK;
+ 
+-if (!Validator.isNull(languageId)) {
++if (Validator.isNotNull(languageId)) {
+ 	fieldSuffix = StringPool.UNDERLINE + mainLanguageId;
+ }
+ 
+@@ -95,13 +95,13 @@
+ 		<c:when test='<%= type.equals("editor") %>'>
+ 			<liferay-ui:input-editor
+ 				contentsLanguageId="<%= languageId %>"
+-				cssClass='<%= \"language-value \" + cssClass %>'
++				cssClass='<%= "language-value " + cssClass %>'
+ 				editorImpl="ckeditor"
+-				initMethod='<%= randomNamespace + \"InitEditor\" %>'
++				initMethod='<%= randomNamespace + "InitEditor" %>'
+ 				name="<%= fieldName %>"
+-				onBlurMethod='<%= randomNamespace + \"OnBlurEditor\" %>'
+-				onChangeMethod='<%= randomNamespace + \"OnChangeEditor\" %>'
+-				onFocusMethod='<%= randomNamespace + \"OnFocusEditor\" %>'
++				onBlurMethod='<%= randomNamespace + "OnBlurEditor" %>'
++				onChangeMethod='<%= randomNamespace + "OnChangeEditor" %>'
++				onFocusMethod='<%= randomNamespace + "OnFocusEditor" %>'
+ 				toolbarSet="simple"
+ 			/>
+ 
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp
+index 64c94e9..6e83c3e 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/ROOT/html/taglib/ui/social_activities/page.jsp
+@@ -106,6 +106,3 @@
+ 		url="<%= feedLink %>"
+ 	/>
+ </c:if>
+-
+-<%!
+-%>
+\ No newline at end of file
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp
+index f902d5b..f55e402 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/calendar-portlet/view_calendar.jsp
+@@ -149,7 +149,7 @@
+ 
+ 				<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
+ 
+-				<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
++				<liferay-util:param name="readOnly" value="<%= Boolean.FALSE.toString() %>" />
+ 
+ 				<liferay-security:permissionsURL
+ 					modelResource="<%= CalendarBooking.class.getName() %>"
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/manage.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/manage.jspf
+index 1750fe8..b907d83 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/manage.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/manage.jspf
+@@ -198,7 +198,7 @@
+ 						<liferay-ui:icon-menu>
+ 							<liferay-portlet:actionURL name="updatePluginSettings" var="activateURL">
+ 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
+-								<portlet:param name="active" value="<%= String.valueOf(true) %>" />
++								<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
+ 							</liferay-portlet:actionURL>
+ 
+ 							<liferay-ui:icon
+@@ -208,7 +208,7 @@
+ 
+ 							<liferay-portlet:actionURL name="updatePluginSettings" var="deactivateURL">
+ 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
+-								<portlet:param name="active" value="<%= String.valueOf(false) %>" />
++								<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
+ 							</liferay-portlet:actionURL>
+ 
+ 							<liferay-ui:icon
+@@ -219,7 +219,7 @@
+ 							<liferay-portlet:actionURL name="uninstallApp" var="uninstallURL">
+ 								<portlet:param name="remoteAppId" value="<%= String.valueOf(app.getRemoteAppId()) %>" />
+ 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
+-								<portlet:param name="activate" value="<%= String.valueOf(false) %>" />
++								<portlet:param name="activate" value="<%= Boolean.FALSE.toString() %>" />
+ 							</liferay-portlet:actionURL>
+ 
+ 							<liferay-ui:icon-delete
+diff --git a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf
+index ebabbda..473abc4 100644
+--- a/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf
++++ b/liferay-portal-6.2-ee-sp20/tomcat-7.0.62/webapps/marketplace-portlet/app_manager/plugins.jspf
+@@ -57,7 +57,7 @@
+ 								<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">
+ 									<portlet:param name="pluginId" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
+ 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_LAYOUT_TEMPLATE %>" />
+-									<portlet:param name="active" value="<%= String.valueOf(false) %>" />
++									<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+ 								<a class="btn btn-mini btn-success deactivate" href="<%= deactivateURL %>"><liferay-ui:message key="active" /></a>
+@@ -66,7 +66,7 @@
+ 								<liferay-portlet:actionURL name="updatePluginSetting" var="activateURL">
+ 									<portlet:param name="pluginId" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
+ 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_LAYOUT_TEMPLATE %>" />
+-									<portlet:param name="active" value="<%= String.valueOf(true) %>" />
++									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+ 								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+@@ -147,7 +147,7 @@
+ 								<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">
+ 									<portlet:param name="pluginId" value="<%= portlet.getPortletId() %>" />
+ 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_PORTLET %>" />
+-									<portlet:param name="active" value="<%= String.valueOf(false) %>" />
++									<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+ 								<a class="btn btn-mini btn-success deactivate" href="<%= deactivateURL %>"><liferay-ui:message key="active" /></a>
+@@ -156,7 +156,7 @@
+ 								<liferay-portlet:actionURL name="updatePluginSetting" var="activateURL">
+ 									<portlet:param name="pluginId" value="<%= portlet.getPortletId() %>" />
+ 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_PORTLET %>" />
+-									<portlet:param name="active" value="<%= String.valueOf(true) %>" />
++									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+ 								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+@@ -189,7 +189,7 @@
+ 								<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">
+ 									<portlet:param name="pluginId" value="<%= curTheme.getThemeId() %>" />
+ 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_THEME %>" />
+-									<portlet:param name="active" value="<%= String.valueOf(false) %>" />
++									<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+ 								<a class="btn btn-mini btn-success deactivate" href="<%= deactivateURL %>"><liferay-ui:message key="active" /></a>
+@@ -198,7 +198,7 @@
+ 								<liferay-portlet:actionURL name="updatePluginSetting" var="activateURL">
+ 									<portlet:param name="pluginId" value="<%= curTheme.getThemeId() %>" />
+ 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_THEME %>" />
+-									<portlet:param name="active" value="<%= String.valueOf(true) %>" />
++									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
+ 								</liferay-portlet:actionURL>
+ 
+ 								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
