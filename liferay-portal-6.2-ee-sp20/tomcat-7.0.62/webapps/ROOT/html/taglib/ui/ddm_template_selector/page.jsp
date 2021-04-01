@@ -57,7 +57,7 @@ DDMTemplate ddmTemplate = null;
 	</c:if>
 
 	<%
-	Map<String,Object> data = new HashMap<String,Object>();
+	Map<String, Object> data = new HashMap<String, Object>();
 
 	if (displayStyle.startsWith(PortletDisplayTemplate.DISPLAY_STYLE_PREFIX)) {
 		ddmTemplate = PortletDisplayTemplateUtil.fetchDDMTemplate(displayStyleGroupId, displayStyle);
