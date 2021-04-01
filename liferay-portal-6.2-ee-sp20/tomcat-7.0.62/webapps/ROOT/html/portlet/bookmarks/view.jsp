@@ -122,7 +122,7 @@ if (folder != null) {
 						</div>
 
 						<div class="lfr-asset-metadata">
-							<div class="lfr-asset-icon lfr-asset-date">
+							<div class="lfr-asset-date lfr-asset-icon">
 								<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDate.format(folder.getModifiedDate()), false) %>
 							</div>
 
@@ -130,7 +130,7 @@ if (folder != null) {
 								<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
 							</div>
 
-							<div class="lfr-asset-icon lfr-asset-items last">
+							<div class="last lfr-asset-icon lfr-asset-items">
 								<%= entriesCount %> <liferay-ui:message key='<%= (entriesCount == 1) ? "entry" : "entries" %>' />
 							</div>
 						</div>

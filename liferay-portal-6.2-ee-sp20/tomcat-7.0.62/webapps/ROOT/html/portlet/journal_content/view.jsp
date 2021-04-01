@@ -304,7 +304,7 @@ if (!siteGroup.hasLocalOrRemoteStagingGroup()) {
 %>
 
 	<c:if test="<%= showIconsActions && !print && hasViewPermission %>">
-		<div class="lfr-meta-actions icons-container">
+		<div class="icons-container lfr-meta-actions">
 			<div class="lfr-icon-actions">
 				<c:if test="<%= showEditArticleIcon %>">
 					<liferay-portlet:renderURL portletName="<%= PortletKeys.JOURNAL %>" var="editURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">

@@ -431,7 +431,7 @@ String emailSignature = PrefsParamUtil.getString(portletPreferences, request, em
 						</table>
 					</td>
 					<td>
-						<table class='<%= (currentLocale.equals(defaultLocale) ? "hide" : "") + " lfr-table" %>' id="<portlet:namespace />localized-priorities-table">
+						<table class="<%= (currentLocale.equals(defaultLocale) ? "hide" : "") + " lfr-table" %>" id="<portlet:namespace />localized-priorities-table">
 							<tr>
 								<td class="lfr-label">
 									<liferay-ui:message key="name" />

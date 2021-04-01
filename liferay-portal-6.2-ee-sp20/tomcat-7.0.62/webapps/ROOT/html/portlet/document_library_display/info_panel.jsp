@@ -51,7 +51,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 		</c:if>
 
 		<div class="lfr-asset-metadata">
-			<div class="lfr-asset-icon lfr-asset-date">
+			<div class="lfr-asset-date lfr-asset-icon">
 				<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDateTime.format(folder.getModifiedDate()), false) %>
 			</div>
 
@@ -59,7 +59,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 				<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
 			</div>
 
-			<div class="lfr-asset-icon lfr-asset-items last">
+			<div class="last lfr-asset-icon lfr-asset-items">
 				<%= fileEntriesCount %> <liferay-ui:message key='<%= (fileEntriesCount == 1) ? "document" : "documents" %>' />
 			</div>
 		</div>
