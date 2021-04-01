@@ -533,7 +533,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 								}
 								%>
 
-								<aui:input helpMessage="<%= webDavHelpMessage %>" name="webDavURL"  type="resource" value="<%= webDavURL %>" />
+								<aui:input helpMessage="<%= webDavHelpMessage %>" name="webDavURL" type="resource" value="<%= webDavURL %>" />
 							</div>
 						</c:if>
 					</div>

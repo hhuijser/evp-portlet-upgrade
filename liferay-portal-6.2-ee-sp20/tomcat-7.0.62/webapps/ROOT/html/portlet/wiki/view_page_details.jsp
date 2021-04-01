@@ -66,7 +66,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "det
 		<liferay-ui:message key="format" />
 	</th>
 	<td class="table-cell">
-		<liferay-ui:message key='<%= "wiki.formats." + wikiPage.getFormat() %>'/>
+		<liferay-ui:message key='<%= "wiki.formats." + wikiPage.getFormat() %>' />
 	</td>
 </tr>
 <tr>

@@ -48,7 +48,7 @@ for (int i = 0; i < organizations.size(); i++) {
 			<ul class="property-list">
 
 			<%
-			for (Address address: organizationAddresses) {
+			for (Address address : organizationAddresses) {
 				String street1 = address.getStreet1();
 				String street2 = address.getStreet2();
 				String street3 = address.getStreet3();
@@ -78,7 +78,7 @@ for (int i = 0; i < organizations.size(); i++) {
 			<ul class="property-list">
 
 			<%
-			for (Address address: personalAddresses) {
+			for (Address address : personalAddresses) {
 				String street1 = address.getStreet1();
 				String street2 = address.getStreet2();
 				String street3 = address.getStreet3();
