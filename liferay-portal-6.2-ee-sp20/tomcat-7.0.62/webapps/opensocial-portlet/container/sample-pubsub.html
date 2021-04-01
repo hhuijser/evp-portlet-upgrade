@@ -22,8 +22,8 @@
 <head>
 <title>Sample: PubSub</title>
 <!-- default container look and feel -->
-<link rel="stylesheet" href="gadgets.css" />
-<script type="text/javascript" src="/gadgets/js/shindig-container:pubsub.js?c=1&debug=1"></script>
+<link href="gadgets.css" rel="stylesheet" />
+<script src="/gadgets/js/shindig-container:pubsub.js?c=1&debug=1" type="text/javascript"></script>
 <script type="text/javascript">
 var my = {};
 
@@ -86,9 +86,9 @@ document.getElementById("output").innerHTML += gadgets.util.escapeString(message
 
 <body onLoad="my.init();my.renderGadgets();">
 <h2>Sample: PubSub</h2>
-<div id="gadget-chrome-0" class="gadgets-gadget-chrome"></div>
-<div id="gadget-chrome-1" class="gadgets-gadget-chrome"></div>
-<div id="gadget-chrome-2" class="gadgets-gadget-chrome"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-0"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-1"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-2"></div>
 <div id="output" style="clear: left;">
 </div>
 </body>

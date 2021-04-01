@@ -132,7 +132,7 @@ These options may be provided in any combination.
 	</script>
 </head>
 
-<body style="background-color: #cccccc" onload="initTestContainer();">
+<body onload="initTestContainer();" style="background-color: #cccccc">
 	<div>gadgets.rpc Performance: Container Page (method: <span id="relaymethod"></span>)</div><hr />
 
 	<div>Initial gadget render console: <span id="initconsole">Gadget hasn't commented yet.</span></div>
@@ -141,7 +141,7 @@ These options may be provided in any combination.
 	<div>Test<br />
 	  <ul>
 		<li>Number of messages to send:
-		  <select name="num_msgs" id="num_msgs">
+		<select id="num_msgs" name="num_msgs">
 			<option value="1" selected>1</option>
 			<option value="10">10</option>
 			<option value="100">100</option>
@@ -149,7 +149,7 @@ These options may be provided in any combination.
 		  </select>
 		</li>
 		<li>Message size:
-		  <select name="msg_size" id="msg_size">
+		<select id="msg_size" name="msg_size">
 			<option value="10">10 B</option>
 			<option value="100">100 B</option>
 			<option value="1024" selected>1 kB</option>
@@ -159,7 +159,7 @@ These options may be provided in any combination.
 		  </select>
 		</li>
 		<li>
-		  <input type="button" value="Start The Test!" onclick="runPerfTest('gadget');" />
+		<input onclick="runPerfTest('gadget');" type="button" value="Start The Test!" />
 		</li>
 	  </ul>
 	</div>
