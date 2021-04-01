@@ -28,41 +28,41 @@ MBMessage parentMessage = MBMessageLocalServiceUtil.getMessage(message.getParent
 %>
 
 <table class="lfr-grid lfr-table">
-<tr>
-	<td colspan="2" id="<%= randomNamespace %>messageScroll<%= message.getMessageId() %>">
-		<a name="<%= randomNamespace %>message_<%= message.getMessageId() %>"></a>
-	</td>
-</tr>
-<tr>
-	<td class="lfr-center lfr-top">
-		<liferay-ui:user-display
-			displayStyle="<%= 2 %>"
-			userId="<%= message.getUserId() %>"
-			userName="<%= HtmlUtil.escape(message.getUserName()) %>"
-		/>
-	</td>
-	<td class="lfr-top stretch">
-		<c:if test="<%= (message != null) && !message.isApproved() %>">
-			<aui:model-context bean="<%= message %>" model="<%= MBMessage.class %>" />
+	<tr>
+		<td colspan="2" id="<%= randomNamespace %>messageScroll<%= message.getMessageId() %>">
+			<a name="<%= randomNamespace %>message_<%= message.getMessageId() %>"></a>
+		</td>
+	</tr>
+	<tr>
+		<td class="lfr-center lfr-top">
+			<liferay-ui:user-display
+				displayStyle="<%= 2 %>"
+				userId="<%= message.getUserId() %>"
+				userName="<%= HtmlUtil.escape(message.getUserName()) %>"
+			/>
+		</td>
+		<td class="lfr-top stretch">
+			<c:if test="<%= (message != null) && !message.isApproved() %>">
+				<aui:model-context bean="<%= message %>" model="<%= MBMessage.class %>" />
+
+				<div>
+					<aui:workflow-status status="<%= message.getStatus() %>" />
+				</div>
+			</c:if>
 
 			<div>
-				<aui:workflow-status status="<%= message.getStatus() %>" />
+				<%= HtmlUtil.escape(message.getBody()) %>
 			</div>
-		</c:if>
 
-		<div>
-			<%= HtmlUtil.escape(message.getBody()) %>
-		</div>
+			<br />
 
-		<br />
-
-		<div>
-			<c:if test="<%= message.getParentMessageId() == rootMessage.getMessageId() %>">
-				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(message.getModifiedDate()), false) %>
-			</c:if>
-		</div>
-	</td>
-</tr>
+			<div>
+				<c:if test="<%= message.getParentMessageId() == rootMessage.getMessageId() %>">
+					<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(message.getModifiedDate()), false) %>
+				</c:if>
+			</div>
+		</td>
+	</tr>
 </table>
 
 <c:if test="<%= (parentMessage != null) && !parentMessage.isRoot() %>">

@@ -151,26 +151,26 @@ request.setAttribute("view.jsp-tabs1", tabs1);
 				orderable="<%= true %>"
 			>
 
-			<%
-			if (rowURL != null) {
-				buffer.append("<a href=\"");
-				buffer.append(rowURL.toString());
-				buffer.append("\" target=\"_blank\"><strong>");
-				buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
-				buffer.append("</strong></a>");
-			}
-			else {
-				buffer.append("<strong>");
-				buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
-				buffer.append("</strong>");
-			}
+				<%
+				if (rowURL != null) {
+					buffer.append("<a href=\"");
+					buffer.append(rowURL.toString());
+					buffer.append("\" target=\"_blank\"><strong>");
+					buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
+					buffer.append("</strong></a>");
+				}
+				else {
+					buffer.append("<strong>");
+					buffer.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
+					buffer.append("</strong>");
+				}
 
-			if (!tabs1.equals("my-sites") && Validator.isNotNull(group.getDescription())) {
-				buffer.append("<br /><em>");
-				buffer.append(HtmlUtil.escape(group.getDescription()));
-				buffer.append("</em>");
-			}
-			%>
+				if (!tabs1.equals("my-sites") && Validator.isNotNull(group.getDescription())) {
+					buffer.append("<br /><em>");
+					buffer.append(HtmlUtil.escape(group.getDescription()));
+					buffer.append("</em>");
+				}
+				%>
 
 			</liferay-ui:search-container-column-text>
 

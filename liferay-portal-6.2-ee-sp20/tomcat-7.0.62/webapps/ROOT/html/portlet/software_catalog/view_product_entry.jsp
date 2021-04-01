@@ -60,82 +60,82 @@ viewProductEntryURL.setParameter("productEntryId", String.valueOf(productEntryId
 />
 
 <table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="type" />:
-	</td>
-	<td>
-		<liferay-ui:message key="<%= productEntry.getType() %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="licenses" />:
-	</td>
-	<td>
-
-		<%
-		List<SCLicense> productEntryLicenses = productEntry.getLicenses();
-
-		for (int i = 0; i < productEntryLicenses.size(); i++) {
-			SCLicense license = productEntryLicenses.get(i);
-		%>
-
-			<aui:a href="<%= license.getUrl() %>" target="_blank"><%= HtmlUtil.escape(license.getName()) %></aui:a><c:if test="<%= i < productEntryLicenses.size() - 1 %>">, </c:if>
-
-		<%
-		}
-		%>
-
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="author" />:
-	</td>
-	<td>
-		<%= productEntry.getAuthor() %>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="page-url" />:
-	</td>
-	<td>
-		<a href="<%= productEntry.getPageURL() %>"><%= productEntry.getPageURL() %></a>
-	</td>
-</tr>
-
-<c:if test="<%= Validator.isNotNull(productEntry.getTags()) %>">
 	<tr>
 		<td>
-			<liferay-ui:message key="tags" />:
+			<liferay-ui:message key="type" />:
 		</td>
 		<td>
-			<%= productEntry.getTags() %>
+			<liferay-ui:message key="<%= productEntry.getType() %>" />
 		</td>
 	</tr>
-</c:if>
-
-<tr>
-	<td>
-		<liferay-ui:message key="short-description" />:
-	</td>
-	<td>
-		<%= productEntry.getShortDescription() %>
-	</td>
-</tr>
-
-<c:if test="<%= Validator.isNotNull(productEntry.getLongDescription()) %>">
 	<tr>
 		<td>
-			<liferay-ui:message key="long-description" />:
+			<liferay-ui:message key="licenses" />:
 		</td>
 		<td>
-			<%= productEntry.getLongDescription() %>
+
+			<%
+			List<SCLicense> productEntryLicenses = productEntry.getLicenses();
+
+			for (int i = 0; i < productEntryLicenses.size(); i++) {
+				SCLicense license = productEntryLicenses.get(i);
+			%>
+
+				<aui:a href="<%= license.getUrl() %>" target="_blank"><%= HtmlUtil.escape(license.getName()) %></aui:a><c:if test="<%= i < productEntryLicenses.size() - 1 %>">, </c:if>
+
+			<%
+			}
+			%>
+
 		</td>
 	</tr>
-</c:if>
+	<tr>
+		<td>
+			<liferay-ui:message key="author" />:
+		</td>
+		<td>
+			<%= productEntry.getAuthor() %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<liferay-ui:message key="page-url" />:
+		</td>
+		<td>
+			<a href="<%= productEntry.getPageURL() %>"><%= productEntry.getPageURL() %></a>
+		</td>
+	</tr>
+
+	<c:if test="<%= Validator.isNotNull(productEntry.getTags()) %>">
+		<tr>
+			<td>
+				<liferay-ui:message key="tags" />:
+			</td>
+			<td>
+				<%= productEntry.getTags() %>
+			</td>
+		</tr>
+	</c:if>
+
+	<tr>
+		<td>
+			<liferay-ui:message key="short-description" />:
+		</td>
+		<td>
+			<%= productEntry.getShortDescription() %>
+		</td>
+	</tr>
+
+	<c:if test="<%= Validator.isNotNull(productEntry.getLongDescription()) %>">
+		<tr>
+			<td>
+				<liferay-ui:message key="long-description" />:
+			</td>
+			<td>
+				<%= productEntry.getLongDescription() %>
+			</td>
+		</tr>
+	</c:if>
 
 </table>
 
@@ -144,52 +144,52 @@ viewProductEntryURL.setParameter("productEntryId", String.valueOf(productEntryId
 <c:choose>
 	<c:when test="<%= latestProductVersion != null %>">
 		<table class="lfr-table">
-		<tr>
-			<td>
-				<liferay-ui:message key="modified-date" />:
-			</td>
-			<td>
-				<%= dateFormatDateTime.format(latestProductVersion.getModifiedDate()) %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="change-log" />:
-			</td>
-			<td>
-				<%= HtmlUtil.escape(latestProductVersion.getChangeLog()) %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="framework-versions" />:
-			</td>
-			<td>
-				<%= _getFrameworkVersions(latestProductVersion.getFrameworkVersions()) %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="download-links" />:
-			</td>
-			<td>
-				<c:if test="<%= Validator.isNotNull(latestProductVersion.getDownloadPageURL()) %>">
-					<liferay-ui:icon
-						image="download"
-						message="download-page"
-						url="<%= latestProductVersion.getDownloadPageURL() %>"
-					/>
-				</c:if>
+			<tr>
+				<td>
+					<liferay-ui:message key="modified-date" />:
+				</td>
+				<td>
+					<%= dateFormatDateTime.format(latestProductVersion.getModifiedDate()) %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="change-log" />:
+				</td>
+				<td>
+					<%= HtmlUtil.escape(latestProductVersion.getChangeLog()) %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="framework-versions" />:
+				</td>
+				<td>
+					<%= _getFrameworkVersions(latestProductVersion.getFrameworkVersions()) %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="download-links" />:
+				</td>
+				<td>
+					<c:if test="<%= Validator.isNotNull(latestProductVersion.getDownloadPageURL()) %>">
+						<liferay-ui:icon
+							image="download"
+							message="download-page"
+							url="<%= latestProductVersion.getDownloadPageURL() %>"
+						/>
+					</c:if>
 
-				<c:if test="<%= Validator.isNotNull(latestProductVersion.getDirectDownloadURL()) %>">
-					<liferay-ui:icon
-						image="download"
-						message="direct-download"
-						url="<%= latestProductVersion.getDirectDownloadURL() %>"
-					/>
-				</c:if>
-			</td>
-		</tr>
+					<c:if test="<%= Validator.isNotNull(latestProductVersion.getDirectDownloadURL()) %>">
+						<liferay-ui:icon
+							image="download"
+							message="direct-download"
+							url="<%= latestProductVersion.getDirectDownloadURL() %>"
+						/>
+					</c:if>
+				</td>
+			</tr>
 		</table>
 
 		<br />

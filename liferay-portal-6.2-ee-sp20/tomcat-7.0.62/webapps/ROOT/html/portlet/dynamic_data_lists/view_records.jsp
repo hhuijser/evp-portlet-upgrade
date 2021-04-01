@@ -131,11 +131,11 @@ portletURL.setParameter("recordSetId", String.valueOf(recordSet.getRecordSetId()
 				if (GetterUtil.getBoolean(fields.get(FieldConstants.PRIVATE))) {
 					continue;
 				}
-			%>
+		%>
 
 				<%@ include file="/html/portlet/dynamic_data_lists/record_row_value.jspf" %>
 
-			<%
+		<%
 			}
 
 			if (hasUpdatePermission) {

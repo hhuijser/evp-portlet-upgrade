@@ -42,28 +42,28 @@ boolean showSyntaxHelp = ((toggleValue != null) && toggleValue.equals("block"));
 	<aui:row>
 		<aui:col id="wikiEditorContainer" width="<%= showSyntaxHelp ? 70 : 100 %>">
 
-		<%@ include file="/html/portlet/wiki/edit/editor_config.jspf" %>
+			<%@ include file="/html/portlet/wiki/edit/editor_config.jspf" %>
 
-		<c:choose>
-			<c:when test='<%= format.equals("creole") %>'>
-				<liferay-ui:input-editor
-					configParams="<%= configParams %>"
-					editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>"
-					fileBrowserParams="<%= fileBrowserParams %>"
-					toolbarSet="creole"
-					width="100%"
-				/>
-			</c:when>
-			<c:otherwise>
-				<liferay-ui:input-editor
-					configParams="<%= configParams %>"
-					editorImpl="<%= EDITOR_SIMPLE_IMPL_KEY %>"
-					fileBrowserParams="<%= fileBrowserParams %>"
-					name="content"
-					width="100%"
-				/>
-			</c:otherwise>
-		</c:choose>
+			<c:choose>
+				<c:when test='<%= format.equals("creole") %>'>
+					<liferay-ui:input-editor
+						configParams="<%= configParams %>"
+						editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>"
+						fileBrowserParams="<%= fileBrowserParams %>"
+						toolbarSet="creole"
+						width="100%"
+					/>
+				</c:when>
+				<c:otherwise>
+					<liferay-ui:input-editor
+						configParams="<%= configParams %>"
+						editorImpl="<%= EDITOR_SIMPLE_IMPL_KEY %>"
+						fileBrowserParams="<%= fileBrowserParams %>"
+						name="content"
+						width="100%"
+					/>
+				</c:otherwise>
+			</c:choose>
 
 			<aui:input name="content" type="hidden" />
 		</aui:col>

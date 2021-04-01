@@ -27,29 +27,29 @@ List fileRanks = DLAppLocalServiceUtil.getFileRanks(scopeGroupId, user.getUserId
 	<c:otherwise>
 		<ul class="recent-documents">
 
-		<%
-		for (int i = 0; i < fileRanks.size(); i++) {
-			DLFileRank fileRank = (DLFileRank)fileRanks.get(i);
+			<%
+			for (int i = 0; i < fileRanks.size(); i++) {
+				DLFileRank fileRank = (DLFileRank)fileRanks.get(i);
 
-			try {
-				FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(fileRank.getFileEntryId());
+				try {
+					FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(fileRank.getFileEntryId());
 
-				fileEntry = fileEntry.toEscapedModel();
-		%>
+					fileEntry = fileEntry.toEscapedModel();
+			%>
 
-				<li>
-					<a href="<%= DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK, false, true) %>">
-						<img alt="" src="<%= themeDisplay.getPathThemeImages() %>/file_system/small/<%= fileEntry.getIcon() %>.png" />
-						<%= fileEntry.getTitle() %>
-					</a>
-				</li>
+					<li>
+						<a href="<%= DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK, false, true) %>">
+							<img alt="" src="<%= themeDisplay.getPathThemeImages() %>/file_system/small/<%= fileEntry.getIcon() %>.png" />
+							<%= fileEntry.getTitle() %>
+						</a>
+					</li>
 
-		<%
+			<%
+				}
+				catch (Exception e) {
+				}
 			}
-			catch (Exception e) {
-			}
-		}
-		%>
+			%>
 
 		</ul>
 	</c:otherwise>

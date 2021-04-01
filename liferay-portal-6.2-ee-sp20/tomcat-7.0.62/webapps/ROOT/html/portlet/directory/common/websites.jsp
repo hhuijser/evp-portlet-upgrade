@@ -32,20 +32,20 @@ if (classPK > 0) {
 
 	<ul class="property-list">
 
-	<%
-	for (Website website : websites) {
-		website = website.toEscapedModel();
-	%>
+		<%
+		for (Website website : websites) {
+			website = website.toEscapedModel();
+		%>
 
-		<li class="<%= website.isPrimary() ? "primary" : "" %>">
-			<a href="<%= website.getUrl() %>"><%= website.getUrl() %></a>
+			<li class="<%= website.isPrimary() ? "primary" : "" %>">
+				<a href="<%= website.getUrl() %>"><%= website.getUrl() %></a>
 
-			<%= LanguageUtil.get(pageContext, website.getType().getName()) %>
-		</li>
+				<%= LanguageUtil.get(pageContext, website.getType().getName()) %>
+			</li>
 
-	<%
-	}
-	%>
+		<%
+		}
+		%>
 
 	</ul>
 </c:if>

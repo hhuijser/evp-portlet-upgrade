@@ -107,7 +107,7 @@ ArticleDisplayTerms displayTerms = (ArticleDisplayTerms)searchContainer.getDispl
 							if (scopeLayout.equals(layout)) {
 								label = LanguageUtil.get(pageContext, "current-page") + " (" + label + ")";
 							}
-							%>
+					%>
 
 							<aui:option label="<%= label %>" selected="<%= displayTerms.getGroupId() == scopeLayoutScopeGroup.getGroupId() %>" value="<%= scopeLayoutScopeGroup.getGroupId() %>" />
 

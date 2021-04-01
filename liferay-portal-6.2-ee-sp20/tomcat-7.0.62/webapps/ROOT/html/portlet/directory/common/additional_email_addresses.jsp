@@ -32,20 +32,20 @@ if (classPK > 0) {
 
 	<ul class="property-list">
 
-	<%
-	for (int i = 0; i < emailAddresses.size(); i++) {
-		EmailAddress emailAddress = emailAddresses.get(i);
-	%>
+		<%
+		for (int i = 0; i < emailAddresses.size(); i++) {
+			EmailAddress emailAddress = emailAddresses.get(i);
+		%>
 
-		<li class="<%= emailAddress.isPrimary() ? "primary" : "" %>">
-			<a href="mailto:<%= emailAddress.getAddress() %>"><%= emailAddress.getAddress() %></a>
+			<li class="<%= emailAddress.isPrimary() ? "primary" : "" %>">
+				<a href="mailto:<%= emailAddress.getAddress() %>"><%= emailAddress.getAddress() %></a>
 
-			<%= LanguageUtil.get(pageContext, emailAddress.getType().getName()) %>
-		</li>
+				<%= LanguageUtil.get(pageContext, emailAddress.getType().getName()) %>
+			</li>
 
-	<%
-	}
-	%>
+		<%
+		}
+		%>
 
 	</ul>
 </c:if>
