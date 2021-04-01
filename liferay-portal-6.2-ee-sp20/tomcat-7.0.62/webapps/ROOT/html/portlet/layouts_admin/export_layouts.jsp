@@ -303,14 +303,14 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 																		&nbsp;
 
 																		<liferay-ui:input-time
-																			amPmParam='<%= "startDateAmPm" %>'
+																			amPmParam="startDateAmPm"
 																			amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
 																			dateParam="startDateTime"
 																			dateValue="<%= startCalendar.getTime() %>"
 																			disabled="<%= false %>"
-																			hourParam='<%= "startDateHour" %>'
+																			hourParam="startDateHour"
 																			hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
-																			minuteParam='<%= "startDateMinute" %>'
+																			minuteParam="startDateMinute"
 																			minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
 																			name="startTime"
 																		/>
@@ -334,14 +334,14 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 																		&nbsp;
 
 																		<liferay-ui:input-time
-																			amPmParam='<%= "endDateAmPm" %>'
+																			amPmParam="endDateAmPm"
 																			amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
 																			dateParam="startDateTime"
 																			dateValue="<%= endCalendar.getTime() %>"
 																			disabled="<%= false %>"
-																			hourParam='<%= "endDateHour" %>'
+																			hourParam="endDateHour"
 																			hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
-																			minuteParam='<%= "endDateMinute" %>'
+																			minuteParam="endDateMinute"
 																			minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
 																			name="endTime"
 																		/>
