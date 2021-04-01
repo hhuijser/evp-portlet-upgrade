@@ -16,11 +16,7 @@
 
 <%@ include file="/html/portlet/users_admin/init.jsp" %>
 
-<%
-Organization organization = (Organization)request.getAttribute(WebKeys.ORGANIZATION);
-%>
-
-<aui:model-context bean="<%= organization %>" model="<%= Organization.class %>" />
+<aui:model-context bean="<%= (Organization)request.getAttribute(WebKeys.ORGANIZATION) %>" model="<%= Organization.class %>" />
 
 <h3><liferay-ui:message key="categories" /></h3>
 

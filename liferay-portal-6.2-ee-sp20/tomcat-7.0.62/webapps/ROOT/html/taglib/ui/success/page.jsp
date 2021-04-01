@@ -19,13 +19,12 @@
 <%
 String key = (String)request.getAttribute("liferay-ui:success:key");
 String message = (String)request.getAttribute("liferay-ui:success:message");
-boolean translateMessage = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:success:translateMessage"));
 %>
 
 <c:if test="<%= SessionMessages.contains(portletRequest, key) %>">
 	<div class="alert alert-success">
 		<c:choose>
-			<c:when test="<%= translateMessage %>">
+			<c:when test='<%= GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:success:translateMessage")) %>'>
 				<%= LanguageUtil.get(pageContext, message) %>
 			</c:when>
 			<c:otherwise>

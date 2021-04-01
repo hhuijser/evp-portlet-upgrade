@@ -1,15 +1,15 @@
 .v-tabsheet,
 .v-tabsheet-content,
 .v-tabsheet-deco {
-	outline: none; /* Prevent selection outline which might break layouts or cause scrollbars */
-	text-align: left /* Force default alignment */
+	outline: none; /* ---------- Prevent selection outline which might break layouts or cause scrollbars ---------- */
+	text-align: left /* ---------- Force default alignment ---------- */
 }
 .v-tabsheet-tabs {
-	empty-cells: hide;
+	border: 0;
 	border-collapse: collapse;
+	empty-cells: hide;
 	margin: 0;
 	padding: 0;
-	border: 0;
 	width: 100%;
 	overflow:hidden;
 }
@@ -26,8 +26,8 @@
 	width: 100%;
 }
 .v-tabsheet-spacertd div {
-	border-left: 1px solid #aaa;
 	border-bottom: 1px solid #aaa;
+	border-left: 1px solid #aaa;
 	height: 1em;
 	padding: 0.2em 0;
 }
@@ -35,9 +35,9 @@
 	display: none;
 }
 .v-tabsheet-scroller {
-	white-space: nowrap;
-	text-align: right;
 	margin-top: -1em;
+	text-align: right;
+	white-space: nowrap;
 }
 .v-ff2 .v-tabsheet-scroller {
 	position: relative;
@@ -49,32 +49,32 @@
 .v-tabsheet-scrollerNext,
 .v-tabsheet-scrollerPrev-disabled,
 .v-tabsheet-scrollerNext-disabled {
-	border: 1px solid #aaa;
 	background: #fff;
-	width: 12px;
-	height: 1em;
+	border: 1px solid #aaa;
 	cursor: pointer;
+	height: 1em;
+	width: 12px;
 }
 .v-tabsheet-scrollerPrev-disabled,
 .v-tabsheet-scrollerNext-disabled {
-	opacity: 0.5;
 	cursor: default;
+	opacity: 0.5;
 }
 .v-tabsheet-tabs .v-caption,
 .v-tabsheet-tabs .v-caption span {
 	white-space: nowrap;
 }
 .v-tabsheet-caption-close {
+	cursor: pointer;
 	display: inline;
 	display: inline-block;
-	zoom: 1;
-	width: 16px;
+	font-weight: bold;
 	height: 16px;
 	text-align: center;
-	font-weight: bold;
-	cursor: pointer;
-	vertical-align: middle;
 	user-select: none;
+	vertical-align: middle;
+	width: 16px;
+	zoom: 1;
 	-khtml-user-select: none;
 	-ms-user-select: none;
 	-moz-user-select: none;
@@ -105,8 +105,8 @@
 	cursor: default;
 }
 .v-tabsheet-tabitem-selected {
-	cursor: default;
 	border-bottom-color: #fff;
+	cursor: default;
 }
 .v-tabsheet-tabitem-selected .v-caption {
 	cursor: default;
@@ -114,8 +114,8 @@
 .v-tabsheet-content {
 	border: 1px solid #aaa;
 	/* Vertical borders are not supported, use v-tabsheet-tabcontainer and v-tabsheet-deco to present these borders */
-	border-top: none;
 	border-bottom: none;
+	border-top: none;
 	position: relative;
 }
 .v-ie6 .v-tabsheet-content,
@@ -123,8 +123,8 @@
 	zoom: 1;
 }
 .v-tabsheet-deco {
-	height: 1px;
 	background: #aaa;
+	height: 1px;
 	overflow: hidden;
 }
 .v-tabsheet-hidetabs .v-tabsheet-content {

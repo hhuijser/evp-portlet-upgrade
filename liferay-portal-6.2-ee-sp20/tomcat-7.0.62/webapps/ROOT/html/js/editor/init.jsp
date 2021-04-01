@@ -16,5 +16,5 @@
 
 <%@ include file="/html/common/init.jsp" %>
 
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.util.OutputData" %><%@
-page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData" %>
+<%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData" %><%@
+page import="com.liferay.portal.kernel.servlet.taglib.util.OutputData" %>

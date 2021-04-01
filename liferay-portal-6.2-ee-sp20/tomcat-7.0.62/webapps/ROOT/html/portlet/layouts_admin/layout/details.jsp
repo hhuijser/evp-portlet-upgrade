@@ -24,6 +24,7 @@ Layout selLayout = (Layout)request.getAttribute("edit_pages.jsp-selLayout");
 LayoutTypePortletImpl selLayoutTypePortlet = new LayoutTypePortletImpl(selLayout);
 
 Locale defaultLocale = LocaleUtil.getDefault();
+
 String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 %>
 
@@ -119,10 +120,9 @@ StringBuilder friendlyURLBase = new StringBuilder();
 				LayoutSetPrototype layoutSetPrototype = LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(group.getClassPK());
 
 				boolean layoutSetPrototypeUpdateable = GetterUtil.getBoolean(layoutSetPrototype.getSettingsProperty("layoutsUpdateable"), true);
-				boolean layoutUpdateable = GetterUtil.getBoolean(selLayoutTypePortlet.getTypeSettingsProperty("layoutUpdateable"), true);
 				%>
 
-				<aui:input disabled="<%= !layoutSetPrototypeUpdateable %>" helpMessage="allow-site-administrators-to-modify-this-page-for-their-site-help" label="allow-site-administrators-to-modify-this-page-for-their-site" name="layoutUpdateable" type="checkbox" value="<%= layoutUpdateable %>" />
+				<aui:input disabled="<%= !layoutSetPrototypeUpdateable %>" helpMessage="allow-site-administrators-to-modify-this-page-for-their-site-help" label="allow-site-administrators-to-modify-this-page-for-their-site" name="layoutUpdateable" type="checkbox" value='<%= GetterUtil.getBoolean(selLayoutTypePortlet.getTypeSettingsProperty("layoutUpdateable"), true) %>' />
 			</c:if>
 		</c:when>
 		<c:otherwise>
@@ -141,7 +141,7 @@ StringBuilder friendlyURLBase = new StringBuilder();
 
 		<aui:input label='<%= LanguageUtil.format(pageContext, "automatically-apply-changes-done-to-the-page-template-x", HtmlUtil.escape(layoutPrototype.getName(user.getLocale())), false) %>' name="layoutPrototypeLinkEnabled" type="checkbox" value="<%= selLayout.isLayoutPrototypeLinkEnabled() %>" />
 
-		<div class='<%= selLayout.isLayoutPrototypeLinkEnabled() ? "" : "hide" %>' id="<portlet:namespace/>layoutPrototypeMergeAlert">
+		<div class="<%= selLayout.isLayoutPrototypeLinkEnabled() ? "" : "hide" %>" id="<portlet:namespace />layoutPrototypeMergeAlert">
 
 			<%
 			request.setAttribute("edit_layout_prototype.jsp-layoutPrototype", layoutPrototype);

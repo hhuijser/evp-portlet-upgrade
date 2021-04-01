@@ -1,22 +1,22 @@
 .v-slider {
-	border-top: 1px solid #cccfd0;
 	border-bottom: 1px solid #cccfd0;
+	border-top: 1px solid #cccfd0;
 	margin: 5px 0;
 }
 .v-slider-base {
 	/* changing the borders will require adjustments to ISlider.java */
-	height: 2px;
 	background: #f3f3f4;
-	border-top: 1px solid #cbcdce;
 	border-left: 1px solid #cccfd0;
 	border-right: 1px solid #cccfd0;
+	border-top: 1px solid #cbcdce;
+	height: 2px;
 }
 .v-slider-handle {
 	background: transparent url(img/handle-horizontal.png);
-	width: 12px;
+	cursor: pointer;
 	height: 12px;
 	margin-top: -5px;
-	cursor: pointer;
+	width: 12px;
 }
 .v-slider-handle:hover {
 	background-position: left bottom;
@@ -31,25 +31,25 @@
 }
 
 .v-slider-vertical {
-	width: 3px;
-	margin: 0 5px;
 	border: none;
 	border-left: 1px solid #cccfd0;
 	border-right: 1px solid #cccfd0;
+	margin: 0 5px;
+	width: 3px;
 }
 .v-slider-vertical .v-slider-base {
-	width: 2px;
+	background: #f3f3f4;
 	border-left: 1px solid #cbcdce;
 	border-right: none;
-	background: #f3f3f4;
 	border-top: 1px solid #cccfd0;
+	width: 2px;
 	border-bottom: 1px solid #cccfd0;	
 }
 .v-slider-vertical .v-slider-handle {
 	background: transparent url(img/handle-vertical.png);
-	width: 12px;
 	height: 12px;
 	margin-left: -5px;
+	width: 12px;
 }
 .v-slider-vertical .v-slider-handle-active {
 	background-position: left bottom;
@@ -69,7 +69,7 @@
 }
 */
 
-/* IE specific styles */
+/* ---------- IE specific styles ---------- */
 
 .v-ie6 .v-slider,
 .v-ie6 .v-slider-vertical {

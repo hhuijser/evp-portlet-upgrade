@@ -20,4 +20,4 @@
 
 <c:if test="<%= collapsible %>">
 	</div>
-</c:if >
+</c:if>

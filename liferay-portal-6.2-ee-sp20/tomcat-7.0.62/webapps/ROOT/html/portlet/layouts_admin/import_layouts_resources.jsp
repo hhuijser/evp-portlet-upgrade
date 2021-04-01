@@ -266,7 +266,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 													<span class="selected-labels" id="<portlet:namespace />selectedConfiguration_<%= portlet.getRootPortletId() %>"></span>
 
 													<%
-													Map<String,Object> data = new HashMap<String,Object>();
+													Map<String, Object> data = new HashMap<String, Object>();
 
 													data.put("portletid", portlet.getRootPortletId());
 													data.put("portlettitle", portletTitle);
@@ -421,15 +421,15 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 
 																				if (ArrayUtil.isNotEmpty(childrenControls)) {
 																					request.setAttribute("render_controls.jsp-controls", childrenControls);
-																				%>
+																		%>
 
-																				<aui:field-wrapper label="content-metadata">
-																					<ul class="lfr-tree unstyled">
-																						<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
-																					</ul>
-																				</aui:field-wrapper>
+																					<aui:field-wrapper label="content-metadata">
+																						<ul class="lfr-tree unstyled">
+																							<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
+																						</ul>
+																					</aui:field-wrapper>
 
-																				<%
+																		<%
 																				}
 																			}
 																		}
@@ -445,7 +445,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 																<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= portlet.getRootPortletId() %>"></span>
 
 																<%
-																Map<String,Object> data = new HashMap<String,Object>();
+																Map<String, Object> data = new HashMap<String, Object>();
 
 																data.put("portletid", portlet.getRootPortletId());
 																data.put("portlettitle", portletTitle);

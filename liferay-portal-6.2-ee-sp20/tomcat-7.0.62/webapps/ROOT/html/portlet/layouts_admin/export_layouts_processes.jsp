@@ -36,15 +36,13 @@ else {
 	orderByCol = portalPreferences.getValue(PortletKeys.BACKGROUND_TASK, "entries-order-by-col", "create-date");
 	orderByType = portalPreferences.getValue(PortletKeys.BACKGROUND_TASK, "entries-order-by-type", "desc");
 }
-
-OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType);
 %>
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-export-processes-were-found"
 	iteratorURL="<%= portletURL %>"
 	orderByCol="<%= orderByCol %>"
-	orderByComparator="<%= orderByComparator %>"
+	orderByComparator="<%= BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType) %>"
 	orderByType="<%= orderByType %>"
 	total="<%= BackgroundTaskLocalServiceUtil.getBackgroundTasksCount(groupId, LayoutExportBackgroundTaskExecutor.class.getName()) %>"
 >
@@ -102,17 +100,13 @@ OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBac
 						sb.append(StringPool.OPEN_PARENTHESIS);
 						sb.append(TextFormatter.formatStorageSize(fileEntry.getSize(), locale));
 						sb.append(StringPool.CLOSE_PARENTHESIS);
-
-						String portletFileEntryURL = PortletFileRepositoryUtil.getPortletFileEntryURL(themeDisplay, fileEntry, StringPool.BLANK);
-
-						String downloadPortletFileEntryURL = HttpUtil.addParameter(portletFileEntryURL, "download", true);
 						%>
 
 						<liferay-ui:icon
 							image="download"
 							label="<%= true %>"
 							message="<%= sb.toString() %>"
-							url="<%= downloadPortletFileEntryURL %>"
+							url='<%= HttpUtil.addParameter(PortletFileRepositoryUtil.getPortletFileEntryURL(themeDisplay, fileEntry, StringPool.BLANK), "download", true) %>'
 						/>
 
 					<%
@@ -133,7 +127,6 @@ OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBac
 					/>
 				</c:otherwise>
 			</c:choose>
-
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text>

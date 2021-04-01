@@ -26,7 +26,6 @@ WorkflowTaskDisplayTerms displayTerms = new WorkflowTaskDisplayTerms(renderReque
 	displayTerms="<%= displayTerms %>"
 	id="toggle_id_workflow_task_search"
 >
-
 	<aui:fieldset>
 		<aui:input label="task" name="<%= displayTerms.NAME %>" size="20" value="<%= displayTerms.getName() %>" />
 

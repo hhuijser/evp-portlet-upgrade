@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -30,8 +30,6 @@ if (calendarResource != null) {
 
 	calendars = CalendarServiceUtil.getCalendarResourceCalendars(themeDisplay.getScopeGroupId(), calendarResourceId);
 }
-
-String code = BeanParamUtil.getString(calendarResource, request, "code");
 %>
 
 <liferay-ui:header
@@ -69,7 +67,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 					</c:when>
 					<c:otherwise>
 						<aui:field-wrapper label="code">
-							<liferay-ui:input-resource url="<%= code %>" />
+							<liferay-ui:input-resource url='<%= BeanParamUtil.getString(calendarResource, request, "code") %>' />
 						</aui:field-wrapper>
 					</c:otherwise>
 				</c:choose>
@@ -94,6 +92,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 
 				<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>" />
 			</liferay-ui:panel>
+
 			<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="calendarResourceCategorizationPanel" persistState="<%= true %>" title="categorization">
 				<aui:input classPK="<%= calendarResourceId %>" name="categories" type="assetCategories" />
 
@@ -113,7 +112,6 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>
 	</aui:fieldset>
-
 </aui:form>
 
 <aui:script>

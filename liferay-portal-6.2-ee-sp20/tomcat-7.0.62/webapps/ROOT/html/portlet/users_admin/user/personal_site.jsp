@@ -140,7 +140,7 @@ if (selUser != null) {
 									<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(publicLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="publicLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
 								</c:when>
 								<c:when test="<%= publicLayoutSetPrototype != null %>">
-									<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+									<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
 
 									<aui:input name="layoutSetPrototypeLinkEnabled" type="hidden" value="<%= true %>" />
 								</c:when>
@@ -203,7 +203,7 @@ if (selUser != null) {
 							</c:when>
 							<c:otherwise>
 								<liferay-ui:message key="this-user-does-not-have-any-private-pages" />
-								</c:otherwise>
+							</c:otherwise>
 						</c:choose>
 
 						<c:if test="<%= PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED %>">
@@ -212,7 +212,7 @@ if (selUser != null) {
 									<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(privateLayoutSetPrototype.getName(user.getLanguageId())), false) %>' name="privateLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />
 								</c:when>
 								<c:when test="<%= privateLayoutSetPrototype != null %>">
-									<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(privateLayoutSetPrototype.getName(locale))} %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
+									<liferay-ui:message arguments="<%= HtmlUtil.escape(privateLayoutSetPrototype.getName(locale)) %>" key="these-pages-are-linked-to-site-template-x" translateArguments="<%= false %>" />
 
 									<aui:input name="layoutSetPrototypeLinkEnabled" type="hidden" value="<%= true %>" />
 								</c:when>

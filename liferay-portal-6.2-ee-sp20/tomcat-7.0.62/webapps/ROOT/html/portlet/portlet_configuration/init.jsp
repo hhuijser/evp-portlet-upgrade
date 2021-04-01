@@ -41,7 +41,6 @@ page import="com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil" %><%@
 page import="com.liferay.portal.lar.backgroundtask.PortletExportBackgroundTaskExecutor" %><%@
 page import="com.liferay.portal.lar.backgroundtask.PortletImportBackgroundTaskExecutor" %><%@
 page import="com.liferay.portal.lar.backgroundtask.PortletStagingBackgroundTaskExecutor" %><%@
-page import="com.liferay.portal.service.permission.TeamPermissionUtil" %><%@
 page import="com.liferay.portal.util.ResourcePermissionUtil" %><%@
 page import="com.liferay.portlet.PortletQNameUtil" %><%@
 page import="com.liferay.portlet.backgroundtask.util.comparator.BackgroundTaskComparatorFactoryUtil" %><%@
@@ -49,9 +48,7 @@ page import="com.liferay.portlet.dynamicdatalists.RecordSetDuplicateRecordSetKey
 page import="com.liferay.portlet.dynamicdatamapping.StructureDuplicateStructureKeyException" %><%@
 page import="com.liferay.portlet.portletconfiguration.action.ActionUtil" %><%@
 page import="com.liferay.portlet.portletconfiguration.action.ExportImportAction" %><%@
-page import="com.liferay.portlet.portletconfiguration.util.PublicRenderParameterConfiguration" %><%@
-page import="com.liferay.portlet.rolesadmin.search.RoleSearch" %><%@
-page import="com.liferay.portlet.rolesadmin.search.RoleSearchTerms" %>
+page import="com.liferay.portlet.portletconfiguration.util.PublicRenderParameterConfiguration" %>
 
 <%
 PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(request);

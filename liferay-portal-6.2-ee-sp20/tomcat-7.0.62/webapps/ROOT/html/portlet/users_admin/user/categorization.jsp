@@ -16,11 +16,7 @@
 
 <%@ include file="/html/portlet/users_admin/init.jsp" %>
 
-<%
-User selUser = (User)request.getAttribute("user.selUser");
-%>
-
-<aui:model-context bean="<%= selUser %>" model="<%= User.class %>" />
+<aui:model-context bean='<%= (User)request.getAttribute("user.selUser") %>' model="<%= User.class %>" />
 
 <h3><liferay-ui:message key="categories" /></h3>
 

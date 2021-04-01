@@ -48,7 +48,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("edit_role_assignments.
 	groupParams.put("site", Boolean.TRUE);
 
 	if (tabs3.equals("current")) {
-		groupParams.put("groupsRoles", new Long(role.getRoleId()));
+		groupParams.put("groupsRoles", Long.valueOf(role.getRoleId()));
 	}
 
 	total = GroupLocalServiceUtil.searchCount(company.getCompanyId(), searchTerms.getName(), searchTerms.getDescription(), groupParams, searchTerms.isAndOperator());
@@ -80,7 +80,6 @@ PortletURL portletURL = (PortletURL)request.getAttribute("edit_role_assignments.
 		modelVar="group"
 		rowIdProperty="friendlyURL"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="name"
 			value="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>"

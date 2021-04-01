@@ -17,7 +17,6 @@
 <%@ include file="/html/taglib/init.jsp" %>
 
 <%
-boolean includeSelectAll = GetterUtil.getBoolean(request.getAttribute("liferay-ui:app_view_toolbar:includeSelectAll"));
 String searchJsp = (String)request.getAttribute("liferay-ui:app_view_toolbar:searchJsp");
 %>
 
@@ -28,7 +27,7 @@ String searchJsp = (String)request.getAttribute("liferay-ui:app_view_toolbar:sea
 		</c:if>
 
 		<div>
-			<c:if test="<%= includeSelectAll %>">
+			<c:if test='<%= GetterUtil.getBoolean(request.getAttribute("liferay-ui:app_view_toolbar:includeSelectAll")) %>'>
 				<c:if test="<%= !user.isDefaultUser() %>">
 					<aui:input cssClass="select-all-entries" inline="<%= true %>" label="" name="<%= RowChecker.ALL_ROW_IDS %>" title="select-all" type="checkbox" />
 				</c:if>

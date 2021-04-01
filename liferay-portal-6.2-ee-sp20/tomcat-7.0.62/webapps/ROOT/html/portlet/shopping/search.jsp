@@ -32,7 +32,7 @@ if (searchCategoryId > 0) {
 else {
 	List categoryIds = new ArrayList();
 
-	categoryIds.add(new Long(searchCategoryIds));
+	categoryIds.add(Long.valueOf(searchCategoryIds));
 
 	ShoppingCategoryServiceUtil.getSubcategoryIds(categoryIds, scopeGroupId, searchCategoryIds);
 
@@ -78,9 +78,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, LanguageUtil.format(pageContext, "no-entries-were-found-that-matched-the-keywords-x", "<strong>" + HtmlUtil.escape(keywords) + "</strong>", false));
 
-	int total = ShoppingItemLocalServiceUtil.searchCount(scopeGroupId, categoryIdsArray, keywords);
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(ShoppingItemLocalServiceUtil.searchCount(scopeGroupId, categoryIdsArray, keywords));
 
 	List results = ShoppingItemLocalServiceUtil.search(scopeGroupId, categoryIdsArray, keywords, searchContainer.getStart(), searchContainer.getEnd());
 
@@ -149,6 +147,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 		while (enu.hasMoreElements()) {
 			String propsKey = (String)enu.nextElement();
+
 			String propsValue = props.getProperty(propsKey, StringPool.BLANK);
 
 			sb.append("<br />");

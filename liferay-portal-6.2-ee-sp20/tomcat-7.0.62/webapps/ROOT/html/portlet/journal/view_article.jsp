@@ -21,11 +21,10 @@ JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_AR
 
 long groupId = BeanParamUtil.getLong(article, request, "groupId", scopeGroupId);
 String articleId = ParamUtil.getString(request, "articleId");
-String languageId = LanguageUtil.getLanguageId(request);
 int articlePage = ParamUtil.getInteger(renderRequest, "page", 1);
 String xmlRequest = PortletRequestUtil.toXML(renderRequest, renderResponse);
 
-JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(groupId, articleId, null, null, languageId, themeDisplay, articlePage, xmlRequest);
+JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(groupId, articleId, null, null, LanguageUtil.getLanguageId(request), themeDisplay, articlePage, xmlRequest);
 
 try {
 	article = JournalArticleLocalServiceUtil.getLatestArticle(groupId, articleId, WorkflowConstants.STATUS_ANY);
@@ -43,11 +42,9 @@ try {
 
 	<c:choose>
 		<c:when test="<%= (articleDisplay != null) && !expired %>">
-
 			<div class="journal-content-article">
 				<%= RuntimePageUtil.processXML(request, response, articleDisplay.getContent()) %>
 			</div>
-
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-error">
@@ -56,9 +53,9 @@ try {
 		</c:otherwise>
 	</c:choose>
 
-<%
-} catch (NoSuchArticleException nsae) {
-%>
+	<%
+	} catch (NoSuchArticleException nsae) {
+	%>
 
 	<div class="alert alert-error">
 		<%= LanguageUtil.get(pageContext, "the-selected-web-content-no-longer-exists") %>

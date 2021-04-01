@@ -22,7 +22,6 @@ String randomNamespace = StringUtil.randomId() + StringPool.UNDERLINE;
 String className = (String)request.getAttribute("liferay-ui:flags:className");
 long classPK = GetterUtil.getLong((String)request.getAttribute("liferay-ui:flags:classPK"));
 String contentTitle = GetterUtil.getString((String)request.getAttribute("liferay-ui:flags:contentTitle"));
-boolean label = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:flags:label"), true);
 String message = GetterUtil.getString((String)request.getAttribute("liferay-ui:flags:message"), "flag[action]");
 long reportedUserId = GetterUtil.getLong((String)request.getAttribute("liferay-ui:flags:reportedUserId"));
 %>
@@ -32,7 +31,7 @@ long reportedUserId = GetterUtil.getLong((String)request.getAttribute("liferay-u
 		cssClass="<%= randomNamespace %>"
 		image="../ratings/flagged_icon"
 		imageHover='<%= !TrashUtil.isInTrash(className, classPK) ? "../ratings/flagged_icon_hover" : StringPool.BLANK %>'
-		label="<%= label %>"
+		label='<%= GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:flags:label"), true) %>'
 		message="<%= message %>"
 		url='<%= !TrashUtil.isInTrash(className, classPK) ? "javascript:;" : null %>'
 	/>
@@ -82,7 +81,7 @@ long reportedUserId = GetterUtil.getLong((String)request.getAttribute("liferay-u
 			</aui:script>
 		</c:when>
 		<c:otherwise>
-			<div id="<%= randomNamespace %>signIn" style="display:none">
+			<div id="<%= randomNamespace %>signIn" style="display: none;">
 				<liferay-ui:message key="please-sign-in-to-flag-this-as-inappropriate" />
 			</div>
 

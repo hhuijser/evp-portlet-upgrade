@@ -1,6 +1,6 @@
 .v-filterselect {
-	height: 24px;
 	background-repeat: no-repeat;
+	height: 24px;
 	background-image: url(img/left.png); /** sprite-ref: verticals; sprite-margin-bottom: 1px */
 	padding-left: 2px;
 }
@@ -15,7 +15,7 @@
 	border: none;
 	height: 16px;
 }
-/* More specific selector to override padding */
+/* ---------- More specific selector to override padding ---------- */
 .v-app input.v-filterselect-input,
 .v-window input.v-filterselect-input,
 .v-popupview-popup input.v-filterselect-input {
@@ -37,9 +37,9 @@
 	background-image: url(img/center-focus.png); /** sprite-ref: verticals; sprite-alignment: repeat */
 }
 .v-filterselect-button {
+	height: 24px;
 	overflow: hidden;
 	width: 25px;
-	height: 24px;
 	background-image: url(img/right.png); /** sprite-ref: verticals ; sprite-margin-bottom: 1px */
 	cursor: default;
 }
@@ -75,8 +75,8 @@
 	margin: 4px 0;
 }
 .v-filterselect-suggestmenu .gwt-MenuItem {
-	padding: 1px 8px;
 	height: 16px;
+	padding: 1px 8px;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -98,10 +98,10 @@
 .v-filterselect-nextpage-off,
 .v-filterselect-prevpage-off,
 .v-filterselect-prevpage {
-	height: 11px;
-	width: 100%;
 	background: transparent;
+	height: 11px;
 	margin-bottom: -4px;
+	width: 100%;
 }
 .v-filterselect-nextpage,
 .v-filterselect-nextpage-off {
@@ -129,12 +129,12 @@
 }
 .v-filterselect-nextpage span,
 .v-filterselect-prevpage span {
+	background: transparent no-repeat center 3px;
 	display: block;
 	height: 11px;
-	width: 100%;
 	overflow: hidden;
 	text-indent: -99999px;
-	background: transparent no-repeat center 3px;
+	width: 100%;
 	background-image: url(img/arrow-down.png); /** sprite-ref: verticals; sprite-margin-top: 3px; sprite-margin-bottom: 3px; sprite-alignment: center */
 	user-select: none;
 	-moz-user-select: none;
@@ -150,14 +150,14 @@
 	background-image: url(img/arrow-up-hover.png); /** sprite-ref: verticals; sprite-margin-top: 3px; sprite-margin-bottom: 3px; sprite-alignment: center */
 }
 .v-filterselect-status {
-	text-shadow: #e9eaeb 0 1px 0;
-	font-size: 11px;
-	line-height: normal;
-	width: 100%;
-	padding: 3px 0;
-	height: 11px;
-	overflow: hidden;
 	background-repeat: repeat-x;
+	font-size: 11px;
+	height: 11px;
+	line-height: normal;
+	overflow: hidden;
+	padding: 3px 0;
+	text-shadow: #e9eaeb 0 1px 0;
+	width: 100%;
 	background-image: url(img/status-bg.png); /** sprite-ref: verticals; sprite-alignment: repeat */
 	-moz-border-radius-bottomleft: 3px;
 	-moz-border-radius-bottomright: 3px;
@@ -167,7 +167,7 @@
 	-moz-user-select: none;
 	-webkit-user-select: none;
 }
-/* IE fails to position background images properly inside table elements */
+/* ---------- IE fails to position background images properly inside table elements ---------- */
 .v-ie .v-filterselect-suggestmenu .gwt-MenuItem-selected {
 	background: transparent url(../common/img/sel-bg.png) repeat-x;
 }
@@ -192,10 +192,10 @@
 .v-ie .v-filterselect-status {
 	background: transparent url(img/status-bg.png) repeat-x;
 }
-/* Filterselect with icon needs a similar fix than in buttons */
+/* ---------- Filterselect with icon needs a similar fix than in buttons ---------- */
 .v-filterselect .v-icon {
-	width: 16px;
 	position: relative;
+	width: 16px;
 }
 .v-filterselect .v-icon + .v-filterselect-input {
 	margin-left: -16px;
@@ -205,7 +205,7 @@
 
 
 
-/* Combobox on black background */
+/* ---------- Combobox on black background ---------- */
 .black .v-filterselect {
 	background-image: url(img/black/left-black.png); /** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
@@ -256,23 +256,23 @@
 
 
 
-/* Native selects on black background */
+/* ---------- Native selects on black background ---------- */
 .black .v-select select,
 .black .v-select-twincol select {
+	background: #151717;
+	border-bottom-color: #3e3f3f;
 	border-color: #38393a;
 	border-top-color: #2c2d2e;
-	border-bottom-color: #3e3f3f;
-	background: #151717;
 	color: #c9ccce;
 }
 
-/* Twincolselect needs a little tweak in IE6 */
+/* ---------- Twincolselect needs a little tweak in IE6 ---------- */
 .v-ie6 .v-select-twincol-buttons .v-button {
 	padding-left: 12px;
 	padding-right: 12px;
 }
 
-/* IE6 needs some help identifying when the input is readonly */
+/* ---------- IE6 needs some help identifying when the input is readonly ---------- */
 .v-ie6 .v-filterselect.v-readonly,
 .v-ie6 .v-filterselect .v-filterselect-input-readonly {
 	background: transparent;

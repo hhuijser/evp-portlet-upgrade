@@ -61,11 +61,7 @@ if (selLayout != null) {
 			<aui:option label="no" selected="<%= !sitemapInclude %>" value="0" />
 		</aui:select>
 
-		<%
-		String sitemapPriority = layoutTypeSettings.getProperty("sitemap-priority", PropsValues.SITES_SITEMAP_DEFAULT_PRIORITY);
-		%>
-
-		<aui:input helpMessage="(0.0 - 1.0)" label="page-priority" name="TypeSettingsProperties--sitemap-priority--" size="3" type="text" value="<%= sitemapPriority %>">
+		<aui:input helpMessage="(0.0 - 1.0)" label="page-priority" name="TypeSettingsProperties--sitemap-priority--" size="3" type="text" value='<%= layoutTypeSettings.getProperty("sitemap-priority", PropsValues.SITES_SITEMAP_DEFAULT_PRIORITY) %>'>
 			<aui:validator name="number" />
 			<aui:validator errorMessage="please-enter-a-valid-page-priority" name="range">[0,1]</aui:validator>
 		</aui:input>
