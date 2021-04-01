@@ -5,15 +5,15 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 -->
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<title>HTML Compliant Output &mdash; CKEditor Sample</title>
 	<script src="../../../ckeditor.js"></script>
 	<script src="../../../samples/old/sample.js"></script>
-	<link href="../../../samples/old/sample.css" rel="stylesheet">
-	<meta name="ckeditor-sample-required-plugins" content="sourcearea">
-	<meta name="ckeditor-sample-name" content="Output HTML">
-	<meta name="ckeditor-sample-group" content="Advanced Samples">
-	<meta name="ckeditor-sample-description" content="Configuring CKEditor to produce legacy HTML 4 code.">
+	<link href="../../../samples/old/sample.css" rel="stylesheet" />
+	<meta name="ckeditor-sample-required-plugins" content="sourcearea" />
+	<meta name="ckeditor-sample-name" content="Output HTML" />
+	<meta name="ckeditor-sample-group" content="Advanced Samples" />
+	<meta name="ckeditor-sample-description" content="Configuring CKEditor to produce legacy HTML 4 code." />
 </head>
 <body>
 	<h1 class="samples">
@@ -188,7 +188,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 					var editor = evt.editor,
 						dataProcessor = editor.dataProcessor;
 
-					// Out self closing tags the HTML4 way, like <br>.
+					// Out self closing tags the HTML4 way, like <br />.
 					dataProcessor.writer.selfClosingEnd = '>';
 
 					// Make output formatting behave similar to FCKeditor.
@@ -207,11 +207,11 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			</script>
 		</p>
 		<p>
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit" />
 		</p>
 	</form>
 	<div id="footer">
-		<hr>
+		<hr />
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
