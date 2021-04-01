@@ -439,7 +439,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 							</aui:row>
 
 							<aui:row cssClass="lfr-discussion-form-container" fluid="<%= true %>">
-								<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
+								<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style="<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>">
 									<liferay-ui:user-display
 										displayStyle="<%= 2 %>"
 										userId="<%= user.getUserId() %>"
@@ -460,7 +460,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 								</div>
 
 								<c:if test="<%= !hideControls && MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), threadGroupId, permissionClassName, permissionClassPK, ActionKeys.UPDATE_DISCUSSION, message.getMessageId()) %>">
-									<div class="lfr-discussion-form lfr-discussion-form-edit span12" id="<%= randomNamespace %>editForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
+									<div class="lfr-discussion-form lfr-discussion-form-edit span12" id="<%= randomNamespace %>editForm<%= i %>" style="<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>">
 										<aui:input id='<%= randomNamespace + "editReplyBody" + i %>' label="" name='<%= "editReplyBody" + i %>' style='<%= "height: " + ModelHintsConstants.TEXTAREA_DISPLAY_HEIGHT + "px;" %>' title="reply-body" type="textarea" value="<%= message.getBody() %>" wrap="soft" />
 
 										<%

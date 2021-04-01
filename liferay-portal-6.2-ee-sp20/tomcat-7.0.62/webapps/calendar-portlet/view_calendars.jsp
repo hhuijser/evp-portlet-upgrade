@@ -68,7 +68,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 			align="center"
 			name="color"
 		>
-			<span class="calendar-portlet-color-box" style="background-color:<%= ColorUtil.toHexString(calendar.getColor()) %>;">&nbsp;</span>
+			<span class="calendar-portlet-color-box" style="background-color: <%= ColorUtil.toHexString(calendar.getColor()) %>;">&nbsp;</span>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text name="default">
@@ -91,7 +91,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
-<div class="hide calendar-portlet-import-container" id="<portlet:namespace />importCalendarContainer">
+<div class="calendar-portlet-import-container hide" id="<portlet:namespace />importCalendarContainer">
 	<div class="hide portlet-msg-error" id="<portlet:namespace />portletErrorMessage"></div>
 
 	<div class="hide portlet-msg-success" id="<portlet:namespace />portletSuccessMessage">

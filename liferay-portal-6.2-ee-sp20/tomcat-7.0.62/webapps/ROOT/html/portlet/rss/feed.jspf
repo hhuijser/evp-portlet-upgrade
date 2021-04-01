@@ -83,7 +83,7 @@ catch (Exception e) {
 			</c:if>
 
 			<c:if test="<%= (publishedDate != null) && showFeedPublishedDate %>">
-				<div class="feed-published-date feed-date">
+				<div class="feed-date feed-published-date">
 					<aui:a href="<%= _escapeJavaScriptLink(feedLink) %>" target="_blank"><%= dateFormatDateTime.format(publishedDate) %></aui:a>
 				</div>
 			</c:if>
@@ -151,7 +151,7 @@ catch (Exception e) {
 				%>
 
 					<div class="feed-entry">
-						<img alt="<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? LanguageUtil.get(pageContext, "collapse") : LanguageUtil.get(pageContext, "expand") %>" class="<portlet:namespace />entry-expander feed-entry-expander" src='<%= themeDisplay.getPathThemeImage() %>/arrows/01_<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? "minus" : "plus" %>.png' />
+						<img alt="<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? LanguageUtil.get(pageContext, "collapse") : LanguageUtil.get(pageContext, "expand") %>" class="<portlet:namespace />entry-expander feed-entry-expander" src="<%= themeDisplay.getPathThemeImage() %>/arrows/01_<%= (windowState.equals(WindowState.MAXIMIZED) || (j < expandedEntriesPerFeed)) ? "minus" : "plus" %>.png" />
 
 						<span class="feed-entry-title"><aui:a href="<%= _escapeJavaScriptLink(entryLink) %>" target="_blank"><%= HtmlUtil.escape(entry.getTitle()) %></aui:a></span>
 

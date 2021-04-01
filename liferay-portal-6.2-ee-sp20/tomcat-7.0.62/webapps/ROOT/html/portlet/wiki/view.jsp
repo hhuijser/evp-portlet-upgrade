@@ -316,12 +316,15 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 							method="get"
 							url="<%= addPageURL.toString() %>"
 						/>,
-					</c:if>
+					</c:if
+						>
 
 					<liferay-ui:icon
 						image="clip"
 						label="<%= true %>"
-						message='<%= attachmentsFileEntriesCount + " " + LanguageUtil.get(pageContext, (attachmentsFileEntriesCount == 1) ? "attachment" : "attachments") %>' method="get" url="<%= viewAttachmentsURL.toString() %>"
+						message='<%= attachmentsFileEntriesCount + " " + LanguageUtil.get(pageContext, (attachmentsFileEntriesCount == 1) ? "attachment" : "attachments") %>'
+						method="get"
+						url="<%= viewAttachmentsURL.toString() %>"
 					/>
 				</div>
 
