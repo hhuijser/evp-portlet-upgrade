@@ -33,7 +33,7 @@ if (classPK > 0) {
 	<ul class="property-list">
 
 	<%
-	for (Website website: websites) {
+	for (Website website : websites) {
 		website = website.toEscapedModel();
 	%>
 

@@ -47,7 +47,7 @@ for (int i = 0; i < organizations.size(); i++) {
 		<ul class="property-list">
 
 		<%
-		for (Phone phone: organizationPhones) {
+		for (Phone phone : organizationPhones) {
 		%>
 
 			<li class="<%= phone.isPrimary() ? "primary" : "" %>">
@@ -67,7 +67,7 @@ for (int i = 0; i < organizations.size(); i++) {
 		<ul class="property-list">
 
 		<%
-		for (Phone phone: personalPhones) {
+		for (Phone phone : personalPhones) {
 		%>
 
 			<li class="<%= phone.isPrimary() ? "primary" : "" %>">

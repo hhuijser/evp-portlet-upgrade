@@ -184,7 +184,7 @@ int priceId = ParamUtil.getInteger(request, "priceId", -1);
 	</aui:button-row>
 
 	<liferay-ui:panel-container extended="<%= true %>" id="shoppingEditItemPanelContainer" persistState="<%= true %>">
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="shoppingEditItemFieldsPanel"  persistState="<%= true %>" title="fields">
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="shoppingEditItemFieldsPanel" persistState="<%= true %>" title="fields">
 			<aui:input name="fields" type="hidden" />
 
 			<liferay-ui:message key="fields-are-added-if-you-need-to-distinguish-items-based-on-criteria-chosen-by-the-user" />
@@ -264,7 +264,7 @@ int priceId = ParamUtil.getInteger(request, "priceId", -1);
 
 		</liferay-ui:panel>
 
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>"  id="shoppingEditItemPricesPanel"  persistState="<%= true %>" title="prices">
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="shoppingEditItemPricesPanel" persistState="<%= true %>" title="prices">
 			<aui:input name="prices" type="hidden" />
 
 			<aui:fieldset>
@@ -434,7 +434,7 @@ int priceId = ParamUtil.getInteger(request, "priceId", -1);
 			<aui:button onClick='<%= renderResponse.getNamespace() + "addPrice();" %>' value="add-price" />
 		</liferay-ui:panel>
 
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>"  id="shoppingEditItemImagesPanel" persistState="<%= true %>" title="images">
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="shoppingEditItemImagesPanel" persistState="<%= true %>" title="images">
 			<liferay-ui:error exception="<%= ItemLargeImageNameException.class %>">
 
 				<%

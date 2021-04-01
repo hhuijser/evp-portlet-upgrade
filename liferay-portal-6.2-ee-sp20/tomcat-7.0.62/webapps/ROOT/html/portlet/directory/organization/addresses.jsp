@@ -33,7 +33,7 @@ if (classPK > 0) {
 	<ul class="property-list">
 
 	<%
-	for (Address address: addresses) {
+	for (Address address : addresses) {
 		String street1 = address.getStreet1();
 		String street2 = address.getStreet2();
 		String street3 = address.getStreet3();

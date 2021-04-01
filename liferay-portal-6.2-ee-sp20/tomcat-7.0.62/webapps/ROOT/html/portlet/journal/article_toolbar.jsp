@@ -77,7 +77,7 @@ long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
 		toolbarButtonGroup.push(
 			{
 				icon: 'icon-search',
-				id: '<portlet:namespace/>basicPreviewButton',
+				id: '<portlet:namespace />basicPreviewButton',
 				label: '<%= UnicodeLanguageUtil.get(pageContext, "basic-preview") %>',
 				on: {
 					click: function(event) {
@@ -110,7 +110,7 @@ long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
 					render: function(event) {
 						new A.Tooltip(
 							{
-								trigger: '#<portlet:namespace/>basicPreviewButton'
+								trigger: '#<portlet:namespace />basicPreviewButton'
 							}
 						).render();
 					}

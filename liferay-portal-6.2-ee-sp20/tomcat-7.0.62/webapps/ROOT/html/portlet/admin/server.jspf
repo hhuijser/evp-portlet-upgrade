@@ -530,11 +530,11 @@ serverURL.setParameter("tabs3", tabs3);
 
 					<liferay-ui:panel-container extended="<%= true %>" id="adminShoppingCartImagesPanelContainer" persistState="<%= true %>">
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="adminShoppingCartImagesPanel" persistState="<%= true %>" title="shopping-cart-images">
-							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext,"large-image") + ")" %>' name="shoppingImageLargeMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_LARGE_MAX_SIZE) %>" />
+							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext, "large-image") + ")" %>' name="shoppingImageLargeMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_LARGE_MAX_SIZE) %>" />
 
-							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext,"medium-image") + ")" %>' name="shoppingImageMediumMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_MEDIUM_MAX_SIZE) %>" />
+							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext, "medium-image") + ")" %>' name="shoppingImageMediumMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_MEDIUM_MAX_SIZE) %>" />
 
-							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext,"small-image") + ")" %>' name="shoppingImageSmallMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_SMALL_MAX_SIZE) %>" />
+							<aui:input cssClass="lfr-input-text-container" label='<%= LanguageUtil.get(pageContext, "maximum-file-size") + "(" + LanguageUtil.get(pageContext, "small-image") + ")" %>' name="shoppingImageSmallMaxSize" type="text" value="<%= PrefsPropsUtil.getLong(PropsKeys.SHOPPING_IMAGE_SMALL_MAX_SIZE) %>" />
 
 							<aui:input cssClass="lfr-input-text-container" label="allowed-file-extensions" name="shoppingImageExtensions" type="text" value="<%= PrefsPropsUtil.getString(PropsKeys.SHOPPING_IMAGE_EXTENSIONS) %>" />
 						</liferay-ui:panel>
@@ -761,7 +761,7 @@ serverURL.setParameter("tabs3", tabs3);
 					<aui:select name="language">
 
 						<%
-						for (String supportedLanguage: ScriptingUtil.getSupportedLanguages()) {
+						for (String supportedLanguage : ScriptingUtil.getSupportedLanguages()) {
 						%>
 
 							<aui:option label="<%= TextFormatter.format(supportedLanguage, TextFormatter.J) %>" selected="<%= supportedLanguage.equals(language) %>" value="<%= supportedLanguage %>" />
@@ -1049,5 +1049,5 @@ serverURL.setParameter("tabs3", tabs3);
 </c:choose>
 
 <%!
-private static final String[] _IMAGEMAGICK_RESOURCE_LIMIT_LABELS= {"area", "disk", "file", "map", "memory", "thread", "time"};
+private static final String[] _IMAGEMAGICK_RESOURCE_LIMIT_LABELS = {"area", "disk", "file", "map", "memory", "thread", "time"};
 %>
