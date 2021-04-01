@@ -17,6 +17,7 @@
  * under the License.
 -->
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>Sample: Payment Processor</title>
@@ -270,6 +271,7 @@ return {
 
 </script>
 </head>
+
 <body onload="myProcessorPanel.init();">
 <!-- Customize the UI -->
 <div class="payment-processor-shadow"></div>
@@ -280,19 +282,25 @@ return {
 		  This panel is in an iframe from another page in the same container domain:<br />
 		  <b><script>document.write(window.location.href);</script></b>
 		</p>
+
 		<div class="caption">App Name: </div><span id="payment-appname"></span><br />
 		<div class="caption">App Spec: </div><span id="payment-appspec"></span><br />
+
 		<br />
+
 		<div class="caption">Payment Type: </div><span id="payment-type"></span><br />
 		<div class="caption">Amount: </div><span id="payment-amount"></span><br />
 		<div class="caption">Message: </div><span id="payment-message"></span><br />
 		<div class="caption">Items: </div><br /><div id="payment-items"></div>
 		<div class="caption">Ordered Time: </div><span id="payment-orderedtime"></span><br />
+
 		<br />
+
 		<div id="button-tab" style="display:none;">
 		  <button id="payment-submit">Submit</button>
 		  <button id="payment-cancel">Cancel</button>
 		</div>
+
 		<div id="loading-tab" style="display:none">
 		  Please wait...
 		</div>

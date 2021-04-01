@@ -8,18 +8,22 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 <!--[if !IE]><!--><html><!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
+
 	<title>Toolbar Configurator</title>
+
 	<script src="../../ckeditor.js"></script>
 	<script>
 		if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 )
 			CKEDITOR.tools.enableHtml5Elements( document );
 	</script>
+
 	<link rel="stylesheet" href="lib/codemirror/codemirror.css" />
 	<link rel="stylesheet" href="lib/codemirror/show-hint.css" />
 	<link rel="stylesheet" href="lib/codemirror/neo.css" />
 	<link rel="stylesheet" href="css/fontello.css" />
 	<link rel="stylesheet" href="../css/samples.css" />
 </head>
+
 <body id="toolbar">
 
 <nav class="navigation-a">
@@ -29,6 +33,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			<li><a href="http://dev.ckeditor.com/">I found a bug</a></li>
 			<li><a href="http://github.com/ckeditor/ckeditor-dev" class="icon-pos-right icon-navigation-a-github">Fork CKEditor on GitHub</a></li>
 		</ul>
+
 		<ul class="navigation-a-right grid-width-30">
 			<li><a href="http://ckeditor.com/blog-list">CKEditor Blog</a></li>
 		</ul>
@@ -40,6 +45,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		<h1 class="header-a-logo grid-width-30">
 			<a href="../index.html"><img src="../img/logo.png" alt="CKEditor Logo" /></a>
 		</h1>
+
 		<nav class="navigation-b grid-width-70">
 			<ul>
 				<li><a href="../index.html" class="button-a">Start</a></li>
@@ -62,12 +68,16 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 					<div class="grid-width-40 grid-switch-magic">
 						<div class="switch">
 							<span class="balloon-a balloon-a-se">Select configurator type</span>
+
 							<input type="radio" name="radio" data-num="1" id="radio-basic" />
 							<input type="radio" name="radio" data-num="2" id="radio-advanced" />
+
 							<label data-for="1" for="radio-basic">Basic</label>
+
 							<span class="switch-inner">
 								<span class="handler"></span>
 							</span>
+
 							<label data-for="2" for="radio-advanced">Advanced</label>
 						</div>
 					</div>
@@ -75,6 +85,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			</div>
 		</div>
 	</div>
+
 	<div class="adjoined-bottom">
 		<div class="grid-container">
 			<div class="grid-width-100">
@@ -107,16 +118,19 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 							<p>Arrange <a href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-toolbarGroups">toolbar groups</a>, toggle <a href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-removeButtons">button visibility</a> according to your needs and get your toolbar configuration.</p>
 							<p>You can replace the content of the <a href="../../config.js"><code>config.js</code></a> file with the generated configuration. If you already set some configuration options you will need to merge both configurations.</p>
 						</div>
+
 						<div class="grid-width-50">
 							<p>Read more about different ways of <a href="http://docs.ckeditor.com/#!/guide/dev_configuration">setting configuration</a> and do not forget about <strong>clearing browser cache</strong>.</p>
 							<p>Arranging toolbar groups is the recommended way of configuring the toolbar, but if you need more freedom you can use the <a href="#advanced">advanced configurator</a>.</p>
 						</div>
 					</div>
+
 					<div class="advanced" style="display: none;">
 						<div class="grid-width-50">
 							<p>With this code editor you can edit your <a href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-toolbar">toolbar configuration</a> live.</p>
 							<p>You can replace the content of the <a href="../../config.js"><code>config.js</code></a> file with the generated configuration. If you already set some configuration options you will need to merge both configurations.</p>
 						</div>
+
 						<div class="grid-width-50">
 							<p>Read more about different ways of <a href="http://docs.ckeditor.com/#!/guide/dev_configuration">setting configuration</a> and do not forget about <strong>clearing browser cache</strong>.</p>
 						</div>
@@ -135,6 +149,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 	<p class="grid-width-100">
 		CKEditor &ndash; The text editor for the Internet &ndash; <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 	</p>
+
 	<p class="grid-width-100" id="copy">
 		Copyright &copy; 2003-2016, <a class="samples" href="http://cksource.com/">CKSource</a> &ndash; Frederico Knabben. All rights reserved.
 	</p>
