@@ -32,6 +32,7 @@ portletURL.setParameter("tag", StringPool.BLANK);
 
 		<%
 		String label = "home";
+
 		boolean selected = topLink.equals(label);
 
 		portletURL.setParameter("topLink", label);

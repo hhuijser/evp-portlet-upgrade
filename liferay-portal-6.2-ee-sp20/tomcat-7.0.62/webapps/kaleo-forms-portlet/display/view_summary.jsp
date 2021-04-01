@@ -20,6 +20,7 @@
 	<aui:column columnWidth="<%= 25 %>" first="<%= true %>">
 		<%@ include file="/display/navigation.jspf" %>
 	</aui:column>
+
 	<aui:column columnWidth="<%= 75 %>" last="<%= true %>">
 		<%@ include file="/display/content.jspf" %>
 	</aui:column>

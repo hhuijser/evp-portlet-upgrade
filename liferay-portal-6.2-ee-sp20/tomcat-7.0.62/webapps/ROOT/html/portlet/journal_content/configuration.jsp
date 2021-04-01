@@ -61,7 +61,6 @@ catch (NoSuchArticleException nsae) {
 		<span class="displaying-help-message-holder <%= article == null ? StringPool.BLANK : "hide" %>">
 			<liferay-ui:message key="please-select-a-web-content-from-the-list-below" />
 		</span>
-
 		<span class="displaying-article-id-holder <%= article == null ? "hide" : StringPool.BLANK %>">
 			<liferay-ui:message key="displaying-content" />: <span class="displaying-article-id"><%= article != null ? article.getTitle(locale) : StringPool.BLANK %></span>
 
@@ -183,6 +182,7 @@ catch (NoSuchArticleException nsae) {
 
 	if (PropsValues.JOURNAL_ARTICLES_SEARCH_WITH_INDEX) {
 		Map<String, String> orderableHeaders = new HashMap<String, String>();
+
 		orderableHeaders.put("title", "title");
 		orderableHeaders.put("modified-date", "modified-date");
 		orderableHeaders.put("display-date", "display-date");

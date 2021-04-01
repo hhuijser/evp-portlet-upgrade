@@ -129,7 +129,6 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 											/>
 										</aui:fieldset>
 									</li>
-
 									<li>
 										<aui:fieldset label="end-date">
 											<liferay-ui:input-date
@@ -191,7 +190,6 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 					message='<%= LanguageUtil.get(locale, "date-range") + selectedLabelsHTML %>'
 				/>
 			</li>
-
 			<li class="options">
 				<ul class="portlet-list">
 					<li class="tree-item">

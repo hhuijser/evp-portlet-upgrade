@@ -86,7 +86,6 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 </liferay-ui:search-container>
 
 <c:if test="<%= !portletName.equals(PortletKeys.MY_ACCOUNT) %>">
-
 	<liferay-ui:icon
 		cssClass="modify-link"
 		iconCssClass="icon-search"

@@ -155,7 +155,6 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + workflowH
 					readOnly="<%= true %>"
 					requestedLocale="<%= locale %>"
 				/>
-
 			</liferay-ui:panel>
 
 			<liferay-ui:panel defaultState="closed" title="activities">

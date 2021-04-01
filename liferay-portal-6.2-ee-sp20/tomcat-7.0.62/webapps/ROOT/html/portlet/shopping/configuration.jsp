@@ -252,6 +252,7 @@ else if (tabs3.equals("shipping-email")) {
 								<aui:input label="enabled" name="emailOrderShippingEnabled" type="checkbox" value="<%= shoppingPrefs.getEmailOrderShippingEnabled() %>" />
 							</c:when>
 						</c:choose>
+
 						<c:choose>
 							<c:when test='<%= tabs3.equals("confirmation-email") %>'>
 								<aui:input cssClass="lfr-input-text-container" label="subject" name="emailOrderConfirmationSubject" type="text" value="<%= emailOrderConfirmationSubject %>" />

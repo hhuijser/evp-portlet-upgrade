@@ -54,6 +54,7 @@ String adminEmailVerificationBody = PrefsPropsUtil.getContent(company.getCompany
 			<aui:input cssClass="lfr-input-text-container" label="address" name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_FROM_ADDRESS + "--" %>' type="text" value="<%= adminEmailFromAddress %>" />
 		</aui:fieldset>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<aui:fieldset>
 			<aui:input label="enabled" name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_USER_ADDED_ENABLED + "--" %>' type="checkbox" value="<%= adminEmailUserAddedEnable %>" />
@@ -83,6 +84,7 @@ String adminEmailVerificationBody = PrefsPropsUtil.getContent(company.getCompany
 			</div>
 		</aui:fieldset>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<aui:fieldset>
 			<liferay-ui:error key="emailVerificationSubject" message="please-enter-a-valid-subject" />
@@ -102,6 +104,7 @@ String adminEmailVerificationBody = PrefsPropsUtil.getContent(company.getCompany
 			</div>
 		</aui:fieldset>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<aui:fieldset>
 			<liferay-ui:error key="emailPasswordSentSubject" message="please-enter-a-valid-subject" />
@@ -121,6 +124,7 @@ String adminEmailVerificationBody = PrefsPropsUtil.getContent(company.getCompany
 			</div>
 		</aui:fieldset>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<aui:fieldset>
 			<liferay-ui:error key="emailPasswordResetSubject" message="please-enter-a-valid-subject" />

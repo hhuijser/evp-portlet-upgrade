@@ -96,6 +96,7 @@ ShoppingItem[] prevAndNext = ShoppingItemServiceUtil.getItemsPrevAndNext(item.ge
 
 				while (enu.hasMoreElements()) {
 					String propsKey = (String)enu.nextElement();
+
 					String propsValue = props.getProperty(propsKey, StringPool.BLANK);
 				%>
 

@@ -79,6 +79,7 @@
 			</div>
 		</c:if>
 	</aui:row>
+
 	<aui:row>
 		<liferay-util:include page="/html/portlet/control_panel_home/view_actions.jsp" />
 	</aui:row>

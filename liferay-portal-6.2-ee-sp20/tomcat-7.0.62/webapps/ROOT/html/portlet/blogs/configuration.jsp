@@ -275,7 +275,6 @@ String[] socialBookmarksTypesArray = StringUtil.split(portletPreferences.getValu
 					</dd>
 				</dl>
 			</div>
-
 		</c:when>
 		<c:when test='<%= tabs2.equals("display-settings") %>'>
 			<%@ include file="/html/portlet/blogs/display_settings.jspf" %>

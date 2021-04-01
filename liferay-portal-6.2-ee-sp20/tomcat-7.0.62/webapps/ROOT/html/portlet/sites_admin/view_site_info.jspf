@@ -62,7 +62,6 @@ if (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED) {
 		<dt class="first">
 			<liferay-ui:message key="members" />:
 		</dt>
-
 		<dd class="members-info">
 			<c:if test="<%= (usersCount == 0) && (organizationsCount == 0) && (userGroupsCount == 0) %>">
 				<liferay-ui:message key="none" />
@@ -106,7 +105,6 @@ if (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED) {
 			<dt class="hide-accessible">
 				<liferay-ui:message key="request-pending" />
 			</dt>
-
 			<dd class="membership-requests">
 				<liferay-ui:icon
 					image="manage_task"
@@ -124,7 +122,6 @@ if (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED) {
 				message='<%= LanguageUtil.get(pageContext, "membership-type") + StringPool.COLON + StringPool.SPACE %>'
 			/>
 		</dt>
-
 		<dd class="last">
 			<%= LanguageUtil.get(pageContext, GroupConstants.getTypeLabel(group.getType())) %>
 		</dd>

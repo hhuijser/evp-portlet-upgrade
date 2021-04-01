@@ -469,6 +469,7 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 			</div>
 		</c:when>
 	</c:choose>
+
 	<aui:button-row>
 		<aui:button type="submit" />
 	</aui:button-row>

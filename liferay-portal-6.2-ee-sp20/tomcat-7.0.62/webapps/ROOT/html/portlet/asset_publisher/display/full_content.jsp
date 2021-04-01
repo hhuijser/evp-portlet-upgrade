@@ -87,6 +87,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<%@ include file="/html/portlet/asset_publisher/asset_export.jspf" %>
 				</div>
 			</c:if>
+
 			<c:if test="<%= (showAvailableLocales && assetRenderer.isLocalizable()) && !print %>">
 
 				<%

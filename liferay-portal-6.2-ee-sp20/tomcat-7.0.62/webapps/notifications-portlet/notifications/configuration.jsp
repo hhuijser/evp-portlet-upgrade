@@ -41,6 +41,7 @@
 
 			<table class="notification-deliveries table table-condensed">
 				<caption><%= PortalUtil.getPortletTitle(entry.getKey(), locale) %></caption>
+
 				<tbody>
 
 					<%
