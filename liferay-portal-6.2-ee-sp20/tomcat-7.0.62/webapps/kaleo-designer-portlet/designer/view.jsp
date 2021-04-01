@@ -29,7 +29,7 @@
 		<liferay-ui:search-container
 			emptyResultsMessage="no-workflow-definitions-are-defined"
 			iteratorURL="<%= iteratorURL %>"
-			total= "<%= latestKaleoDraftDefinitions.size() %>"
+			total="<%= latestKaleoDraftDefinitions.size() %>"
 		>
 			<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) %>">
 				<portlet:renderURL var="editKaleoDraftDefinitionURL">

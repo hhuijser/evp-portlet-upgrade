@@ -31,7 +31,7 @@ Group scopeGroup = themeDisplay.getScopeGroup();
 <aui:nav-bar>
 	<aui:nav collapsible="<%= false %>" cssClass="nav-display-style-buttons pull-right" id="displayStyleButtons">
 		<aui:nav-item>
-			<span class="pull-left display-style-buttons-container" id="<portlet:namespace />displayStyleButtonsContainer">
+			<span class="display-style-buttons-container pull-left" id="<portlet:namespace />displayStyleButtonsContainer">
 				<c:if test='<%= !strutsAction.equals("/document_library/search") %>'>
 					<liferay-util:include page="/html/portlet/document_library/display_style_buttons.jsp" />
 				</c:if>
