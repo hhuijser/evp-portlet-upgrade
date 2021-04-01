@@ -465,15 +465,15 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 
 																						if (ArrayUtil.isNotEmpty(childrenControls)) {
 																							request.setAttribute("render_controls.jsp-controls", childrenControls);
-																						%>
+																				%>
 
-																						<aui:field-wrapper label="content-metadata">
-																							<ul class="lfr-tree unstyled">
-																								<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
-																							</ul>
-																						</aui:field-wrapper>
+																							<aui:field-wrapper label="content-metadata">
+																								<ul class="lfr-tree unstyled">
+																									<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
+																								</ul>
+																							</aui:field-wrapper>
 
-																						<%
+																				<%
 																						}
 																					}
 																				}

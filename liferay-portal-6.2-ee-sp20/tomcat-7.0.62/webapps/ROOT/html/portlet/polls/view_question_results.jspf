@@ -108,7 +108,7 @@ for (int i = 0; i < choices.size(); i++) {
 			<aui:a href="<%= hrefTaglib %>"><liferay-ui:message key="<%= chart %>" /></aui:a><%= (i != (_CHARTS.length - 1)) ? StringPool.COMMA_AND_SPACE : StringPool.BLANK %>
 
 		<%
-			}
+		}
 		%>
 
 	</div>

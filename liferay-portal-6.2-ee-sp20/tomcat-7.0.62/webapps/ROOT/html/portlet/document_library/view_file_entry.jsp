@@ -540,7 +540,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 				</c:if>
 
 				<%
-					request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+				request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 				%>
 
 				<div class="lfr-asset-panels">

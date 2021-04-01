@@ -88,27 +88,27 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 							name="date"
 						>
 
-						<%
-						Date now = new Date();
+							<%
+							Date now = new Date();
 
-						long timeAgo = now.getTime() - curLayoutRevision.getCreateDate().getTime();
+							long timeAgo = now.getTime() - curLayoutRevision.getCreateDate().getTime();
 
-						if (curLayoutRevision.getLayoutRevisionId() == currentLayoutRevisionId) {
-							buffer.append("<div class=\"current-version-pointer\"><img alt=\"");
-							buffer.append(LanguageUtil.get(pageContext, "current-version"));
-							buffer.append("\" src=\"");
-							buffer.append(themeDisplay.getPathThemeImages());
-							buffer.append("/arrows/01_right.png\" title=\"");
-							buffer.append(LanguageUtil.get(pageContext, "current-version"));
-							buffer.append("\" /></div>");
-						}
+							if (curLayoutRevision.getLayoutRevisionId() == currentLayoutRevisionId) {
+								buffer.append("<div class=\"current-version-pointer\"><img alt=\"");
+								buffer.append(LanguageUtil.get(pageContext, "current-version"));
+								buffer.append("\" src=\"");
+								buffer.append(themeDisplay.getPathThemeImages());
+								buffer.append("/arrows/01_right.png\" title=\"");
+								buffer.append(LanguageUtil.get(pageContext, "current-version"));
+								buffer.append("\" /></div>");
+							}
 
-						buffer.append("<span class=\"approximate-date\">");
-						buffer.append(LanguageUtil.format(pageContext, "x-ago", LanguageUtil.getTimeDescription(pageContext, timeAgo, true), false));
-						buffer.append("</span><span class=\"real-date\">");
-						buffer.append(dateFormatDateTime.format(curLayoutRevision.getCreateDate()));
-						buffer.append("</span>");
-						%>
+							buffer.append("<span class=\"approximate-date\">");
+							buffer.append(LanguageUtil.format(pageContext, "x-ago", LanguageUtil.getTimeDescription(pageContext, timeAgo, true), false));
+							buffer.append("</span><span class=\"real-date\">");
+							buffer.append(dateFormatDateTime.format(curLayoutRevision.getCreateDate()));
+							buffer.append("</span>");
+							%>
 
 						</liferay-ui:search-container-column-text>
 

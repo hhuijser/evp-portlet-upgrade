@@ -126,7 +126,7 @@ if (summary != null) {
 	summary.setQueryTerms(queryTerms);
 
 	PortletURL portletURL = (PortletURL)request.getAttribute("search.jsp-portletURL");
-	%>
+%>
 
 	<span class="asset-entry">
 		<span class="asset-entry-type">

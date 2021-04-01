@@ -367,15 +367,15 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajax) {
 		<c:choose>
 			<c:when test="<%= showRepositoryTabs %>">
 
-			<%
-			String selectedTab = LanguageUtil.get(pageContext, "local");
+				<%
+				String selectedTab = LanguageUtil.get(pageContext, "local");
 
-			for (Folder mountFolder : mountFolders) {
-				if (mountFolder.getRepositoryId() == searchRepositoryId) {
-					selectedTab = HtmlUtil.escape(mountFolder.getName());
+				for (Folder mountFolder : mountFolders) {
+					if (mountFolder.getRepositoryId() == searchRepositoryId) {
+						selectedTab = HtmlUtil.escape(mountFolder.getName());
+					}
 				}
-			}
-			%>
+				%>
 
 				<div class="search-results-container" id="<portlet:namespace />searchResultsContainer">
 					<liferay-ui:tabs

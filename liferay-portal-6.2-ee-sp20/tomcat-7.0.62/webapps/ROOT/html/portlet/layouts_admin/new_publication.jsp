@@ -48,9 +48,9 @@
 				String layoutPrototypeName = (String)missingLayoutPrototype.getObject(2);
 			%>
 
-			<li>
-				<%= ResourceActionsUtil.getModelResource(locale, layoutPrototypeClassName) %>: <strong><%= HtmlUtil.escape(layoutPrototypeName) %></strong> (<%= HtmlUtil.escape(layoutPrototypeUuid) %>)
-			</li>
+				<li>
+					<%= ResourceActionsUtil.getModelResource(locale, layoutPrototypeClassName) %>: <strong><%= HtmlUtil.escape(layoutPrototypeName) %></strong> (<%= HtmlUtil.escape(layoutPrototypeUuid) %>)
+				</li>
 
 			<%
 			}
