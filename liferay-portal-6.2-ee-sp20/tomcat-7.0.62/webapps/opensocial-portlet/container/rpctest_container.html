@@ -46,6 +46,7 @@ These options may be provided in any combination.
 <html>
 <head>
 	<title>gadgets.rpc Performance Tests: Container</title>
+
 	<script>
 	  // Configurable test harness options.
 	  var gadgethost = 'http://' + window.location.search.substring(1).split('&')[0];
@@ -130,10 +131,13 @@ These options may be provided in any combination.
 	  };
 	</script>
 </head>
+
 <body style="background-color: #cccccc" onload="initTestContainer();">
 	<div>gadgets.rpc Performance: Container Page (method: <span id="relaymethod"></span>)</div><hr />
+
 	<div>Initial gadget render console: <span id="initconsole">Gadget hasn't commented yet.</span></div>
 	<div>Child gadget ping count: <span id="childping">0</span></div><hr />
+
 	<div>Test<br />
 	  <ul>
 		<li>Number of messages to send:
@@ -159,9 +163,11 @@ These options may be provided in any combination.
 		</li>
 	  </ul>
 	</div>
+
 	<div id="test_running" style="display:none;">
 	  Running test...
 	</div>
+
 	<div id="results" style="display:none;">
 	  Results: Gadget-to-Container<br />
 	  Messages: <span id="results_num_received"></span>, Bytes: <span id="results_bytes_received"></span> <span id="in_or_out"></span><br />
@@ -169,14 +175,18 @@ These options may be provided in any combination.
 	  Messages/second: <span id="results_msgs_per_sec"></span><br />
 	  Bytes/second: <span id="results_bytes_per_sec"></span>
 	</div>
+
 	<hr />
+
 	<div>Callback<br />
 	  <ul>
 		<li>Input: <input type="text" value="test-value" size="20" id="echo_test_input" /> <input type="button" value="Sync Callback Test" onclick="runCallbackTest('gadget',true);" /> <input type="button" value="Async Callback Test" onclick="runCallbackTest('gadget',false);" /></li>
 		<li>Result: <span id="echo_test_result"></span></li>
 	  </ul>
 	</div>
+
 	<hr />
+
 	<div>Gadget: <span id="showgadget" style="display:none"><input type="button" onclick="appendGadget(); this.style.display='none';" value="Append Gadget Now (for delayed load testing)" /></span></div>
 	<div id="container"></div>
 </body>
