@@ -40,7 +40,6 @@ ColorScheme selWapColorScheme = layoutSet.getWapColorScheme();
 
 	<c:choose>
 		<c:when test="<%= PropsValues.MOBILE_DEVICE_STYLING_WAP_ENABLED %>">
-
 			<liferay-ui:tabs
 				names="regular-browsers,mobile-devices"
 				refresh="<%= false %>"

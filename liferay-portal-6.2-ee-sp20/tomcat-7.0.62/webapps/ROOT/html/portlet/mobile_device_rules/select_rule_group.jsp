@@ -74,7 +74,6 @@ portletURL.setParameter("eventName", eventName);
 			keyProperty="ruleGroupId"
 			modelVar="ruleGroup"
 		>
-
 			<liferay-ui:search-container-column-text
 				name="name"
 				value="<%= ruleGroup.getName(locale) %>"

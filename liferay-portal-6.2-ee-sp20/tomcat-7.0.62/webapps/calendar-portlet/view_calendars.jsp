@@ -86,7 +86,6 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 			align="right"
 			path="/calendar_action.jsp"
 		/>
-
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
@@ -101,6 +100,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 	<aui:form enctype="multipart/form-data" method="post" name="importFm">
 		<aui:input id="file" name="file" type="file" />
+
 		<div class="portlet-msg-help">
 			<liferay-ui:message key="choose-the-file-that-contains-your-events.this-calendar-can-import-event-information-in-ical-format" />
 		</div>

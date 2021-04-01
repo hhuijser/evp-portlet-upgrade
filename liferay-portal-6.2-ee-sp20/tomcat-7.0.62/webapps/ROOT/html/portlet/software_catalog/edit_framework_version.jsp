@@ -80,7 +80,6 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 				</td>
 			</tr>
 		</c:if>
-
 	</table>
 
 	<div class="btn-toolbar">

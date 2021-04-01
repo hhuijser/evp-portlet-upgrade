@@ -350,7 +350,6 @@ MBThreadFlag threadFlag = MBThreadFlagLocalServiceUtil.getThreadFlag(themeDispla
 				%>
 
 				<liferay-util:include page="/html/portlet/message_boards/view_thread_shortcut.jsp" />
-
 			</table>
 		</liferay-ui:toggle-area>
 	</c:if>

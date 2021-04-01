@@ -13,6 +13,7 @@
  *
  */
 --%>
+
 <%@ include file="/html/portlet/wiki/init.jsp" %>
 
 <%
@@ -41,7 +42,6 @@ boolean showSyntaxHelp = ((toggleValue != null) && toggleValue.equals("block"));
 <div>
 	<aui:row>
 		<aui:col id="wikiEditorContainer" width="<%= showSyntaxHelp ? 70 : 100 %>">
-
 			<%@ include file="/html/portlet/wiki/edit/editor_config.jspf" %>
 
 			<c:choose>

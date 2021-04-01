@@ -153,7 +153,6 @@ int sortColumnIndex = -1;
 							width="1%"
 						</c:if>
 					>
-
 						<c:if test="<%= orderKey != null %>">
 							<div class="table-sort-liner">
 

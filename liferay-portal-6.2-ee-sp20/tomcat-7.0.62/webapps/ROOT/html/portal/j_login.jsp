@@ -46,19 +46,17 @@ if (PropsValues.PORTAL_JAAS_ENABLE && (jUserName != null)) {
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(jUserName) && Validator.isNotNull(jPassword) %>">
 		<html dir="<liferay-ui:message key="lang.dir" />">
-
 			<head>
 				<meta content="<%= ContentTypes.TEXT_HTML_UTF8 %>" http-equiv="content-type" />
 				<meta content="no-cache" http-equiv="Cache-Control" />
 				<meta content="no-cache" http-equiv="Pragma" />
 				<meta content="0" http-equiv="Expires" />
+
 				<script src="<%= themeDisplay.getCDNHost() + themeDisplay.getPathJavaScript() %>/misc/xp_progress.js" type="text/javascript"></script>
 			</head>
 
 			<body onLoad="setTimeout('document.fm.submit()', 100);">
-
 				<center>
-
 					<table border="0" cellpadding="0" cellspacing="0" height="100%" width="600">
 						<tr>
 							<td align="center" valign="middle">
@@ -77,11 +75,8 @@ if (PropsValues.PORTAL_JAAS_ENABLE && (jUserName != null)) {
 							</td>
 						</tr>
 					</table>
-
 				</center>
-
 			</body>
-
 		</html>
 
 		<%
@@ -112,9 +107,9 @@ if (PropsValues.PORTAL_JAAS_ENABLE && (jUserName != null)) {
 		%>
 
 		<html dir="<liferay-ui:message key="lang.dir" />">
-
 			<head>
 				<title></title>
+
 				<meta content="0; url=<%= themeDisplay.getPathMain() %>" http-equiv="refresh" />
 				<meta content="no-cache" http-equiv="Cache-Control" />
 				<meta content="no-cache" http-equiv="Pragma" />
@@ -124,7 +119,6 @@ if (PropsValues.PORTAL_JAAS_ENABLE && (jUserName != null)) {
 			<body onLoad="javascript:location.replace('<%= themeDisplay.getPathMain() %>')">
 
 			</body>
-
 		</html>
 	</c:otherwise>
 </c:choose>

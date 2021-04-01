@@ -20,6 +20,7 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 String modelResource = ParamUtil.getString(request, "modelResource");
+
 String modelResourceName = ResourceActionsUtil.getModelResource(pageContext, modelResource);
 
 ExpandoColumn column = (ExpandoColumn)request.getAttribute(WebKeys.EXPANDO_COLUMN);
@@ -102,6 +103,7 @@ portletURL.setParameter("modelResource", modelResource);
 						<aui:option label="text-field-secret" value="PresetTextFieldSecret()" />
 						<aui:option label="text-field-indexed" selected="<%= true %>" value="PresetTextFieldIndexed()" />
 					</optgroup>
+
 					<optgroup label="<liferay-ui:message key="primitives" />">
 
 						<%

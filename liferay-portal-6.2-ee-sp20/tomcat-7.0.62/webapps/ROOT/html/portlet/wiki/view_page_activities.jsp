@@ -141,7 +141,6 @@ iteratorURL.setParameter("title", wikiPage.getTitle());
 							</c:when>
 						</c:choose>
 					</c:when>
-
 					<c:when test="<%= socialActivity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT %>">
 
 						<%
@@ -159,7 +158,6 @@ iteratorURL.setParameter("title", wikiPage.getTitle());
 							message='<%= LanguageUtil.format(pageContext, "x-added-a-comment", new Object[] {HtmlUtil.escape(socialActivityUser.getFullName()), viewPageURL + "#wikiCommentsPanel"}, false) %>'
 						/>
 					</c:when>
-
 					<c:when test="<%= (socialActivity.getType() == SocialActivityConstants.TYPE_MOVE_TO_TRASH) || (socialActivity.getType() == SocialActivityConstants.TYPE_RESTORE_FROM_TRASH) || (socialActivity.getType() == WikiActivityKeys.ADD_PAGE) || (socialActivity.getType() == WikiActivityKeys.UPDATE_PAGE) %>">
 
 						<%

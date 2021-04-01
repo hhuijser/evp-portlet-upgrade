@@ -60,7 +60,6 @@ if (entry == null) {
 				%>
 
 				<%@ include file="/html/portlet/announcements/entry_scope.jspf" %>
-
 			</c:when>
 			<c:otherwise>
 
@@ -81,7 +80,6 @@ if (entry == null) {
 				%>
 
 				<%@ include file="/html/portlet/announcements/entry_select_scope.jspf" %>
-
 			</c:otherwise>
 		</c:choose>
 

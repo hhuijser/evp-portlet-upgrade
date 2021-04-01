@@ -17,17 +17,13 @@
 <%@ include file="/html/portlet/journal/init.jsp" %>
 
 <html>
-
 	<head>
 		<liferay-util:include page="/html/common/themes/top_head.jsp" />
 	</head>
 
 	<body>
-
 		<%= request.getAttribute(WebKeys.JOURNAL_ARTICLE_CONTENT) %>
 
 		<liferay-util:include page="/html/common/themes/bottom.jsp" />
-
 	</body>
-
 </html>

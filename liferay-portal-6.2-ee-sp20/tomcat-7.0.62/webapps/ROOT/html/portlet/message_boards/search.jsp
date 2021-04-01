@@ -139,7 +139,6 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="more" />
 	</liferay-ui:search-container>
-
 </aui:form>
 
 <%

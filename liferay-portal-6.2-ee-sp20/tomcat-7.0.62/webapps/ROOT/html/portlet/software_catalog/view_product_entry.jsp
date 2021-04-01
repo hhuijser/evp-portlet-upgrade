@@ -136,7 +136,6 @@ viewProductEntryURL.setParameter("productEntryId", String.valueOf(productEntryId
 			</td>
 		</tr>
 	</c:if>
-
 </table>
 
 <br />
@@ -228,7 +227,6 @@ List productScreenshots = SCProductScreenshotLocalServiceUtil.getProductScreensh
 />
 
 <c:if test="<%= SCProductEntryPermission.contains(permissionChecker, productEntryId, ActionKeys.UPDATE) %>">
-
 	<div class="btn-toolbar">
 
 		<%

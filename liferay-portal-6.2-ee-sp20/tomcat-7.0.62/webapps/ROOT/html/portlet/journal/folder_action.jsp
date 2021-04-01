@@ -82,6 +82,7 @@ else {
 						url="<%= moveURL %>"
 					/>
 				</c:if>
+
 				<c:if test="<%= JournalFolderPermission.contains(permissionChecker, folder, ActionKeys.DELETE) %>">
 					<portlet:actionURL var="deleteURL">
 						<portlet:param name="struts_action" value="/journal/edit_folder" />

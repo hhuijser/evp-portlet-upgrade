@@ -77,7 +77,6 @@ if (folder != null) {
 		iteratorURL="<%= portletURL %>"
 		total="<%= DLAppServiceUtil.getFoldersCount(repositoryId, folderId) %>"
 	>
-
 		<liferay-ui:search-container-results
 			results="<%= DLAppServiceUtil.getFolders(repositoryId, folderId, searchContainer.getStart(), searchContainer.getEnd()) %>"
 		/>

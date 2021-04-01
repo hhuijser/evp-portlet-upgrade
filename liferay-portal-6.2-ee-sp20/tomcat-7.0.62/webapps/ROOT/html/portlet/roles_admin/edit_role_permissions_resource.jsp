@@ -96,6 +96,7 @@ for (int i = 0; i < results.size(); i++) {
 	boolean supportsFilterByGroup = false;
 	List<Group> groups = Collections.emptyList();
 	String groupIds = ParamUtil.getString(request, "groupIds" + target, null);
+
 	long[] groupIdsArray = StringUtil.split(groupIds, 0L);
 	List<String> groupNames = new ArrayList<String>();
 
