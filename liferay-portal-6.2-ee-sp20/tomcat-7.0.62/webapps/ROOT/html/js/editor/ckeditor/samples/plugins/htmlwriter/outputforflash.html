@@ -6,15 +6,15 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <html>
 <head>
 	<title>Output for Flash &mdash; CKEditor Sample</title>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<script src="../../../ckeditor.js"></script>
 	<script src="../../../samples/sample.js"></script>
 	<script src="assets/outputforflash/swfobject.js"></script>
-	<link href="../../../samples/sample.css" rel="stylesheet">
-	<meta name="ckeditor-sample-required-plugins" content="sourcearea">
-	<meta name="ckeditor-sample-name" content="Output for Flash">
-	<meta name="ckeditor-sample-group" content="Advanced Samples">
-	<meta name="ckeditor-sample-description" content="Configuring CKEditor to produce HTML code that can be used with Adobe Flash.">
+	<link href="../../../samples/sample.css" rel="stylesheet" />
+	<meta name="ckeditor-sample-required-plugins" content="sourcearea" />
+	<meta name="ckeditor-sample-name" content="Output for Flash" />
+	<meta name="ckeditor-sample-group" content="Advanced Samples" />
+	<meta name="ckeditor-sample-description" content="Configuring CKEditor to produce HTML code that can be used with Adobe Flash." />
 	<style>
 
 		.alert
@@ -149,7 +149,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 							dataProcessor = editor.dataProcessor,
 							htmlFilter = dataProcessor && dataProcessor.htmlFilter;
 
-						// Out self closing tags the HTML4 way, like <br>.
+						// Out self closing tags the HTML4 way, like <br />.
 						dataProcessor.writer.selfClosingEnd = '>';
 
 						// Make output formatting match Flash expectations
@@ -258,7 +258,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 				</script>
 				<p>
-					<input type="button" value="Send to Flash" onclick="sendToFlash();">
+					<input type="button" value="Send to Flash" onclick="sendToFlash();" />
 				</p>
 			</td>
 			<td style="vertical-align: top; padding-left: 20px">
@@ -267,7 +267,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		</tr>
 	</table>
 	<div id="footer">
-		<hr>
+		<hr />
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>

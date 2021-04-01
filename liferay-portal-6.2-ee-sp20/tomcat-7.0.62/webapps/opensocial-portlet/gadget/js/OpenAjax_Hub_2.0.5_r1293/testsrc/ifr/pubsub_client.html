@@ -1,7 +1,7 @@
 <html>
 <head>
-    <title>Iframe Client</title>
-    
+	<title>Iframe Client</title>
+
 	<script src="../../dojo/dojo/dojo.js"></script>
 	<script type="text/javascript">
 		var TestURLParams = {};
@@ -26,58 +26,58 @@
 			document.write("<scr"+"ipt type='text/javascript' src='../pubsubtests/"+TestURLParams.testscriptfile+"'></scr"+"ipt>");
 		}();
 	</script>
-    <script src="../config.js"></script>
-    <script type="text/javascript">loadHub_dirDepth="2";</script>
-    <script src="../util/loadHub.js"></script>
-    <script src="../util/test_hub.js"></script>
+	<script src="../config.js"></script>
+	<script type="text/javascript">loadHub_dirDepth="2";</script>
+	<script src="../util/loadHub.js"></script>
+	<script src="../util/test_hub.js"></script>
 
-    <script type="text/javascript">
-        var hubClient = null;
+	<script type="text/javascript">
+		var hubClient = null;
 
-        function init()
-        {
-            new TestHubClient( "iframe", function( test ) {
+		function init()
+		{
+			new TestHubClient( "iframe", function( test ) {
 
-                test.onMsg = function( data ) {
+				test.onMsg = function( data ) {
 					var parts = data.split(":");
 					var msg = parts[0];
 					var param = parts[1];
-                    switch( msg ) {
-                        case "runscript":
-                            runscript(TestURLParams.testobjname);
-                            break;
-                    }
-                };
+					switch( msg ) {
+						case "runscript":
+							runscript(TestURLParams.testobjname);
+							break;
+					}
+				};
 
-                var hubClient;
+				var hubClient;
 
-                function startTest() {
-                    hubClient = new OpenAjax.hub.IframeHubClient({
-                          HubClient: {
-                              onSecurityAlert: function() {},
-                              log: test.log
-                          }
-                    });
+				function startTest() {
+					hubClient = new OpenAjax.hub.IframeHubClient({
+						  HubClient: {
+							  onSecurityAlert: function() {},
+							  log: test.log
+						  }
+					});
 					test.hubClient = hubClient;
 
-                    hubClient.connect( function( item, success, error ) {
+					hubClient.connect( function( item, success, error ) {
 						test.sendMsg( [ "start" ] );
-                    });
-                }
+					});
+				}
 
-                function runscript(scriptname) {
+				function runscript(scriptname) {
 					// Invoke the "run" function from the global object named in string "scriptname"
 					var func = window[scriptname]["run"];
 					func.call(test, 0);
 
-                }
+				}
 
-                // start tests
-                startTest();
-                
-            });
-        }
-    </script>
+				// start tests
+				startTest();
+
+			});
+		}
+	</script>
 </head>
 
 <body onload="init();">
