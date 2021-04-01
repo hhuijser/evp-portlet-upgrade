@@ -25,8 +25,8 @@
 <head>
 	<title></title>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="noindex, nofollow" name="robots" />
 
 	<style type="text/css">
 			.TplList
@@ -204,7 +204,7 @@ function SelectTemplate( index )
 </head>
 
 <body style="overflow: hidden">
-	<table width="100%" style="height: 100%">
+	<table style="height: 100%" width="100%">
 		<tr>
 			<td align="center">
 				<span fcklang="DlgTemplatesSelMsg">Please select the template to open in the editor<br />
@@ -212,15 +212,15 @@ function SelectTemplate( index )
 			</td>
 		</tr>
 		<tr>
-			<td height="100%" align="center">
-				<div id="eList" align="left" class="TplList">
-					<div id="eLoading" align="center" style="display: none">
+			<td align="center" height="100%">
+				<div align="left" class="TplList" id="eList">
+					<div align="center" id="eLoading" style="display: none">
 						<br />
 
 						<span fcklang="DlgTemplatesLoading">Loading templates list. Please wait...</span>
 					</div>
 
-					<div id="eEmpty" align="center" style="display: none">
+					<div align="center" id="eEmpty" style="display: none">
 						<br />
 
 						<span fcklang="DlgTemplatesNoTpl">(No templates defined)</span>
@@ -237,7 +237,7 @@ function SelectTemplate( index )
 						<td>
 							&nbsp;</td>
 						<td>
-							<label for="xChkReplaceAll" fcklang="DlgTemplatesReplace">
+							<label fcklang="DlgTemplatesReplace" for="xChkReplaceAll">
 								Replace actual contents</label></td>
 					</tr>
 				</table>

@@ -1,4 +1,4 @@
-<project name="OpenAjaxHub" default="help">
+<project default="help" name="OpenAjaxHub">
 
 <!--
 /*******************************************************************************
@@ -31,7 +31,7 @@
   <!-- Project specific properties.                                      -->
   <!-- NOTE: To run JSUnit tests, you need to download and install JSUnit-->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <property name="jsunitDir" value="./jsunit"/>
+<property name="jsunitDir" value="./jsunit" />
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Import other build files.                                         -->
@@ -42,29 +42,29 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Overrides of ./jsunit/build.xml                                   -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <path id="classpath">
-    <fileset dir="${jsunitDir}/java/lib">
-      <include name="*.jar"/>
+<path id="classpath">
+<fileset dir="${jsunitDir}/java/lib">
+<include name="*.jar" />
     </fileset>
-    <fileset dir="${jsunitDir}/java/bin">
-      <include name="jsunit.jar"/>
+<fileset dir="${jsunitDir}/java/bin">
+<include name="jsunit.jar" />
     </fileset>
-    <dirset dir="${jsunitDir}/java/config"/>
+<dirset dir="${jsunitDir}/java/config" />
   </path>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Put Dojo shrinksafe on the path                                   -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <path id="shrinksafe.classpath">
-    <fileset dir="dojo/util/shrinksafe">
-      <include name="shrinksafe.jar"/>
+<path id="shrinksafe.classpath">
+<fileset dir="dojo/util/shrinksafe">
+<include name="shrinksafe.jar" />
     </fileset>
   </path>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- OpenAjax Hub project specific targets                             -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <macrodef name="printhelp" description="Prints help">
+<macrodef description="Prints help" name="printhelp">
     <sequential>
       <echo>
 This is the Ant build script for the OpenAjax Hub open source project.
@@ -94,184 +94,184 @@ ant zip -DZIPDIRNAME=string
   <!-- Attempt at a conditional task.  Normally, this will run 'shrinksafe' on a JS file and put
        the output where specified.  If '-Dnoshrink=1' is specified on the command line, this will
        only copy the JS file and NOT run 'shrinksafe'.  -->
-  <target name="-doCopy" if="noshrink">
-    <copy file="${src}" tofile="${dest}"/>
+<target if="noshrink" name="-doCopy">
+<copy file="${src}" tofile="${dest}" />
   </target>
-  <target name="-doShrinkCopy" unless="noshrink">
-    <java output="${dest}" classpathref="shrinksafe.classpath" classname="org.dojotoolkit.shrinksafe.Main">
-      <arg file="${src}"/>
+<target name="-doShrinkCopy" unless="noshrink">
+<java classname="org.dojotoolkit.shrinksafe.Main" classpathref="shrinksafe.classpath" output="${dest}">
+<arg file="${src}" />
     </java>
   </target>
-  <macrodef name="copyJsFile">
-    <attribute name="src"/>
-    <attribute name="dest"/>
+<macrodef name="copyJsFile">
+<attribute name="src" />
+<attribute name="dest" />
     <sequential>
-      <antcall target="-doCopy">
-        <param name="src" value="@{src}"/>
-        <param name="dest" value="@{dest}"/>
+<antcall target="-doCopy">
+<param name="src" value="@{src}" />
+<param name="dest" value="@{dest}" />
       </antcall>
-      <antcall target="-doShrinkCopy">
-        <param name="src" value="@{src}"/>
-        <param name="dest" value="@{dest}"/>
+<antcall target="-doShrinkCopy">
+<param name="src" value="@{src}" />
+<param name="dest" value="@{dest}" />
       </antcall>
     </sequential>
   </macrodef>
 
   <!-- Packages all src files into a single JS file -->
-  <target name="release_all" description="Re-builds the release/all/ directory">
+<target description="Re-builds the release/all/ directory" name="release_all">
     <!-- OpenAjaxManagedHub-all.js -->
-    <concat destfile="release/all/tempfile_oktodelete">
-      <filelist dir="src" files="OpenAjax-mashup.js"/>
-      <filelist dir="src/containers/inline" files="inline.js"/>
-      <filelist dir="src/containers/iframe" files="iframe.js"/>
-      <filelist dir="src/containers/iframe" files="crypto.js"/>
-      <filelist dir="src/containers/iframe" files="json2.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rpc-dependencies.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="fe.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="ifpc.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="nix.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rmr.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="wpm.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rpc.js"/>
+<concat destfile="release/all/tempfile_oktodelete">
+<filelist dir="src" files="OpenAjax-mashup.js" />
+<filelist dir="src/containers/inline" files="inline.js" />
+<filelist dir="src/containers/iframe" files="iframe.js" />
+<filelist dir="src/containers/iframe" files="crypto.js" />
+<filelist dir="src/containers/iframe" files="json2.js" />
+<filelist dir="src/containers/iframe/rpc" files="rpc-dependencies.js" />
+<filelist dir="src/containers/iframe/rpc" files="fe.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="ifpc.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="nix.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="rmr.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="wpm.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="rpc.js" />
       <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="\/\/[\ ]*REMOVE ON BUILD"/>
+<linecontainsregexp negate="true">
+<regexp pattern="\/\/[\ ]*REMOVE ON BUILD" />
         </linecontainsregexp>
       </filterchain>
     </concat>
-    <copyJsFile src="release/all/tempfile_oktodelete" dest="release/all/OpenAjaxManagedHub-all.js"/>
+<copyJsFile dest="release/all/OpenAjaxManagedHub-all.js" src="release/all/tempfile_oktodelete" />
     <!-- rpc_relay.html -->
-    <copy todir="release/all" file="src/containers/iframe/rpc/rpc_relay.html"/>
-    <delete file="release/all/tempfile_oktodelete"/>
+<copy file="src/containers/iframe/rpc/rpc_relay.html" todir="release/all" />
+<delete file="release/all/tempfile_oktodelete" />
   </target>
 
   <!-- Like "release_all", except that the RPC code is split off into its own file. -->
-  <target name="release_all_separate_rpc" description="Re-builds the release/all_separate_rpc/ directory">
+<target description="Re-builds the release/all_separate_rpc/ directory" name="release_all_separate_rpc">
     <!-- OpenAjaxManagedHub-all-oaa.js -->
-    <concat destfile="release/all_separate_rpc/tempfile_oktodelete">
-      <filelist dir="src" files="OpenAjax-mashup.js"/>
-      <filelist dir="src/containers/inline" files="inline.js"/>
-      <filelist dir="src/containers/iframe" files="iframe.js"/>
-      <filelist dir="src/containers/iframe" files="crypto.js"/>
-      <filelist dir="src/containers/iframe" files="json2.js"/>
+<concat destfile="release/all_separate_rpc/tempfile_oktodelete">
+<filelist dir="src" files="OpenAjax-mashup.js" />
+<filelist dir="src/containers/inline" files="inline.js" />
+<filelist dir="src/containers/iframe" files="iframe.js" />
+<filelist dir="src/containers/iframe" files="crypto.js" />
+<filelist dir="src/containers/iframe" files="json2.js" />
       <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="\/\/[\ ]*REMOVE ON BUILD"/>
+<linecontainsregexp negate="true">
+<regexp pattern="\/\/[\ ]*REMOVE ON BUILD" />
         </linecontainsregexp>
       </filterchain>
     </concat>
-    <copyJsFile src="release/all_separate_rpc/tempfile_oktodelete" dest="release/all_separate_rpc/OpenAjaxManagedHub-all-oaa.js"/>
+<copyJsFile dest="release/all_separate_rpc/OpenAjaxManagedHub-all-oaa.js" src="release/all_separate_rpc/tempfile_oktodelete" />
     <!-- OpenAjaxManagedHub-rpc.js -->
-    <antcall target="release_rpc"/>
-    <copy todir="release/all_separate_rpc" file="release/OpenAjaxManagedHub-rpc.js"/>
+<antcall target="release_rpc" />
+<copy file="release/OpenAjaxManagedHub-rpc.js" todir="release/all_separate_rpc" />
     <!-- rpc_relay.html -->
-    <copy todir="release/all_separate_rpc" file="src/containers/iframe/rpc/rpc_relay.html"/>
-    <delete file="release/all_separate_rpc/tempfile_oktodelete"/>
-    <delete file="release/OpenAjaxManagedHub-rpc.js"/>
+<copy file="src/containers/iframe/rpc/rpc_relay.html" todir="release/all_separate_rpc" />
+<delete file="release/all_separate_rpc/tempfile_oktodelete" />
+<delete file="release/OpenAjaxManagedHub-rpc.js" />
   </target>
 
   <!-- Packages a "core" JS file consisting only of OpenAjax-mashup.js plus the inline container.
        The iframe container (everything under src/containers/iframe) is packaged in a separate file. -->
-  <target name="release_core" description="Re-builds the release/core/ directory">
+<target description="Re-builds the release/core/ directory" name="release_core">
     <!-- OpenAjaxManagedHub-core.js -->
-    <concat destfile="release/core/tempfile_oktodelete">
-      <filelist dir="src" files="OpenAjax-mashup.js"/>
-      <filelist dir="src/containers/inline" files="inline.js"/>
+<concat destfile="release/core/tempfile_oktodelete">
+<filelist dir="src" files="OpenAjax-mashup.js" />
+<filelist dir="src/containers/inline" files="inline.js" />
       <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="\/\/[\ ]*REMOVE ON BUILD"/>
+<linecontainsregexp negate="true">
+<regexp pattern="\/\/[\ ]*REMOVE ON BUILD" />
         </linecontainsregexp>
       </filterchain>
     </concat>
-    <copyJsFile src="release/core/tempfile_oktodelete" dest="release/core/OpenAjaxManagedHub-core.js"/>
+<copyJsFile dest="release/core/OpenAjaxManagedHub-core.js" src="release/core/tempfile_oktodelete" />
     <!-- OpenAjaxManagedHub-iframe.js -->
-    <concat destfile="release/core/tempfile_oktodelete">
-      <filelist dir="src/containers/iframe" files="iframe.js"/>
-      <filelist dir="src/containers/iframe" files="crypto.js"/>
-      <filelist dir="src/containers/iframe" files="json2.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rpc-dependencies.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="fe.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="ifpc.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="nix.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rmr.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="wpm.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rpc.js"/>
+<concat destfile="release/core/tempfile_oktodelete">
+<filelist dir="src/containers/iframe" files="iframe.js" />
+<filelist dir="src/containers/iframe" files="crypto.js" />
+<filelist dir="src/containers/iframe" files="json2.js" />
+<filelist dir="src/containers/iframe/rpc" files="rpc-dependencies.js" />
+<filelist dir="src/containers/iframe/rpc" files="fe.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="ifpc.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="nix.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="rmr.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="wpm.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="rpc.js" />
       <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="\/\/[\ ]*REMOVE ON BUILD"/>
+<linecontainsregexp negate="true">
+<regexp pattern="\/\/[\ ]*REMOVE ON BUILD" />
         </linecontainsregexp>
       </filterchain>
     </concat>
-    <copyJsFile src="release/core/tempfile_oktodelete" dest="release/core/OpenAjaxManagedHub-iframe.js"/>
+<copyJsFile dest="release/core/OpenAjaxManagedHub-iframe.js" src="release/core/tempfile_oktodelete" />
     <!-- rpc_relay.html -->
-    <copy todir="release/core" file="src/containers/iframe/rpc/rpc_relay.html"/>
-    <delete file="release/core/tempfile_oktodelete"/>
+<copy file="src/containers/iframe/rpc/rpc_relay.html" todir="release/core" />
+<delete file="release/core/tempfile_oktodelete" />
   </target>
 
   <!-- Like "release_core", except that the RPC code is split off from the "iframe" JS file.  -->
-  <target name="release_core_separate_rpc" description="Re-builds the release/core_separate_rpc/ directory">
+<target description="Re-builds the release/core_separate_rpc/ directory" name="release_core_separate_rpc">
     <!-- OpenAjaxManagedHub-core.js -->
-    <concat destfile="release/core_separate_rpc/tempfile_oktodelete">
-      <filelist dir="src" files="OpenAjax-mashup.js"/>
-      <filelist dir="src/containers/inline" files="inline.js"/>
+<concat destfile="release/core_separate_rpc/tempfile_oktodelete">
+<filelist dir="src" files="OpenAjax-mashup.js" />
+<filelist dir="src/containers/inline" files="inline.js" />
       <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="\/\/[\ ]*REMOVE ON BUILD"/>
+<linecontainsregexp negate="true">
+<regexp pattern="\/\/[\ ]*REMOVE ON BUILD" />
         </linecontainsregexp>
       </filterchain>
     </concat>
-    <copyJsFile src="release/core_separate_rpc/tempfile_oktodelete" dest="release/core_separate_rpc/OpenAjaxManagedHub-core.js"/>
+<copyJsFile dest="release/core_separate_rpc/OpenAjaxManagedHub-core.js" src="release/core_separate_rpc/tempfile_oktodelete" />
     <!-- OpenAjaxManagedHub-iframe-oaa.js -->
-    <concat destfile="release/core_separate_rpc/tempfile_oktodelete">
-      <filelist dir="src/containers/iframe" files="iframe.js"/>
-      <filelist dir="src/containers/iframe" files="crypto.js"/>
-      <filelist dir="src/containers/iframe" files="json2.js"/>
+<concat destfile="release/core_separate_rpc/tempfile_oktodelete">
+<filelist dir="src/containers/iframe" files="iframe.js" />
+<filelist dir="src/containers/iframe" files="crypto.js" />
+<filelist dir="src/containers/iframe" files="json2.js" />
       <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="\/\/[\ ]*REMOVE ON BUILD"/>
+<linecontainsregexp negate="true">
+<regexp pattern="\/\/[\ ]*REMOVE ON BUILD" />
         </linecontainsregexp>
       </filterchain>
     </concat>
-    <copyJsFile src="release/core_separate_rpc/tempfile_oktodelete" dest="release/core_separate_rpc/OpenAjaxManagedHub-iframe-oaa.js"/>
+<copyJsFile dest="release/core_separate_rpc/OpenAjaxManagedHub-iframe-oaa.js" src="release/core_separate_rpc/tempfile_oktodelete" />
     <!-- OpenAjaxManagedHub-rpc.js -->
-    <antcall target="release_rpc"/>
-    <copy todir="release/core_separate_rpc" file="release/OpenAjaxManagedHub-rpc.js"/>
+<antcall target="release_rpc" />
+<copy file="release/OpenAjaxManagedHub-rpc.js" todir="release/core_separate_rpc" />
     <!-- rpc_relay.html -->
-    <copy todir="release/core_separate_rpc" file="src/containers/iframe/rpc/rpc_relay.html"/>
-    <delete file="release/core_separate_rpc/tempfile_oktodelete"/>
-    <delete file="release/OpenAjaxManagedHub-rpc.js"/>
+<copy file="src/containers/iframe/rpc/rpc_relay.html" todir="release/core_separate_rpc" />
+<delete file="release/core_separate_rpc/tempfile_oktodelete" />
+<delete file="release/OpenAjaxManagedHub-rpc.js" />
   </target>
 
   <!-- Packages all RPC files into a single JS file -->
-  <target name="release_rpc" description="Re-builds the RPC single JS file">
-    <concat destfile="release/tempfile_oktodelete">
-      <filelist dir="src/containers/iframe/rpc" files="rpc-dependencies.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="fe.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="ifpc.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="nix.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rmr.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="wpm.transport.js"/>
-      <filelist dir="src/containers/iframe/rpc" files="rpc.js"/>
+<target description="Re-builds the RPC single JS file" name="release_rpc">
+<concat destfile="release/tempfile_oktodelete">
+<filelist dir="src/containers/iframe/rpc" files="rpc-dependencies.js" />
+<filelist dir="src/containers/iframe/rpc" files="fe.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="ifpc.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="nix.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="rmr.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="wpm.transport.js" />
+<filelist dir="src/containers/iframe/rpc" files="rpc.js" />
     </concat>
-    <copyJsFile src="release/tempfile_oktodelete" dest="release/OpenAjaxManagedHub-rpc.js"/>
-    <delete file="release/tempfile_oktodelete"/>
+<copyJsFile dest="release/OpenAjaxManagedHub-rpc.js" src="release/tempfile_oktodelete" />
+<delete file="release/tempfile_oktodelete" />
   </target>
 
   <!-- Re-builds the release/unmanagedhub/ directory from *.js files in src/ directory       -->
-  <target name="release_unmanagedhub" description="Re-builds the release/unmanagedhub/ directory">
-    <concat destfile="release/unmanagedhub/tempfile_oktodelete">
-      <filelist dir="src" files="OpenAjax.js"/>
+<target description="Re-builds the release/unmanagedhub/ directory" name="release_unmanagedhub">
+<concat destfile="release/unmanagedhub/tempfile_oktodelete">
+<filelist dir="src" files="OpenAjax.js" />
       <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="\/\/[\ ]*REMOVE ON BUILD"/>
+<linecontainsregexp negate="true">
+<regexp pattern="\/\/[\ ]*REMOVE ON BUILD" />
         </linecontainsregexp>
       </filterchain>
     </concat>
-    <copyJsFile src="release/unmanagedhub/tempfile_oktodelete" dest="release/unmanagedhub/OpenAjaxUnmanagedHub.js"/>
-    <delete file="release/unmanagedhub/tempfile_oktodelete"/>
+<copyJsFile dest="release/unmanagedhub/OpenAjaxUnmanagedHub.js" src="release/unmanagedhub/tempfile_oktodelete" />
+<delete file="release/unmanagedhub/tempfile_oktodelete" />
   </target>
 
-  <target name="help">
+<target name="help">
     <printhelp/>
   </target>
   
@@ -282,39 +282,39 @@ ant zip -DZIPDIRNAME=string
 
   <!-- Re-builds all images for the the release/ directory from *.js files in src/ directory       -->
   <!-- (Blame Ant for how difficult this is to follow)       -->
-  <target name="zip" depends="release,zip-true,zip-false"/>
-  <target name="ZIPDIRNAME_CHECK">
-    <condition property="ZIPDIRNAME_IS_SET">
-      <isset property="ZIPDIRNAME"/>
+<target depends="release,zip-true,zip-false" name="zip" />
+<target name="ZIPDIRNAME_CHECK">
+<condition property="ZIPDIRNAME_IS_SET">
+<isset property="ZIPDIRNAME" />
     </condition>
   </target>
-  <target name="zip-true" depends="ZIPDIRNAME_CHECK" if="ZIPDIRNAME_IS_SET">
-    <delete file="${ZIPDIRNAME}.zip" failonerror="false"/>
-    <delete dir="${ZIPDIRNAME}" failonerror="false"/>
-    <copy todir="${ZIPDIRNAME}/${ZIPDIRNAME}/src" preservelastmodified="true">
-      <fileset dir="src"/>
+<target depends="ZIPDIRNAME_CHECK" if="ZIPDIRNAME_IS_SET" name="zip-true">
+<delete failonerror="false" file="${ZIPDIRNAME}.zip" />
+<delete dir="${ZIPDIRNAME}" failonerror="false" />
+<copy preservelastmodified="true" todir="${ZIPDIRNAME}/${ZIPDIRNAME}/src">
+<fileset dir="src" />
     </copy>
-    <copy todir="${ZIPDIRNAME}/${ZIPDIRNAME}/release" preservelastmodified="true">
-      <fileset dir="release"/>
+<copy preservelastmodified="true" todir="${ZIPDIRNAME}/${ZIPDIRNAME}/release">
+<fileset dir="release" />
     </copy>
-    <copy todir="${ZIPDIRNAME}/${ZIPDIRNAME}/testsrc" preservelastmodified="true">
-      <fileset dir="testsrc"/>
+<copy preservelastmodified="true" todir="${ZIPDIRNAME}/${ZIPDIRNAME}/testsrc">
+<fileset dir="testsrc" />
     </copy>
-    <copy todir="${ZIPDIRNAME}/${ZIPDIRNAME}" file="build.xml"/>
-    <zip destfile="${ZIPDIRNAME}.zip">
-      <fileset dir="${ZIPDIRNAME}"/>
+<copy file="build.xml" todir="${ZIPDIRNAME}/${ZIPDIRNAME}" />
+<zip destfile="${ZIPDIRNAME}.zip">
+<fileset dir="${ZIPDIRNAME}" />
     </zip>
   </target>
-  <target name="zip-false" depends="ZIPDIRNAME_CHECK" unless="ZIPDIRNAME_IS_SET">
+<target depends="ZIPDIRNAME_CHECK" name="zip-false" unless="ZIPDIRNAME_IS_SET">
     <printhelp/>
-    <echo message=""/>
-    <fail message="You must specify -DZIPDIRNAME=whatever when using 'ant zip' command'"/>
+<echo message="" />
+<fail message="You must specify -DZIPDIRNAME=whatever when using 'ant zip' command'" />
   </target>
 
   <!-- Runs all JSUnit tests. The standalone_test is defined in the imported -->
   <!-- ./jsunit/build.xml that came with jsunit.-->
   <!-- NOTE: To run JSUnit tests, you need to download and install JSUnit-->
-  <target name="tests" description="Runs automated tests" depends="release">
-    <antcall target="standalone_test"/>
+<target depends="release" description="Runs automated tests" name="tests">
+<antcall target="standalone_test" />
   </target>
 </project>

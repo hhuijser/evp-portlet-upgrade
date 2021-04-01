@@ -20,13 +20,13 @@
 <Module>
   <ModulePrefs title="My App Test"
                author_email="yizi.wu@gmail.com" height="500">
-    <Require feature="opensocial-0.9"/>
-    <Require feature="dynamic-height"/>
-    <Require feature="settitle"/>
-    <Require feature="views"/>
-    <Require feature="rpc"/>
+<Require feature="opensocial-0.9" />
+<Require feature="dynamic-height" />
+<Require feature="settitle" />
+<Require feature="views" />
+<Require feature="rpc" />
   </ModulePrefs>
-  <Content type="html">
+<Content type="html">
     <![CDATA[
       <style>
         #main {font-size:13px;}
@@ -178,5 +178,3 @@
      ]]>
   </Content>
 </Module>
-
-

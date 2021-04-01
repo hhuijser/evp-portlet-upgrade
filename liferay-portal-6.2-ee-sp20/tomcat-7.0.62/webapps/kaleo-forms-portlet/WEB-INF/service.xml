@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.liferay.portal.workflow.kaleo.forms" auto-namespace-tables="false">
+<service-builder auto-namespace-tables="false" package-path="com.liferay.portal.workflow.kaleo.forms">
 	<author>Marcellus Tavares</author>
 	<namespace>KaleoForms</namespace>
-	<entity name="KaleoProcess" local-service="true" remote-service="true">
+	<entity local-service="true" name="KaleoProcess" remote-service="true">
 		<!-- PK fields -->
-		<column name="kaleoProcessId" type="long" primary="true"></column>
+		<column name="kaleoProcessId" primary="true" type="long"></column>
 		<!-- Group instance -->
 		<column name="groupId" type="long"></column>
 		<!-- Audit fields -->
@@ -28,14 +28,14 @@
 			<finder-column name="DDLRecordSetId"></finder-column>
 		</finder>
 		<!-- References -->
-		<reference package-path="com.liferay.portal" entity="WorkflowDefinitionLink"></reference>
-		<reference package-path="com.liferay.portal" entity="WorkflowInstanceLink"></reference>
-		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecord"></reference>
-		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecordSet"></reference>
+		<reference entity="WorkflowDefinitionLink" package-path="com.liferay.portal"></reference>
+		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal"></reference>
+		<reference entity="DDLRecord" package-path="com.liferay.portlet.dynamicdatalists"></reference>
+		<reference entity="DDLRecordSet" package-path="com.liferay.portlet.dynamicdatalists"></reference>
 	</entity>
-	<entity name="KaleoProcessLink" local-service="true" remote-service="false">
+	<entity local-service="true" name="KaleoProcessLink" remote-service="false">
 		<!-- PK fields -->
-		<column name="kaleoProcessLinkId" type="long" primary="true"></column>
+		<column name="kaleoProcessLinkId" primary="true" type="long"></column>
 		<!-- Other fields -->
 		<column name="kaleoProcessId" type="long"></column>
 		<column name="workflowTaskName" type="String"></column>

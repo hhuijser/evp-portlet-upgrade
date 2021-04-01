@@ -22,8 +22,8 @@
 <head>
 <title>Sample: Simple Container</title>
 <!-- default container look and feel -->
-<link rel="stylesheet" href="gadgets.css" />
-<script type="text/javascript" src="../gadgets/js/shindig-container:rpc.js?c=1&debug=1&nocache=1"></script>
+<link href="gadgets.css" rel="stylesheet" />
+<script src="../gadgets/js/shindig-container:rpc.js?c=1&debug=1&nocache=1" type="text/javascript"></script>
 <script type="text/javascript">
 var specUrl0 = 'http://www.google.com/ig/modules/horoscope.xml';
 var specUrl1 = 'http://www.labpixies.com/campaigns/todo/todo.xml';
@@ -47,7 +47,7 @@ shindig.container.renderGadget(gadget1);
 
 <body onLoad="renderGadgets();">
 <h2>Sample: Simple Container</h2>
-<div id="gadget-chrome-x" class="gadgets-gadget-chrome"></div>
-<div id="gadget-chrome-y" class="gadgets-gadget-chrome"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-x"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-y"></div>
 </body>
 </html>

@@ -88,20 +88,20 @@
 	<body>
 		<p>Main application</p>
 
-		<input type="button" onclick="init(false)" value="initialize and connect" />
-		<input type="button" onclick="init(true)" value="initialize and connect using crypto random" />
-		<input type="button" onclick="checkIsConnected()" value="check if clients connected" />
+		<input onclick="init(false)" type="button" value="initialize and connect" />
+		<input onclick="init(true)" type="button" value="initialize and connect using crypto random" />
+		<input onclick="checkIsConnected()" type="button" value="check if clients connected" />
 		topic <input type="text" size=20 id="t2" value="abc" />
 		clientName <input type="text" size=20 id="cn2" value="c1" />
 		subId <input type="text" size=20 id="si2" value="0" />
 
-		<input type="button" onclick="sendMessage()" value="sendMessage" />
+		<input onclick="sendMessage()" type="button" value="sendMessage" />
 
-		<input type="button" onclick="unload()" value="unload clients" />
+		<input onclick="unload()" type="button" value="unload clients" />
 
 		<br /><br />
 
-		<div style="width: 500px; height: 200px; border-style: solid;" id="c1" src="http://c1.foo.bar.com/hub11/trunk/providers/test/smash/component_1.html"></div>
-		<div style="width: 500px; height: 200px; border-style: solid;" id="c2" src="http://c2.foo.bar.com/hub11/trunk/providers/test/smash/component_2.html"></div>
+		<div id="c1" src="http://c1.foo.bar.com/hub11/trunk/providers/test/smash/component_1.html" style="width: 500px; height: 200px; border-style: solid;"></div>
+		<div id="c2" src="http://c2.foo.bar.com/hub11/trunk/providers/test/smash/component_2.html" style="width: 500px; height: 200px; border-style: solid;"></div>
 	</body>
 </html>
