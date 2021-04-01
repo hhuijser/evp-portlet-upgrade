@@ -66,7 +66,7 @@ if (Validator.isNull(mainLanguageValue)) {
 
 String fieldSuffix = StringPool.BLANK;
 
-if (!Validator.isNull(languageId)) {
+if (Validator.isNotNull(languageId)) {
 	fieldSuffix = StringPool.UNDERLINE + mainLanguageId;
 }
 
@@ -95,13 +95,13 @@ if ((exception != null) && fieldName.equals(focusField)) {
 		<c:when test='<%= type.equals("editor") %>'>
 			<liferay-ui:input-editor
 				contentsLanguageId="<%= languageId %>"
-				cssClass='<%= \"language-value \" + cssClass %>'
+				cssClass='<%= "language-value " + cssClass %>'
 				editorImpl="ckeditor"
-				initMethod='<%= randomNamespace + \"InitEditor\" %>'
+				initMethod='<%= randomNamespace + "InitEditor" %>'
 				name="<%= fieldName %>"
-				onBlurMethod='<%= randomNamespace + \"OnBlurEditor\" %>'
-				onChangeMethod='<%= randomNamespace + \"OnChangeEditor\" %>'
-				onFocusMethod='<%= randomNamespace + \"OnFocusEditor\" %>'
+				onBlurMethod='<%= randomNamespace + "OnBlurEditor" %>'
+				onChangeMethod='<%= randomNamespace + "OnChangeEditor" %>'
+				onFocusMethod='<%= randomNamespace + "OnFocusEditor" %>'
 				toolbarSet="simple"
 			/>
 
