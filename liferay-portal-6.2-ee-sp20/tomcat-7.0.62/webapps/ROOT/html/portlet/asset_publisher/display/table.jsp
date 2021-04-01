@@ -124,7 +124,7 @@ request.setAttribute("view.jsp-showIconLabel", false);
 			value = String.valueOf(assetEntry.getViewCount());
 		}
 		else if (metadataFields[m].equals("categories")) {
-		%>
+	%>
 
 			<td class="table-cell">
 				<liferay-ui:asset-categories-summary
@@ -151,7 +151,7 @@ request.setAttribute("view.jsp-showIconLabel", false);
 		}
 
 		if (value != null) {
-	%>
+		%>
 
 			<td class="table-cell">
 				<liferay-ui:message key="<%= value %>" />

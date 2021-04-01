@@ -474,9 +474,9 @@ ArticleSearch searchContainer = new ArticleSearch(liferayPortletRequest, entryEn
 	</c:when>
 	<c:when test="<%= searchType == JournalSearchConstants.FRAGMENT %>">
 		<div class="aa">
-		<div id="<portlet:namespace />fragmentSearchResults">
-			<%= searchResults %>
-		</div>
+			<div id="<portlet:namespace />fragmentSearchResults">
+				<%= searchResults %>
+			</div>
 		</div>
 	</c:when>
 </c:choose>

@@ -47,63 +47,63 @@ catch (Exception e) {
 
 <form action="<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/password_generator/view" /></liferay-portlet:renderURL>" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="numbers" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />numbers">
-			<option <%= numbers ? "selected" : "" %> value="1"><liferay-ui:message key="yes" /></option>
-			<option <%= !numbers ? "selected" : "" %> value="0"><liferay-ui:message key="no" /></option>
-		</select>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="lower-case-letters" />
-	</td>
-	<td>
-		<liferay-ui:input-checkbox defaultValue="<%= lowerCaseLetters %>" param="lowerCaseLetters" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="upper-case-letters" />
-	</td>
-	<td>
-		<liferay-ui:input-checkbox defaultValue="<%= upperCaseLetters %>" param="upperCaseLetters" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="length" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />length">
+	<table class="lfr-table">
+		<tr>
+			<td>
+				<liferay-ui:message key="numbers" />
+			</td>
+			<td>
+				<select name="<portlet:namespace />numbers">
+					<option <%= numbers ? "selected" : "" %> value="1"><liferay-ui:message key="yes" /></option>
+					<option <%= !numbers ? "selected" : "" %> value="0"><liferay-ui:message key="no" /></option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="lower-case-letters" />
+			</td>
+			<td>
+				<liferay-ui:input-checkbox defaultValue="<%= lowerCaseLetters %>" param="lowerCaseLetters" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="upper-case-letters" />
+			</td>
+			<td>
+				<liferay-ui:input-checkbox defaultValue="<%= upperCaseLetters %>" param="upperCaseLetters" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="length" />
+			</td>
+			<td>
+				<select name="<portlet:namespace />length">
 
-			<%
-			for (int i = 4; i <= 16; i++) {
-			%>
+					<%
+					for (int i = 4; i <= 16; i++) {
+					%>
 
-				<option <%= (i == length) ? "selected" : "" %> value="<%= i %>"><%= i %></option>
+						<option <%= (i == length) ? "selected" : "" %> value="<%= i %>"><%= i %></option>
 
-			<%
-			}
-			%>
+					<%
+					}
+					%>
 
-		</select>
-	</td>
-</tr>
-</table>
+				</select>
+			</td>
+		</tr>
+	</table>
 
-<br />
+	<br />
 
-<strong><%= newPassword %></strong>
+	<strong><%= newPassword %></strong>
 
-<br /><br />
+	<br /><br />
 
-<input type="submit" value="<liferay-ui:message key="generate" />" />
+	<input type="submit" value="<liferay-ui:message key="generate" />" />
 
 </form>
 

@@ -129,9 +129,9 @@ long classPK = ParamUtil.getLong(request, "classPK");
 
 					</aui:nav-item>
 
-					<%
-					}
-					%>
+				<%
+				}
+				%>
 
 			</c:otherwise>
 		</c:choose>

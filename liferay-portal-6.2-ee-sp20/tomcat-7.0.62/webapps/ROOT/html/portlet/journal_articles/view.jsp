@@ -219,7 +219,7 @@ double version = ParamUtil.getDouble(request, "version");
 					expired = true;
 				}
 			}
-			%>
+		%>
 
 			<c:choose>
 				<c:when test="<%= (articleDisplay != null) && !expired %>">
@@ -276,9 +276,9 @@ double version = ParamUtil.getDouble(request, "version");
 				</c:otherwise>
 			</c:choose>
 
-		<%
-		} catch (NoSuchArticleException nsae) {
-		%>
+			<%
+			} catch (NoSuchArticleException nsae) {
+			%>
 
 			<div class="alert alert-error">
 				<%= LanguageUtil.get(pageContext, "the-selected-web-content-no-longer-exists") %>

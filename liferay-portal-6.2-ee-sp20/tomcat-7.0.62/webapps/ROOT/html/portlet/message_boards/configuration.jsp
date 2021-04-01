@@ -344,169 +344,169 @@ String emailSignature = PrefsParamUtil.getString(portletPreferences, request, em
 			<br /><br />
 
 			<table class="lfr-table">
-			<tr>
-				<td>
-					<aui:input name="defaultLanguage" type="resource" value="<%= defaultLocale.getDisplayName(defaultLocale) %>" />
-				</td>
-				<td>
-					<aui:select label="localized-language" name="languageId" onClick='<%= renderResponse.getNamespace() + "updateLanguage();" %>' showEmptyOption="<%= true %>">
+				<tr>
+					<td>
+						<aui:input name="defaultLanguage" type="resource" value="<%= defaultLocale.getDisplayName(defaultLocale) %>" />
+					</td>
+					<td>
+						<aui:select label="localized-language" name="languageId" onClick='<%= renderResponse.getNamespace() + "updateLanguage();" %>' showEmptyOption="<%= true %>">
+
+							<%
+							for (int i = 0; i < locales.length; i++) {
+								if (locales[i].equals(defaultLocale)) {
+									continue;
+								}
+							%>
+
+								<aui:option label="<%= locales[i].getDisplayName(locale) %>" selected="<%= currentLanguageId.equals(LocaleUtil.toLanguageId(locales[i])) %>" value="<%= LocaleUtil.toLanguageId(locales[i]) %>" />
+
+							<%
+							}
+							%>
+
+						</aui:select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table class="lfr-table">
+							<tr>
+								<td class="lfr-label">
+									<liferay-ui:message key="name" />
+								</td>
+								<td class="lfr-label">
+									<liferay-ui:message key="image" />
+								</td>
+								<td class="lfr-label">
+									<liferay-ui:message key="priority" />
+								</td>
+							</tr>
+
+							<%
+							priorities = LocalizationUtil.getPreferencesValues(portletPreferences, "priorities", defaultLanguageId);
+
+							for (int i = 0; i < 10; i++) {
+								String name = StringPool.BLANK;
+								String image = StringPool.BLANK;
+								String value = StringPool.BLANK;
+
+								if (priorities.length > i) {
+									String[] priority = StringUtil.split(priorities[i]);
+
+									try {
+										name = priority[0];
+										image = priority[1];
+										value = priority[2];
+									}
+									catch (Exception e) {
+									}
+
+									if (Validator.isNull(name) && Validator.isNull(image)) {
+										value = StringPool.BLANK;
+									}
+								}
+							%>
+
+								<tr>
+									<td>
+										<aui:input label="" name='<%= "priorityName" + i + "_" + defaultLanguageId %>' size="15" title="priority-name" value="<%= name %>" />
+									</td>
+									<td>
+										<aui:input label="" name='<%= "priorityImage" + i + "_" + defaultLanguageId %>' size="40" title="priority-image" value="<%= image %>" />
+									</td>
+									<td>
+										<aui:input label="" name='<%= "priorityValue" + i + "_" + defaultLanguageId %>' size="4" title="priority-value" value="<%= value %>" />
+									</td>
+								</tr>
+
+							<%
+							}
+							%>
+
+						</table>
+					</td>
+					<td>
+						<table class='<%= (currentLocale.equals(defaultLocale) ? "hide" : "") + " lfr-table" %>' id="<portlet:namespace />localized-priorities-table">
+							<tr>
+								<td class="lfr-label">
+									<liferay-ui:message key="name" />
+								</td>
+								<td class="lfr-label">
+									<liferay-ui:message key="image" />
+								</td>
+								<td class="lfr-label">
+									<liferay-ui:message key="priority" />
+								</td>
+							</tr>
+
+							<%
+							for (int i = 0; i < 10; i++) {
+							%>
+
+								<tr>
+									<td>
+										<aui:input label="" name='<%= "priorityName" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onChanged();" %>' size="15" title="priority-name" />
+									</td>
+									<td>
+										<aui:input label="" name='<%= "priorityImage" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onChanged();" %>' size="40" title="priority-image" />
+									</td>
+									<td>
+										<aui:input label="" name='<%= "priorityValue" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onChanged();" %>' size="4" title="priority-value" />
+									</td>
+								</tr>
+
+							<%
+							}
+							%>
+
+						</table>
 
 						<%
 						for (int i = 0; i < locales.length; i++) {
 							if (locales[i].equals(defaultLocale)) {
 								continue;
 							}
+
+							String[] tempPriorities = LocalizationUtil.getPreferencesValues(portletPreferences, "priorities", LocaleUtil.toLanguageId(locales[i]));
+
+							for (int j = 0; j < 10; j++) {
+								String name = StringPool.BLANK;
+								String image = StringPool.BLANK;
+								String value = StringPool.BLANK;
+
+								if (tempPriorities.length > j) {
+									String[] priority = StringUtil.split(tempPriorities[j]);
+
+									try {
+										name = priority[0];
+										image = priority[1];
+										value = priority[2];
+									}
+									catch (Exception e) {
+									}
+
+									if (Validator.isNull(name) && Validator.isNull(image)) {
+										value = StringPool.BLANK;
+									}
+								}
 						%>
 
-							<aui:option label="<%= locales[i].getDisplayName(locale) %>" selected="<%= currentLanguageId.equals(LocaleUtil.toLanguageId(locales[i])) %>" value="<%= LocaleUtil.toLanguageId(locales[i]) %>" />
+								<aui:input name='<%= "priorityName" + j + "_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value="<%= name %>" />
+								<aui:input name='<%= "priorityImage" + j + "_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value="<%= image %>" />
+								<aui:input name='<%= "priorityValue" + j + "_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value="<%= value %>" />
 
 						<%
+							}
 						}
 						%>
 
-					</aui:select>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<br />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<table class="lfr-table">
-					<tr>
-						<td class="lfr-label">
-							<liferay-ui:message key="name" />
-						</td>
-						<td class="lfr-label">
-							<liferay-ui:message key="image" />
-						</td>
-						<td class="lfr-label">
-							<liferay-ui:message key="priority" />
-						</td>
-					</tr>
-
-					<%
-					priorities = LocalizationUtil.getPreferencesValues(portletPreferences, "priorities", defaultLanguageId);
-
-					for (int i = 0; i < 10; i++) {
-						String name = StringPool.BLANK;
-						String image = StringPool.BLANK;
-						String value = StringPool.BLANK;
-
-						if (priorities.length > i) {
-							String[] priority = StringUtil.split(priorities[i]);
-
-							try {
-								name = priority[0];
-								image = priority[1];
-								value = priority[2];
-							}
-							catch (Exception e) {
-							}
-
-							if (Validator.isNull(name) && Validator.isNull(image)) {
-								value = StringPool.BLANK;
-							}
-						}
-					%>
-
-						<tr>
-							<td>
-								<aui:input label="" name='<%= "priorityName" + i + "_" + defaultLanguageId %>' size="15" title="priority-name" value="<%= name %>" />
-							</td>
-							<td>
-								<aui:input label="" name='<%= "priorityImage" + i + "_" + defaultLanguageId %>' size="40" title="priority-image" value="<%= image %>" />
-							</td>
-							<td>
-								<aui:input label="" name='<%= "priorityValue" + i + "_" + defaultLanguageId %>' size="4" title="priority-value" value="<%= value %>" />
-							</td>
-						</tr>
-
-					<%
-					}
-					%>
-
-					</table>
-				</td>
-				<td>
-					<table class='<%= (currentLocale.equals(defaultLocale) ? "hide" : "") + " lfr-table" %>' id="<portlet:namespace />localized-priorities-table">
-					<tr>
-						<td class="lfr-label">
-							<liferay-ui:message key="name" />
-						</td>
-						<td class="lfr-label">
-							<liferay-ui:message key="image" />
-						</td>
-						<td class="lfr-label">
-							<liferay-ui:message key="priority" />
-						</td>
-					</tr>
-
-					<%
-					for (int i = 0; i < 10; i++) {
-					%>
-
-						<tr>
-							<td>
-								<aui:input label="" name='<%= "priorityName" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onChanged();" %>' size="15" title="priority-name" />
-							</td>
-							<td>
-								<aui:input label="" name='<%= "priorityImage" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onChanged();" %>' size="40" title="priority-image" />
-							</td>
-							<td>
-								<aui:input label="" name='<%= "priorityValue" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onChanged();" %>' size="4" title="priority-value" />
-							</td>
-						</tr>
-
-					<%
-					}
-					%>
-
-					</table>
-
-					<%
-					for (int i = 0; i < locales.length; i++) {
-						if (locales[i].equals(defaultLocale)) {
-							continue;
-						}
-
-						String[] tempPriorities = LocalizationUtil.getPreferencesValues(portletPreferences, "priorities", LocaleUtil.toLanguageId(locales[i]));
-
-						for (int j = 0; j < 10; j++) {
-							String name = StringPool.BLANK;
-							String image = StringPool.BLANK;
-							String value = StringPool.BLANK;
-
-							if (tempPriorities.length > j) {
-								String[] priority = StringUtil.split(tempPriorities[j]);
-
-								try {
-									name = priority[0];
-									image = priority[1];
-									value = priority[2];
-								}
-								catch (Exception e) {
-								}
-
-								if (Validator.isNull(name) && Validator.isNull(image)) {
-									value = StringPool.BLANK;
-								}
-							}
-					%>
-
-							<aui:input name='<%= "priorityName" + j + "_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value="<%= name %>" />
-							<aui:input name='<%= "priorityImage" + j + "_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value="<%= image %>" />
-							<aui:input name='<%= "priorityValue" + j + "_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value="<%= value %>" />
-
-					<%
-						}
-					}
-					%>
-
-				</td>
-			</tr>
+					</td>
+				</tr>
 			</table>
 
 			<br />
@@ -598,12 +598,34 @@ String emailSignature = PrefsParamUtil.getString(portletPreferences, request, em
 
 			<aui:fieldset>
 				<table class="lfr-table">
-				<tr>
-					<td class="lfr-label">
-						<aui:input name="defaultLanguage" type="resource" value="<%= defaultLocale.getDisplayName(defaultLocale) %>" />
-					</td>
-					<td class="lfr-label">
-						<aui:select label="localized-language" name="languageId" onChange='<%= renderResponse.getNamespace() + "updateLanguage();" %>' showEmptyOption="<%= true %>">
+					<tr>
+						<td class="lfr-label">
+							<aui:input name="defaultLanguage" type="resource" value="<%= defaultLocale.getDisplayName(defaultLocale) %>" />
+						</td>
+						<td class="lfr-label">
+							<aui:select label="localized-language" name="languageId" onChange='<%= renderResponse.getNamespace() + "updateLanguage();" %>' showEmptyOption="<%= true %>">
+
+								<%
+								for (int i = 0; i < locales.length; i++) {
+									if (locales[i].equals(defaultLocale)) {
+										continue;
+									}
+								%>
+
+									<aui:option label="<%= locales[i].getDisplayName(locale) %>" selected="<%= currentLanguageId.equals(LocaleUtil.toLanguageId(locales[i])) %>" value="<%= LocaleUtil.toLanguageId(locales[i]) %>" />
+
+								<%
+								}
+								%>
+
+							</aui:select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<aui:input cssClass="lfr-textarea-container" label="" name='<%= "ranks_" + defaultLanguageId %>' title="ranks" type="textarea" value='<%= StringUtil.merge(LocalizationUtil.getPreferencesValues(portletPreferences, "ranks", defaultLanguageId), StringPool.NEW_LINE) %>' />
+						</td>
+						<td>
 
 							<%
 							for (int i = 0; i < locales.length; i++) {
@@ -612,37 +634,15 @@ String emailSignature = PrefsParamUtil.getString(portletPreferences, request, em
 								}
 							%>
 
-								<aui:option label="<%= locales[i].getDisplayName(locale) %>" selected="<%= currentLanguageId.equals(LocaleUtil.toLanguageId(locales[i])) %>" value="<%= LocaleUtil.toLanguageId(locales[i]) %>" />
+								<aui:input name='<%= "ranks_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value='<%= StringUtil.merge(LocalizationUtil.getPreferencesValues(portletPreferences, "ranks", LocaleUtil.toLanguageId(locales[i]), false), StringPool.NEW_LINE) %>' />
 
 							<%
 							}
 							%>
 
-						</aui:select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<aui:input cssClass="lfr-textarea-container" label="" name='<%= "ranks_" + defaultLanguageId %>' title="ranks" type="textarea" value='<%= StringUtil.merge(LocalizationUtil.getPreferencesValues(portletPreferences, "ranks", defaultLanguageId), StringPool.NEW_LINE) %>' />
-					</td>
-					<td>
-
-						<%
-						for (int i = 0; i < locales.length; i++) {
-							if (locales[i].equals(defaultLocale)) {
-								continue;
-							}
-						%>
-
-							<aui:input name='<%= "ranks_" + LocaleUtil.toLanguageId(locales[i]) %>' type="hidden" value='<%= StringUtil.merge(LocalizationUtil.getPreferencesValues(portletPreferences, "ranks", LocaleUtil.toLanguageId(locales[i]), false), StringPool.NEW_LINE) %>' />
-
-						<%
-						}
-						%>
-
-						<aui:input cssClass="lfr-textarea-container" label="" name="ranks_temp" onChange='<%= renderResponse.getNamespace() + "onRanksChanged();" %>' title="ranks" type="textarea" />
-					</td>
-				</tr>
+							<aui:input cssClass="lfr-textarea-container" label="" name="ranks_temp" onChange='<%= renderResponse.getNamespace() + "onRanksChanged();" %>' title="ranks" type="textarea" />
+						</td>
+					</tr>
 				</table>
 			</aui:fieldset>
 

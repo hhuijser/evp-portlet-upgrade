@@ -18,13 +18,13 @@
 
 <form name="<portlet:namespace />fm" onSubmit="window.open(document.<portlet:namespace />fm.<portlet:namespace />type[document.<portlet:namespace />fm.<portlet:namespace />type.selectedIndex].value + encodeURIComponent(document.<portlet:namespace />fm.<portlet:namespace />word.value)); return false;">
 
-<input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="<portlet:namespace />word" size="30" type="text" />
+	<input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="<portlet:namespace />word" size="30" type="text" />
 
-<select name="<portlet:namespace />type">
-	<option value="http://dictionary.reference.com/search?q="><liferay-ui:message key="dictionary" /></option>
-	<option value="http://thesaurus.reference.com/search?q="><liferay-ui:message key="thesaurus" /></option>
-</select>
+	<select name="<portlet:namespace />type">
+		<option value="http://dictionary.reference.com/search?q="><liferay-ui:message key="dictionary" /></option>
+		<option value="http://thesaurus.reference.com/search?q="><liferay-ui:message key="thesaurus" /></option>
+	</select>
 
-<input type="submit" value="<liferay-ui:message key="find" />" />
+	<input type="submit" value="<liferay-ui:message key="find" />" />
 
 </form>
