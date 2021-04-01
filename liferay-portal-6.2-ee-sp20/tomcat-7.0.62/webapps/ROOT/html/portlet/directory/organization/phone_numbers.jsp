@@ -33,7 +33,7 @@ if (classPK > 0) {
 	<ul class="property-list">
 
 	<%
-	for (Phone phone: phones) {
+	for (Phone phone : phones) {
 	%>
 
 		<li class="<%= phone.isPrimary() ? "primary" : "" %>">
