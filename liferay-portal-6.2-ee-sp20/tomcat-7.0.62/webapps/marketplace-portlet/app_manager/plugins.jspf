@@ -57,7 +57,7 @@
 								<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">
 									<portlet:param name="pluginId" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_LAYOUT_TEMPLATE %>" />
-									<portlet:param name="active" value="<%= String.valueOf(false) %>" />
+									<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
 								</liferay-portlet:actionURL>
 
 								<a class="btn btn-mini btn-success deactivate" href="<%= deactivateURL %>"><liferay-ui:message key="active" /></a>
@@ -66,7 +66,7 @@
 								<liferay-portlet:actionURL name="updatePluginSetting" var="activateURL">
 									<portlet:param name="pluginId" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_LAYOUT_TEMPLATE %>" />
-									<portlet:param name="active" value="<%= String.valueOf(true) %>" />
+									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
 								</liferay-portlet:actionURL>
 
 								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
@@ -147,7 +147,7 @@
 								<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">
 									<portlet:param name="pluginId" value="<%= portlet.getPortletId() %>" />
 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_PORTLET %>" />
-									<portlet:param name="active" value="<%= String.valueOf(false) %>" />
+									<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
 								</liferay-portlet:actionURL>
 
 								<a class="btn btn-mini btn-success deactivate" href="<%= deactivateURL %>"><liferay-ui:message key="active" /></a>
@@ -156,7 +156,7 @@
 								<liferay-portlet:actionURL name="updatePluginSetting" var="activateURL">
 									<portlet:param name="pluginId" value="<%= portlet.getPortletId() %>" />
 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_PORTLET %>" />
-									<portlet:param name="active" value="<%= String.valueOf(true) %>" />
+									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
 								</liferay-portlet:actionURL>
 
 								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
@@ -189,7 +189,7 @@
 								<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">
 									<portlet:param name="pluginId" value="<%= curTheme.getThemeId() %>" />
 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_THEME %>" />
-									<portlet:param name="active" value="<%= String.valueOf(false) %>" />
+									<portlet:param name="active" value="<%= Boolean.FALSE.toString() %>" />
 								</liferay-portlet:actionURL>
 
 								<a class="btn btn-mini btn-success deactivate" href="<%= deactivateURL %>"><liferay-ui:message key="active" /></a>
@@ -198,7 +198,7 @@
 								<liferay-portlet:actionURL name="updatePluginSetting" var="activateURL">
 									<portlet:param name="pluginId" value="<%= curTheme.getThemeId() %>" />
 									<portlet:param name="pluginType" value="<%= Plugin.TYPE_THEME %>" />
-									<portlet:param name="active" value="<%= String.valueOf(true) %>" />
+									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
 								</liferay-portlet:actionURL>
 
 								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>

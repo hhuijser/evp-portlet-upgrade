@@ -149,7 +149,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 				<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
 
-				<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
+				<liferay-util:param name="readOnly" value="<%= Boolean.FALSE.toString() %>" />
 
 				<liferay-security:permissionsURL
 					modelResource="<%= CalendarBooking.class.getName() %>"
