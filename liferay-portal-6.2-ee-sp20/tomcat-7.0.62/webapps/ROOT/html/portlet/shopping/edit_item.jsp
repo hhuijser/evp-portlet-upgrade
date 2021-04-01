@@ -193,60 +193,60 @@ int priceId = ParamUtil.getInteger(request, "priceId", -1);
 
 			<table class="lfr-table">
 
-			<%
-			for (int i = 0; i < fieldsCount; i++) {
-				int curFieldId = i;
+				<%
+				for (int i = 0; i < fieldsCount; i++) {
+					int curFieldId = i;
 
-				if ((fieldId > -1) && (i >= fieldId)) {
-					curFieldId++;
-				}
-
-				String fieldName = ParamUtil.getString(request, "fieldName" + curFieldId);
-				String fieldNameParam = request.getParameter("fieldName" + curFieldId);
-				if ((fieldNameParam == null) || fieldNameParam.equals(StringPool.NULL)) {
-					if (itemFields[curFieldId] != null) {
-						fieldName = itemFields[curFieldId].getName();
+					if ((fieldId > -1) && (i >= fieldId)) {
+						curFieldId++;
 					}
-				}
 
-				String[] fieldValues = StringUtil.split(ParamUtil.getString(request, "fieldValues" + curFieldId));
-				String fieldValuesParam = request.getParameter("fieldValues" + curFieldId);
-				if ((fieldValuesParam == null) || fieldValuesParam.equals(StringPool.NULL)) {
-					if (itemFields[curFieldId] != null) {
-						fieldValues = itemFields[curFieldId].getValuesArray();
+					String fieldName = ParamUtil.getString(request, "fieldName" + curFieldId);
+					String fieldNameParam = request.getParameter("fieldName" + curFieldId);
+					if ((fieldNameParam == null) || fieldNameParam.equals(StringPool.NULL)) {
+						if (itemFields[curFieldId] != null) {
+							fieldName = itemFields[curFieldId].getName();
+						}
 					}
-				}
 
-				String fieldDescription = ParamUtil.getString(request, "fieldDescription" + curFieldId);
-				String fieldDescriptionParam = request.getParameter("fieldDescription" + curFieldId);
-				if ((fieldDescriptionParam == null) || fieldDescriptionParam.equals(StringPool.NULL)) {
-					if (itemFields[curFieldId] != null) {
-						fieldDescription = itemFields[curFieldId].getDescription();
+					String[] fieldValues = StringUtil.split(ParamUtil.getString(request, "fieldValues" + curFieldId));
+					String fieldValuesParam = request.getParameter("fieldValues" + curFieldId);
+					if ((fieldValuesParam == null) || fieldValuesParam.equals(StringPool.NULL)) {
+						if (itemFields[curFieldId] != null) {
+							fieldValues = itemFields[curFieldId].getValuesArray();
+						}
 					}
-				}
-			%>
 
-				<tr>
-					<td>
-						<aui:input cssClass="lfr-input-text-container" ignoreRequestValue="<%= true %>" label="name" maxlength="<%= ModelHintsConstants.TEXT_MAX_LENGTH %>" name='<%= "fieldName" + i %>' style="width: 100px;" type="text" value="<%= fieldName %>" />
-					</td>
-					<td>
-						<aui:input cssClass="lfr-input-text-container" ignoreRequestValue="<%= true %>" label="values" name='<%= "fieldValues" + i %>' style="width: 100px;" type="text" value='<%= StringUtil.merge(fieldValues, ", ") %>' />
-					</td>
-					<td>
-						<aui:input cssClass="lfr-input-text-container" ignoreRequestValue="<%= true %>" label="description" name='<%= "fieldDescription" + i %>' style="width: 150px;" type="text" value="<%= fieldDescription %>" />
-					</td>
+					String fieldDescription = ParamUtil.getString(request, "fieldDescription" + curFieldId);
+					String fieldDescriptionParam = request.getParameter("fieldDescription" + curFieldId);
+					if ((fieldDescriptionParam == null) || fieldDescriptionParam.equals(StringPool.NULL)) {
+						if (itemFields[curFieldId] != null) {
+							fieldDescription = itemFields[curFieldId].getDescription();
+						}
+					}
+				%>
 
-					<c:if test="<%= fieldsCount > 0 %>">
+					<tr>
 						<td>
-							<aui:button onClick='<%= renderResponse.getNamespace() + "deleteField(" + i + ");" %>' value="delete" />
+							<aui:input cssClass="lfr-input-text-container" ignoreRequestValue="<%= true %>" label="name" maxlength="<%= ModelHintsConstants.TEXT_MAX_LENGTH %>" name='<%= "fieldName" + i %>' style="width: 100px;" type="text" value="<%= fieldName %>" />
 						</td>
-					</c:if>
-				</tr>
+						<td>
+							<aui:input cssClass="lfr-input-text-container" ignoreRequestValue="<%= true %>" label="values" name='<%= "fieldValues" + i %>' style="width: 100px;" type="text" value='<%= StringUtil.merge(fieldValues, ", ") %>' />
+						</td>
+						<td>
+							<aui:input cssClass="lfr-input-text-container" ignoreRequestValue="<%= true %>" label="description" name='<%= "fieldDescription" + i %>' style="width: 150px;" type="text" value="<%= fieldDescription %>" />
+						</td>
 
-			<%
-			}
-			%>
+						<c:if test="<%= fieldsCount > 0 %>">
+							<td>
+								<aui:button onClick='<%= renderResponse.getNamespace() + "deleteField(" + i + ");" %>' value="delete" />
+							</td>
+						</c:if>
+					</tr>
+
+				<%
+				}
+				%>
 
 			</table>
 
@@ -270,163 +270,163 @@ int priceId = ParamUtil.getInteger(request, "priceId", -1);
 			<aui:fieldset>
 				<table class="lfr-table">
 
-				<%
-				for (int i = 0; i < pricesCount; i++) {
-					int curPriceId = i;
+					<%
+					for (int i = 0; i < pricesCount; i++) {
+						int curPriceId = i;
 
-					if ((priceId > -1) && (i >= priceId)) {
-						curPriceId++;
-					}
-
-					int minQuantity = ParamUtil.getInteger(request, "minQuantity" + curPriceId, 0);
-					String minQuantityParam = request.getParameter("minQuantity" + curPriceId);
-					if ((minQuantityParam == null) || minQuantityParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							minQuantity = itemPrices[curPriceId].getMinQuantity();
+						if ((priceId > -1) && (i >= priceId)) {
+							curPriceId++;
 						}
-					}
 
-					int maxQuantity = ParamUtil.getInteger(request, "maxQuantity" + curPriceId);
-					String maxQuantityParam = request.getParameter("maxQuantity" + curPriceId);
-					if ((maxQuantityParam == null) || maxQuantityParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							maxQuantity = itemPrices[curPriceId].getMaxQuantity();
-						}
-					}
-
-					double price = ParamUtil.getDouble(request, "price" + curPriceId, locale);
-					String priceParam = request.getParameter("price" + curPriceId);
-					if ((priceParam == null) || priceParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							price = itemPrices[curPriceId].getPrice();
-						}
-					}
-
-					double discount = ParamUtil.getDouble(request, "discount" + curPriceId, locale) / 100;
-					String discountParam = request.getParameter("discount" + curPriceId);
-					if ((discountParam == null) || discountParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							discount = itemPrices[curPriceId].getDiscount();
-						}
-					}
-
-					boolean taxable = ParamUtil.getBoolean(request, "taxable" + curPriceId, true);
-					String taxableParam = request.getParameter("taxable" + curPriceId);
-					if ((taxableParam == null) || taxableParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							taxable = itemPrices[curPriceId].isTaxable();
-						}
-					}
-
-					double shipping = ParamUtil.getDouble(request, "shipping" + curPriceId, locale);
-					String shippingParam = request.getParameter("shipping" + curPriceId);
-					if ((shippingParam == null) || shippingParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							shipping = itemPrices[curPriceId].getShipping();
-						}
-					}
-
-					boolean useShippingFormula = ParamUtil.getBoolean(request, "useShippingFormula" + curPriceId, true);
-					String useShippingFormulaParam = request.getParameter("useShippingFormula" + curPriceId);
-					if ((useShippingFormulaParam == null) || useShippingFormulaParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							useShippingFormula = itemPrices[curPriceId].isUseShippingFormula();
-						}
-					}
-
-					boolean active = ParamUtil.getBoolean(request, "active" + curPriceId, true);
-					String activeParam = request.getParameter("active" + curPriceId);
-					if ((activeParam == null) || activeParam.equals(StringPool.NULL)) {
-						if (itemPrices[curPriceId] != null) {
-							int status = itemPrices[curPriceId].getStatus();
-
-							if ((status == ShoppingItemPriceConstants.STATUS_ACTIVE_DEFAULT) || (status == ShoppingItemPriceConstants.STATUS_ACTIVE)) {
-								active = true;
-							}
-							else {
-								active = false;
+						int minQuantity = ParamUtil.getInteger(request, "minQuantity" + curPriceId, 0);
+						String minQuantityParam = request.getParameter("minQuantity" + curPriceId);
+						if ((minQuantityParam == null) || minQuantityParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								minQuantity = itemPrices[curPriceId].getMinQuantity();
 							}
 						}
-					}
 
-					String defaultPriceParam = request.getParameter("defaultPrice");
-					boolean defaultPrice = (curPriceId == 0 ? true : false);
-					if (Validator.isNotNull(defaultPriceParam)) {
-						if (ParamUtil.getInteger(request, "defaultPrice") == curPriceId) {
-							defaultPrice = true;
+						int maxQuantity = ParamUtil.getInteger(request, "maxQuantity" + curPriceId);
+						String maxQuantityParam = request.getParameter("maxQuantity" + curPriceId);
+						if ((maxQuantityParam == null) || maxQuantityParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								maxQuantity = itemPrices[curPriceId].getMaxQuantity();
+							}
 						}
-						else {
-							defaultPrice = false;
-						}
-					}
-					else {
-						if (itemPrices[curPriceId] != null) {
-							int status = itemPrices[curPriceId].getStatus();
 
-							if (status == ShoppingItemPriceConstants.STATUS_ACTIVE_DEFAULT) {
+						double price = ParamUtil.getDouble(request, "price" + curPriceId, locale);
+						String priceParam = request.getParameter("price" + curPriceId);
+						if ((priceParam == null) || priceParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								price = itemPrices[curPriceId].getPrice();
+							}
+						}
+
+						double discount = ParamUtil.getDouble(request, "discount" + curPriceId, locale) / 100;
+						String discountParam = request.getParameter("discount" + curPriceId);
+						if ((discountParam == null) || discountParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								discount = itemPrices[curPriceId].getDiscount();
+							}
+						}
+
+						boolean taxable = ParamUtil.getBoolean(request, "taxable" + curPriceId, true);
+						String taxableParam = request.getParameter("taxable" + curPriceId);
+						if ((taxableParam == null) || taxableParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								taxable = itemPrices[curPriceId].isTaxable();
+							}
+						}
+
+						double shipping = ParamUtil.getDouble(request, "shipping" + curPriceId, locale);
+						String shippingParam = request.getParameter("shipping" + curPriceId);
+						if ((shippingParam == null) || shippingParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								shipping = itemPrices[curPriceId].getShipping();
+							}
+						}
+
+						boolean useShippingFormula = ParamUtil.getBoolean(request, "useShippingFormula" + curPriceId, true);
+						String useShippingFormulaParam = request.getParameter("useShippingFormula" + curPriceId);
+						if ((useShippingFormulaParam == null) || useShippingFormulaParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								useShippingFormula = itemPrices[curPriceId].isUseShippingFormula();
+							}
+						}
+
+						boolean active = ParamUtil.getBoolean(request, "active" + curPriceId, true);
+						String activeParam = request.getParameter("active" + curPriceId);
+						if ((activeParam == null) || activeParam.equals(StringPool.NULL)) {
+							if (itemPrices[curPriceId] != null) {
+								int status = itemPrices[curPriceId].getStatus();
+
+								if ((status == ShoppingItemPriceConstants.STATUS_ACTIVE_DEFAULT) || (status == ShoppingItemPriceConstants.STATUS_ACTIVE)) {
+									active = true;
+								}
+								else {
+									active = false;
+								}
+							}
+						}
+
+						String defaultPriceParam = request.getParameter("defaultPrice");
+						boolean defaultPrice = (curPriceId == 0 ? true : false);
+						if (Validator.isNotNull(defaultPriceParam)) {
+							if (ParamUtil.getInteger(request, "defaultPrice") == curPriceId) {
 								defaultPrice = true;
 							}
 							else {
 								defaultPrice = false;
 							}
 						}
-					}
-				%>
+						else {
+							if (itemPrices[curPriceId] != null) {
+								int status = itemPrices[curPriceId].getStatus();
 
-					<tr>
-						<td>
-							<table class="lfr-table">
-							<tr>
-								<td>
-									<aui:input field="minQuantity" fieldParam='<%= "minQuantity" + i %>' ignoreRequestValue="<%= true %>" label="min-qty" model="<%= ShoppingItemPrice.class %>" name="minQuantity" value="<%= String.valueOf(minQuantity) %>" />
-								</td>
-								<td>
-									<aui:input field="maxQuantity" fieldParam='<%= "maxQuantity" + i %>' ignoreRequestValue="<%= true %>" label="max-qty" model="<%= ShoppingItemPrice.class %>" name="maxQuantity" value="<%= String.valueOf(maxQuantity) %>" />
-								</td>
-								<td>
-									<aui:input field="price" fieldParam='<%= "price" + i %>' format="<%= doubleFormat %>" ignoreRequestValue="<%= true %>" label="price" model="<%= ShoppingItemPrice.class %>" name="price" value="<%= String.valueOf(price) %>" />
-								</td>
-								<td>
-									<aui:input field="discount" fieldParam='<%= "discount" + i %>' ignoreRequestValue="<%= true %>" label="discount" model="<%= ShoppingItemPrice.class %>" name="discount" value="<%= String.valueOf(discount * 100) %>" />
-								</td>
-								<td>
-									<aui:input ignoreRequestValue="<%= true %>" label="taxable" name='<%= "taxable" + i %>' param='<%= "taxable" + i %>' type="checkbox" value="<%= taxable %>" />
-								</td>
-							</tr>
-							</table>
+								if (status == ShoppingItemPriceConstants.STATUS_ACTIVE_DEFAULT) {
+									defaultPrice = true;
+								}
+								else {
+									defaultPrice = false;
+								}
+							}
+						}
+					%>
 
-							<table class="lfr-table">
-							<tr>
-								<td>
-									<aui:input field="shipping" fieldParam='<%= "shipping" + i %>' format="<%= doubleFormat %>" ignoreRequestValue="<%= true %>" model="<%= ShoppingItemPrice.class %>" name="shipping" value="<%= String.valueOf(shipping) %>" />
-								</td>
-								<td>
-									<aui:input ignoreRequestValue="<%= true %>" label="use-shipping-formula" name='<%= "useShippingFormula" + i %>' type="checkbox" value="<%= useShippingFormula %>" />
-								</td>
-								<td>
-									<aui:input ignoreRequestValue="<%= true %>" label="active" name='<%= "active" + i %>' type="checkbox" value="<%= active %>" />
-								</td>
-								<td>
-									<aui:input checked="<%= defaultPrice %>" ignoreRequestValue="<%= true %>" label="default" name="defaultPrice" onClick='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "active" + i + ".checked = true;" %>' type="radio" value="<% i %>" />
-								</td>
+						<tr>
+							<td>
+								<table class="lfr-table">
+									<tr>
+										<td>
+											<aui:input field="minQuantity" fieldParam='<%= "minQuantity" + i %>' ignoreRequestValue="<%= true %>" label="min-qty" model="<%= ShoppingItemPrice.class %>" name="minQuantity" value="<%= String.valueOf(minQuantity) %>" />
+										</td>
+										<td>
+											<aui:input field="maxQuantity" fieldParam='<%= "maxQuantity" + i %>' ignoreRequestValue="<%= true %>" label="max-qty" model="<%= ShoppingItemPrice.class %>" name="maxQuantity" value="<%= String.valueOf(maxQuantity) %>" />
+										</td>
+										<td>
+											<aui:input field="price" fieldParam='<%= "price" + i %>' format="<%= doubleFormat %>" ignoreRequestValue="<%= true %>" label="price" model="<%= ShoppingItemPrice.class %>" name="price" value="<%= String.valueOf(price) %>" />
+										</td>
+										<td>
+											<aui:input field="discount" fieldParam='<%= "discount" + i %>' ignoreRequestValue="<%= true %>" label="discount" model="<%= ShoppingItemPrice.class %>" name="discount" value="<%= String.valueOf(discount * 100) %>" />
+										</td>
+										<td>
+											<aui:input ignoreRequestValue="<%= true %>" label="taxable" name='<%= "taxable" + i %>' param='<%= "taxable" + i %>' type="checkbox" value="<%= taxable %>" />
+										</td>
+									</tr>
+								</table>
 
-								<c:if test="<%= pricesCount > 1 %>">
-									<td>
-										<aui:button onClick='<%= renderResponse.getNamespace() + "deletePrice(" + i + ");" %>' value="delete" />
-									</td>
+								<table class="lfr-table">
+									<tr>
+										<td>
+											<aui:input field="shipping" fieldParam='<%= "shipping" + i %>' format="<%= doubleFormat %>" ignoreRequestValue="<%= true %>" model="<%= ShoppingItemPrice.class %>" name="shipping" value="<%= String.valueOf(shipping) %>" />
+										</td>
+										<td>
+											<aui:input ignoreRequestValue="<%= true %>" label="use-shipping-formula" name='<%= "useShippingFormula" + i %>' type="checkbox" value="<%= useShippingFormula %>" />
+										</td>
+										<td>
+											<aui:input ignoreRequestValue="<%= true %>" label="active" name='<%= "active" + i %>' type="checkbox" value="<%= active %>" />
+										</td>
+										<td>
+											<aui:input checked="<%= defaultPrice %>" ignoreRequestValue="<%= true %>" label="default" name="defaultPrice" onClick='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "active" + i + ".checked = true;" %>' type="radio" value="<% i %>" />
+										</td>
+
+										<c:if test="<%= pricesCount > 1 %>">
+											<td>
+												<aui:button onClick='<%= renderResponse.getNamespace() + "deletePrice(" + i + ");" %>' value="delete" />
+											</td>
+										</c:if>
+									</tr>
+								</table>
+
+								<c:if test="<%= (i + 1) < pricesCount %>">
+									<br />
 								</c:if>
-							</tr>
-							</table>
+							</td>
+						</tr>
 
-							<c:if test="<%= (i + 1) < pricesCount %>">
-								<br />
-							</c:if>
-						</td>
-					</tr>
-
-				<%
-				}
-				%>
+					<%
+					}
+					%>
 
 				</table>
 			</aui:fieldset>

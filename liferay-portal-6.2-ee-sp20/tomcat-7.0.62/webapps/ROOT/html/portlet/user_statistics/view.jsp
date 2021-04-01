@@ -76,7 +76,7 @@ if (!rankingNamesList.isEmpty()) {
 	for (int i = 1; i < rankingNames.length; i++) {
 		rankingNamesMessage = LanguageUtil.format(pageContext, "x-and-y", new Object[] {rankingNamesMessage, rankingNames[i]});
 	}
-	%>
+%>
 
 	<c:if test="<%= showHeaderText %>">
 		<div class="top-users">

@@ -162,15 +162,15 @@ if (Validator.isNotNull(requestEditStructureURL)) {
 								<aui:field-wrapper>
 									<aui:select disabled="<%= structure != null %>" name="storageType">
 
-									<%
-									for (StorageType storageType : StorageType.values()) {
-									%>
+										<%
+										for (StorageType storageType : StorageType.values()) {
+										%>
 
-										<aui:option label="<%= storageType %>" value="<%= storageType %>" />
+											<aui:option label="<%= storageType %>" value="<%= storageType %>" />
 
-									<%
-									}
-									%>
+										<%
+										}
+										%>
 
 									</aui:select>
 								</aui:field-wrapper>

@@ -51,53 +51,53 @@ FCKConfig.DefaultLanguage = '<%= HtmlUtil.escapeJS(languageId) %>' ;
 FCKConfig.IncludeLatinEntities = false ;
 
 FCKConfig.ToolbarSets["liferay"] = [
-	['Style', 'FontSize', '-', 'TextColor', 'BGColor'],
-	['Bold', 'Italic', 'Underline', 'StrikeThrough'],
-	['Subscript', 'Superscript'],
-	'/',
-	['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteWord', '-', 'SelectAll', 'RemoveFormat'],
-	['Find', 'Replace', 'SpellCheck'],
-	['OrderedList', 'UnorderedList', '-', 'Outdent', 'Indent'],
-	['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull'],
-	'/',
-	['Source'],
-	['Link', 'Unlink', 'Anchor'],
-	['Image', 'Flash', 'Table', '-', 'Smiley', 'SpecialChar']
+['Style', 'FontSize', '-', 'TextColor', 'BGColor'],
+['Bold', 'Italic', 'Underline', 'StrikeThrough'],
+['Subscript', 'Superscript'],
+'/',
+['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteWord', '-', 'SelectAll', 'RemoveFormat'],
+['Find', 'Replace', 'SpellCheck'],
+['OrderedList', 'UnorderedList', '-', 'Outdent', 'Indent'],
+['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull'],
+'/',
+['Source'],
+['Link', 'Unlink', 'Anchor'],
+['Image', 'Flash', 'Table', '-', 'Smiley', 'SpecialChar']
 ];
 
 FCKConfig.ToolbarSets["liferay-article"] = [
-	['Style', 'FontSize', '-', 'TextColor', 'BGColor'],
-	['Bold', 'Italic', 'Underline', 'StrikeThrough'],
-	['Subscript', 'Superscript'],
-	'/',
-	['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteWord', '-', 'SelectAll', 'RemoveFormat'],
-	['Find', 'Replace', 'SpellCheck'],
-	['OrderedList', 'UnorderedList', '-', 'Outdent', 'Indent'],
-	['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull'],
-	'/',
-	['Source'],
-	['Link', 'Unlink', 'Anchor'],
-	['Image', 'Flash', 'Table', '-', 'Smiley', 'SpecialChar', 'LiferayPageBreak']
+['Style', 'FontSize', '-', 'TextColor', 'BGColor'],
+['Bold', 'Italic', 'Underline', 'StrikeThrough'],
+['Subscript', 'Superscript'],
+'/',
+['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteWord', '-', 'SelectAll', 'RemoveFormat'],
+['Find', 'Replace', 'SpellCheck'],
+['OrderedList', 'UnorderedList', '-', 'Outdent', 'Indent'],
+['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull'],
+'/',
+['Source'],
+['Link', 'Unlink', 'Anchor'],
+['Image', 'Flash', 'Table', '-', 'Smiley', 'SpecialChar', 'LiferayPageBreak']
 ];
 
 FCKConfig.ToolbarSets["edit-in-place"] = [
-	['Style'],
-	['Bold', 'Italic', 'Underline', 'StrikeThrough'],
-	['Subscript', 'Superscript', 'SpecialChar'],
-	['Undo', 'Redo'],
-	['SpellCheck'],
-	['OrderedList', 'UnorderedList', '-', 'Outdent', 'Indent'], ['Source', 'RemoveFormat']
+['Style'],
+['Bold', 'Italic', 'Underline', 'StrikeThrough'],
+['Subscript', 'Superscript', 'SpecialChar'],
+['Undo', 'Redo'],
+['SpellCheck'],
+['OrderedList', 'UnorderedList', '-', 'Outdent', 'Indent'], ['Source', 'RemoveFormat']
 ];
 
 FCKConfig.ToolbarSets["email"] = [
-	['FontSize', 'TextColor', 'BGColor', '-', 'Bold', 'Italic', 'Underline', 'StrikeThrough'],
-	['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull'],
-	['SpellCheck'],
-	'/',
-	['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteWord', '-', 'SelectAll', 'RemoveFormat'],
-	['Source'],
-	['Link', 'Unlink'],
-	['Image']
+['FontSize', 'TextColor', 'BGColor', '-', 'Bold', 'Italic', 'Underline', 'StrikeThrough'],
+['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull'],
+['SpellCheck'],
+'/',
+['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteWord', '-', 'SelectAll', 'RemoveFormat'],
+['Source'],
+['Link', 'Unlink'],
+['Image']
 ];
 
 FCKConfig.BackgroundBlockerColor = '#000' ;
@@ -123,6 +123,6 @@ FCKConfig.Plugins.Add('liferaypagebreak', null, sOtherPluginPath ) ;
 
 FCKConfig.ProtectedSource.Add(/<[\/]{0,1}(article|aside|audio|canvas|command|datalist|details|dialog|embed|figure|footer|header|hgroup|keygen|mark|meter|nav|output|progress|rp|rt|ruby|script|section|time|video).*?>/gi);
 
-<%!
-private static final String _TOKEN_PAGE_BREAK = PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_TOKEN_PAGE_BREAK);
-%>
+	<%!
+	private static final String _TOKEN_PAGE_BREAK = PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_TOKEN_PAGE_BREAK);
+	%>

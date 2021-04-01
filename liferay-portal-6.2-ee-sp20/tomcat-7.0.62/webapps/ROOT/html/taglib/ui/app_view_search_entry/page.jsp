@@ -133,17 +133,17 @@ summary.setQueryTerms(queryTerms);
 						<img alt="<%= fileEntry.getTitle() %>" class="attachment" src="<%= DLUtil.getThumbnailSrc(fileEntry, null, themeDisplay) %>" />
 					</div>
 
-						<span class="title">
-							<liferay-ui:icon
-								image='<%= "../file_system/small/" + DLUtil.getFileIcon(fileEntry.getExtension()) %>'
-								label="<%= true %>"
-								message='<%= LanguageUtil.format(locale, "attachment-added-by-x", HtmlUtil.escape(fileEntry.getUserName()), false) %>'
-							/>
-						</span>
+					<span class="title">
+						<liferay-ui:icon
+							image='<%= "../file_system/small/" + DLUtil.getFileIcon(fileEntry.getExtension()) %>'
+							label="<%= true %>"
+							message='<%= LanguageUtil.format(locale, "attachment-added-by-x", HtmlUtil.escape(fileEntry.getUserName()), false) %>'
+						/>
+					</span>
 
-						<span class="body">
-							<%= summary.getHighlightedContent() %>
-						</span>
+					<span class="body">
+						<%= summary.getHighlightedContent() %>
+					</span>
 				</aui:a>
 			</div>
 

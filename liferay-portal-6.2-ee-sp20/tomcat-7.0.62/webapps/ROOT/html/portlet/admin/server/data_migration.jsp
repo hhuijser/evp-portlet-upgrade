@@ -54,21 +54,21 @@ for (String convertProcessClassName : PropsValues.CONVERT_PROCESSES) {
 									String[] parameterSelectEntries = StringUtil.split(parameterPair[1], CharPool.SEMICOLON);
 							%>
 
-								<aui:select label="<%= parameterPair[0] %>" name="<%= convertProcess.getClass().getName() + StringPool.PERIOD + parameterPair[0] %>">
+									<aui:select label="<%= parameterPair[0] %>" name="<%= convertProcess.getClass().getName() + StringPool.PERIOD + parameterPair[0] %>">
 
-									<%
-									for (String parameterSelectEntry : parameterSelectEntries) {
-									%>
+										<%
+										for (String parameterSelectEntry : parameterSelectEntries) {
+										%>
 
-										<aui:option label="<%= parameterSelectEntry %>" />
+											<aui:option label="<%= parameterSelectEntry %>" />
 
-									<%
-									}
-									%>
+										<%
+										}
+										%>
 
-								</aui:select>
+									</aui:select>
 
-							<%
+								<%
 								}
 								else {
 									String[] parameterPair = StringUtil.split(parameter, CharPool.EQUAL);
@@ -83,7 +83,7 @@ for (String convertProcessClassName : PropsValues.CONVERT_PROCESSES) {
 									else {
 										parameterName = parameter;
 									}
-							%>
+								%>
 
 									<aui:input cssClass="lfr-input-text-container" label="<%= parameterName %>" name="<%= convertProcess.getClass().getName() + StringPool.PERIOD + parameterName %>" type='<%= parameterType != null ? parameterType : "" %>' />
 

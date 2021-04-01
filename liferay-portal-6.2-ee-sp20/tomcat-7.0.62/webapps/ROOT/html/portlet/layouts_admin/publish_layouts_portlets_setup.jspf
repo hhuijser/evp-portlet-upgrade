@@ -93,10 +93,10 @@
 						</aui:script>
 					</li>
 
-			<%
+				<%
 				}
 				catch (PortletDataException pde) {
-			%>
+				%>
 
 					<li class="tree-item">
 						<div class="alert alert-error">

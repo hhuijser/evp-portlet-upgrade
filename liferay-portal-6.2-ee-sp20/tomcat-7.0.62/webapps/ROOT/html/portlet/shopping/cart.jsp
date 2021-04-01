@@ -426,18 +426,18 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		double discountSubtotal = ShoppingUtil.calculateDiscountSubtotal(items);
 		%>
 
-			<c:choose>
-				<c:when test="<%= subtotal == actualSubtotal %>">
-					<aui:input name="subtotal" type="resource" value="<%= currencyFormat.format(subtotal) %>" />
-				</c:when>
-				<c:otherwise>
-					<aui:field-wrapper label="subtotal">
-						<div class="alert alert-success">
-							<strike><%= currencyFormat.format(subtotal) %></strike> <%= currencyFormat.format(actualSubtotal) %>
-						</div>
-					</aui:field-wrapper>
-				</c:otherwise>
-			</c:choose>
+		<c:choose>
+			<c:when test="<%= subtotal == actualSubtotal %>">
+				<aui:input name="subtotal" type="resource" value="<%= currencyFormat.format(subtotal) %>" />
+			</c:when>
+			<c:otherwise>
+				<aui:field-wrapper label="subtotal">
+					<div class="alert alert-success">
+						<strike><%= currencyFormat.format(subtotal) %></strike> <%= currencyFormat.format(actualSubtotal) %>
+					</div>
+				</aui:field-wrapper>
+			</c:otherwise>
+		</c:choose>
 
 		<c:if test="<%= subtotal != actualSubtotal %>">
 			<aui:field-wrapper label="you-save">
@@ -527,9 +527,9 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 			<img alt="<%= HtmlUtil.escapeAttribute(ccTypes[i]) %>" src="<%= themeDisplay.getPathThemeImages() %>/shopping/cc_<%= HtmlUtil.escapeAttribute(ccTypes[i]) %>.png" />
 
-	<%
+		<%
 		}
-	%>
+		%>
 
 		<br /><br />
 

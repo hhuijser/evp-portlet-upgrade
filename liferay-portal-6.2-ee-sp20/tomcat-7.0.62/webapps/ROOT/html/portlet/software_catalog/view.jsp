@@ -47,633 +47,633 @@ portletURL.setParameter("tabs1", tabs1);
 %>
 
 <form action="<%= HtmlUtil.escape(portletURL.toString()) %>" method="get" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
-<liferay-portlet:renderURLParams varImpl="portletURL" />
+	<liferay-portlet:renderURLParams varImpl="portletURL" />
 
-<liferay-ui:tabs
-	names="<%= tabs1Names %>"
-	portletURL="<%= portletURL %>"
-	tabsValues="<%= tabs1Values %>"
-/>
+	<liferay-ui:tabs
+		names="<%= tabs1Names %>"
+		portletURL="<%= portletURL %>"
+		tabsValues="<%= tabs1Values %>"
+	/>
 
-<c:choose>
-	<c:when test='<%= tabs1.equals("products") %>'>
+	<c:choose>
+		<c:when test='<%= tabs1.equals("products") %>'>
 
-		<%
-		portletURL.setParameter("type", type);
+			<%
+			portletURL.setParameter("type", type);
 
-		String orderByCol = ParamUtil.getString(request, "orderByCol");
-		String orderByType = ParamUtil.getString(request, "orderByType");
+			String orderByCol = ParamUtil.getString(request, "orderByCol");
+			String orderByType = ParamUtil.getString(request, "orderByType");
 
-		if (Validator.isNotNull(orderByCol) && Validator.isNotNull(orderByType)) {
-			portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", orderByCol);
-			portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", orderByType);
-		}
-		else {
-			orderByCol = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", "modified-date");
-			orderByType = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", "desc");
-		}
-
-		List<String> headerNames = new ArrayList<String>();
-
-		headerNames.add("name");
-		headerNames.add("version");
-		headerNames.add("type");
-		headerNames.add("tags");
-		headerNames.add("licenses");
-		headerNames.add("modified-date");
-		headerNames.add(StringPool.BLANK);
-
-		Map orderableHeaders = new HashMap();
-
-		orderableHeaders.put("name", "name");
-		orderableHeaders.put("version", "version");
-		orderableHeaders.put("type", "type");
-		orderableHeaders.put("modified-date", "modified-date");
-
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, LanguageUtil.get(pageContext, "no-products-were-found"));
-
-		searchContainer.setOrderableHeaders(orderableHeaders);
-		searchContainer.setOrderByCol(orderByCol);
-		searchContainer.setOrderByType(orderByType);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(SCProductEntry.class);
-
-		SearchContext searchContext = SearchContextFactory.getInstance(request);
-
-		searchContext.setKeywords(keywords);
-
-		List results = indexer.search(searchContext).toList();
-
-		DocumentComparator docComparator = new DocumentComparator();
-
-		boolean ascending = true;
-
-		if (orderByType.equals("desc")) {
-			ascending = false;
-		}
-
-		if (orderByCol.equals("version")) {
-			docComparator.addOrderBy("version", ascending);
-			docComparator.addOrderBy(Field.MODIFIED_DATE);
-			docComparator.addOrderBy(Field.TITLE);
-			docComparator.addOrderBy("type");
-		}
-		else if (orderByCol.equals("modified-date")) {
-			docComparator.addOrderBy(Field.MODIFIED_DATE, ascending);
-			docComparator.addOrderBy(Field.TITLE);
-			docComparator.addOrderBy("version");
-			docComparator.addOrderBy("type");
-		}
-		else if (orderByCol.equals("type")) {
-			docComparator.addOrderBy("type", ascending);
-			docComparator.addOrderBy(Field.MODIFIED_DATE);
-			docComparator.addOrderBy(Field.TITLE);
-			docComparator.addOrderBy("version");
-		}
-		else {
-			docComparator.addOrderBy(Field.TITLE, ascending);
-			docComparator.addOrderBy("version");
-			docComparator.addOrderBy(Field.MODIFIED_DATE);
-			docComparator.addOrderBy("type");
-		}
-
-		results = ListUtil.sort(results, docComparator);
-
-		int total = results.size();
-
-		searchContainer.setTotal(total);
-
-		results = ListUtil.subList(results, searchContainer.getStart(), searchContainer.getEnd());
-
-		List resultRows = searchContainer.getResultRows();
-
-		for (int i = 0; i < results.size(); i++) {
-			Document doc = (Document)results.get(i);
-
-			long productEntryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
-
-			SCProductEntry productEntry = SCProductEntryLocalServiceUtil.getProductEntry(productEntryId);
-
-			productEntry = productEntry.toEscapedModel();
-
-			SCProductVersion latestProductVersion = productEntry.getLatestVersion();
-
-			if (latestProductVersion != null) {
-				latestProductVersion = latestProductVersion.toEscapedModel();
-			}
-
-			ResultRow row = new ResultRow(productEntry, productEntryId, i);
-
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setParameter("struts_action", "/software_catalog/view_product_entry");
-			rowURL.setParameter("redirect", currentURL);
-			rowURL.setParameter("productEntryId", String.valueOf(productEntryId));
-
-			// Name and short description
-
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("<strong>");
-			sb.append(productEntry.getName());
-			sb.append("</strong>");
-
-			if (Validator.isNotNull(productEntry.getShortDescription())) {
-				sb.append("<br />");
-				sb.append(productEntry.getShortDescription());
-			}
-
-			row.addText(sb.toString(), rowURL);
-
-			// Version
-
-			if (latestProductVersion != null) {
-				row.addText(latestProductVersion.getVersion(), rowURL);
+			if (Validator.isNotNull(orderByCol) && Validator.isNotNull(orderByType)) {
+				portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", orderByCol);
+				portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", orderByType);
 			}
 			else {
-				row.addText(LanguageUtil.get(pageContext, "not-available"), rowURL);
+				orderByCol = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", "modified-date");
+				orderByType = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", "desc");
 			}
 
-			// Type
+			List<String> headerNames = new ArrayList<String>();
 
-			row.addText(LanguageUtil.get(pageContext, productEntry.getType()), rowURL);
+			headerNames.add("name");
+			headerNames.add("version");
+			headerNames.add("type");
+			headerNames.add("tags");
+			headerNames.add("licenses");
+			headerNames.add("modified-date");
+			headerNames.add(StringPool.BLANK);
 
-			// Tags
+			Map orderableHeaders = new HashMap();
 
-			row.addText(LanguageUtil.get(pageContext, productEntry.getTags()), rowURL);
+			orderableHeaders.put("name", "name");
+			orderableHeaders.put("version", "version");
+			orderableHeaders.put("type", "type");
+			orderableHeaders.put("modified-date", "modified-date");
 
-			// Licenses
+			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, LanguageUtil.get(pageContext, "no-products-were-found"));
 
-			List<SCLicense> licenses = productEntry.getLicenses();
+			searchContainer.setOrderableHeaders(orderableHeaders);
+			searchContainer.setOrderByCol(orderByCol);
+			searchContainer.setOrderByType(orderByType);
 
-			if (licenses.isEmpty()) {
-				row.addText(StringPool.BLANK, rowURL);
+			Indexer indexer = IndexerRegistryUtil.getIndexer(SCProductEntry.class);
+
+			SearchContext searchContext = SearchContextFactory.getInstance(request);
+
+			searchContext.setKeywords(keywords);
+
+			List results = indexer.search(searchContext).toList();
+
+			DocumentComparator docComparator = new DocumentComparator();
+
+			boolean ascending = true;
+
+			if (orderByType.equals("desc")) {
+				ascending = false;
+			}
+
+			if (orderByCol.equals("version")) {
+				docComparator.addOrderBy("version", ascending);
+				docComparator.addOrderBy(Field.MODIFIED_DATE);
+				docComparator.addOrderBy(Field.TITLE);
+				docComparator.addOrderBy("type");
+			}
+			else if (orderByCol.equals("modified-date")) {
+				docComparator.addOrderBy(Field.MODIFIED_DATE, ascending);
+				docComparator.addOrderBy(Field.TITLE);
+				docComparator.addOrderBy("version");
+				docComparator.addOrderBy("type");
+			}
+			else if (orderByCol.equals("type")) {
+				docComparator.addOrderBy("type", ascending);
+				docComparator.addOrderBy(Field.MODIFIED_DATE);
+				docComparator.addOrderBy(Field.TITLE);
+				docComparator.addOrderBy("version");
 			}
 			else {
-				sb = new StringBundler(licenses.size() * 2);
-
-				for (SCLicense license : licenses) {
-					license = license.toEscapedModel();
-
-					sb.append(license.getName());
-					sb.append(", ");
-				}
-
-				sb.setIndex(sb.index() - 1);
-
-				row.addText(sb.toString(), rowURL);
+				docComparator.addOrderBy(Field.TITLE, ascending);
+				docComparator.addOrderBy("version");
+				docComparator.addOrderBy(Field.MODIFIED_DATE);
+				docComparator.addOrderBy("type");
 			}
 
-			// Modified date
+			results = ListUtil.sort(results, docComparator);
 
-			row.addDate(productEntry.getModifiedDate(), rowURL);
-
-			// Action
-
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/product_entry_action.jsp");
-
-			// Add result row
-
-			resultRows.add(row);
-		}
-
-		boolean showAddProductEntryButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_PRODUCT_ENTRY);
-		boolean showPermissionsButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
-		%>
-
-		<div>
-			<label for="<portlet:namespace />keyword"><liferay-ui:message key="search" /></label>
-
-			<input id="<portlet:namespace />keyword" name="<portlet:namespace />keywords" size="30" type="text" value="<%= HtmlUtil.escape(keywords) %>" />
-
-			<select name="<portlet:namespace />type">
-				<option value=""></option>
-
-				<%
-				for (String supportedType : PluginPackageUtil.getSupportedTypes()) {
-				%>
-
-					<option <%= type.equals(supportedType) ? "selected" : "" %> value="<%= supportedType %>"><liferay-ui:message key='<%= supportedType + "-plugin" %>' /></option>
-
-				<%
-				}
-				%>
-
-			</select>
-
-			<aui:button type="submit" value="search" />
-		</div>
-
-		<c:if test="<%= showAddProductEntryButton && showPermissionsButton %>">
-			<div class="btn-toolbar">
-				<c:if test="<%= showAddProductEntryButton %>">
-
-					<%
-					String taglibAddProduct = renderResponse.getNamespace() + "addProduct();";
-					%>
-
-					<aui:button onClick="<%= taglibAddProduct %>" value="add-product" />
-				</c:if>
-
-				<c:if test="<%= showPermissionsButton %>">
-					<liferay-security:permissionsURL
-						modelResource="com.liferay.portlet.softwarecatalog"
-						modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
-						resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-						var="permissionsURL"
-					/>
-
-					<%
-					String taglibPermissions = "location.href = '" + permissionsURL + "';";
-					%>
-
-					<aui:button onClick="<%= taglibPermissions %>" value="permissions" />
-				</c:if>
-			</div>
-		</c:if>
-
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-	</c:when>
-	<c:when test='<%= tabs1.equals("my_products") %>'>
-
-		<%
-		String orderByCol = ParamUtil.getString(request, "orderByCol");
-		String orderByType = ParamUtil.getString(request, "orderByType");
-
-		if (Validator.isNotNull(orderByCol) && Validator.isNotNull(orderByType)) {
-			portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", orderByCol);
-			portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", orderByType);
-		}
-		else {
-			orderByCol = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", "modified-date");
-			orderByType = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", "desc");
-		}
-
-		OrderByComparator orderByComparator = SCUtil.getProductEntryOrderByComparator(orderByCol, orderByType);
-
-		List<String> headerNames = new ArrayList<String>();
-
-		headerNames.add("name");
-		headerNames.add("version");
-		headerNames.add("type");
-		headerNames.add("tags");
-		headerNames.add("licenses");
-		headerNames.add("modified-date");
-		headerNames.add(StringPool.BLANK);
-
-		Map orderableHeaders = new HashMap();
-
-		orderableHeaders.put("name", "name");
-		orderableHeaders.put("type", "type");
-		orderableHeaders.put("modified-date", "modified-date");
-
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
-
-		searchContainer.setOrderableHeaders(orderableHeaders);
-		searchContainer.setOrderByCol(orderByCol);
-		searchContainer.setOrderByType(orderByType);
-
-		List results = null;
-		int total = 0;
-
-		if (tabs1.equals("products")) {
-			total = SCProductEntryLocalServiceUtil.getProductEntriesCount(scopeGroupId);
+			int total = results.size();
 
 			searchContainer.setTotal(total);
 
-			results = SCProductEntryLocalServiceUtil.getProductEntries(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-		}
-		else {
-			total = SCProductEntryLocalServiceUtil.getProductEntriesCount(scopeGroupId, user.getUserId());
+			results = ListUtil.subList(results, searchContainer.getStart(), searchContainer.getEnd());
 
-			searchContainer.setTotal(total);
+			List resultRows = searchContainer.getResultRows();
 
-			results = SCProductEntryLocalServiceUtil.getProductEntries(scopeGroupId, user.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-		}
+			for (int i = 0; i < results.size(); i++) {
+				Document doc = (Document)results.get(i);
 
-		searchContainer.setResults(results);
+				long productEntryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
 
-		List resultRows = searchContainer.getResultRows();
+				SCProductEntry productEntry = SCProductEntryLocalServiceUtil.getProductEntry(productEntryId);
 
-		for (int i = 0; i < results.size(); i++) {
-			SCProductEntry productEntry = (SCProductEntry)results.get(i);
+				productEntry = productEntry.toEscapedModel();
 
-			productEntry = productEntry.toEscapedModel();
+				SCProductVersion latestProductVersion = productEntry.getLatestVersion();
 
-			long productEntryId = productEntry.getProductEntryId();
-
-			SCProductVersion latestProductVersion = productEntry.getLatestVersion();
-
-			if (latestProductVersion != null) {
-				latestProductVersion = latestProductVersion.toEscapedModel();
-			}
-
-			ResultRow row = new ResultRow(productEntry, productEntryId, i);
-
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setParameter("struts_action", "/software_catalog/view_product_entry");
-			rowURL.setParameter("redirect", currentURL);
-			rowURL.setParameter("productEntryId", String.valueOf(productEntryId));
-
-			// Name and short description
-
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("<strong>");
-			sb.append(productEntry.getName());
-			sb.append("</strong>");
-
-			if (Validator.isNotNull(productEntry.getShortDescription())) {
-				sb.append("<br />");
-				sb.append(productEntry.getShortDescription());
-			}
-
-			row.addText(sb.toString(), rowURL);
-
-			// Version
-
-			if (latestProductVersion != null) {
-				row.addText(latestProductVersion.getVersion(), rowURL);
-			}
-			else {
-				row.addText(LanguageUtil.get(pageContext, "not-available"), rowURL);
-			}
-
-			// Type
-
-			row.addText(LanguageUtil.get(pageContext, productEntry.getType()), rowURL);
-
-			// Tags
-
-			row.addText(LanguageUtil.get(pageContext, productEntry.getTags()), rowURL);
-
-			// Licenses
-
-			List<SCLicense> licenses = productEntry.getLicenses();
-
-			if (licenses.isEmpty()) {
-				row.addText(StringPool.BLANK, rowURL);
-			}
-			else {
-				sb = new StringBundler(licenses.size() * 2);
-
-				for (SCLicense license : licenses) {
-					license = license.toEscapedModel();
-
-					sb.append(license.getName());
-					sb.append(", ");
+				if (latestProductVersion != null) {
+					latestProductVersion = latestProductVersion.toEscapedModel();
 				}
 
-				sb.setIndex(sb.index() - 1);
+				ResultRow row = new ResultRow(productEntry, productEntryId, i);
+
+				PortletURL rowURL = renderResponse.createRenderURL();
+
+				rowURL.setParameter("struts_action", "/software_catalog/view_product_entry");
+				rowURL.setParameter("redirect", currentURL);
+				rowURL.setParameter("productEntryId", String.valueOf(productEntryId));
+
+				// Name and short description
+
+				StringBundler sb = new StringBundler(5);
+
+				sb.append("<strong>");
+				sb.append(productEntry.getName());
+				sb.append("</strong>");
+
+				if (Validator.isNotNull(productEntry.getShortDescription())) {
+					sb.append("<br />");
+					sb.append(productEntry.getShortDescription());
+				}
 
 				row.addText(sb.toString(), rowURL);
+
+				// Version
+
+				if (latestProductVersion != null) {
+					row.addText(latestProductVersion.getVersion(), rowURL);
+				}
+				else {
+					row.addText(LanguageUtil.get(pageContext, "not-available"), rowURL);
+				}
+
+				// Type
+
+				row.addText(LanguageUtil.get(pageContext, productEntry.getType()), rowURL);
+
+				// Tags
+
+				row.addText(LanguageUtil.get(pageContext, productEntry.getTags()), rowURL);
+
+				// Licenses
+
+				List<SCLicense> licenses = productEntry.getLicenses();
+
+				if (licenses.isEmpty()) {
+					row.addText(StringPool.BLANK, rowURL);
+				}
+				else {
+					sb = new StringBundler(licenses.size() * 2);
+
+					for (SCLicense license : licenses) {
+						license = license.toEscapedModel();
+
+						sb.append(license.getName());
+						sb.append(", ");
+					}
+
+					sb.setIndex(sb.index() - 1);
+
+					row.addText(sb.toString(), rowURL);
+				}
+
+				// Modified date
+
+				row.addDate(productEntry.getModifiedDate(), rowURL);
+
+				// Action
+
+				row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/product_entry_action.jsp");
+
+				// Add result row
+
+				resultRows.add(row);
 			}
 
-			// Modified date
+			boolean showAddProductEntryButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_PRODUCT_ENTRY);
+			boolean showPermissionsButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
+			%>
 
-			row.addDate(productEntry.getModifiedDate(), rowURL);
+			<div>
+				<label for="<portlet:namespace />keyword"><liferay-ui:message key="search" /></label>
 
-			// Action
+				<input id="<portlet:namespace />keyword" name="<portlet:namespace />keywords" size="30" type="text" value="<%= HtmlUtil.escape(keywords) %>" />
 
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/product_entry_action.jsp");
+				<select name="<portlet:namespace />type">
+					<option value=""></option>
 
-			// Add result row
+					<%
+					for (String supportedType : PluginPackageUtil.getSupportedTypes()) {
+					%>
 
-			resultRows.add(row);
-		}
+						<option <%= type.equals(supportedType) ? "selected" : "" %> value="<%= supportedType %>"><liferay-ui:message key='<%= supportedType + "-plugin" %>' /></option>
 
-		boolean showAddProductEntryButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_PRODUCT_ENTRY);
-		%>
+					<%
+					}
+					%>
 
-		<c:if test="<%= showAddProductEntryButton %>">
-			<div class="btn-toolbar">
-				<portlet:renderURL var="addProductURL">
-					<portlet:param name="struts_action" value="/software_catalog/edit_product_entry" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</portlet:renderURL>
+				</select>
 
-				<%
-				String taglibAddProduct = "location.href = '" + addProductURL + "';";
-				%>
-
-				<aui:button onClick="<%= taglibAddProduct %>" value="add-product" />
+				<aui:button type="submit" value="search" />
 			</div>
-		</c:if>
 
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-	</c:when>
-	<c:when test='<%= tabs1.equals("framework_versions") %>'>
+			<c:if test="<%= showAddProductEntryButton && showPermissionsButton %>">
+				<div class="btn-toolbar">
+					<c:if test="<%= showAddProductEntryButton %>">
 
-		<%
-		List<String> headerNames = new ArrayList<String>();
+						<%
+						String taglibAddProduct = renderResponse.getNamespace() + "addProduct();";
+						%>
 
-		headerNames.add("name");
-		headerNames.add("url");
-		headerNames.add("active");
-		headerNames.add(StringPool.BLANK);
+						<aui:button onClick="<%= taglibAddProduct %>" value="add-product" />
+					</c:if>
 
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+					<c:if test="<%= showPermissionsButton %>">
+						<liferay-security:permissionsURL
+							modelResource="com.liferay.portlet.softwarecatalog"
+							modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
+							resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+							var="permissionsURL"
+						/>
 
-		int total = SCFrameworkVersionLocalServiceUtil.getFrameworkVersionsCount(scopeGroupId);
+						<%
+						String taglibPermissions = "location.href = '" + permissionsURL + "';";
+						%>
 
-		searchContainer.setTotal(total);
+						<aui:button onClick="<%= taglibPermissions %>" value="permissions" />
+					</c:if>
+				</div>
+			</c:if>
 
-		List results = SCFrameworkVersionLocalServiceUtil.getFrameworkVersions(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
+			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+		</c:when>
+		<c:when test='<%= tabs1.equals("my_products") %>'>
 
-		searchContainer.setResults(results);
+			<%
+			String orderByCol = ParamUtil.getString(request, "orderByCol");
+			String orderByType = ParamUtil.getString(request, "orderByType");
 
-		List resultRows = searchContainer.getResultRows();
+			if (Validator.isNotNull(orderByCol) && Validator.isNotNull(orderByType)) {
+				portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", orderByCol);
+				portalPreferences.setValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", orderByType);
+			}
+			else {
+				orderByCol = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-col", "modified-date");
+				orderByType = portalPreferences.getValue(PortletKeys.SOFTWARE_CATALOG, "product-entries-order-by-type", "desc");
+			}
 
-		for (int i = 0; i < results.size(); i++) {
-			SCFrameworkVersion frameworkVersion = (SCFrameworkVersion)results.get(i);
+			OrderByComparator orderByComparator = SCUtil.getProductEntryOrderByComparator(orderByCol, orderByType);
 
-			frameworkVersion = frameworkVersion.toEscapedModel();
+			List<String> headerNames = new ArrayList<String>();
 
-			ResultRow row = new ResultRow(frameworkVersion, frameworkVersion.getFrameworkVersionId(), i);
+			headerNames.add("name");
+			headerNames.add("version");
+			headerNames.add("type");
+			headerNames.add("tags");
+			headerNames.add("licenses");
+			headerNames.add("modified-date");
+			headerNames.add(StringPool.BLANK);
 
-			String rowHREF = frameworkVersion.getUrl();
+			Map orderableHeaders = new HashMap();
 
-			TextSearchEntry rowTextEntry = new TextSearchEntry();
+			orderableHeaders.put("name", "name");
+			orderableHeaders.put("type", "type");
+			orderableHeaders.put("modified-date", "modified-date");
 
-			rowTextEntry.setHref(rowHREF);
-			rowTextEntry.setName(frameworkVersion.getName());
-			rowTextEntry.setTarget("_blank");
-			rowTextEntry.setTitle(frameworkVersion.getName());
+			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
-			// Name
+			searchContainer.setOrderableHeaders(orderableHeaders);
+			searchContainer.setOrderByCol(orderByCol);
+			searchContainer.setOrderByType(orderByType);
 
-			row.addText(rowTextEntry);
+			List results = null;
+			int total = 0;
 
-			// URL
+			if (tabs1.equals("products")) {
+				total = SCProductEntryLocalServiceUtil.getProductEntriesCount(scopeGroupId);
 
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+				searchContainer.setTotal(total);
 
-			rowTextEntry.setName(frameworkVersion.getUrl());
+				results = SCProductEntryLocalServiceUtil.getProductEntries(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
+			}
+			else {
+				total = SCProductEntryLocalServiceUtil.getProductEntriesCount(scopeGroupId, user.getUserId());
 
-			row.addText(rowTextEntry);
+				searchContainer.setTotal(total);
 
-			// Active
+				results = SCProductEntryLocalServiceUtil.getProductEntries(scopeGroupId, user.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
+			}
 
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+			searchContainer.setResults(results);
 
-			rowTextEntry.setName(LanguageUtil.get(pageContext, frameworkVersion.isActive() ? "yes" : "no"));
+			List resultRows = searchContainer.getResultRows();
 
-			row.addText(rowTextEntry);
+			for (int i = 0; i < results.size(); i++) {
+				SCProductEntry productEntry = (SCProductEntry)results.get(i);
 
-			// Action
+				productEntry = productEntry.toEscapedModel();
 
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/framework_version_action.jsp");
+				long productEntryId = productEntry.getProductEntryId();
 
-			// Add result row
+				SCProductVersion latestProductVersion = productEntry.getLatestVersion();
 
-			resultRows.add(row);
-		}
-		%>
+				if (latestProductVersion != null) {
+					latestProductVersion = latestProductVersion.toEscapedModel();
+				}
 
-		<%
-		boolean showAddFrameworkVersionButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_FRAMEWORK_VERSION);
-		boolean showPermissionsButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
-		%>
+				ResultRow row = new ResultRow(productEntry, productEntryId, i);
 
-		<c:if test="<%= showAddFrameworkVersionButton || showPermissionsButton %>">
-			<div class="btn-toolbar">
-				<c:if test="<%= showAddFrameworkVersionButton %>">
-					<portlet:renderURL var="addFrameworkURL">
-						<portlet:param name="struts_action" value="/software_catalog/edit_framework_version" />
+				PortletURL rowURL = renderResponse.createRenderURL();
+
+				rowURL.setParameter("struts_action", "/software_catalog/view_product_entry");
+				rowURL.setParameter("redirect", currentURL);
+				rowURL.setParameter("productEntryId", String.valueOf(productEntryId));
+
+				// Name and short description
+
+				StringBundler sb = new StringBundler(5);
+
+				sb.append("<strong>");
+				sb.append(productEntry.getName());
+				sb.append("</strong>");
+
+				if (Validator.isNotNull(productEntry.getShortDescription())) {
+					sb.append("<br />");
+					sb.append(productEntry.getShortDescription());
+				}
+
+				row.addText(sb.toString(), rowURL);
+
+				// Version
+
+				if (latestProductVersion != null) {
+					row.addText(latestProductVersion.getVersion(), rowURL);
+				}
+				else {
+					row.addText(LanguageUtil.get(pageContext, "not-available"), rowURL);
+				}
+
+				// Type
+
+				row.addText(LanguageUtil.get(pageContext, productEntry.getType()), rowURL);
+
+				// Tags
+
+				row.addText(LanguageUtil.get(pageContext, productEntry.getTags()), rowURL);
+
+				// Licenses
+
+				List<SCLicense> licenses = productEntry.getLicenses();
+
+				if (licenses.isEmpty()) {
+					row.addText(StringPool.BLANK, rowURL);
+				}
+				else {
+					sb = new StringBundler(licenses.size() * 2);
+
+					for (SCLicense license : licenses) {
+						license = license.toEscapedModel();
+
+						sb.append(license.getName());
+						sb.append(", ");
+					}
+
+					sb.setIndex(sb.index() - 1);
+
+					row.addText(sb.toString(), rowURL);
+				}
+
+				// Modified date
+
+				row.addDate(productEntry.getModifiedDate(), rowURL);
+
+				// Action
+
+				row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/product_entry_action.jsp");
+
+				// Add result row
+
+				resultRows.add(row);
+			}
+
+			boolean showAddProductEntryButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_PRODUCT_ENTRY);
+			%>
+
+			<c:if test="<%= showAddProductEntryButton %>">
+				<div class="btn-toolbar">
+					<portlet:renderURL var="addProductURL">
+						<portlet:param name="struts_action" value="/software_catalog/edit_product_entry" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 					</portlet:renderURL>
 
 					<%
-					String taglibAddFramework = "location.href = '" + addFrameworkURL + "';";
+					String taglibAddProduct = "location.href = '" + addProductURL + "';";
 					%>
 
-					<aui:button onClick="<%= taglibAddFramework %>" value="add-framework-version" />
-				</c:if>
+					<aui:button onClick="<%= taglibAddProduct %>" value="add-product" />
+				</div>
+			</c:if>
 
-				<c:if test="<%= showPermissionsButton %>">
-					<liferay-security:permissionsURL
-						modelResource="com.liferay.portlet.softwarecatalog"
-						modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
-						resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-						var="permissionsURL"
-					/>
+			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+		</c:when>
+		<c:when test='<%= tabs1.equals("framework_versions") %>'>
+
+			<%
+			List<String> headerNames = new ArrayList<String>();
+
+			headerNames.add("name");
+			headerNames.add("url");
+			headerNames.add("active");
+			headerNames.add(StringPool.BLANK);
+
+			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+
+			int total = SCFrameworkVersionLocalServiceUtil.getFrameworkVersionsCount(scopeGroupId);
+
+			searchContainer.setTotal(total);
+
+			List results = SCFrameworkVersionLocalServiceUtil.getFrameworkVersions(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
+
+			searchContainer.setResults(results);
+
+			List resultRows = searchContainer.getResultRows();
+
+			for (int i = 0; i < results.size(); i++) {
+				SCFrameworkVersion frameworkVersion = (SCFrameworkVersion)results.get(i);
+
+				frameworkVersion = frameworkVersion.toEscapedModel();
+
+				ResultRow row = new ResultRow(frameworkVersion, frameworkVersion.getFrameworkVersionId(), i);
+
+				String rowHREF = frameworkVersion.getUrl();
+
+				TextSearchEntry rowTextEntry = new TextSearchEntry();
+
+				rowTextEntry.setHref(rowHREF);
+				rowTextEntry.setName(frameworkVersion.getName());
+				rowTextEntry.setTarget("_blank");
+				rowTextEntry.setTitle(frameworkVersion.getName());
+
+				// Name
+
+				row.addText(rowTextEntry);
+
+				// URL
+
+				rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+				rowTextEntry.setName(frameworkVersion.getUrl());
+
+				row.addText(rowTextEntry);
+
+				// Active
+
+				rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+				rowTextEntry.setName(LanguageUtil.get(pageContext, frameworkVersion.isActive() ? "yes" : "no"));
+
+				row.addText(rowTextEntry);
+
+				// Action
+
+				row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/framework_version_action.jsp");
+
+				// Add result row
+
+				resultRows.add(row);
+			}
+			%>
+
+			<%
+			boolean showAddFrameworkVersionButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_FRAMEWORK_VERSION);
+			boolean showPermissionsButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
+			%>
+
+			<c:if test="<%= showAddFrameworkVersionButton || showPermissionsButton %>">
+				<div class="btn-toolbar">
+					<c:if test="<%= showAddFrameworkVersionButton %>">
+						<portlet:renderURL var="addFrameworkURL">
+							<portlet:param name="struts_action" value="/software_catalog/edit_framework_version" />
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+						</portlet:renderURL>
+
+						<%
+						String taglibAddFramework = "location.href = '" + addFrameworkURL + "';";
+						%>
+
+						<aui:button onClick="<%= taglibAddFramework %>" value="add-framework-version" />
+					</c:if>
+
+					<c:if test="<%= showPermissionsButton %>">
+						<liferay-security:permissionsURL
+							modelResource="com.liferay.portlet.softwarecatalog"
+							modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
+							resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+							var="permissionsURL"
+						/>
+
+						<%
+						String taglibPermissions = "location.href = '" + permissionsURL + "';";
+						%>
+
+						<aui:button onClick="<%= taglibPermissions %>" value="permissions" />
+					</c:if>
+				</div>
+			</c:if>
+
+			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+		</c:when>
+		<c:when test='<%= tabs1.equals("licenses") %>'>
+
+			<%
+			List<String> headerNames = new ArrayList<String>();
+
+			headerNames.add("name");
+			headerNames.add("url");
+			headerNames.add("open-source");
+			headerNames.add("active");
+			headerNames.add("recommended");
+			headerNames.add(StringPool.BLANK);
+
+			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+
+			int total = SCLicenseLocalServiceUtil.getLicensesCount();
+
+			searchContainer.setTotal(total);
+
+			List results = SCLicenseLocalServiceUtil.getLicenses(searchContainer.getStart(), searchContainer.getEnd());
+
+			searchContainer.setResults(results);
+
+			List resultRows = searchContainer.getResultRows();
+
+			for (int i = 0; i < results.size(); i++) {
+				SCLicense license = (SCLicense)results.get(i);
+
+				license = license.toEscapedModel();
+
+				ResultRow row = new ResultRow(license, license.getLicenseId(), i);
+
+				String rowHREF = license.getUrl();
+
+				TextSearchEntry rowTextEntry = new TextSearchEntry();
+
+				rowTextEntry.setHref(rowHREF);
+				rowTextEntry.setName(license.getName());
+				rowTextEntry.setTarget("_blank");
+				rowTextEntry.setTitle(license.getName());
+
+				// Name
+
+				row.addText(rowTextEntry);
+
+				// URL
+
+				rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+				rowTextEntry.setName(license.getUrl());
+
+				row.addText(rowTextEntry);
+
+				// Open source
+
+				rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+				rowTextEntry.setName(LanguageUtil.get(pageContext, license.isOpenSource() ? "yes" : "no"));
+
+				row.addText(rowTextEntry);
+
+				// Active
+
+				rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+				rowTextEntry.setName(LanguageUtil.get(pageContext, license.isActive() ? "yes" : "no"));
+
+				row.addText(rowTextEntry);
+
+				// Recommended
+
+				rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+				rowTextEntry.setName(LanguageUtil.get(pageContext, license.isRecommended() ? "yes" : "no"));
+
+				row.addText(rowTextEntry);
+
+				// Action
+
+				row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/license_action.jsp");
+
+				// Add result row
+
+				resultRows.add(row);
+			}
+			%>
+
+			<c:if test="<%= hasAddLicensePermission %>">
+				<div class="btn-toolbar">
+					<portlet:renderURL var="addLicenseURL">
+						<portlet:param name="struts_action" value="/software_catalog/edit_license" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+					</portlet:renderURL>
 
 					<%
-					String taglibPermissions = "location.href = '" + permissionsURL + "';";
+					String taglibAddLicense = "location.href = '" + addLicenseURL + "';";
 					%>
 
-					<aui:button onClick="<%= taglibPermissions %>" value="permissions" />
-				</c:if>
-			</div>
-		</c:if>
+					<aui:button onClick="<%= taglibAddLicense %>" value="add-license" />
+				</div>
+			</c:if>
 
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-	</c:when>
-	<c:when test='<%= tabs1.equals("licenses") %>'>
-
-		<%
-		List<String> headerNames = new ArrayList<String>();
-
-		headerNames.add("name");
-		headerNames.add("url");
-		headerNames.add("open-source");
-		headerNames.add("active");
-		headerNames.add("recommended");
-		headerNames.add(StringPool.BLANK);
-
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
-
-		int total = SCLicenseLocalServiceUtil.getLicensesCount();
-
-		searchContainer.setTotal(total);
-
-		List results = SCLicenseLocalServiceUtil.getLicenses(searchContainer.getStart(), searchContainer.getEnd());
-
-		searchContainer.setResults(results);
-
-		List resultRows = searchContainer.getResultRows();
-
-		for (int i = 0; i < results.size(); i++) {
-			SCLicense license = (SCLicense)results.get(i);
-
-			license = license.toEscapedModel();
-
-			ResultRow row = new ResultRow(license, license.getLicenseId(), i);
-
-			String rowHREF = license.getUrl();
-
-			TextSearchEntry rowTextEntry = new TextSearchEntry();
-
-			rowTextEntry.setHref(rowHREF);
-			rowTextEntry.setName(license.getName());
-			rowTextEntry.setTarget("_blank");
-			rowTextEntry.setTitle(license.getName());
-
-			// Name
-
-			row.addText(rowTextEntry);
-
-			// URL
-
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-			rowTextEntry.setName(license.getUrl());
-
-			row.addText(rowTextEntry);
-
-			// Open source
-
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-			rowTextEntry.setName(LanguageUtil.get(pageContext, license.isOpenSource() ? "yes" : "no"));
-
-			row.addText(rowTextEntry);
-
-			// Active
-
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-			rowTextEntry.setName(LanguageUtil.get(pageContext, license.isActive() ? "yes" : "no"));
-
-			row.addText(rowTextEntry);
-
-			// Recommended
-
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-			rowTextEntry.setName(LanguageUtil.get(pageContext, license.isRecommended() ? "yes" : "no"));
-
-			row.addText(rowTextEntry);
-
-			// Action
-
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/software_catalog/license_action.jsp");
-
-			// Add result row
-
-			resultRows.add(row);
-		}
-		%>
-
-		<c:if test="<%= hasAddLicensePermission %>">
-			<div class="btn-toolbar">
-				<portlet:renderURL var="addLicenseURL">
-					<portlet:param name="struts_action" value="/software_catalog/edit_license" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</portlet:renderURL>
-
-				<%
-				String taglibAddLicense = "location.href = '" + addLicenseURL + "';";
-				%>
-
-				<aui:button onClick="<%= taglibAddLicense %>" value="add-license" />
-			</div>
-		</c:if>
-
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-	</c:when>
-</c:choose>
+			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+		</c:when>
+	</c:choose>
 
 </form>
 

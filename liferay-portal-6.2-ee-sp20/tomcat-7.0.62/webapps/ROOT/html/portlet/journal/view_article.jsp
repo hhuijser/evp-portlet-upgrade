@@ -56,9 +56,9 @@ try {
 		</c:otherwise>
 	</c:choose>
 
-<%
-} catch (NoSuchArticleException nsae) {
-%>
+	<%
+	} catch (NoSuchArticleException nsae) {
+	%>
 
 	<div class="alert alert-error">
 		<%= LanguageUtil.get(pageContext, "the-selected-web-content-no-longer-exists") %>

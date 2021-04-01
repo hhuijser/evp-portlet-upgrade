@@ -80,10 +80,10 @@ boolean resizable = GetterUtil.getBoolean((String)request.getAttribute("liferay-
 
 <div class="<%= cssClass %>" id="<%= name %>_container">
 	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" height="100%" width="100%">
-	<tr>
-		<td bgcolor="#FFFFFF" height="100%">
-			<textarea class="lfr-editor-textarea" id="<%= name %>" name="<%= name %>" <%= Validator.isNotNull(onChangeMethod) ? "onChange=\"" + HtmlUtil.escapeJS(onChangeMethod) + "(this.value)\"" : StringPool.BLANK %> style="resize:<%= resizable ? "vertical" : "none" %>"></textarea>
-		</td>
-	</tr>
+		<tr>
+			<td bgcolor="#FFFFFF" height="100%">
+				<textarea class="lfr-editor-textarea" id="<%= name %>" name="<%= name %>" <%= Validator.isNotNull(onChangeMethod) ? "onChange=\"" + HtmlUtil.escapeJS(onChangeMethod) + "(this.value)\"" : StringPool.BLANK %> style="resize:<%= resizable ? "vertical" : "none" %>"></textarea>
+			</td>
+		</tr>
 	</table>
 </div>
