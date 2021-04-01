@@ -122,7 +122,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 						data.put("portlet-id", assetRenderer.getAddToPagePortletId());
 						data.put("title", title);
 
-						String navItemCssClass="content-shortcut drag-content-item lfr-content-item ";
+						String navItemCssClass ="content-shortcut drag-content-item lfr-content-item ";
 
 						if (!displayStyle.equals("icon")) {
 							navItemCssClass += "has-preview";
@@ -136,7 +136,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 							label='<%= displayStyle.equals("list") ? title : "" %>'
 						>
 							<c:choose>
-								<c:when test='<%= !displayStyle.equals("list") %>' >
+								<c:when test='<%= !displayStyle.equals("list") %>'>
 									<div class="add-content-thumbnail <%= displayStyle.equals("descriptive") ? "span4" : StringPool.BLANK %>">
 										<img alt="<liferay-ui:message key="thumbnail" />" src="<%= HtmlUtil.escapeAttribute(assetRenderer.getThumbnailPath(liferayPortletRequest)) %>" />
 									</div>
@@ -151,7 +151,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 										</div>
 									</div>
 								</c:when>
-								<c:otherwise >
+								<c:otherwise>
 									<div <%= AUIUtil.buildData(data) %> class="add-content-item">
 										<liferay-ui:message key="add" />
 									</div>

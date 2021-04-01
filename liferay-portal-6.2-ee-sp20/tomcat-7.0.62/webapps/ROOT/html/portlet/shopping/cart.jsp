@@ -60,7 +60,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		var subtotal = 0;
 
 		<%
-		int itemsCount= 0;
+		int itemsCount = 0;
 
 		for (ShoppingCartItem cartItem : items.keySet()) {
 			ShoppingItem item = cartItem.getItem();

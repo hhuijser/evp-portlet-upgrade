@@ -721,7 +721,7 @@ if (Validator.isNotNull(content)) {
 
 	window.<portlet:namespace />journalPortlet = new Liferay.Portlet.Journal(Liferay.Portlet.Journal.PROXY.portletNamespace, '<%= (article != null) ? HtmlUtil.escape(articleId) : StringPool.BLANK %>');
 
-	var defaultLocaleSelector = A.one('#<portlet:namespace/>defaultLocale');
+	var defaultLocaleSelector = A.one('#<portlet:namespace />defaultLocale');
 
 	if (defaultLocaleSelector) {
 		defaultLocaleSelector.on(
