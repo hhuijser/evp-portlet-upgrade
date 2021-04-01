@@ -176,7 +176,7 @@ SitesUtil.addPortletBreadcrumbEntries(group, pagesName, redirectURL, request, re
 			</div>
 		</c:if>
 
-		<div class='<%= !group.isLayoutPrototype() ? "span9" : "span12" %>'>
+		<div class="<%= !group.isLayoutPrototype() ? "span9" : "span12" %>">
 			<div id="<portlet:namespace />layoutsContainer">
 				<c:choose>
 					<c:when test="<%= selPlid > 0 %>">

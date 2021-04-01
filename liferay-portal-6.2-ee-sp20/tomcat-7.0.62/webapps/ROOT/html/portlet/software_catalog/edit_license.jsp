@@ -60,7 +60,7 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 				<liferay-ui:message key="open-source" />
 			</td>
 			<td>
-				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="openSource" model="<%= SCLicense.class %>" />
+				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="openSource" model="<%= SCLicense.class %>" />
 			</td>
 		</tr>
 		<tr>
@@ -68,7 +68,7 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 				<liferay-ui:message key="active" />
 			</td>
 			<td>
-				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="active" model="<%= SCLicense.class %>" />
+				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="active" model="<%= SCLicense.class %>" />
 			</td>
 		</tr>
 		<tr>
@@ -76,7 +76,7 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 				<liferay-ui:message key="recommended" />
 			</td>
 			<td>
-				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= Boolean.TRUE %>" field="recommended" model="<%= SCLicense.class %>" />
+				<liferay-ui:input-field bean="<%= license %>" defaultValue="<%= true %>" field="recommended" model="<%= SCLicense.class %>" />
 			</td>
 		</tr>
 	</table>
