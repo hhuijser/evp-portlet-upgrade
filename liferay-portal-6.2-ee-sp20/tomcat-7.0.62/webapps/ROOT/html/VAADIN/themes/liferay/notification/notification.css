@@ -1,12 +1,12 @@
 .v-Notification {
 	background: #dff4ff;
+	border: 1px solid #a7cedf;
 	color: #34404F;
-	font-weight: bold;
 	cursor: pointer;
+	font-weight: bold;
+	max-width: 85%;
 	overflow: hidden;
 	padding: 1em;
-	max-width: 85%;
-	border: 1px solid #a7cedf;
 }
 
 .v-Notification h1,
@@ -28,9 +28,9 @@
 }
 
 .v-Notification-tray {
-	color: #111111;
 	background-color: #e5e5e5;
 	border-color: #b5b5b5;
+	color: #111111;
 }
 .v-Notification-tray h1 {
 	display: block;

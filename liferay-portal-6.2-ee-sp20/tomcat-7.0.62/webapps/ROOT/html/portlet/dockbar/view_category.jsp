@@ -64,9 +64,7 @@ for (String portletId : portletIds) {
 		if (portletApp.isWARFile() && Validator.isNull(externalPortletCategory)) {
 			PortletConfig curPortletConfig = PortletConfigFactoryUtil.create(portlet, application);
 
-			ResourceBundle resourceBundle = curPortletConfig.getResourceBundle(locale);
-
-			externalPortletCategory = ResourceBundleUtil.getString(resourceBundle, portletCategory.getName());
+			externalPortletCategory = ResourceBundleUtil.getString(curPortletConfig.getResourceBundle(locale), portletCategory.getName());
 		}
 	}
 }
@@ -80,7 +78,6 @@ if (!categories.isEmpty() || !portlets.isEmpty()) {
 
 	<div class="lfr-add-content">
 		<liferay-ui:panel collapsible="<%= layout.isTypePortlet() %>" cssClass="lfr-content-category panel-page-category unstyled" defaultState="closed" extended="<%= true %>" id="<%= panelId %>" parentId="<%= panelContainerId %>" persistState="<%= true %>" title="<%= title %>">
-
 			<aui:nav collapsible="<%= false %>" cssClass="nav-list">
 
 				<%
@@ -195,7 +192,6 @@ if (!categories.isEmpty() || !portlets.isEmpty()) {
 
 										<liferay-ui:message key="<%= HtmlUtil.escape(portletItem.getName()) %>" />
 									</span>
-
 									<span <%= AUIUtil.buildData(portletItemData) %> class='add-content-item <%= portletLocked ? "lfr-portlet-used" : StringPool.BLANK %>'>
 										<liferay-ui:message key="add" />
 									</span>

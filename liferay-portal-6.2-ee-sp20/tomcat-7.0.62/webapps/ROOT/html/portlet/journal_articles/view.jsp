@@ -199,11 +199,10 @@ double version = ParamUtil.getDouble(request, "version");
 	<c:otherwise>
 
 		<%
-		String languageId = LanguageUtil.getLanguageId(request);
 		int articlePage = ParamUtil.getInteger(renderRequest, "page", 1);
 		String xmlRequest = PortletRequestUtil.toXML(renderRequest, renderResponse);
 
-		JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(groupId, articleId, null, null, languageId, themeDisplay, articlePage, xmlRequest);
+		JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(groupId, articleId, null, null, LanguageUtil.getLanguageId(request), themeDisplay, articlePage, xmlRequest);
 
 		JournalArticle article = null;
 
@@ -219,7 +218,7 @@ double version = ParamUtil.getDouble(request, "version");
 					expired = true;
 				}
 			}
-			%>
+		%>
 
 			<c:choose>
 				<c:when test="<%= (articleDisplay != null) && !expired %>">
@@ -257,7 +256,7 @@ double version = ParamUtil.getDouble(request, "version");
 
 						<liferay-ui:page-iterator
 							cur="<%= articleDisplay.getCurrentPage() %>"
-							curParam='<%= "page" %>'
+							curParam="page"
 							delta="<%= 1 %>"
 							id="articleDisplayPages"
 							maxPages="<%= 25 %>"
@@ -276,9 +275,9 @@ double version = ParamUtil.getDouble(request, "version");
 				</c:otherwise>
 			</c:choose>
 
-		<%
-		} catch (NoSuchArticleException nsae) {
-		%>
+			<%
+			} catch (NoSuchArticleException nsae) {
+			%>
 
 			<div class="alert alert-error">
 				<%= LanguageUtil.get(pageContext, "the-selected-web-content-no-longer-exists") %>

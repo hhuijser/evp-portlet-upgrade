@@ -127,7 +127,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 											<span class="selected-labels" id="<portlet:namespace />selectedConfiguration_<%= selPortlet.getRootPortletId() %>"></span>
 
 											<%
-											Map<String,Object> data = new HashMap<String,Object>();
+											Map<String, Object> data = new HashMap<String, Object>();
 
 											data.put("portletid", selPortlet.getRootPortletId());
 											%>
@@ -224,7 +224,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 
 																if (ArrayUtil.isNotEmpty(childrenControls)) {
 																	request.setAttribute("render_controls.jsp-controls", childrenControls);
-																%>
+															%>
 
 																	<aui:field-wrapper label="content-metadata">
 																		<ul class="lfr-tree unstyled">
@@ -233,9 +233,9 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 																	</aui:field-wrapper>
 
 																<%
+																	}
 																}
-															}
-															%>
+																%>
 
 														</c:if>
 													</aui:fieldset>
@@ -248,7 +248,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 												<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= selPortlet.getRootPortletId() %>"></span>
 
 												<%
-												Map<String,Object> data = new HashMap<String,Object>();
+												Map<String, Object> data = new HashMap<String, Object>();
 
 												data.put("portletid", selPortlet.getRootPortletId());
 												%>
@@ -335,7 +335,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(them
 			</aui:fieldset>
 
 			<aui:fieldset cssClass="options-group" label="authorship-of-the-content">
-				<aui:input checked="<%= true %>" data-name='<%= LanguageUtil.get(locale, "use-the-original-author") %>' helpMessage="use-the-original-author-help"  id="currentUserId" label="use-the-original-author" name="<%= PortletDataHandlerKeys.USER_ID_STRATEGY %>" type="radio" value="<%= UserIdStrategy.CURRENT_USER_ID %>" />
+				<aui:input checked="<%= true %>" data-name='<%= LanguageUtil.get(locale, "use-the-original-author") %>' helpMessage="use-the-original-author-help" id="currentUserId" label="use-the-original-author" name="<%= PortletDataHandlerKeys.USER_ID_STRATEGY %>" type="radio" value="<%= UserIdStrategy.CURRENT_USER_ID %>" />
 
 				<aui:input data-name='<%= LanguageUtil.get(locale, "always-use-my-user-id") %>' helpMessage="use-the-current-user-as-author-help" id="alwaysCurrentUserId" label="use-the-current-user-as-author" name="<%= PortletDataHandlerKeys.USER_ID_STRATEGY %>" type="radio" value="<%= UserIdStrategy.ALWAYS_CURRENT_USER_ID %>" />
 			</aui:fieldset>

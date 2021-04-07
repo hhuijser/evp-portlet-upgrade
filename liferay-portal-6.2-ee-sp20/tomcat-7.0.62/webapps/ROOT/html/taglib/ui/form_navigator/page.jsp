@@ -294,7 +294,7 @@ if (Validator.isNotNull(historyKey)) {
 
 					var sectionId = tabNode.getData('sectionId');
 
-					var modifiedSectionsNode = A.one('#<portlet:namespace/>modifiedSections');
+					var modifiedSectionsNode = A.one('#<portlet:namespace />modifiedSections');
 
 					var modifiedSections = modifiedSectionsNode.val().split(',');
 

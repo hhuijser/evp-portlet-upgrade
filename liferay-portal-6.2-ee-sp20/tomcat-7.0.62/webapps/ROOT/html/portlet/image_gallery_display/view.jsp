@@ -57,9 +57,7 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 	<c:when test="<%= portletDisplayDDMTemplateId > 0 %>">
 
 		<%
-		String[] mediaGalleryMimeTypes = DLUtil.getMediaGalleryMimeTypes(portletPreferences, renderRequest);
-
-		List fileEntries = DLAppServiceUtil.getGroupFileEntries(scopeGroupId, 0, folderId, mediaGalleryMimeTypes, status, 0, SearchContainer.MAX_DELTA, null);
+		List fileEntries = DLAppServiceUtil.getGroupFileEntries(scopeGroupId, 0, folderId, DLUtil.getMediaGalleryMimeTypes(portletPreferences, renderRequest), status, 0, SearchContainer.MAX_DELTA, null);
 		%>
 
 		<%= PortletDisplayTemplateUtil.renderDDMTemplate(pageContext, portletDisplayDDMTemplateId, fileEntries) %>
@@ -121,13 +119,9 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 				assetEntryQuery.setEnablePermissions(true);
 				assetEntryQuery.setExcludeZeroViewCount(false);
 
-				int total = AssetEntryServiceUtil.getEntriesCount(assetEntryQuery);
+				searchContainer.setTotal(AssetEntryServiceUtil.getEntriesCount(assetEntryQuery));
 
-				searchContainer.setTotal(total);
-
-				List results = AssetEntryServiceUtil.getEntries(assetEntryQuery);
-
-				searchContainer.setResults(results);
+				searchContainer.setResults(AssetEntryServiceUtil.getEntries(assetEntryQuery));
 
 				String[] mediaGalleryMimeTypes = null;
 
@@ -251,9 +245,7 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 
 				String[] mediaGalleryMimeTypes = DLUtil.getMediaGalleryMimeTypes(portletPreferences, renderRequest);
 
-				int total = DLAppServiceUtil.getGroupFileEntriesCount(repositoryId, groupImagesUserId, defaultFolderId, mediaGalleryMimeTypes, status);
-
-				searchContainer.setTotal(total);
+				searchContainer.setTotal(DLAppServiceUtil.getGroupFileEntriesCount(repositoryId, groupImagesUserId, defaultFolderId, mediaGalleryMimeTypes, status));
 
 				List results = DLAppServiceUtil.getGroupFileEntries(repositoryId, groupImagesUserId, defaultFolderId, mediaGalleryMimeTypes, status, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 

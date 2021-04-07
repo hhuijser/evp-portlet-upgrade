@@ -23,7 +23,6 @@ MDRRuleGroup mdrRuleGroup = MDRRuleGroupLocalServiceUtil.fetchRuleGroup(mdrRuleG
 	href="<%= rowURL %>"
 	name="name"
 >
-
 	<%= HtmlUtil.escape(mdrRuleGroup.getName(locale)) %>
 
 	<c:if test="<%= Validator.isNotNull(mdrRuleGroup.getDescription(locale)) %>">
@@ -54,7 +53,6 @@ MDRRuleGroup mdrRuleGroup = MDRRuleGroupLocalServiceUtil.fetchRuleGroup(mdrRuleG
 	%>
 
 	<%= HtmlUtil.escape(sb.toString()) %>
-
 </liferay-ui:search-container-column-text>
 
 <c:if test="<%= MDRRuleGroupInstanceServiceUtil.getRuleGroupInstancesCount(className, classPK) > 1 %>">

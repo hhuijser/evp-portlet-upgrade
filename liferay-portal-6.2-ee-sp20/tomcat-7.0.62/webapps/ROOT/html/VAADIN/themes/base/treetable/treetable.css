@@ -2,7 +2,7 @@
     display: inline-block;
     background: transparent;
     height: 10px;
-    /* defines the amount of indent per level */
+    /* ---------- defines the amount of indent per level ---------- */
     width: 18px;
     position: absolute;
     left: 0;

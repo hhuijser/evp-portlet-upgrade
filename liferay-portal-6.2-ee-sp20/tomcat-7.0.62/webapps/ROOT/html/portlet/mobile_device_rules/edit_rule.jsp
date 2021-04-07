@@ -91,7 +91,6 @@ Collection<String> ruleHandlerTypes = RuleGroupProcessorUtil.getRuleHandlerTypes
 				%>
 
 				<aui:input name="type" type="hidden" value="<%= ruleHandlerType %>" />
-
 			</c:when>
 			<c:otherwise>
 				<aui:select changesContext="<%= true %>" name="type" showEmptyOption="<%= true %>">

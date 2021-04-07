@@ -195,9 +195,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 
 		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, "there-are-no-folders");
 
-		int total = DLAppServiceUtil.getFoldersCount(groupId, folderId);
-
-		searchContainer.setTotal(total);
+		searchContainer.setTotal(DLAppServiceUtil.getFoldersCount(groupId, folderId));
 
 		List results = DLAppServiceUtil.getFolders(repositoryId, folderId, searchContainer.getStart(), searchContainer.getEnd());
 
@@ -231,11 +229,9 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 
 			// Statistics
 
-			int foldersCount = DLAppServiceUtil.getFoldersCount(curFolder.getRepositoryId(), curFolder.getFolderId());
-
 			int fileEntriesCount = DLAppServiceUtil.getFoldersFileEntriesCount(curFolder.getRepositoryId(), Arrays.asList(curFolder.getFolderId()), WorkflowConstants.STATUS_APPROVED);
 
-			row.addText(String.valueOf(foldersCount), rowURL);
+			row.addText(String.valueOf(DLAppServiceUtil.getFoldersCount(curFolder.getRepositoryId(), curFolder.getFolderId())), rowURL);
 			row.addText(String.valueOf(fileEntriesCount), rowURL);
 
 			// Add result row
@@ -287,9 +283,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 	if (Validator.isNull(displayTerms.getKeywords())) {
 		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur2", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, "there-are-no-documents-in-this-folder");
 
-		int total = DLAppServiceUtil.getFileEntriesCount(groupId, folderId);
-
-		searchContainer.setTotal(total);
+		searchContainer.setTotal(DLAppServiceUtil.getFileEntriesCount(groupId, folderId));
 
 		List results = DLAppServiceUtil.getFileEntries(repositoryId, folderId, searchContainer.getStart(), searchContainer.getEnd());
 
@@ -368,12 +362,12 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 
 			<%@ include file="/html/portlet/dynamic_data_mapping/select_document_library_search_results.jspf" %>
 
-	<%
+		<%
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 		}
-	%>
+		%>
 
 		<liferay-ui:search-iterator searchContainer="<%= fileEntrySearchContainer %>" />
 

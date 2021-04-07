@@ -81,7 +81,6 @@ else {
 			</liferay-util:include>
 		</liferay-ui:section>
 	</c:if>
-
 </liferay-ui:tabs>
 
 <aui:script>

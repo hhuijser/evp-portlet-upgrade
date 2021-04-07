@@ -49,11 +49,11 @@ int maxTerms = dataJSONObject.getInt("maxTerms");
 				</aui:script>
 			</c:if>
 
-		<%
+			<%
 			if (((maxTerms > 0) && (i >= maxTerms)) || ((frequencyThreshold > 0) && (frequencyThreshold > termCollector.getFrequency()))) {
 				break;
 			}
-		%>
+			%>
 
 			<li class="facet-value <%= fieldParam.equals(termCollector.getTerm()) ? "active" : StringPool.BLANK %>">
 				<a data-value="<%= HtmlUtil.escapeAttribute(termCollector.getTerm()) %>" href="javascript:;">

@@ -1,10 +1,10 @@
 .v-Notification {
-	color: #fff;
 	border-radius: 4px;
+	color: #fff;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	font-size: 100%;
 	background: #c8ccd0;
+	font-size: 100%;
 	font-weight: bold;
 }
 
@@ -18,17 +18,17 @@
 }
 .v-Notification-warning {
 	background: #fdf3b5;
-	color: #ca9a61;
 	border: 3px solid #fee3af;
+	color: #ca9a61;
 }
 .v-Notification-error {
 	background: #b40000 url(img/error-close.png) no-repeat right top;
 	border: 3px solid #ca3030;
 }
 .v-Notification-tray {
-	margin: 0 5px 5px 0;
 	background: #3b3c3e;
 	border: 2px solid #585b5c;
+	margin: 0 5px 5px 0;
 	padding: 0.8em 0.9em;
 }
 .v-Notification-tray h1 {

@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -62,7 +62,7 @@
 			<aui:input name="mvcPath" type="hidden" value="<%= mvcPath %>" />
 			<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
 			<aui:input name="kaleoDraftDefinitionId" type="hidden" />
-			<aui:input name="name"  type="hidden" />
+			<aui:input name="name" type="hidden" />
 			<aui:input name="content" type="hidden" value="<%= content %>" />
 			<aui:input name="version" type="hidden" />
 			<aui:input name="draftVersion" type="hidden" />
@@ -142,6 +142,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="diagram-builder-content-container">
 							<div class="tabbable">
 								<div class="tabbable-content">
@@ -164,6 +165,7 @@
 												<div class="diagram-builder-drop-container"></div>
 											</div>
 										</div>
+
 										<div class="tab-pane">
 											<div class="lfr-template-editor-wrapper" id="<portlet:namespace />editorWrapper"></div>
 										</div>
@@ -189,7 +191,6 @@
 
 					<span class="lfr-portlet-workflowdesigner-message" id="<portlet:namespace />toolbarMessage"></span>
 				</aui:button-row>
-
 			</aui:fieldset>
 		</aui:form>
 

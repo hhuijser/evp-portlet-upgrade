@@ -121,8 +121,8 @@
 	}
 
 	.document-entries-pagination {
-		text-align: center;
 		margin: 10px 0;
+		text-align: center;
 
 		.pagination-content {
 			margin: 0;
@@ -313,8 +313,8 @@
 
 	.lfr-document-library-comments.lfr-panel.lfr-extended {
 		background: #FFF;
-		border-width: 0;
 		border-right: 1px solid #CCC;
+		border-width: 0;
 		margin-bottom: 0;
 
 		.lfr-panel-titlebar {
@@ -507,8 +507,8 @@
 		.document-description {
 			@include hyphenation;
 
-			margin: 8px 0;
 			display: block;
+			margin: 8px 0;
 		}
 
 		.document-thumbnail {
@@ -564,8 +564,8 @@
 	}
 
 	.taglib-discussion {
-		width: 90%;
 		margin: 0 auto;
+		width: 90%;
 	}
 
 	.taglib-ratings.stars {

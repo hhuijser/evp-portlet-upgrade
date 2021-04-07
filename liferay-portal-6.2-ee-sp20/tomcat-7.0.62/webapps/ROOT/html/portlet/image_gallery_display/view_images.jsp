@@ -122,7 +122,6 @@ List results = searchContainer.getResults();
 									<img alt="<liferay-ui:message key="locked" />" class="locked-icon" src="<%= themeDisplay.getPathThemeImages() %>/file_system/large/overlay_lock.png" />
 								</c:if>
 							</span>
-
 							<span class="image-title"><%= HtmlUtil.escape(fileVersion.getTitle()) %></span>
 						</a>
 					</div>
@@ -154,7 +153,6 @@ List results = searchContainer.getResults();
 					</div>
 				</c:if>
 			</c:when>
-
 			<c:when test="<%= curFolder != null %>">
 				<portlet:renderURL var="viewFolderURL">
 					<portlet:param name="struts_action" value="/image_gallery_display/view" />
@@ -185,7 +183,6 @@ List results = searchContainer.getResults();
 									<span class="image-thumbnail">
 										<img alt="<liferay-ui:message key="repository" />" border="no" src="<%= folderImageSrc %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
 									</span>
-
 									<span class="image-title"><%= HtmlUtil.escape(StringUtil.shorten(curFolder.getName(), 60)) %></span>
 								</a>
 							</div>
@@ -237,7 +234,6 @@ List results = searchContainer.getResults();
 								<span class="image-thumbnail">
 									<img alt="<liferay-ui:message key="folder" />" border="no" src="<%= folderImageSrc %>" style="max-height: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT %>px; max-width: <%= PropsValues.DL_FILE_ENTRY_THUMBNAIL_MAX_WIDTH %>px;" />
 								</span>
-
 								<span class="image-title"><%= HtmlUtil.escape(StringUtil.shorten(curFolder.getName(), 60)) %></span>
 							</a>
 						</div>

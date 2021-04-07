@@ -18,6 +18,7 @@
 
 <%
 String viewOrganizationsRedirect = ParamUtil.getString(request, "viewOrganizationsRedirect", themeDisplay.getURLControlPanel());
+
 String redirect = ParamUtil.getString(request, "redirect", viewOrganizationsRedirect);
 String closeRedirect = ParamUtil.getString(request, "closeRedirect");
 String backURL = ParamUtil.getString(request, "backURL", redirect);
@@ -149,11 +150,11 @@ String[][] categorySections = {mainSections, seoSections, advancedSections, misc
 	String title = "new-site";
 
 	if (group != null) {
-		localizeTitle= false;
+		localizeTitle = false;
 		title = group.getDescriptiveName(locale);
 	}
 	else if (layoutSetPrototype != null) {
-		localizeTitle= false;
+		localizeTitle = false;
 		title = layoutSetPrototype.getName(locale);
 	}
 	else if (parentGroupId != GroupConstants.DEFAULT_PARENT_GROUP_ID) {
@@ -193,13 +194,13 @@ String[][] categorySections = {mainSections, seoSections, advancedSections, misc
 
 	<%
 	request.setAttribute("site.group", group);
+	request.setAttribute("site.layoutSetPrototype", layoutSetPrototype);
 	request.setAttribute("site.liveGroup", liveGroup);
 	request.setAttribute("site.liveGroupId", new Long(liveGroupId));
+	request.setAttribute("site.liveGroupTypeSettings", liveGroupTypeSettings);
+	request.setAttribute("site.showPrototypes", String.valueOf(showPrototypes));
 	request.setAttribute("site.stagingGroup", stagingGroup);
 	request.setAttribute("site.stagingGroupId", new Long(stagingGroupId));
-	request.setAttribute("site.liveGroupTypeSettings", liveGroupTypeSettings);
-	request.setAttribute("site.layoutSetPrototype", layoutSetPrototype);
-	request.setAttribute("site.showPrototypes", String.valueOf(showPrototypes));
 	%>
 
 	<liferay-ui:form-navigator

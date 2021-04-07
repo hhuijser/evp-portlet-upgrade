@@ -117,6 +117,7 @@
 			</aui:button-row>
 		</aui:form>
 	</aui:col>
+
 	<aui:col width="<%= 50 %>">
 		<liferay-portlet:preview
 			portletName="<%= portletResource %>"

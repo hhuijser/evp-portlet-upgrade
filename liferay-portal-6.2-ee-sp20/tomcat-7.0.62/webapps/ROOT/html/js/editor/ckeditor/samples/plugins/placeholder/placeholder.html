@@ -6,17 +6,23 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <html>
 <head>
 	<title>Placeholder Plugin &mdash; CKEditor Sample</title>
-	<meta charset="utf-8">
+
+	<meta charset="utf-8" />
+
 	<script src="../../../ckeditor.js"></script>
-	<link rel="stylesheet" href="../../../samples/sample.css">
-	<meta name="ckeditor-sample-name" content="Placeholder plugin">
-	<meta name="ckeditor-sample-group" content="Plugins">
-	<meta name="ckeditor-sample-description" content="Using the Placeholder plugin to create uneditable sections that can only be created and modified with a proper dialog window.">
+
+	<link rel="stylesheet" href="../../../samples/sample.css" />
+
+	<meta name="ckeditor-sample-name" content="Placeholder plugin" />
+	<meta name="ckeditor-sample-group" content="Plugins" />
+	<meta name="ckeditor-sample-description" content="Using the Placeholder plugin to create uneditable sections that can only be created and modified with a proper dialog window." />
 </head>
+
 <body>
 	<h1 class="samples">
 		<a href="../../../samples/index.html">CKEditor Samples</a> &raquo; Using the Placeholder Plugin
 	</h1>
+
 	<div class="description">
 		<p>
 			This sample shows how to configure CKEditor instances to use the
@@ -24,6 +30,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			into your content. To enter and modify read-only text, use the
 			<strong>Create Placeholder</strong> button and its matching dialog window.
 		</p>
+
 		<p>
 			To add a CKEditor instance that uses the <code>placeholder</code> plugin and a related
 			<strong>Create Placeholder</strong> toolbar button, insert the following JavaScript
@@ -39,12 +46,15 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			the <code>&lt;textarea&gt;</code> element to be replaced with CKEditor.
 		</p>
 	</div>
+
 	<form action="../../../samples/sample_posteddata.php" method="post">
 		<p>
 			<label for="editor1">
 				CKEditor using the <code>placeholder</code> plugin with its default configuration:
 			</label>
+
 			<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is a [[sample placeholder]]. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;. &lt;/p&gt;</textarea>
+
 			<script>
 
 				CKEDITOR.replace( 'editor1', {
@@ -54,15 +64,19 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 
 			</script>
 		</p>
+
 		<p>
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit" />
 		</p>
 	</form>
+
 	<div id="footer">
-		<hr>
+		<hr />
+
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
+
 		<p id="copy">
 			Copyright &copy; 2003-2013, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.

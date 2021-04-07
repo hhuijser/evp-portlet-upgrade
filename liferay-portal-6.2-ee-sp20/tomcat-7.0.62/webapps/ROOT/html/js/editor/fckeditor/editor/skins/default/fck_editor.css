@@ -27,9 +27,9 @@
 
 body
 {
-	padding: 1px;
-	margin: 0;
 	background-color: #ffffff;
+	margin: 0;
+	padding: 1px;
 }
 
 #xEditingArea
@@ -133,7 +133,7 @@ body
 
 .TB_Button_On, .TB_Button_Off, .TB_Button_On_Over, .TB_Button_Off_Over, .TB_Button_Disabled
 {
-    border: #efefde 1px solid; /* This is the default border */
+    border: #efefde 1px solid; /* ---------- This is the default border ---------- */
     height: 22px; /* The height is necessary, otherwise IE will not apply the alpha */
 }
 
@@ -151,13 +151,13 @@ body
 
 .TB_Button_Off
 {
-    filter: alpha(opacity=70); /* IE */
+    filter: alpha(opacity=70); /* ---------- IE ---------- */
     opacity: 0.70; /* Safari, Opera and Mozilla */
 }
 
 .TB_Button_Disabled
 {
-    filter: gray() alpha(opacity=30); /* IE */
+    filter: gray() alpha(opacity=30); /* ---------- IE ---------- */
     opacity: 0.30; /* Safari, Opera and Mozilla */
 }
 
@@ -184,15 +184,15 @@ body
 
 .TB_Button_Off .TB_Button_Text
 {
-   	background-color: #efefde;  /* Needed because of a bug on Clear Type */
+   	background-color: #efefde;  /* ---------- Needed because of a bug on clear type ---------- */
 }
 
 .TB_ConnectionLine
 {
     background-color: #ffffff;
     height: 1px;
-    margin-left: 1px;   /* ltr */
-    margin-right: 1px;  /* rtl */
+    margin-left: 1px;   /* ---------- ltr ---------- */
+    margin-right: 1px;  /* ---------- rtl ---------- */
 }
 
 .TB_Text
@@ -202,12 +202,12 @@ body
 
 .TB_Button_Off .TB_Text
 {
-   	background-color: #efefde ;  /* Needed because of a bug on ClearType */
+   	background-color: #efefde ;  /* ---------- Needed because of a bug on ClearType ---------- */
 }
 
 .TB_Button_On_Over .TB_Text
 {
-   	background-color: #dff1ff ;  /* Needed because of a bug on ClearType */
+   	background-color: #dff1ff ;  /* ---------- Needed because of a bug on ClearType ---------- */
 }
 
 /*
@@ -277,7 +277,7 @@ body
 
 .MN_Item_Disabled IMG
 {
-    filter: gray() alpha(opacity=30); /* IE */
+    filter: gray() alpha(opacity=30); /* ---------- IE ---------- */
     opacity: 0.30; /* Safari, Opera and Mozilla */
 }
 

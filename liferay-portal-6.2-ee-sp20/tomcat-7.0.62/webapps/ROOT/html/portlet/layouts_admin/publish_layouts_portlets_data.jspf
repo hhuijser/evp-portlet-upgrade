@@ -77,7 +77,7 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 							<aui:fieldset cssClass="portlet-data-section" label="date-range">
 								<aui:input id="rangeAll" label="all" name="range" type="radio" value="all" />
 
-								<aui:input checked="<%= true %>"  id="rangeLastPublish" label="from-last-publish-date" name="range" type="radio" value="fromLastPublishDate" />
+								<aui:input checked="<%= true %>" id="rangeLastPublish" label="from-last-publish-date" name="range" type="radio" value="fromLastPublishDate" />
 
 								<aui:input helpMessage="export-date-range-help" id="rangeDateRange" label="date-range" name="range" type="radio" value="dateRange" />
 
@@ -116,20 +116,19 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 											&nbsp;
 
 											<liferay-ui:input-time
-												amPmParam='<%= "startDateAmPm" %>'
+												amPmParam="startDateAmPm"
 												amPmValue="<%= startCalendar.get(Calendar.AM_PM) %>"
 												dateParam="startDateTime"
 												dateValue="<%= startCalendar.getTime() %>"
 												disabled="<%= false %>"
-												hourParam='<%= "startDateHour" %>'
+												hourParam="startDateHour"
 												hourValue="<%= startCalendar.get(Calendar.HOUR) %>"
-												minuteParam='<%= "startDateMinute" %>'
+												minuteParam="startDateMinute"
 												minuteValue="<%= startCalendar.get(Calendar.MINUTE) %>"
 												name="startTime"
 											/>
 										</aui:fieldset>
 									</li>
-
 									<li>
 										<aui:fieldset label="end-date">
 											<liferay-ui:input-date
@@ -147,14 +146,14 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 											&nbsp;
 
 											<liferay-ui:input-time
-												amPmParam='<%= "endDateAmPm" %>'
+												amPmParam="endDateAmPm"
 												amPmValue="<%= endCalendar.get(Calendar.AM_PM) %>"
 												dateParam="startDateTime"
 												dateValue="<%= endCalendar.getTime() %>"
 												disabled="<%= false %>"
-												hourParam='<%= "endDateHour" %>'
+												hourParam="endDateHour"
 												hourValue="<%= endCalendar.get(Calendar.HOUR) %>"
-												minuteParam='<%= "endDateMinute" %>'
+												minuteParam="endDateMinute"
 												minuteValue="<%= endCalendar.get(Calendar.MINUTE) %>"
 												name="endTime"
 											/>
@@ -191,7 +190,6 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 					message='<%= LanguageUtil.get(locale, "date-range") + selectedLabelsHTML %>'
 				/>
 			</li>
-
 			<li class="options">
 				<ul class="portlet-list">
 					<li class="tree-item">
@@ -244,7 +242,7 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 						long modelDeletionCount = manifestSummary.getModelDeletionCount(portletDataHandler.getDeletionSystemEventStagedModelTypes());
 					%>
 
-						<c:if test="<%= GetterUtil.getBoolean(liveGroupTypeSettings.getProperty(StagingUtil.getStagedPortletId(portlet.getRootPortletId())), portletDataHandler.isPublishToLiveByDefault()) && ((exportModelCount != 0) || (modelDeletionCount !=0)) %>">
+						<c:if test="<%= GetterUtil.getBoolean(liveGroupTypeSettings.getProperty(StagingUtil.getStagedPortletId(portlet.getRootPortletId())), portletDataHandler.isPublishToLiveByDefault()) && ((exportModelCount != 0) || (modelDeletionCount != 0)) %>">
 							<li class="tree-item">
 								<liferay-util:buffer var="badgeHTML">
 									<span class="badge badge-info"><%= exportModelCount > 0 ? exportModelCount : StringPool.BLANK %></span>
@@ -272,7 +270,7 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 															request.setAttribute("render_controls.jsp-controls", exportControls);
 															request.setAttribute("render_controls.jsp-manifestSummary", manifestSummary);
 															request.setAttribute("render_controls.jsp-portletDisabled", !portletDataHandler.isPublishToLiveByDefault());
-														%>
+													%>
 
 															<aui:field-wrapper label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'>
 																<ul class="lfr-tree unstyled">
@@ -280,7 +278,7 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 																</ul>
 															</aui:field-wrapper>
 
-														<%
+													<%
 														}
 													}
 
@@ -299,15 +297,15 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 
 															if (ArrayUtil.isNotEmpty(childrenControls)) {
 																request.setAttribute("render_controls.jsp-controls", childrenControls);
-															%>
+													%>
 
-															<aui:field-wrapper label="content-metadata">
-																<ul class="lfr-tree unstyled">
-																	<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
-																</ul>
-															</aui:field-wrapper>
+																<aui:field-wrapper label="content-metadata">
+																	<ul class="lfr-tree unstyled">
+																		<liferay-util:include page="/html/portlet/layouts_admin/render_controls.jsp" />
+																	</ul>
+																</aui:field-wrapper>
 
-															<%
+													<%
 															}
 														}
 													}
@@ -323,7 +321,7 @@ ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 											<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= portlet.getRootPortletId() %>"></span>
 
 											<%
-											Map<String,Object> data = new HashMap<String,Object>();
+											Map<String, Object> data = new HashMap<String, Object>();
 
 											data.put("portletid", portlet.getRootPortletId());
 											data.put("portlettitle", portletTitle);

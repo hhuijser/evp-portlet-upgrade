@@ -30,9 +30,7 @@ headerNames.add(StringPool.BLANK);
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
-int total = WikiNodeServiceUtil.getNodesCount(scopeGroupId);
-
-searchContainer.setTotal(total);
+searchContainer.setTotal(WikiNodeServiceUtil.getNodesCount(scopeGroupId));
 
 List results = WikiNodeServiceUtil.getNodes(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
 
@@ -77,9 +75,7 @@ searchContainer.setResults(results);
 
 		// Number of pages
 
-		int pagesCount = WikiPageServiceUtil.getPagesCount(scopeGroupId, node.getNodeId(), true);
-
-		row.addText(String.valueOf(pagesCount), rowURL);
+		row.addText(String.valueOf(WikiPageServiceUtil.getPagesCount(scopeGroupId, node.getNodeId(), true)), rowURL);
 
 		// Last post date
 

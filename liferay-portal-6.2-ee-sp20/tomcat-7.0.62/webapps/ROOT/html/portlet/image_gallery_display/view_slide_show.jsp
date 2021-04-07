@@ -40,6 +40,7 @@ int defaultSpeed = 3000;
 			<aui:button onClick='<%= renderResponse.getNamespace() + "pause();" %>' value="pause" />
 			<aui:button onClick='<%= renderResponse.getNamespace() + "showNext();" %>' value="next" />
 		</aui:col>
+
 		<aui:col width="<%= 50 %>">
 			<aui:select inlineLabel="left" name="speed" onChange='<%= renderResponse.getNamespace() + "pause();" + renderResponse.getNamespace() + "speed = this[this.selectedIndex].value * 1000;" + renderResponse.getNamespace() + "play();" %>'>
 
@@ -54,7 +55,6 @@ int defaultSpeed = 3000;
 				%>
 
 			</aui:select>
-
 		</aui:col>
 	</aui:fieldset>
 </aui:form>
@@ -62,24 +62,24 @@ int defaultSpeed = 3000;
 <br />
 
 <table class="lfr-table">
-<tr>
-	<td>
+	<tr>
+		<td>
 
-		<%
-		if (!fileEntries.isEmpty()) {
-			FileEntry fileEntry = (FileEntry)fileEntries.get(0);
+			<%
+			if (!fileEntries.isEmpty()) {
+				FileEntry fileEntry = (FileEntry)fileEntries.get(0);
 
-			String largeSrc = DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK);
-		%>
+				String largeSrc = DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK);
+			%>
 
-			<img alt="<liferay-ui:message key="slide-show" />" border="0" name="<portlet:namespace />slideShow" src="<%= largeSrc %>" />
+				<img alt="<liferay-ui:message key="slide-show" />" border="0" name="<portlet:namespace />slideShow" src="<%= largeSrc %>" />
 
-		<%
-		}
-		%>
+			<%
+			}
+			%>
 
-	</td>
-</tr>
+		</td>
+	</tr>
 </table>
 
 <aui:script>

@@ -27,6 +27,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 
 			<%
 			String displayStyleDefault = GetterUtil.getString(SessionClicks.get(request, "liferay_addpanel_displaystyle", "descriptive"));
+
 			String displayStyle = ParamUtil.getString(request, "displayStyle", displayStyleDefault);
 			String keywords = ParamUtil.getString(request, "keywords");
 
@@ -90,10 +91,9 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 					}
 
 					for (AssetEntry assetEntry : results) {
-						String className = PortalUtil.getClassName(assetEntry.getClassNameId());
 						long classPK = assetEntry.getClassPK();
 
-						AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(className);
+						AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(PortalUtil.getClassName(assetEntry.getClassNameId()));
 
 						if (assetRendererFactory == null) {
 							continue;
@@ -122,7 +122,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 						data.put("portlet-id", assetRenderer.getAddToPagePortletId());
 						data.put("title", title);
 
-						String navItemCssClass="content-shortcut drag-content-item lfr-content-item ";
+						String navItemCssClass ="content-shortcut drag-content-item lfr-content-item ";
 
 						if (!displayStyle.equals("icon")) {
 							navItemCssClass += "has-preview";
@@ -136,7 +136,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 							label='<%= displayStyle.equals("list") ? title : "" %>'
 						>
 							<c:choose>
-								<c:when test='<%= !displayStyle.equals("list") %>' >
+								<c:when test='<%= !displayStyle.equals("list") %>'>
 									<div class="add-content-thumbnail <%= displayStyle.equals("descriptive") ? "span4" : StringPool.BLANK %>">
 										<img alt="<liferay-ui:message key="thumbnail" />" src="<%= HtmlUtil.escapeAttribute(assetRenderer.getThumbnailPath(liferayPortletRequest)) %>" />
 									</div>
@@ -151,7 +151,7 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 										</div>
 									</div>
 								</c:when>
-								<c:otherwise >
+								<c:otherwise>
 									<div <%= AUIUtil.buildData(data) %> class="add-content-item">
 										<liferay-ui:message key="add" />
 									</div>
@@ -167,7 +167,6 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 			</liferay-ui:panel>
 		</div>
 	</c:when>
-
 	<c:when test="<%= viewPreview %>">
 
 		<%
@@ -180,11 +179,12 @@ boolean viewPreview = ParamUtil.getBoolean(request, "viewPreview");
 			<%
 			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
 			AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(className);
+
 			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(classPK);
 
 			request.setAttribute("add_panel.jsp-assetEntry", assetEntry);
-			request.setAttribute("add_panel.jsp-assetRendererFactory", assetRendererFactory);
 			request.setAttribute("add_panel.jsp-assetRenderer", assetRenderer);
+			request.setAttribute("add_panel.jsp-assetRendererFactory", assetRendererFactory);
 			%>
 
 			<div id="<portlet:namespace />preview">

@@ -18,6 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 
 Group group = ActionUtil.getGroup(renderRequest);
@@ -59,9 +60,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 	TeamDisplayTerms searchTerms = (TeamDisplayTerms)searchContainer.getSearchTerms();
 
-	int total = TeamLocalServiceUtil.searchCount(groupId, searchTerms.getName(), searchTerms.getDescription(), new LinkedHashMap<String, Object>());
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(TeamLocalServiceUtil.searchCount(groupId, searchTerms.getName(), searchTerms.getDescription(), new LinkedHashMap<String, Object>()));
 
 	List results = TeamLocalServiceUtil.search(groupId, searchTerms.getName(), searchTerms.getDescription(), new LinkedHashMap<String, Object>(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 

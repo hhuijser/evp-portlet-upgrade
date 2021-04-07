@@ -207,52 +207,52 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				<a name="<%= randomNamespace %>messages_top"></a>
 
 				<c:if test="<%= treeWalker != null %>">
-				<table class="table table-bordered table-hover table-striped tree-walker">
-					<thead class="table-columns">
-					<tr>
-						<th class="table-header" colspan="2">
-							<liferay-ui:message key="threaded-replies" />
-						</th>
-						<th class="table-header" colspan="2">
-							<liferay-ui:message key="author" />
-						</th>
-						<th class="table-header">
-							<liferay-ui:message key="date" />
-						</th>
-					</tr>
-					</thead>
+					<table class="table table-bordered table-hover table-striped tree-walker">
+						<thead class="table-columns">
+							<tr>
+								<th class="table-header" colspan="2">
+									<liferay-ui:message key="threaded-replies" />
+								</th>
+								<th class="table-header" colspan="2">
+									<liferay-ui:message key="author" />
+								</th>
+								<th class="table-header">
+									<liferay-ui:message key="date" />
+								</th>
+							</tr>
+						</thead>
 
-					<tbody class="table-data">
+						<tbody class="table-data">
 
-					<%
-					int[] range = treeWalker.getChildrenRange(rootMessage);
+							<%
+							int[] range = treeWalker.getChildrenRange(rootMessage);
 
-					for (i = range[0]; i < range[1]; i++) {
-						message = (MBMessage)messages.get(i);
+							for (i = range[0]; i < range[1]; i++) {
+								message = (MBMessage)messages.get(i);
 
-						boolean lastChildNode = false;
+								boolean lastChildNode = false;
 
-						if ((i + 1) == range[1]) {
-							lastChildNode = true;
-						}
+								if ((i + 1) == range[1]) {
+									lastChildNode = true;
+								}
 
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER, treeWalker);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CATEGORY, category);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CUR_MESSAGE, message);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH, new Integer(0));
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE, Boolean.valueOf(lastChildNode));
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_SEL_MESSAGE, rootMessage);
-						request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD, thread);
-					%>
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER, treeWalker);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CATEGORY, category);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CUR_MESSAGE, message);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH, new Integer(0));
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE, Boolean.valueOf(lastChildNode));
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_SEL_MESSAGE, rootMessage);
+								request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD, thread);
+							%>
 
-						<liferay-util:include page="/html/taglib/ui/discussion/view_message_thread.jsp" />
+								<liferay-util:include page="/html/taglib/ui/discussion/view_message_thread.jsp" />
 
-					<%
-					}
-					%>
+							<%
+							}
+							%>
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
 
 					<br />
 				</c:if>
@@ -400,7 +400,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 															image="top"
 															label="<%= true %>"
 															url="<%= taglibTopURL %>"
-															/>
+														/>
 													</li>
 
 													<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), threadGroupId, permissionClassName, permissionClassPK, ActionKeys.UPDATE_DISCUSSION, message.getMessageId()) %>">
@@ -440,7 +440,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 							<aui:row cssClass="lfr-discussion-form-container" fluid="<%= true %>">
 								<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
-
 									<liferay-ui:user-display
 										displayStyle="<%= 2 %>"
 										userId="<%= user.getUserId() %>"
@@ -517,7 +516,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 												</div>
 
 												<div class="lfr-discussion-reply-user-name">
-														<%= HtmlUtil.escape(parentMessage.getUserName()) %>
+													<%= HtmlUtil.escape(parentMessage.getUserName()) %>
 												</div>
 
 												<div class="lfr-discussion-reply-creation-date">

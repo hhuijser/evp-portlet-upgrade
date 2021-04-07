@@ -96,7 +96,7 @@
 						%>
 
 							<span class="lfr-translation-manager-translation" locale="<%= availableLocales[i] %>">
-								<img alt="<%= availableLocales[i].getDisplayName(locale) %>" src="<%= themeDisplay.getPathThemeImages() %>/language/<%= LocaleUtil.toLanguageId(availableLocales[i]) %>.png">
+								<img alt="<%= availableLocales[i].getDisplayName(locale) %>" src="<%= themeDisplay.getPathThemeImages() %>/language/<%= LocaleUtil.toLanguageId(availableLocales[i]) %>.png" />
 
 								<%= availableLocales[i].getDisplayName(locale) %>
 

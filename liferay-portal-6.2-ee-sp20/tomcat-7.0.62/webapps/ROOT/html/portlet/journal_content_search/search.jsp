@@ -73,9 +73,7 @@
 
 				contentHits.recordHits(hits, layout.getGroupId(), layout.isPrivateLayout(), searchContainer.getStart(), searchContainer.getEnd());
 
-				int total = hits.getLength();
-
-				searchContainer.setTotal(total);
+				searchContainer.setTotal(hits.getLength());
 
 				List<Document> results = ListUtil.toList(hits.getDocs());
 

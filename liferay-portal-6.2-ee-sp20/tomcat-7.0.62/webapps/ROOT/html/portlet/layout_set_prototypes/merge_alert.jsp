@@ -35,7 +35,7 @@ int mergeFailCount = SitesUtil.getMergeFailCount(layoutSetPrototype);
 	PortletURL portletURL = liferayPortletResponse.createActionURL();
 
 	portletURL.setParameter("redirect", redirect);
-	portletURL.setParameter("layoutSetPrototypeId",String.valueOf(layoutSetPrototype.getLayoutSetPrototypeId()));
+	portletURL.setParameter("layoutSetPrototypeId", String.valueOf(layoutSetPrototype.getLayoutSetPrototypeId()));
 
 	if (groupId > 0) {
 		portletURL.setParameter("struts_action", "/sites_admin/edit_site");

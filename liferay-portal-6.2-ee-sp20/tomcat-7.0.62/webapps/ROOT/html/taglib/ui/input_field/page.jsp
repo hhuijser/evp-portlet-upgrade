@@ -22,7 +22,7 @@ boolean autoFocus = GetterUtil.getBoolean((String)request.getAttribute("liferay-
 boolean autoSize = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:input-field:autoSize"));
 Object bean = request.getAttribute("liferay-ui:input-field:bean");
 String cssClass = GetterUtil.getString((String)request.getAttribute("liferay-ui:input-field:cssClass"));
-String dateTogglerCheckboxLabel = GetterUtil.getString((String) request.getAttribute("liferay-ui:input-field:dateTogglerCheckboxLabel"));
+String dateTogglerCheckboxLabel = GetterUtil.getString((String)request.getAttribute("liferay-ui:input-field:dateTogglerCheckboxLabel"));
 String defaultLanguageId = (String)request.getAttribute("liferay-ui:input-field:defaultLanguageId");
 Object defaultValue = request.getAttribute("liferay-ui:input-field:defaultValue");
 boolean disabled = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:input-field:disabled"));
@@ -410,7 +410,7 @@ if (hints != null) {
 								languageId="<%= languageId %>"
 								maxLength="<%= maxLength %>"
 								name="<%= fieldParam %>"
-								style='<%= "max-width: " + displayWidth + (Validator.isDigit(displayWidth) ? "px" : "") + "; " + (upperCase ? "text-transform: uppercase;" : "" ) %>'
+								style='<%= "max-width: " + displayWidth + (Validator.isDigit(displayWidth) ? "px" : "") + "; " + (upperCase ? "text-transform: uppercase;" : "") %>'
 								type="editor"
 								xml="<%= xml %>"
 							/>
@@ -418,9 +418,9 @@ if (hints != null) {
 						<c:otherwise>
 							<liferay-ui:input-editor
 								contentsLanguageId="<%= languageId %>"
-								cssClass='<%= cssClass + \" lfr-input-text\" %>'
+								cssClass='<%= cssClass + " lfr-input-text" %>'
 								editorImpl="ckeditor"
-								initMethod='<%= fieldParam + \"InitEditor\" %>'
+								initMethod='<%= fieldParam + "InitEditor" %>'
 								name="<%= fieldParam %>"
 								toolbarSet="simple"
 							/>
@@ -460,7 +460,7 @@ if (hints != null) {
 								languageId="<%= languageId %>"
 								maxLength="<%= maxLength %>"
 								name="<%= fieldParam %>"
-								style='<%= "max-width: " + displayWidth + (Validator.isDigit(displayWidth) ? "px" : "") + "; " + (upperCase ? "text-transform: uppercase;" : "" ) %>'
+								style='<%= "max-width: " + displayWidth + (Validator.isDigit(displayWidth) ? "px" : "") + "; " + (upperCase ? "text-transform: uppercase;" : "") %>'
 								xml="<%= xml %>"
 							/>
 						</c:when>
