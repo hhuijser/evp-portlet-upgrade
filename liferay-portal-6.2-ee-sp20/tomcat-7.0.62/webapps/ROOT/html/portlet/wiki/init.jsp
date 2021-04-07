@@ -81,7 +81,7 @@ if (visibleNodesPreference != null) {
 	allNodes = WikiUtil.orderNodes(allNodes, visibleNodes);
 }
 else {
-	visibleNodes = allNodeNames.toArray(new String[allNodeNames.size()]);
+	visibleNodes = allNodeNames.toArray(new String[0]);
 }
 
 String[] hiddenNodes = StringUtil.split(portletPreferences.getValue("hiddenNodes", null));

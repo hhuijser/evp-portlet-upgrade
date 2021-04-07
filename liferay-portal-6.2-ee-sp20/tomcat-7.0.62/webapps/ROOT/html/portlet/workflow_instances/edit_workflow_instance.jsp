@@ -118,7 +118,7 @@ request.setAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW, Boolean.TRUE);
 					</c:choose>
 
 					<%
-					String[] metadataFields = new String[] {"author", "categories", "tags"};
+					String[] metadataFields = {"author", "categories", "tags"};
 					%>
 
 					<div class="asset-metadata">

@@ -35,9 +35,9 @@ page import="com.liferay.oauth.service.permission.OAuthPermission" %><%@
 page import="com.liferay.oauth.service.permission.OAuthUserPermission" %><%@
 page import="com.liferay.oauth.util.ActionKeys" %><%@
 page import="com.liferay.oauth.util.OAuthAccessor" %><%@
-page import="com.liferay.oauth.util.OAuthConsumer" %><%@
-page import="com.liferay.oauth.util.OAuthMessage" %><%@
-page import="com.liferay.oauth.util.OAuthUtil" %><%@
+page import="com.liferay.oauth.util.OAuthConsumer" %>
+
+<%@ page import="com.liferay.oauth.util.OAuthUtil" %><%@
 page import="com.liferay.portal.ImageTypeException" %><%@
 page import="com.liferay.portal.RequiredFieldException" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
@@ -63,9 +63,9 @@ page import="com.liferay.portlet.PortletURLUtil" %>
 page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 PortletMode portletMode = liferayPortletRequest.getPortletMode();
