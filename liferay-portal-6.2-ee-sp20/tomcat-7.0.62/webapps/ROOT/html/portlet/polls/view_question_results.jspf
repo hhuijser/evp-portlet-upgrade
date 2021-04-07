@@ -64,13 +64,11 @@ for (int i = 0; i < choices.size(); i++) {
 	<td class="table-cell">
 		<%= numberFormat.format(choiceVotes) %>
 	</td>
-
 	<td class="table-cell">
 		<div class="progress" style="width: <%= votesPixelWidth %>px;">
 			<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="<%= votesPercentWidth %>" class="bar" role="progressbar" style="width: <%= votesPercentWidth %>%;"></div>
 		</div>
 	</td>
-
 	<td class="table-cell">
 		<strong><%= choice.getName() %>.</strong>
 	</td>
@@ -108,7 +106,7 @@ for (int i = 0; i < choices.size(); i++) {
 			<aui:a href="<%= hrefTaglib %>"><liferay-ui:message key="<%= chart %>" /></aui:a><%= (i != (_CHARTS.length - 1)) ? StringPool.COMMA_AND_SPACE : StringPool.BLANK %>
 
 		<%
-			}
+		}
 		%>
 
 	</div>
@@ -137,9 +135,7 @@ for (int i = 0; i < choices.size(); i++) {
 
 		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
-		int total = PollsVoteLocalServiceUtil.getQuestionVotesCount(question.getQuestionId());
-
-		searchContainer.setTotal(total);
+		searchContainer.setTotal(PollsVoteLocalServiceUtil.getQuestionVotesCount(question.getQuestionId()));
 
 		List results = PollsVoteLocalServiceUtil.getQuestionVotes(question.getQuestionId(), searchContainer.getStart(), searchContainer.getEnd());
 

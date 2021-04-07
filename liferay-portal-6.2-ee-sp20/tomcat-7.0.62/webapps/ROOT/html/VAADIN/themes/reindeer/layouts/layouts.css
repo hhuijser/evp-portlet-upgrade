@@ -21,11 +21,11 @@
 .v-orderedlayout-spacing-on,
 .v-horizontallayout-spacing-on,
 .v-verticallayout-spacing-on {
-	padding-top: 7px;
 	padding-left: 6px;
+	padding-top: 7px;
 }
 /* Different for historical reasons: previously was inherited directly from Base theme */
-/* TODO unify these values in version 7 */
+/* ---------- TODO unify these values in version 7 ---------- */
 .v-gridlayout-margin-top {
 	padding-top: 24px;
 }
@@ -42,7 +42,7 @@
 	padding-left: 12px;
 	padding-top: 12px;
 }
-/* Blue background */
+/* ---------- Blue background ---------- */
 .v-verticallayout-blue,
 .v-horizontallayout-blue,
 .v-orderedlayout-blue,
@@ -56,7 +56,7 @@
 .v-panel-content > div.blue {
 	background-color: #bcd3de;
 }
-/* White background */
+/* ---------- White background ---------- */
 .v-verticallayout-white,
 .v-horizontallayout-white,
 .v-orderedlayout-white,
@@ -72,7 +72,7 @@
 	background-color: #fff;
 	color: #222;
 }
-/* Black background */
+/* ---------- Black background ---------- */
 .v-verticallayout-black,
 .v-horizontallayout-black,
 .v-orderedlayout-black,

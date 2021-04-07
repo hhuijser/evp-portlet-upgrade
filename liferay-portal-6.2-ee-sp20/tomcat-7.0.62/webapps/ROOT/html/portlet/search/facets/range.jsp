@@ -50,7 +50,7 @@ JSONArray rangesJSONArray = dataJSONObject.getJSONArray("ranges");
 				</aui:script>
 			</c:if>
 
-		<%
+			<%
 			int frequency = 0;
 
 			if (termCollector != null) {
@@ -60,7 +60,7 @@ JSONArray rangesJSONArray = dataJSONObject.getJSONArray("ranges");
 			if (frequencyThreshold > frequency) {
 				continue;
 			}
-		%>
+			%>
 
 			<li class="facet-value <%= fieldParam.equals(range) ? "active" : StringPool.BLANK %>">
 				<a data-value="<%= HtmlUtil.escapeAttribute(range) %>" href="javascript:;">

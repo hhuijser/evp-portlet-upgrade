@@ -69,9 +69,7 @@ portletDisplay.setTitle(portletTitle);
 
 // Portlet description
 
-String portletDescription = PortalUtil.getPortletDescription(portlet, application, locale);
-
-portletDisplay.setDescription(portletDescription);
+portletDisplay.setDescription(PortalUtil.getPortletDescription(portlet, application, locale));
 
 Group group = layout.getGroup();
 

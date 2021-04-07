@@ -180,7 +180,6 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 		<%= PortletDisplayTemplateUtil.renderDDMTemplate(pageContext, portletDisplayDDMTemplateId, entries, contextObjects) %>
 	</c:when>
 	<c:otherwise>
-
 		<liferay-ui:header
 			backLabel="<%= parentTitle %>"
 			backURL="<%= (viewParentPageURL != null) ? viewParentPageURL.toString() : null %>"

@@ -37,9 +37,7 @@ List<Role> defaultSiteRoles = new ArrayList();
 long[] defaultSiteRoleIds = StringUtil.split(groupTypeSettings.getProperty("defaultSiteRoleIds"), 0L);
 
 for (long defaultSiteRoleId : defaultSiteRoleIds) {
-	Role role = RoleLocalServiceUtil.getRole(defaultSiteRoleId);
-
-	defaultSiteRoles.add(role);
+	defaultSiteRoles.add(RoleLocalServiceUtil.getRole(defaultSiteRoleId));
 }
 
 List<Team> defaultTeams = new ArrayList();
@@ -47,9 +45,7 @@ List<Team> defaultTeams = new ArrayList();
 long[] defaultTeamIds = StringUtil.split(groupTypeSettings.getProperty("defaultTeamIds"), 0L);
 
 for (long defaultTeamId : defaultTeamIds) {
-	Team team = TeamLocalServiceUtil.getTeam(defaultTeamId);
-
-	defaultTeams.add(team);
+	defaultTeams.add(TeamLocalServiceUtil.getTeam(defaultTeamId));
 }
 %>
 
@@ -82,7 +78,6 @@ for (long defaultTeamId : defaultTeamIds) {
 		keyProperty="roleId"
 		modelVar="role"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="title"
 			value="<%= HtmlUtil.escape(role.getTitle(locale)) %>"

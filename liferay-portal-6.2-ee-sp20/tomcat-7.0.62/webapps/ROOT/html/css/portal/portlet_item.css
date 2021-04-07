@@ -35,7 +35,7 @@
 	right: 20px;
 }
 
-/* Skin */
+/* ---------- Skin ---------- */
 
 .lfr-portlet-item {
 	background: url(@theme_image_path@/add_content/portlet_item.png) no-repeat 0 50%;

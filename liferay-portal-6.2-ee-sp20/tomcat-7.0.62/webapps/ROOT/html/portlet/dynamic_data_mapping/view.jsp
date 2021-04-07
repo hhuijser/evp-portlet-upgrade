@@ -68,7 +68,6 @@ portletURL.setParameter("tabs1", tabs1);
 		rowChecker="<%= new RowChecker(renderResponse) %>"
 		searchContainer="<%= new StructureSearch(renderRequest, portletURL) %>"
 	>
-
 		<c:if test="<%= showToolbar %>">
 			<liferay-util:include page="/html/portlet/dynamic_data_mapping/toolbar.jsp">
 				<liferay-util:param name="groupId" value="<%= String.valueOf(groupId) %>" />

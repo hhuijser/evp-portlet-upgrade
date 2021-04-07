@@ -1,4 +1,4 @@
-/* Hide the advanced tab */
+/* ---------- Hide the advanced tab ---------- */
 #advanced_tab {
 	display: none;
 }
@@ -39,15 +39,15 @@
 	width: 200px;
 }
 
-/* Head list classes */
+/* ---------- Head list classes ---------- */
 
 .headlistwrapper {
 	width: 100%;
 }
 
 .selected {
-	border: 1px solid #0A246A;
 	background-color: #B6BDD2;
+	border: 1px solid #0A246A;
 }
 
 .toolbar {
@@ -55,9 +55,9 @@
 }
 
 #headlist {
-	width: 100%;
-	margin-top: 3px;
 	font-size: 11px;
+	margin-top: 3px;
+	width: 100%;
 }
 
 #info, #title_element, #meta_element, #script_element, #style_element, #base_element, #link_element, #comment_element, #unknown_element {
@@ -65,19 +65,19 @@
 }
 
 #addmenu {
-	position: absolute;
+	background-color: white;
 	border: 1px solid gray;
 	display: none;
+	position: absolute;
 	z-index: 100;
-	background-color: white;
 }
 
 #addmenu a {
+	background-color: white;
 	display: block;
-	width: 100%;
 	line-height: 20px;
 	text-decoration: none;
-	background-color: white;
+	width: 100%;
 }
 
 #addmenu a:hover {
@@ -107,18 +107,18 @@
 }
 
 #element_script_value {
-	width: 100%;
 	height: 100px;
+	width: 100%;
 }
 
 #element_comment_value {
-	width: 100%;
 	height: 120px;
+	width: 100%;
 }
 
 #element_style_value {
-	width: 100%;
 	height: 100px;
+	width: 100%;
 }
 
 #element_title, #element_script_src, #element_meta_name, #element_meta_content, #element_base_href, #element_link_href, #element_link_title {
@@ -129,11 +129,11 @@
 	margin-top: 3px;
 }
 
-/* MSIE specific styles */
+/* ---------- MSIE specific styles ---------- */
 
 * html .addbutton, * html .removebutton, * html .moveupbutton, * html .movedownbutton {
-	width: 22px;
 	height: 22px;
+	width: 22px;
 }
 
 textarea {

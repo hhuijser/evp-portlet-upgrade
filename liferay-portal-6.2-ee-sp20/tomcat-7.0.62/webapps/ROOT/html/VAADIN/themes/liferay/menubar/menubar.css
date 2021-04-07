@@ -8,10 +8,10 @@
 }
 
 .v-menubar-menuitem {
-	padding: 3px 8px;
-	line-height: 16px;
-	font-weight: bold;
 	color: #2c2f34;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 3px 8px;
 	text-shadow: -1px -1px #FFF;
 }
 
@@ -31,13 +31,13 @@
 }
 
 .v-menubar-submenu .v-menubar-menuitem {
-	color: #2c2f34;
-	font-weight: bold;
-	text-shadow: 1px 1px #fff;
-	padding: 1px 26px 1px 10px;
-	line-height: 16px;
 	border-bottom: 1px solid #bcbbbb;
 	border-top: 1px solid #eee;
+	color: #2c2f34;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 1px 26px 1px 10px;
+	text-shadow: 1px 1px #fff;
 }
 
 .v-menubar-submenu .v-menubar-menuitem:last-child {
@@ -50,9 +50,9 @@
 
 .v-menubar .v-menubar-menuitem-selected,
 .v-menubar-submenu .v-menubar-menuitem-selected {
+	background-color: #5b677d;
 	color: #fff;
 	text-shadow: 1px 1px #000;
-	background-color: #5b677d;
 }
 
 .v-menubar-menuitem-disabled,

@@ -24,55 +24,14 @@ Utility functions for the File Manager Connector for Python
 
 """
 
-import string, re
-import os
 import config as Config
-
-# Generic manipulation functions
-
-def removeExtension(fileName):
-	index = fileName.rindex(".")
-	newFileName = fileName[0:index]
-	return newFileName
-
-def getExtension(fileName):
-	index = fileName.rindex(".") + 1
-	fileExtension = fileName[index:]
-	return fileExtension
-
-def removeFromStart(string, char):
-	return string.lstrip(char)
-
-def removeFromEnd(string, char):
-	return string.rstrip(char)
+import os
+import string, re
 
 # Path functions
 
 def combinePaths( basePath, folder ):
 	return removeFromEnd( basePath, '/' ) + '/' + removeFromStart( folder, '/' )
-
-def getFileName(filename):
-	" Purpose: helper function to extrapolate the filename "
-	for splitChar in ["/", "\\"]:
-		array = filename.split(splitChar)
-		if (len(array) > 1):
-			filename = array[-1]
-	return filename
-
-def sanitizeFolderName( newFolderName ):
-	"Do a cleanup of the folder name to avoid possible problems"
-	# Remove . \ / | : ? * " < > and control characters
-	return re.sub( '(?u)\\.|\\\\|\\/|\\||\\:|\\?|\\*|"|<|>|[^\u0000-\u001f\u007f-\u009f]', '_', newFolderName )
-
-def sanitizeFileName( newFileName ):
-	"Do a cleanup of the file name to avoid possible problems"
-	# Replace dots in the name with underscores (only one dot can be there... security issue).
-	if ( Config.ForceSingleExtension ): # remove dots
-		newFileName = re.sub ( '/\\.(?![^.]*$)/', '_', newFileName ) ;
-	newFileName = newFileName.replace('\\','/')		# convert windows to unix path
-	newFileName = os.path.basename (newFileName)	# strip directories
-	# Remove \ / | : ? *
-	return re.sub ( '(?u)/\\\\|\\/|\\||\\:|\\?|\\*|"|<|>|[^\u0000-\u001f\u007f-\u009f]/', '_', newFileName )
 
 def getCurrentFolder(currentFolder):
 	if not currentFolder:
@@ -94,14 +53,18 @@ def getCurrentFolder(currentFolder):
 
 	return currentFolder
 
-def mapServerPath( environ, url):
-	" Emulate the asp Server.mapPath function. Given an url path return the physical directory that it corresponds to "
-	# This isn't correct but for the moment there's no other solution
-	# If this script is under a virtual directory or symlink it will detect the problem and stop
-	return combinePaths( getRootPath(environ), url )
+def getExtension(fileName):
+	index = fileName.rindex(".") + 1
+	fileExtension = fileName[index:]
+	return fileExtension
 
-def mapServerFolder(resourceTypePath, folderPath):
-	return combinePaths ( resourceTypePath  , folderPath )
+def getFileName(filename):
+	" Purpose: helper function to extrapolate the filename "
+	for splitChar in ["/", "\\"]:
+		array = filename.split(splitChar)
+		if (len(array) > 1):
+			filename = array[-1]
+	return filename
 
 def getRootPath(environ):
 	"Purpose: returns the root path on the server"
@@ -124,3 +87,40 @@ def getRootPath(environ):
 		if ( position < 0 or position <> len(realPath) - len(selfPath) or realPath[ : position ]==''):
 			raise Exception('Sorry, can\'t map "UserFilesPath" to a physical path. You must set the "UserFilesAbsolutePath" value in "editor/filemanager/connectors/py/config.py".')
 		return realPath[ : position ]
+
+def mapServerFolder(resourceTypePath, folderPath):
+	return combinePaths ( resourceTypePath  , folderPath )
+
+def mapServerPath( environ, url):
+	" Emulate the asp Server.mapPath function. Given an url path return the physical directory that it corresponds to "
+	# This isn't correct but for the moment there's no other solution
+	# If this script is under a virtual directory or symlink it will detect the problem and stop
+	return combinePaths( getRootPath(environ), url )
+
+# Generic manipulation functions
+
+def removeExtension(fileName):
+	index = fileName.rindex(".")
+	newFileName = fileName[0:index]
+	return newFileName
+
+def removeFromEnd(string, char):
+	return string.rstrip(char)
+
+def removeFromStart(string, char):
+	return string.lstrip(char)
+
+def sanitizeFileName( newFileName ):
+	"Do a cleanup of the file name to avoid possible problems"
+	# Replace dots in the name with underscores (only one dot can be there... security issue).
+	if ( Config.ForceSingleExtension ): # remove dots
+		newFileName = re.sub ( '/\\.(?![^.]*$)/', '_', newFileName ) ;
+	newFileName = newFileName.replace('\\','/')		# convert windows to unix path
+	newFileName = os.path.basename (newFileName)	# strip directories
+	# Remove \ / | : ? *
+	return re.sub ( '(?u)/\\\\|\\/|\\||\\:|\\?|\\*|"|<|>|[^\u0000-\u001f\u007f-\u009f]/', '_', newFileName )
+
+def sanitizeFolderName( newFolderName ):
+	"Do a cleanup of the folder name to avoid possible problems"
+	# Remove . \ / | : ? * " < > and control characters
+	return re.sub( '(?u)\\.|\\\\|\\/|\\||\\:|\\?|\\*|"|<|>|[^\u0000-\u001f\u007f-\u009f]', '_', newFolderName )

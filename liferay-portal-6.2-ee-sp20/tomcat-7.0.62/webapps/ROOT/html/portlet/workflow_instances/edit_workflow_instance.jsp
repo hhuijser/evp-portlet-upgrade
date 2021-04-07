@@ -87,7 +87,6 @@ request.setAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW, Boolean.TRUE);
 		</aui:row>
 
 		<liferay-ui:panel-container cssClass="task-panel-container" extended="<%= true %>" id="preview">
-
 			<c:if test="<%= assetRenderer != null %>">
 				<liferay-ui:panel defaultState="open" title='<%= LanguageUtil.format(pageContext, "preview-of-x", ResourceActionsUtil.getModelResource(locale, className), false) %>'>
 					<div class="task-content-actions">
@@ -105,8 +104,8 @@ request.setAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW, Boolean.TRUE);
 					<%
 					String path = workflowHandler.render(classPK, renderRequest, renderResponse, AssetRenderer.TEMPLATE_ABSTRACT);
 
-					request.setAttribute(WebKeys.ASSET_RENDERER, assetRenderer);
 					request.setAttribute(WebKeys.ASSET_PUBLISHER_ABSTRACT_LENGTH, 200);
+					request.setAttribute(WebKeys.ASSET_RENDERER, assetRenderer);
 					%>
 
 					<c:choose>
@@ -205,6 +204,7 @@ request.setAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW, Boolean.TRUE);
 								path="/html/portlet/workflow_instances/workflow_task_action.jsp"
 							/>
 						</liferay-ui:search-container-row>
+
 						<liferay-ui:search-iterator />
 					</liferay-ui:search-container>
 				</liferay-ui:panel>

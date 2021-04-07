@@ -30,8 +30,8 @@
 }
 .v-Notification-system {
 	background-color: red;
-	opacity: .7;
 	filter: alpha(opacity=70);
+	opacity: .7;
 }
 .v-Notification-system h1 {
 	display: block;

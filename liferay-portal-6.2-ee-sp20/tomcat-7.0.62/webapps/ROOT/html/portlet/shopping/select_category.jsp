@@ -48,9 +48,7 @@ long categoryId = BeanParamUtil.getLong(category, request, "categoryId", Shoppin
 
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
-	int total = ShoppingCategoryServiceUtil.getCategoriesCount(scopeGroupId, categoryId);
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(ShoppingCategoryServiceUtil.getCategoriesCount(scopeGroupId, categoryId));
 
 	List results = ShoppingCategoryServiceUtil.getCategories(scopeGroupId, categoryId, searchContainer.getStart(), searchContainer.getEnd());
 

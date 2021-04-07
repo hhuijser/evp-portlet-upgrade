@@ -14,17 +14,17 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.events.ServicePreAction" %>
-<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
-<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.InstancePool" %>
-<%@ page import="com.liferay.portal.model.Layout" %>
-<%@ page import="com.liferay.portal.model.LayoutConstants" %>
-<%@ page import="com.liferay.portal.model.LayoutSet" %>
-<%@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.theme.ThemeDisplay" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.portal.util.WebKeys" %>
+<%@ page import="com.liferay.portal.events.ServicePreAction" %><%@
+page import="com.liferay.portal.kernel.servlet.HttpHeaders" %><%@
+page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
+page import="com.liferay.portal.kernel.util.InstancePool" %><%@
+page import="com.liferay.portal.model.Layout" %><%@
+page import="com.liferay.portal.model.LayoutConstants" %><%@
+page import="com.liferay.portal.model.LayoutSet" %><%@
+page import="com.liferay.portal.service.LayoutLocalServiceUtil" %><%@
+page import="com.liferay.portal.theme.ThemeDisplay" %><%@
+page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.portal.util.WebKeys" %>
 
 <%
 
@@ -42,13 +42,11 @@ if (layoutSet != null) {
 	long defaultPlid = LayoutLocalServiceUtil.getDefaultPlid(layoutSet.getGroupId(), layoutSet.isPrivateLayout());
 
 	if (defaultPlid != LayoutConstants.DEFAULT_PLID) {
-		Layout layout = LayoutLocalServiceUtil.getLayout(defaultPlid);
-
 		ServicePreAction servicePreAction = (ServicePreAction)InstancePool.get(ServicePreAction.class.getName());
 
 		ThemeDisplay themeDisplay = servicePreAction.initThemeDisplay(request, response);
 
-		redirect = PortalUtil.getLayoutURL(layout, themeDisplay);
+		redirect = PortalUtil.getLayoutURL(LayoutLocalServiceUtil.getLayout(defaultPlid), themeDisplay);
 	}
 	else {
 		redirect = PortalUtil.getPathMain();
@@ -68,14 +66,13 @@ response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 %>
 
 <html>
+	<head>
+		<title></title>
 
-<head>
-	<title></title>
-	<meta content="1; url=<%= HtmlUtil.escapeAttribute(redirect) %>" http-equiv="refresh" />
-</head>
+		<meta content="1; url=<%= HtmlUtil.escapeAttribute(redirect) %>" http-equiv="refresh" />
+	</head>
 
-<body onload="javascript:location.replace('<%= HtmlUtil.escapeJS(redirect) %>')">
+	<body onload="javascript:location.replace('<%= HtmlUtil.escapeJS(redirect) %>')">
 
-</body>
-
+	</body>
 </html>

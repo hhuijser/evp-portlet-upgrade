@@ -39,7 +39,7 @@
 		<put name="selectable" value="true" />
 	</definition>
 
-		<definition name="portal.license_lcs" extends="portal">
+	<definition name="portal.license_lcs" extends="portal">
 		<put name="title" value="license" />
 		<put name="content" value="/portal/license_lcs.jsp" />
 	</definition>
@@ -288,7 +288,7 @@
 	<!-- Blogs Admin -->
 
 	<definition name="portlet.blogs_admin.view" extends="portlet">
-			<put name="portlet_content" value="/portlet/blogs_admin/view.jsp" />
+		<put name="portlet_content" value="/portlet/blogs_admin/view.jsp" />
 	</definition>
 
 	<!-- Blogs Aggregator -->

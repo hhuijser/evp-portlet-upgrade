@@ -57,15 +57,12 @@ request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
 		<span id="<portlet:namespace />addButton">
 			<liferay-util:include page="/html/portlet/journal/add_button.jsp" />
 		</span>
-
 		<span id="<portlet:namespace />displayStyleButtons">
 			<liferay-util:include page="/html/portlet/journal/display_style_buttons.jsp" />
 		</span>
-
 		<span id="<portlet:namespace />sortButton">
 			<liferay-util:include page="/html/portlet/journal/sort_button.jsp" />
 		</span>
-
 		<span id="<portlet:namespace />breadcrumb">
 			<div class="portlet-breadcrumb">
 				<c:if test='<%= !navigation.equals("recent") && !navigation.equals("mine") && Validator.isNull(browseBy) %>'>

@@ -1,6 +1,6 @@
-/* neo theme for codemirror */
+/* ---------- neo theme for codemirror ---------- */
 
-/* Color scheme */
+/* ---------- Color scheme ---------- */
 
 .cm-s-neo.CodeMirror {
   background-color:#ffffff;
@@ -15,7 +15,7 @@
 .cm-s-neo .cm-variable,.cm-s-neo .cm-qualifier {color:#047d65}
 
 
-/* Editor styling */
+/* ---------- Editor styling ---------- */
 
 .cm-s-neo pre {
   padding:0;

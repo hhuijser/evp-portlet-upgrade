@@ -201,7 +201,7 @@ boolean expired = true;
 						<c:if test="<%= articleDisplay.isPaginate() %>">
 							<liferay-ui:page-iterator
 								cur="<%= articleDisplay.getCurrentPage() %>"
-								curParam='<%= "page" %>'
+								curParam="page"
 								delta="<%= 1 %>"
 								id="articleDisplayPages"
 								maxPages="<%= 25 %>"
@@ -215,11 +215,12 @@ boolean expired = true;
 					</c:when>
 					<c:otherwise>
 
-					<%
-					renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
-					%>
+						<%
+						renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
+						%>
 
-					<br />
+						<br />
+
 						<c:choose>
 							<c:when test="<%= Validator.isNull(articleId) %>">
 							</c:when>

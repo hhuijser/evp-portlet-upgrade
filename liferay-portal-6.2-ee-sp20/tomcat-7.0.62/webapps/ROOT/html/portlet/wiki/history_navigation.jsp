@@ -133,7 +133,7 @@ if (type.equals("html")) {
 					<%
 					StringBundler sb = new StringBundler(intermediatePages.size() * 7);
 
-					for (WikiPage wikiPage: intermediatePages) {
+					for (WikiPage wikiPage : intermediatePages) {
 						sb.append(HtmlUtil.escape(wikiPage.getUserName()));
 						sb.append(StringPool.SPACE);
 						sb.append(StringPool.OPEN_PARENTHESIS);

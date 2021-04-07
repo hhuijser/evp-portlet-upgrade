@@ -348,6 +348,7 @@ if (Validator.isNotNull(content)) {
 											}
 
 											String taglibEditArticleURL = HttpUtil.addParameter(editArticleRenderPopUpURL.toString(), renderResponse.getNamespace() + "toLanguageId", LocaleUtil.toLanguageId(locales[i]));
+
 											String taglibEditURL = "javascript:Liferay.Util.openWindow({cache: false, id: '" + renderResponse.getNamespace() + LocaleUtil.toLanguageId(locales[i]) + "', title: '" + HtmlUtil.escapeJS(LanguageUtil.get(pageContext, "web-content-translation")) + "', uri: '" + HtmlUtil.escapeJS(taglibEditArticleURL) + "'});";
 										%>
 
@@ -396,16 +397,16 @@ if (Validator.isNotNull(content)) {
 								<span class='available-translations<%= ((translations.length > 1) || (translations.length == 1 && !translations[0].equals(defaultLanguageId))) ? "" : " hide" %>' id="<portlet:namespace />availableTranslationsLinks">
 									<label><liferay-ui:message key="available-translations" /></label>
 
-										<%
-										for (int i = 0; i < translations.length; i++) {
-											if (translations[i].equals(defaultLanguageId)) {
-												continue;
-											}
+									<%
+									for (int i = 0; i < translations.length; i++) {
+										if (translations[i].equals(defaultLanguageId)) {
+											continue;
+										}
 
-											String editTranslationURL = HttpUtil.addParameter(editArticleRenderPopUpURL.toString(), renderResponse.getNamespace() + "toLanguageId", translations[i]);
+										String editTranslationURL = HttpUtil.addParameter(editArticleRenderPopUpURL.toString(), renderResponse.getNamespace() + "toLanguageId", translations[i]);
 
-											editTranslationURL = HttpUtil.addParameter(editTranslationURL, renderResponse.getNamespace() + "defaultLanguageId", defaultLanguageId);
-										%>
+										editTranslationURL = HttpUtil.addParameter(editTranslationURL, renderResponse.getNamespace() + "defaultLanguageId", defaultLanguageId);
+									%>
 
 										<a class="journal-article-translation-<%= translations[i] %> lfr-token" href="javascript:;" onClick="Liferay.Util.openWindow({cache: false, id: '<portlet:namespace /><%= translations[i] %>', title: '<%= UnicodeLanguageUtil.get(pageContext, "web-content-translation") %>', uri: '<%= editTranslationURL %>'});">
 											<img alt="" src='<%= themeDisplay.getPathThemeImages() + "/language/" + translations[i] + ".png" %>' />
@@ -498,7 +499,6 @@ if (Validator.isNotNull(content)) {
 						repeatable="<%= Validator.isNull(toLanguageId) %>"
 						requestedLocale="<%= LocaleUtil.fromLanguageId(requestedLanguageId) %>"
 					/>
-
 				</c:otherwise>
 			</c:choose>
 
@@ -721,7 +721,7 @@ if (Validator.isNotNull(content)) {
 
 	window.<portlet:namespace />journalPortlet = new Liferay.Portlet.Journal(Liferay.Portlet.Journal.PROXY.portletNamespace, '<%= (article != null) ? HtmlUtil.escape(articleId) : StringPool.BLANK %>');
 
-	var defaultLocaleSelector = A.one('#<portlet:namespace/>defaultLocale');
+	var defaultLocaleSelector = A.one('#<portlet:namespace />defaultLocale');
 
 	if (defaultLocaleSelector) {
 		defaultLocaleSelector.on(

@@ -25,73 +25,72 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 %>
 
 <form action="<portlet:actionURL><portlet:param name="struts_action" value="/software_catalog/edit_framework_version" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveFrameworkVersion(); return false;">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(redirect) %>" />
-<input name="<portlet:namespace />frameworkVersionId" type="hidden" value="<%= frameworkVersionId %>" />
+	<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(redirect) %>" />
+	<input name="<portlet:namespace />frameworkVersionId" type="hidden" value="<%= frameworkVersionId %>" />
 
-<liferay-ui:header
-	backURL="<%= redirect %>"
-	localizeTitle="<%= (frameworkVersion == null) %>"
-	title='<%= (frameworkVersion == null) ? "new-framework-version" : frameworkVersion.getName() %>'
-/>
+	<liferay-ui:header
+		backURL="<%= redirect %>"
+		localizeTitle="<%= (frameworkVersion == null) %>"
+		title='<%= (frameworkVersion == null) ? "new-framework-version" : frameworkVersion.getName() %>'
+	/>
 
-<liferay-ui:error exception="<%= FrameworkVersionNameException.class %>" message="please-enter-a-valid-name" />
+	<liferay-ui:error exception="<%= FrameworkVersionNameException.class %>" message="please-enter-a-valid-name" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<liferay-ui:input-field autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" bean="<%= frameworkVersion %>" field="name" model="<%= SCFrameworkVersion.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="url" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= frameworkVersion %>" field="url" model="<%= SCFrameworkVersion.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="active" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= frameworkVersion %>" defaultValue="<%= Boolean.TRUE %>" field="active" model="<%= SCFrameworkVersion.class %>" />
-	</td>
-</tr>
+	<table class="lfr-table">
+		<tr>
+			<td>
+				<liferay-ui:message key="name" />
+			</td>
+			<td>
+				<liferay-ui:input-field autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" bean="<%= frameworkVersion %>" field="name" model="<%= SCFrameworkVersion.class %>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="url" />
+			</td>
+			<td>
+				<liferay-ui:input-field bean="<%= frameworkVersion %>" field="url" model="<%= SCFrameworkVersion.class %>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="active" />
+			</td>
+			<td>
+				<liferay-ui:input-field bean="<%= frameworkVersion %>" defaultValue="<%= Boolean.TRUE %>" field="active" model="<%= SCFrameworkVersion.class %>" />
+			</td>
+		</tr>
 
-<c:if test="<%= frameworkVersion == null %>">
-	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<liferay-ui:message key="permissions" />
-		</td>
-		<td>
-			<liferay-ui:input-permissions
-				modelName="<%= SCFrameworkVersion.class.getName() %>"
-			/>
-		</td>
-	</tr>
-</c:if>
+		<c:if test="<%= frameworkVersion == null %>">
+			<tr>
+				<td colspan="2">
+					<br />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="permissions" />
+				</td>
+				<td>
+					<liferay-ui:input-permissions
+						modelName="<%= SCFrameworkVersion.class.getName() %>"
+					/>
+				</td>
+			</tr>
+		</c:if>
+	</table>
 
-</table>
+	<div class="btn-toolbar">
+		<aui:button cssClass="btn-primary" type="submit" value="save" />
 
-<div class="btn-toolbar">
-	<aui:button cssClass="btn-primary" type="submit" value="save" />
+		<%
+		String taglibCancel = "location.href = '" + HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) + "';";
+		%>
 
-	<%
-	String taglibCancel = "location.href = '" + HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) + "';";
-	%>
-
-	<aui:button onClick="<%= taglibCancel %>" value="cancel" />
-</div>
+		<aui:button onClick="<%= taglibCancel %>" value="cancel" />
+	</div>
 </form>
 
 <aui:script>
