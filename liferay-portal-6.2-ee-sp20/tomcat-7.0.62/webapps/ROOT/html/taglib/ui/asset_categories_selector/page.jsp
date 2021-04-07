@@ -181,7 +181,7 @@ private long[] _filterCategoryIds(long vocabularyId, long[] categoryIds) throws 
 		}
 	}
 
-	return ArrayUtil.toArray(filteredCategoryIds.toArray(new Long[filteredCategoryIds.size()]));
+	return ArrayUtil.toArray(filteredCategoryIds.toArray(new Long[0]));
 }
 
 private String[] _getCategoryIdsTitles(String categoryIds, String categoryNames, long vocabularyId, ThemeDisplay themeDisplay) throws PortalException, SystemException {

@@ -112,17 +112,17 @@ page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Arrays" %><%@
-page import="java.util.Collections" %><%@
-page import="java.util.Date" %><%@
-page import="java.util.Iterator" %><%@
+page import="java.util.Collections" %>
+
+<%@ page import="java.util.Iterator" %><%@
 page import="java.util.List" %><%@
 page import="java.util.TimeZone" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);

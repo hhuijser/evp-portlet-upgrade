@@ -285,9 +285,9 @@ page import="com.liferay.util.CreditCard" %><%@
 page import="com.liferay.util.Encryptor" %><%@
 page import="com.liferay.util.JS" %><%@
 page import="com.liferay.util.PKParser" %><%@
-page import="com.liferay.util.PwdGenerator" %><%@
-page import="com.liferay.util.State" %><%@
-page import="com.liferay.util.StateUtil" %><%@
+page import="com.liferay.util.PwdGenerator" %>
+
+<%@ page import="com.liferay.util.StateUtil" %><%@
 page import="com.liferay.util.log4j.Levels" %><%@
 page import="com.liferay.util.portlet.PortletRequestUtil" %><%@
 page import="com.liferay.util.xml.XMLFormatter" %>
@@ -316,9 +316,9 @@ page import="java.util.LinkedHashSet" %><%@
 page import="java.util.List" %><%@
 page import="java.util.Locale" %><%@
 page import="java.util.Map" %><%@
-page import="java.util.Properties" %><%@
-page import="java.util.ResourceBundle" %><%@
-page import="java.util.Set" %><%@
+page import="java.util.Properties" %>
+
+<%@ page import="java.util.Set" %><%@
 page import="java.util.Stack" %><%@
 page import="java.util.TimeZone" %><%@
 page import="java.util.TreeMap" %><%@
