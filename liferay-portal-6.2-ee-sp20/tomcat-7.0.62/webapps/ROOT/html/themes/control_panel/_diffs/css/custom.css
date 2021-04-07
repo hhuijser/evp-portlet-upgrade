@@ -238,9 +238,9 @@ $dockbarOpenGradientStart: #0EA6F9;
 				float: right;
 
 				li.open > .dropdown-toggle {
+					background-color: $dockbarOpenGradientEnd;
 					margin: 0;
 					padding: 5px 15px;
-					background-color: $dockbarOpenGradientEnd;
 				}
 			}
 
@@ -279,8 +279,8 @@ $dockbarOpenGradientStart: #0EA6F9;
 					.icon-cog, .icon-globe, .icon-list, .icon-th, .icon-user, .icon-arrow-left {
 						background: none no-repeat 50%;
 						height: 21px;
-						width: 24px;
 						vertical-align: top;
+						width: 24px;
 					}
 
 					.icon-cog, .icon-globe, .icon-th, .icon-user {
@@ -414,8 +414,8 @@ $dockbarOpenGradientStart: #0EA6F9;
 
 		.minimize-panels a {
 			background: url(../images/custom/panel_close.png) no-repeat;
-			display: none;
 			color: #FFF;
+			display: none;
 			font-size: 20px;
 			height: 17px;
 			position: absolute;
@@ -994,8 +994,8 @@ $dockbarOpenGradientStart: #0EA6F9;
 				width: 100%;
 
 				&:before {
-					content: ".";
 					clear: both;
+					content: ".";
 					display: block;
 					height: 0;
 					visibility: hidden;

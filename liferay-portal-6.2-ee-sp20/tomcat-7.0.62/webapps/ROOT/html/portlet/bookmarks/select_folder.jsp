@@ -61,7 +61,6 @@ if (folder != null) {
 			className="com.liferay.portlet.bookmarks.model.BookmarksFolder"
 			modelVar="curFolder"
 		>
-
 			<portlet:renderURL var="viewFolderURL">
 				<portlet:param name="struts_action" value="/bookmarks/select_folder" />
 				<portlet:param name="folderId" value="<%= String.valueOf(curFolder.getFolderId()) %>" />

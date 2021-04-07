@@ -54,13 +54,13 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 		</aui:select>
 	</c:if>
 
-	<div class="layout-revision-container" id="<portlet:namespace/>layoutRevisionsContainer">
+	<div class="layout-revision-container" id="<portlet:namespace />layoutRevisionsContainer">
 
 		<%
 		for (LayoutRevision rootLayoutRevision : rootLayoutRevisions) {
 		%>
 
-			<div class="layout-variation-container <%= (recentLayoutRevision.getLayoutBranchId() == rootLayoutRevision.getLayoutBranchId()) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace/><%= rootLayoutRevision.getLayoutRevisionId() %>">
+			<div class="layout-variation-container <%= (recentLayoutRevision.getLayoutBranchId() == rootLayoutRevision.getLayoutBranchId()) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace /><%= rootLayoutRevision.getLayoutRevisionId() %>">
 				<c:if test="<%= rootLayoutRevisions.size() > 1 %>">
 
 					<%
@@ -88,34 +88,33 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 							name="date"
 						>
 
-						<%
-						Date now = new Date();
+							<%
+							Date now = new Date();
 
-						long timeAgo = now.getTime() - curLayoutRevision.getCreateDate().getTime();
+							long timeAgo = now.getTime() - curLayoutRevision.getCreateDate().getTime();
 
-						if (curLayoutRevision.getLayoutRevisionId() == currentLayoutRevisionId) {
-							buffer.append("<div class=\"current-version-pointer\"><img alt=\"");
-							buffer.append(LanguageUtil.get(pageContext, "current-version"));
-							buffer.append("\" src=\"");
-							buffer.append(themeDisplay.getPathThemeImages());
-							buffer.append("/arrows/01_right.png\" title=\"");
-							buffer.append(LanguageUtil.get(pageContext, "current-version"));
-							buffer.append("\" /></div>");
-						}
+							if (curLayoutRevision.getLayoutRevisionId() == currentLayoutRevisionId) {
+								buffer.append("<div class=\"current-version-pointer\"><img alt=\"");
+								buffer.append(LanguageUtil.get(pageContext, "current-version"));
+								buffer.append("\" src=\"");
+								buffer.append(themeDisplay.getPathThemeImages());
+								buffer.append("/arrows/01_right.png\" title=\"");
+								buffer.append(LanguageUtil.get(pageContext, "current-version"));
+								buffer.append("\" /></div>");
+							}
 
-						buffer.append("<span class=\"approximate-date\">");
-						buffer.append(LanguageUtil.format(pageContext, "x-ago", LanguageUtil.getTimeDescription(pageContext, timeAgo, true), false));
-						buffer.append("</span><span class=\"real-date\">");
-						buffer.append(dateFormatDateTime.format(curLayoutRevision.getCreateDate()));
-						buffer.append("</span>");
-						%>
+							buffer.append("<span class=\"approximate-date\">");
+							buffer.append(LanguageUtil.format(pageContext, "x-ago", LanguageUtil.getTimeDescription(pageContext, timeAgo, true), false));
+							buffer.append("</span><span class=\"real-date\">");
+							buffer.append(dateFormatDateTime.format(curLayoutRevision.getCreateDate()));
+							buffer.append("</span>");
+							%>
 
 						</liferay-ui:search-container-column-text>
 
 						<liferay-ui:search-container-column-text
 							name="status"
 						>
-
 							<aui:model-context bean="<%= curLayoutRevision %>" model="<%= LayoutRevision.class %>" />
 
 							<%
@@ -130,7 +129,6 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 									<aui:workflow-status showLabel="<%= false %>" status="<%= status %>" />
 								</c:otherwise>
 							</c:choose>
-
 						</liferay-ui:search-container-column-text>
 
 						<liferay-ui:search-container-column-text
@@ -200,8 +198,8 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 </c:if>
 
 <aui:script use="aui-base">
-	var variationsSelector = A.one('#<portlet:namespace/>variationsSelector');
-	var layoutRevisionsContainer = A.one('#<portlet:namespace/>layoutRevisionsContainer');
+	var variationsSelector = A.one('#<portlet:namespace />variationsSelector');
+	var layoutRevisionsContainer = A.one('#<portlet:namespace />layoutRevisionsContainer');
 
 	var layoutBranchesContainer = A.all('.layout-variation-container');
 
@@ -215,7 +213,7 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 				else {
 					layoutBranchesContainer.hide();
 
-					var layoutBranch = A.one('#<portlet:namespace/>' + variationsSelector.val());
+					var layoutBranch = A.one('#<portlet:namespace />' + variationsSelector.val());
 
 					layoutBranch.show();
 				}

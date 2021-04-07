@@ -56,7 +56,6 @@ String eventName = ParamUtil.getString(request, "eventName", "selectStructure");
 			keyProperty="structureId"
 			modelVar="structure"
 		>
-
 			<liferay-ui:search-container-column-text
 				name="id"
 				value="<%= String.valueOf(structure.getStructureId()) %>"

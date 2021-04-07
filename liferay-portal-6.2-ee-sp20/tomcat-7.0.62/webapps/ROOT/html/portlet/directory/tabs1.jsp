@@ -28,7 +28,9 @@ tabs1Names = HtmlUtil.escape(tabs1Names);
 String tabs1Values = tabs1Names;
 
 String viewUsersRedirect = ParamUtil.getString(request, "viewUsersRedirect");
+
 String redirect = ParamUtil.getString(request, "redirect", viewUsersRedirect);
+
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 %>
 

@@ -43,9 +43,9 @@
 	clear: both;
 }
 .v-select-twincol .v-textfield {
+	clear: left;
 	display: block;
 	float: left;
-	clear: left;
 }
 .v-select-twincol .v-button {
 	float: left;
@@ -54,8 +54,8 @@
 	float: none;
 }
 .v-filterselect {
-	white-space: nowrap;
 	text-align: left;
+	white-space: nowrap;
 }
 .v-filterselect .v-icon {
 	float: left;
@@ -71,11 +71,11 @@
 	font-style: italic;
 }
 .v-filterselect-button {
-	float: right;
-	cursor: pointer;
-	width: 1em;
-	height: 1em;
 	background: transparent url(../common/img/sprites.png) no-repeat -5px -8px;
+	cursor: pointer;
+	float: right;
+	height: 1em;
+	width: 1em;
 }
 .v-filterselect.v-readonly .v-filterselect-button {
 	display: none;
@@ -89,8 +89,8 @@
 	border: 1px solid #eee;
 }
 .v-filterselect-suggestmenu table {
-	border-collapse: collapse;
 	border: none;
+	border-collapse: collapse;
 }
 .v-filterselect-suggestmenu .gwt-MenuItem {
 	white-space: nowrap;
@@ -110,26 +110,26 @@
 .v-filterselect-nextpage-off,
 .v-filterselect-prevpage-off,
 .v-filterselect-prevpage {
-	width: 100%;
 	background: #aaa;
-	text-align: center;
-	overflow: hidden;
 	cursor: pointer;
+	overflow: hidden;
+	text-align: center;
+	width: 100%;
 }
 .v-filterselect-nextpage-off,
 .v-filterselect-prevpage-off {
 	color: #666;
-	opacity: .5;
-	filter: alpha(opacity=50);
 	cursor: default;
+	filter: alpha(opacity=50);
+	opacity: .5;
 }
 .v-filterselect-nextpage-off span,
 .v-filterselect-prevpage-off span {
 	cursor: default;
 }
 .v-filterselect-status {
-	white-space: nowrap;
 	text-align: center;
+	white-space: nowrap;
 }
 
 .v-filterselect-no-input .v-filterselect-input {

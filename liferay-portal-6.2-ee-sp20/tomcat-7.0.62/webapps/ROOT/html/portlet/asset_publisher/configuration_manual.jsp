@@ -170,11 +170,13 @@ String eventName = "_" + HtmlUtil.escapeJS(portletResource) + "_selectAsset";
 
 		</aui:fieldset>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<liferay-ui:error-marker key="errorSection" value="display-settings" />
 
 		<%@ include file="/html/portlet/asset_publisher/display_settings.jspf" %>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<liferay-ui:error-marker key="errorSection" value="subscriptions" />
 

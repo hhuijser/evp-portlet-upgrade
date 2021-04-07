@@ -74,86 +74,86 @@ ShoppingOrder order = ShoppingOrderLocalServiceUtil.getLatestOrder(user.getUserI
 				<h4><liferay-ui:message key="billing-address" /></h4>
 
 				<table class="lfr-table">
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="first-name" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingFirstName()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="last-name" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingLastName()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="email-address" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingEmailAddress()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="company" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingCompany()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="street" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingStreet()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="city" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingCity()) %>:
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="state" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingState()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="postal-code" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingZip()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-					<liferay-ui:message key="country" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingCountry()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="phone" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getBillingPhone()) %>
-					</td>
-				</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="first-name" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingFirstName()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="last-name" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingLastName()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="email-address" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingEmailAddress()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="company" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingCompany()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="street" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingStreet()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="city" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingCity()) %>:
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="state" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingState()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="postal-code" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingZip()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="country" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingCountry()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="phone" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getBillingPhone()) %>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</div>
@@ -163,86 +163,86 @@ ShoppingOrder order = ShoppingOrderLocalServiceUtil.getLatestOrder(user.getUserI
 				<h4><liferay-ui:message key="shipping-address" /></h4>
 
 				<table class="lfr-table">
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="first-name" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingFirstName()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="last-name" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingLastName()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="email-address" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingEmailAddress()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="company" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingCompany()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="street" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingStreet()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="city" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingCity()) %>:
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="state" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingState()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="postal-code" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingZip()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="country" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingCountry()) %>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						<liferay-ui:message key="phone" />:
-					</th>
-					<td>
-						<%= HtmlUtil.escape(order.getShippingPhone()) %>
-					</td>
-				</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="first-name" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingFirstName()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="last-name" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingLastName()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="email-address" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingEmailAddress()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="company" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingCompany()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="street" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingStreet()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="city" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingCity()) %>:
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="state" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingState()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="postal-code" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingZip()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="country" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingCountry()) %>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="phone" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getShippingPhone()) %>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</div>
@@ -253,50 +253,49 @@ ShoppingOrder order = ShoppingOrderLocalServiceUtil.getLatestOrder(user.getUserI
 			<h4><liferay-ui:message key="credit-card" /></h4>
 
 			<table class="lfr-table">
-			<tr>
-				<th class="text-left">
-					<liferay-ui:message key="full-name" />:
-				</th>
-				<td>
-					<%= HtmlUtil.escape(order.getCcName()) %>
-				</td>
-			</tr>
-			<tr>
-				<th class="text-left">
-					<liferay-ui:message key="type" />:
-				</th>
-				<td>
-					<liferay-ui:message key='<%= "cc_" + HtmlUtil.escape(order.getCcType()) %>' />
-				</td>
-			</tr>
-			<tr>
-				<th class="text-left">
-					<liferay-ui:message key="number" />:
-				</th>
-				<td>
-					<%= CreditCard.hide(order.getCcNumber()) %>
-				</td>
-			</tr>
-			<tr>
-				<th class="text-left">
-					<liferay-ui:message key="expiration-date" />:
-				</th>
-				<td>
-					<%= CalendarUtil.getMonths(locale)[order.getCcExpMonth()] %>, <%= order.getCcExpYear() %>
-				</td>
-			</tr>
-
-			<c:if test="<%= Validator.isNotNull(order.getCcVerNumber()) %>">
 				<tr>
 					<th class="text-left">
-						<liferay-ui:message key="verification-number" />:
+						<liferay-ui:message key="full-name" />:
 					</th>
 					<td>
-						<%= HtmlUtil.escape(order.getCcVerNumber()) %>
+						<%= HtmlUtil.escape(order.getCcName()) %>
 					</td>
 				</tr>
-			</c:if>
+				<tr>
+					<th class="text-left">
+						<liferay-ui:message key="type" />:
+					</th>
+					<td>
+						<liferay-ui:message key='<%= "cc_" + HtmlUtil.escape(order.getCcType()) %>' />
+					</td>
+				</tr>
+				<tr>
+					<th class="text-left">
+						<liferay-ui:message key="number" />:
+					</th>
+					<td>
+						<%= CreditCard.hide(order.getCcNumber()) %>
+					</td>
+				</tr>
+				<tr>
+					<th class="text-left">
+						<liferay-ui:message key="expiration-date" />:
+					</th>
+					<td>
+						<%= CalendarUtil.getMonths(locale)[order.getCcExpMonth()] %>, <%= order.getCcExpYear() %>
+					</td>
+				</tr>
 
+				<c:if test="<%= Validator.isNotNull(order.getCcVerNumber()) %>">
+					<tr>
+						<th class="text-left">
+							<liferay-ui:message key="verification-number" />:
+						</th>
+						<td>
+							<%= HtmlUtil.escape(order.getCcVerNumber()) %>
+						</td>
+					</tr>
+				</c:if>
 			</table>
 		</div>
 	</c:if>
@@ -332,9 +331,7 @@ ShoppingOrder order = ShoppingOrderLocalServiceUtil.getLatestOrder(user.getUserI
 	searchContainer.setHeaderNames(headerNames);
 	searchContainer.setHover(false);
 
-	int total = items.size();
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(items.size());
 
 	List resultRows = searchContainer.getResultRows();
 
@@ -417,76 +414,76 @@ ShoppingOrder order = ShoppingOrderLocalServiceUtil.getLatestOrder(user.getUserI
 
 	<div class="well">
 		<table class="lfr-table">
-		<tr>
-			<th class="text-left">
-				<liferay-ui:message key="subtotal" />:
-			</th>
-			<td>
-				<%= currencyFormat.format(ShoppingUtil.calculateActualSubtotal(items)) %>
-			</td>
-		</tr>
-		<tr>
-			<th class="text-left">
-				<liferay-ui:message key="tax" />:
-			</th>
-			<td>
-				<%= currencyFormat.format(ShoppingUtil.calculateTax(items, order.getBillingState())) %>
-			</td>
-		</tr>
-		<tr>
-			<th class="text-left">
-				<liferay-ui:message key="shipping" /> <%= Validator.isNotNull(altShippingName) ? "(" + altShippingName + ")" : StringPool.BLANK %>:
-			</th>
-			<td>
-				<%= currencyFormat.format(ShoppingUtil.calculateAlternativeShipping(items, altShipping)) %>
-			</td>
-		</tr>
-
-		<%
-		double insurance = ShoppingUtil.calculateInsurance(items);
-		%>
-
-		<c:if test="<%= cart.isInsure() && (insurance > 0) %>">
 			<tr>
 				<th class="text-left">
-					<liferay-ui:message key="insurance" />:
+					<liferay-ui:message key="subtotal" />:
 				</th>
 				<td>
-					<%= currencyFormat.format(insurance) %>
+					<%= currencyFormat.format(ShoppingUtil.calculateActualSubtotal(items)) %>
 				</td>
 			</tr>
-		</c:if>
-
-		<c:if test="<%= coupon != null %>">
 			<tr>
 				<th class="text-left">
-					<liferay-ui:message key="coupon-discount" />:
+					<liferay-ui:message key="tax" />:
 				</th>
 				<td>
-					<%= currencyFormat.format(ShoppingUtil.calculateCouponDiscount(items, order.getBillingState(), coupon)) %>
-
-					<portlet:renderURL var="viewCouponURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-						<portlet:param name="struts_action" value="/shopping/view_coupon" />
-						<portlet:param name="couponId" value="<%= String.valueOf(coupon.getCouponId()) %>" />
-					</portlet:renderURL>
-
-					<%
-					String taglibOpenCouponWindow = "javascript:viewCouponWindow = window.open('" + viewCouponURL + "', 'viewCoupon', 'directories=no,height=200,location=no,menubar=no,resizable=no,scrollbars=yes,status=no,toolbar=no,width=280'); void(''); viewCouponWindow.focus();";
-					%>
-
-					<aui:a href="<%= taglibOpenCouponWindow %>" label='<%= "(" + coupon.getCouponId() + ")" %>' />
+					<%= currencyFormat.format(ShoppingUtil.calculateTax(items, order.getBillingState())) %>
 				</td>
 			</tr>
-		</c:if>
+			<tr>
+				<th class="text-left">
+					<liferay-ui:message key="shipping" /> <%= Validator.isNotNull(altShippingName) ? "(" + altShippingName + ")" : StringPool.BLANK %>:
+				</th>
+				<td>
+					<%= currencyFormat.format(ShoppingUtil.calculateAlternativeShipping(items, altShipping)) %>
+				</td>
+			</tr>
 
-		<tr>
-			<th class="text-left">
-				<liferay-ui:message key="total" />:
-			</th>
-			<td>
-			<%= currencyFormat.format(ShoppingUtil.calculateTotal(items, order.getBillingState(), coupon, altShipping, cart.isInsure())) %>
-			</td>
-		</tr>
+			<%
+			double insurance = ShoppingUtil.calculateInsurance(items);
+			%>
+
+			<c:if test="<%= cart.isInsure() && (insurance > 0) %>">
+				<tr>
+					<th class="text-left">
+						<liferay-ui:message key="insurance" />:
+					</th>
+					<td>
+						<%= currencyFormat.format(insurance) %>
+					</td>
+				</tr>
+			</c:if>
+
+			<c:if test="<%= coupon != null %>">
+				<tr>
+					<th class="text-left">
+						<liferay-ui:message key="coupon-discount" />:
+					</th>
+					<td>
+						<%= currencyFormat.format(ShoppingUtil.calculateCouponDiscount(items, order.getBillingState(), coupon)) %>
+
+						<portlet:renderURL var="viewCouponURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+							<portlet:param name="struts_action" value="/shopping/view_coupon" />
+							<portlet:param name="couponId" value="<%= String.valueOf(coupon.getCouponId()) %>" />
+						</portlet:renderURL>
+
+						<%
+						String taglibOpenCouponWindow = "javascript:viewCouponWindow = window.open('" + viewCouponURL + "', 'viewCoupon', 'directories=no,height=200,location=no,menubar=no,resizable=no,scrollbars=yes,status=no,toolbar=no,width=280'); void(''); viewCouponWindow.focus();";
+						%>
+
+						<aui:a href="<%= taglibOpenCouponWindow %>" label='<%= "(" + coupon.getCouponId() + ")" %>' />
+					</td>
+				</tr>
+			</c:if>
+
+			<tr>
+				<th class="text-left">
+					<liferay-ui:message key="total" />:
+				</th>
+				<td>
+					<%= currencyFormat.format(ShoppingUtil.calculateTotal(items, order.getBillingState(), coupon, altShipping, cart.isInsure())) %>
+				</td>
+			</tr>
 		</table>
 	</div>
 

@@ -67,7 +67,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 
 	<c:choose>
 		<c:when test='<%= tabs1.equals("email-notifications") %>'>
-
 			<liferay-ui:tabs
 				names="general,password-changed-notification,password-reset-notification"
 				param="tabs2"
@@ -160,7 +159,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 							<dd>
 								<liferay-ui:message key="the-browser's-remote-host" />
 							</dd>
-
 							<dt>
 								[$TO_ADDRESS$]
 							</dt>
@@ -173,7 +171,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 							<dd>
 								<liferay-ui:message key="the-name-of-the-email-recipient" />
 							</dd>
-
 							<dt>
 								[$USER_ID$]
 							</dt>

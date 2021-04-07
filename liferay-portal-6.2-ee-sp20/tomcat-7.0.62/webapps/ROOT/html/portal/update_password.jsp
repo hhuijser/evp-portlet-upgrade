@@ -17,9 +17,7 @@
 <%@ include file="/html/portal/init.jsp" %>
 
 <%
-String currentURL = PortalUtil.getCurrentURL(request);
-
-String referer = ParamUtil.getString(request, WebKeys.REFERER, currentURL);
+String referer = ParamUtil.getString(request, WebKeys.REFERER, PortalUtil.getCurrentURL(request));
 
 Ticket ticket = (Ticket)request.getAttribute(WebKeys.TICKET);
 
@@ -117,6 +115,7 @@ PasswordPolicy passwordPolicy = user.getPasswordPolicy();
 					<aui:validator name="equalTo">
 						'#<portlet:namespace />password1'
 					</aui:validator>
+
 					<aui:validator name="required" />
 				</aui:input>
 			</aui:fieldset>

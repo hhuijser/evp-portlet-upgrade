@@ -74,8 +74,10 @@ page import="com.liferay.util.RSSUtil" %>
 
 <%
 String currentLanguageId = LanguageUtil.getLanguageId(request);
+
 Locale currentLocale = LocaleUtil.fromLanguageId(currentLanguageId);
 Locale defaultLocale = themeDisplay.getSiteDefaultLocale();
+
 String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 Locale[] locales = LanguageUtil.getAvailableLocales(themeDisplay.getSiteGroupId());

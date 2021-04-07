@@ -1,5 +1,5 @@
 .v-textfield {
-	text-align: left /* Force default alignment */
+	text-align: left /* ---------- Force default alignment ---------- */
 }
 .v-textarea {
 	resize: none;
@@ -40,7 +40,7 @@ textarea.v-textarea-readonly:focus {
 	background: #FFE0E0;	
 }
 */
-/* Safari focus glow fix */
+/* ---------- Safari focus glow fix ---------- */
 .v-sa input:focus, 
 .v-sa textarea:focus {
 	outline-width: medium;

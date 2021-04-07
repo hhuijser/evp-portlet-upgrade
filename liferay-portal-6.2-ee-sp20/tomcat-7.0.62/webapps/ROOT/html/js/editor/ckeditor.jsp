@@ -365,6 +365,7 @@ name = HtmlUtil.escapeJS(name);
 			if (Validator.isNotNull(attachmentURLPrefix)) {
 				urlFileBrowserParamsMap.put("attachmentURLPrefix", attachmentURLPrefix);
 			}
+
 			String urlTypes = fileBrowserParamsMap.get("URLTypes");
 
 			if (Validator.isNotNull(urlTypes)) {
@@ -594,7 +595,6 @@ name = HtmlUtil.escapeJS(name);
 	<c:if test='<%= (inlineEdit && toogleControlsStatus.equals("visible")) || !inlineEdit %>'>;
 		createEditor();
 	</c:if>
-
 </aui:script>
 
 <%!

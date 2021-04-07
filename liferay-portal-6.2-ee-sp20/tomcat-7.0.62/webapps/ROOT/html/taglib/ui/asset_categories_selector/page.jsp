@@ -83,7 +83,7 @@ if (Validator.isNotNull(className)) {
 		}
 
 		String[] categoryIdsTitles = _getCategoryIdsTitles(curCategoryIds, curCategoryNames, vocabulary.getVocabularyId(), themeDisplay);
-	%>
+%>
 
 		<span class="field-content">
 			<label id="<%= namespace %>assetCategoriesLabel_<%= vocabulary.getVocabularyId() %>">
@@ -124,7 +124,7 @@ if (Validator.isNotNull(className)) {
 			).render();
 		</aui:script>
 
-	<%
+<%
 	}
 }
 else {

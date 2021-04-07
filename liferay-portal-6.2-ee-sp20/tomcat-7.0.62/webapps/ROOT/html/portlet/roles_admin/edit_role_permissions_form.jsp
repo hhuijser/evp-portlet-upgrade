@@ -21,6 +21,7 @@ String tabs1 = "roles";
 String tabs2 = ParamUtil.getString(request, "tabs2", "current");
 
 String redirect = ParamUtil.getString(request, "redirect");
+
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 
 Role role = (Role)request.getAttribute(WebKeys.ROLE);
@@ -134,7 +135,7 @@ if (Validator.isNotNull(portletResource)) {
 
 			List resultRows = searchContainer.getResultRows();
 
-			List <TemplateHandler> templateHandlers = PortletDisplayTemplateUtil.getPortletDisplayTemplateHandlers();
+			List<TemplateHandler> templateHandlers = PortletDisplayTemplateUtil.getPortletDisplayTemplateHandlers();
 
 			ListUtil.sort(templateHandlers, new TemplateHandlerComparator(locale));
 
@@ -146,6 +147,7 @@ if (Validator.isNotNull(portletResource)) {
 				String target = resource + actionId;
 				List<Group> groups = Collections.emptyList();
 				String groupIds = ParamUtil.getString(request, "groupIds" + target, null);
+
 				long[] groupIdsArray = StringUtil.split(groupIds, 0L);
 				List<String> groupNames = new ArrayList<String>();
 
@@ -172,7 +174,6 @@ if (Validator.isNotNull(portletResource)) {
 			<aui:input name="relatedPortletResources" type="hidden" value="<%= StringUtil.merge(relatedPortletResources) %>" />
 
 			<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
-
 		</div>
 	</c:if>
 

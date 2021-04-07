@@ -12,4 +12,4 @@
  *
  *
  */
---%><%@ page contentType="text/xml; charset=UTF-8" %><%= request.getAttribute(com.liferay.portal.util.WebKeys.JOURNAL_ARTICLE_CONTENT) %>
+--%><%@ page contentType="text/xml; charset=UTF-8" %><%=request.getAttribute(com.liferay.portal.util.WebKeys.JOURNAL_ARTICLE_CONTENT) %>

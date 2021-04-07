@@ -2,18 +2,18 @@
  * Default button (more customizable)
  * -------------------------------------- */
 .v-button {
-	display: inline-block;
-	zoom: 1;
-	text-align: center;
-	text-decoration: none;
-	border: 2px outset #ddd;
 	background: #eee;
+	border: 2px outset #ddd;
+	color: inherit;
 	cursor: pointer;
-	white-space: nowrap;
+	display: inline-block;
+	font: inherit;
 	margin: 0;
 	padding: .2em 1em;
-	color: inherit;
-	font: inherit;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	zoom: 1;
 	line-height: normal;		
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -41,52 +41,52 @@
 
 .v-button-wrap,
 .v-button-caption {
+	color: inherit;
+	font: inherit;
+	line-height: normal;
 	vertical-align: middle;
 	white-space: nowrap;
-	font: inherit;
-	color: inherit;
-	line-height: normal;
 	}
 
 .v-button .v-icon,
 .v-nativebutton .v-icon {
-	vertical-align: middle;
-	margin-right: 3px;
 	border: none;
+	margin-right: 3px;
+	vertical-align: middle;
 	}
 
 .v-button .v-errorindicator,
 .v-nativebutton .v-errorindicator {
 	display: inline-block;
-	zoom: 1;
-	vertical-align: middle;
 	float: none;
+	vertical-align: middle;
+	zoom: 1;
 }
 
 /* Link style (we really should deprecate this) */
 .v-button-link,
 .v-nativebutton-link {
-	border: none;
-	text-align: left;
 	background: transparent;
-	padding: 0;
+	border: none;
 	color: inherit;
+	padding: 0;
+	text-align: left;
 	-khtml-user-select: text;
 	-moz-user-select: text;
 	-ie-user-select: text;
 	user-select: text;
 }
 
-/* Inset Safari focus outline a bit */
+/* ---------- Inset safari focus outline a bit ---------- */
 .v-sa .v-button-link:focus{
 	outline-offset: -3px;
 	}
 
 .v-button-link .v-button-caption,
 .v-nativebutton-link .v-nativebutton-caption {
-	text-decoration: underline;
 	color: inherit;
 	text-align: left;
+	text-decoration: underline;
 	}
 
 
@@ -94,30 +94,30 @@
  * NativeButton styles (html button element)
  * -------------------------------------- */
 .v-nativebutton {
-	text-align: center;
-	cursor: pointer;
-	white-space: nowrap;
-	margin: 0;
 	color: inherit;
+	cursor: pointer;
 	font: inherit;
 	line-height: normal;
+	margin: 0;
+	text-align: center;
+	white-space: nowrap;
 	}
 .v-nativebutton .v-nativebutton-caption {
+	color: inherit;
+	font: inherit;
 	vertical-align: middle;
 	white-space: nowrap;
-	font: inherit;
-	color: inherit;
 	}
 
 .v-nativebutton .v-icon {
-	vertical-align: middle;
 	margin-right: 3px;
+	vertical-align: middle;
 	}
 
 .v-nativebutton .v-errorindicator {
 	display: inline-block;
-	zoom: 1;
 	float: none;
+	zoom: 1;
 }
 /* Fixes streched buttons in IE6 and IE7*/
 .v-ie6 .v-nativebutton {
@@ -159,9 +159,9 @@
 	margin: 0 2px;
 }
 .v-checkbox .v-errorindicator {
-	float: none;
 	display: inline;
 	display: inline-block;
+	float: none;
 	zoom: 1;
 }
 

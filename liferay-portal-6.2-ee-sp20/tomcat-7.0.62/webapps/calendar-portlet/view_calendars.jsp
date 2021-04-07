@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -86,7 +86,6 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 			align="right"
 			path="/calendar_action.jsp"
 		/>
-
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
@@ -101,6 +100,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 	<aui:form enctype="multipart/form-data" method="post" name="importFm">
 		<aui:input id="file" name="file" type="file" />
+
 		<div class="portlet-msg-help">
 			<liferay-ui:message key="choose-the-file-that-contains-your-events.this-calendar-can-import-event-information-in-ical-format" />
 		</div>

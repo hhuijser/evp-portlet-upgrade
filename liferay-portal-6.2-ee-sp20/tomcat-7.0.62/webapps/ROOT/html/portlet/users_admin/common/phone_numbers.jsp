@@ -36,13 +36,12 @@ if (Validator.isNotNull(phonesIndexesParam)) {
 	}
 }
 else {
-
 	if (classPK > 0) {
 		phones = PhoneServiceUtil.getPhones(className, classPK);
 
 		phonesIndexes = new int[phones.size()];
 
-		for (int i = 0; i < phones.size() ; i++) {
+		for (int i = 0; i < phones.size(); i++) {
 			phonesIndexes[i] = i;
 		}
 	}

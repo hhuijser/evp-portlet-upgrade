@@ -101,9 +101,7 @@ OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBac
 						sb.append(TextFormatter.formatStorageSize(fileEntry.getSize(), locale));
 						sb.append(StringPool.CLOSE_PARENTHESIS);
 
-						String portletFileEntryURL = PortletFileRepositoryUtil.getPortletFileEntryURL(themeDisplay, fileEntry, StringPool.BLANK);
-
-						String downloadPortletFileEntryURL = HttpUtil.addParameter(portletFileEntryURL, "download", true);
+						String downloadPortletFileEntryURL = HttpUtil.addParameter(PortletFileRepositoryUtil.getPortletFileEntryURL(themeDisplay, fileEntry, StringPool.BLANK), "download", true);
 						%>
 
 						<liferay-ui:icon
@@ -131,7 +129,6 @@ OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBac
 					/>
 				</c:otherwise>
 			</c:choose>
-
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text>

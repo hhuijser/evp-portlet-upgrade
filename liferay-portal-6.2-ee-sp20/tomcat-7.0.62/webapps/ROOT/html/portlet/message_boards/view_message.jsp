@@ -21,9 +21,7 @@ MBMessageDisplay messageDisplay = (MBMessageDisplay)request.getAttribute(WebKeys
 
 MBMessage message = messageDisplay.getMessage();
 
-MBCategory category = messageDisplay.getCategory();
-
-String displayStyle = BeanPropertiesUtil.getString(category, "displayStyle", MBCategoryConstants.DEFAULT_DISPLAY_STYLE);
+String displayStyle = BeanPropertiesUtil.getString(messageDisplay.getCategory(), "displayStyle", MBCategoryConstants.DEFAULT_DISPLAY_STYLE);
 
 if (Validator.isNull(displayStyle)) {
 	displayStyle = MBCategoryConstants.DEFAULT_DISPLAY_STYLE;

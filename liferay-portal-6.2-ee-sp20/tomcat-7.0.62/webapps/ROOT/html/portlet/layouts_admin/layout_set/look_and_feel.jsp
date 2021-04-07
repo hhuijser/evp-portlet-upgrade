@@ -40,19 +40,18 @@ ColorScheme selWapColorScheme = layoutSet.getWapColorScheme();
 
 	<c:choose>
 		<c:when test="<%= PropsValues.MOBILE_DEVICE_STYLING_WAP_ENABLED %>">
+			<liferay-ui:tabs
+				names="regular-browsers,mobile-devices"
+				refresh="<%= false %>"
+			>
+				<liferay-ui:section>
+					<%@ include file="/html/portlet/layouts_admin/layout_set/look_and_feel_regular_browser.jspf" %>
+				</liferay-ui:section>
 
-		<liferay-ui:tabs
-			names="regular-browsers,mobile-devices"
-			refresh="<%= false %>"
-		>
-			<liferay-ui:section>
-				<%@ include file="/html/portlet/layouts_admin/layout_set/look_and_feel_regular_browser.jspf" %>
-			</liferay-ui:section>
-
-			<liferay-ui:section>
-				<%@ include file="/html/portlet/layouts_admin/layout_set/look_and_feel_wap_browser.jspf" %>
-			</liferay-ui:section>
-		</liferay-ui:tabs>
+				<liferay-ui:section>
+					<%@ include file="/html/portlet/layouts_admin/layout_set/look_and_feel_wap_browser.jspf" %>
+				</liferay-ui:section>
+			</liferay-ui:tabs>
 		</c:when>
 		<c:otherwise>
 			<%@ include file="/html/portlet/layouts_admin/layout_set/look_and_feel_regular_browser.jspf" %>

@@ -450,8 +450,8 @@ else {
 						<%
 						dataView = new HashMap<String, Object>();
 
-						dataView.put("folder-id", curFolder.getFolderId());
 						dataView.put("folder", true);
+						dataView.put("folder-id", curFolder.getFolderId());
 						dataView.put("repository-id", curFolder.getRepositoryId());
 						dataView.put("title", curFolder.getName());
 						%>

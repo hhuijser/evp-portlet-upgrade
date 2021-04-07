@@ -38,7 +38,6 @@ String defaultLanguageId = LocalizationUtil.getDefaultLanguageId(script, LocaleU
 >
 	<liferay-ui:section>
 		<div id="<portlet:namespace />formBuilderTab">
-
 			<aui:translation-manager
 				availableLocales="<%= availableLocales %>"
 				defaultLanguageId="<%= defaultLanguageId %>"
@@ -63,12 +62,14 @@ String defaultLanguageId = LocalizationUtil.getDefaultLanguageId(script, LocaleU
 									</a>
 								</li>
 							</ul>
+
 							<div class="tab-content">
 								<div class="tab-pane"></div>
 								<div class="tab-pane"></div>
 							</div>
 						</div>
 					</div>
+
 					<div class="diagram-builder-content-container">
 						<div class="diagram-builder-canvas">
 							<div class="diagram-builder-drop-container"></div>
