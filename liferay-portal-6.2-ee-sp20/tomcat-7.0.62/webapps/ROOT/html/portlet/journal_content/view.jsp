@@ -95,8 +95,6 @@ boolean expired = true;
 
 							return;
 						}
-
-						PortletURL portletURL = renderResponse.createRenderURL();
 						%>
 
 						<c:if test="<%= enableConversions || enablePrint || (showAvailableLocales && (articleDisplay.getAvailableLocales().length > 1)) %>">
@@ -201,11 +199,11 @@ boolean expired = true;
 						<c:if test="<%= articleDisplay.isPaginate() %>">
 							<liferay-ui:page-iterator
 								cur="<%= articleDisplay.getCurrentPage() %>"
-								curParam='<%= "page" %>'
+								curParam="page"
 								delta="<%= 1 %>"
 								id="articleDisplayPages"
 								maxPages="<%= 25 %>"
-								portletURL="<%= portletURL %>"
+								portletURL="<%= renderResponse.createRenderURL() %>"
 								total="<%= articleDisplay.getNumberOfPages() %>"
 								type="article"
 							/>
@@ -215,11 +213,12 @@ boolean expired = true;
 					</c:when>
 					<c:otherwise>
 
-					<%
-					renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
-					%>
+						<%
+						renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
+						%>
 
-					<br />
+						<br />
+
 						<c:choose>
 							<c:when test="<%= Validator.isNull(articleId) %>">
 							</c:when>
@@ -303,7 +302,7 @@ if (!siteGroup.hasLocalOrRemoteStagingGroup()) {
 %>
 
 	<c:if test="<%= showIconsActions && !print && hasViewPermission %>">
-		<div class="lfr-meta-actions icons-container">
+		<div class="icons-container lfr-meta-actions">
 			<div class="lfr-icon-actions">
 				<c:if test="<%= showEditArticleIcon %>">
 					<liferay-portlet:renderURL portletName="<%= PortletKeys.JOURNAL %>" var="editURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">

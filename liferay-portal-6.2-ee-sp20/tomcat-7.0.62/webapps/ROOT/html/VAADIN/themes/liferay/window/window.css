@@ -6,8 +6,8 @@
 	border: 1px solid #c8c9ca;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-	border-radius: 4px;
 	background: #fff url(top-left.png) no-repeat;
+	border-radius: 4px;
 }
 
 .v-ie6 .v-window-wrap,
@@ -26,10 +26,10 @@
 }
 
 .v-window-outerheader {
+	background: transparent url(top-right.png) no-repeat right top;
 	height: 16px;
 	margin-left: 9px;
 	padding: 10px 40px 12px 2px;
-	background: transparent url(top-right.png) no-repeat right top;
 	
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -57,11 +57,11 @@
 
 .v-window-closebox {
 	background: url(closebutton_sprites.png) no-repeat scroll 0 0 transparent;
-	position: absolute;
-	width: 24px;
 	height: 24px;
+	position: absolute;
 	right: 9px;
 	top: 8px;
+	width: 24px;
 }
 
 .v-window-closebox:hover {
@@ -74,7 +74,7 @@
 
 .v-window-resizebox {
 	background: transparent url(/html/themes/classic/images/aui/icon_sprite.png) no-repeat scroll -69px -229px;
-	width: 10px;
 	height: 10px;
+	width: 10px;
 	bottom: 0;	
 }

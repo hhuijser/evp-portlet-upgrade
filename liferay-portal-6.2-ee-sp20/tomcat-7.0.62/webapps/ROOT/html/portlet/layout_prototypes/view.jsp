@@ -59,7 +59,6 @@ portletURL.setParameter("struts_action", "/layout_prototypes/view");
 			<liferay-ui:search-container-column-text
 				name="name"
 			>
-
 				<aui:a href="<%= rowURL.toString() %>"><%= layoutPrototype.getName(locale) %></aui:a>
 
 				<%

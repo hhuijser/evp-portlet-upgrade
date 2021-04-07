@@ -12,9 +12,9 @@ select {
 }
 
 .v-filterselect-button {
-	width: 24px;
-	height: 24px;
 	background: transparent url(../common/buttons_sprites.png) no-repeat 0 0;
+	height: 24px;
+	width: 24px;
 }
 
 .v-filterselect-button:hover {
@@ -42,10 +42,10 @@ select {
 .v-filterselect-nextpage-off span {
 	display: block;
 	height: 8px;
-	width: 16px;
 	margin-left: auto;
 	margin-right: auto;
 	text-indent: -99999px;
+	width: 16px;
 }
 
 .v-filterselect-prevpage span, .v-filterselect-nextpage span {
@@ -57,18 +57,18 @@ select {
 	background-position: -65px -4px;
 }
 .v-filterselect-suggestmenu .gwt-MenuItem span {
-	display: block;
-	width: 100%;
-	height: 18px;
 	border: 1px solid #fff;
 	border-style: solid none;
+	display: block;
+	height: 18px;
+	width: 100%;
 	
 }
 
 .v-filterselect-suggestmenu .gwt-MenuItem-selected span {
-	color: #000;
 	background: #dfe8f6;
 	border-color: #a3bae9;
+	color: #000;
 }
 
 .v-filterselect-suggestmenu .gwt-MenuItem .v-icon {

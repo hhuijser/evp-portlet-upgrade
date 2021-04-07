@@ -34,7 +34,7 @@ if (searchFolderId > 0) {
 else {
 	List folderIds = new ArrayList();
 
-	folderIds.add(new Long(searchFolderIds));
+	folderIds.add(Long.valueOf(searchFolderIds));
 
 	DLAppServiceUtil.getSubfolderIds(repositoryId, folderIds, searchFolderIds);
 
@@ -109,27 +109,27 @@ String[] mediaGalleryMimeTypes = DLUtil.getMediaGalleryMimeTypes(portletPreferen
 		searchContainer.setResults(results);
 	%>
 
-	<div id="<portlet:namespace />imageGalleryAssetInfo">
+		<div id="<portlet:namespace />imageGalleryAssetInfo">
 			<div class="form-search">
-				<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-images") %>' />
+				<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "search-images") %>' />
 			</div>
 
-		<br /><br />
+			<br /><br />
 
-		<%
-		Folder folder = (Folder)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FOLDER);
+			<%
+			Folder folder = (Folder)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FOLDER);
 
-		long defaultFolderId = GetterUtil.getLong(portletPreferences.getValue("rootFolderId", StringPool.BLANK), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+			long defaultFolderId = GetterUtil.getLong(portletPreferences.getValue("rootFolderId", StringPool.BLANK), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		long folderId = BeanParamUtil.getLong(folder, request, "folderId", defaultFolderId);
+			long folderId = BeanParamUtil.getLong(folder, request, "folderId", defaultFolderId);
 
-		request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
-		request.setAttribute("view.jsp-mediaGalleryMimeTypes", mediaGalleryMimeTypes);
-		request.setAttribute("view.jsp-searchContainer", searchContainer);
-		%>
+			request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
+			request.setAttribute("view.jsp-mediaGalleryMimeTypes", mediaGalleryMimeTypes);
+			request.setAttribute("view.jsp-searchContainer", searchContainer);
+			%>
 
-		<liferay-util:include page="/html/portlet/image_gallery_display/view_images.jsp" />
-	</div>
+			<liferay-util:include page="/html/portlet/image_gallery_display/view_images.jsp" />
+		</div>
 
 	<%
 	}

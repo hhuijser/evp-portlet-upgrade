@@ -168,17 +168,17 @@ else if (tabs3.equals("shipping-email")) {
 						double shippingRangeB = ShoppingPreferences.INSURANCE_RANGE[shippingRange++];
 					%>
 
-					<%= currencyFormat.format(shippingRangeA) %>
+						<%= currencyFormat.format(shippingRangeA) %>
 
-					<c:if test="<%= !Double.isInfinite(shippingRangeB) %>">
-						- <%= currencyFormat.format(shippingRangeB) %>
-					</c:if>
+						<c:if test="<%= !Double.isInfinite(shippingRangeB) %>">
+							- <%= currencyFormat.format(shippingRangeB) %>
+						</c:if>
 
-					<c:if test="<%= Double.isInfinite(shippingRangeB) %>">
-						and over
-					</c:if>
+						<c:if test="<%= Double.isInfinite(shippingRangeB) %>">
+							and over
+						</c:if>
 
-					<aui:input label="" maxlength="6" name='<%= "shipping" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingPrefs.getShipping()[i]) %>" />
+						<aui:input label="" maxlength="6" name='<%= "shipping" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingPrefs.getShipping()[i]) %>" />
 
 					<%
 					}
@@ -208,17 +208,17 @@ else if (tabs3.equals("shipping-email")) {
 						double insuranceRangeB = ShoppingPreferences.INSURANCE_RANGE[insuranceRange++];
 					%>
 
-					<%= currencyFormat.format(insuranceRangeA) %>
+						<%= currencyFormat.format(insuranceRangeA) %>
 
-					<c:if test="<%= !Double.isInfinite(insuranceRangeB) %>">
-						- <%= currencyFormat.format(insuranceRangeB) %>
-					</c:if>
+						<c:if test="<%= !Double.isInfinite(insuranceRangeB) %>">
+							- <%= currencyFormat.format(insuranceRangeB) %>
+						</c:if>
 
-					<c:if test="<%= Double.isInfinite(insuranceRangeB) %>">
-						and over
-					</c:if>
+						<c:if test="<%= Double.isInfinite(insuranceRangeB) %>">
+							and over
+						</c:if>
 
-					<aui:input label="" maxlength="6" name='<%= "insurance" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingPrefs.getInsurance()[i]) %>" />
+						<aui:input label="" maxlength="6" name='<%= "insurance" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingPrefs.getInsurance()[i]) %>" />
 
 					<%
 					}
@@ -252,6 +252,7 @@ else if (tabs3.equals("shipping-email")) {
 								<aui:input label="enabled" name="emailOrderShippingEnabled" type="checkbox" value="<%= shoppingPrefs.getEmailOrderShippingEnabled() %>" />
 							</c:when>
 						</c:choose>
+
 						<c:choose>
 							<c:when test='<%= tabs3.equals("confirmation-email") %>'>
 								<aui:input cssClass="lfr-input-text-container" label="subject" name="emailOrderConfirmationSubject" type="text" value="<%= emailOrderConfirmationSubject %>" />

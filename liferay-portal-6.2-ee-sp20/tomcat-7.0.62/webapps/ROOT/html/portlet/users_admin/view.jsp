@@ -20,6 +20,7 @@
 String toolbarItem = ParamUtil.getString(request, "toolbarItem", "browse");
 
 String viewUsersRedirect = ParamUtil.getString(request, "viewUsersRedirect");
+
 String backURL = ParamUtil.getString(request, "backURL", viewUsersRedirect);
 
 int status = ParamUtil.getInteger(request, "status", WorkflowConstants.STATUS_APPROVED);

@@ -21,8 +21,8 @@
 
 	.app {
 		clear: both;
-		min-height: 90px;
 		margin-bottom: 2.5em;
+		min-height: 90px;
 		position: relative;
 
 		.icon {

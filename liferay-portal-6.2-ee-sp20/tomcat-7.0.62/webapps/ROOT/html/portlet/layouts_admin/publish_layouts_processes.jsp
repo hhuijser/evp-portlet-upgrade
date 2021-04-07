@@ -58,9 +58,7 @@ String taskExecutorClassName = localPublishing ? LayoutStagingBackgroundTaskExec
 	<liferay-ui:search-container-results>
 
 		<%
-		List<BackgroundTask> backgroundTasks = BackgroundTaskLocalServiceUtil.getBackgroundTasks(groupId, taskExecutorClassName, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
-
-		results.addAll(backgroundTasks);
+		results.addAll(BackgroundTaskLocalServiceUtil.getBackgroundTasks(groupId, taskExecutorClassName, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator));
 
 		if (localPublishing) {
 			results.addAll(BackgroundTaskLocalServiceUtil.getBackgroundTasks(liveGroupId, taskExecutorClassName, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator));

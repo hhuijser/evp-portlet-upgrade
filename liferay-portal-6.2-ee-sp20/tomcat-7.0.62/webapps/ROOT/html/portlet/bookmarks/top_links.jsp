@@ -32,6 +32,7 @@ portletURL.setParameter("tag", StringPool.BLANK);
 
 		<%
 		String label = "home";
+
 		boolean selected = topLink.equals(label);
 
 		portletURL.setParameter("topLink", label);
@@ -74,7 +75,7 @@ portletURL.setParameter("tag", StringPool.BLANK);
 
 			<aui:nav-bar-search cssClass="pull-right">
 				<div class="form-search">
-					<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" id="keywords1" name="keywords" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' />
+					<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" id="keywords1" name="keywords" placeholder='<%= LanguageUtil.get(request, "keywords") %>' />
 				</div>
 			</aui:nav-bar-search>
 		</aui:form>

@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -40,7 +40,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 <aui:nav-bar>
 	<aui:nav-bar-search cssClass="pull-right">
 		<aui:form action="<%= portletURL %>" cssClass="form-search" method="post" name="fm1">
-			<liferay-ui:input-search placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "keywords") %>' />
+			<liferay-ui:input-search placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "keywords") %>' />
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -53,21 +53,21 @@ portletURL.setParameter("delta", String.valueOf(delta));
 		iteratorURL="<%= portletURL %>"
 	>
 
-	<%
-	searchContainer.setOrderByType(orderByType);
-	searchContainer.setOrderByCol(orderByCol);
+		<%
+		searchContainer.setOrderByType(orderByType);
+		searchContainer.setOrderByCol(orderByCol);
 
-	List<SyncDevice> syncDevices = new ArrayList<SyncDevice>();
+		List<SyncDevice> syncDevices = new ArrayList<SyncDevice>();
 
-	String portletId = (String)request.getAttribute(WebKeys.PORTLET_ID);
+		String portletId = (String)request.getAttribute(WebKeys.PORTLET_ID);
 
-	if (portletId.equals(PortletKeys.SYNC_ADMIN)) {
-		syncDevices = SyncDeviceLocalServiceUtil.search(themeDisplay.getCompanyId(), keywords, searchContainer.getStart(), searchContainer.getEnd(), obc);
-	}
-	else {
-		syncDevices = SyncDeviceLocalServiceUtil.getSyncDevices(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), obc);
-	}
-	%>
+		if (portletId.equals(PortletKeys.SYNC_ADMIN)) {
+			syncDevices = SyncDeviceLocalServiceUtil.search(themeDisplay.getCompanyId(), keywords, searchContainer.getStart(), searchContainer.getEnd(), obc);
+		}
+		else {
+			syncDevices = SyncDeviceLocalServiceUtil.getSyncDevices(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), obc);
+		}
+		%>
 
 		<liferay-ui:search-container-results
 			results="<%= syncDevices %>"

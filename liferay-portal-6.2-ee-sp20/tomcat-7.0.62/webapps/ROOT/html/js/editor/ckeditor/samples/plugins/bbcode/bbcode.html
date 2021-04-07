@@ -6,34 +6,43 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <html>
 <head>
 	<title>BBCode Plugin &mdash; CKEditor Sample</title>
-	<meta charset="utf-8">
+
+	<meta charset="utf-8" />
+
 	<script src="../../../ckeditor.js"></script>
 	<script src="../../../samples/sample.js"></script>
-	<link rel="stylesheet" href="../../../samples/sample.css">
-	<meta name="ckeditor-sample-required-plugins" content="sourcearea">
-	<meta name="ckeditor-sample-name" content="Output for BBCode">
-	<meta name="ckeditor-sample-group" content="Additional Plugins">
-	<meta name="ckeditor-sample-description" content="Configuring CKEditor to produce BBCode tags instead of HTML.">
+
+	<link href="../../../samples/sample.css" rel="stylesheet" />
+
+	<meta content="sourcearea" name="ckeditor-sample-required-plugins" />
+	<meta content="Output for BBCode" name="ckeditor-sample-name" />
+	<meta content="Additional Plugins" name="ckeditor-sample-group" />
+	<meta content="Configuring CKEditor to produce BBCode tags instead of HTML." name="ckeditor-sample-description" />
 </head>
+
 <body>
 	<h1 class="samples">
 		<a href="../../../samples/index.html">CKEditor Samples</a> &raquo; BBCode Plugin
 	</h1>
+
 	<div class="description">
 		<p>
 			This sample shows how to configure CKEditor to output <a href="http://en.wikipedia.org/wiki/BBCode">BBCode</a> format instead of HTML.
 			Please note that the editor configuration was modified to reflect what is needed in a BBCode editing environment.
 			Smiley images, for example, were stripped to the emoticons that are commonly used in some BBCode dialects.
 		</p>
+
 		<p>
 			Please note that currently there is no standard for the BBCode markup language, so its implementation
 			for different platforms (message boards, blogs etc.) can vary. This means that before using CKEditor to
 			output BBCode you may need to adjust the implementation to your own environment.
 		</p>
+
 		<p>
 			A snippet of the configuration code can be seen below; check the source of this page for
 			a full definition:
 		</p>
+
 		<pre class="samples">
 CKEDITOR.replace( 'editor1', {
 	<strong>extraPlugins: 'bbcode',</strong>
@@ -49,12 +58,15 @@ CKEDITOR.replace( 'editor1', {
 	... <i>some other configurations omitted here</i>
 });	</pre>
 	</div>
+
 	<form action="../../../samples/sample_posteddata.php" method="post">
 		<p>
 			<label for="editor1">
 				Editor 1:
 			</label>
+
 			<textarea cols="80" id="editor1" name="editor1" rows="10">This is some [b]sample text[/b]. You are using [url=http://ckeditor.com/]CKEditor[/url].</textarea>
+
 			<script>
 
 				// Replace the <textarea id="editor"> with an CKEditor
@@ -93,15 +105,19 @@ CKEDITOR.replace( 'editor1', {
 
 			</script>
 		</p>
+
 		<p>
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit" />
 		</p>
 	</form>
+
 	<div id="footer">
-		<hr>
+		<hr />
+
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
+
 		<p id="copy">
 			Copyright &copy; 2003-2013, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.

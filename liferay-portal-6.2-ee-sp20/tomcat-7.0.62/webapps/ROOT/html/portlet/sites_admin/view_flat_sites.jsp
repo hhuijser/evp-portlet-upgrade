@@ -43,7 +43,7 @@ portletURL.setParameter("sitesListView", sitesListView);
 	groupParams.put("site", Boolean.TRUE);
 
 	if (!permissionChecker.isCompanyAdmin() && !GroupPermissionUtil.contains(permissionChecker, ActionKeys.VIEW)) {
-		groupParams.put("usersGroups", new Long(user.getUserId()));
+		groupParams.put("usersGroups", Long.valueOf(user.getUserId()));
 		//groupParams.put("active", Boolean.TRUE);
 	}
 	%>

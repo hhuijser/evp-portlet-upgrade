@@ -3,7 +3,7 @@ body, td, pre {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px
 body {background: #FFF;}
 .mceVisualAid {border: 1px dashed #BBB;}
 
-/* IE */
+/* ---------- IE ---------- */
 
 * html body {
 scrollbar-3dlight-color: #F0F0EE;

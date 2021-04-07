@@ -178,7 +178,7 @@ if ((category != null) && layout.isTypeControlPanel()) {
 								<%@ include file="/html/portlet/message_boards/category_columns.jspf" %>
 							</liferay-ui:search-container-row>
 
-							<br>
+							<br />
 
 							<aui:button disabled="<%= true %>" name="deleteCategory" onClick='<%= renderResponse.getNamespace() + "deleteCategories();" %>' value='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "move-to-the-recycle-bin" : "delete" %>' />
 
@@ -362,7 +362,7 @@ if ((category != null) && layout.isTypeControlPanel()) {
 							/>
 						</liferay-ui:search-container-row>
 
-						<br>
+						<br />
 
 						<aui:button disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteThreads();" %>' value='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "move-to-the-recycle-bin" : "delete" %>' />
 
@@ -557,7 +557,7 @@ if ((category != null) && layout.isTypeControlPanel()) {
 					/>
 				</liferay-ui:search-container-row>
 
-				<br>
+				<br />
 
 				<aui:button disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteThreads();" %>' value='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "move-to-the-recycle-bin" : "delete" %>' />
 

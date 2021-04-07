@@ -40,11 +40,10 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 
 <%!
 private void _buildLayoutView(Layout layout, String cssClass, boolean useHtmlTitle, ThemeDisplay themeDisplay, StringBundler sb) throws Exception {
-	String layoutURL = PortalUtil.getLayoutURL(layout, themeDisplay);
 	String target = PortalUtil.getLayoutTarget(layout);
 
 	sb.append("<a href=\"");
-	sb.append(layoutURL);
+	sb.append(PortalUtil.getLayoutURL(layout, themeDisplay));
 	sb.append("\" ");
 	sb.append(target);
 

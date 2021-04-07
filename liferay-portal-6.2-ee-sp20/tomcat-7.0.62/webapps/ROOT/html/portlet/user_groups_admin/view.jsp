@@ -18,6 +18,7 @@
 
 <%
 String viewUserGroupsRedirect = ParamUtil.getString(request, "viewUserGroupsRedirect");
+
 String backURL = ParamUtil.getString(request, "backURL", viewUserGroupsRedirect);
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -41,7 +42,6 @@ String portletURLString = portletURL.toString();
 	<aui:input name="redirect" type="hidden" value="<%= portletURLString %>" />
 
 	<%@ include file="/html/portlet/user_groups_admin/view_flat_user_groups.jspf" %>
-
 </aui:form>
 
 <aui:script>

@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -57,7 +57,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 		WorkflowDefinition kaleoWorkflowDefinition = KaleoFormsUtil.getWorkflowDefinition(themeDisplay.getCompanyId(), workflowDefinitionName, workflowDefinitionVersion);
 
 		if (kaleoWorkflowDefinition != null) {
-			workflowDefinitionDisplay = kaleoWorkflowDefinition.getTitle(themeDisplay.getLanguageId()) + " (" + LanguageUtil.get(locale, "version") + " " + workflowDefinitionVersion + ")";
+			workflowDefinitionDisplay = kaleoWorkflowDefinition.getTitle(themeDisplay.getLanguageId()) + " (" + LanguageUtil.get(request, "version") + " " + workflowDefinitionVersion + ")";
 		}
 	}
 	%>
@@ -83,7 +83,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 <liferay-ui:search-container
 	emptyResultsMessage='<%= tabs1.equals("published") ? "there-are-no-published-definitions" : "there-are-no-unpublished-definitions" %>'
 	iteratorURL="<%= iteratorURL %>"
-	total= '<%= tabs1.equals("published") ? WorkflowDefinitionManagerUtil.getActiveWorkflowDefinitionCount(company.getCompanyId()) : KaleoDraftDefinitionLocalServiceUtil.getLatestKaleoDraftDefinitionsCount(company.getCompanyId(), 0) %>'
+	total='<%= tabs1.equals("published") ? WorkflowDefinitionManagerUtil.getActiveWorkflowDefinitionCount(company.getCompanyId()) : KaleoDraftDefinitionLocalServiceUtil.getLatestKaleoDraftDefinitionsCount(company.getCompanyId(), 0) %>'
 >
 	<portlet:renderURL var="editWorkflowURL">
 		<portlet:param name="mvcPath" value="/admin/process/edit_workflow.jsp" />
@@ -199,6 +199,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 			</liferay-ui:search-container-row>
 		</c:otherwise>
 	</c:choose>
+
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
@@ -222,7 +223,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 				)
 			);
 
-			var kaleoFormsAdmin = Liferay.component('<portlet:namespace/>KaleoFormsAdmin');
+			var kaleoFormsAdmin = Liferay.component('<portlet:namespace />KaleoFormsAdmin');
 
 			kaleoFormsAdmin.saveInPortletSession(
 				{

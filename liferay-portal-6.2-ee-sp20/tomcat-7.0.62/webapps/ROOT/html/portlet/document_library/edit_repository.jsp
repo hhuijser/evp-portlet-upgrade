@@ -114,6 +114,7 @@ long folderId = ParamUtil.getLong(request, "folderId");
 				</div>
 			</c:otherwise>
 		</c:choose>
+
 		<c:if test="<%= repository == null %>">
 			<aui:field-wrapper label="permissions">
 				<liferay-ui:input-permissions
@@ -142,28 +143,29 @@ long folderId = ParamUtil.getLong(request, "folderId");
 			String[] supportedConfigurations = RepositoryServiceUtil.getSupportedConfigurations(classNameId);
 
 			for (String supportedConfiguration : supportedConfigurations) {
-		%>
+	%>
 
-			<div class="settings-configuration <%= ((supportedConfigurations.length == 1) ? "hide" : "") %>" id="<portlet:namespace />repository-<%= className %>-wrapper">
-				<aui:select cssClass="repository-configuration" id='<%= "repository-" + className %>' label="repository-configuration" name="settings--configuration-type--">
-					<aui:option label="<%= LanguageUtil.get(pageContext, HtmlUtil.escape(StringUtil.replace(StringUtil.toLowerCase(supportedConfiguration), CharPool.UNDERLINE, CharPool.DASH))) %>" selected="<%= supportedConfiguration.equals(supportedConfigurations[0]) %>" value="<%= HtmlUtil.escapeAttribute(supportedConfiguration) %>" />
-				</aui:select>
-			</div>
-			<div class="settings-parameters" id="<portlet:namespace />repository-<%= className %>-configuration-<%= HtmlUtil.escapeAttribute(supportedConfiguration) %>">
+				<div class="settings-configuration <%= ((supportedConfigurations.length == 1) ? "hide" : "") %>" id="<portlet:namespace />repository-<%= className %>-wrapper">
+					<aui:select cssClass="repository-configuration" id='<%= "repository-" + className %>' label="repository-configuration" name="settings--configuration-type--">
+						<aui:option label="<%= LanguageUtil.get(pageContext, HtmlUtil.escape(StringUtil.replace(StringUtil.toLowerCase(supportedConfiguration), CharPool.UNDERLINE, CharPool.DASH))) %>" selected="<%= supportedConfiguration.equals(supportedConfigurations[0]) %>" value="<%= HtmlUtil.escapeAttribute(supportedConfiguration) %>" />
+					</aui:select>
+				</div>
 
-				<%
-				String[] supportedParameters = RepositoryServiceUtil.getSupportedParameters(classNameId, supportedConfiguration);
+				<div class="settings-parameters" id="<portlet:namespace />repository-<%= className %>-configuration-<%= HtmlUtil.escapeAttribute(supportedConfiguration) %>">
 
-				for (String supportedParameter : supportedParameters) {
-				%>
+					<%
+					String[] supportedParameters = RepositoryServiceUtil.getSupportedParameters(classNameId, supportedConfiguration);
 
-					<aui:input label="<%= LanguageUtil.get(pageContext, HtmlUtil.escape(StringUtil.replace(StringUtil.toLowerCase(supportedParameter), CharPool.UNDERLINE, CharPool.DASH))) %>" name='<%= "settings--" + HtmlUtil.escapeAttribute(supportedParameter) + "--" %>' type="text" value="" />
+					for (String supportedParameter : supportedParameters) {
+					%>
 
-				<%
-				}
-				%>
+						<aui:input label="<%= LanguageUtil.get(pageContext, HtmlUtil.escape(StringUtil.replace(StringUtil.toLowerCase(supportedParameter), CharPool.UNDERLINE, CharPool.DASH))) %>" name='<%= "settings--" + HtmlUtil.escapeAttribute(supportedParameter) + "--" %>' type="text" value="" />
 
-			</div>
+					<%
+					}
+					%>
+
+				</div>
 
 	<%
 			}

@@ -52,9 +52,7 @@ portletURL.setParameter("recordId", String.valueOf(record.getRecordId()));
 	headerNames.add("author");
 	headerNames.add(StringPool.BLANK);
 
-	int total = DDLRecordLocalServiceUtil.getRecordVersionsCount(record.getRecordId());
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(DDLRecordLocalServiceUtil.getRecordVersionsCount(record.getRecordId()));
 
 	List<DDLRecordVersion> results = DDLRecordLocalServiceUtil.getRecordVersions(record.getRecordId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 

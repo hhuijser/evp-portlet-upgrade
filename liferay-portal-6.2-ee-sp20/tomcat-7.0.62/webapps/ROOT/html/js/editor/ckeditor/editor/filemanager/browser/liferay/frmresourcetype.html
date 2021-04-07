@@ -8,14 +8,14 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
@@ -24,15 +24,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Available types</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link href="browser.css" type="text/css" rel="stylesheet">
-		<script type="text/javascript" src="js/common.js"></script>
+
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+		<link href="browser.css" rel="stylesheet" type="text/css" />
+
+		<script src="js/common.js" type="text/javascript"></script>
 		<script type="text/javascript">
 
 function SetResourceType( type )
 {
-	
-						
+
 								window.parent.frames["frmFolders"].SetResourceType( type );
 							}
 
@@ -44,8 +46,7 @@ function SetResourceType( type )
 							function SetAscending( ascending )
 							{
 								window.parent.frames["frmFolders"].SetAscending( ascending );
-						
-					
+
 }
 
 var defaultTypes = [
@@ -60,8 +61,7 @@ var defaultTypes = [
 
 window.onload = function()
 {
-	
-						
+
 						var inArray = function(item, array) {
 							var found = false;
 
@@ -84,10 +84,7 @@ window.onload = function()
 						var oCombo = document.getElementById('cmbType') ;
 						var orderBy = document.getElementById('orderBy') ;
 						var ascending = document.getElementById('ascending') ;
-						
-					
-	
-						
+
 							oCombo.innerHTML = '' ;
 							orderBy.innerHTML = '' ;
 
@@ -96,38 +93,36 @@ window.onload = function()
 							AddSelectOption( orderBy, 'Size', 'Size' ) ;
 							AddSelectOption( ascending, 'Ascending', 'true' ) ;
 							AddSelectOption( ascending, 'Descending', 'false' ) ;
-						
-					
+
 	for ( var i = 0 ; i < defaultTypes.length ; i++ )
 	{
 		if ( oConnector.ResourceType === defaultTypes[i][0] || inArray( defaultTypes[i][0], oConnector.ResourceTypes ) )
-					
+
 			AddSelectOption( oCombo, defaultTypes[i][1], defaultTypes[i][0] ) ;
 	}
 }
 
 		</script>
 	</head>
+
 	<body>
-		<table class="fullHeight" cellSpacing="0" cellPadding="0" width="100%" border="0">
+		<table border="0" cellPadding="0" cellSpacing="0" class="fullHeight" width="100%">
 			<tr>
 				<td nowrap>
 					Resource Type<BR>
-					
-						
-							<select id="cmbType" style="WIDTH: 100%" onchange="SetResourceType(this.value);">
+
+							<select id="cmbType" onchange="SetResourceType(this.value);" style="WIDTH: 100%">
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<td nowrap>
 							Order by<BR>
-							<select id="orderBy" style="WIDTH: 100%" onchange="SetSortType(this.value);">
+							<select id="orderBy" onchange="SetSortType(this.value);" style="WIDTH: 100%">
 							</select><BR>
 							<BR>
-							<select id="ascending" style="WIDTH: 100%" onchange="SetAscending(this.value);">
-						
-					
+							<select id="ascending" onchange="SetAscending(this.value);" style="WIDTH: 100%">
+
 					</select>
 				</td>
 			</tr>

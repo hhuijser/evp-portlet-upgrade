@@ -27,9 +27,9 @@
 
 body
 {
-	padding: 1px;
-	margin: 0;
 	background-color: #ffffff;
+	margin: 0;
+	padding: 1px;
 }
 
 #xEditingArea
@@ -39,9 +39,9 @@ body
 
 .SourceField
 {
-	padding: 5px;
-	margin: 0px;
 	font-family: Monospace;
+	margin: 0px;
+	padding: 5px;
 }
 
 /*
@@ -56,15 +56,15 @@ body
 
 .TB_ToolbarSet
 {
-	padding: 1px;
-	border-top: #efefde 1px outset;
 	border-bottom: #efefde 1px outset;
+	border-top: #efefde 1px outset;
+	padding: 1px;
 }
 
 .TB_ToolbarSet TD
 {
-	font-size: 11px;
 	font-family: 'Microsoft Sans Serif' , Tahoma, Arial, Verdana, Sans-Serif;
+	font-size: 11px;
 }
 
 .TB_Toolbar
@@ -115,8 +115,8 @@ body
 
 .TB_Expand, .TB_Collapse
 {
-	padding: 2px 2px 2px 2px;
 	border: #efefde 1px outset;
+	padding: 2px 2px 2px 2px;
 }
 
 .TB_Collapse
@@ -148,8 +148,8 @@ body
 
 .TB_Button_On
 {
-	border-color: #316ac5;
 	background-color: #c1d2ee;
+	border-color: #316ac5;
 }
 
 .TB_Button_On_Over, .TB_Button_Off_Over
@@ -166,14 +166,14 @@ body
 .TB_Button_Off, .TB_Combo_Off
 {
 	opacity: 0.70; /* Safari, Opera and Mozilla */
-	filter: alpha(opacity=70); /* IE */
+	filter: alpha(opacity=70); /* ---------- IE ---------- */
 	/* -moz-opacity: 0.70; Mozilla (Old) */
 }
 
 .TB_Button_Disabled
 {
     opacity: 0.30; /* Safari, Opera and Mozilla */
-    filter: gray() alpha(opacity=30); /* IE */
+    filter: gray() alpha(opacity=30); /* ---------- IE ---------- */
 }
 
 .TB_Button_Padding
@@ -213,8 +213,8 @@ body
 {
     background-color: #ffffff;
     height: 1px;
-    margin-left: 1px;   /* ltr */
-    margin-right: 1px;  /* rtl */
+    margin-left: 1px;   /* ---------- ltr ---------- */
+    margin-right: 1px;  /* ---------- rtl ---------- */
 }
 
 /*
@@ -284,7 +284,7 @@ body
 
 .MN_Item_Disabled IMG
 {
-    filter: gray() alpha(opacity=30); /* IE */
+    filter: gray() alpha(opacity=30); /* ---------- IE ---------- */
     opacity: 0.30; /* Safari, Opera and Mozilla */
 }
 

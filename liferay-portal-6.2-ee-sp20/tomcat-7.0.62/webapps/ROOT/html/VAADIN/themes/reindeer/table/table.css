@@ -1,4 +1,4 @@
-/* Table on blue background */
+/* ---------- Table on blue background ---------- */
 .blue .v-table-header-wrap {
 	border-color: #92a2aa;
 }
@@ -13,16 +13,16 @@
 .v-table-footer-wrap,
 .white .v-table-footer-wrap,
 .v-table-header-drag {
-	border-color: #c2c3c4;
 	background: transparent repeat-x;
+	border-color: #c2c3c4;
 	background-image: url(img/header-bg-light.png); /** sprite-ref: verticals; sprite-alignment: repeat */
-	height: 20px;
-	text-transform: uppercase;
+	color: #222;
 	font-size: 10px;
 	font-weight: bold;
-	color: #222;
-	text-shadow: #f3f5f8 0 1px 0;
+	height: 20px;
 	line-height: normal;
+	text-shadow: #f3f5f8 0 1px 0;
+	text-transform: uppercase;
 }
 
 .v-ie6 .v-table,
@@ -45,9 +45,9 @@
 
 .v-table-footer-wrap,
 .white .v-table-footer-wrap {
-	text-transform: none;
 	font-size: 12px;
 	font-weight: normal;
+	text-transform: none;
 }
 
 .v-table-footer td,
@@ -68,8 +68,8 @@
 
 .v-table-caption-container,
 .v-table-header-drag {
-	padding-top: 4px;
 	padding-right: 4px;
+	padding-top: 4px;
 }
 .v-table-caption-container .v-icon,
 .v-table-header-drag .v-icon {
@@ -82,16 +82,16 @@
 	margin-top: -3px;
 }
 .v-table-resizer {
-	height: 20px;
-	width: 2px;
 	background: transparent;
 	border-right: 1px solid #c2c3c4;
+	height: 20px;
+	width: 2px;
 }
 
 .v-table-sort-indicator {
 	background: transparent;
-	width: 0px;
 	height: 20px;
+	width: 0px;
 }
 
 .v-table-header-cell-asc .v-table-sort-indicator {
@@ -106,20 +106,20 @@
 }
 .v-table-body,
 .white .v-table-body {
-	border-color: #c2c3c4;
 	background: #fff;
+	border-color: #c2c3c4;
 }
 .v-table-cell-content {
-	padding-top: 0;
 	border-right-color: #d3d4d5;
+	padding-top: 0;
 	vertical-align: top;
 }
 .v-table.full-height-fields .v-table-cell-content {
 	height: 32px;
 }
 .v-table-cell-wrapper {
-	padding-top: 3px;
 	padding-bottom: 3px;
+	padding-top: 3px;
 }
 .v-table-row-odd {
 	background: #eff0f1;
@@ -150,10 +150,10 @@
 	border-right-color: #466c90;
 }
 .v-table-column-selector {
-	width: 16px;
+	background: transparent no-repeat;
 	height: 20px;
 	margin-top: -20px;
-	background: transparent no-repeat;
+	width: 16px;
 	background-image: url(img/col-sel-light.png); /** sprite-ref: verticals */
 }
 .v-table-column-selector:active {
@@ -169,17 +169,17 @@
 	margin-right: 0;
 }
 .v-table-header-drag {
-	padding-left: 6px;
 	height: 16px;
+	padding-left: 6px;
 }
 .v-table-header-drag img {
 	height: 16px;
 	margin: -3px 3px 0 0;
 }
 .v-table-scrollposition {
-	width: auto;
 	background: transparent;
 	border: none;
+	width: auto;
 }
 .v-table-scrollposition span {
 	background: transparent repeat-x;
@@ -192,25 +192,25 @@
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-left-radius: 4px;
 	-webkit-border-bottom-right-radius: 4px;
+	color: #222;
 	height: 13px;
 	padding: 4px 30px;
-	white-space: nowrap;
-	color: #222;
-	text-shadow: #fff 0 1px 0;
 	position: relative;
+	text-shadow: #fff 0 1px 0;
 	top: 1px;
+	white-space: nowrap;
 	-webkit-box-shadow: rgba(0,0,0,.5) 0 1px 2px;
 	-moz-box-shadow: rgba(0,0,0,.5) 0 1px 2px;
 }
 .v-table-borderless .v-table-scrollposition span {
 	top: 0;
 }
-/* row in column selector */
+/* ---------- row in column selector ---------- */
 .v-contextmenu .v-on,
 .v-contextmenu .v-off {
+	background: transparent no-repeat 0 4px;
 	display: inline-block;
 	zoom: 1;
-	background: transparent no-repeat 0 4px;
 	background-image: url(../common/icons/bullet.png); /** sprite-ref: verticals; sprite-margin-top: 4px; sprite-margin-bottom: 4px */
 	padding-left: 12px;
 	padding-right: 4px;
@@ -224,7 +224,7 @@
 }
 
 
-/* Strong style */
+/* ---------- Strong style ---------- */
 .v-table-strong .v-table-header-wrap,
 .v-table-strong .v-table-header-drag {
 	border-color: #2b3033;
@@ -285,12 +285,12 @@
 	border-color: #9ca1a5;
 }
 .black .v-table-body {
-	border-color: #252729;
 	background: transparent;
+	border-color: #252729;
 }
 .black .v-table-cell-content {
-	border-right-color: #252729;
 	border-bottom: 1px solid #252729;
+	border-right-color: #252729;
 }
 .black .v-table-cell-wrapper {
 	padding-bottom: 2px;
@@ -303,7 +303,7 @@
 	border-bottom: 1px solid #4d749f;
 }
 
-/* Borderless style */
+/* ---------- Borderless style ---------- */
 .v-table-borderless .v-table-header-wrap,
 .v-table-borderless .v-table-body {
 	border: none;

@@ -57,9 +57,9 @@ if (!dlFileEntries.isEmpty()) {
 
 <c:choose>
 	<c:when test="<%= dlFileEntry == null %>">
-			<div class="alert alert-success">
-				<liferay-ui:message key="there-are-no-longer-any-documents-and-media-files-with-extra-settings" />
-			</div>
+		<div class="alert alert-success">
+			<liferay-ui:message key="there-are-no-longer-any-documents-and-media-files-with-extra-settings" />
+		</div>
 	</c:when>
 	<c:otherwise>
 		<c:if test="<%= (expandoBridgeAttributeNames != null) && !expandoBridgeAttributeNames.isEmpty() %>">
@@ -78,7 +78,6 @@ if (!dlFileEntries.isEmpty()) {
 
 			<%
 			for (String key : keys) {
-				String selectName = "type_" + key;
 			%>
 
 				<aui:fieldset>
@@ -86,7 +85,7 @@ if (!dlFileEntries.isEmpty()) {
 
 					<br />
 
-					<aui:select helpMessage="custom-field-type-help" label="type" name="<%= selectName %>">
+					<aui:select helpMessage="custom-field-type-help" label="type" name='<%= "type_" + key %>'>
 						<optgroup label="<liferay-ui:message key="presets" />">
 							<aui:option label="selection-of-integer-values" value="PresetSelectionIntegerArray()" />
 							<aui:option label="selection-of-decimal-values" value="PresetSelectionDoubleArray()" />
@@ -96,6 +95,7 @@ if (!dlFileEntries.isEmpty()) {
 							<aui:option label="text-field-secret" value="PresetTextFieldSecret()" />
 							<aui:option label="text-field-indexed" selected="<%= true %>" value="PresetTextFieldIndexed()" />
 						</optgroup>
+
 						<optgroup label="<liferay-ui:message key="primitives" />">
 
 							<%

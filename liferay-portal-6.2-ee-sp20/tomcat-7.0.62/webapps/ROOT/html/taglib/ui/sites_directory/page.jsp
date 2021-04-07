@@ -64,12 +64,7 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-
-								<%
-								PortletURL portletURL = PortletURLFactoryUtil.create(request, portletDisplay.getId(), plid, PortletRequest.RENDER_PHASE);
-								%>
-
-								<liferay-ui:search-container emptyResultsMessage="no-sites-were-found" iteratorURL="<%= portletURL %>">
+								<liferay-ui:search-container emptyResultsMessage="no-sites-were-found" iteratorURL="<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), plid, PortletRequest.RENDER_PHASE) %>">
 
 									<%
 									List<Group> childGroups = null;
@@ -147,7 +142,6 @@
 						%>
 
 						<%= content %>
-
 					</c:otherwise>
 				</c:choose>
 			</c:otherwise>

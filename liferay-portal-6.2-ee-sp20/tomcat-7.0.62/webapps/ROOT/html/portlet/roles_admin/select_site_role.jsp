@@ -84,7 +84,6 @@ if (step == 1) {
 					modelVar="group"
 					rowIdProperty="friendlyURL"
 				>
-
 					<liferay-ui:search-container-column-text
 						name="name"
 						value="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>"
@@ -129,7 +128,6 @@ if (step == 1) {
 				);
 			</aui:script>
 		</c:when>
-
 		<c:when test="<%= step == 2 %>">
 
 			<%
