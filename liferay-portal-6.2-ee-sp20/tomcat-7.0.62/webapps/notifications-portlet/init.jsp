@@ -50,9 +50,9 @@ page import="java.util.TreeMap" %>
 
 <%@ page import="javax.portlet.PortletRequest" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 int dockbarViewDelta = 3;

@@ -21,7 +21,7 @@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 
-<%@ page import="java.net.URLEncoder" %>
+
 
 <%@ page import="net.oauth.OAuthConsumer" %>
 

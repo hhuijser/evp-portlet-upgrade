@@ -112,7 +112,7 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 				Set<Long> assetAvailableClassTypeIdsSet = assetAvailableClassTypes.keySet();
 
-				Long[] assetAvailableClassTypeIds = assetAvailableClassTypeIdsSet.toArray(new Long[assetAvailableClassTypeIdsSet.size()]);
+				Long[] assetAvailableClassTypeIds = assetAvailableClassTypeIdsSet.toArray(new Long[0]);
 
 				Long[] assetSelectedClassTypeIds = AssetPublisherUtil.getClassTypeIds(portletPreferences, className, assetAvailableClassTypeIds);
 
