@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -272,6 +272,7 @@ for (long otherCalendarId : otherCalendarIds) {
 
 						<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListPending"></div>
 					</aui:column>
+
 					<aui:column columnWidth="<%= (calendarBooking != null) ? 25 : 50 %>">
 						<label class="field-label">
 							<liferay-ui:message key="accepted" /> (<span id="<portlet:namespace />acceptedCounter"><%= acceptedCalendarsJSONArray.length() %></span>)
@@ -288,6 +289,7 @@ for (long otherCalendarId : otherCalendarIds) {
 
 							<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListMaybe"></div>
 						</aui:column>
+
 						<aui:column columnWidth="25" last="true">
 							<label class="field-label">
 								<liferay-ui:message key="declined" /> (<span id="<portlet:namespace />declinedCounter"><%= declinedCalendarsJSONArray.length() %></span>)
@@ -429,7 +431,7 @@ for (long otherCalendarId : otherCalendarIds) {
 			containerId: 'meetingEventDate',
 			endDatePickerName: 'endTime',
 			endTimePickerName: 'endTimeTime',
-			namespace: '<portlet:namespace/>',
+			namespace: '<portlet:namespace />',
 			startDatePickerName: 'startTime',
 			startTimePickerName: 'startTimeTime',
 			submitButtonId: 'submit'

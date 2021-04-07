@@ -2,12 +2,12 @@
 	margin: 0.3em 0 0 0;
 }
 .v-errorindicator {
-	width: 12px;
-	height: 16px;
 	background: transparent url(../icons/16/error.png) no-repeat top right;
+	height: 16px;
+	width: 12px;
 }
 .v-ie6 .v-errorindicator {
-	/* gif for transparency */
+	/* ---------- gif for transparency ---------- */
 	background-image: url(../icons/16/error.gif);
 }
 .v-ie7 .v-errorindicator {

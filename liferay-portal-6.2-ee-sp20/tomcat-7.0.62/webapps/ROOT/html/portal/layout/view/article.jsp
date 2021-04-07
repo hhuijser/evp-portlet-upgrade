@@ -21,17 +21,15 @@ UnicodeProperties typeSettingsProperties = layout.getTypeSettingsProperties();
 
 String articleId = typeSettingsProperties.getProperty("article-id");
 
-String languageId = LanguageUtil.getLanguageId(request);
-
-String content = JournalContentUtil.getContent(scopeGroupId, articleId, null, languageId, themeDisplay);
+String content = JournalContentUtil.getContent(scopeGroupId, articleId, null, LanguageUtil.getLanguageId(request), themeDisplay);
 %>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tr>
-	<td>
-		<%= content %>
-	</td>
-</tr>
+	<tr>
+		<td>
+			<%= content %>
+		</td>
+	</tr>
 </table>
 
 <%@ include file="/html/portal/layout/view/common.jspf" %>

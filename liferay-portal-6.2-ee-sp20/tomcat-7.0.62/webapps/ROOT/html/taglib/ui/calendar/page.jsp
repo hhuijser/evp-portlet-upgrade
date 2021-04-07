@@ -131,36 +131,36 @@ int weekNumber = 1;
 				<tr>
 
 		<%
-				dayOfWeek = 1;
-				weekNumber++;
-			}
+			dayOfWeek = 1;
+			weekNumber++;
+		}
 
-			Calendar tempCal = (Calendar)selCal.clone();
+		Calendar tempCal = (Calendar)selCal.clone();
 
-			tempCal.set(Calendar.MONTH, selMonth);
-			tempCal.set(Calendar.DATE, i);
-			tempCal.set(Calendar.YEAR, selYear);
+		tempCal.set(Calendar.MONTH, selMonth);
+		tempCal.set(Calendar.DATE, i);
+		tempCal.set(Calendar.YEAR, selYear);
 
-			boolean hasData = (data != null) && data.contains(new Integer(i));
+		boolean hasData = (data != null) && data.contains(new Integer(i));
 
-			String className = "";
+		String className = "";
 
-			if (i == selDay) {
-				className = "table-cell calendar-current-day portlet-section-selected";
-			}
+		if (i == selDay) {
+			className = "table-cell calendar-current-day portlet-section-selected";
+		}
 
-			if (hasData) {
-				className += " has-events";
-			}
+		if (hasData) {
+			className += " has-events";
+		}
 
-			if (dayOfWeek == 1) {
-				className += " first";
-			}
-			else if (dayOfWeek == 7) {
-				className += " last";
-			}
+		if (dayOfWeek == 1) {
+			className += " first";
+		}
+		else if (dayOfWeek == 7) {
+			className += " last";
+		}
 
-			dayOfWeek++;
+		dayOfWeek++;
 		%>
 
 			<td class="<%= className %>">

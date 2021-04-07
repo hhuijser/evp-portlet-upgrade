@@ -6,18 +6,23 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <html>
 <head>
 	<title>Toolbar Configuration &mdash; CKEditor Sample</title>
-	<meta charset="utf-8">
-	<meta name="ckeditor-sample-name" content="Toolbar Configurations">
-	<meta name="ckeditor-sample-group" content="Advanced Samples">
-	<meta name="ckeditor-sample-description" content="Configuring CKEditor to display full or custom toolbar layout.">
-	<meta name="ckeditor-sample-isnew" content="1">
+
+	<meta charset="utf-8" />
+	<meta name="ckeditor-sample-name" content="Toolbar Configurations" />
+	<meta name="ckeditor-sample-group" content="Advanced Samples" />
+	<meta name="ckeditor-sample-description" content="Configuring CKEditor to display full or custom toolbar layout." />
+	<meta name="ckeditor-sample-isnew" content="1" />
+
 	<script src="../../../ckeditor.js"></script>
-	<link href="../../../samples/sample.css" rel="stylesheet">
+
+	<link href="../../../samples/sample.css" rel="stylesheet" />
 </head>
+
 <body>
 	<h1 class="samples">
 		<a href="../../../samples/index.html">CKEditor Samples</a> &raquo; Toolbar Configuration
 	</h1>
+
 	<div class="description">
 		<p>
 			This sample page demonstrates editor with loaded <a href="#fullToolbar">full toolbar</a> (all registered buttons) and, if
@@ -61,11 +66,11 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		<pre class="samples">
 CKEDITOR.replace( <em>'textarea_id'</em>, {
 	<strong>toolbarGroups:</strong> [
-		{ name: 'document',	   groups: [ 'mode', 'document' ] },			// Displays document group with its two subgroups.
- 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },			// Group's name will be used to create voice label.
- 		'/',																// Line break - next group will be placed in new line.
- 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
- 		{ name: 'links' }
+		{ name: 'document',	 groups: [ 'mode', 'document' ] },			// Displays document group with its two subgroups.
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },			// Group's name will be used to create voice label.
+		'/',																// Line break - next group will be placed in new line.
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'links' }
 	]
 
 	// NOTE: Remember to leave 'toolbar' property with the default value (null).
@@ -74,19 +79,25 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 
 	<div id="currentToolbar" style="display: none">
 		<h2 class="samples">Current toolbar configuration</h2>
+
 		<p>Below you can see editor with current toolbar definition.</p>
+
 		<textarea cols="80" id="editorCurrent" name="editorCurrent" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+
 		<pre id="editorCurrentCfg" class="samples"></pre>
 	</div>
 
 	<div id="fullToolbar">
 		<h2 class="samples">Full toolbar configuration</h2>
+
 		<p>Below you can see editor with full toolbar, generated automatically by the editor.</p>
 		<p>
 			<strong>Note</strong>: To create editor instance with full toolbar you don't have to set anything.
 			Just leave <code>toolbar</code> and <code>toolbarGroups</code> with the default, <code>null</code> values.
 		</p>
+
 		<textarea cols="80" id="editorFull" name="editorFull" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+
 		<pre id="editorFullCfg" class="samples"></pre>
 	</div>
 
@@ -131,7 +142,6 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		var preOutput = pre.getOuterHtml().replace( /(?=<\/)/, output );
 		CKEDITOR.dom.element.createFromHtml( preOutput ).replace( pre );
 	} );
-
 
 	CKEDITOR.replace( 'editorCurrent', { height: 100 } );
 	CKEDITOR.replace( 'editorFull', {
@@ -187,10 +197,12 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 	</script>
 
 	<div id="footer">
-		<hr>
+		<hr />
+
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
+
 		<p id="copy">
 			Copyright &copy; 2003-2013, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.

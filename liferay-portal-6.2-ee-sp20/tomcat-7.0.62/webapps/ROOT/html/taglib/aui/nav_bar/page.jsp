@@ -22,7 +22,6 @@
 			<span id="<%= id %>ResponsiveButton">
 				<%= responsiveButtons %>
 			</span>
-
 			<span id="<%= id %>bodyContent">
 				<%= bodyContentString %>
 			</span>

@@ -41,9 +41,7 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 			List<KeyValuePair> typesLeftList = new ArrayList<KeyValuePair>();
 
 			for (long classNameId : classNameIds) {
-				String className = PortalUtil.getClassName(classNameId);
-
-				typesLeftList.add(new KeyValuePair(String.valueOf(classNameId), ResourceActionsUtil.getModelResource(locale, className)));
+				typesLeftList.add(new KeyValuePair(String.valueOf(classNameId), ResourceActionsUtil.getModelResource(locale, PortalUtil.getClassName(classNameId))));
 			}
 
 			// Right list
@@ -218,11 +216,11 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 			%>
 
 			<div class="asset-subtypefield-selected <%= Validator.isNull(ddmStructureFieldName) ? "hide" : StringPool.BLANK %>">
-				<aui:input name='<%= "preferences--ddmStructureFieldName--" %>' type="hidden" value="<%= ddmStructureFieldName %>" />
+				<aui:input name="preferences--ddmStructureFieldName--" type="hidden" value="<%= ddmStructureFieldName %>" />
 
-				<aui:input name='<%= "preferences--ddmStructureFieldValue--" %>' type="hidden" value="<%= ddmStructureFieldValue %>" />
+				<aui:input name="preferences--ddmStructureFieldValue--" type="hidden" value="<%= ddmStructureFieldValue %>" />
 
-				<aui:input name='<%= "preferences--ddmStructureDisplayFieldValue--" %>' type="hidden" value="<%= ddmStructureDisplayFieldValue %>" />
+				<aui:input name="preferences--ddmStructureDisplayFieldValue--" type="hidden" value="<%= ddmStructureDisplayFieldValue %>" />
 			</div>
 		</aui:fieldset>
 	</liferay-ui:panel>
@@ -280,7 +278,8 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 				int index = 0;
 
 				for (int queryLogicIndex : queryLogicIndexes) {
-					String queryValues = StringUtil.merge(portletPreferences.getValues("queryValues" + queryLogicIndex , new String[0]));
+					String queryValues = StringUtil.merge(portletPreferences.getValues("queryValues" + queryLogicIndex, new String[0]));
+
 					String tagNames = ParamUtil.getString(request, "queryTagNames" + queryLogicIndex, queryValues);
 					String categoryIds = ParamUtil.getString(request, "queryCategoryIds" + queryLogicIndex, queryValues);
 
@@ -379,7 +378,6 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 						<aui:option label="descending" selected='<%= orderByType1.equals("DESC") %>' value="DESC" />
 					</aui:select>
 				</span>
-
 				<span class="field-row">
 					<aui:select inlineField="<%= true %>" inlineLabel="left" label="and-then-by" name="preferences--orderByColumn2--">
 						<aui:option label="title" selected='<%= orderByColumn2.equals("title") %>' />
@@ -400,7 +398,6 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 						<aui:option label="descending" selected='<%= orderByType2.equals("DESC") %>' value="DESC" />
 					</aui:select>
 				</span>
-
 				<span class="field-row">
 					<aui:select inlineField="<%= true %>" inlineLabel="left" label="group-by" name="preferences--assetVocabularyId--">
 						<aui:option value="" />
@@ -413,7 +410,7 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 							List<AssetVocabulary> assetVocabularies = AssetVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, false);
 
 							if (!assetVocabularies.isEmpty()) {
-							%>
+						%>
 
 								<optgroup label="<liferay-ui:message key="vocabularies" />">
 
@@ -430,7 +427,7 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 								</optgroup>
 
-							<%
+						<%
 							}
 						}
 						%>

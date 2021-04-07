@@ -80,7 +80,6 @@ PortletURL portletURL = (PortletURL)request.getAttribute("edit_role_assignments.
 		modelVar="group"
 		rowIdProperty="friendlyURL"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="name"
 			value="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>"

@@ -12,38 +12,38 @@
 	-webkit-user-select: none;
 }
 .v-ie .v-ddwrapper a.drag-start {
+	bottom: 0;
 	display: block;
 	position: absolute;
 	top: 0;
-	bottom: 0;
     left: 0;
-	right: 0;
-	width: 100%;
 	height: 100%;
 	opacity: 0;
-	/* Some color needed to make it draggable */
+	right: 0;
+	width: 100%;
+	/* ---------- Some color needed to make it draggable ---------- */
 	background-color:cyan;
 	filter: alpha(opacity=0);
 }
 .v-ddwrapper-over {
-	border: 2px solid #1d9dff;
 	background-color: #bcdcff;
+	border: 2px solid #1d9dff;
 	padding: 0;
 }
 .v-ddwrapper-over {
 	background-color: rgba(169,209,255,.6);
 }
 .no-box-drag-hints .v-ddwrapper-over {
-	border: none;
 	background-color: transparent;
+	border: none;
 	padding: 2px;
 }
 .v-app .v-ddwrapper-over-top,
 .v-window .v-ddwrapper-over-top,
 .v-popupview-popup .v-ddwrapper-over-top {
+	background-color: transparent;
 	border: none;
 	border-top: 2px solid #1d9dff;
-	background-color: transparent;
 	padding: 2px;
 	padding-top: 0;
 	-moz-border-radius: 0;
@@ -53,9 +53,9 @@
 .v-app .v-ddwrapper-over-bottom,
 .v-window .v-ddwrapper-over-bottom,
 .v-popupview-popup .v-ddwrapper-over-bottom {
+	background-color: transparent;
 	border: none;
 	border-bottom: 2px solid #1d9dff;
-	background-color: transparent;
 	padding: 2px;
 	padding-bottom: 0;
 	-moz-border-radius: 0;
@@ -65,9 +65,9 @@
 .v-app .v-ddwrapper-over-left,
 .v-window .v-ddwrapper-over-left,
 .v-popupview-popup .v-ddwrapper-over-left {
+	background-color: transparent;
 	border: none;
 	border-left: 2px solid #1d9dff;
-	background-color: transparent;
 	padding: 2px;
 	padding-left: 0;
 	-moz-border-radius: 0;
@@ -77,9 +77,9 @@
 .v-app .v-ddwrapper-over-right,
 .v-window .v-ddwrapper-over-right,
 .v-popupview-popup .v-ddwrapper-over-right {
+	background-color: transparent;
 	border: none;
 	border-right: 2px solid #1d9dff;
-	background-color: transparent;
 	padding: 2px;
 	padding-right: 0;
 	-moz-border-radius: 0;
@@ -107,14 +107,14 @@
 .v-ddwrapper-over-bottom:after,
 .v-ddwrapper-over-left:before,
 .v-ddwrapper-over-right:before {
-	display: block;
+	background: transparent url(../common/img/drag-slot-dot.png) no-repeat;
 	content: "";
+	display: block;
+	height: 6px;
+	margin-left: -2px;
+	margin-top: -4px;
 	position: absolute;
 	width: 6px;
-	height: 6px;
-	margin-top: -4px;
-	margin-left: -2px;
-	background: transparent url(../common/img/drag-slot-dot.png) no-repeat;
 }
 .v-ddwrapper-over-bottom:after {
 	margin-top: -2px;
@@ -122,33 +122,33 @@
 .v-ddwrapper-over-left:before,
 .v-ddwrapper-over-right:before {
 	background-position: 0 -6px;
-	margin-top: -2px;
 	margin-left: -4px;
+	margin-top: -2px;
 }
 .v-ddwrapper-over-right:before {
-	position: relative;
-	margin-bottom: -4px;
-	margin-right: -4px;
-	margin-left: 0;
-	width: auto;
 	background-position: 100% -6px;
+	margin-bottom: -4px;
+	margin-left: 0;
+	margin-right: -4px;
+	position: relative;
+	width: auto;
 }
 
 .no-horizontal-drag-hints .v-ddwrapper-over-left {
-	padding-left: 2px;
 	border-left: none;
+	padding-left: 2px;
 }
 .no-horizontal-drag-hints .v-ddwrapper-over-right {
-	padding-right: 2px;
 	border-right: none;
+	padding-right: 2px;
 }
 .no-vertical-drag-hints .v-ddwrapper-over-top {
-	padding-top: 2px;
 	border-top: none;
+	padding-top: 2px;
 }
 .no-vertical-drag-hints .v-ddwrapper-over-bottom {
-	padding-bottom: 2px;
 	border-bottom: none;
+	padding-bottom: 2px;
 }
 .no-horizontal-drag-hints .v-ddwrapper-over-left:before,
 .no-horizontal-drag-hints .v-ddwrapper-over-right:before,

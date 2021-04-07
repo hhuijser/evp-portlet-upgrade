@@ -33,9 +33,7 @@
 
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
-	int total = PollsQuestionLocalServiceUtil.getQuestionsCount(scopeGroupId);
-
-	searchContainer.setTotal(total);
+	searchContainer.setTotal(PollsQuestionLocalServiceUtil.getQuestionsCount(scopeGroupId));
 
 	List results = PollsQuestionLocalServiceUtil.getQuestions(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
 

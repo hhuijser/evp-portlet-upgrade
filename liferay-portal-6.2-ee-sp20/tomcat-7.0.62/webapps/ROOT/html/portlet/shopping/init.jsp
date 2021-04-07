@@ -107,11 +107,9 @@ PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPre
 
 ShoppingPreferences shoppingPrefs = ShoppingPreferences.getInstance(company.getCompanyId(), scopeGroupId);
 
-Currency currency = Currency.getInstance(shoppingPrefs.getCurrencyId());
-
 NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
 
-currencyFormat.setCurrency(currency);
+currencyFormat.setCurrency(Currency.getInstance(shoppingPrefs.getCurrencyId()));
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 

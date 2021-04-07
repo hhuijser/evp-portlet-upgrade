@@ -48,7 +48,6 @@
 				</c:if>
 
 				<c:if test="<%= hasLock || DLFileEntryPermission.contains(permissionChecker, fileEntry.getFileEntryId(), ActionKeys.OVERRIDE_CHECKOUT) %>">
-
 					<portlet:actionURL var="cancelCheckOutURL">
 						<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 						<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.CANCEL_CHECKOUT %>" />

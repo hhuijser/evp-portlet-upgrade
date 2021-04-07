@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -87,7 +87,6 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<aui:input helpMessage="add-email-addresses-separated-by-commas" label="addresses-to" name="preferences--emailAddress--" value="<%= emailAddress %>" wrapperCssClass="lfr-input-text-container" />
 
 				<aui:input name="preferences--subject--" value="<%= subject %>" wrapperCssClass="lfr-input-text-container" />
-
 			</aui:fieldset>
 
 			<aui:fieldset cssClass="handle-data" label="database">
@@ -144,7 +143,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<aui:input name="updateFields" type="hidden" value="<%= !fieldsEditingDisabled %>" />
 
 				<%
-				String formFieldsIndexesParam = ParamUtil.getString(renderRequest, "formFieldsIndexes") ;
+				String formFieldsIndexesParam = ParamUtil.getString(renderRequest, "formFieldsIndexes");
 
 				int[] formFieldsIndexes = null;
 
@@ -172,9 +171,9 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				int index = 1;
 
 				for (int formFieldsIndex : formFieldsIndexes) {
-					request.setAttribute("configuration.jsp-index", String.valueOf(index));
-					request.setAttribute("configuration.jsp-formFieldsIndex", String.valueOf(formFieldsIndex));
 					request.setAttribute("configuration.jsp-fieldsEditingDisabled", String.valueOf(fieldsEditingDisabled));
+					request.setAttribute("configuration.jsp-formFieldsIndex", String.valueOf(formFieldsIndex));
+					request.setAttribute("configuration.jsp-index", String.valueOf(index));
 				%>
 
 					<div class="lfr-form-row" id="<portlet:namespace />fieldset<%= formFieldsIndex %>">

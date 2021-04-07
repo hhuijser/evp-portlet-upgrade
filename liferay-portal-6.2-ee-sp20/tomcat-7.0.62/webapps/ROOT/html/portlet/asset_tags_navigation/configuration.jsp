@@ -29,7 +29,6 @@
 			<li class="tree-item">
 				<aui:input label="show-unused-tags" name="preferences--showZeroAssetCount--" type="checkbox" value="<%= showZeroAssetCount %>" />
 			</li>
-
 			<li class="tree-item">
 				<aui:input name="preferences--showAssetCount--" type="checkbox" value="<%= showAssetCount %>" />
 
@@ -54,7 +53,6 @@
 					</li>
 				</ul>
 			</li>
-
 			<li class="tree-item">
 				<ul class="lfr-tree unstyled" id="<portlet:namespace />displayTemplateSettings">
 					<div class="display-template">
@@ -78,7 +76,6 @@
 					</div>
 				</ul>
 			</li>
-
 			<li class="tree-item">
 				<aui:input label="max-num-of-tags" name="preferences--maxAssetTags--" type="text" value="<%= maxAssetTags %>" />
 			</li>

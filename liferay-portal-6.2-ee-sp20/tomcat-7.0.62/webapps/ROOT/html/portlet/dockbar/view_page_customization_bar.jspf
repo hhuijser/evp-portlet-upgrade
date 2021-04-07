@@ -77,7 +77,6 @@ boolean modifiedLayout = (layoutSet != null) && layoutSet.isLayoutSetPrototypeLi
 					<div class="page-customization-bar-text">
 						<c:choose>
 							<c:when test="<%= layoutTypePortlet.isCustomizedView() %>">
-
 								<span class="page-customization-bar-message">
 									<liferay-ui:message key="you-can-customize-this-page" />
 								</span>

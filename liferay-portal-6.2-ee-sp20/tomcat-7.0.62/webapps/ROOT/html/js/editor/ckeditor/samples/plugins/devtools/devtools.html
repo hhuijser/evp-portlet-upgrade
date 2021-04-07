@@ -6,17 +6,23 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <html>
 <head>
 	<title>Using DevTools Plugin &mdash; CKEditor Sample</title>
-	<meta charset="utf-8">
+
+	<meta charset="utf-8" />
+
 	<script src="../../../ckeditor.js"></script>
-	<link rel="stylesheet" href="../../../samples/sample.css">
-	<meta name="ckeditor-sample-name" content="Developer Tools plugin">
-	<meta name="ckeditor-sample-group" content="Plugins">
-	<meta name="ckeditor-sample-description" content="Using the Developer Tools plugin to display information about dialog window UI elements to allow for easier customization.">
+
+	<link rel="stylesheet" href="../../../samples/sample.css" />
+
+	<meta name="ckeditor-sample-name" content="Developer Tools plugin" />
+	<meta name="ckeditor-sample-group" content="Plugins" />
+	<meta name="ckeditor-sample-description" content="Using the Developer Tools plugin to display information about dialog window UI elements to allow for easier customization." />
 </head>
+
 <body>
 	<h1 class="samples">
 		<a href="../../../samples/index.html">CKEditor Samples</a> &raquo; Using the Developer Tools Plugin
 	</h1>
+
 	<div class="description">
 		<p>
 			This sample shows how to configure CKEditor instances to use the
@@ -26,12 +32,14 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			<a href="http://docs.ckeditor.com/#!/api">CKEditor JavaScript API</a>
 			documentation for each of the selected elements.
 		</p>
+
 		<p>
 			This plugin is aimed at developers who would like to customize their CKEditor
 			instances and create their own plugins. By default it is turned off; it is
 			usually useful to only turn it on in the development phase. Note that it works with
 			all CKEditor dialog windows, including the ones that were created by custom plugins.
 		</p>
+
 		<p>
 			To add a CKEditor instance using the <strong>devtools</strong> plugin, insert
 			the following JavaScript call into your code:
@@ -45,12 +53,15 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			the <code>&lt;textarea&gt;</code> element to be replaced with CKEditor.
 		</p>
 	</div>
+
 	<form action="../../../samples/sample_posteddata.php" method="post">
 		<p>
 			<label for="editor1">
 				Editor 1:
 			</label>
+
 			<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+
 			<script>
 
 				// This call can be placed at any point after the
@@ -65,15 +76,19 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 
 			</script>
 		</p>
+
 		<p>
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit" />
 		</p>
 	</form>
+
 	<div id="footer">
-		<hr>
+		<hr />
+
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
+
 		<p id="copy">
 			Copyright &copy; 2003-2013, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.

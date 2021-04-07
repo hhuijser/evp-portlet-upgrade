@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
-   "http://www.w3.org/TR/html4/frameset.dtd">
+"http://www.w3.org/TR/html4/frameset.dtd">
 <!--
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
  * Copyright (C) 2003-2008 Frederico Caldeira Knabben
@@ -9,14 +9,14 @@
  * Licensed under the terms of any of the following licenses at your
  * choice:
  *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
+ * - GNU General Public License Version 2 or later (the "GPL")
+ * http://www.gnu.org/licenses/gpl.html
  *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
+ * - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ * http://www.gnu.org/licenses/lgpl.html
  *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * - Mozilla Public License Version 1.1 or later (the "MPL")
+ * http://www.mozilla.org/MPL/MPL-1.1.html
  *
  * == END LICENSE ==
  *
@@ -25,8 +25,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Resources Browser</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link href="browser.css" type="text/css" rel="stylesheet">
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<link href="browser.css" type="text/css" rel="stylesheet" />
+
 		<script type="text/javascript" src="js/fckxml.js"></script>
 		<script type="text/javascript">
 // Automatically detect the correct document.domain (#1919).
@@ -75,7 +78,6 @@ function GetUrlParam( paramName )
 
 var oConnector = new Object() ;
 
-						
 							oConnector.CurrentFolder	= '/' ;
 
 							var currentFolderParam = GetUrlParam( 'currentFolder' ) ;
@@ -83,8 +85,6 @@ var oConnector = new Object() ;
 							if (currentFolderParam) {
 								oConnector.CurrentFolder = currentFolderParam ;
 							}
-						
-					
 
 var sConnUrl = GetUrlParam( 'Connector' ) ;
 
@@ -98,8 +98,6 @@ var sServerPath = GetUrlParam( 'ServerPath' ) ;
 if ( sServerPath.length > 0 )
 	oConnector.ConnectorUrl += 'ServerPath=' + encodeURIComponent( sServerPath ) + '&' ;
 
-
-						
 							oConnector.DoAsGroupId		= GetUrlParam( 'DoAsGroupId' );
 							oConnector.ResourceType		= GetUrlParam( 'Type' );
 							oConnector.SortType		= GetUrlParam( 'SortType' );
@@ -122,8 +120,7 @@ if ( sServerPath.length > 0 )
 							if ( !oConnector.Ascending ) {
 								oConnector.Ascending = 'true';
 							}
-						
-					
+
 oConnector.ShowAllTypes		= ( oConnector.ResourceType.length == 0 ) ;
 
 if ( oConnector.ShowAllTypes )
@@ -132,14 +129,12 @@ if ( oConnector.ShowAllTypes )
 oConnector.SendCommand = function( command, params, callBackFunction )
 {
 	var sUrl = this.ConnectorUrl + 'Command=' + command ;
-	
-						
+
 							sUrl += '&doAsGroupId=' + this.DoAsGroupId;
 							sUrl += '&Type=' + this.ResourceType;
 							sUrl += '&SortType=' + this.SortType;
 							sUrl += '&Ascending=' + this.Ascending;
-						
-					
+
 	sUrl += '&CurrentFolder=' + encodeURIComponent( oConnector.CurrentFolder ) ;
 
 	if ( params ) sUrl += '&' + params ;
@@ -214,8 +209,6 @@ oIcons.GetIcon = function( fileName )
 		return 'default.icon' ;
 }
 
-
-						
 							if (oConnector.ResourceType === 'Attachment' || oConnector.ResourceType === 'AttachmentImage') {
 								var frmCreateFolderLoadedInterval = window.setInterval(
 									function() {
@@ -241,8 +234,7 @@ oIcons.GetIcon = function( fileName )
 							}
 
 							function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
-						
-					
+
 {
 	if (errorNumber == "1")
 		window.frames['frmUpload'].OnUploadCompleted( errorNumber, customMsg ) ;
@@ -252,11 +244,13 @@ oIcons.GetIcon = function( fileName )
 
 		</script>
 	</head>
+
 	<frameset cols="150,*" class="Frame" framespacing="3" bordercolor="#f1f1e3" frameborder="1">
 		<frameset rows="150,*" framespacing="0">
 			<frame src="frmresourcetype.html" scrolling="no" frameborder="0">
 			<frame name="frmFolders" src="frmfolders.html" scrolling="auto" frameborder="1">
 		</frameset>
+
 		<frameset rows="50,*,50" framespacing="0">
 			<frame name="frmActualFolder" src="frmactualfolder.html" scrolling="no" frameborder="0">
 			<frame name="frmResourcesList" src="frmresourceslist.html" scrolling="auto" frameborder="1">

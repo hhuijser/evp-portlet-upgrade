@@ -86,7 +86,6 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 </liferay-ui:search-container>
 
 <c:if test="<%= !portletName.equals(PortletKeys.MY_ACCOUNT) %>">
-
 	<liferay-ui:icon
 		cssClass="modify-link"
 		iconCssClass="icon-search"
@@ -223,7 +222,7 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 		/>
 
 		<%
-		List<Role> inheritedRoles = RoleLocalServiceUtil.getUserGroupGroupRoles(selUser.getUserId(), inheritedSite.getGroupId(), 0 , 50);
+		List<Role> inheritedRoles = RoleLocalServiceUtil.getUserGroupGroupRoles(selUser.getUserId(), inheritedSite.getGroupId(), 0, 50);
 		int inheritedRolesCount = RoleLocalServiceUtil.getUserGroupGroupRolesCount(selUser.getUserId(), inheritedSite.getGroupId());
 		%>
 

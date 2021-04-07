@@ -62,6 +62,7 @@ portletURL.setParameter("struts_action", "/social_activity/view");
 			%>
 
 		</aui:col>
+
 		<aui:col cssClass="social-activity-details" width="<%= 80 %>" />
 	</aui:row>
 

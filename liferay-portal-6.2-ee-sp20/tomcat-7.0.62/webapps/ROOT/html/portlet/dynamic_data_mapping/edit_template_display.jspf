@@ -30,16 +30,14 @@ if (Validator.isNotNull(scriptContent)) {
 			<c:if test="<%= DDMTemplateHelperUtil.isAutocompleteEnabled(language) %>">
 				<div class="lfr-template-palette-container pull-left" id="<portlet:namespace />templatePaletteContainer">
 					<div class="search" id="<portlet:namespace />paletteSearchContainer">
-						<input class="field search-query span12" id="<portlet:namespace />paletteSearch" placeholder='<%= LanguageUtil.get(pageContext, "search") %>' type="text">
+						<input class="field search-query span12" id="<portlet:namespace />paletteSearch" placeholder='<%= LanguageUtil.get(pageContext, "search") %>' type="text" />
 					</div>
 
 					<div class="lfr-template-palette" id="<portlet:namespace />paletteDataContainer">
 						<div id="<portlet:namespace />paletteData">
 
 							<%
-							long templateHandlerClassNameId = ddmDisplay.getTemplateHandlerClassNameId(template, classNameId);
-
-							Map<String, TemplateVariableGroup> templateVariableGroups = TemplateContextHelper.getTemplateVariableGroups(templateHandlerClassNameId, classPK, language, locale);
+							Map<String, TemplateVariableGroup> templateVariableGroups = TemplateContextHelper.getTemplateVariableGroups(ddmDisplay.getTemplateHandlerClassNameId(template, classNameId), classPK, language, locale);
 
 							for (TemplateVariableGroup templateVariableGroup : templateVariableGroups.values()) {
 								if (templateVariableGroup.isEmpty()) {

@@ -74,38 +74,63 @@ if (!StringUtil.contains(tabs4Names, tabs4)) {
 		<br /><br />
 
 		<table class="lfr-table">
-		<tr>
-			<td class="lfr-label">
-				<liferay-ui:message key="name" />
-			</td>
-			<td>
-				<input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="<portlet:namespace />name_<%= defaultLanguageId %>" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<br />
-			</td>
-		</tr>
-
-		<%
-		List<LayoutPrototype> layoutPrototypes = LayoutPrototypeServiceUtil.search(company.getCompanyId(), Boolean.TRUE, null);
-		%>
-
-		<c:if test="<%= !layoutPrototypes.isEmpty() %>">
 			<tr>
-				<td>
-					<liferay-ui:message key="template" />
+				<td class="lfr-label">
+					<liferay-ui:message key="name" />
 				</td>
+				<td>
+					<input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="<portlet:namespace />name_<%= defaultLanguageId %>" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2">
-					<select id="<portlet:namespace />layoutPrototypeId" name="<portlet:namespace />layoutPrototypeId">
-						<option selected value="">(<liferay-ui:message key="none" />)</option>
+					<br />
+				</td>
+			</tr>
+
+			<%
+			List<LayoutPrototype> layoutPrototypes = LayoutPrototypeServiceUtil.search(company.getCompanyId(), Boolean.TRUE, null);
+			%>
+
+			<c:if test="<%= !layoutPrototypes.isEmpty() %>">
+				<tr>
+					<td>
+						<liferay-ui:message key="template" />
+					</td>
+					<td colspan="2">
+						<select id="<portlet:namespace />layoutPrototypeId" name="<portlet:namespace />layoutPrototypeId">
+							<option selected value="">(<liferay-ui:message key="none" />)</option>
+
+							<%
+							for (LayoutPrototype layoutPrototype : layoutPrototypes) {
+							%>
+
+								<option value="<%= layoutPrototype.getLayoutPrototypeId() %>"><%= HtmlUtil.escape(layoutPrototype.getName(user.getLanguageId())) %></option>
+
+							<%
+							}
+							%>
+
+						</select>
+					</td>
+				</tr>
+			</c:if>
+
+			<tr class="hidden-field">
+				<td class="lfr-label">
+					<liferay-ui:message key="type" />
+				</td>
+				<td>
+					<select name="<portlet:namespace />type">
 
 						<%
-						for (LayoutPrototype layoutPrototype : layoutPrototypes) {
+						for (int i = 0; i < PropsValues.LAYOUT_TYPES.length; i++) {
+							if (PropsValues.LAYOUT_TYPES[i].equals("article") && (group.isLayoutPrototype() || group.isLayoutSetPrototype())) {
+								continue;
+							}
 						%>
 
-							<option value="<%= layoutPrototype.getLayoutPrototypeId() %>"><%= HtmlUtil.escape(layoutPrototype.getName(user.getLanguageId())) %></option>
+							<option <%= type.equals(PropsValues.LAYOUT_TYPES[i]) ? "selected" : "" %> value="<%= PropsValues.LAYOUT_TYPES[i] %>"><%= LanguageUtil.get(pageContext, "layout.types." + PropsValues.LAYOUT_TYPES[i]) %></option>
 
 						<%
 						}
@@ -114,51 +139,25 @@ if (!StringUtil.contains(tabs4Names, tabs4)) {
 					</select>
 				</td>
 			</tr>
-		</c:if>
-
-		<tr class="hidden-field">
-			<td class="lfr-label">
-				<liferay-ui:message key="type" />
-			</td>
-			<td>
-				<select name="<portlet:namespace />type">
-
-					<%
-					for (int i = 0; i < PropsValues.LAYOUT_TYPES.length; i++) {
-						if (PropsValues.LAYOUT_TYPES[i].equals("article") && (group.isLayoutPrototype() || group.isLayoutSetPrototype())) {
-							continue;
-						}
-					%>
-
-						<option <%= type.equals(PropsValues.LAYOUT_TYPES[i]) ? "selected" : "" %> value="<%= PropsValues.LAYOUT_TYPES[i] %>"><%= LanguageUtil.get(pageContext, "layout.types." + PropsValues.LAYOUT_TYPES[i]) %></option>
-
-					<%
-					}
-					%>
-
-				</select>
-			</td>
-		</tr>
-		<tr class="hidden-field">
-			<td class="lfr-label">
-				<liferay-ui:message key="hidden" />
-			</td>
-			<td>
-				<liferay-ui:input-checkbox defaultValue="<%= hidden %>" param="hidden" />
-			</td>
-		</tr>
-
-		<c:if test="<%= (selLayout != null) && selLayout.isTypePortlet() %>">
 			<tr class="hidden-field">
 				<td class="lfr-label">
-					<liferay-ui:message key="copy-parent" />
+					<liferay-ui:message key="hidden" />
 				</td>
 				<td>
-					<liferay-ui:input-checkbox defaultValue="false" param="inheritFromParentLayoutId" />
+					<liferay-ui:input-checkbox defaultValue="<%= hidden %>" param="hidden" />
 				</td>
 			</tr>
-		</c:if>
 
+			<c:if test="<%= (selLayout != null) && selLayout.isTypePortlet() %>">
+				<tr class="hidden-field">
+					<td class="lfr-label">
+						<liferay-ui:message key="copy-parent" />
+					</td>
+					<td>
+						<liferay-ui:input-checkbox defaultValue="false" param="inheritFromParentLayoutId" />
+					</td>
+				</tr>
+			</c:if>
 		</table>
 
 		<br />
@@ -218,31 +217,31 @@ if (!StringUtil.contains(tabs4Names, tabs4)) {
 		<br /><br />
 
 		<table class="lfr-table">
-		<tr>
-			<td>
-				<select name="<portlet:namespace />layoutIdsBox" size="7">
+			<tr>
+				<td>
+					<select name="<portlet:namespace />layoutIdsBox" size="7">
 
-				<%
-				for (int i = 0; i < selLayoutChildren.size(); i++) {
-					Layout selLayoutChild = (Layout)selLayoutChildren.get(i);
-				%>
+						<%
+						for (int i = 0; i < selLayoutChildren.size(); i++) {
+							Layout selLayoutChild = (Layout)selLayoutChildren.get(i);
+						%>
 
-					<option value="<%= selLayoutChild.getLayoutId() %>"><%= HtmlUtil.escape(selLayoutChild.getName(locale)) %></option>
+							<option value="<%= selLayoutChild.getLayoutId() %>"><%= HtmlUtil.escape(selLayoutChild.getName(locale)) %></option>
 
-				<%
-				}
-				%>
+						<%
+						}
+						%>
 
-				</select>
-			</td>
-			<td class="lfr-top">
-				<a href="javascript:Liferay.Util.reorder(document.<portlet:namespace />fm.<portlet:namespace />layoutIdsBox, 0);"><img alt="<liferay-ui:message key="move-up" />" border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_up.png" vspace="2" width="16" /></a><br />
+					</select>
+				</td>
+				<td class="lfr-top">
+					<a href="javascript:Liferay.Util.reorder(document.<portlet:namespace />fm.<portlet:namespace />layoutIdsBox, 0);"><img alt="<liferay-ui:message key="move-up" />" border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_up.png" vspace="2" width="16" /></a><br />
 
-				<a href="javascript:Liferay.Util.reorder(document.<portlet:namespace />fm.<portlet:namespace />layoutIdsBox, 1);"><img alt="<liferay-ui:message key="move-down" />" border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_down.png" vspace="2" width="16" /></a><br />
+					<a href="javascript:Liferay.Util.reorder(document.<portlet:namespace />fm.<portlet:namespace />layoutIdsBox, 1);"><img alt="<liferay-ui:message key="move-down" />" border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_down.png" vspace="2" width="16" /></a><br />
 
-				<a href="javascript:<portlet:namespace />removePage(document.<portlet:namespace />fm.<portlet:namespace />layoutIdsBox);"><img alt="<liferay-ui:message key="remove" />" border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" vspace="2" width="16" /></a><br />
-			</td>
-		</tr>
+					<a href="javascript:<portlet:namespace />removePage(document.<portlet:namespace />fm.<portlet:namespace />layoutIdsBox);"><img alt="<liferay-ui:message key="remove" />" border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" vspace="2" width="16" /></a><br />
+				</td>
+			</tr>
 		</table>
 
 		<br />
@@ -260,14 +259,14 @@ if (!StringUtil.contains(tabs4Names, tabs4)) {
 		<br /><br />
 
 		<table class="lfr-table">
-		<tr>
-			<td class="lfr-label">
-				<liferay-ui:message arguments="<%= HtmlUtil.escape(company.getGroup().getDescriptiveName(locale)) %>" key="merge-x-public-pages" translateArguments="<%= false %>" />
-			</td>
-			<td>
-				<liferay-ui:input-checkbox defaultValue="<%= mergeGuestPublicPages %>" param="mergeGuestPublicPages" />
-			</td>
-		</tr>
+			<tr>
+				<td class="lfr-label">
+					<liferay-ui:message arguments="<%= HtmlUtil.escape(company.getGroup().getDescriptiveName(locale)) %>" key="merge-x-public-pages" translateArguments="<%= false %>" />
+				</td>
+				<td>
+					<liferay-ui:input-checkbox defaultValue="<%= mergeGuestPublicPages %>" param="mergeGuestPublicPages" />
+				</td>
+			</tr>
 		</table>
 
 		<br />

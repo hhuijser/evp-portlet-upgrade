@@ -5,14 +5,14 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
 body
 {
-	/* Font */
+	/* ---------- Font ---------- */
 	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
 	font-size: 12px;
 
-	/* Text color */
+	/* ---------- Text color ---------- */
 	color: #333;
 
-	/* Remove the background color to make it transparent */
+	/* ---------- Remove the background color to make it transparent ---------- */
 	background-color: #fff;
 
 	margin: 20px;
@@ -29,26 +29,26 @@ body
 
 blockquote
 {
-	font-style: italic;
-	font-family: Georgia, Times, "Times New Roman", serif;
-	padding: 2px 0;
-	border-style: solid;
 	border-color: #ccc;
+	border-style: solid;
 	border-width: 0;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-style: italic;
+	padding: 2px 0;
 }
 
 .cke_contents_ltr blockquote
 {
+	border-left-width: 5px;
 	padding-left: 20px;
 	padding-right: 8px;
-	border-left-width: 5px;
 }
 
 .cke_contents_rtl blockquote
 {
+	border-right-width: 5px;
 	padding-left: 8px;
 	padding-right: 20px;
-	border-right-width: 5px;
 }
 
 a
@@ -95,7 +95,7 @@ img.left
 pre
 {
 	white-space: pre-wrap; /* CSS 2.1 */
-	word-wrap: break-word; /* IE7 */
+	word-wrap: break-word; /* ---------- IE7 ---------- */
 	-moz-tab-size: 4;
 	tab-size: 4;
 }
@@ -112,24 +112,24 @@ span[lang]
 
 figure
 {
-	text-align: center;
+	background: rgba(0,0,0,0.05);
 	border: solid 1px #ccc;
 	border-radius: 2px;
-	background: rgba(0,0,0,0.05);
-	padding: 10px;
-	margin: 10px 20px;
 	display: inline-block;
+	margin: 10px 20px;
+	padding: 10px;
+	text-align: center;
 }
 
 figure > figcaption
 {
 	text-align: center;
-	display: block; /* For IE8 */
+	display: block; /* ---------- For IE8 ---------- */
 }
 
 a > img {
-	padding: 1px;
-	margin: 1px;
 	border: none;
+	margin: 1px;
 	outline: 1px solid #0782C1;
+	padding: 1px;
 }

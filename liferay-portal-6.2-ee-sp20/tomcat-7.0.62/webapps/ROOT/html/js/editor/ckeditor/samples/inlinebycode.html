@@ -6,9 +6,13 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <html>
 <head>
 	<title>Inline Editing by Code &mdash; CKEditor Sample</title>
-	<meta charset="utf-8">
+
+	<meta charset="utf-8" />
+
 	<script src="../ckeditor.js"></script>
-	<link href="sample.css" rel="stylesheet">
+
+	<link href="sample.css" rel="stylesheet" />
+
 	<style>
 
 		#editable
@@ -19,10 +23,12 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 	</style>
 </head>
+
 <body>
 	<h1 class="samples">
 		<a href="index.html">CKEditor Samples</a> &raquo; Inline Editing by Code
 	</h1>
+
 	<div class="description">
 		<p>
 			This sample shows how to create an inline editor instance of CKEditor. It is created
@@ -39,6 +45,7 @@ var editor = CKEDITOR.inline( document.getElementById( 'editable' ) );
 			attribute of the <code>&lt;div&gt;</code> element to be converted into an inline instance.
 		</p>
 	</div>
+
 	<div id="editable" contenteditable="true">
 		<h1><img alt="Saturn V carrying Apollo 11" class="right" src="assets/sample.jpg" /> Apollo 11</h1>
 
@@ -64,12 +71,14 @@ var editor = CKEDITOR.inline( document.getElementById( 'editable' ) );
 
 		<table align="right" border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;margin:10px 0 10px 15px;">
 			<caption><strong>Mission crew</strong></caption>
+
 			<thead>
 			<tr>
 				<th scope="col">Position</th>
 				<th scope="col">Astronaut</th>
 			</tr>
 			</thead>
+
 			<tbody>
 			<tr>
 				<td>Commander</td>
@@ -97,8 +106,10 @@ var editor = CKEDITOR.inline( document.getElementById( 'editable' ) );
 		<p>After being sent to the Moon by the Saturn V&#39;s upper stage, the astronauts separated the spacecraft from it and travelled for three days until they entered into lunar orbit. Armstrong and Aldrin then moved into the Lunar Module and landed in the <a href="http://en.wikipedia.org/wiki/Mare_Tranquillitatis" title="Mare Tranquillitatis">Sea of Tranquility</a>. They stayed a total of about 21 and a half hours on the lunar surface. After lifting off in the upper part of the Lunar Module and rejoining Collins in the Command Module, they returned to Earth and landed in the <a href="http://en.wikipedia.org/wiki/Pacific_Ocean" title="Pacific Ocean">Pacific Ocean</a> on July 24.</p>
 
 		<hr />
+
 		<p style="text-align: right;"><small>Source: <a href="http://en.wikipedia.org/wiki/Apollo_11">Wikipedia.org</a></small></p>
 	</div>
+
 	<script>
 
 		// We need to turn off the automatic editor creation first.
@@ -107,12 +118,15 @@ var editor = CKEDITOR.inline( document.getElementById( 'editable' ) );
 		var editor = CKEDITOR.inline( 'editable' );
 
 	</script>
+
 	<div id="footer">
-		<hr>
+		<hr />
+
 		<p contenteditable="true">
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">
 				http://ckeditor.com</a>
 		</p>
+
 		<p id="copy">
 			Copyright &copy; 2003-2013, <a class="samples" href="http://cksource.com/">CKSource</a>
 			- Frederico Knabben. All rights reserved.

@@ -9,12 +9,12 @@
 	background-color: #fff;
 }
 .v-accordion-item-caption {
-	height: 19px;
 	background: #e4e4e4 repeat-x;
+	height: 19px;
 	background-image: url(../tabsheet/img/tabbar-bg.png); /** sprite-ref: verticals; sprite-alignment: repeat */
+	border-top: 1px solid #bebebe;
 	font-size: 11px;
 	line-height: normal;
-	border-top: 1px solid #bebebe;
 	text-shadow: #fff 0 1px 0;
 }
 .v-accordion-item-first .v-accordion-item-caption {
@@ -36,7 +36,7 @@
 .v-ie .v-accordion-item-caption .v-icon {
 	vertical-align: top;
 }
-/* Borderless style */
+/* ---------- Borderless style ---------- */
 .v-accordion-borderless {
 	border: none;
 	border-radius: 0;

@@ -34,7 +34,7 @@
 	background-position: 2px 50%;
 }
 
-/* IE6 */
+/* ---------- IE6 ---------- */
 .v-ie6 .v-tree-connectors .v-tree-node {
 	background: transparent url(img/connector-expand-ie6.png) no-repeat 2px -52px;
 }

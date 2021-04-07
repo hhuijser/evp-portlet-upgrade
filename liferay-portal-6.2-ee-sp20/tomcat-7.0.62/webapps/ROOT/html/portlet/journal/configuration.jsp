@@ -275,7 +275,6 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 							</dd>
 						</c:otherwise>
 					</c:choose>
-
 				</dl>
 			</div>
 		</c:when>

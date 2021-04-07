@@ -274,7 +274,6 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajax) {
 								url="<%= tempRowURL.toString() %>"
 							/>
 						</c:when>
-
 						<c:when test="<%= (curFolder != null) && DLFolderPermission.contains(permissionChecker, curFolder, ActionKeys.VIEW) %>">
 
 							<%
@@ -315,7 +314,6 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajax) {
 								url="<%= tempRowURL.toString() %>"
 							/>
 						</c:when>
-
 						<c:otherwise>
 							<div style="float: left; margin: 100px 10px 0px;">
 								<img alt="<liferay-ui:message key="error" />" border="no" src="<%= themeDisplay.getPathThemeImages() %>/application/forbidden_action.png" />
@@ -367,15 +365,15 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajax) {
 		<c:choose>
 			<c:when test="<%= showRepositoryTabs %>">
 
-			<%
-			String selectedTab = LanguageUtil.get(pageContext, "local");
+				<%
+				String selectedTab = LanguageUtil.get(pageContext, "local");
 
-			for (Folder mountFolder : mountFolders) {
-				if (mountFolder.getRepositoryId() == searchRepositoryId) {
-					selectedTab = HtmlUtil.escape(mountFolder.getName());
+				for (Folder mountFolder : mountFolders) {
+					if (mountFolder.getRepositoryId() == searchRepositoryId) {
+						selectedTab = HtmlUtil.escape(mountFolder.getName());
+					}
 				}
-			}
-			%>
+				%>
 
 				<div class="search-results-container" id="<portlet:namespace />searchResultsContainer">
 					<liferay-ui:tabs
@@ -393,6 +391,7 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajax) {
 										<div class="alert alert-info">
 											<%= LanguageUtil.get(pageContext, "searching,-please-wait") %>
 										</div>
+
 										<div class="loading-animation"></div>
 									</c:otherwise>
 								</c:choose>
@@ -413,6 +412,7 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajax) {
 											<div class="alert alert-info">
 												<%= LanguageUtil.get(pageContext, "searching,-please-wait") %>
 											</div>
+
 											<div class="loading-animation"></div>
 										</c:otherwise>
 									</c:choose>

@@ -2,13 +2,13 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * The contents of this file are subject to the terms of the applicable 
+ * The contents of this file are subject to the terms of the applicable
  * Liferay software end user license agreement ("License Agreement")
  * found on www.liferay.com/legal/eulas. You may also contact Liferay, Inc.
  * for a copy of the License Agreement. You may not use this file except in
- * compliance with the License Agreement. 
+ * compliance with the License Agreement.
  * See the License Agreement for the specific language governing
- * permissions and limitations under the License Agreement, including 
+ * permissions and limitations under the License Agreement, including
  * but not limited to distribution rights of the Software.
  *
  */
@@ -96,6 +96,7 @@ if (recurrence != null) {
 				</td>
 			</tr>
 		</tbody>
+
 		<tbody class="calendar-portlet-interval-view" id="<portlet:namespace />intervalContainer">
 			<tr>
 				<th class="calendar-portlet-recurrence-title">
@@ -120,6 +121,7 @@ if (recurrence != null) {
 				</td>
 			</tr>
 		</tbody>
+
 		<tbody class="calendar-portlet-interval-view <%= (frequency == Frequency.WEEKLY) ? "" : "hide" %>" id="<portlet:namespace />view<%= Frequency.WEEKLY %>">
 			<tr>
 				<th class="calendar-portlet-recurrence-title">
@@ -150,6 +152,7 @@ if (recurrence != null) {
 				</td>
 			</tr>
 		</tbody>
+
 		<tbody class="calendar-portlet-interval-view <%= ((frequency == Frequency.MONTHLY) || (frequency == Frequency.YEARLY)) ? "" : "hide" %>" id="<portlet:namespace />viewPositionInMonth">
 			<tr>
 				<th class="calendar-portlet-recurrence-title">
@@ -175,6 +178,7 @@ if (recurrence != null) {
 				</td>
 			</tr>
 		</tbody>
+
 		<tbody class="calendar-portlet-interval-view">
 			<tr>
 				<th class="calendar-portlet-recurrence-title">
@@ -192,7 +196,7 @@ if (recurrence != null) {
 
 						<label><liferay-ui:message key="after" /></label>
 
-						<aui:input disabled="<%= !afterChecked %>" label="<%= StringPool.BLANK %>"  name="count" size="5" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
+						<aui:input disabled="<%= !afterChecked %>" label="<%= StringPool.BLANK %>" name="count" size="5" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
 
 						<label><liferay-ui:message key="occurrences" /></label>
 					</aui:field-wrapper>
@@ -218,6 +222,7 @@ if (recurrence != null) {
 				</td>
 			</tr>
 		</tbody>
+
 		<tbody class="calendar-portlet-interval-view">
 			<tr>
 				<th class="calendar-portlet-recurrence-title">

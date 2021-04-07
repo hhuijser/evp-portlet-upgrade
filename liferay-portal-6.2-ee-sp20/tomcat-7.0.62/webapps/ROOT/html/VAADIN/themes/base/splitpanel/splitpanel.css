@@ -4,28 +4,28 @@
 }
 .v-splitpanel-hsplitter {
 	width: 6px;
-	font-size: 1px; /* for IE6 */
+	font-size: 1px; /* ---------- for IE6 ---------- */
 }
 .v-splitpanel-hsplitter div {
 	width: 6px;
-	font-size: 1px; /* for IE6 */
-	position: absolute;
-	top: 0;
-	bottom: 0;
+	font-size: 1px; /* ---------- for IE6 ---------- */
 	background: #ddd;
+	bottom: 0;
 	cursor: e-resize;
 	cursor: col-resize;
+	position: absolute;
+	top: 0;
 }
 .v-disabled .v-splitpanel-hsplitter div {
 	cursor: default;
 }
 .v-splitpanel-vsplitter {
 	height: 6px;
-	font-size: 1px; /* for IE6 */
+	font-size: 1px; /* ---------- for IE6 ---------- */
 }
 .v-splitpanel-vsplitter div {
 	height: 6px;
-	font-size: 1px; /* for IE6 */
+	font-size: 1px; /* ---------- for IE6 ---------- */
 	background: #ddd;
 	cursor: s-resize;
 	cursor: row-resize;
@@ -33,7 +33,7 @@
 .v-disabled .v-splitpanel-vsplitter div {
 	cursor: default;
 }
-/* IE specific styles */
+/* ---------- IE specific styles ---------- */
 .v-ie6 .v-splitpanel-hsplitter div {
 	height: 99%;
 }

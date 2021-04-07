@@ -29,7 +29,7 @@ FileEntry fileEntry = (FileEntry)objArray[0];
 FileVersion fileVersion = (FileVersion)objArray[1];
 %>
 
-<liferay-ui:icon-menu direction='<%= "down" %>' extended="<%= false %>" icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
+<liferay-ui:icon-menu direction="down" extended="<%= false %>" icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<liferay-ui:icon
 		image="download"
 		url="<%= DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, StringPool.BLANK) %>"
@@ -47,6 +47,7 @@ FileVersion fileVersion = (FileVersion)objArray[1];
 					<portlet:param name="struts_action" value="/document_library/view_file_entry" />
 				</c:otherwise>
 			</c:choose>
+
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
 			<portlet:param name="version" value="<%= fileVersion.getVersion() %>" />

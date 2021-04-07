@@ -40,7 +40,7 @@ long layoutRevisionId = ParamUtil.getLong(request, "layoutRevisionId");
 	<aui:form action="<%= editLayoutBranchURL %>" method="post" name="fm3">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= layoutBranch != null ? Constants.UPDATE : Constants.ADD %>" />
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="groupId" type="hidden"  value="<%= String.valueOf(scopeGroupId) %>" />
+		<aui:input name="groupId" type="hidden" value="<%= String.valueOf(scopeGroupId) %>" />
 		<aui:input name="layoutBranchId" type="hidden" value="<%= layoutBranchId %>" />
 		<aui:input name="copyLayoutRevisionId" type="hidden" value="<%= String.valueOf(layoutRevisionId) %>" />
 		<aui:input name="workflowAction" type="hidden" value="<%= String.valueOf(WorkflowConstants.ACTION_SAVE_DRAFT) %>" />

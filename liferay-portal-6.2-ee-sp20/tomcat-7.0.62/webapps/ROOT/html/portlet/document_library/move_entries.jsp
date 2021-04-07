@@ -159,7 +159,6 @@ for (DLFileShortcut curFileShortcut : fileShortcuts) {
 						<span class="folder-title">
 							<%= HtmlUtil.escape(folder.getName()) %>
 						</span>
-
 						<span class="error-message">
 							<c:choose>
 								<c:when test="<%= folder.isLocked() && !folder.hasLock() %>">
@@ -225,7 +224,6 @@ for (DLFileShortcut curFileShortcut : fileShortcuts) {
 						<span class="file-title" title="<%= HtmlUtil.escapeAttribute(invalidMoveFileEntry.getTitle()) %>">
 							<%= HtmlUtil.escape(invalidMoveFileEntry.getTitle()) %>
 						</span>
-
 						<span class="error-message">
 							<c:choose>
 								<c:when test="<%= invalidMoveFileEntry.isCheckedOut() && !invalidMoveFileEntry.hasLock() %>">
@@ -290,7 +288,6 @@ for (DLFileShortcut curFileShortcut : fileShortcuts) {
 						<span class="file-title">
 							<%= fileShortcut.getToTitle() + " (" + LanguageUtil.get(themeDisplay.getLocale(), "shortcut") + ")" %>
 						</span>
-
 						<span class="error-message">
 							<%= LanguageUtil.get(pageContext, "you-do-not-have-the-required-permissions") %>
 						</span>

@@ -86,6 +86,7 @@ portletURL.setParameter("ruleGroupInstanceId", String.valueOf(ruleGroupInstanceI
 				</aui:nav>
 			</aui:nav-bar>
 		</c:if>
+
 		<c:if test="<%= total > 0 %>">
 			<aui:button-row>
 				<aui:button cssClass="delete-rule-actions-button" disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteActions();" %>' value="delete" />

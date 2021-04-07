@@ -197,10 +197,10 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 
 		Map orderableHeaders = new HashMap();
 
-		orderableHeaders.put("sku", "sku");
 		orderableHeaders.put("description", "name");
 		orderableHeaders.put("min-qty", "min-qty");
 		orderableHeaders.put("price", "price");
+		orderableHeaders.put("sku", "sku");
 
 		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur2", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
@@ -279,6 +279,7 @@ portletURL.setParameter("categoryId", String.valueOf(categoryId));
 
 			while (enu.hasMoreElements()) {
 				String propsKey = (String)enu.nextElement();
+
 				String propsValue = props.getProperty(propsKey, StringPool.BLANK);
 
 				sb.append("<br />");

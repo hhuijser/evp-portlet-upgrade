@@ -1,13 +1,13 @@
 .v-menubar {
-	float: left; /* Force minimum width */
+	float: left; /* ---------- Force minimum width ---------- */
 	white-space: nowrap;
 }
 .v-menubar .v-menubar-menuitem {
 	cursor: default;
-	vertical-align: middle;
-	white-space: nowrap;
 	display: inline;
 	display: inline-block;
+	vertical-align: middle;
+	white-space: nowrap;
 	zoom: 1;
 }
 .v-menubar .v-menubar-menuitem-caption .v-icon {
@@ -24,8 +24,8 @@
 .v-menubar-submenu .v-menubar-menuitem { 
 	cursor: default;
 	display: block;
-	position: relative;
 	padding-right: 1.5em;
+	position: relative;
 }
 .v-menubar-submenu .v-menubar-menuitem-caption {
 	display: block;
@@ -36,16 +36,16 @@
 }
 .v-menubar-submenu-indicator {
 	display: none;
-	/* Arial has the most coverage for geometric entity characters */
+	/* ---------- Arial has the most coverage for geometric entity characters ---------- */
 	font-family: arial, helvetica, sans-serif;
 }
 .v-menubar-submenu .v-menubar-submenu-indicator {
 	display: block;
+	font-size: 0.9em;
+	height: 1em;
 	position: absolute;
 	right: 0;
 	width: 1em;
-	height: 1em;
-	font-size: 0.9em;
 }
 .v-menubar-menuitem-disabled,
 .v-menubar span.v-menubar-menuitem-disabled:hover,
@@ -54,20 +54,20 @@
 	color: #999;
 }
 .v-menubar-more-menuitem {
-	/* Arial has the most coverage for geometric entity characters */
+	/* ---------- Arial has the most coverage for geometric entity characters ---------- */
 	font-family: arial, helvetica, sans-serif;
 }
 .v-menubar-separator {
 	overflow: hidden;
 }
 .v-menubar-separator span {
+	border-top: 1px solid #ddd;
 	display: block;
-	text-indent: -9999px;
 	font-size: 1px;
 	line-height: 1px;
-	border-top: 1px solid #ddd;
 	margin: 3px 0 2px;
 	overflow: hidden;
+	text-indent: -9999px;
 }
 .v-menubar .v-icon,
 .v-menubar-submenu .v-icon {

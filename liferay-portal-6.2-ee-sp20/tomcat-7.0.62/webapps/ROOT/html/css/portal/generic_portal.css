@@ -134,8 +134,8 @@ img.icon {
 	cursor: pointer;
 	display: inline-block;
 	line-height: 1;
-	padding: 0.3em 0.5em 0.3em;
 	margin: 0.1em 0.2em;
+	padding: 0.3em 0.5em 0.3em;
 }
 
 .lfr-token-primary {
@@ -165,7 +165,7 @@ img.icon {
 	}
 }
 
-/* Skin */
+/* ---------- Skin ---------- */
 
 .definition-of-terms dt {
 	font-weight: bold;

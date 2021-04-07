@@ -148,9 +148,6 @@ dateFormatDateTime.setTimeZone(timeZone);
 			</c:when>
 		</c:choose>
 
-		<%
-		%>
-
 		<c:if test="<%= Validator.isNotNull(successMessage) %>">
 			<div class="alert alert-success">
 				<%= successMessage %>

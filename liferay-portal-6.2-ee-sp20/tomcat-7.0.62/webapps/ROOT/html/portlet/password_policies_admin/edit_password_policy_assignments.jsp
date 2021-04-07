@@ -113,7 +113,6 @@ portletURL.setParameter("tabs3", tabs3);
 					<liferay-ui:search-container-column-text
 						name="name"
 					>
-
 						<%= (user2.getFullName()) %>
 
 						<%
@@ -207,7 +206,6 @@ portletURL.setParameter("tabs3", tabs3);
 						name="name"
 						orderable="<%= true %>"
 					>
-
 						<%= HtmlUtil.escape(organization.getName()) %>
 
 						<%

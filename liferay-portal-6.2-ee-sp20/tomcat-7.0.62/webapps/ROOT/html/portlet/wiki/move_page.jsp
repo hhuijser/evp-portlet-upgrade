@@ -82,6 +82,7 @@ String newTitle = ParamUtil.get(request, "newTitle", StringPool.BLANK);
 				</aui:button-row>
 			</aui:fieldset>
 		</liferay-ui:section>
+
 		<liferay-ui:section>
 			<div class="alert alert-info">
 				<liferay-ui:message key="use-the-form-below-to-move-a-page-and-all-of-its-history-to-be-the-child-of-a-new-parent-page" />
@@ -139,9 +140,9 @@ String newTitle = ParamUtil.get(request, "newTitle", StringPool.BLANK);
 						<%
 						for (WikiPage childPage : childPages) {
 							if (Validator.isNull(childPage.getRedirectTitle())) {
-								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PARENT, childPage);
-								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PAGE, wikiPage);
 								request.setAttribute(WebKeys.WIKI_TREE_WALKER_DEPTH, 1);
+								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PAGE, wikiPage);
+								request.setAttribute(WebKeys.WIKI_TREE_WALKER_PARENT, childPage);
 						%>
 
 								<liferay-util:include page="/html/portlet/wiki/page_tree.jsp" />

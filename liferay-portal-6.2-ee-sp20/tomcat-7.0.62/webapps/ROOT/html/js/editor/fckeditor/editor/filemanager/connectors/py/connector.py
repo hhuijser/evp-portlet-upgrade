@@ -25,20 +25,24 @@ Connector for Python (CGI and WSGI).
 See config.py for configuration settings
 
 """
+
+import cgi
+import config as Config
 import os
 
-from fckutil import *
 from fckcommands import * 	# default command's implementation
-from fckoutput import * 	# base http, xml and html output mixins
-from fckconnector import FCKeditorConnectorBase # import base connector
-import config as Config
 
-class FCKeditorConnector(	FCKeditorConnectorBase,
-							GetFoldersCommandMixin,
-							GetFoldersAndFilesCommandMixin,
-							CreateFolderCommandMixin,
-							UploadFileCommandMixin,
-							BaseHttpMixin, BaseXmlMixin, BaseHtmlMixin  ):
+from fckconnector import FCKeditorConnectorBase # import base connector
+
+from fckoutput import * 	# base http, \
+	xml and html output mixins
+
+from fckutil import *
+
+class FCKeditorConnector(FCKeditorConnectorBase, GetFoldersCommandMixin,
+	GetFoldersAndFilesCommandMixin, CreateFolderCommandMixin,
+	UploadFileCommandMixin, BaseHttpMixin, BaseXmlMixin, BaseHtmlMixin):
+
 	"The Standard connector class."
 	def doResponse(self):
 		"Main function. Process the request, set headers and return a string as response."
@@ -114,5 +118,4 @@ if __name__ == '__main__':
 	except:
 		print "Content-Type: text/plain"
 		print
-		import cgi
 		cgi.print_exception()

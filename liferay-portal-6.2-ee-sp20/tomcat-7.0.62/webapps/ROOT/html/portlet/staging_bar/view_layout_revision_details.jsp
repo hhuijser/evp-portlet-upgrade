@@ -136,9 +136,7 @@ else {
 		<c:if test="<%= hasWorkflowTask %>">
 
 			<%
-			long controlPanelPlid = PortalUtil.getControlPanelPlid(company.getCompanyId());
-
-			PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(controlPanelPlid, PortletKeys.MY_WORKFLOW_TASKS, PortletRequest.RENDER_PHASE);
+			PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(PortalUtil.getControlPanelPlid(company.getCompanyId()), PortletKeys.MY_WORKFLOW_TASKS, PortletRequest.RENDER_PHASE);
 
 			portletURL.setParameter("struts_action", "/my_workflow_tasks/edit_workflow_task");
 

@@ -86,21 +86,21 @@ refererURL.setParameter("updateLayout", "true");
 								}
 							%>
 
-							<aui:nav-item cssClass="lfr-content-item" href="">
-								<span <%= AUIUtil.buildData(data) %> class="<%= cssClass %>">
-									<i class="<%= portletInstanceable ? "icon-th-large" : "icon-stop" %>"></i>
+								<aui:nav-item cssClass="lfr-content-item" href="">
+									<span <%= AUIUtil.buildData(data) %> class="<%= cssClass %>">
+										<i class="<%= portletInstanceable ? "icon-th-large" : "icon-stop" %>"></i>
 
-									<liferay-ui:message key="<%= PortalUtil.getPortletTitle(portlet, application, locale) %>" />
-								</span>
+										<liferay-ui:message key="<%= PortalUtil.getPortletTitle(portlet, application, locale) %>" />
+									</span>
 
-								<%
-								data.remove("draggable");
-								%>
+									<%
+									data.remove("draggable");
+									%>
 
-								<span <%= AUIUtil.buildData(data) %> class='add-content-item <%= portletLocked ? "lfr-portlet-used" : StringPool.BLANK %>'>
-									<liferay-ui:message key="add" />
-								</span>
-							</aui:nav-item>
+									<span <%= AUIUtil.buildData(data) %> class='add-content-item <%= portletLocked ? "lfr-portlet-used" : StringPool.BLANK %>'>
+										<liferay-ui:message key="add" />
+									</span>
+								</aui:nav-item>
 
 							<%
 							}
@@ -134,9 +134,9 @@ refererURL.setParameter("updateLayout", "true");
 				request.setAttribute(WebKeys.PORTLET_CATEGORY_INDEX, String.valueOf(portletCategoryIndex));
 			%>
 
-			<liferay-util:include page="/html/portlet/dockbar/view_category.jsp">
-				<liferay-util:param name="panelContainerId" value="<%= panelContainerId %>" />
-			</liferay-util:include>
+				<liferay-util:include page="/html/portlet/dockbar/view_category.jsp">
+					<liferay-util:param name="panelContainerId" value="<%= panelContainerId %>" />
+				</liferay-util:include>
 
 			<%
 				portletCategoryIndex++;
@@ -163,9 +163,7 @@ refererURL.setParameter("updateLayout", "true");
 		<c:if test="<%= !layout.isTypePanel() && permissionChecker.isOmniadmin() && PortletLocalServiceUtil.hasPortlet(themeDisplay.getCompanyId(), PortletKeys.MARKETPLACE_STORE) %>">
 
 			<%
-			long controlPanelPlid = PortalUtil.getControlPanelPlid(company.getCompanyId());
-
-			PortletURLImpl marketplaceURL = new PortletURLImpl(request, PortletKeys.MARKETPLACE_STORE, controlPanelPlid, PortletRequest.RENDER_PHASE);
+			PortletURLImpl marketplaceURL = new PortletURLImpl(request, PortletKeys.MARKETPLACE_STORE, PortalUtil.getControlPanelPlid(company.getCompanyId()), PortletRequest.RENDER_PHASE);
 			%>
 
 			<p class="lfr-install-more">

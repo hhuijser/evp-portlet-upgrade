@@ -14,19 +14,17 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
-<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
-<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.kernel.util.LocaleUtil" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.servlet.HttpHeaders" %><%@
+page import="com.liferay.portal.kernel.util.ContentTypes" %><%@
+page import="com.liferay.portal.kernel.util.LocaleUtil" %>
 
 <%@ page import="java.util.Locale" %>
 
 <%
 response.addHeader(HttpHeaders.CONTENT_TYPE, ContentTypes.TEXT_JAVASCRIPT);
 
-String languageId = LanguageUtil.getLanguageId(request);
-
-Locale locale = LocaleUtil.fromLanguageId(languageId);
+Locale locale = LocaleUtil.fromLanguageId(LanguageUtil.getLanguageId(request));
 
 Locale[] locales = LanguageUtil.getAvailableLocales();
 %>

@@ -5,15 +5,20 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 -->
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
+
 	<title>Code Snippet &mdash; CKEditor Sample</title>
+
 	<script src="../../../ckeditor.js"></script>
-	<link href="../../../samples/old/sample.css" rel="stylesheet">
-	<link href="../../../plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet">
-	<meta name="ckeditor-sample-name" content="Code Snippet plugin">
-	<meta name="ckeditor-sample-group" content="Plugins">
-	<meta name="ckeditor-sample-description" content="View and modify code using the Code Snippet plugin.">
-	<meta name="ckeditor-sample-isnew" content="1">
+
+	<link href="../../../samples/old/sample.css" rel="stylesheet" />
+	<link href="../../../plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet" />
+
+	<meta name="ckeditor-sample-name" content="Code Snippet plugin" />
+	<meta name="ckeditor-sample-group" content="Plugins" />
+	<meta name="ckeditor-sample-description" content="View and modify code using the Code Snippet plugin." />
+	<meta name="ckeditor-sample-isnew" content="1" />
+
 	<style>
 
 		#editable
@@ -23,10 +28,12 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
 	</style>
 </head>
+
 <body>
 	<h1 class="samples">
 		<a href="../../../samples/old/index.html">CKEditor Samples</a> &raquo; Code Snippet Plugin
 	</h1>
+
 	<div class="warning deprecated">
 		This sample is not maintained anymore. Check out its <a href="http://sdk.ckeditor.com/samples/codesnippet.html">brand new version in CKEditor SDK</a>.
 	</div>
@@ -37,13 +44,16 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			By default the <code>codesnippet</code> plugin depends on the built-in client-side syntax highlighting
 			library <a href="http://highlightjs.org">highlight.js</a>.
 		</p>
+
 		<p>
 			You can adjust the appearance of code snippets using the <code><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-codeSnippet_theme">codeSnippet_theme</a></code> configuration variable
 			(see <a href="http://highlightjs.org/static/test.html">available themes</a>).
 		</p>
+
 		<p>
 			Select theme: <select id="select"></select>
 		</p>
+
 		<p>
 			The CKEditor instance below was created by using the following configuration settings:
 		</p>
@@ -81,12 +91,12 @@ CKEDITOR.replace( 'editor1', {
 
 &lt;pre&gt;
 &lt;code&gt; ________________
-/                \
-| How about moo? |  ^__^
-\________________/  (oo)\_______
-                  \ (__)\       )\/\
-                        ||----w |
-                        ||     ||
+/ \
+| How about moo? | ^__^
+\________________/ (oo)\_______
+				  \ (__)\ )\/\
+						||----w |
+						|| ||
 &lt;/code&gt;&lt;/pre&gt;
 	</textarea>
 
@@ -139,12 +149,12 @@ CKEDITOR.inline( 'editable', {
 <p>Unknown markup:</p>
 
 <pre><code> ________________
-/                \
-| How about moo? |  ^__^
-\________________/  (oo)\_______
-                  \ (__)\       )\/\
-                        ||----w |
-                        ||     ||
+/ \
+| How about moo? | ^__^
+\________________/ (oo)\_______
+				  \ (__)\ )\/\
+						||----w |
+						|| ||
 </code></pre>
 	</div>
 
@@ -223,10 +233,12 @@ CKEDITOR.inline( 'editable', {
 	</script>
 
 	<div id="footer">
-		<hr>
+		<hr />
+
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
+
 		<p id="copy">
 			Copyright &copy; 2003-2016, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
