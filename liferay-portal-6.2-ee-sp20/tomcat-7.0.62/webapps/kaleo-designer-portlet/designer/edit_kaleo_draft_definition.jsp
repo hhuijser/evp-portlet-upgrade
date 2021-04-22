@@ -62,7 +62,7 @@
 			<aui:input name="mvcPath" type="hidden" value="<%= mvcPath %>" />
 			<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
 			<aui:input name="kaleoDraftDefinitionId" type="hidden" />
-			<aui:input name="name"  type="hidden" />
+			<aui:input name="name" type="hidden" />
 			<aui:input name="content" type="hidden" value="<%= content %>" />
 			<aui:input name="version" type="hidden" />
 			<aui:input name="draftVersion" type="hidden" />
@@ -98,7 +98,7 @@
 									</aui:field-wrapper>
 
 									<aui:field-wrapper label="workflow-definition-status">
-										<%= workflowDefinition.isActive() ? LanguageUtil.get(locale, "active") : LanguageUtil.get(locale, "not-active") %>
+										<%= workflowDefinition.isActive() ? LanguageUtil.get(request, "active") : LanguageUtil.get(request, "not-active") %>
 									</aui:field-wrapper>
 								</c:if>
 

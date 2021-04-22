@@ -24,10 +24,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>FCKeditor - Sample</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="noindex, nofollow" name="robots" />
 	<link href="../sample.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="../../fckeditor.js"></script>
+	<script src="../../fckeditor.js" type="text/javascript"></script>
 	<script type="text/javascript">
 <!--
 // FCKeditor_OnComplete is a special function that is called when an editor
@@ -176,21 +176,21 @@ oFCKeditor.Create() ;
 		&nbsp;
 	</div>
 	<div id="eButtons" style="visibility: hidden">
-		<input type="button" value="Insert HTML" onclick="InsertHTML();" />
-		<input type="button" value="Set Editor Contents" onclick="SetContents();" />
-		<input type="button" value="Get Editor Contents (XHTML)" onclick="GetContents();" />
+		<input onclick="InsertHTML();" type="button" value="Insert HTML" />
+		<input onclick="SetContents();" type="button" value="Set Editor Contents" />
+		<input onclick="GetContents();" type="button" value="Get Editor Contents (XHTML)" />
 		<br />
 		<br />
-		<input type="button" value='Execute "Bold" Command' onclick="ExecuteCommand('Bold');" />
-		<input type="button" value='Execute "Link" Command' onclick="ExecuteCommand('Link');" />
+		<input onclick="ExecuteCommand('Bold');" type="button" value="Execute &quot;Bold&quot; Command" />
+		<input onclick="ExecuteCommand('Link');" type="button" value="Execute &quot;Link&quot; Command" />
 		<br />
 		<br />
-		<input type="button" value="Interact with the Editor Area DOM" onclick="GetLength();" />
-		<input type="button" value="Get innerHTML" onclick="GetInnerHTML();" />
+		<input onclick="GetLength();" type="button" value="Interact with the Editor Area DOM" />
+		<input onclick="GetInnerHTML();" type="button" value="Get innerHTML" />
 		<br />
 		<br />
-		<input type="button" value="Check IsDirty()" onclick="CheckIsDirty();" />
-		<input type="button" value="Reset IsDirty()" onclick="ResetIsDirty();" />
+		<input onclick="CheckIsDirty();" type="button" value="Check IsDirty()" />
+		<input onclick="ResetIsDirty();" type="button" value="Reset IsDirty()" />
 	</div>
 </body>
 </html>

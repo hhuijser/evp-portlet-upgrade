@@ -8,7 +8,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 	<title>Using the CKEditor Read-Only API &mdash; CKEditor Sample</title>
 	<meta charset="utf-8">
 	<script src="../ckeditor.js"></script>
-	<link rel="stylesheet" href="sample.css">
+	<link href="sample.css" rel="stylesheet">
 	<script>
 
 		var editor;
@@ -55,8 +55,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			<textarea class="ckeditor" id="editor1" name="editor1" cols="100" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 		</p>
 		<p>
-			<input id="readOnlyOn" onclick="toggleReadOnly();" type="button" value="Make it read-only" style="display:none">
-			<input id="readOnlyOff" onclick="toggleReadOnly( false );" type="button" value="Make it editable again" style="display:none">
+			<input id="readOnlyOn" onclick="toggleReadOnly();" style="display:none" type="button" value="Make it read-only">
+			<input id="readOnlyOff" onclick="toggleReadOnly( false );" style="display:none" type="button" value="Make it editable again">
 		</p>
 	</form>
 	<div id="footer">

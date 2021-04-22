@@ -26,7 +26,7 @@ long formDDMTemplateId = ParamUtil.getLong(request, "formDDMTemplateId");
 
 <div class="record-toolbar" id="<portlet:namespace />recordToolbar"></div>
 
-<aui:script use="aui-toolbar,aui-dialog-iframe-deprecated,liferay-util-window">
+<aui:script use="aui-dialog-iframe-deprecated,aui-toolbar,liferay-util-window">
 	var permissionPopUp = null;
 
 	var toolbarChildren = [

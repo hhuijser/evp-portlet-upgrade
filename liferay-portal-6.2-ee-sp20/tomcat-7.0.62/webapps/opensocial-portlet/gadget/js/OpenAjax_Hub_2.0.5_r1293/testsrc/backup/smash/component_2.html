@@ -105,17 +105,17 @@
 	</head>
 	<body>
 		<p>Component 2</p>
-		<input type="button" onclick="init(false)" value="initialize and connect">
-		<input type="button" onclick="init(true)" value="initialize and connect using crypto random">
-		<input type="button" onclick="sendMessage(theTopic);" value="Publish message on topic1">
+		<input onclick="init(false)" type="button" value="initialize and connect">
+		<input onclick="init(true)" type="button" value="initialize and connect using crypto random">
+		<input onclick="sendMessage(theTopic);" type="button" value="Publish message on topic1">
 		<input type="button" onclick="unsubscribe()" value="unsubscribe to topic1">				
-		<input type="button" onclick="resubscribe(theTopic)" value="resubscribe to topic1">
-		<input type="button" onclick="getManagerDomain()" value="get the manager domain">
+		<input onclick="resubscribe(theTopic)" type="button" value="resubscribe to topic1">
+		<input onclick="getManagerDomain()" type="button" value="get the manager domain">
 
 		configurable topic <input type="text" size=20 id="t2" value="abc.def.*" />
 		<input type="button" onclick="unsubscribeC()" value="unsubscribe to configurable topic">	
-		<input type="button" onclick="resubscribeC()" value="resubscribe to configurable topic">
-		<input type="button" onclick="sendCMessage()" value="Distribute a message on config topic">
+		<input onclick="resubscribeC()" type="button" value="resubscribe to configurable topic">
+		<input onclick="sendCMessage()" type="button" value="Distribute a message on config topic">
 				
 	</body>
 </html>

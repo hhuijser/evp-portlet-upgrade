@@ -130,14 +130,14 @@
       };
     </script>
   </head>
-  <body style="background-color: #cccccc" onload="initTestContainer();">
+<body onload="initTestContainer();" style="background-color: #cccccc">
     <div>gadgets.rpc Performance: Container Page (method: <span id="relaymethod"></span>)</div><hr/>
     <div>Initial gadget render console: <span id="initconsole">Gadget hasn't commented yet.</span></div>
     <div>Child gadget ping count: <span id="childping">0</span></div><hr/>
     <div>Test<br/>
       <ul>
         <li>Number of messages to send:
-          <select name="num_msgs" id="num_msgs">
+<select id="num_msgs" name="num_msgs">
             <option value="1" selected>1</option>
             <option value="10">10</option>
             <option value="100">100</option>
@@ -145,7 +145,7 @@
           </select>
         </li>
         <li>Message size:
-          <select name="msg_size" id="msg_size">
+<select id="msg_size" name="msg_size">
             <option value="10">10 B</option>
             <option value="100">100 B</option>
             <option value="1024" selected>1 kB</option>
@@ -155,14 +155,14 @@
           </select>
         </li>
         <li>
-          <input type="button" value="Start The Test!" onclick="runPerfTest('gadget');" />
+<input onclick="runPerfTest('gadget');" type="button" value="Start The Test!" />
         </li>
       </ul>
     </div>
-    <div id="test_running" style="display:none;">
+<div id="test_running" style="display:none;">
       Running test...
     </div>
-    <div id="results" style="display:none;">
+<div id="results" style="display:none;">
       Results: Gadget-to-Container<br/>
       Messages: <span id="results_num_received"></span>, Bytes: <span id="results_bytes_received"></span> <span id="in_or_out"></span><br/>
       Time elapsed for test run: <span id="results_time_used"></span><br/>
@@ -178,6 +178,6 @@
     </div>
     <hr/>
     <div>Gadget: <span id="showgadget" style="display:none"><input type="button" onclick="appendGadget(); this.style.display='none';" value="Append Gadget Now (for delayed load testing)"/></span></div>
-    <div id="container"></div>
+<div id="container"></div>
   </body>
 </html>

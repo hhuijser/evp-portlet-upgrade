@@ -664,7 +664,7 @@ dateFormatDateTime.setTimeZone(timeZone);
 			Product
 		</td>
 		<td>
-			<select name="productEntryName" onChange='if (this.value == "basic-cluster") {document.getElementById("maxServers").style.display = "";} else {document.getElementById("maxServers").style.display = "none";}'>
+			<select name="productEntryName" onChange="if (this.value == "basic-cluster") {document.getElementById("maxServers").style.display = "";} else {document.getElementById("maxServers").style.display = "none";}">
 				<option value=""></option>
 
 				<%

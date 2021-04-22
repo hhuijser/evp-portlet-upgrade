@@ -18,10 +18,10 @@
  * under the License.
 -->
 <Module>
-  <ModulePrefs title="gadgets.rpc Performance/correctness tests: Gadget">
-    <Require feature="rpc"/>
+<ModulePrefs title="gadgets.rpc Performance/correctness tests: Gadget">
+<Require feature="rpc" />
   </ModulePrefs>
-  <Content type="html">
+<Content type="html">
   <![CDATA[
     <script>
       // Pre-onload message send.
