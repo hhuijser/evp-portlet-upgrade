@@ -16,15 +16,15 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<%@ page import="org.apache.shiro.SecurityUtils" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ page import="org.apache.shiro.SecurityUtils" %><%@
+taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@
+taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><%@
+taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<%@ page import="net.oauth.OAuthConsumer" %>
-<%@ page import="org.apache.shindig.social.opensocial.oauth.OAuthEntry" %>
-<%@ page import="org.apache.shindig.social.opensocial.oauth.OAuthDataStore" %>
-<%@ page import="java.net.URLEncoder" %>
+<%@ page import="net.oauth.OAuthConsumer" %><%@
+page import="org.apache.shindig.social.opensocial.oauth.OAuthEntry" %><%@
+page import="org.apache.shindig.social.opensocial.oauth.OAuthDataStore" %><%@
+page import="java.net.URLEncoder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">

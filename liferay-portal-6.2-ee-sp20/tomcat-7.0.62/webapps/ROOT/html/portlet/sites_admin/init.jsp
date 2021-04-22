@@ -73,7 +73,7 @@ if (GroupPermissionUtil.contains(permissionChecker, ActionKeys.VIEW)) {
 	filterManageableGroups = false;
 }
 
-long[] classNameIds = new long[] {PortalUtil.getClassNameId(Company.class), PortalUtil.getClassNameId(Group.class), PortalUtil.getClassNameId(Organization.class)};
+long[] classNameIds = {PortalUtil.getClassNameId(Company.class), PortalUtil.getClassNameId(Group.class), PortalUtil.getClassNameId(Organization.class)};
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getDate(locale, timeZone);
 
