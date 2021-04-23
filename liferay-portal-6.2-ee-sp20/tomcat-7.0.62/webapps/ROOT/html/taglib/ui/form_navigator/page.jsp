@@ -195,9 +195,7 @@ if (Validator.isNotNull(historyKey)) {
 							<%
 								step++;
 							}
-							%>
 
-					<%
 						}
 					}
 					%>

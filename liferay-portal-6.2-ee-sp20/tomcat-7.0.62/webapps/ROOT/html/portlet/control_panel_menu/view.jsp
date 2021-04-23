@@ -146,9 +146,7 @@
 
 							<%
 							String portletClassName = portlet.getPortletClass();
-							%>
 
-							<%
 							if (portletClassName.equals(AlloyPortlet.class.getName())) {
 								PortletConfig alloyPortletConfig = PortletConfigFactoryUtil.create(portlet, application);
 

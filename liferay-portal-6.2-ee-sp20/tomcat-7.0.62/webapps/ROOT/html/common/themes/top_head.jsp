@@ -52,9 +52,7 @@ if (!themeDisplay.isSignedIn() && layout.isPublicLayout()) {
 	<%
 		}
 	}
-	%>
 
-<%
 }
 %>
 

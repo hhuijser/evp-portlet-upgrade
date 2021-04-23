@@ -18,9 +18,7 @@
 
 <%!
 static final boolean LAYOUT_SET_PROTOTYPE_PROPAGATE_LOGO = GetterUtil.getBoolean(PropsUtil.get("layout.set.prototype.propagate.logo"));
-%>
 
-<%
 Group liveGroup = (Group)request.getAttribute("edit_pages.jsp-liveGroup");
 boolean privateLayout = ((Boolean)request.getAttribute("edit_pages.jsp-privateLayout")).booleanValue();
 UnicodeProperties groupTypeSettings = (UnicodeProperties)request.getAttribute("edit_pages.jsp-groupTypeSettings");
