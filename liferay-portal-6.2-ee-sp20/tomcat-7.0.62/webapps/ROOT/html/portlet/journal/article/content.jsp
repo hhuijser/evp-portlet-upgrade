@@ -302,7 +302,7 @@ if (Validator.isNotNull(content)) {
 
 							<span class="lfr-translation-manager-selector nobr">
 								<span class="article-default-language lfr-token lfr-token-primary" id="<portlet:namespace />textLanguageId">
-									<img alt="<liferay-ui:message key="default-language" />" src='<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + defaultLanguageId + ".png") %>' />
+									<img alt="<liferay-ui:message key="default-language" />" src="<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + defaultLanguageId + ".png") %>" />
 
 									<%= LocaleUtil.fromLanguageId(defaultLanguageId).getDisplayName(locale) %>
 								</span>
@@ -379,13 +379,13 @@ if (Validator.isNotNull(content)) {
 					String[] translations = article.getAvailableLanguageIds();
 					%>
 
-					<div class='<%= (Validator.isNull(toLanguageId) && ((translations.length > 1) || (translations.length == 1 && !translations[0].equals(defaultLanguageId)))) ? "contains-translations" :"" %>' id="<portlet:namespace />availableTranslationContainer">
+					<div class="<%= (Validator.isNull(toLanguageId) && ((translations.length > 1) || (translations.length == 1 && !translations[0].equals(defaultLanguageId)))) ? "contains-translations" :"" %>" id="<portlet:namespace />availableTranslationContainer">
 						<c:choose>
 							<c:when test="<%= Validator.isNotNull(toLanguageId) %>">
 								<liferay-util:buffer var="languageLabel">
 									<%= LocaleUtil.fromLanguageId(toLanguageId).getDisplayName(locale) %>
 
-									<img alt="" src='<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + toLanguageId + ".png") %>' />
+									<img alt="" src="<%= HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages() + "/language/" + toLanguageId + ".png") %>" />
 								</liferay-util:buffer>
 
 								<%= LanguageUtil.format(pageContext, "translating-web-content-to-x", languageLabel, false) %>
@@ -408,7 +408,7 @@ if (Validator.isNotNull(content)) {
 										%>
 
 										<a class="journal-article-translation-<%= translations[i] %> lfr-token" href="javascript:;" onClick="Liferay.Util.openWindow({cache: false, id: '<portlet:namespace /><%= translations[i] %>', title: '<%= UnicodeLanguageUtil.get(pageContext, "web-content-translation") %>', uri: '<%= editTranslationURL %>'});">
-											<img alt="" src='<%= themeDisplay.getPathThemeImages() + "/language/" + translations[i] + ".png" %>' />
+											<img alt="" src="<%= themeDisplay.getPathThemeImages() + "/language/" + translations[i] + ".png" %>" />
 
 											<%= LocaleUtil.fromLanguageId(translations[i]).getDisplayName(locale) %>
 										</a>
@@ -464,7 +464,7 @@ if (Validator.isNotNull(content)) {
 
 											<aui:button cssClass="edit-button" value="edit-options" />
 
-											<aui:button cssClass="repeatable-button hide" value="repeat" />
+											<aui:button cssClass="hide repeatable-button" value="repeat" />
 										</div>
 									</div>
 

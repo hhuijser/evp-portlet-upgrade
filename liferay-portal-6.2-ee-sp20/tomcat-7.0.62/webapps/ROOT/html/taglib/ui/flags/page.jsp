@@ -82,7 +82,7 @@ long reportedUserId = GetterUtil.getLong((String)request.getAttribute("liferay-u
 			</aui:script>
 		</c:when>
 		<c:otherwise>
-			<div id="<%= randomNamespace %>signIn" style="display:none">
+			<div id="<%= randomNamespace %>signIn" style="display: none;">
 				<liferay-ui:message key="please-sign-in-to-flag-this-as-inappropriate" />
 			</div>
 

@@ -21,7 +21,7 @@
 <head>
 <title>Sample: Virtual Currency Payment</title>
 <!-- default container look and feel -->
-<link rel="stylesheet" href="gadgets.css">
+<link href="gadgets.css" rel="stylesheet">
 <style>
   .gadgets-gadget-chrome {
     width: 80%;
@@ -39,7 +39,7 @@
   }
 </style>
 
-<script type="text/javascript" src="/gadgets/js/shindig-container:rpc:opensocial-payment.js?c=1&debug=1"></script>
+<script src="/gadgets/js/shindig-container:rpc:opensocial-payment.js?c=1&debug=1" type="text/javascript"></script>
 <script type="text/javascript">
 
 function output(message) {
@@ -89,14 +89,14 @@ function renderGadgets() {
       <a href="http://groups.google.com/group/opensocial-and-gadgets-spec/browse_thread/thread/7341f1716e50f4d/8553e6aa696bd088?lnk=gst" target=_blank>discussion thread</a>, and 
       <a href="http://code.google.com/p/opensocial-virtual-currency" target=_blank>code project</a>.
     </div>
-    <p class="desc">
+<p class="desc">
       This page is a container page:<br>
       <b><script>document.write(window.location.href);</script></b>
     </p>
     </center>
-  <div id="gadget-chrome-0" class="gadgets-gadget-chrome"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-0"></div>
 
-  <div id="output" style="clear: left;">
+<div id="output" style="clear: left;">
   </div>
 
   <!-- The counter panel -->
@@ -114,15 +114,14 @@ function renderGadgets() {
     }
   </style>
   <!-- The payment processor panel, the processor page's domain should be the same as container domain -->
-  <div id="payment-processor" style="display:none;" class="payment-panel">
+<div class="payment-panel" id="payment-processor" style="display:none;">
     <iframe name="payment-processor-frame" frameborder=0 src="/container/payment-processor.html"></iframe>
   </div>
 
   <!-- The payment records processor panel, the processor page's domain should be the same as container domain -->
-  <div id="payment-records-processor" style="display:none;" class="payment-panel">
+<div class="payment-panel" id="payment-records-processor" style="display:none;">
     <iframe name="payment-processor-frame" frameborder=0 src="/container/payment-records-processor.html"></iframe>
   </div>
 
 </body>
 </html>
-

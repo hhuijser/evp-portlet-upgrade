@@ -83,7 +83,7 @@ long categoryId = BeanParamUtil.getLong(category, request, "categoryId", Shoppin
 
 		List subcategoryIds = new ArrayList();
 
-		subcategoryIds.add(new Long(curCategory.getCategoryId()));
+		subcategoryIds.add(Long.valueOf(curCategory.getCategoryId()));
 
 		ShoppingCategoryServiceUtil.getSubcategoryIds(subcategoryIds, scopeGroupId, curCategory.getCategoryId());
 

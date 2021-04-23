@@ -24,10 +24,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>FCKeditor - Sample</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="noindex, nofollow" name="robots" />
 	<link href="../sample.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="../../fckeditor.js"></script>
+	<script src="../../fckeditor.js" type="text/javascript"></script>
 	<script type="text/javascript">
 
 function Toggle()
@@ -125,9 +125,9 @@ function PrepareSave()
 		operations so it will work even if the internal implementation changes.
 	</div>
 	<hr />
-	<form action="../php/sampleposteddata.php" method="post" target="_blank" onsubmit="PrepareSave();">
+	<form action="../php/sampleposteddata.php" method="post" onsubmit="PrepareSave();" target="_blank">
 		<div id="Textarea">
-			<input type="button" value="Switch to FCKeditor" onclick="Toggle()" />
+			<input onclick="Toggle()" type="button" value="Switch to FCKeditor" />
 			<br />
 			<br />
 			<textarea id="DataTextarea" name="Data" cols="80" rows="20" style="width: 95%">This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://www.fckeditor.net/"&gt;FCKeditor&lt;/a&gt;.</textarea>
@@ -135,11 +135,11 @@ function PrepareSave()
 		<div id="FCKeditor" style="display: none">
 			<!-- Note that the following button is disabled at startup.
 				It will be enabled once the editor is completely loaded. -->
-			<input id="BtnSwitchTextarea" type="button" disabled="disabled" value="Switch to Textarea" onclick="Toggle()" />
+			<input disabled="disabled" id="BtnSwitchTextarea" onclick="Toggle()" type="button" value="Switch to Textarea" />
 			<br />
 			<br />
 			<!-- Note that the following textarea doesn't have a "name", so it will not be posted. -->
-			<textarea id="DataFCKeditor" cols="80" rows="20"></textarea>
+			<textarea cols="80" id="DataFCKeditor" rows="20"></textarea>
 		</div>
 		<br />
 		<input type="submit" value="Submit" />

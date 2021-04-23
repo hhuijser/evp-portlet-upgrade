@@ -18,10 +18,12 @@
  * under the License.
 -->
 <Module>
-<ModulePrefs title="Sample PubSub Subscriber"
-             height="250">
+<ModulePrefs
+	height="250"
+	title="Sample PubSub Subscriber"
+>
 <Require feature="pubsub-2">
-  <Param name="topics">
+<Param name="topics">
     <![CDATA[ 
     <Topic title="Random Number" name="org.apache.shindig.random-number"
             description="Subscribes to random number generator." type="number"

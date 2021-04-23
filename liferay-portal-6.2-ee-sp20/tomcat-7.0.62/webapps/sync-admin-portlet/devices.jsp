@@ -40,7 +40,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 <aui:nav-bar>
 	<aui:nav-bar-search cssClass="pull-right">
 		<aui:form action="<%= portletURL %>" cssClass="form-search" method="post" name="fm1">
-			<liferay-ui:input-search placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "keywords") %>' />
+			<liferay-ui:input-search placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "keywords") %>' />
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>

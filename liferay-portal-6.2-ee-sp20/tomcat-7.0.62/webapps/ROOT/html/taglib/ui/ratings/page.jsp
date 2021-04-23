@@ -112,7 +112,7 @@ if (ratingsEntry != null) {
 				</div>
 			</c:when>
 			<c:when test='<%= type.equals("thumbs") %>'>
-				<div class="thumbrating liferay-rating-vote" id="<%= randomNamespace %>ratingThumb">
+				<div class="liferay-rating-vote thumbrating" id="<%= randomNamespace %>ratingThumb">
 					<div class="helper-clearfix rating-content thumbrating-content" id="<%= randomNamespace %>ratingThumbContent">
 						<liferay-util:whitespace-remover>
 							<div class="rating-label">
