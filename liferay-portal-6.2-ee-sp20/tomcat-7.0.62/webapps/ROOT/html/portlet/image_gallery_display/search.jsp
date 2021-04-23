@@ -34,7 +34,7 @@ if (searchFolderId > 0) {
 else {
 	List folderIds = new ArrayList();
 
-	folderIds.add(new Long(searchFolderIds));
+	folderIds.add(Long.valueOf(searchFolderIds));
 
 	DLAppServiceUtil.getSubfolderIds(repositoryId, folderIds, searchFolderIds);
 
@@ -111,7 +111,7 @@ String[] mediaGalleryMimeTypes = DLUtil.getMediaGalleryMimeTypes(portletPreferen
 
 	<div id="<portlet:namespace />imageGalleryAssetInfo">
 			<div class="form-search">
-				<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-images") %>' />
+				<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "search-images") %>' />
 			</div>
 
 		<br /><br />

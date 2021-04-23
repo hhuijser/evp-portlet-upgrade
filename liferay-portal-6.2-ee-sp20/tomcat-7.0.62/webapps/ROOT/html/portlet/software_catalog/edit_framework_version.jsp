@@ -59,7 +59,7 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 		<liferay-ui:message key="active" />
 	</td>
 	<td>
-		<liferay-ui:input-field bean="<%= frameworkVersion %>" defaultValue="<%= Boolean.TRUE %>" field="active" model="<%= SCFrameworkVersion.class %>" />
+		<liferay-ui:input-field bean="<%= frameworkVersion %>" defaultValue="<%= true %>" field="active" model="<%= SCFrameworkVersion.class %>" />
 	</td>
 </tr>
 

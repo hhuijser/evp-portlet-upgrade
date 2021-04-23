@@ -427,7 +427,7 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajax) {
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class="repository-search-results" data-repositoryId="<%= searchRepositoryId %>" id='<%= liferayPortletResponse.getNamespace() + "searchResultsContainer" + searchRepositoryId %>'>
+				<div class="repository-search-results" data-repositoryId="<%= searchRepositoryId %>" id="<%= liferayPortletResponse.getNamespace() + "searchResultsContainer" + searchRepositoryId %>">
 					<%= searchResults %>
 				</div>
 			</c:otherwise>

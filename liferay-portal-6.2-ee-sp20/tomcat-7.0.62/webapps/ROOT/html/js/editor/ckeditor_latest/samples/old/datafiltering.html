@@ -8,7 +8,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 	<meta charset="utf-8">
 	<title>Data Filtering &mdash; CKEditor Sample</title>
 	<script src="../../ckeditor.js"></script>
-	<link rel="stylesheet" href="sample.css">
+	<link href="sample.css" rel="stylesheet">
 	<script>
 		// Remove advanced tabs for all editors.
 		CKEDITOR.config.removeDialogTabs = 'image:advanced;link:advanced;flash:advanced;creatediv:advanced;editdiv:advanced';
@@ -385,7 +385,7 @@ CKEDITOR.replace( 'editor4', {
 				converted into plain text.
 			</p>
 		</div>
-		<h1 id="editor5" contenteditable="true">
+		<h1 contenteditable="true" id="editor5">
 			<em>Apollo 11</em> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC.
 		</h1>
 	</div>

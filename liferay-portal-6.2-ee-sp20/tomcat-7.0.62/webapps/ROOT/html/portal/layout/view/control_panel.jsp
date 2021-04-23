@@ -205,7 +205,7 @@ request.setAttribute("control_panel.jsp-ppid", ppid);
 										</aui:col>
 									</c:if>
 
-									<aui:col cssClass="<%= panelBodyCssClass %>"  width="<%= singlePortlet ? 100 : 75 %>">
+									<aui:col cssClass="<%= panelBodyCssClass %>" width="<%= singlePortlet ? 100 : 75 %>">
 										<%@ include file="/html/portal/layout/view/panel_content.jspf" %>
 									</aui:col>
 								</aui:row>

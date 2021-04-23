@@ -3,9 +3,9 @@
 
 <service-builder package-path="com.liferay.notifications">
 	<namespace>Ntfctns</namespace>
-	<entity name="UserNotificationEvent" local-service="true" remote-service="false">
+	<entity local-service="true" name="UserNotificationEvent" remote-service="false">
 		<!-- PK fields -->
-		<column name="notificationEventId" type="long" primary="true"></column>
+		<column name="notificationEventId" primary="true" type="long"></column>
 		<!-- Audit fields -->
 		<column name="companyId" type="long"></column>
 		<column name="userId" type="long"></column>
@@ -17,7 +17,7 @@
 		<column name="archived" type="boolean"></column>
 		<!-- Order -->
 		<order by="desc">
-			<order-column name="timestamp" case-sensitive="false"></order-column>
+			<order-column case-sensitive="false" name="timestamp"></order-column>
 		</order>
 		<!-- Finder methods -->
 		<finder name="UserNotificationEventId" return-type="NotificationEvent" unique="true">

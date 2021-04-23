@@ -565,7 +565,7 @@ long orderId = BeanParamUtil.getLong(order, request, "orderId");
 </aui:form>
 
 <c:if test="<%= PropsValues.SHOPPING_ORDER_COMMENTS_ENABLED && !windowState.equals(LiferayWindowState.POP_UP) %>">
-	<liferay-ui:panel-container extended="<%= true %>"  id="shoppingEditOrderPanelContainer" persistState="<%= true %>">
+	<liferay-ui:panel-container extended="<%= true %>" id="shoppingEditOrderPanelContainer" persistState="<%= true %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="shoppingEditOrderCommentsPanel" persistState="<%= true %>" title="comments">
 			<portlet:actionURL var="discussionURL">
 				<portlet:param name="struts_action" value="/shopping/edit_order_discussion" />

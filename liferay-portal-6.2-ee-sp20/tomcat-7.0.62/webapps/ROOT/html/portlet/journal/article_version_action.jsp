@@ -68,7 +68,10 @@ JournalArticle article = (JournalArticle)row.getObject();
 			<portlet:param name="articleId" value="<%= article.getArticleId() + EditArticleAction.VERSION_SEPARATOR + article.getVersion() %>" />
 		</portlet:actionURL>
 
-		<liferay-ui:icon image="time" message="expire" url="<%= expireURL %>"
+		<liferay-ui:icon
+			image="time"
+			message="expire"
+			url="<%= expireURL %>"
 		/>
 	</c:if>
 
@@ -82,7 +85,8 @@ JournalArticle article = (JournalArticle)row.getObject();
 			<portlet:param name="articleId" value="<%= article.getArticleId() + EditArticleAction.VERSION_SEPARATOR + article.getVersion() %>" />
 		</portlet:actionURL>
 
-		<liferay-ui:icon-delete url="<%= deleteURL %>"
+		<liferay-ui:icon-delete
+			url="<%= deleteURL %>"
 		/>
 	</c:if>
 </liferay-ui:icon-menu>

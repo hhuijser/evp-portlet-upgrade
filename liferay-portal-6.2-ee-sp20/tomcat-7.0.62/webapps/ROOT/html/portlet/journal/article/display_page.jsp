@@ -591,10 +591,10 @@ private String _getLayoutBreadcrumb(Layout layout, Locale locale) throws Excepti
 	StringBundler sb = new StringBundler();
 
 	if (layout.isPrivateLayout()) {
-		sb.append(LanguageUtil.get(locale, "private-pages"));
+		sb.append(LanguageUtil.get(request, "private-pages"));
 	}
 	else {
-		sb.append(LanguageUtil.get(locale, "public-pages"));
+		sb.append(LanguageUtil.get(request, "public-pages"));
 	}
 
 	sb.append(StringPool.SPACE);

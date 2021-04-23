@@ -94,7 +94,7 @@ boolean hasAddPortletURLs = false;
 		}
 	%>
 
-		<div class="lfr-meta-actions add-asset-selector">
+		<div class="add-asset-selector lfr-meta-actions">
 			<%@ include file="/html/portlet/asset_publisher/add_asset.jspf" %>
 		</div>
 
