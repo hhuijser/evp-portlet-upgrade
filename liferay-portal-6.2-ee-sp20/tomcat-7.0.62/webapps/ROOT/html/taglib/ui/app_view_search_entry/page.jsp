@@ -21,7 +21,7 @@ String actionJsp = (String)request.getAttribute("liferay-ui:app-view-search-entr
 String containerIcon = GetterUtil.getString(request.getAttribute("liferay-ui:app-view-search-entry:containerIcon"), "folder");
 String containerName = (String)request.getAttribute("liferay-ui:app-view-search-entry:containerName");
 String containerSrc = (String)request.getAttribute("liferay-ui:app-view-search-entry:containerSrc");
-String containerType = GetterUtil.getString(request.getAttribute("liferay-ui:app-view-search-entry:containerType"), LanguageUtil.get(locale, "folder"));
+String containerType = GetterUtil.getString(request.getAttribute("liferay-ui:app-view-search-entry:containerType"), LanguageUtil.get(request, "folder"));
 String cssClass = GetterUtil.getString((String)request.getAttribute("liferay-ui:app-view-search-entry:cssClass"));
 String description = (String)request.getAttribute("liferay-ui:app-view-search-entry:description");
 List<Tuple> fileEntryTuples = (List<Tuple>)request.getAttribute("liferay-ui:app-view-search-entry:fileEntryTuples");
@@ -85,7 +85,7 @@ summary.setQueryTerms(queryTerms);
 									<c:when test="<%= Validator.isNotNull(containerSrc) %>">
 										<liferay-ui:icon
 											label="<%= true %>"
-											message="<%= LanguageUtil.get(locale, containerType) %>"
+											message="<%= LanguageUtil.get(request, containerType) %>"
 											src="<%= containerSrc %>"
 										/>
 									</c:when>
@@ -93,7 +93,7 @@ summary.setQueryTerms(queryTerms);
 										<liferay-ui:icon
 											image='<%= (Validator.isNotNull(containerIcon)) ? containerIcon : "folder" %>'
 											label="<%= true %>"
-											message="<%= LanguageUtil.get(locale, containerType) %>"
+											message="<%= LanguageUtil.get(request, containerType) %>"
 										/>
 									</c:otherwise>
 								</c:choose>
@@ -192,7 +192,7 @@ summary.setQueryTerms(queryTerms);
 	</c:if>
 
 	<c:if test="<%= showCheckbox %>">
-		<aui:input cssClass="overlay entry-selector" label="" name="<%= RowChecker.ROW_IDS + rowCheckerName %>" type="checkbox" value="<%= rowCheckerId %>" />
+		<aui:input cssClass="entry-selector overlay" label="" name="<%= RowChecker.ROW_IDS + rowCheckerName %>" type="checkbox" value="<%= rowCheckerId %>" />
 	</c:if>
 
 	<c:if test="<%= Validator.isNotNull(actionJsp) %>">

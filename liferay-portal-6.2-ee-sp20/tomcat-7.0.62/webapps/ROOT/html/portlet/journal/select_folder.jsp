@@ -44,9 +44,7 @@ if (folder != null) {
 
 	portletURL.setParameter("struts_action", "/journal/select_folder");
 	portletURL.setParameter("folderId", String.valueOf(folderId));
-	%>
 
-	<%
 	boolean hasAddFolderPermission = JournalFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_FOLDER);
 	%>
 

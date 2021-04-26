@@ -112,7 +112,6 @@ if (pluginType.equals(Plugin.TYPE_PORTLET)) {
 									className="com.liferay.portal.model.Role"
 									keyProperty="name"
 									modelVar="role"
-
 								>
 									<liferay-util:param name="className" value="<%= RolesAdminUtil.getCssClassName(role) %>" />
 									<liferay-util:param name="classHoverName" value="<%= RolesAdminUtil.getCssClassName(role) %>" />

@@ -66,7 +66,7 @@ if (Validator.isNull(mainLanguageValue)) {
 
 String fieldSuffix = StringPool.BLANK;
 
-if (!Validator.isNull(languageId)) {
+if (Validator.isNotNull(languageId)) {
 	fieldSuffix = StringPool.UNDERLINE + mainLanguageId;
 }
 
@@ -95,13 +95,13 @@ if ((exception != null) && fieldName.equals(focusField)) {
 		<c:when test='<%= type.equals("editor") %>'>
 			<liferay-ui:input-editor
 				contentsLanguageId="<%= languageId %>"
-				cssClass='<%= \"language-value \" + cssClass %>'
+				cssClass='<%= "language-value " + cssClass %>'
 				editorImpl="ckeditor"
-				initMethod='<%= randomNamespace + \"InitEditor\" %>'
+				initMethod='<%= randomNamespace + "InitEditor" %>'
 				name="<%= fieldName %>"
-				onBlurMethod='<%= randomNamespace + \"OnBlurEditor\" %>'
-				onChangeMethod='<%= randomNamespace + \"OnChangeEditor\" %>'
-				onFocusMethod='<%= randomNamespace + \"OnFocusEditor\" %>'
+				onBlurMethod='<%= randomNamespace + "OnBlurEditor" %>'
+				onChangeMethod='<%= randomNamespace + "OnChangeEditor" %>'
+				onFocusMethod='<%= randomNamespace + "OnFocusEditor" %>'
 				toolbarSet="simple"
 			/>
 
@@ -241,7 +241,7 @@ if ((exception != null) && fieldName.equals(focusField)) {
 						<li class="palette-item <%= itemCssClass %>" data-index="<%= index++ %>" data-value="<%= curLanguageId %>" role="menuitem" style="display: inline-block;" title="<%= HtmlUtil.escapeAttribute(curLocale.getDisplayName(LocaleUtil.fromLanguageId(LanguageUtil.getLanguageId(request)))) %>">
 							<a class="palette-item-inner" href="javascript:void(0);">
 								<img alt="<%= curLocale.getDisplayName(LocaleUtil.fromLanguageId(LanguageUtil.getLanguageId(request))) %> <liferay-ui:message key="translation" />" class="lfr-input-localized-flag" data-languageid="<%= curLanguageId %>" src="<%= themeDisplay.getPathThemeImages() %>/language/<%= curLanguageId %>.png" />
-								<div class='<%= errorLocales.contains(curLocale) ? "lfr-input-localized-state lfr-input-localized-state-error" : "lfr-input-localized-state" %>'></div>
+								<div class="<%= errorLocales.contains(curLocale) ? "lfr-input-localized-state lfr-input-localized-state-error" : "lfr-input-localized-state" %>"></div>
 							</a>
 						</li>
 

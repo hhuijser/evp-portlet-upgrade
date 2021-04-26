@@ -1,0 +1,8 @@
+tasks:
+    mode: pr
+    quality:
+        categories:
+            - name: Bug Prevention
+            - name: Performance
+        checks:
+            - name: JSPStylingCheck

@@ -52,7 +52,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 
 	<aui:nav-bar-search cssClass="pull-right">
 		<aui:form action="<%= portletURL %>" cssClass="form-search" method="post" name="fm1">
-			<liferay-ui:input-search placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "keywords") %>' />
+			<liferay-ui:input-search placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "keywords") %>' />
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -75,7 +75,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 	List<String> localizedResourceActions = new ArrayList<String>(resourceActions.size());
 
 	for (String resourceAction : resourceActions) {
-		localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+		localizedResourceActions.add(LanguageUtil.get(request, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
 	}
 
 	String fullAccessPermissionsDescription = LanguageUtil.format(locale, "full-access-x", StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE));
@@ -88,7 +88,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 		localizedResourceActions = new ArrayList<String>(resourceActions.size());
 
 		for (String resourceAction : resourceActions) {
-			localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+			localizedResourceActions.add(LanguageUtil.get(request, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
 		}
 
 		defaultPermissionsDescription = StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE);
@@ -188,7 +188,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-			if (groupIds && confirm('<%= UnicodeLanguageUtil.get(locale, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
+			if (groupIds && confirm('<%= UnicodeLanguageUtil.get(request, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
 				document.<portlet:namespace />fm.<portlet:namespace />enabled.value = false;
 

@@ -62,7 +62,7 @@ Collections.sort(customAttributesDisplays, new CustomAttributesDisplayComparator
 
 			<%
 			buffer.append("<img align=\"left\" alt=\"");
-			buffer.append(LanguageUtil.get(locale, "icon"));
+			buffer.append(LanguageUtil.get(request, "icon"));
 			buffer.append("\" border=\"0\" src=\"");
 			buffer.append(customAttributesDisplay.getIconPath(themeDisplay));
 			buffer.append("\" style=\"margin-right: 5px;\">");

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.liferay.sync" auto-namespace-tables="false">
+<service-builder auto-namespace-tables="false" package-path="com.liferay.sync">
 	<namespace>Sync</namespace>
-	<entity name="SyncDevice" local-service="true" remote-service="true" uuid="true">
+	<entity local-service="true" name="SyncDevice" remote-service="true" uuid="true">
 		<!-- PK fields -->
-		<column name="syncDeviceId" type="long" primary="true"></column>
+		<column name="syncDeviceId" primary="true" type="long"></column>
 		<!-- Audit fields -->
 		<column name="companyId" type="long"></column>
 		<column name="userId" type="long"></column>
@@ -24,12 +24,12 @@
 		</finder>
 		<finder name="C_U" return-type="Collection">
 			<finder-column name="companyId"></finder-column>
-			<finder-column name="userName" case-sensitive="false" comparator="LIKE"></finder-column>
+			<finder-column case-sensitive="false" comparator="LIKE" name="userName"></finder-column>
 		</finder>
 	</entity>
-	<entity name="SyncDLFileVersionDiff" local-service="true" remote-service="false">
+	<entity local-service="true" name="SyncDLFileVersionDiff" remote-service="false">
 		<!-- PK fields -->
-		<column name="syncDLFileVersionDiffId" type="long" primary="true"></column>
+		<column name="syncDLFileVersionDiffId" primary="true" type="long"></column>
 		<!-- Other fields -->
 		<column name="fileEntryId" type="long"></column>
 		<column name="sourceFileVersionId" type="long"></column>
@@ -42,7 +42,7 @@
 			<finder-column name="fileEntryId"></finder-column>
 		</finder>
 		<finder name="ExpirationDate" return-type="Collection">
-			<finder-column name="expirationDate" comparator="&lt;"></finder-column>
+			<finder-column comparator="&lt;" name="expirationDate"></finder-column>
 		</finder>
 		<finder name="F_S_T" return-type="SyncDLFileVersionDiff" unique="true">
 			<finder-column name="fileEntryId"></finder-column>
@@ -50,12 +50,12 @@
 			<finder-column name="targetFileVersionId"></finder-column>
 		</finder>
 		<!-- References -->
-		<reference package-path="com.liferay.portal" entity="Company"></reference>
-		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp"></reference>
+		<reference entity="Company" package-path="com.liferay.portal"></reference>
+		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary"></reference>
 	</entity>
-	<entity name="SyncDLObject" local-service="true" remote-service="true">
+	<entity local-service="true" name="SyncDLObject" remote-service="true">
 		<!-- PK fields -->
-		<column name="syncDLObjectId" type="long" primary="true"></column>
+		<column name="syncDLObjectId" primary="true" type="long"></column>
 		<!-- Audit fields -->
 		<column name="companyId" type="long"></column>
 		<column name="userId" type="long"></column>
@@ -65,7 +65,7 @@
 		<!-- Other fields -->
 		<column name="repositoryId" type="long"></column>
 		<column name="parentFolderId" type="long"></column>
-		<column name="treePath" type="String" json-enabled="false"></column>
+		<column json-enabled="false" name="treePath" type="String"></column>
 		<column name="name" type="String"></column>
 		<column name="extension" type="String"></column>
 		<column name="mimeType" type="String"></column>
@@ -78,7 +78,7 @@
 		<column name="checksum" type="String"></column>
 		<column name="event" type="String"></column>
 		<column name="lanTokenKey" type="String"></column>
-		<column name="lastPermissionChangeDate" type="Date" json-enabled="false"></column>
+		<column json-enabled="false" name="lastPermissionChangeDate" type="Date"></column>
 		<column name="lockExpirationDate" type="Date"></column>
 		<column name="lockUserId" type="long"></column>
 		<column name="lockUserName" type="String"></column>
@@ -92,7 +92,7 @@
 		</order>
 		<!-- Finder methods -->
 		<finder name="M_R" return-type="Collection">
-			<finder-column name="modifiedTime" comparator="&gt;"></finder-column>
+			<finder-column comparator="&gt;" name="modifiedTime"></finder-column>
 			<finder-column name="repositoryId"></finder-column>
 		</finder>
 		<finder name="R_P" return-type="Collection">
@@ -101,7 +101,7 @@
 		</finder>
 		<finder name="R_NotE" return-type="Collection">
 			<finder-column name="repositoryId"></finder-column>
-			<finder-column name="event" comparator="!="></finder-column>
+			<finder-column comparator="!=" name="event"></finder-column>
 		</finder>
 		<finder name="R_T" return-type="Collection">
 			<finder-column name="repositoryId"></finder-column>
@@ -116,27 +116,27 @@
 			<finder-column name="typePK"></finder-column>
 		</finder>
 		<finder name="M_R_NotE" return-type="Collection">
-			<finder-column name="modifiedTime" comparator="&gt;"></finder-column>
+			<finder-column comparator="&gt;" name="modifiedTime"></finder-column>
 			<finder-column name="repositoryId"></finder-column>
-			<finder-column name="event" arrayable-operator="AND" comparator="!="></finder-column>
+			<finder-column arrayable-operator="AND" comparator="!=" name="event"></finder-column>
 		</finder>
 		<finder name="R_P_T" return-type="Collection">
 			<finder-column name="repositoryId"></finder-column>
 			<finder-column name="parentFolderId"></finder-column>
-			<finder-column name="type" arrayable-operator="OR"></finder-column>
+			<finder-column arrayable-operator="OR" name="type"></finder-column>
 		</finder>
 		<!-- References -->
-		<reference package-path="com.liferay.portal" entity="Group"></reference>
-		<reference package-path="com.liferay.portal" entity="Organization"></reference>
-		<reference package-path="com.liferay.portal" entity="Repository"></reference>
-		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp"></reference>
-		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFileEntry"></reference>
-		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFileVersion"></reference>
-		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFolder"></reference>
+		<reference entity="Group" package-path="com.liferay.portal"></reference>
+		<reference entity="Organization" package-path="com.liferay.portal"></reference>
+		<reference entity="Repository" package-path="com.liferay.portal"></reference>
+		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary"></reference>
+		<reference entity="DLFileEntry" package-path="com.liferay.portlet.documentlibrary"></reference>
+		<reference entity="DLFileVersion" package-path="com.liferay.portlet.documentlibrary"></reference>
+		<reference entity="DLFolder" package-path="com.liferay.portlet.documentlibrary"></reference>
 		<!-- Transactions -->
 		<tx-required>getFileDeltaAsStream</tx-required>
 	</entity>
-	<entity name="SyncPreferences" local-service="true" remote-service="false" tx-manager="false"></entity>
+	<entity local-service="true" name="SyncPreferences" remote-service="false" tx-manager="false"></entity>
 	<exceptions>
 		<exception>SyncDeviceActive</exception>
 		<exception>SyncDeviceWipe</exception>

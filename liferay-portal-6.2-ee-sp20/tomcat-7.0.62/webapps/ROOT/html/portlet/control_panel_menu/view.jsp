@@ -105,7 +105,7 @@
 										message="<%= HtmlUtil.escape(curScopeLayout.getName(locale)) %>"
 										src="<%= scopeGroup.getIconURL(themeDisplay) %>"
 										url='<%= HttpUtil.setParameter(PortalUtil.getCurrentURL(request), "doAsGroupId", scopeGroup.getGroupId()) %>'
-										/>
+									/>
 
 								<%
 								}
@@ -146,9 +146,7 @@
 
 							<%
 							String portletClassName = portlet.getPortletClass();
-							%>
 
-							<%
 							if (portletClassName.equals(AlloyPortlet.class.getName())) {
 								PortletConfig alloyPortletConfig = PortletConfigFactoryUtil.create(portlet, application);
 

@@ -418,9 +418,9 @@ if (hints != null) {
 						<c:otherwise>
 							<liferay-ui:input-editor
 								contentsLanguageId="<%= languageId %>"
-								cssClass='<%= cssClass + \" lfr-input-text\" %>'
+								cssClass='<%= cssClass + " lfr-input-text" %>'
 								editorImpl="ckeditor"
-								initMethod='<%= fieldParam + \"InitEditor\" %>'
+								initMethod='<%= fieldParam + "InitEditor" %>'
 								name="<%= fieldParam %>"
 								toolbarSet="simple"
 							/>

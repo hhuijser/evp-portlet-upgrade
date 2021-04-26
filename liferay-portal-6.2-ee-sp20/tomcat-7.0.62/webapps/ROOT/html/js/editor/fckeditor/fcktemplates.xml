@@ -25,7 +25,7 @@
  * See FCKConfig.TemplatesXmlPath in the configuration file.
 -->
 <Templates imagesBasePath="fck_template/images/">
-	<Template title="Image and Title" image="template1.gif">
+	<Template image="template1.gif" title="Image and Title">
 		<Description>One main image with a title and text that surround the image.</Description>
 		<Html>
 			<![CDATA[
@@ -35,7 +35,7 @@
 			]]>
 		</Html>
 	</Template>
-	<Template title="Strange Template" image="template2.gif">
+	<Template image="template2.gif" title="Strange Template">
 		<Description>A template that defines two colums, each one with a title, and some text.</Description>
 		<Html>
 			<![CDATA[
@@ -61,7 +61,7 @@
 			]]>
 		</Html>
 	</Template>
-	<Template title="Text and Table" image="template3.gif">
+	<Template image="template3.gif" title="Text and Table">
 		<Description>A title with some text and a table.</Description>
 		<Html>
 			<![CDATA[

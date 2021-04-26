@@ -91,9 +91,7 @@ else {
 			LayoutRevision firstChildLayoutRevision = childLayoutRevisions.get(0);
 
 			if (firstChildLayoutRevision.isInactive()) {
-			%>
 
-				<%
 				String taglibURL = "javascript:Liferay.fire('" + liferayPortletResponse.getNamespace() + "redo', {layoutRevisionId: '" + firstChildLayoutRevision.getLayoutRevisionId() + "', layoutSetBranchId: '" + firstChildLayoutRevision.getLayoutSetBranchId() + "'}); void(0);";
 				%>
 

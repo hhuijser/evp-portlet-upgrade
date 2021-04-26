@@ -43,8 +43,8 @@ else {
 
 <div class="taglib-logo-selector" id="<%= randomNamespace %>taglibLogoSelector">
 	<div class="taglib-logo-selector-content" id="<%= randomNamespace %>taglibLogoSelectorContent">
-		<a class='lfr-change-logo <%= showBackground ? "show-background" : StringPool.BLANK %>' href="javascript:;">
-			<img alt="<liferay-ui:message key="change-logo" />" class="img-polaroid avatar" id="<%= randomNamespace %>avatar" src="<%= imageSrc %>" />
+		<a class="lfr-change-logo <%= showBackground ? "show-background" : StringPool.BLANK %>" href="javascript:;">
+			<img alt="<liferay-ui:message key="change-logo" />" class="avatar img-polaroid" id="<%= randomNamespace %>avatar" src="<%= imageSrc %>" />
 		</a>
 
 		<div class="portrait-icons">

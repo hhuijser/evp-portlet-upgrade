@@ -174,10 +174,10 @@ iteratorURL.setParameter("roleTypes", roleTypesParam);
 		</c:when>
 		<c:otherwise>
 			<liferay-ui:header
-					backURL="<%= redirect %>"
-					localizeTitle="<%= false %>"
-					title="<%= HtmlUtil.unescape(selResourceDescription) %>"
-					/>
+				backURL="<%= redirect %>"
+				localizeTitle="<%= false %>"
+				title="<%= HtmlUtil.unescape(selResourceDescription) %>"
+			/>
 		</c:otherwise>
 	</c:choose>
 
@@ -262,8 +262,7 @@ iteratorURL.setParameter("roleTypes", roleTypesParam);
 				}
 				else {
 					if (parentGroup.isOrganization()) {
-						roleTypes =
-							RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
+						roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
 					}
 					else if (parentGroup.isUser()) {
 						roleTypes = RoleConstants.TYPES_REGULAR;

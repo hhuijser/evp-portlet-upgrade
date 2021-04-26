@@ -114,7 +114,7 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 				Set<Long> assetAvailableClassTypeIdsSet = assetAvailableClassTypes.keySet();
 
-				Long[] assetAvailableClassTypeIds = assetAvailableClassTypeIdsSet.toArray(new Long[assetAvailableClassTypeIdsSet.size()]);
+				Long[] assetAvailableClassTypeIds = assetAvailableClassTypeIdsSet.toArray(new Long[0]);
 
 				Long[] assetSelectedClassTypeIds = AssetPublisherUtil.getClassTypeIds(portletPreferences, className, assetAvailableClassTypeIds);
 
@@ -218,11 +218,11 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 			%>
 
 			<div class="asset-subtypefield-selected <%= Validator.isNull(ddmStructureFieldName) ? "hide" : StringPool.BLANK %>">
-				<aui:input name='<%= "preferences--ddmStructureFieldName--" %>' type="hidden" value="<%= ddmStructureFieldName %>" />
+				<aui:input name="preferences--ddmStructureFieldName--" type="hidden" value="<%= ddmStructureFieldName %>" />
 
-				<aui:input name='<%= "preferences--ddmStructureFieldValue--" %>' type="hidden" value="<%= ddmStructureFieldValue %>" />
+				<aui:input name="preferences--ddmStructureFieldValue--" type="hidden" value="<%= ddmStructureFieldValue %>" />
 
-				<aui:input name='<%= "preferences--ddmStructureDisplayFieldValue--" %>' type="hidden" value="<%= ddmStructureDisplayFieldValue %>" />
+				<aui:input name="preferences--ddmStructureDisplayFieldValue--" type="hidden" value="<%= ddmStructureDisplayFieldValue %>" />
 			</div>
 		</aui:fieldset>
 	</liferay-ui:panel>
@@ -433,9 +433,7 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 							<%
 							}
 						}
-						%>
 
-						<%
 						List<AssetVocabulary> assetVocabularies = AssetVocabularyLocalServiceUtil.getGroupVocabularies(companyGroup.getGroupId(), false);
 
 						if (!assetVocabularies.isEmpty()) {

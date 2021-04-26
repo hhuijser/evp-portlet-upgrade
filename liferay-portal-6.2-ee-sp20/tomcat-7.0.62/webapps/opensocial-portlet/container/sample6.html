@@ -21,8 +21,8 @@
 <head>
 <title>Sample: dynamic-height support</title>
 <!-- default container look and feel -->
-<link rel="stylesheet" href="gadgets.css">
-<script type="text/javascript" src="/gadgets/js/shindig-container:rpc.js?c=1&debug=1"></script>
+<link href="gadgets.css" rel="stylesheet">
+<script src="/gadgets/js/shindig-container:rpc.js?c=1&debug=1" type="text/javascript"></script>
 <script type="text/javascript">
 var specUrl0 = 'http://www.google.com/ig/modules/aue07otr.xml';
 
@@ -41,6 +41,6 @@ function renderGadgets() {
 </head>
 <body onLoad="init();renderGadgets();">
   <h2>Sample: dynamic-height support</h2>
-  <div id="gadget-parent" class="gadgets-gadget-parent"></div>
+<div class="gadgets-gadget-parent" id="gadget-parent"></div>
 </body>
 </html>
