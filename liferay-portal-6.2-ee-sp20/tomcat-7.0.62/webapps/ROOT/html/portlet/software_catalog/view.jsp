@@ -529,9 +529,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 			resultRows.add(row);
 		}
-		%>
 
-		<%
 		boolean showAddFrameworkVersionButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_FRAMEWORK_VERSION);
 		boolean showPermissionsButton = SCPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
 		%>

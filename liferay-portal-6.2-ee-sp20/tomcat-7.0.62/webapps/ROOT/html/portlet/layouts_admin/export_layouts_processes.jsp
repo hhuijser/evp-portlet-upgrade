@@ -93,9 +93,7 @@ OrderByComparator orderByComparator = BackgroundTaskComparatorFactoryUtil.getBac
 
 					<%
 					for (FileEntry fileEntry : attachmentsFileEntries) {
-					%>
 
-						<%
 						StringBundler sb = new StringBundler(4);
 
 						sb.append(fileEntry.getTitle());

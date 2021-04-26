@@ -57,5 +57,6 @@ String backURL = (String)row.getParameter("backURL");
 
 	<liferay-ui:icon-deactivate
 	 	url="<%= deactivateWorkflowDefinition %>"
-	 />
+	
+/>
 </liferay-ui:icon-menu>

@@ -39,9 +39,7 @@ if (portalRequestDataSample != null) {
 	<!--
 	<%
 	List<DataSample> dataSamples = DataSampleThreadLocal.getDataSamples();
-	%>
 
-	<%
 	for (DataSample dataSample : dataSamples) {
 	%>
 
