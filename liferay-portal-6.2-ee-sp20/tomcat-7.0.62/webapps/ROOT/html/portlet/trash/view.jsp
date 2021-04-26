@@ -175,7 +175,8 @@ if (Validator.isNotNull(keywords)) {
 			<liferay-ui:icon
 				label="<%= true %>"
 				message="<%= HtmlUtil.escape(trashRenderer.getTitle(locale)) %>"
-				method="get" src="<%= trashRenderer.getIconPath(renderRequest) %>"
+				method="get"
+				src="<%= trashRenderer.getIconPath(renderRequest) %>"
 				url="<%= viewContentURLString %>"
 			/>
 

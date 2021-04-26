@@ -68,7 +68,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	String layoutTemplateName = layoutTemplate.getName();
 
-	layoutTemplateName = LanguageUtil.get(locale, "layout-template-" + layoutTemplateName, layoutTemplateName);
+	layoutTemplateName = LanguageUtil.get(request, "layout-template-" + layoutTemplateName, layoutTemplateName);
 
 	rowURL.setParameter("title", layoutTemplateName);
 
@@ -83,7 +83,7 @@ for (int i = 0; i < results.size(); i++) {
 	}
 
 	sb.append("<img align=\"left\" alt=\"");
-	sb.append(LanguageUtil.get(locale, "thumbnail"));
+	sb.append(LanguageUtil.get(request, "thumbnail"));
 	sb.append("\" src=\"");
 	sb.append(layoutTemplate.getStaticResourcePath());
 	sb.append(HtmlUtil.escapeAttribute(layoutTemplate.getThumbnailPath()));

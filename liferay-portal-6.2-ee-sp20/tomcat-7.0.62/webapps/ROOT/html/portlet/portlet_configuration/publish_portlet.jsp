@@ -309,7 +309,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 											<liferay-ui:icon
 												image="calendar"
 												label="<%= true %>"
-												message='<%= LanguageUtil.get(locale, "date-range") + selectedLabelsHTML %>'
+												message='<%= LanguageUtil.get(request, "date-range") + selectedLabelsHTML %>'
 											/>
 										</li>
 
@@ -342,7 +342,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 																			<aui:field-wrapper label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'>
 																				<ul class="lfr-tree unstyled">
 																					<li class="tree-item">
-																						<aui:input data-name='<%= LanguageUtil.get(locale, "delete-portlet-data") %>' label="delete-portlet-data-before-importing" name="<%= PortletDataHandlerKeys.DELETE_PORTLET_DATA %>" type="checkbox" />
+																						<aui:input data-name='<%= LanguageUtil.get(request, "delete-portlet-data") %>' label="delete-portlet-data-before-importing" name="<%= PortletDataHandlerKeys.DELETE_PORTLET_DATA %>" type="checkbox" />
 
 																						<div id="<portlet:namespace />showDeleteContentWarning">
 																							<div class="alert alert-block">

@@ -167,7 +167,7 @@ SitesUtil.addPortletBreadcrumbEntries(group, pagesName, redirectURL, request, re
 						</c:when>
 					</c:choose>
 
-					<liferay-ui:staging cssClass="manage-pages-branch-menu" extended="<%= true %>" groupId="<%= groupId %>" icon="/common/tool.png" message="" privateLayout="<%= privateLayout %>" selPlid="<%= selPlid %>" showManageBranches="<%= true %>"  />
+					<liferay-ui:staging cssClass="manage-pages-branch-menu" extended="<%= true %>" groupId="<%= groupId %>" icon="/common/tool.png" message="" privateLayout="<%= privateLayout %>" selPlid="<%= selPlid %>" showManageBranches="<%= true %>" />
 				</c:if>
 
 				<liferay-util:include page="/html/portlet/layouts_admin/tree_js.jsp">
@@ -176,7 +176,7 @@ SitesUtil.addPortletBreadcrumbEntries(group, pagesName, redirectURL, request, re
 			</div>
 		</c:if>
 
-		<div class='<%= !group.isLayoutPrototype() ? "span9" : "span12" %>'>
+		<div class="<%= !group.isLayoutPrototype() ? "span9" : "span12" %>">
 			<div id="<portlet:namespace />layoutsContainer">
 				<c:choose>
 					<c:when test="<%= selPlid > 0 %>">

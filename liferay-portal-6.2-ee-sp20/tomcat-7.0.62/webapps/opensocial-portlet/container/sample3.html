@@ -21,8 +21,8 @@
 <head>
 <title>Sample: Container with FloatLeft Layout</title>
 <!-- default container look and feel -->
-<link rel="stylesheet" href="gadgets.css">
-<script type="text/javascript" src="/gadgets/js/shindig-container:rpc.js?c=1&debug=1"></script>
+<link href="gadgets.css" rel="stylesheet">
+<script src="/gadgets/js/shindig-container:rpc.js?c=1&debug=1" type="text/javascript"></script>
 <script type="text/javascript">
 var specUrl0 = 'http://www.google.com/ig/modules/horoscope.xml';
 
@@ -43,6 +43,6 @@ function renderGadgets() {
 </head>
 <body onLoad="init();renderGadgets();">
   <h2>Sample: Container with FloatLeft Layout</h2>
-  <div id="layout-root" class="gadgets-layout-root"></div>
+<div class="gadgets-layout-root" id="layout-root"></div>
 </body>
 </html>

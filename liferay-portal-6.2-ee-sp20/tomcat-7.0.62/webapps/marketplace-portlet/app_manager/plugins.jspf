@@ -69,7 +69,7 @@
 									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
 								</liferay-portlet:actionURL>
 
-								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+								<a class="activate btn btn-danger btn-mini" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -139,7 +139,7 @@
 							reindexURL.setParameter("portletId", portlet.getPortletId());
 							%>
 
-							<a class="btn btn-mini btn-info reindex" href="<%= reindexURL %>"><liferay-ui:message key="reindex-search" /></a>
+							<a class="btn btn-info btn-mini reindex" href="<%= reindexURL %>"><liferay-ui:message key="reindex-search" /></a>
 						</c:if>
 
 						<c:choose>
@@ -159,7 +159,7 @@
 									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
 								</liferay-portlet:actionURL>
 
-								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+								<a class="activate btn btn-danger btn-mini" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -201,7 +201,7 @@
 									<portlet:param name="active" value="<%= Boolean.TRUE.toString() %>" />
 								</liferay-portlet:actionURL>
 
-								<a class="btn btn-mini btn-danger activate" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
+								<a class="activate btn btn-danger btn-mini" href="<%= activateURL %>"><liferay-ui:message key="inactive" /></a>
 							</c:otherwise>
 						</c:choose>
 					</td>

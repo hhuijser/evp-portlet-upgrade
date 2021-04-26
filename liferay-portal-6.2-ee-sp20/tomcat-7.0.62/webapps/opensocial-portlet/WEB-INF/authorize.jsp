@@ -59,7 +59,7 @@ under the License.
 %>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <title>Your Friendly OAuth Provider</title>
 </head>
 <body>
@@ -67,15 +67,15 @@ Greetings <shiro:principal/>,<br/><br/>
 
 The following application wants to access your account information<br/><br/>
 
-<h3><img src="${appIcon}"/> <b><c:out value="${appTitle}"/></b> is trying to access your information.</h3>
-<img src="${appThumbnail}" align="left" width="120" height="60"/>
-<c:out value="${appDesc}" default=""/>
+<h3><img src="${appIcon}"/> <b><c:out value="${appTitle}" /></b> is trying to access your information.</h3>
+<img align="left" height="60" src="${appThumbnail}" width="120" />
+<c:out default="" value="${appDesc}" />
 <br/>
 
-<form name="authZForm" action="authorize" method="POST">
-  <input type="hidden" name="oauth_token" value="<%= token %>"/>
-  <input type="submit" name="Authorize" value="Deny"/>
-  <input type="submit" name="Authorize" value="Authorize"/>
+<form action="authorize" method="POST" name="authZForm">
+  <input name="oauth_token" type="hidden" value="<%= token %>" />
+  <input name="Authorize" type="submit" value="Deny" />
+  <input name="Authorize" type="submit" value="Authorize" />
 </form>
 
 </body>

@@ -171,7 +171,8 @@ Conversion conversion = ConverterUtil.getConversion(type, fromId, toId, fromValu
 		<liferay-ui:message key="type" />
 	</td>
 	<td>
-		<select name="<portlet:namespace />type"
+		<select
+			name="<portlet:namespace />type"
 			onChange="
 				if (this[this.selectedIndex].value == 0) {
 					Liferay.Util.setBox(document.<portlet:namespace />fm.<portlet:namespace />fromId, lengthArray);

@@ -216,7 +216,7 @@ else {
 						%>
 
 						<liferay-ui:app-view-navigation-entry
-							cssClass="folder file-entry-type"
+							cssClass="file-entry-type folder"
 							dataView="<%= dataView %>"
 							entryTitle='<%= LanguageUtil.get(pageContext, "browse-by-type") %>'
 							iconImage="icon-file"
@@ -278,7 +278,7 @@ else {
 								}
 						%>
 
-								<li class="app-view-navigation-entry folder error" title="<%= LanguageUtil.get(pageContext, errorMessage) %>">
+								<li class="app-view-navigation-entry error folder" title="<%= LanguageUtil.get(pageContext, errorMessage) %>">
 
 									<%
 									request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
@@ -348,7 +348,7 @@ else {
 							%>
 
 							<liferay-ui:app-view-navigation-entry
-								cssClass="folder file-entry-type"
+								cssClass="file-entry-type folder"
 								dataView="<%= dataView %>"
 								entryTitle='<%= LanguageUtil.get(pageContext, "basic-document") %>'
 								iconImage="icon-file"
@@ -383,7 +383,7 @@ else {
 							%>
 
 							<liferay-ui:app-view-navigation-entry
-								cssClass="folder file-entry-type"
+								cssClass="file-entry-type folder"
 								dataView="<%= dataView %>"
 								entryTitle="<%= fileEntryType.getName(locale) %>"
 								iconImage="icon-file"

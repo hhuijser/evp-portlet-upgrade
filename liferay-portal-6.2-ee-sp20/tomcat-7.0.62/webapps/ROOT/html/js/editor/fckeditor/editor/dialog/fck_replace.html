@@ -24,7 +24,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<meta content="noindex, nofollow" name="robots" />
 	<script src="common/fck_dialog_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -578,23 +578,37 @@ window.onunload = function()
 </head>
 <body onload="OnLoad()" style="overflow: hidden">
 	<div id="divFind" style="display: none">
-		<table cellspacing="3" cellpadding="2" width="100%" border="0">
+		<table border="0" cellpadding="2" cellspacing="3" width="100%">
 			<tr>
 				<td nowrap="nowrap">
-					<label for="txtFindFind" fcklang="DlgReplaceFindLbl">
+					<label fcklang="DlgReplaceFindLbl" for="txtFindFind">
 						Find what:</label>
 				</td>
 				<td width="100%">
-					<input id="txtFindFind" onkeyup="btnStat()" oninput="btnStat()" onpaste="btnStatDelayed()" style="width: 100%" tabindex="1"
-						type="text" />
+					<input
+						id="txtFindFind"
+						oninput="btnStat()"
+						onkeyup="btnStat()"
+						onpaste="btnStatDelayed()"
+						style="width: 100%"
+						tabindex="1"
+						type="text"
+					/>
 				</td>
 				<td>
-					<input id="btnFind" style="width: 80px" disabled="disabled" onclick="Find();"
-						type="button" value="Find" fcklang="DlgFindFindBtn" />
+					<input
+						disabled="disabled"
+						fcklang="DlgFindFindBtn"
+						id="btnFind"
+						onclick="Find();"
+						style="width: 80px"
+						type="button"
+						value="Find"
+					/>
 				</td>
 			</tr>
 			<tr>
-				<td valign="bottom" colspan="3">
+				<td colspan="3" valign="bottom">
 					&nbsp;<input id="chkCaseFind" tabindex="3" type="checkbox" /><label for="chkCaseFind" fcklang="DlgReplaceCaseChk">Match
 						case</label>
 					<br />
@@ -605,36 +619,57 @@ window.onunload = function()
 		</table>
 	</div>
 	<div id="divReplace" style="display:none">
-		<table cellspacing="3" cellpadding="2" width="100%" border="0">
+		<table border="0" cellpadding="2" cellspacing="3" width="100%">
 			<tr>
 				<td nowrap="nowrap">
-					<label for="txtFindReplace" fcklang="DlgReplaceFindLbl">
+					<label fcklang="DlgReplaceFindLbl" for="txtFindReplace">
 						Find what:</label>
 				</td>
 				<td width="100%">
-					<input id="txtFindReplace" onkeyup="btnStat()" oninput="btnStat()" onpaste="btnStatDelayed()" style="width: 100%" tabindex="1"
-						type="text" />
+					<input
+						id="txtFindReplace"
+						oninput="btnStat()"
+						onkeyup="btnStat()"
+						onpaste="btnStatDelayed()"
+						style="width: 100%"
+						tabindex="1"
+						type="text"
+					/>
 				</td>
 				<td>
-					<input id="btnReplace" style="width: 80px" disabled="disabled" onclick="Replace();"
-						type="button" value="Replace" fcklang="DlgReplaceReplaceBtn" />
+					<input
+						disabled="disabled"
+						fcklang="DlgReplaceReplaceBtn"
+						id="btnReplace"
+						onclick="Replace();"
+						style="width: 80px"
+						type="button"
+						value="Replace"
+					/>
 				</td>
 			</tr>
 			<tr>
-				<td valign="top" nowrap="nowrap">
-					<label for="txtReplace" fcklang="DlgReplaceReplaceLbl">
+				<td nowrap="nowrap" valign="top">
+					<label fcklang="DlgReplaceReplaceLbl" for="txtReplace">
 						Replace with:</label>
 				</td>
 				<td valign="top">
 					<input id="txtReplace" style="width: 100%" tabindex="2" type="text" />
 				</td>
 				<td>
-					<input id="btnReplaceAll" style="width: 80px" disabled="disabled" onclick="ReplaceAll()" type="button"
-						value="Replace All" fcklang="DlgReplaceReplAllBtn" />
+					<input
+						disabled="disabled"
+						fcklang="DlgReplaceReplAllBtn"
+						id="btnReplaceAll"
+						onclick="ReplaceAll()"
+						style="width: 80px"
+						type="button"
+						value="Replace All"
+					/>
 				</td>
 			</tr>
 			<tr>
-				<td valign="bottom" colspan="3">
+				<td colspan="3" valign="bottom">
 					&nbsp;<input id="chkCaseReplace" tabindex="3" type="checkbox" /><label for="chkCaseReplace" fcklang="DlgReplaceCaseChk">Match
 						case</label>
 					<br />

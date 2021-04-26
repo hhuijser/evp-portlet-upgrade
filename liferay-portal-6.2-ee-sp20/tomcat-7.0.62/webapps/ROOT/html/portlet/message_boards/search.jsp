@@ -28,7 +28,7 @@ long[] categoryIdsArray = null;
 
 List categoryIds = new ArrayList();
 
-categoryIds.add(new Long(searchCategoryId));
+categoryIds.add(Long.valueOf(searchCategoryId));
 
 MBCategoryServiceUtil.getSubcategoryIds(categoryIds, scopeGroupId, searchCategoryId);
 
@@ -56,7 +56,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 	/>
 
 	<div class="form-search">
-		<liferay-ui:input-search autoFocus="<%= (windowState.equals(WindowState.MAXIMIZED) && !themeDisplay.isFacebook()) %>" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-messages") %>' />
+		<liferay-ui:input-search autoFocus="<%= (windowState.equals(WindowState.MAXIMIZED) && !themeDisplay.isFacebook()) %>" placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "search-messages") %>' />
 	</div>
 
 	<%
@@ -127,7 +127,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 			<liferay-ui:app-view-search-entry
 				containerIcon="../common/conversation"
 				containerName="<%= MBUtil.getAbsolutePath(renderRequest, message.getCategoryId()) %>"
-				containerType='<%= LanguageUtil.get(locale, "category[message-board]") %>'
+				containerType='<%= LanguageUtil.get(request, "category[message-board]") %>'
 				cssClass='<%= MathUtil.isEven(index) ? "search" : "search alt" %>'
 				description="<%= (summary != null) ? summary.getContent() : StringPool.BLANK %>"
 				fileEntryTuples="<%= searchResult.getFileEntryTuples() %>"
