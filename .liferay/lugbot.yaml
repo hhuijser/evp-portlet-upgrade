@@ -1,0 +1,11 @@
+tasks:
+mode: pr
+upgrade:
+    currentVersion: '6.2'
+    upgradeVersion: '7.3'
+    workspacePath: path/to/liferay-workspace/
+    enableAll: true
+quality:
+    categories:
+    - name: Bug Prevention
+    - name: Performance
