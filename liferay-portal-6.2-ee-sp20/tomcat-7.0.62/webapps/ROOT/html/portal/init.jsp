@@ -28,9 +28,9 @@ page import="com.liferay.portal.UserLockoutException" %><%@
 page import="com.liferay.portal.UserPasswordException" %><%@
 page import="com.liferay.portal.UserReminderQueryException" %><%@
 page import="com.liferay.portal.kernel.cluster.ClusterExecutorUtil" %><%@
-page import="com.liferay.portal.kernel.cluster.ClusterNode" %><%@
-page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
-page import="com.liferay.portal.kernel.lar.DefaultConfigurationPortletDataHandler" %><%@
+page import="com.liferay.portal.kernel.cluster.ClusterNode" %>
+
+<%@ page import="com.liferay.portal.kernel.lar.DefaultConfigurationPortletDataHandler" %><%@
 page import="com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.PortletConfigurationLayoutUtil" %><%@
 page import="com.liferay.portal.kernel.servlet.HttpHeaders" %><%@
