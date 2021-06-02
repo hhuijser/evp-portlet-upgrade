@@ -28,7 +28,7 @@ if (mergeUrlTags || mergeLayoutTags) {
 		Set<String> layoutTagNames = AssetUtil.getLayoutTagNames(request);
 
 		if (!layoutTagNames.isEmpty()) {
-			compilerTagNames = ArrayUtil.append(compilerTagNames, layoutTagNames.toArray(new String[layoutTagNames.size()]));
+			compilerTagNames = ArrayUtil.append(compilerTagNames, layoutTagNames.toArray(new String[0]));
 		}
 	}
 
