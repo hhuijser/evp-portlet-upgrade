@@ -375,7 +375,7 @@ portletURL.setParameter("rootNodeName", rootNodeName);
 											<liferay-ui:icon
 												image="calendar"
 												label="<%= true %>"
-												message='<%= LanguageUtil.get(locale, "date-range") + selectedLabelsHTML %>'
+												message='<%= LanguageUtil.get(request, "date-range") + selectedLabelsHTML %>'
 											/>
 										</li>
 

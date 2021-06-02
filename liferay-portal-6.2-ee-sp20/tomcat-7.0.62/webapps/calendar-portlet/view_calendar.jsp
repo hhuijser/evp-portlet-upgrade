@@ -91,7 +91,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 					<div class="calendar-portlet-list-header toggler-header-expanded">
 						<span class="calendar-portlet-list-arrow"></span>
 
-						<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= new String[] {groupCalendarResource.getName(locale)} %>" key="x-calendars" /></span>
+						<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= groupCalendarResource.getName(locale) %>" key="x-calendars" /></span>
 
 						<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
 							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"><i class="icon-caret-down"></i></span>
@@ -178,7 +178,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 <%@ include file="/view_calendar_menus.jspf" %>
 
-<aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
+<aui:script use="aui-toggler,json,liferay-calendar-list,liferay-scheduler,liferay-store">
 	Liferay.CalendarUtil.USER_CLASS_NAME_ID = <%= PortalUtil.getClassNameId(User.class) %>;
 
 	<c:if test="<%= defaultCalendar != null %>">

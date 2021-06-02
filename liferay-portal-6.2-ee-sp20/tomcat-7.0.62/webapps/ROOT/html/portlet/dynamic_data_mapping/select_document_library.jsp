@@ -221,7 +221,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 			StringBundler sb = new StringBundler(6);
 
 			sb.append("<img align=\"left\" alt=\"");
-			sb.append(LanguageUtil.get(locale, "folder"));
+			sb.append(LanguageUtil.get(request, "folder"));
 			sb.append("\" border=\"0\" src=\"");
 			sb.append(HtmlUtil.escapeAttribute(themeDisplay.getPathThemeImages()));
 			sb.append("/common/folder.png\">");

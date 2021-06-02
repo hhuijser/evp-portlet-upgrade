@@ -105,7 +105,7 @@
 										message="<%= HtmlUtil.escape(curScopeLayout.getName(locale)) %>"
 										src="<%= scopeGroup.getIconURL(themeDisplay) %>"
 										url='<%= HttpUtil.setParameter(PortalUtil.getCurrentURL(request), "doAsGroupId", scopeGroup.getGroupId()) %>'
-										/>
+									/>
 
 								<%
 								}

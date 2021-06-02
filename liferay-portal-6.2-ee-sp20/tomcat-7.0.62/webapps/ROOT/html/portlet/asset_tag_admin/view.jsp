@@ -47,7 +47,7 @@
 		</aui:nav-bar-search>
 	</aui:nav-bar>
 
-	<div class="tags-admin-container lfr-app-column-view">
+	<div class="lfr-app-column-view tags-admin-container">
 		<div class="tags-admin-content-wrapper">
 			<aui:row cssClass="tags-admin-content">
 				<aui:col cssClass="tags-admin-list-container" width="<%= 35 %>">

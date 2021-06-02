@@ -48,7 +48,7 @@ String renameMessage = ParamUtil.getString(request, "renameMessage");
 %>
 
 <div class="alert alert-block" id="<portlet:namespace />messageContainer">
-	<liferay-ui:message arguments="<%= new String[] {HtmlUtil.escape(oldName)} %>" key="an-entry-with-name-x-already-exists" translateArguments="<%= false %>" />
+	<liferay-ui:message arguments="<%= HtmlUtil.escape(oldName) %>" key="an-entry-with-name-x-already-exists" translateArguments="<%= false %>" />
 </div>
 
 <portlet:actionURL var="restoreActionURL">

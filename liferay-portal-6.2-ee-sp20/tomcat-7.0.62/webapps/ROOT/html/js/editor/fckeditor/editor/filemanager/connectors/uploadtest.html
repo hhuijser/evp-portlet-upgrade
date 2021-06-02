@@ -23,7 +23,7 @@
 <html>
 	<head>
 		<title>FCKeditor - Uploaders Tests</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<script type="text/javascript">
 
 // Automatically detect the correct document.domain (#1919).
@@ -120,10 +120,10 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 		</script>
 	</head>
 	<body>
-		<table cellSpacing="0" cellPadding="0" width="100%" border="0" height="100%">
+		<table border="0" cellPadding="0" cellSpacing="0" height="100%" width="100%">
 			<tr>
 				<td>
-					<table cellSpacing="0" cellPadding="0" width="100%" border="0">
+					<table border="0" cellPadding="0" cellSpacing="0" width="100%">
 						<tr>
 							<td nowrap>
 								Select the "File Uploader" to use: <br>
@@ -151,7 +151,7 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 						</td>
 						<td>
 						Current Folder: <br>
-						<input type="text" name="CurrentFolder" id="CurrentFolder" value="/">
+						<input id="CurrentFolder" name="CurrentFolder" type="text" value="/">
 						</td>
 							<td nowrap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							<td width="100%">
@@ -161,14 +161,14 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 						</tr>
 					</table>
 					<br>
-					<table cellSpacing="0" cellPadding="0" width="100%" border="0">
+					<table border="0" cellPadding="0" cellSpacing="0" width="100%">
 						<tr>
 							<td noWrap>
-								<form id="frmUpload" target="UploadWindow" enctype="multipart/form-data" action="" method="post">
+								<form action="" enctype="multipart/form-data" id="frmUpload" method="post" target="UploadWindow">
 									Upload a new file:<br>
 									<input type="file" name="NewFile"><br>
 
-									<input type="button" value="Send it to the Server" onclick="SendFile();">
+									<input onclick="SendFile();" type="button" value="Send it to the Server">
 								</form>
 							</td>
 							<td style="WIDTH: 16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -184,7 +184,7 @@ function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
 			</tr>
 			<tr>
 				<td height="100%">
-					<iframe name="UploadWindow" width="100%" height="100%" src="javascript:void(0)"></iframe>
+					<iframe height="100%" name="UploadWindow" src="javascript:void(0)" width="100%"></iframe>
 				</td>
 			</tr>
 		</table>

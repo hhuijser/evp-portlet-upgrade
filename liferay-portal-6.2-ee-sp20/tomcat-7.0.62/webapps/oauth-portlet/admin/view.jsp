@@ -41,7 +41,7 @@
 		LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
 
 		if (!permissionChecker.isCompanyAdmin()) {
-			params.put("userId", new Long(themeDisplay.getUserId()));
+			params.put("userId", Long.valueOf(themeDisplay.getUserId()));
 		}
 
 		searchContainer.setTotal(OAuthApplicationLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getName(), params));

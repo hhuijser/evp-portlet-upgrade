@@ -69,7 +69,7 @@
           <reload>manual</reload>
           <webAppConfig>
             <contextPath>/</contextPath>
-            <baseResource implementation="org.mortbay.resource.ResourceCollection">
+<baseResource implementation="org.mortbay.resource.ResourceCollection">
               <resourcesAsCSV>src/main/webapp,${basedir}/../../content</resourcesAsCSV>
             </baseResource>
           </webAppConfig>

@@ -14,11 +14,11 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 )
 			CKEDITOR.tools.enableHtml5Elements( document );
 	</script>
-	<link rel="stylesheet" href="lib/codemirror/codemirror.css">
-	<link rel="stylesheet" href="lib/codemirror/show-hint.css">
-	<link rel="stylesheet" href="lib/codemirror/neo.css">
-	<link rel="stylesheet" href="css/fontello.css">
-	<link rel="stylesheet" href="../css/samples.css">
+	<link href="lib/codemirror/codemirror.css" rel="stylesheet">
+	<link href="lib/codemirror/show-hint.css" rel="stylesheet">
+	<link href="lib/codemirror/neo.css" rel="stylesheet">
+	<link href="css/fontello.css" rel="stylesheet">
+	<link href="../css/samples.css" rel="stylesheet">
 </head>
 <body id="toolbar">
 
@@ -62,8 +62,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 					<div class="grid-width-40 grid-switch-magic">
 						<div class="switch">
 							<span class="balloon-a balloon-a-se">Select configurator type</span>
-							<input type="radio" name="radio" data-num="1" id="radio-basic" />
-							<input type="radio" name="radio" data-num="2" id="radio-advanced" />
+							<input data-num="1" id="radio-basic" name="radio" type="radio" />
+							<input data-num="2" id="radio-advanced" name="radio" type="radio" />
 							<label data-for="1" for="radio-basic">Basic</label>
 							<span class="switch-inner">
 								<span class="handler"></span>
