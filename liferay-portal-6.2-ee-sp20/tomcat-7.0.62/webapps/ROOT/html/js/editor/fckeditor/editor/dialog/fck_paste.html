@@ -26,8 +26,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="noindex, nofollow" name="robots" />
 	<script src="common/fck_dialog_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 var dialog = window.parent ;
@@ -306,7 +306,7 @@ function CleanWord( oNode, bIgnoreFont, bRemoveStyles )
 
 </head>
 <body style="overflow: hidden">
-	<table cellspacing="0" cellpadding="0" width="100%" border="0" style="height: 98%">
+	<table border="0" cellpadding="0" cellspacing="0" style="height: 98%" width="100%">
 		<tr>
 			<td>
 				<div id="xSecurityMsg" style="display: none">
@@ -323,7 +323,7 @@ function CleanWord( oNode, bIgnoreFont, bRemoveStyles )
 			</td>
 		</tr>
 		<tr>
-			<td id="xFrameSpace" valign="top" height="100%" style="border: #000000 1px solid">
+			<td height="100%" id="xFrameSpace" style="border: #000000 1px solid" valign="top">
 				<textarea id="txtData" cols="80" rows="5" style="border: #000000 1px; display: none;
 					width: 99%; height: 98%"></textarea>
 			</td>
@@ -331,12 +331,12 @@ function CleanWord( oNode, bIgnoreFont, bRemoveStyles )
 		<tr id="oWordCommands">
 			<td>
 
-					<input id="chkRemoveFont" type="checkbox" checked="checked" />
-					<label for="chkRemoveFont" fcklang="DlgPasteIgnoreFont">
+					<input checked="checked" id="chkRemoveFont" type="checkbox" />
+					<label fcklang="DlgPasteIgnoreFont" for="chkRemoveFont">
 						Ignore Font Face definitions</label>
 					<br />
 					<input id="chkRemoveStyles" type="checkbox" />
-					<label for="chkRemoveStyles" fcklang="DlgPasteRemoveStyles">
+					<label fcklang="DlgPasteRemoveStyles" for="chkRemoveStyles">
 						Remove Styles definitions</label>
 
 			</td>

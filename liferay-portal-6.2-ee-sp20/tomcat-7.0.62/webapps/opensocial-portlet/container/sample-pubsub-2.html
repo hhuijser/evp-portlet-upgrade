@@ -21,8 +21,8 @@
 <head>
 <title>Sample: PubSub-2</title>
 <!-- default container look and feel -->
-<link rel="stylesheet" href="gadgets.css">
-<script type="text/javascript" src="/gadgets/js/shindig-container:pubsub-2.js?c=1&debug=1"></script>
+<link href="gadgets.css" rel="stylesheet">
+<script src="/gadgets/js/shindig-container:pubsub-2.js?c=1&debug=1" type="text/javascript"></script>
 <script type="text/javascript">
 var my = {};
 
@@ -144,13 +144,13 @@ function log(message) {
 </head>
 <body onLoad="my.init();my.renderGadgets();">
   <h2>Sample: PubSub-2</h2>
-  <div id="gadget-chrome-0" class="gadgets-gadget-chrome"></div>
-  <div id="gadget-chrome-1" class="gadgets-gadget-chrome"></div>
-  <div id="gadget-chrome-2" class="gadgets-gadget-chrome"></div>
-  <div style="clear: left;">
-    <input type="button" value="Print gadgets' pubsub metadata" onclick="my.printMetadata()"/>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-0"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-1"></div>
+<div class="gadgets-gadget-chrome" id="gadget-chrome-2"></div>
+<div style="clear: left;">
+<input onclick="my.printMetadata()" type="button" value="Print gadgets' pubsub metadata" />
   </div>
-  <div id="output" style="clear: left;">
+<div id="output" style="clear: left;">
   </div>
 </body>
 </html>

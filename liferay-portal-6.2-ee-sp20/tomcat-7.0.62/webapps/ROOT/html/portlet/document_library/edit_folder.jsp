@@ -144,7 +144,7 @@ if (workflowEnabled) {
 
 				<div id="<portlet:namespace />overrideParentSettings">
 					<c:if test="<%= workflowEnabled %>">
-						<div class='<%= (rootFolder || fileEntryTypes.isEmpty()) ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />defaultWorkflow">
+						<div class="<%= (rootFolder || fileEntryTypes.isEmpty()) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />defaultWorkflow">
 							<aui:select label="default-workflow-for-all-document-types" name='<%= "workflowDefinition" + DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_ALL %>'>
 
 								<aui:option label="no-workflow" value="" />

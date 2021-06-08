@@ -174,10 +174,10 @@ iteratorURL.setParameter("roleTypes", roleTypesParam);
 		</c:when>
 		<c:otherwise>
 			<liferay-ui:header
-					backURL="<%= redirect %>"
-					localizeTitle="<%= false %>"
-					title="<%= HtmlUtil.unescape(selResourceDescription) %>"
-					/>
+				backURL="<%= redirect %>"
+				localizeTitle="<%= false %>"
+				title="<%= HtmlUtil.unescape(selResourceDescription) %>"
+			/>
 		</c:otherwise>
 	</c:choose>
 

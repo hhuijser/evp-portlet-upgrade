@@ -244,7 +244,7 @@ for (long defaultTeamId : defaultTeamIds) {
 	<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
 </portlet:renderURL>
 
-<aui:script use="liferay-search-container,escape">
+<aui:script use="escape,liferay-search-container">
 	A.one('#<portlet:namespace />selectSiteRoleLink').on(
 		'click',
 		function(event) {
